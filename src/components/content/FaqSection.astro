@@ -1,7 +1,4 @@
 ---
-import type { SupportedLanguage } from '../../i18n/languages';
-import { useTranslations } from '../../i18n/utils';
-
 interface FaqItem {
   question: string;
   answer: string;
@@ -10,17 +7,14 @@ interface FaqItem {
 interface Props {
   title?: string;
   items: FaqItem[];
-  lang?: SupportedLanguage;
 }
 
-const { title, items, lang = 'de' } = Astro.props;
-const t = useTranslations(lang);
-const sectionTitle = title || t('detail.faq_heading') || 'Häufig gestellte Fragen (FAQ)';
+const { title = 'Häufig gestellte Fragen (FAQ)', items } = Astro.props;
 ---
 
 {items && items.length > 0 && (
   <section class="my-10">
-    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">{sectionTitle}</h2>
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">{title}</h2>
     <div class="mt-5 space-y-3">
       {items.map((item) => (
         <details class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 p-5 shadow-2xs transition-all open:border-emerald-400 dark:open:border-emerald-500/40">

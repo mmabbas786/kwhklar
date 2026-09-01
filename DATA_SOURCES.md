@@ -1,42 +1,23 @@
-# OFFICIAL DATA SOURCES & REGULATORY CITATIONS: kWhKlar.de
+# kWhKlar.de — Authoritative German Data Sources & Methodology
+> Verbindliche Dokumentation aller behördlichen, wissenschaftlichen und verbandsspezifischen Datenquellen für kWhKlar.de.
 
-**Last Verified**: September 1, 2026  
-**Review Cycle**: Quarterly  
+## 1. Verifizierte Quellen
 
-All calculations, benchmark ranges, and regulatory price components on kWhKlar are derived from verified official government agencies, federal statistical offices, and authorized industry associations.
+| Institution / Quelle | Offizielle URL | Verwendete Daten & Kennzahlen | Verwendungszweck | Letzte Überprüfung |
+| :--- | :--- | :--- | :--- | :--- |
+| **Bundesnetzagentur (BNetzA)** | https://www.bundesnetzagentur.de | Monitoringbericht Energie, Netzentgelte, Umlagen, Grundversorgungs-Statistiken | Validierung der staatlichen Preisbestandteile und Netzentgelte | 2026-08 |
+| **BDEW (Bundesverband der Energie- und Wasserwirtschaft)** | https://www.bdew.de | BDEW-Strompreisanalyse, Haushalts-Durchschnittsstrompreise in Cent/kWh | Ermittlung des bundesweiten Referenz-Arbeitspreises (35,00 ct/kWh) | 2026-08 |
+| **Statistisches Bundesamt (Destatis)** | https://www.destatis.de | Energiepreisentwicklung, Verbraucherpreisindex Energie, Haushaltsgrößen | Validierung der Haushaltsstrukturen und historischen Preisverläufe | 2026-08 |
+| **Stromspiegel Deutschland (co2online / BMWK gefördert)** | https://www.stromspiegel.de | Bundesweite Referenzwerte nach Haushaltsgröße (1–5 Personen), Wohnfläche und Warmwasser | Vergleichsmaßstab in Haushaltsrechnern und Einstufung gering/mittel/hoch | 2026-08 |
+| **Umweltbundesamt (UBA)** | https://www.umweltbundesamt.de | CO2-Emissionsfaktor deutscher Strommix (g CO2/kWh), Standby-Verluste | Berechnung der CO2-Ersparnis und Standby-Analysen | 2026-08 |
+| **Verbraucherzentrale Bundesverband (vzbv)** | https://www.verbraucherzentrale.de | Energieberatung Richtlinien, Typenschild-Auswertung, Rechte bei Preiserhöhungen | Verbraucherfreundliche Erklärungen zu Stromrechnung und Anbieterwechsel | 2026-08 |
+| **Fraunhofer ISE** | https://www.ise.fraunhofer.de | Photovoltaik-Ertragsdaten (kWh/kWp in DE), Wärmepumpen-Feldtests (JAZ) | Berechnungsgrundlage für PV-, Balkonkraftwerk- und Wärmepumpen-Rechner | 2026-08 |
 
----
-
-## 1. Primary Sources & Reference Registries
-
-| Source ID | Institution / Publisher | Country | Scope / Dataset | Official Reference URL |
-| :--- | :--- | :---: | :--- | :--- |
-| `bnetza` | **Bundesnetzagentur & Bundeskartellamt** | Germany (DE) | Monitoringbericht, Netzentgelte, Großhandelspreise | [bundesnetzagentur.de](https://www.bundesnetzagentur.de) |
-| `bdew` | **BDEW (Bundesverband der Energie- und Wasserwirtschaft)** | Germany (DE) | BDEW-Strompreisanalyse, Durchschnittsverbrauch | [bdew.de](https://www.bdew.de) |
-| `destatis` | **Statistisches Bundesamt (Destatis)** | Germany (DE) | Energiepreise, Haushaltsausgaben & Energiestatistik | [destatis.de](https://www.destatis.de) |
-| `stromspiegel` | **Stromspiegel Deutschland (co2online / BMWK)** | Germany (DE) | Stromverbrauchsklassen für 1- bis 5-Personen-Haushalte | [stromspiegel.de](https://www.stromspiegel.de) |
-| `uba` | **Umweltbundesamt (UBA)** | Germany (DE) | CO2-Emissionsfaktor im deutschen Strommix | [umweltbundesamt.de](https://www.umweltbundesamt.de) |
-| `econtrol` | **E-Control Austria** | Austria (AT) | Österreichische Strompreise & Haushaltsbenchmarks | [e-control.at](https://www.e-control.at) |
-| `elcom` | **Eidgenössische Elektrizitätskommission (ElCom)** | Switzerland (CH)| Schweizer Stromtarife, Netznutzung & KEV | [elcom.admin.ch](https://www.elcom.admin.ch) |
-
----
-
-## 2. Mathematical Calculation Formulas
-
-### 1. Appliance Electricity Consumption
-$$\text{kWh} = \frac{\text{Power (Watts)} \times \text{Operating Hours (h)}}{1.000}$$
-
-### 2. Total Electricity Cost
-$$\text{Cost (€)} = \text{kWh} \times \text{Electricity Rate (€/kWh)}$$
-
-### 3. Monthly Extrapolation
-$$\text{Monthly Cost} = \frac{\text{Annual kWh} \times \text{Rate (€/kWh)}}{12} + \text{Monthly Base Fee}$$
-*(Note: Based on standard 365 calendar days, averaging 30.42 days per month)*
+## 2. Berechnungsstandards & Formeln
+1. **Stromkosten (€)** = $\frac{\text{Leistung (Watt)} \times \text{Nutzungsdauer (h/Tag)}}{1.000} \times \text{Tage} \times \text{Strompreis (€/kWh)}$
+2. **Jahreskosten mit Grundpreis** = $\text{Verbrauchskosten} + (12 \times \text{monatlicher Grundpreis})$
+3. **Wärmepumpen-Strombedarf** = $\frac{\text{Jahres-Wärmebedarf (kWh)}}{\text{Jahresarbeitszahl (JAZ)}}$
+4. **Balkonkraftwerk-Ersparnis** = $\text{Jahresertrag (kWh)} \times \text{Eigenverbrauchsanteil} \times \text{Strompreis (€/kWh)}$
 
 ---
-
-## 3. Transparency & Editorial Policy
-
-1. **Unbiased & Independent**: kWhKlar is not affiliated with any specific energy provider or political organization.
-2. **Customizable Rates**: All calculators allow the user to replace the standard reference price (35 ct/kWh) with their exact contractual utility tariff.
-3. **No Fabricated Data**: If official statistics are not available for a specific device, the methodology clearly indicates it as an estimated typical range.
+Stand: 2026-09-01 | kWhKlar.de Quellenverzeichnis

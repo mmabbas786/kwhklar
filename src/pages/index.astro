@@ -10,7 +10,7 @@ import { householdBenchmarks } from '../data/household-benchmarks';
 import { electricityPriceData } from '../data/electricity-price';
 import { formatEuro, formatKwh } from '../lib/formatters';
 
-import { getHomepageFaqs } from '../i18n/homepage-faqs';
+import { homepageFaqs } from '../data/homepage-faqs';
 import { getCalculatorSchema, getFaqSchema } from '../lib/structured-data';
 
 const popularAppliances = [
@@ -22,7 +22,7 @@ const popularAppliances = [
   appliances['fernseher'],
 ];
 
-const homeFaqs = getHomepageFaqs('de');
+const homeFaqs = homepageFaqs;
 
 const calcSchema = getCalculatorSchema(
   'Stromkostenrechner & Stromverbrauch einfach berechnen',

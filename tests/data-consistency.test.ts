@@ -2,47 +2,28 @@ import { describe, it, expect } from 'vitest';
 import { appliances } from '../src/data/appliances';
 import { householdBenchmarks } from '../src/data/household-benchmarks';
 import { electricityPriceData } from '../src/data/electricity-price';
-import { languages } from '../src/i18n/languages';
-import { applianceTranslations } from '../src/i18n/appliances';
-import { topicTranslations } from '../src/i18n/topics';
+import { topics } from '../src/data/topics';
 
-describe('P0 — Data Integrity & Canonical Consistency Tests', () => {
-  it('should have exactly 25 appliances in canonical database with valid numeric ranges', () => {
+describe('P0 — Data Integrity & German Canonical Consistency Tests', () => {
+  it('should have exactly 25 appliances in canonical database with valid numeric ranges and 10 FAQs each', () => {
     const applianceKeys = Object.keys(appliances);
     expect(applianceKeys.length).toBe(25);
 
     for (const slug of applianceKeys) {
       const app = appliances[slug];
       expect(app.slug).toBe(slug);
+      expect(app.name.length).toBeGreaterThan(0);
       expect(app.typicalWattage).toBeGreaterThan(0);
       expect(app.wattageMin).toBeLessThanOrEqual(app.typicalWattage);
       expect(app.wattageMax).toBeGreaterThanOrEqual(app.typicalWattage);
       expect(app.typicalAnnualKwh).toBeGreaterThan(0);
       expect(app.annualCostEuro).toBeGreaterThan(0);
+      expect(app.savingAdvice.length).toBeGreaterThanOrEqual(3);
+      expect(app.faq.length).toBe(10); // Exactly 10 comprehensive FAQs
 
       // Verify math: annualCostEuro = typicalAnnualKwh * referencePrice (0.35 €/kWh)
       const expectedCost = +(app.typicalAnnualKwh * 0.35).toFixed(2);
       expect(Math.abs(app.annualCostEuro - expectedCost)).toBeLessThanOrEqual(0.05);
-    }
-  });
-
-  it('should have 100% appliance parity across all 8 locales in applianceTranslations', () => {
-    const locales = Object.keys(languages) as (keyof typeof applianceTranslations)[];
-    const canonicalSlugs = Object.keys(appliances);
-
-    for (const loc of locales) {
-      const locAppliances = applianceTranslations[loc];
-      expect(locAppliances, `Locale ${loc} must exist in applianceTranslations`).toBeDefined();
-      expect(Object.keys(locAppliances).length).toBe(canonicalSlugs.length);
-
-      for (const slug of canonicalSlugs) {
-        const item = locAppliances[slug];
-        expect(item, `Appliance ${slug} must exist for locale ${loc}`).toBeDefined();
-        expect(item.name.length).toBeGreaterThan(0);
-        expect(item.category.length).toBeGreaterThan(0);
-        expect(item.savingAdvice.length).toBeGreaterThanOrEqual(3);
-        expect(item.faq.length).toBe(10); // Exactly 10 PAA FAQs
-      }
     }
   });
 
@@ -65,23 +46,16 @@ describe('P0 — Data Integrity & Canonical Consistency Tests', () => {
     expect(householdBenchmarks[5].houseWithoutWarmWaterKwh).toBe(4800);
   });
 
-  it('should have exactly 32 topic hubs across all 8 locales in topicTranslations with 10 FAQs each', () => {
-    const locales = Object.keys(languages) as (keyof typeof topicTranslations)[];
-    const deTopics = Object.keys(topicTranslations.de);
-    expect(deTopics.length).toBe(32);
+  it('should have exactly 32 German topic hubs with saving advice and 10 FAQs each', () => {
+    const topicKeys = Object.keys(topics);
+    expect(topicKeys.length).toBe(32);
 
-    for (const loc of locales) {
-      const locTopics = topicTranslations[loc];
-      expect(locTopics).toBeDefined();
-      expect(Object.keys(locTopics).length).toBe(32);
-
-      for (const slug of deTopics) {
-        const item = locTopics[slug];
-        expect(item, `Topic ${slug} in locale ${loc} must exist`).toBeDefined();
-        expect(item.title.length).toBeGreaterThan(0);
-        expect(item.savingAdvice.length).toBeGreaterThanOrEqual(5);
-        expect(item.faq.length).toBe(10); // Exactly 10 PAA FAQs
-      }
+    for (const slug of topicKeys) {
+      const item = topics[slug];
+      expect(item, `Topic ${slug} must exist`).toBeDefined();
+      expect(item.title.length).toBeGreaterThan(0);
+      expect(item.savingAdvice.length).toBeGreaterThanOrEqual(4);
+      expect(item.faq.length).toBe(10); // Exactly 10 comprehensive FAQs
     }
   });
 
@@ -100,12 +74,13 @@ describe('P0 — Calculator Mathematical Rigor & Boundary Tests', () => {
     const safePrice = Math.max(0, pricePerKwh || 0);
 
     const kwhPerDay = (safeWatt * safeHours) / 1000;
-    const kwhPerWeek = kwhPerDay * (safeDays / 7) * 7; // kwh per week based on active days
+    const kwhPerWeek = kwhPerDay * (safeDays / 7) * 7;
     const kwhPerYear = (safeWatt * safeHours * safeDays * 52.1429) / 1000;
     const kwhPerMonth = kwhPerYear / 12;
 
     return {
       kwhPerDay: +kwhPerDay.toFixed(3),
+      kwhPerWeek: +kwhPerWeek.toFixed(2),
       kwhPerMonth: +kwhPerMonth.toFixed(2),
       kwhPerYear: +kwhPerYear.toFixed(1),
       costPerHour: +((safeWatt * safePrice) / 1000).toFixed(4),

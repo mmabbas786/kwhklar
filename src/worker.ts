@@ -8,9 +8,19 @@ export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
 
-    // 1. Edge Canonical Redirect: Redirect www.kwhklar.de to kwhklar.de
-    if (url.hostname === 'www.kwhklar.de') {
+    // 1. Edge Canonical Redirect: Redirect www.kwhklar.de or workers.dev to apex domain https://kwhklar.de
+    if (url.hostname === 'www.kwhklar.de' || url.hostname.endsWith('.workers.dev')) {
       url.hostname = 'kwhklar.de';
+      url.protocol = 'https:';
+      return Response.redirect(url.toString(), 301);
+    }
+
+    // 2. Legacy Multilingual URL Migration: 301 Redirect obsolete locales (en, es, ja, fr, pt, ko, it) to German canonical routes
+    const localeMatch = url.pathname.match(/^\/(en|es|ja|fr|pt|ko|it)(\/.*)?$/);
+    if (localeMatch) {
+      const rest = localeMatch[2] || '/';
+      const cleanPath = rest.startsWith('/') ? rest : `/${rest}`;
+      url.pathname = cleanPath;
       return Response.redirect(url.toString(), 301);
     }
 

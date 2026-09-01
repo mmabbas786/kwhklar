@@ -6,7 +6,7 @@ import RelatedLinks from '../components/seo/RelatedLinks.astro';
 import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
 import { getCalculatorSchema } from '../lib/structured-data';
-import { getCalculatorFaqs } from '../i18n/calculator-faqs';
+import { calculatorFaqs } from '../data/calculator-faqs';
 
 const schema = getCalculatorSchema(
   'Watt Rechner',
@@ -14,7 +14,7 @@ const schema = getCalculatorSchema(
   '/watt-rechner'
 );
 
-const faqs = getCalculatorFaqs('watt-rechner', 'de');
+const faqs = calculatorFaqs['watt-rechner'] || [];
 
 const related = [
   { title: 'Stromkosten pro Stunde', href: '/stromkosten-pro-stunde', description: 'Stundenkosten für beliebige Wattstärken.' },

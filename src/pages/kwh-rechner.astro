@@ -5,7 +5,7 @@ import RelatedLinks from '../components/seo/RelatedLinks.astro';
 import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
 import { getCalculatorSchema } from '../lib/structured-data';
-import { getCalculatorFaqs } from '../i18n/calculator-faqs';
+import { calculatorFaqs } from '../data/calculator-faqs';
 
 const schema = getCalculatorSchema(
   'kWh Rechner',
@@ -13,7 +13,7 @@ const schema = getCalculatorSchema(
   '/kwh-rechner'
 );
 
-const faqs = getCalculatorFaqs('kwh-rechner', 'de');
+const faqs = calculatorFaqs['kwh-rechner'] || [];
 
 const related = [
   { title: 'Watt in kWh Rechner', href: '/watt-rechner', description: 'Leistung in Kilowattstunden umrechnen.' },

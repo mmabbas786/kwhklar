@@ -6,7 +6,7 @@ import RelatedLinks from '../components/seo/RelatedLinks.astro';
 import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
 import { getCalculatorSchema } from '../lib/structured-data';
-import { getCalculatorFaqs } from '../i18n/calculator-faqs';
+import { calculatorFaqs } from '../data/calculator-faqs';
 
 const schema = getCalculatorSchema(
   'Stromkostenrechner',
@@ -14,7 +14,7 @@ const schema = getCalculatorSchema(
   '/stromkosten-rechner'
 );
 
-const faqs = getCalculatorFaqs('stromkosten-rechner', 'de');
+const faqs = calculatorFaqs['stromkosten-rechner'] || [];
 
 const related = [
   { title: 'kWh in Euro Rechner', href: '/kwh-rechner', description: 'Rechne kWh direkt in Euro um.' },

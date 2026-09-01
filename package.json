@@ -10,9 +10,8 @@
     "astro": "astro",
     "check": "astro check",
     "test": "vitest run",
-    "audit:seo": "tsx scripts/audit-seo.ts && tsx scripts/reconcile-sitemap.ts",
-    "validate:parity": "tsx scripts/validate-locale-parity.ts && tsx scripts/validate-navigation-parity.ts",
-    "validate:all": "npm run check && npm run test && npm run validate:parity && npm run audit:seo"
+    "audit:seo": "tsx scripts/audit-seo.ts",
+    "validate:all": "npm run check && npm run test && npm run audit:seo"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.0",

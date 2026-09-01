@@ -1,6 +1,5 @@
 import type { APIRoute } from 'astro';
 import { appliances } from '../data/appliances';
-import { type SupportedLanguage } from '../i18n/languages';
 
 interface SitemapEntry {
   url: string;
@@ -11,9 +10,8 @@ interface SitemapEntry {
 export const GET: APIRoute = () => {
   const baseUrl = 'https://kwhklar.de';
   const currentDate = new Date().toISOString().split('T')[0];
-  const nonDefaultLangs: SupportedLanguage[] = ['en', 'es', 'ja', 'fr', 'pt', 'ko', 'it'];
 
-  // 1. Automatically discover all .astro routes
+  // 1. Automatically discover all .astro routes in src/pages
   const pageModules = import.meta.glob('./**/*.astro');
   const routes: string[] = [];
 
@@ -32,71 +30,6 @@ export const GET: APIRoute = () => {
       normalized.endsWith('/impressum') ||
       normalized.endsWith('/datenschutz')
     ) {
-      continue;
-    }
-
-    // Handle multilingual [lang] routes
-    if (normalized.startsWith('[lang]')) {
-      const subPath = normalized.replace(/^\[lang\]\/?/, '');
-      if (subPath === '[...slug]') {
-        const catchAllSlugs = [
-          'stromverbrauch-rechner',
-          'stromkosten-pro-stunde',
-          'stromkosten-pro-tag',
-          'stromkosten-pro-woche',
-          'stromkosten-pro-monat',
-          'stromkosten-pro-jahr',
-          'durchschnittlicher-stromverbrauch',
-          'stromverbrauch-1-person',
-          'stromverbrauch-2-personen',
-          'stromverbrauch-3-personen',
-          'stromverbrauch-4-personen',
-          'stromverbrauch-5-personen',
-          'stromverbrauch-wohnung',
-          'stromverbrauch-einfamilienhaus',
-          'stromverbrauch-pro-person',
-          'stromverbrauch-senken',
-          'strompreis-aktuell',
-          'strompreis-deutschland',
-          'strompreis-pro-kwh',
-          'strompreis-entwicklung',
-          'strompreis-zusammensetzung',
-          'dynamische-stromtarife',
-          'stromanbieter-wechseln',
-          'stromrechnung-pruefen',
-          'stromrechnung-zu-hoch',
-          'stromrechnung-berechnen',
-          'stromrechnung-beispiel',
-          'stromrechnung-senken',
-          'strom-sparen-tipps',
-          'stromfresser',
-          'standby-strom',
-          'e-auto/stromkosten',
-          'e-auto/ladekosten-rechner',
-          'e-auto/kosten-pro-100-km',
-          'waermepumpe/stromverbrauch',
-          'waermepumpe/stromkosten',
-          'waermepumpe/stromverbrauch-rechner',
-          'photovoltaik/eigenverbrauch-rechner',
-          'balkonkraftwerk/stromkosten-sparen',
-          ...Object.keys(appliances).map((s) => `geraete/${s}`),
-        ];
-        for (const lang of nonDefaultLangs) {
-          for (const s of catchAllSlugs) {
-            routes.push(`/${lang}/${s}`);
-          }
-        }
-      } else {
-        for (const lang of nonDefaultLangs) {
-          if (subPath === 'index' || subPath === '') {
-            routes.push(`/${lang}`);
-          } else if (subPath.endsWith('/index')) {
-            routes.push(`/${lang}/` + subPath.replace(/\/index$/, ''));
-          } else {
-            routes.push(`/${lang}/` + subPath);
-          }
-        }
-      }
       continue;
     }
 
@@ -129,14 +62,9 @@ export const GET: APIRoute = () => {
   const sitemapEntries: SitemapEntry[] = routes.map((route) => {
     const fullUrl = route === '' ? baseUrl : `${baseUrl}${route}`;
 
-    // Homepage (DE)
+    // Homepage
     if (route === '') {
       return { url: fullUrl, priority: '1.0', changefreq: 'daily' };
-    }
-
-    // Language Homepages (EN, ES, JA, FR, PT, KO, IT)
-    if (nonDefaultLangs.some((lang) => route === `/${lang}`)) {
-      return { url: fullUrl, priority: '0.9', changefreq: 'daily' };
     }
 
     // Top Hubs & Primary Calculators
@@ -151,7 +79,7 @@ export const GET: APIRoute = () => {
         '/stromrechnung',
         '/strom-sparen',
         '/stromverbrauch-haushalt',
-      ].some((h) => route === h || nonDefaultLangs.some((l) => route === `/${l}${h}`))
+      ].includes(route)
     ) {
       return { url: fullUrl, priority: '0.9', changefreq: 'weekly' };
     }
@@ -162,25 +90,18 @@ export const GET: APIRoute = () => {
     }
 
     // Trust & Contact
-    if (
-      route === '/ueber-uns' ||
-      route === '/quellen-methodik' ||
-      route === '/kontakt' ||
-      nonDefaultLangs.some((l) => route === `/${l}/ueber-uns` || route === `/${l}/quellen-methodik` || route === `/${l}/kontakt`)
-    ) {
+    if (route === '/ueber-uns' || route === '/quellen-methodik' || route === '/kontakt') {
       return { url: fullUrl, priority: '0.5', changefreq: 'monthly' };
     }
 
-    // Default for specialized calculators and guides
+    // Default for specialized calculators and topic hubs
     return { url: fullUrl, priority: '0.8', changefreq: 'weekly' };
   });
 
   // 4. Construct clean XML output adhering to sitemap 0.9 protocol
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+        xmlns:xsi="http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 ${sitemapEntries
   .map(
     (entry) => `  <url>
