@@ -54,13 +54,26 @@ export const appliances: Record<string, Appliance> = {
     factors: ['Energieeffizienzklasse', 'Nutzinhalt & Gefrierfach', 'Umgebungstemperatur', 'Öffnungshäufigkeit der Tür'],
     faq: [
       {
-        question: 'Wie viel Strom verbraucht ein Kühlschrank pro Tag?',
-        answer: 'Ein moderner Standard-Kühlschrank verbraucht ca. 0,3 bis 0,45 kWh pro Tag (ca. 10 bis 16 Cent). Große Side-by-Side-Modelle oder ältere Kühl-Gefrierkombinationen verbrauchen 0,8 bis 1,2 kWh pro Tag.',
+            "question": "Wie viel Strom verbraucht ein Kühlschrank pro Stunde, Tag und Jahr?",
+            "answer": "Ein Kühlschrank hat eine typische Leistungsaufnahme von ca. 90 Watt. Im laufenden Betrieb verbraucht er ca. 0.090 kWh pro Stunde (ca. 0.01 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 120 kWh (42.00 €/Jahr)."
       },
       {
-        question: 'Lohnt sich der Austausch eines alten Kühlschranks?',
-        answer: 'Wenn das Altgerät älter als 10–12 Jahre ist und über 250 kWh/Jahr verbraucht, spart ein Neugerät der Klasse A/B rund 150 kWh (ca. 50 €/Jahr) ein.',
+            "question": "Was kostet die Nutzung von Kühlschrank pro Vorgang bzw. Monat?",
+            "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,12 € / Tag. Pro Monat entspricht das etwa 3.50 € Stromkosten."
       },
+      {
+            "question": "Wie kann man beim Kühlschrank am effektivsten Strom sparen?",
+            "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+      },
+      {
+            "question": "Zieht ein Kühlschrank Strom im Standby-Modus?",
+            "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+      },
+      {
+            "question": "Lohnt sich der Austausch eines alten Kühlschrank gegen ein Neugerät?",
+            "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+      }
+
     ],
     sourceIds: ['bnetza', 'stromspiegel', 'uba'],
     relatedDevices: ['gefrierschrank', 'geschirrspueler', 'backofen'],
@@ -93,9 +106,26 @@ export const appliances: Record<string, Appliance> = {
     factors: ['Gewählte Waschtemperatur', 'Beladungsmenge', 'Nutzung des Eco-Modus', 'Schleuderdrehzahl'],
     faq: [
       {
-        question: 'Wie viel Strom kostet ein Waschgang bei 60 Grad?',
-        answer: 'Ein 60-Grad-Waschgang verbraucht typischerweise 1,0 bis 1,4 kWh, was bei 35 ct/kWh etwa 35 bis 49 Cent entspricht.',
+            "question": "Wie viel Strom verbraucht ein Waschmaschine pro Stunde, Tag und Jahr?",
+            "answer": "Ein Waschmaschine hat eine typische Leistungsaufnahme von ca. 2000 Watt. Im laufenden Betrieb verbraucht er ca. 2.000 kWh pro Stunde (ca. 0.70 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 140 kWh (49.00 €/Jahr)."
       },
+      {
+            "question": "Was kostet die Nutzung von Waschmaschine pro Vorgang bzw. Monat?",
+            "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,25 € / Waschgang. Pro Monat entspricht das etwa 4.08 € Stromkosten."
+      },
+      {
+            "question": "Wie kann man beim Waschmaschine am effektivsten Strom sparen?",
+            "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+      },
+      {
+            "question": "Zieht ein Waschmaschine Strom im Standby-Modus?",
+            "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+      },
+      {
+            "question": "Lohnt sich der Austausch eines alten Waschmaschine gegen ein Neugerät?",
+            "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+      }
+
     ],
     sourceIds: ['bdew', 'stromspiegel', 'uba'],
     relatedDevices: ['trockner', 'geschirrspueler', 'buegeleisen'],
@@ -128,9 +158,26 @@ export const appliances: Record<string, Appliance> = {
     factors: ['Trocknertechnologie (Wärmepumpe vs. Kondenstrockner)', 'Restfeuchte der Wäsche', 'Trockengrad (bügelfeucht vs. extra-trocken)'],
     faq: [
       {
-        question: 'Was kostet eine Trocknerladung Strom?',
-        answer: 'Bei einem Wärmepumpentrockner ca. 45 bis 60 Cent pro Ladung, bei einem älteren Kondenstrockner 1,20 bis 1,60 €.',
+            "question": "Wie viel Strom verbraucht ein Wäschetrockner pro Stunde, Tag und Jahr?",
+            "answer": "Ein Wäschetrockner hat eine typische Leistungsaufnahme von ca. 1500 Watt. Im laufenden Betrieb verbraucht er ca. 1.500 kWh pro Stunde (ca. 0.53 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 180 kWh (63.00 €/Jahr)."
       },
+      {
+            "question": "Was kostet die Nutzung von Wäschetrockner pro Vorgang bzw. Monat?",
+            "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,45 € / Ladung. Pro Monat entspricht das etwa 5.25 € Stromkosten."
+      },
+      {
+            "question": "Wie kann man beim Wäschetrockner am effektivsten Strom sparen?",
+            "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+      },
+      {
+            "question": "Zieht ein Wäschetrockner Strom im Standby-Modus?",
+            "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+      },
+      {
+            "question": "Lohnt sich der Austausch eines alten Wäschetrockner gegen ein Neugerät?",
+            "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+      }
+
     ],
     sourceIds: ['stromspiegel', 'uba'],
     relatedDevices: ['waschmaschine', 'geschirrspueler'],
@@ -163,9 +210,26 @@ export const appliances: Record<string, Appliance> = {
     factors: ['Programmwahl (Eco vs. Intensiv 70°C)', 'Wasserhärte & Dosierung', 'Warmwasser-Direktanschluss vorhanden'],
     faq: [
       {
-        question: 'Ist die Spülmaschine sparsamer als Handspülen?',
-        answer: 'Ja, moderne Spülmaschinen verbrauchen bis zu 50 % weniger Energie und 70 % weniger Wasser als das Spülen derselben Geschirrmenge von Hand.',
+            "question": "Wie viel Strom verbraucht ein Geschirrspüler pro Stunde, Tag und Jahr?",
+            "answer": "Ein Geschirrspüler hat eine typische Leistungsaufnahme von ca. 1800 Watt. Im laufenden Betrieb verbraucht er ca. 1.800 kWh pro Stunde (ca. 0.63 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 160 kWh (56.00 €/Jahr)."
       },
+      {
+            "question": "Was kostet die Nutzung von Geschirrspüler pro Vorgang bzw. Monat?",
+            "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,28 € / Spülgang. Pro Monat entspricht das etwa 4.67 € Stromkosten."
+      },
+      {
+            "question": "Wie kann man beim Geschirrspüler am effektivsten Strom sparen?",
+            "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+      },
+      {
+            "question": "Zieht ein Geschirrspüler Strom im Standby-Modus?",
+            "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+      },
+      {
+            "question": "Lohnt sich der Austausch eines alten Geschirrspüler gegen ein Neugerät?",
+            "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+      }
+
     ],
     sourceIds: ['stromspiegel', 'bdew'],
     relatedDevices: ['kuehlschrank', 'backofen', 'wasserkocher'],
@@ -198,9 +262,26 @@ export const appliances: Record<string, Appliance> = {
     factors: ['Heizart (Umluft vs. Ober-/Unterhitze)', 'Temperatur', 'Öffnen der Ofentür während des Backens'],
     faq: [
       {
-        question: 'Was kostet 1 Stunde Backofen?',
-        answer: 'Eine Stunde Backofenbetrieb bei 200 °C kostet ca. 30 bis 45 Cent bei einem Strompreis von 35 ct/kWh.',
+            "question": "Wie viel Strom verbraucht ein Backofen pro Stunde, Tag und Jahr?",
+            "answer": "Ein Backofen hat eine typische Leistungsaufnahme von ca. 2500 Watt. Im laufenden Betrieb verbraucht er ca. 2.500 kWh pro Stunde (ca. 0.88 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 150 kWh (52.50 €/Jahr)."
       },
+      {
+            "question": "Was kostet die Nutzung von Backofen pro Vorgang bzw. Monat?",
+            "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,55 € / Nutzung. Pro Monat entspricht das etwa 4.38 € Stromkosten."
+      },
+      {
+            "question": "Wie kann man beim Backofen am effektivsten Strom sparen?",
+            "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+      },
+      {
+            "question": "Zieht ein Backofen Strom im Standby-Modus?",
+            "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+      },
+      {
+            "question": "Lohnt sich der Austausch eines alten Backofen gegen ein Neugerät?",
+            "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+      }
+
     ],
     sourceIds: ['bdew', 'uba'],
     relatedDevices: ['herd', 'mikrowelle', 'geschirrspueler'],
@@ -233,9 +314,26 @@ export const appliances: Record<string, Appliance> = {
     factors: ['Induktion vs. Ceran/Gusseisen', 'Topfbodenqualität', 'Nutzung von Topfdeckeln'],
     faq: [
       {
-        question: 'Wie viel spart ein Induktionsherd im Vergleich zu Ceran?',
-        answer: 'Induktionskochfelder übertragen die Energie direkt magnetisch in den Topfboden, wodurch ca. 20 bis 30 % Strom und erhebliche Ankochzeit eingespart werden.',
+            "question": "Wie viel Strom verbraucht ein Induktionsherd / Kochfeld pro Stunde, Tag und Jahr?",
+            "answer": "Ein Induktionsherd / Kochfeld hat eine typische Leistungsaufnahme von ca. 3000 Watt. Im laufenden Betrieb verbraucht er ca. 3.000 kWh pro Stunde (ca. 1.05 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 220 kWh (77.00 €/Jahr)."
       },
+      {
+            "question": "Was kostet die Nutzung von Induktionsherd / Kochfeld pro Vorgang bzw. Monat?",
+            "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,35 € / Kochvorgang. Pro Monat entspricht das etwa 6.42 € Stromkosten."
+      },
+      {
+            "question": "Wie kann man beim Induktionsherd / Kochfeld am effektivsten Strom sparen?",
+            "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+      },
+      {
+            "question": "Zieht ein Induktionsherd / Kochfeld Strom im Standby-Modus?",
+            "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+      },
+      {
+            "question": "Lohnt sich der Austausch eines alten Induktionsherd / Kochfeld gegen ein Neugerät?",
+            "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+      }
+
     ],
     sourceIds: ['bdew', 'uba'],
     relatedDevices: ['backofen', 'wasserkocher', 'mikrowelle'],
@@ -267,9 +365,26 @@ export const appliances: Record<string, Appliance> = {
     factors: ['Wassermenge', 'Ausgangstemperatur des Wassers', 'Verkalkungsgrad'],
     faq: [
       {
-        question: 'Ist der Wasserkocher sparsamer als der Herd?',
-        answer: 'Ja, ein Wasserkocher erhitzt Wasser etwa 30–50 % sparsamer als ein Elektrokochfeld ohne Induktion.',
+            "question": "Wie viel Strom verbraucht ein Wasserkocher pro Stunde, Tag und Jahr?",
+            "answer": "Ein Wasserkocher hat eine typische Leistungsaufnahme von ca. 2200 Watt. Im laufenden Betrieb verbraucht er ca. 2.200 kWh pro Stunde (ca. 0.77 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 80 kWh (28.00 €/Jahr)."
       },
+      {
+            "question": "Was kostet die Nutzung von Wasserkocher pro Vorgang bzw. Monat?",
+            "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,03 € / 1 Liter Kochen. Pro Monat entspricht das etwa 2.33 € Stromkosten."
+      },
+      {
+            "question": "Wie kann man beim Wasserkocher am effektivsten Strom sparen?",
+            "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+      },
+      {
+            "question": "Zieht ein Wasserkocher Strom im Standby-Modus?",
+            "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+      },
+      {
+            "question": "Lohnt sich der Austausch eines alten Wasserkocher gegen ein Neugerät?",
+            "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+      }
+
     ],
     sourceIds: ['uba', 'stromspiegel'],
     relatedDevices: ['kaffeemaschine', 'herd', 'mikrowelle'],
@@ -302,9 +417,26 @@ export const appliances: Record<string, Appliance> = {
     factors: ['Gerätetyp (Filter, Siebträger, Kapsel, Vollautomat)', 'Tassen pro Tag', 'Abschaltautomatik aktiviert'],
     faq: [
       {
-        question: 'Was kostet eine Tasse Kaffee an Strom?',
-        answer: 'Die reinen Stromkosten für eine Tasse Kaffee liegen bei weniger als 1 Cent (ca. 0,5 bis 0,9 Cent).',
+            "question": "Wie viel Strom verbraucht ein Kaffeemaschine / Vollautomat pro Stunde, Tag und Jahr?",
+            "answer": "Ein Kaffeemaschine / Vollautomat hat eine typische Leistungsaufnahme von ca. 1400 Watt. Im laufenden Betrieb verbraucht er ca. 1.400 kWh pro Stunde (ca. 0.49 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 65 kWh (22.75 €/Jahr)."
       },
+      {
+            "question": "Was kostet die Nutzung von Kaffeemaschine / Vollautomat pro Vorgang bzw. Monat?",
+            "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,02 € / Tasse Kaffee. Pro Monat entspricht das etwa 1.90 € Stromkosten."
+      },
+      {
+            "question": "Wie kann man beim Kaffeemaschine / Vollautomat am effektivsten Strom sparen?",
+            "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+      },
+      {
+            "question": "Zieht ein Kaffeemaschine / Vollautomat Strom im Standby-Modus?",
+            "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+      },
+      {
+            "question": "Lohnt sich der Austausch eines alten Kaffeemaschine / Vollautomat gegen ein Neugerät?",
+            "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+      }
+
     ],
     sourceIds: ['uba', 'stromspiegel'],
     relatedDevices: ['wasserkocher', 'kuehlschrank'],
@@ -337,9 +469,26 @@ export const appliances: Record<string, Appliance> = {
     factors: ['Bildschirmdiagonale (55", 65", 75"+)', 'Panel-Technologie (OLED, QLED, LED)', 'HDR vs. SDR', 'Hintergrundbeleuchtung'],
     faq: [
       {
-        question: 'Wie viel Strom verbraucht ein 65-Zoll-Fernseher?',
-        answer: 'Ein 65-Zoll-Fernseher verbraucht durchschnittlich 100 bis 160 Watt im SDR-Modus und bis zu 220 Watt im HDR-Modus (ca. 3,5 bis 7,7 Cent pro Stunde).',
+            "question": "Wie viel Strom verbraucht ein Fernseher (Smart TV 55-65\") pro Stunde, Tag und Jahr?",
+            "answer": "Ein Fernseher (Smart TV 55-65\") hat eine typische Leistungsaufnahme von ca. 120 Watt. Im laufenden Betrieb verbraucht er ca. 0.120 kWh pro Stunde (ca. 0.04 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 175 kWh (61.25 €/Jahr)."
       },
+      {
+            "question": "Was kostet die Nutzung von Fernseher (Smart TV 55-65\") pro Vorgang bzw. Monat?",
+            "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,17 € / 4 Stunden. Pro Monat entspricht das etwa 5.10 € Stromkosten."
+      },
+      {
+            "question": "Wie kann man beim Fernseher (Smart TV 55-65\") am effektivsten Strom sparen?",
+            "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+      },
+      {
+            "question": "Zieht ein Fernseher (Smart TV 55-65\") Strom im Standby-Modus?",
+            "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+      },
+      {
+            "question": "Lohnt sich der Austausch eines alten Fernseher (Smart TV 55-65\") gegen ein Neugerät?",
+            "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+      }
+
     ],
     sourceIds: ['uba', 'stromspiegel'],
     relatedDevices: ['ps5', 'xbox', 'gaming-pc', 'soundbar'],
@@ -411,9 +560,26 @@ export const appliances: Record<string, Appliance> = {
     factors: ['Integrierte vs. dedizierte Grafikkarte', 'Netzteil-Effizienzklasse (80 Plus Gold/Platinum)', 'Anzahl der Bildschirme'],
     faq: [
       {
-        question: 'Wie viel Strom verbraucht ein PC im Homeoffice?',
-        answer: 'Ein Office-PC mit Monitor benötigt ca. 100 bis 150 Watt, was bei einem 8-Stunden-Arbeitstag rund 0,8 bis 1,2 kWh (ca. 28 bis 42 Cent pro Tag) entspricht.',
+            "question": "Wie viel Strom verbraucht ein Desktop-PC / Office-Rechner pro Stunde, Tag und Jahr?",
+            "answer": "Ein Desktop-PC / Office-Rechner hat eine typische Leistungsaufnahme von ca. 120 Watt. Im laufenden Betrieb verbraucht er ca. 0.120 kWh pro Stunde (ca. 0.04 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 180 kWh (63.00 €/Jahr)."
       },
+      {
+            "question": "Was kostet die Nutzung von Desktop-PC / Office-Rechner pro Vorgang bzw. Monat?",
+            "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,25 € / 6 Stunden Arbeit. Pro Monat entspricht das etwa 5.25 € Stromkosten."
+      },
+      {
+            "question": "Wie kann man beim Desktop-PC / Office-Rechner am effektivsten Strom sparen?",
+            "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+      },
+      {
+            "question": "Zieht ein Desktop-PC / Office-Rechner Strom im Standby-Modus?",
+            "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+      },
+      {
+            "question": "Lohnt sich der Austausch eines alten Desktop-PC / Office-Rechner gegen ein Neugerät?",
+            "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+      }
+
     ],
     sourceIds: ['uba', 'stromspiegel'],
     relatedDevices: ['laptop', 'monitor', 'gaming-pc', 'nas'],
@@ -446,9 +612,26 @@ export const appliances: Record<string, Appliance> = {
     factors: ['Displayhelligkeit', 'Office-Betrieb vs. Videobearbeitung/Rendering', 'Effizienz des Netzteils'],
     faq: [
       {
-        question: 'Was kostet ein Laptop im Homeoffice an Strom?',
-        answer: 'Ein Laptop kostet bei 8 Stunden täglicher Arbeit nur etwa 8 bis 15 Cent pro Tag bzw. 20 bis 40 Euro pro Jahr.',
+            "question": "Wie viel Strom verbraucht ein Laptop / Notebook pro Stunde, Tag und Jahr?",
+            "answer": "Ein Laptop / Notebook hat eine typische Leistungsaufnahme von ca. 50 Watt. Im laufenden Betrieb verbraucht er ca. 0.050 kWh pro Stunde (ca. 0.02 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 75 kWh (26.25 €/Jahr)."
       },
+      {
+            "question": "Was kostet die Nutzung von Laptop / Notebook pro Vorgang bzw. Monat?",
+            "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,11 € / 6 Stunden Arbeit. Pro Monat entspricht das etwa 2.19 € Stromkosten."
+      },
+      {
+            "question": "Wie kann man beim Laptop / Notebook am effektivsten Strom sparen?",
+            "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+      },
+      {
+            "question": "Zieht ein Laptop / Notebook Strom im Standby-Modus?",
+            "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+      },
+      {
+            "question": "Lohnt sich der Austausch eines alten Laptop / Notebook gegen ein Neugerät?",
+            "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+      }
+
     ],
     sourceIds: ['uba', 'stromspiegel'],
     relatedDevices: ['pc', 'monitor', 'gaming-pc'],
@@ -480,9 +663,26 @@ export const appliances: Record<string, Appliance> = {
     factors: ['Bildschirmdiagonale & Auflösung (Full HD vs. 4K)', 'Helligkeitseinstellung', 'Bildwiederholfrequenz (60 Hz vs. 144 Hz)'],
     faq: [
       {
-        question: 'Wie viel Strom verbraucht ein Bildschirm im Standby?',
-        answer: 'Moderne Monitore dürfen laut EU-Ökodesign-Richtlinie im Standby maximal 0,5 Watt verbrauchen (weniger als 1,50 € pro Jahr).',
+            "question": "Wie viel Strom verbraucht ein PC-Monitor (27-32\") pro Stunde, Tag und Jahr?",
+            "answer": "Ein PC-Monitor (27-32\") hat eine typische Leistungsaufnahme von ca. 35 Watt. Im laufenden Betrieb verbraucht er ca. 0.035 kWh pro Stunde (ca. 0.01 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 60 kWh (21.00 €/Jahr)."
       },
+      {
+            "question": "Was kostet die Nutzung von PC-Monitor (27-32\") pro Vorgang bzw. Monat?",
+            "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,07 € / 6 Stunden Betrieb. Pro Monat entspricht das etwa 1.75 € Stromkosten."
+      },
+      {
+            "question": "Wie kann man beim PC-Monitor (27-32\") am effektivsten Strom sparen?",
+            "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+      },
+      {
+            "question": "Zieht ein PC-Monitor (27-32\") Strom im Standby-Modus?",
+            "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+      },
+      {
+            "question": "Lohnt sich der Austausch eines alten PC-Monitor (27-32\") gegen ein Neugerät?",
+            "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+      }
+
     ],
     sourceIds: ['uba'],
     relatedDevices: ['pc', 'gaming-pc', 'laptop'],
@@ -514,9 +714,26 @@ export const appliances: Record<string, Appliance> = {
     factors: ['Gespieltes Spiel (PS4 vs. anspruchsvolle PS5-Titel mit Raytracing)', 'Video-Streaming vs. Gaming', 'Ruhezustand-Einstellungen'],
     faq: [
       {
-        question: 'Was kostet eine Stunde PS5 spielen?',
-        answer: 'Eine Stunde Spielen auf der PS5 verbraucht ca. 0,2 kWh und kostet bei 35 ct/kWh etwa 7 Cent.',
+            "question": "Wie viel Strom verbraucht ein PlayStation 5 (PS5) pro Stunde, Tag und Jahr?",
+            "answer": "Ein PlayStation 5 (PS5) hat eine typische Leistungsaufnahme von ca. 200 Watt. Im laufenden Betrieb verbraucht er ca. 0.200 kWh pro Stunde (ca. 0.07 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 150 kWh (52.50 €/Jahr)."
       },
+      {
+            "question": "Was kostet die Nutzung von PlayStation 5 (PS5) pro Vorgang bzw. Monat?",
+            "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,21 € / 3 Stunden Spielen. Pro Monat entspricht das etwa 4.38 € Stromkosten."
+      },
+      {
+            "question": "Wie kann man beim PlayStation 5 (PS5) am effektivsten Strom sparen?",
+            "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+      },
+      {
+            "question": "Zieht ein PlayStation 5 (PS5) Strom im Standby-Modus?",
+            "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+      },
+      {
+            "question": "Lohnt sich der Austausch eines alten PlayStation 5 (PS5) gegen ein Neugerät?",
+            "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+      }
+
     ],
     sourceIds: ['uba'],
     relatedDevices: ['xbox', 'gaming-pc', 'fernseher'],
@@ -547,9 +764,26 @@ export const appliances: Record<string, Appliance> = {
     factors: ['Modell (Series X vs. Series S)', 'Instant-On Standby Modus aktiviert', 'Grafikmodus (Performance vs. Quality)'],
     faq: [
       {
-        question: 'Wie viel Strom spart der Energiesparmodus der Xbox?',
-        answer: 'Der Energiesparmodus zieht nur 0,5 Watt im Standby gegenüber ca. 11 bis 13 Watt im Instant-On-Modus – das spart rund 35 Euro Stromkosten pro Jahr.',
+            "question": "Wie viel Strom verbraucht ein Xbox Series X pro Stunde, Tag und Jahr?",
+            "answer": "Ein Xbox Series X hat eine typische Leistungsaufnahme von ca. 190 Watt. Im laufenden Betrieb verbraucht er ca. 0.190 kWh pro Stunde (ca. 0.07 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 140 kWh (49.00 €/Jahr)."
       },
+      {
+            "question": "Was kostet die Nutzung von Xbox Series X pro Vorgang bzw. Monat?",
+            "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,20 € / 3 Stunden Spielen. Pro Monat entspricht das etwa 4.08 € Stromkosten."
+      },
+      {
+            "question": "Wie kann man beim Xbox Series X am effektivsten Strom sparen?",
+            "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+      },
+      {
+            "question": "Zieht ein Xbox Series X Strom im Standby-Modus?",
+            "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+      },
+      {
+            "question": "Lohnt sich der Austausch eines alten Xbox Series X gegen ein Neugerät?",
+            "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+      }
+
     ],
     sourceIds: ['uba'],
     relatedDevices: ['ps5', 'gaming-pc', 'fernseher'],
@@ -582,9 +816,26 @@ export const appliances: Record<string, Appliance> = {
     factors: ['Bauart (Split-Gerät vs. Monoblock mit Abluftschlauch)', 'Raumgröße & Dämmung', 'Sonneneinstrahlung', 'Eingestellte Zieltemperatur'],
     faq: [
       {
-        question: 'Was kostet eine Klimaanlage pro Stunde?',
-        answer: 'Ein mobiles Klimagerät kostet ca. 30 bis 50 Cent pro Betriebsstunde. Eine moderne Split-Klimaanlage kostet im Dauerbetrieb ca. 15 bis 28 Cent pro Stunde.',
+            "question": "Wie viel Strom verbraucht ein Klimaanlage (Split-Gerät) pro Stunde, Tag und Jahr?",
+            "answer": "Ein Klimaanlage (Split-Gerät) hat eine typische Leistungsaufnahme von ca. 800 Watt. Im laufenden Betrieb verbraucht er ca. 0.800 kWh pro Stunde (ca. 0.28 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 350 kWh (122.50 €/Jahr)."
       },
+      {
+            "question": "Was kostet die Nutzung von Klimaanlage (Split-Gerät) pro Vorgang bzw. Monat?",
+            "answer": "Die durchschnittlichen Betriebskosten betragen ca. 1,40 € / 5 Stunden Kühlung. Pro Monat entspricht das etwa 10.21 € Stromkosten."
+      },
+      {
+            "question": "Wie kann man beim Klimaanlage (Split-Gerät) am effektivsten Strom sparen?",
+            "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+      },
+      {
+            "question": "Zieht ein Klimaanlage (Split-Gerät) Strom im Standby-Modus?",
+            "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+      },
+      {
+            "question": "Lohnt sich der Austausch eines alten Klimaanlage (Split-Gerät) gegen ein Neugerät?",
+            "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+      }
+
     ],
     sourceIds: ['bnetza', 'uba', 'stromspiegel'],
     relatedDevices: ['ventilator', 'luftentfeuchter', 'heizluefter'],
@@ -616,9 +867,26 @@ export const appliances: Record<string, Appliance> = {
     factors: ['Geschwindigkeitsstufe', 'Motor-Typ (AC vs. DC)', 'Oszillation aktiv'],
     faq: [
       {
-        question: 'Was kostet ein Ventilator die ganze Nacht?',
-        answer: 'Bei 8 Stunden Laufzeit und 40 Watt Leistung kostet ein Ventilator die Nacht über ca. 11 Cent.',
+            "question": "Wie viel Strom verbraucht ein Ventilator / Standventilator pro Stunde, Tag und Jahr?",
+            "answer": "Ein Ventilator / Standventilator hat eine typische Leistungsaufnahme von ca. 45 Watt. Im laufenden Betrieb verbraucht er ca. 0.045 kWh pro Stunde (ca. 0.02 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 35 kWh (12.25 €/Jahr)."
       },
+      {
+            "question": "Was kostet die Nutzung von Ventilator / Standventilator pro Vorgang bzw. Monat?",
+            "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,10 € / 6 Stunden. Pro Monat entspricht das etwa 1.02 € Stromkosten."
+      },
+      {
+            "question": "Wie kann man beim Ventilator / Standventilator am effektivsten Strom sparen?",
+            "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+      },
+      {
+            "question": "Zieht ein Ventilator / Standventilator Strom im Standby-Modus?",
+            "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+      },
+      {
+            "question": "Lohnt sich der Austausch eines alten Ventilator / Standventilator gegen ein Neugerät?",
+            "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+      }
+
     ],
     sourceIds: ['uba'],
     relatedDevices: ['klimaanlage', 'luftentfeuchter'],
@@ -650,9 +918,26 @@ export const appliances: Record<string, Appliance> = {
     factors: ['Heizstufe (1.000 W vs. 2.000 W)', 'Thermostat-Einstellung', 'Raumgröße'],
     faq: [
       {
-        question: 'Was kostet 1 Stunde Heizlüfter?',
-        answer: 'Ein 2.000-Watt-Heizlüfter verbraucht pro Stunde 2 kWh Strom, was bei 35 ct/kWh genau 70 Cent entspricht.',
+            "question": "Wie viel Strom verbraucht ein Heizlüfter / Elektro-Heizung pro Stunde, Tag und Jahr?",
+            "answer": "Ein Heizlüfter / Elektro-Heizung hat eine typische Leistungsaufnahme von ca. 2000 Watt. Im laufenden Betrieb verbraucht er ca. 2.000 kWh pro Stunde (ca. 0.70 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 300 kWh (105.00 €/Jahr)."
       },
+      {
+            "question": "Was kostet die Nutzung von Heizlüfter / Elektro-Heizung pro Vorgang bzw. Monat?",
+            "answer": "Die durchschnittlichen Betriebskosten betragen ca. 1,40 € / 2 Stunden Heizen. Pro Monat entspricht das etwa 8.75 € Stromkosten."
+      },
+      {
+            "question": "Wie kann man beim Heizlüfter / Elektro-Heizung am effektivsten Strom sparen?",
+            "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+      },
+      {
+            "question": "Zieht ein Heizlüfter / Elektro-Heizung Strom im Standby-Modus?",
+            "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+      },
+      {
+            "question": "Lohnt sich der Austausch eines alten Heizlüfter / Elektro-Heizung gegen ein Neugerät?",
+            "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+      }
+
     ],
     sourceIds: ['bnetza', 'stromspiegel'],
     relatedDevices: ['klimaanlage', 'waermepumpe', 'ventilator'],
@@ -684,9 +969,26 @@ export const appliances: Record<string, Appliance> = {
     factors: ['Raumfeuchtigkeit & Raumtemperatur', 'Hygrostat-Schwellenwert', 'Kompressor-Leistung'],
     faq: [
       {
-        question: 'Wie viel Strom verbraucht ein Luftentfeuchter am Tag?',
-        answer: 'Bei 8 Stunden Laufzeit und 300 Watt Leistung verbraucht das Gerät ca. 2,4 kWh (ca. 84 Cent pro Tag).',
+            "question": "Wie viel Strom verbraucht ein Luftentfeuchter pro Stunde, Tag und Jahr?",
+            "answer": "Ein Luftentfeuchter hat eine typische Leistungsaufnahme von ca. 350 Watt. Im laufenden Betrieb verbraucht er ca. 0.350 kWh pro Stunde (ca. 0.12 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 280 kWh (98.00 €/Jahr)."
       },
+      {
+            "question": "Was kostet die Nutzung von Luftentfeuchter pro Vorgang bzw. Monat?",
+            "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,74 € / 6 Stunden. Pro Monat entspricht das etwa 8.17 € Stromkosten."
+      },
+      {
+            "question": "Wie kann man beim Luftentfeuchter am effektivsten Strom sparen?",
+            "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+      },
+      {
+            "question": "Zieht ein Luftentfeuchter Strom im Standby-Modus?",
+            "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+      },
+      {
+            "question": "Lohnt sich der Austausch eines alten Luftentfeuchter gegen ein Neugerät?",
+            "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+      }
+
     ],
     sourceIds: ['uba'],
     relatedDevices: ['klimaanlage', 'ventilator', 'heizluefter'],
@@ -719,9 +1021,26 @@ export const appliances: Record<string, Appliance> = {
     factors: ['Beckengröße (Liter)', 'Ziel-Wassertemperatur vs. Raumtemperatur', 'LED- vs. Röhrenbeleuchtung', 'Offenes vs. geschlossenes Becken'],
     faq: [
       {
-        question: 'Was kostet ein 200-Liter-Aquarium an Strom im Monat?',
-        answer: 'Ein 200-Liter-Becken kostet typischerweise 12 bis 20 Euro Strom im Monat.',
+            "question": "Wie viel Strom verbraucht ein Aquarium (100–200 Liter) pro Stunde, Tag und Jahr?",
+            "answer": "Ein Aquarium (100–200 Liter) hat eine typische Leistungsaufnahme von ca. 60 Watt. Im laufenden Betrieb verbraucht er ca. 0.060 kWh pro Stunde (ca. 0.02 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 350 kWh (122.50 €/Jahr)."
       },
+      {
+            "question": "Was kostet die Nutzung von Aquarium (100–200 Liter) pro Vorgang bzw. Monat?",
+            "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,34 € / 24 Stunden Dauerbetrieb. Pro Monat entspricht das etwa 10.21 € Stromkosten."
+      },
+      {
+            "question": "Wie kann man beim Aquarium (100–200 Liter) am effektivsten Strom sparen?",
+            "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+      },
+      {
+            "question": "Zieht ein Aquarium (100–200 Liter) Strom im Standby-Modus?",
+            "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+      },
+      {
+            "question": "Lohnt sich der Austausch eines alten Aquarium (100–200 Liter) gegen ein Neugerät?",
+            "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+      }
+
     ],
     sourceIds: ['uba', 'stromspiegel'],
     relatedDevices: ['pool', 'whirlpool', 'terrarium'],
@@ -753,9 +1072,26 @@ export const appliances: Record<string, Appliance> = {
     factors: ['Poolvolumen (m³)', 'Pumpenleistung (W)', 'Filterlaufzeit pro Tag', 'Zusätzliche Poolheizung/Wärmepumpe'],
     faq: [
       {
-        question: 'Wie lange muss eine Poolpumpe am Tag laufen?',
-        answer: 'In den Sommermonaten sollte die Pumpe ca. 6 bis 8 Stunden täglich laufen, bei Wassertemperaturen über 28 °C bis zu 10 Stunden.',
+            "question": "Wie viel Strom verbraucht ein Poolpumpe / Filteranlage pro Stunde, Tag und Jahr?",
+            "answer": "Ein Poolpumpe / Filteranlage hat eine typische Leistungsaufnahme von ca. 500 Watt. Im laufenden Betrieb verbraucht er ca. 0.500 kWh pro Stunde (ca. 0.17 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 480 kWh (168.00 €/Jahr)."
       },
+      {
+            "question": "Was kostet die Nutzung von Poolpumpe / Filteranlage pro Vorgang bzw. Monat?",
+            "answer": "Die durchschnittlichen Betriebskosten betragen ca. 1,05 € / 6 Stunden Filterung. Pro Monat entspricht das etwa 14.00 € Stromkosten."
+      },
+      {
+            "question": "Wie kann man beim Poolpumpe / Filteranlage am effektivsten Strom sparen?",
+            "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+      },
+      {
+            "question": "Zieht ein Poolpumpe / Filteranlage Strom im Standby-Modus?",
+            "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+      },
+      {
+            "question": "Lohnt sich der Austausch eines alten Poolpumpe / Filteranlage gegen ein Neugerät?",
+            "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+      }
+
     ],
     sourceIds: ['bnetza', 'uba'],
     relatedDevices: ['whirlpool', 'aquarium', 'klimaanlage'],
@@ -788,9 +1124,26 @@ export const appliances: Record<string, Appliance> = {
     factors: ['Dämmung der Wanne', 'Qualität der Thermoabdeckung', 'Außentemperatur (Winterbetrieb)', 'Nutzungshäufigkeit der Massagedüsen'],
     faq: [
       {
-        question: 'Was kostet ein aufblasbarer Whirlpool an Strom im Monat?',
-        answer: 'Aufblasbare Whirlpools sind schlechter isoliert und verbrauchen im Sommer ca. 150 bis 250 kWh (ca. 50 bis 90 €/Monat), im Frühjahr/Herbst oft deutlich mehr.',
+            "question": "Wie viel Strom verbraucht ein Whirlpool / Outdoor Hot Tub pro Stunde, Tag und Jahr?",
+            "answer": "Ein Whirlpool / Outdoor Hot Tub hat eine typische Leistungsaufnahme von ca. 2500 Watt. Im laufenden Betrieb verbraucht er ca. 2.500 kWh pro Stunde (ca. 0.88 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 2200 kWh (770.00 €/Jahr)."
       },
+      {
+            "question": "Was kostet die Nutzung von Whirlpool / Outdoor Hot Tub pro Vorgang bzw. Monat?",
+            "answer": "Die durchschnittlichen Betriebskosten betragen ca. 2,10 € / Tag (Heizung & Zirkulation). Pro Monat entspricht das etwa 64.17 € Stromkosten."
+      },
+      {
+            "question": "Wie kann man beim Whirlpool / Outdoor Hot Tub am effektivsten Strom sparen?",
+            "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+      },
+      {
+            "question": "Zieht ein Whirlpool / Outdoor Hot Tub Strom im Standby-Modus?",
+            "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+      },
+      {
+            "question": "Lohnt sich der Austausch eines alten Whirlpool / Outdoor Hot Tub gegen ein Neugerät?",
+            "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+      }
+
     ],
     sourceIds: ['bnetza', 'stromspiegel'],
     relatedDevices: ['pool', 'sauna', 'heizluefter'],
@@ -857,9 +1210,26 @@ export const appliances: Record<string, Appliance> = {
     factors: ['Anzahl und Typ der Festplatten (HDDs vs. SSDs)', 'Festplatten-Spindown aktiv', 'CPU-Auslastung (Transcoding, Docker-Container)'],
     faq: [
       {
-        question: 'Was kostet ein NAS im Dauerbetrieb pro Jahr?',
-        answer: 'Ein typisches 2-Bay-NAS (ca. 25 Watt) kostet im 24/7-Betrieb rund 75 bis 80 Euro Strom pro Jahr.',
+            "question": "Wie viel Strom verbraucht ein NAS-Server / Netzwerkspeicher pro Stunde, Tag und Jahr?",
+            "answer": "Ein NAS-Server / Netzwerkspeicher hat eine typische Leistungsaufnahme von ca. 30 Watt. Im laufenden Betrieb verbraucht er ca. 0.030 kWh pro Stunde (ca. 0.01 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 260 kWh (91.00 €/Jahr)."
       },
+      {
+            "question": "Was kostet die Nutzung von NAS-Server / Netzwerkspeicher pro Vorgang bzw. Monat?",
+            "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,25 € / 24 Stunden Dauerbetrieb. Pro Monat entspricht das etwa 7.58 € Stromkosten."
+      },
+      {
+            "question": "Wie kann man beim NAS-Server / Netzwerkspeicher am effektivsten Strom sparen?",
+            "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+      },
+      {
+            "question": "Zieht ein NAS-Server / Netzwerkspeicher Strom im Standby-Modus?",
+            "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+      },
+      {
+            "question": "Lohnt sich der Austausch eines alten NAS-Server / Netzwerkspeicher gegen ein Neugerät?",
+            "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+      }
+
     ],
     sourceIds: ['uba'],
     relatedDevices: ['server', 'pc', 'wlan-router'],
@@ -892,9 +1262,26 @@ export const appliances: Record<string, Appliance> = {
     factors: ['Hardware-Plattform (Mini-PC vs. alter Enterprise-Server)', 'C-State-Konfiguration im BIOS/OS', 'Anzahl der 3,5"-Festplatten'],
     faq: [
       {
-        question: 'Was kostet 1 Watt Dauerleistung im Jahr?',
-        answer: '1 Watt Dauerbetrieb rund um die Uhr verbraucht 8,76 kWh im Jahr. Bei 35 ct/kWh entspricht jedes Watt Dauerleistung ca. 3,07 Euro pro Jahr.',
+            "question": "Wie viel Strom verbraucht ein Heimserver / Home Server pro Stunde, Tag und Jahr?",
+            "answer": "Ein Heimserver / Home Server hat eine typische Leistungsaufnahme von ca. 65 Watt. Im laufenden Betrieb verbraucht er ca. 0.065 kWh pro Stunde (ca. 0.02 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 570 kWh (199.50 €/Jahr)."
       },
+      {
+            "question": "Was kostet die Nutzung von Heimserver / Home Server pro Vorgang bzw. Monat?",
+            "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,55 € / 24 Stunden Dauerbetrieb. Pro Monat entspricht das etwa 16.63 € Stromkosten."
+      },
+      {
+            "question": "Wie kann man beim Heimserver / Home Server am effektivsten Strom sparen?",
+            "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+      },
+      {
+            "question": "Zieht ein Heimserver / Home Server Strom im Standby-Modus?",
+            "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+      },
+      {
+            "question": "Lohnt sich der Austausch eines alten Heimserver / Home Server gegen ein Neugerät?",
+            "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+      }
+
     ],
     sourceIds: ['uba', 'bnetza'],
     relatedDevices: ['nas', 'pc', 'gaming-pc'],

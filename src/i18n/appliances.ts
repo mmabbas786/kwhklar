@@ -10,1764 +10,5828 @@ export interface LocalizedAppliance {
 }
 
 export const applianceTranslations: Record<SupportedLanguage, Record<string, LocalizedAppliance>> = {
-  de: {
-    'kuehlschrank': {
-      name: 'Kühlschrank',
-      category: 'Küche',
-      shortDescription: 'Ein moderner Kühlschrank verbraucht ca. 100 bis 160 kWh pro Jahr (ca. 35 bis 56 €). Ältere Geräte benötigen oft 250 bis 350 kWh.',
-      dutyCycleExplanation: 'Ein Kühlschrank läuft zwar rund um die Uhr, der stromintensive Kompressor schaltet sich jedoch thermostatgesteuert nur etwa 20 bis 40 Minuten pro Stunde ein.',
-      savingAdvice: [
-        'Optimale Temperatur: 7 °C im Kühlraum reichen völlig aus.',
-        'Regelmäßig abtauen: 5 mm Eisschicht steigert den Stromverbrauch um bis zu 30 %.',
-        'Türdichtungen regelmäßig auf Risse und Dichtheit prüfen.',
+  "de": {
+    "kuehlschrank": {
+      "name": "Kühlschrank",
+      "category": "Küche",
+      "shortDescription": "Ein typischer Kühlschrank verbraucht ca. 120 kWh pro Jahr (ca. 42.00 € bei 35 ct/kWh). Typische Leistung: 90 Watt.",
+      "dutyCycleExplanation": "Die tatsächliche Leistungsaufnahme variiert je nach Betriebsstufe, Thermostatregelung und Nutzungsintensität.",
+      "savingAdvice": [
+        "Eco-Modi und energiesparende Programme nutzen.",
+        "Gerät regelmäßig reinigen und warten (Filter, Dichtungen, Entkalkung).",
+        "Standby-Verluste mit einer schaltbaren Steckdosenleiste vermeiden."
       ],
-      faq: [
-        { question: 'Wie viel Strom verbraucht ein Kühlschrank pro Tag?', answer: 'Ein moderner Standard-Kühlschrank verbraucht ca. 0,3 bis 0,45 kWh pro Tag (ca. 10 bis 16 Cent).' }
+      "faq": [
+        {
+          "question": "Wie viel Strom verbraucht ein Kühlschrank pro Stunde, Tag und Jahr?",
+          "answer": "Ein Kühlschrank hat eine typische Leistungsaufnahme von ca. 90 Watt. Im laufenden Betrieb verbraucht er ca. 0.090 kWh pro Stunde (ca. 0.01 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 120 kWh (42.00 €/Jahr)."
+        },
+        {
+          "question": "Was kostet die Nutzung von Kühlschrank pro Vorgang bzw. Monat?",
+          "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,12 € / Tag. Pro Monat entspricht das etwa 3.50 € Stromkosten."
+        },
+        {
+          "question": "Wie kann man beim Kühlschrank am effektivsten Strom sparen?",
+          "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+        },
+        {
+          "question": "Zieht ein Kühlschrank Strom im Standby-Modus?",
+          "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+        },
+        {
+          "question": "Lohnt sich der Austausch eines alten Kühlschrank gegen ein Neugerät?",
+          "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+        }
       ]
     },
-    'waschmaschine': {
-      name: 'Waschmaschine',
-      category: 'Haushalt & Reinigung',
-      shortDescription: 'Eine moderne Waschmaschine verbraucht ca. 0,5 bis 1,0 kWh pro Waschgang (ca. 18 bis 35 Cent bei 35 ct/kWh).',
-      dutyCycleExplanation: 'Über 80 % des Stromverbrauchs entfallen auf das Aufheizen des Wassers.',
-      savingAdvice: [
-        'Eco-Programme nutzen: Waschen bei 30 °C spart bis zu 60 % Strom.',
-        'Trommel immer voll beladen.',
+    "waschmaschine": {
+      "name": "Waschmaschine",
+      "category": "Haushalt & Reinigung",
+      "shortDescription": "Ein typischer Waschmaschine verbraucht ca. 140 kWh pro Jahr (ca. 49.00 € bei 35 ct/kWh). Typische Leistung: 2000 Watt.",
+      "dutyCycleExplanation": "Die tatsächliche Leistungsaufnahme variiert je nach Betriebsstufe, Thermostatregelung und Nutzungsintensität.",
+      "savingAdvice": [
+        "Eco-Modi und energiesparende Programme nutzen.",
+        "Gerät regelmäßig reinigen und warten (Filter, Dichtungen, Entkalkung).",
+        "Standby-Verluste mit einer schaltbaren Steckdosenleiste vermeiden."
       ],
-      faq: [
-        { question: 'Was kostet ein Waschgang bei 60 °C im Vergleich zu 30 °C?', answer: 'Ein Waschgang bei 60 °C kostet ca. 35 bis 50 Cent, während ein 30-°C-Eco-Waschgang nur ca. 15 bis 20 Cent kostet.' }
+      "faq": [
+        {
+          "question": "Wie viel Strom verbraucht ein Waschmaschine pro Stunde, Tag und Jahr?",
+          "answer": "Ein Waschmaschine hat eine typische Leistungsaufnahme von ca. 2000 Watt. Im laufenden Betrieb verbraucht er ca. 2.000 kWh pro Stunde (ca. 0.70 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 140 kWh (49.00 €/Jahr)."
+        },
+        {
+          "question": "Was kostet die Nutzung von Waschmaschine pro Vorgang bzw. Monat?",
+          "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,25 € / Waschgang. Pro Monat entspricht das etwa 4.08 € Stromkosten."
+        },
+        {
+          "question": "Wie kann man beim Waschmaschine am effektivsten Strom sparen?",
+          "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+        },
+        {
+          "question": "Zieht ein Waschmaschine Strom im Standby-Modus?",
+          "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+        },
+        {
+          "question": "Lohnt sich der Austausch eines alten Waschmaschine gegen ein Neugerät?",
+          "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+        }
       ]
     },
-    'trockner': {
-      name: 'Wäschetrockner',
-      category: 'Haushalt & Reinigung',
-      shortDescription: 'Wärmepumpentrockner verbrauchen ca. 1,2 bis 1,8 kWh pro Trocknung, während alte Kondenstrockner oft über 4 kWh benötigen.',
-      dutyCycleExplanation: 'Wärmepumpentrockner nutzen die Abwärme im Kreislauf wieder.',
-      savingAdvice: [
-        'Wäsche mit mindestens 1.200 U/min vorschleudern.',
-        'Flusensieb nach jedem Trockenvorgang säubern.',
+    "trockner": {
+      "name": "Wäschetrockner",
+      "category": "Haushalt & Reinigung",
+      "shortDescription": "Ein typischer Wäschetrockner verbraucht ca. 180 kWh pro Jahr (ca. 63.00 € bei 35 ct/kWh). Typische Leistung: 1500 Watt.",
+      "dutyCycleExplanation": "Die tatsächliche Leistungsaufnahme variiert je nach Betriebsstufe, Thermostatregelung und Nutzungsintensität.",
+      "savingAdvice": [
+        "Eco-Modi und energiesparende Programme nutzen.",
+        "Gerät regelmäßig reinigen und warten (Filter, Dichtungen, Entkalkung).",
+        "Standby-Verluste mit einer schaltbaren Steckdosenleiste vermeiden."
       ],
-      faq: [
-        { question: 'Was kostet eine Trocknerladung?', answer: 'Ein moderner Wärmepumpentrockner kostet ca. 45 bis 65 Cent pro Ladung.' }
+      "faq": [
+        {
+          "question": "Wie viel Strom verbraucht ein Wäschetrockner pro Stunde, Tag und Jahr?",
+          "answer": "Ein Wäschetrockner hat eine typische Leistungsaufnahme von ca. 1500 Watt. Im laufenden Betrieb verbraucht er ca. 1.500 kWh pro Stunde (ca. 0.53 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 180 kWh (63.00 €/Jahr)."
+        },
+        {
+          "question": "Was kostet die Nutzung von Wäschetrockner pro Vorgang bzw. Monat?",
+          "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,45 € / Ladung. Pro Monat entspricht das etwa 5.25 € Stromkosten."
+        },
+        {
+          "question": "Wie kann man beim Wäschetrockner am effektivsten Strom sparen?",
+          "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+        },
+        {
+          "question": "Zieht ein Wäschetrockner Strom im Standby-Modus?",
+          "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+        },
+        {
+          "question": "Lohnt sich der Austausch eines alten Wäschetrockner gegen ein Neugerät?",
+          "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+        }
       ]
     },
-    'geschirrspueler': {
-      name: 'Geschirrspüler',
-      category: 'Küche',
-      shortDescription: 'Ein Spülgang im Eco-Modus verbraucht ca. 0,7 bis 0,9 kWh (ca. 25 bis 32 Cent).',
-      dutyCycleExplanation: 'Das Gerät erhitzt das Wasser hocheffizient im geschlossenen Kreislauf.',
-      savingAdvice: [
-        'Eco-50°C-Programm als Standard nutzen.',
-        'Spülmaschine nur voll beladen starten.',
+    "geschirrspueler": {
+      "name": "Geschirrspüler",
+      "category": "Küche",
+      "shortDescription": "Ein typischer Geschirrspüler verbraucht ca. 160 kWh pro Jahr (ca. 56.00 € bei 35 ct/kWh). Typische Leistung: 1800 Watt.",
+      "dutyCycleExplanation": "Die tatsächliche Leistungsaufnahme variiert je nach Betriebsstufe, Thermostatregelung und Nutzungsintensität.",
+      "savingAdvice": [
+        "Eco-Modi und energiesparende Programme nutzen.",
+        "Gerät regelmäßig reinigen und warten (Filter, Dichtungen, Entkalkung).",
+        "Standby-Verluste mit einer schaltbaren Steckdosenleiste vermeiden."
       ],
-      faq: [
-        { question: 'Ist der Geschirrspüler sparsamer als Handspülen?', answer: 'Ja, moderne Geschirrspüler verbrauchen bis zu 50 % weniger Strom und 60 % weniger Wasser.' }
+      "faq": [
+        {
+          "question": "Wie viel Strom verbraucht ein Geschirrspüler pro Stunde, Tag und Jahr?",
+          "answer": "Ein Geschirrspüler hat eine typische Leistungsaufnahme von ca. 1800 Watt. Im laufenden Betrieb verbraucht er ca. 1.800 kWh pro Stunde (ca. 0.63 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 160 kWh (56.00 €/Jahr)."
+        },
+        {
+          "question": "Was kostet die Nutzung von Geschirrspüler pro Vorgang bzw. Monat?",
+          "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,28 € / Spülgang. Pro Monat entspricht das etwa 4.67 € Stromkosten."
+        },
+        {
+          "question": "Wie kann man beim Geschirrspüler am effektivsten Strom sparen?",
+          "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+        },
+        {
+          "question": "Zieht ein Geschirrspüler Strom im Standby-Modus?",
+          "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+        },
+        {
+          "question": "Lohnt sich der Austausch eines alten Geschirrspüler gegen ein Neugerät?",
+          "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+        }
       ]
     },
-    'backofen': {
-      name: 'Backofen',
-      category: 'Küche',
-      shortDescription: 'Ein moderner Elektrobackofen verbraucht ca. 0,8 bis 1,5 kWh pro Betriebsstunde (ca. 28 bis 52 Cent).',
-      dutyCycleExplanation: 'Das Vorheizen verbraucht die meiste Energie, Umluft ist ca. 20 % sparsamer als Ober-/Unterhitze.',
-      savingAdvice: [
-        'Umluft statt Ober-/Unterhitze nutzen (ermöglicht 20 °C niedrigere Temperatur).',
-        'Backofentür während des Backens möglichst geschlossen halten.',
+    "backofen": {
+      "name": "Backofen",
+      "category": "Küche",
+      "shortDescription": "Ein typischer Backofen verbraucht ca. 150 kWh pro Jahr (ca. 52.50 € bei 35 ct/kWh). Typische Leistung: 2500 Watt.",
+      "dutyCycleExplanation": "Die tatsächliche Leistungsaufnahme variiert je nach Betriebsstufe, Thermostatregelung und Nutzungsintensität.",
+      "savingAdvice": [
+        "Eco-Modi und energiesparende Programme nutzen.",
+        "Gerät regelmäßig reinigen und warten (Filter, Dichtungen, Entkalkung).",
+        "Standby-Verluste mit einer schaltbaren Steckdosenleiste vermeiden."
       ],
-      faq: [
-        { question: 'Muss man den Backofen wirklich vorheizen?', answer: 'In den meisten Fällen nicht; ohne Vorheizen sparst du bis zu 20 % Energie.' }
+      "faq": [
+        {
+          "question": "Wie viel Strom verbraucht ein Backofen pro Stunde, Tag und Jahr?",
+          "answer": "Ein Backofen hat eine typische Leistungsaufnahme von ca. 2500 Watt. Im laufenden Betrieb verbraucht er ca. 2.500 kWh pro Stunde (ca. 0.88 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 150 kWh (52.50 €/Jahr)."
+        },
+        {
+          "question": "Was kostet die Nutzung von Backofen pro Vorgang bzw. Monat?",
+          "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,55 € / Nutzung. Pro Monat entspricht das etwa 4.38 € Stromkosten."
+        },
+        {
+          "question": "Wie kann man beim Backofen am effektivsten Strom sparen?",
+          "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+        },
+        {
+          "question": "Zieht ein Backofen Strom im Standby-Modus?",
+          "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+        },
+        {
+          "question": "Lohnt sich der Austausch eines alten Backofen gegen ein Neugerät?",
+          "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+        }
       ]
     },
-    'herd': {
-      name: 'Elektroherd / Induktionskochfeld',
-      category: 'Küche',
-      shortDescription: 'Ein Induktionskochfeld verbraucht pro Kochvorgang ca. 0,3 bis 0,7 kWh und arbeitet rund 20–30 % effizienter als Ceran.',
-      dutyCycleExplanation: 'Induktion erzeugt Hitze direkt im Topfboden ohne Abwärmeverluste.',
-      savingAdvice: [
-        'Immer mit passendem Deckel kochen.',
-        'Wasser im Wasserkocher vorkochen.',
+    "herd": {
+      "name": "Induktionsherd / Kochfeld",
+      "category": "Küche",
+      "shortDescription": "Ein typischer Induktionsherd / Kochfeld verbraucht ca. 220 kWh pro Jahr (ca. 77.00 € bei 35 ct/kWh). Typische Leistung: 3000 Watt.",
+      "dutyCycleExplanation": "Die tatsächliche Leistungsaufnahme variiert je nach Betriebsstufe, Thermostatregelung und Nutzungsintensität.",
+      "savingAdvice": [
+        "Eco-Modi und energiesparende Programme nutzen.",
+        "Gerät regelmäßig reinigen und warten (Filter, Dichtungen, Entkalkung).",
+        "Standby-Verluste mit einer schaltbaren Steckdosenleiste vermeiden."
       ],
-      faq: [
-        { question: 'Wie viel Strom spart Induktion gegenüber Ceran?', answer: 'Induktion spart rund 20 bis 30 % Strom und kocht doppelt so schnell.' }
+      "faq": [
+        {
+          "question": "Wie viel Strom verbraucht ein Induktionsherd / Kochfeld pro Stunde, Tag und Jahr?",
+          "answer": "Ein Induktionsherd / Kochfeld hat eine typische Leistungsaufnahme von ca. 3000 Watt. Im laufenden Betrieb verbraucht er ca. 3.000 kWh pro Stunde (ca. 1.05 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 220 kWh (77.00 €/Jahr)."
+        },
+        {
+          "question": "Was kostet die Nutzung von Induktionsherd / Kochfeld pro Vorgang bzw. Monat?",
+          "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,35 € / Kochvorgang. Pro Monat entspricht das etwa 6.42 € Stromkosten."
+        },
+        {
+          "question": "Wie kann man beim Induktionsherd / Kochfeld am effektivsten Strom sparen?",
+          "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+        },
+        {
+          "question": "Zieht ein Induktionsherd / Kochfeld Strom im Standby-Modus?",
+          "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+        },
+        {
+          "question": "Lohnt sich der Austausch eines alten Induktionsherd / Kochfeld gegen ein Neugerät?",
+          "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+        }
       ]
     },
-    'wasserkocher': {
-      name: 'Wasserkocher',
-      category: 'Küche',
-      shortDescription: '1 Liter Wasser zum Kochen zu bringen benötigt ca. 0,1 kWh (ca. 3,5 Cent).',
-      dutyCycleExplanation: 'Direkte Wärmeübertragung mit hohem Wirkungsgrad (über 90 %).',
-      savingAdvice: ['Nur die tatsächlich benötigte Wassermenge erhitzen.', 'Regelmäßig entkalken.'],
-      faq: [
-        { question: 'Ist der Wasserkocher sparsamer als der Herd?', answer: 'Ja, der Wasserkocher ist ca. 30–50 % sparsamer als ein Kochtopf auf dem Ceranfeld.' }
+    "wasserkocher": {
+      "name": "Wasserkocher",
+      "category": "Küche",
+      "shortDescription": "Ein typischer Wasserkocher verbraucht ca. 80 kWh pro Jahr (ca. 28.00 € bei 35 ct/kWh). Typische Leistung: 2200 Watt.",
+      "dutyCycleExplanation": "Die tatsächliche Leistungsaufnahme variiert je nach Betriebsstufe, Thermostatregelung und Nutzungsintensität.",
+      "savingAdvice": [
+        "Eco-Modi und energiesparende Programme nutzen.",
+        "Gerät regelmäßig reinigen und warten (Filter, Dichtungen, Entkalkung).",
+        "Standby-Verluste mit einer schaltbaren Steckdosenleiste vermeiden."
+      ],
+      "faq": [
+        {
+          "question": "Wie viel Strom verbraucht ein Wasserkocher pro Stunde, Tag und Jahr?",
+          "answer": "Ein Wasserkocher hat eine typische Leistungsaufnahme von ca. 2200 Watt. Im laufenden Betrieb verbraucht er ca. 2.200 kWh pro Stunde (ca. 0.77 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 80 kWh (28.00 €/Jahr)."
+        },
+        {
+          "question": "Was kostet die Nutzung von Wasserkocher pro Vorgang bzw. Monat?",
+          "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,03 € / 1 Liter Kochen. Pro Monat entspricht das etwa 2.33 € Stromkosten."
+        },
+        {
+          "question": "Wie kann man beim Wasserkocher am effektivsten Strom sparen?",
+          "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+        },
+        {
+          "question": "Zieht ein Wasserkocher Strom im Standby-Modus?",
+          "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+        },
+        {
+          "question": "Lohnt sich der Austausch eines alten Wasserkocher gegen ein Neugerät?",
+          "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+        }
       ]
     },
-    'kaffeemaschine': {
-      name: 'Kaffeevollautomat',
-      category: 'Küche',
-      shortDescription: 'Ein Kaffeevollautomat verbraucht ca. 0,02 bis 0,04 kWh pro Tasse Kaffee (inkl. Aufheizen & Spülen).',
-      dutyCycleExplanation: 'Heizblock schaltet bei Bedarf kurzzeitig auf ca. 1.400 W.',
-      savingAdvice: ['Automatische Abschaltung nach 10–15 Minuten aktivieren.', 'Warmhaltefunktion meiden.'],
-      faq: [
-        { question: 'Was kostet eine Tasse Kaffee an Strom?', answer: 'Eine Tasse Kaffee kostet ca. 1 bis 1,5 Cent an reinem Strom.' }
+    "kaffeemaschine": {
+      "name": "Kaffeemaschine / Vollautomat",
+      "category": "Küche",
+      "shortDescription": "Ein typischer Kaffeemaschine / Vollautomat verbraucht ca. 65 kWh pro Jahr (ca. 22.75 € bei 35 ct/kWh). Typische Leistung: 1400 Watt.",
+      "dutyCycleExplanation": "Die tatsächliche Leistungsaufnahme variiert je nach Betriebsstufe, Thermostatregelung und Nutzungsintensität.",
+      "savingAdvice": [
+        "Eco-Modi und energiesparende Programme nutzen.",
+        "Gerät regelmäßig reinigen und warten (Filter, Dichtungen, Entkalkung).",
+        "Standby-Verluste mit einer schaltbaren Steckdosenleiste vermeiden."
+      ],
+      "faq": [
+        {
+          "question": "Wie viel Strom verbraucht ein Kaffeemaschine / Vollautomat pro Stunde, Tag und Jahr?",
+          "answer": "Ein Kaffeemaschine / Vollautomat hat eine typische Leistungsaufnahme von ca. 1400 Watt. Im laufenden Betrieb verbraucht er ca. 1.400 kWh pro Stunde (ca. 0.49 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 65 kWh (22.75 €/Jahr)."
+        },
+        {
+          "question": "Was kostet die Nutzung von Kaffeemaschine / Vollautomat pro Vorgang bzw. Monat?",
+          "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,02 € / Tasse Kaffee. Pro Monat entspricht das etwa 1.90 € Stromkosten."
+        },
+        {
+          "question": "Wie kann man beim Kaffeemaschine / Vollautomat am effektivsten Strom sparen?",
+          "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+        },
+        {
+          "question": "Zieht ein Kaffeemaschine / Vollautomat Strom im Standby-Modus?",
+          "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+        },
+        {
+          "question": "Lohnt sich der Austausch eines alten Kaffeemaschine / Vollautomat gegen ein Neugerät?",
+          "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+        }
       ]
     },
-    'fernseher': {
-      name: 'Fernseher (TV)',
-      category: 'Unterhaltung & Büro',
-      shortDescription: 'Ein moderner 55-Zoll-TV verbraucht ca. 70 bis 130 Watt (ca. 2,5 bis 4,5 Cent pro Stunde).',
-      dutyCycleExplanation: 'Helligkeit, HDR und Bildmodus steuern den Echtzeitverbrauch.',
-      savingAdvice: ['Helligkeitssensor aktivieren.', 'Standard- oder Film-Modus statt Dynamik wählen.'],
-      faq: [
-        { question: 'Verbraucht OLED mehr Strom als LED?', answer: 'Bei hellen Bildern ja, bei dunklen Szenen schalten sich Pixel ab und sparen Strom.' }
+    "fernseher": {
+      "name": "Fernseher (Smart TV 55-65\")",
+      "category": "Unterhaltung & Büro",
+      "shortDescription": "Ein typischer Fernseher (Smart TV 55-65\") verbraucht ca. 175 kWh pro Jahr (ca. 61.25 € bei 35 ct/kWh). Typische Leistung: 120 Watt.",
+      "dutyCycleExplanation": "Die tatsächliche Leistungsaufnahme variiert je nach Betriebsstufe, Thermostatregelung und Nutzungsintensität.",
+      "savingAdvice": [
+        "Eco-Modi und energiesparende Programme nutzen.",
+        "Gerät regelmäßig reinigen und warten (Filter, Dichtungen, Entkalkung).",
+        "Standby-Verluste mit einer schaltbaren Steckdosenleiste vermeiden."
+      ],
+      "faq": [
+        {
+          "question": "Wie viel Strom verbraucht ein Fernseher (Smart TV 55-65\") pro Stunde, Tag und Jahr?",
+          "answer": "Ein Fernseher (Smart TV 55-65\") hat eine typische Leistungsaufnahme von ca. 120 Watt. Im laufenden Betrieb verbraucht er ca. 0.120 kWh pro Stunde (ca. 0.04 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 175 kWh (61.25 €/Jahr)."
+        },
+        {
+          "question": "Was kostet die Nutzung von Fernseher (Smart TV 55-65\") pro Vorgang bzw. Monat?",
+          "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,17 € / 4 Stunden. Pro Monat entspricht das etwa 5.10 € Stromkosten."
+        },
+        {
+          "question": "Wie kann man beim Fernseher (Smart TV 55-65\") am effektivsten Strom sparen?",
+          "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+        },
+        {
+          "question": "Zieht ein Fernseher (Smart TV 55-65\") Strom im Standby-Modus?",
+          "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+        },
+        {
+          "question": "Lohnt sich der Austausch eines alten Fernseher (Smart TV 55-65\") gegen ein Neugerät?",
+          "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+        }
       ]
     },
-    'gaming-pc': {
-      name: 'Gaming-PC',
-      category: 'Unterhaltung & Büro',
-      shortDescription: 'Unter Last verbraucht ein Gaming-PC ca. 350 bis 600 Watt (ca. 12 bis 21 Cent pro Stunde).',
-      dutyCycleExplanation: 'GPU und CPU takten bei Spielen unter voller Leistungsaufnahme.',
-      savingAdvice: ['FPS-Cap aktivieren.', 'Grafikkarte undervolten.'],
-      faq: [
-        { question: 'Was kostet 4h Gaming am Tag pro Monat?', answer: 'Rund 17 bis 20 Euro Stromkosten monatlich.' }
+    "gaming-pc": {
+      "name": "Gaming-PC (High-End)",
+      "category": "Unterhaltung & Büro",
+      "shortDescription": "Ein typischer Gaming-PC (High-End) verbraucht ca. 450 kWh pro Jahr (ca. 157.50 € bei 35 ct/kWh). Typische Leistung: 400 Watt.",
+      "dutyCycleExplanation": "Die tatsächliche Leistungsaufnahme variiert je nach Betriebsstufe, Thermostatregelung und Nutzungsintensität.",
+      "savingAdvice": [
+        "Eco-Modi und energiesparende Programme nutzen.",
+        "Gerät regelmäßig reinigen und warten (Filter, Dichtungen, Entkalkung).",
+        "Standby-Verluste mit einer schaltbaren Steckdosenleiste vermeiden."
+      ],
+      "faq": [
+        {
+          "question": "Wie viel Strom verbraucht ein Gaming-PC (High-End) pro Stunde, Tag und Jahr?",
+          "answer": "Ein Gaming-PC (High-End) hat eine typische Leistungsaufnahme von ca. 400 Watt. Im laufenden Betrieb verbraucht er ca. 0.400 kWh pro Stunde (ca. 0.14 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 450 kWh (157.50 €/Jahr)."
+        },
+        {
+          "question": "Was kostet die Nutzung von Gaming-PC (High-End) pro Vorgang bzw. Monat?",
+          "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,56 € / 4 Stunden Session. Pro Monat entspricht das etwa 13.13 € Stromkosten."
+        },
+        {
+          "question": "Wie kann man beim Gaming-PC (High-End) am effektivsten Strom sparen?",
+          "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+        },
+        {
+          "question": "Zieht ein Gaming-PC (High-End) Strom im Standby-Modus?",
+          "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+        },
+        {
+          "question": "Lohnt sich der Austausch eines alten Gaming-PC (High-End) gegen ein Neugerät?",
+          "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+        }
       ]
     },
-    'gamingpc': {
-      name: 'Gaming-PC',
-      category: 'Unterhaltung & Büro',
-      shortDescription: 'Unter Last verbraucht ein Gaming-PC ca. 350 bis 600 Watt (ca. 12 bis 21 Cent pro Stunde).',
-      dutyCycleExplanation: 'GPU und CPU takten bei Spielen unter voller Leistungsaufnahme.',
-      savingAdvice: ['FPS-Cap aktivieren.', 'Grafikkarte undervolten.'],
-      faq: [
-        { question: 'Was kostet 4h Gaming am Tag pro Monat?', answer: 'Rund 17 bis 20 Euro Stromkosten monatlich.' }
+    "pc": {
+      "name": "Desktop-PC / Office-Rechner",
+      "category": "Unterhaltung & Büro",
+      "shortDescription": "Ein typischer Desktop-PC / Office-Rechner verbraucht ca. 180 kWh pro Jahr (ca. 63.00 € bei 35 ct/kWh). Typische Leistung: 120 Watt.",
+      "dutyCycleExplanation": "Die tatsächliche Leistungsaufnahme variiert je nach Betriebsstufe, Thermostatregelung und Nutzungsintensität.",
+      "savingAdvice": [
+        "Eco-Modi und energiesparende Programme nutzen.",
+        "Gerät regelmäßig reinigen und warten (Filter, Dichtungen, Entkalkung).",
+        "Standby-Verluste mit einer schaltbaren Steckdosenleiste vermeiden."
+      ],
+      "faq": [
+        {
+          "question": "Wie viel Strom verbraucht ein Desktop-PC / Office-Rechner pro Stunde, Tag und Jahr?",
+          "answer": "Ein Desktop-PC / Office-Rechner hat eine typische Leistungsaufnahme von ca. 120 Watt. Im laufenden Betrieb verbraucht er ca. 0.120 kWh pro Stunde (ca. 0.04 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 180 kWh (63.00 €/Jahr)."
+        },
+        {
+          "question": "Was kostet die Nutzung von Desktop-PC / Office-Rechner pro Vorgang bzw. Monat?",
+          "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,25 € / 6 Stunden Arbeit. Pro Monat entspricht das etwa 5.25 € Stromkosten."
+        },
+        {
+          "question": "Wie kann man beim Desktop-PC / Office-Rechner am effektivsten Strom sparen?",
+          "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+        },
+        {
+          "question": "Zieht ein Desktop-PC / Office-Rechner Strom im Standby-Modus?",
+          "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+        },
+        {
+          "question": "Lohnt sich der Austausch eines alten Desktop-PC / Office-Rechner gegen ein Neugerät?",
+          "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+        }
       ]
     },
-    'pc': {
-      name: 'Desktop PC (Office)',
-      category: 'Unterhaltung & Büro',
-      shortDescription: 'Ein normaler Office-PC verbraucht ca. 50 bis 100 Watt (ca. 1,8 bis 3,5 Cent pro Stunde).',
-      dutyCycleExplanation: 'Geringe Grundlast bei Schreibarbeiten und Surfen.',
-      savingAdvice: ['Energiesparmodus nach 15 min Inaktivität aktivieren.', 'Steckerleiste nutzen.'],
-      faq: [
-        { question: 'Wie viel Strom verbraucht ein PC im Homeoffice?', answer: 'Bei 8h täglicher Arbeit ca. 0,5 bis 0,8 kWh pro Tag (ca. 18–28 Cent).' }
+    "laptop": {
+      "name": "Laptop / Notebook",
+      "category": "Unterhaltung & Büro",
+      "shortDescription": "Ein typischer Laptop / Notebook verbraucht ca. 75 kWh pro Jahr (ca. 26.25 € bei 35 ct/kWh). Typische Leistung: 50 Watt.",
+      "dutyCycleExplanation": "Die tatsächliche Leistungsaufnahme variiert je nach Betriebsstufe, Thermostatregelung und Nutzungsintensität.",
+      "savingAdvice": [
+        "Eco-Modi und energiesparende Programme nutzen.",
+        "Gerät regelmäßig reinigen und warten (Filter, Dichtungen, Entkalkung).",
+        "Standby-Verluste mit einer schaltbaren Steckdosenleiste vermeiden."
+      ],
+      "faq": [
+        {
+          "question": "Wie viel Strom verbraucht ein Laptop / Notebook pro Stunde, Tag und Jahr?",
+          "answer": "Ein Laptop / Notebook hat eine typische Leistungsaufnahme von ca. 50 Watt. Im laufenden Betrieb verbraucht er ca. 0.050 kWh pro Stunde (ca. 0.02 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 75 kWh (26.25 €/Jahr)."
+        },
+        {
+          "question": "Was kostet die Nutzung von Laptop / Notebook pro Vorgang bzw. Monat?",
+          "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,11 € / 6 Stunden Arbeit. Pro Monat entspricht das etwa 2.19 € Stromkosten."
+        },
+        {
+          "question": "Wie kann man beim Laptop / Notebook am effektivsten Strom sparen?",
+          "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+        },
+        {
+          "question": "Zieht ein Laptop / Notebook Strom im Standby-Modus?",
+          "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+        },
+        {
+          "question": "Lohnt sich der Austausch eines alten Laptop / Notebook gegen ein Neugerät?",
+          "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+        }
       ]
     },
-    'laptop': {
-      name: 'Laptop / Notebook',
-      category: 'Unterhaltung & Büro',
-      shortDescription: 'Ein Laptop verbraucht nur ca. 20 bis 60 Watt und ist bis zu 70 % sparsamer als ein Desktop-PC.',
-      dutyCycleExplanation: 'Auf Energieeffizienz optimierte Mobilprozessoren.',
-      savingAdvice: ['Displayhelligkeit leicht reduzieren.', 'Akkuschonendes Laden aktivieren.'],
-      faq: [
-        { question: 'Was kostet ein Laptop im Betrieb?', answer: 'Bei 8 Stunden täglicher Nutzung nur ca. 6 bis 12 Cent pro Tag.' }
+    "monitor": {
+      "name": "PC-Monitor (27-32\")",
+      "category": "Unterhaltung & Büro",
+      "shortDescription": "Ein typischer PC-Monitor (27-32\") verbraucht ca. 60 kWh pro Jahr (ca. 21.00 € bei 35 ct/kWh). Typische Leistung: 35 Watt.",
+      "dutyCycleExplanation": "Die tatsächliche Leistungsaufnahme variiert je nach Betriebsstufe, Thermostatregelung und Nutzungsintensität.",
+      "savingAdvice": [
+        "Eco-Modi und energiesparende Programme nutzen.",
+        "Gerät regelmäßig reinigen und warten (Filter, Dichtungen, Entkalkung).",
+        "Standby-Verluste mit einer schaltbaren Steckdosenleiste vermeiden."
+      ],
+      "faq": [
+        {
+          "question": "Wie viel Strom verbraucht ein PC-Monitor (27-32\") pro Stunde, Tag und Jahr?",
+          "answer": "Ein PC-Monitor (27-32\") hat eine typische Leistungsaufnahme von ca. 35 Watt. Im laufenden Betrieb verbraucht er ca. 0.035 kWh pro Stunde (ca. 0.01 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 60 kWh (21.00 €/Jahr)."
+        },
+        {
+          "question": "Was kostet die Nutzung von PC-Monitor (27-32\") pro Vorgang bzw. Monat?",
+          "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,07 € / 6 Stunden Betrieb. Pro Monat entspricht das etwa 1.75 € Stromkosten."
+        },
+        {
+          "question": "Wie kann man beim PC-Monitor (27-32\") am effektivsten Strom sparen?",
+          "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+        },
+        {
+          "question": "Zieht ein PC-Monitor (27-32\") Strom im Standby-Modus?",
+          "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+        },
+        {
+          "question": "Lohnt sich der Austausch eines alten PC-Monitor (27-32\") gegen ein Neugerät?",
+          "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+        }
       ]
     },
-    'monitor': {
-      name: 'Monitor (Bildschirm)',
-      category: 'Unterhaltung & Büro',
-      shortDescription: 'Ein 27-Zoll-Monitor verbraucht ca. 20 bis 40 Watt (ca. 0,7 bis 1,4 Cent pro Stunde).',
-      dutyCycleExplanation: 'Hintergrundbeleuchtung erzeugt konstanten Verbrauch.',
-      savingAdvice: ['Helligkeit an Raumlicht anpassen.', 'Monitor bei Pausen ausschalten.'],
-      faq: [
-        { question: 'Wie viel kostet ein zweiter Monitor im Homeoffice?', answer: 'Ein zweiter Bildschirm kostet ca. 10 bis 20 Euro pro Jahr an Strom.' }
+    "ps5": {
+      "name": "PlayStation 5 (PS5)",
+      "category": "Unterhaltung & Büro",
+      "shortDescription": "Ein typischer PlayStation 5 (PS5) verbraucht ca. 150 kWh pro Jahr (ca. 52.50 € bei 35 ct/kWh). Typische Leistung: 200 Watt.",
+      "dutyCycleExplanation": "Die tatsächliche Leistungsaufnahme variiert je nach Betriebsstufe, Thermostatregelung und Nutzungsintensität.",
+      "savingAdvice": [
+        "Eco-Modi und energiesparende Programme nutzen.",
+        "Gerät regelmäßig reinigen und warten (Filter, Dichtungen, Entkalkung).",
+        "Standby-Verluste mit einer schaltbaren Steckdosenleiste vermeiden."
+      ],
+      "faq": [
+        {
+          "question": "Wie viel Strom verbraucht ein PlayStation 5 (PS5) pro Stunde, Tag und Jahr?",
+          "answer": "Ein PlayStation 5 (PS5) hat eine typische Leistungsaufnahme von ca. 200 Watt. Im laufenden Betrieb verbraucht er ca. 0.200 kWh pro Stunde (ca. 0.07 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 150 kWh (52.50 €/Jahr)."
+        },
+        {
+          "question": "Was kostet die Nutzung von PlayStation 5 (PS5) pro Vorgang bzw. Monat?",
+          "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,21 € / 3 Stunden Spielen. Pro Monat entspricht das etwa 4.38 € Stromkosten."
+        },
+        {
+          "question": "Wie kann man beim PlayStation 5 (PS5) am effektivsten Strom sparen?",
+          "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+        },
+        {
+          "question": "Zieht ein PlayStation 5 (PS5) Strom im Standby-Modus?",
+          "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+        },
+        {
+          "question": "Lohnt sich der Austausch eines alten PlayStation 5 (PS5) gegen ein Neugerät?",
+          "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+        }
       ]
     },
-    'ps5': {
-      name: 'PlayStation 5 (PS5)',
-      category: 'Unterhaltung & Büro',
-      shortDescription: 'Die PS5 verbraucht beim Spielen ca. 180 bis 220 Watt (ca. 6,3 bis 7,7 Cent pro Stunde).',
-      dutyCycleExplanation: 'Im Dashboard ca. 50 W, bei Next-Gen-Spielen bis zu 220 W.',
-      savingAdvice: ['Ruhemodus-Funktionen (USB-Strom) auf das Nötigste begrenzen.', 'Auto-Standby aktivieren.'],
-      faq: [
-        { question: 'Was verbraucht die PS5 im Ruhemodus?', answer: 'Im normalen Ruhemodus ca. 1,5–3 Watt, beim Herunterladen von Updates ca. 30 Watt.' }
+    "xbox": {
+      "name": "Xbox Series X",
+      "category": "Unterhaltung & Büro",
+      "shortDescription": "Ein typischer Xbox Series X verbraucht ca. 140 kWh pro Jahr (ca. 49.00 € bei 35 ct/kWh). Typische Leistung: 190 Watt.",
+      "dutyCycleExplanation": "Die tatsächliche Leistungsaufnahme variiert je nach Betriebsstufe, Thermostatregelung und Nutzungsintensität.",
+      "savingAdvice": [
+        "Eco-Modi und energiesparende Programme nutzen.",
+        "Gerät regelmäßig reinigen und warten (Filter, Dichtungen, Entkalkung).",
+        "Standby-Verluste mit einer schaltbaren Steckdosenleiste vermeiden."
+      ],
+      "faq": [
+        {
+          "question": "Wie viel Strom verbraucht ein Xbox Series X pro Stunde, Tag und Jahr?",
+          "answer": "Ein Xbox Series X hat eine typische Leistungsaufnahme von ca. 190 Watt. Im laufenden Betrieb verbraucht er ca. 0.190 kWh pro Stunde (ca. 0.07 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 140 kWh (49.00 €/Jahr)."
+        },
+        {
+          "question": "Was kostet die Nutzung von Xbox Series X pro Vorgang bzw. Monat?",
+          "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,20 € / 3 Stunden Spielen. Pro Monat entspricht das etwa 4.08 € Stromkosten."
+        },
+        {
+          "question": "Wie kann man beim Xbox Series X am effektivsten Strom sparen?",
+          "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+        },
+        {
+          "question": "Zieht ein Xbox Series X Strom im Standby-Modus?",
+          "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+        },
+        {
+          "question": "Lohnt sich der Austausch eines alten Xbox Series X gegen ein Neugerät?",
+          "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+        }
       ]
     },
-    'xbox': {
-      name: 'Xbox Series X',
-      category: 'Unterhaltung & Büro',
-      shortDescription: 'Die Xbox Series X verbraucht beim Spielen ca. 150 bis 210 Watt (ca. 5,3 bis 7,4 Cent pro Stunde).',
-      dutyCycleExplanation: 'Volle Auslastung im 4K-120Hz-Spielbetrieb.',
-      savingAdvice: ['Energiemodus "Herunterfahren (Energiesparend)" statt Standby wählen.'],
-      faq: [
-        { question: 'Wie viel spart der Energiesparmodus der Xbox?', answer: 'Der Energiesparmodus verbraucht 0,5 W statt 10–13 W im Sofortstartmodus (spart ca. 30 €/Jahr).' }
+    "klimaanlage": {
+      "name": "Klimaanlage (Split-Gerät)",
+      "category": "Klima & Heizen",
+      "shortDescription": "Ein typischer Klimaanlage (Split-Gerät) verbraucht ca. 350 kWh pro Jahr (ca. 122.50 € bei 35 ct/kWh). Typische Leistung: 800 Watt.",
+      "dutyCycleExplanation": "Die tatsächliche Leistungsaufnahme variiert je nach Betriebsstufe, Thermostatregelung und Nutzungsintensität.",
+      "savingAdvice": [
+        "Eco-Modi und energiesparende Programme nutzen.",
+        "Gerät regelmäßig reinigen und warten (Filter, Dichtungen, Entkalkung).",
+        "Standby-Verluste mit einer schaltbaren Steckdosenleiste vermeiden."
+      ],
+      "faq": [
+        {
+          "question": "Wie viel Strom verbraucht ein Klimaanlage (Split-Gerät) pro Stunde, Tag und Jahr?",
+          "answer": "Ein Klimaanlage (Split-Gerät) hat eine typische Leistungsaufnahme von ca. 800 Watt. Im laufenden Betrieb verbraucht er ca. 0.800 kWh pro Stunde (ca. 0.28 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 350 kWh (122.50 €/Jahr)."
+        },
+        {
+          "question": "Was kostet die Nutzung von Klimaanlage (Split-Gerät) pro Vorgang bzw. Monat?",
+          "answer": "Die durchschnittlichen Betriebskosten betragen ca. 1,40 € / 5 Stunden Kühlung. Pro Monat entspricht das etwa 10.21 € Stromkosten."
+        },
+        {
+          "question": "Wie kann man beim Klimaanlage (Split-Gerät) am effektivsten Strom sparen?",
+          "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+        },
+        {
+          "question": "Zieht ein Klimaanlage (Split-Gerät) Strom im Standby-Modus?",
+          "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+        },
+        {
+          "question": "Lohnt sich der Austausch eines alten Klimaanlage (Split-Gerät) gegen ein Neugerät?",
+          "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+        }
       ]
     },
-    'klimaanlage': {
-      name: 'Klimaanlage (Split & Mobil)',
-      category: 'Klima & Heizen',
-      shortDescription: 'Mobile Klimageräte verbrauchen ca. 800 bis 1.200 W (ca. 28–42 ct/h), Split-Klimageräte sind 50 % sparsamer.',
-      dutyCycleExplanation: 'Kompressor moduliert nach Erreichen der Zieltemperatur.',
-      savingAdvice: ['Solltemperatur auf 24–25 °C einstellen.', 'Tagsüber Fenster schließen.'],
-      faq: [
-        { question: 'Was kostet eine Klimaanlage im Sommer?', answer: 'Bei 30 Hitzetagen mit je 6h Betrieb kostet ein mobiles Gerät ca. 50–75 €, ein Split-Gerät ca. 25–40 €.' }
+    "ventilator": {
+      "name": "Ventilator / Standventilator",
+      "category": "Klima & Heizen",
+      "shortDescription": "Ein typischer Ventilator / Standventilator verbraucht ca. 35 kWh pro Jahr (ca. 12.25 € bei 35 ct/kWh). Typische Leistung: 45 Watt.",
+      "dutyCycleExplanation": "Die tatsächliche Leistungsaufnahme variiert je nach Betriebsstufe, Thermostatregelung und Nutzungsintensität.",
+      "savingAdvice": [
+        "Eco-Modi und energiesparende Programme nutzen.",
+        "Gerät regelmäßig reinigen und warten (Filter, Dichtungen, Entkalkung).",
+        "Standby-Verluste mit einer schaltbaren Steckdosenleiste vermeiden."
+      ],
+      "faq": [
+        {
+          "question": "Wie viel Strom verbraucht ein Ventilator / Standventilator pro Stunde, Tag und Jahr?",
+          "answer": "Ein Ventilator / Standventilator hat eine typische Leistungsaufnahme von ca. 45 Watt. Im laufenden Betrieb verbraucht er ca. 0.045 kWh pro Stunde (ca. 0.02 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 35 kWh (12.25 €/Jahr)."
+        },
+        {
+          "question": "Was kostet die Nutzung von Ventilator / Standventilator pro Vorgang bzw. Monat?",
+          "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,10 € / 6 Stunden. Pro Monat entspricht das etwa 1.02 € Stromkosten."
+        },
+        {
+          "question": "Wie kann man beim Ventilator / Standventilator am effektivsten Strom sparen?",
+          "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+        },
+        {
+          "question": "Zieht ein Ventilator / Standventilator Strom im Standby-Modus?",
+          "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+        },
+        {
+          "question": "Lohnt sich der Austausch eines alten Ventilator / Standventilator gegen ein Neugerät?",
+          "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+        }
       ]
     },
-    'ventilator': {
-      name: 'Ventilator',
-      category: 'Klima & Heizen',
-      shortDescription: 'Ein Standventilator verbraucht nur ca. 25 bis 50 Watt (ca. 0,9 bis 1,8 Cent pro Stunde).',
-      dutyCycleExplanation: 'Effizienter Elektromotor ohne Kältemittelkompressor.',
-      savingAdvice: ['Nur laufen lassen, wenn sich Personen im Raum aufhalten.'],
-      faq: [
-        { question: 'Ist ein Ventilator sparsamer als eine Klimaanlage?', answer: 'Ja, ein Ventilator verbraucht rund 95 % weniger Strom als ein Klimagerät.' }
+    "heizluefter": {
+      "name": "Heizlüfter / Elektro-Heizung",
+      "category": "Klima & Heizen",
+      "shortDescription": "Ein typischer Heizlüfter / Elektro-Heizung verbraucht ca. 300 kWh pro Jahr (ca. 105.00 € bei 35 ct/kWh). Typische Leistung: 2000 Watt.",
+      "dutyCycleExplanation": "Die tatsächliche Leistungsaufnahme variiert je nach Betriebsstufe, Thermostatregelung und Nutzungsintensität.",
+      "savingAdvice": [
+        "Eco-Modi und energiesparende Programme nutzen.",
+        "Gerät regelmäßig reinigen und warten (Filter, Dichtungen, Entkalkung).",
+        "Standby-Verluste mit einer schaltbaren Steckdosenleiste vermeiden."
+      ],
+      "faq": [
+        {
+          "question": "Wie viel Strom verbraucht ein Heizlüfter / Elektro-Heizung pro Stunde, Tag und Jahr?",
+          "answer": "Ein Heizlüfter / Elektro-Heizung hat eine typische Leistungsaufnahme von ca. 2000 Watt. Im laufenden Betrieb verbraucht er ca. 2.000 kWh pro Stunde (ca. 0.70 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 300 kWh (105.00 €/Jahr)."
+        },
+        {
+          "question": "Was kostet die Nutzung von Heizlüfter / Elektro-Heizung pro Vorgang bzw. Monat?",
+          "answer": "Die durchschnittlichen Betriebskosten betragen ca. 1,40 € / 2 Stunden Heizen. Pro Monat entspricht das etwa 8.75 € Stromkosten."
+        },
+        {
+          "question": "Wie kann man beim Heizlüfter / Elektro-Heizung am effektivsten Strom sparen?",
+          "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+        },
+        {
+          "question": "Zieht ein Heizlüfter / Elektro-Heizung Strom im Standby-Modus?",
+          "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+        },
+        {
+          "question": "Lohnt sich der Austausch eines alten Heizlüfter / Elektro-Heizung gegen ein Neugerät?",
+          "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+        }
       ]
     },
-    'heizluefter': {
-      name: 'Heizlüfter',
-      category: 'Klima & Heizen',
-      shortDescription: 'Ein Heizlüfter zieht ca. 1.500 bis 2.000 Watt (ca. 53 bis 70 Cent pro Stunde).',
-      dutyCycleExplanation: 'Heizspirale wandelt elektrische Energie 1:1 in Wärme um.',
-      savingAdvice: ['Nur für kurze Übergangsphasen als Notheizung nutzen.'],
-      faq: [
-        { question: 'Was kostet es, den ganzen Tag mit Heizlüfter zu heizen?', answer: '8 Stunden Betrieb kosten rund 4,20 bis 5,60 Euro pro Tag (über 150 Euro im Monat).' }
+    "luftentfeuchter": {
+      "name": "Luftentfeuchter",
+      "category": "Klima & Heizen",
+      "shortDescription": "Ein typischer Luftentfeuchter verbraucht ca. 280 kWh pro Jahr (ca. 98.00 € bei 35 ct/kWh). Typische Leistung: 350 Watt.",
+      "dutyCycleExplanation": "Die tatsächliche Leistungsaufnahme variiert je nach Betriebsstufe, Thermostatregelung und Nutzungsintensität.",
+      "savingAdvice": [
+        "Eco-Modi und energiesparende Programme nutzen.",
+        "Gerät regelmäßig reinigen und warten (Filter, Dichtungen, Entkalkung).",
+        "Standby-Verluste mit einer schaltbaren Steckdosenleiste vermeiden."
+      ],
+      "faq": [
+        {
+          "question": "Wie viel Strom verbraucht ein Luftentfeuchter pro Stunde, Tag und Jahr?",
+          "answer": "Ein Luftentfeuchter hat eine typische Leistungsaufnahme von ca. 350 Watt. Im laufenden Betrieb verbraucht er ca. 0.350 kWh pro Stunde (ca. 0.12 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 280 kWh (98.00 €/Jahr)."
+        },
+        {
+          "question": "Was kostet die Nutzung von Luftentfeuchter pro Vorgang bzw. Monat?",
+          "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,74 € / 6 Stunden. Pro Monat entspricht das etwa 8.17 € Stromkosten."
+        },
+        {
+          "question": "Wie kann man beim Luftentfeuchter am effektivsten Strom sparen?",
+          "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+        },
+        {
+          "question": "Zieht ein Luftentfeuchter Strom im Standby-Modus?",
+          "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+        },
+        {
+          "question": "Lohnt sich der Austausch eines alten Luftentfeuchter gegen ein Neugerät?",
+          "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+        }
       ]
     },
-    'luftentfeuchter': {
-      name: 'Luftentfeuchter',
-      category: 'Klima & Heizen',
-      shortDescription: 'Ein elektrischer Luftentfeuchter verbraucht ca. 200 bis 400 Watt (ca. 7 bis 14 Cent pro Stunde).',
-      dutyCycleExplanation: 'Kompressor kühlt Lamellen ab, um Feuchtigkeit zu kondensieren.',
-      savingAdvice: ['Zielfeuchtigkeit auf 50–55 % einstellen.', 'Türen und Fenster während des Betriebs schließen.'],
-      faq: [
-        { question: 'Wie lange sollte ein Luftentfeuchter laufen?', answer: 'In der Regel reichen 2 bis 4 Stunden täglich bei geschlossenen Fenstern aus.' }
+    "aquarium": {
+      "name": "Aquarium (100–200 Liter)",
+      "category": "Hobby & Spezial",
+      "shortDescription": "Ein typischer Aquarium (100–200 Liter) verbraucht ca. 350 kWh pro Jahr (ca. 122.50 € bei 35 ct/kWh). Typische Leistung: 60 Watt.",
+      "dutyCycleExplanation": "Die tatsächliche Leistungsaufnahme variiert je nach Betriebsstufe, Thermostatregelung und Nutzungsintensität.",
+      "savingAdvice": [
+        "Eco-Modi und energiesparende Programme nutzen.",
+        "Gerät regelmäßig reinigen und warten (Filter, Dichtungen, Entkalkung).",
+        "Standby-Verluste mit einer schaltbaren Steckdosenleiste vermeiden."
+      ],
+      "faq": [
+        {
+          "question": "Wie viel Strom verbraucht ein Aquarium (100–200 Liter) pro Stunde, Tag und Jahr?",
+          "answer": "Ein Aquarium (100–200 Liter) hat eine typische Leistungsaufnahme von ca. 60 Watt. Im laufenden Betrieb verbraucht er ca. 0.060 kWh pro Stunde (ca. 0.02 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 350 kWh (122.50 €/Jahr)."
+        },
+        {
+          "question": "Was kostet die Nutzung von Aquarium (100–200 Liter) pro Vorgang bzw. Monat?",
+          "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,34 € / 24 Stunden Dauerbetrieb. Pro Monat entspricht das etwa 10.21 € Stromkosten."
+        },
+        {
+          "question": "Wie kann man beim Aquarium (100–200 Liter) am effektivsten Strom sparen?",
+          "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+        },
+        {
+          "question": "Zieht ein Aquarium (100–200 Liter) Strom im Standby-Modus?",
+          "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+        },
+        {
+          "question": "Lohnt sich der Austausch eines alten Aquarium (100–200 Liter) gegen ein Neugerät?",
+          "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+        }
       ]
     },
-    'aquarium': {
-      name: 'Aquarium',
-      category: 'Hobby & Spezial',
-      shortDescription: 'Ein 100-Liter-Aquarium verbraucht ca. 150 bis 300 kWh pro Jahr (ca. 53 bis 105 €).',
-      dutyCycleExplanation: 'Heizstab und Beleuchtung machen den Hauptteil des Stromverbrauchs aus.',
-      savingAdvice: ['Auf LED-Beleuchtung umrüsten.', 'Aquarium mit Abdeckung betreiben.'],
-      faq: [
-        { question: 'Was verbraucht beim Aquarium am meisten Strom?', answer: 'Der Heizstab, besonders wenn die Wassertemperatur deutlich über der Raumtemperatur liegt.' }
+    "pool": {
+      "name": "Poolpumpe / Filteranlage",
+      "category": "Hobby & Spezial",
+      "shortDescription": "Ein typischer Poolpumpe / Filteranlage verbraucht ca. 480 kWh pro Jahr (ca. 168.00 € bei 35 ct/kWh). Typische Leistung: 500 Watt.",
+      "dutyCycleExplanation": "Die tatsächliche Leistungsaufnahme variiert je nach Betriebsstufe, Thermostatregelung und Nutzungsintensität.",
+      "savingAdvice": [
+        "Eco-Modi und energiesparende Programme nutzen.",
+        "Gerät regelmäßig reinigen und warten (Filter, Dichtungen, Entkalkung).",
+        "Standby-Verluste mit einer schaltbaren Steckdosenleiste vermeiden."
+      ],
+      "faq": [
+        {
+          "question": "Wie viel Strom verbraucht ein Poolpumpe / Filteranlage pro Stunde, Tag und Jahr?",
+          "answer": "Ein Poolpumpe / Filteranlage hat eine typische Leistungsaufnahme von ca. 500 Watt. Im laufenden Betrieb verbraucht er ca. 0.500 kWh pro Stunde (ca. 0.17 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 480 kWh (168.00 €/Jahr)."
+        },
+        {
+          "question": "Was kostet die Nutzung von Poolpumpe / Filteranlage pro Vorgang bzw. Monat?",
+          "answer": "Die durchschnittlichen Betriebskosten betragen ca. 1,05 € / 6 Stunden Filterung. Pro Monat entspricht das etwa 14.00 € Stromkosten."
+        },
+        {
+          "question": "Wie kann man beim Poolpumpe / Filteranlage am effektivsten Strom sparen?",
+          "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+        },
+        {
+          "question": "Zieht ein Poolpumpe / Filteranlage Strom im Standby-Modus?",
+          "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+        },
+        {
+          "question": "Lohnt sich der Austausch eines alten Poolpumpe / Filteranlage gegen ein Neugerät?",
+          "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+        }
       ]
     },
-    'pool': {
-      name: 'Poolpumpe',
-      category: 'Hobby & Spezial',
-      shortDescription: 'Eine Poolpumpe verbraucht ca. 400 bis 1.000 Watt (ca. 14 bis 35 Cent pro Betriebsstunde).',
-      dutyCycleExplanation: 'Wälzt das Beckenvolumen 2- bis 3-mal täglich um.',
-      savingAdvice: ['Zeitschaltuhr nutzen.', 'Frequenzgesteuerte Poolpumpe wählen.'],
-      faq: [
-        { question: 'Wie viele Stunden sollte die Poolpumpe laufen?', answer: 'Im Sommer ca. 6 bis 8 Stunden täglich.' }
+    "whirlpool": {
+      "name": "Whirlpool / Outdoor Hot Tub",
+      "category": "Hobby & Spezial",
+      "shortDescription": "Ein typischer Whirlpool / Outdoor Hot Tub verbraucht ca. 2200 kWh pro Jahr (ca. 770.00 € bei 35 ct/kWh). Typische Leistung: 2500 Watt.",
+      "dutyCycleExplanation": "Die tatsächliche Leistungsaufnahme variiert je nach Betriebsstufe, Thermostatregelung und Nutzungsintensität.",
+      "savingAdvice": [
+        "Eco-Modi und energiesparende Programme nutzen.",
+        "Gerät regelmäßig reinigen und warten (Filter, Dichtungen, Entkalkung).",
+        "Standby-Verluste mit einer schaltbaren Steckdosenleiste vermeiden."
+      ],
+      "faq": [
+        {
+          "question": "Wie viel Strom verbraucht ein Whirlpool / Outdoor Hot Tub pro Stunde, Tag und Jahr?",
+          "answer": "Ein Whirlpool / Outdoor Hot Tub hat eine typische Leistungsaufnahme von ca. 2500 Watt. Im laufenden Betrieb verbraucht er ca. 2.500 kWh pro Stunde (ca. 0.88 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 2200 kWh (770.00 €/Jahr)."
+        },
+        {
+          "question": "Was kostet die Nutzung von Whirlpool / Outdoor Hot Tub pro Vorgang bzw. Monat?",
+          "answer": "Die durchschnittlichen Betriebskosten betragen ca. 2,10 € / Tag (Heizung & Zirkulation). Pro Monat entspricht das etwa 64.17 € Stromkosten."
+        },
+        {
+          "question": "Wie kann man beim Whirlpool / Outdoor Hot Tub am effektivsten Strom sparen?",
+          "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+        },
+        {
+          "question": "Zieht ein Whirlpool / Outdoor Hot Tub Strom im Standby-Modus?",
+          "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+        },
+        {
+          "question": "Lohnt sich der Austausch eines alten Whirlpool / Outdoor Hot Tub gegen ein Neugerät?",
+          "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+        }
       ]
     },
-    'whirlpool': {
-      name: 'Whirlpool / Hot Tub',
-      category: 'Hobby & Spezial',
-      shortDescription: 'Ein Outdoor-Whirlpool verbraucht ca. 2.000 bis 4.000 kWh pro Jahr (ca. 700 bis 1.400 €).',
-      dutyCycleExplanation: 'Dauerhafte Temperaturhaltung bei 37–39 °C erfordert kontinuierliche Heizleistung.',
-      savingAdvice: ['Hochwertige Thermoabdeckung verwenden.', 'Standort windgeschützt wählen.'],
-      faq: [
-        { question: 'Was kostet ein Whirlpool im Monat?', answer: 'Je nach Jahreszeit ca. 50 bis 120 Euro pro Monat an Stromkosten.' }
+    "3d-drucker": {
+      "name": "3D-Drucker (FDM)",
+      "category": "Hobby & Spezial",
+      "shortDescription": "Ein typischer 3D-Drucker (FDM) verbraucht ca. 120 kWh pro Jahr (ca. 42.00 € bei 35 ct/kWh). Typische Leistung: 150 Watt.",
+      "dutyCycleExplanation": "Die tatsächliche Leistungsaufnahme variiert je nach Betriebsstufe, Thermostatregelung und Nutzungsintensität.",
+      "savingAdvice": [
+        "Eco-Modi und energiesparende Programme nutzen.",
+        "Gerät regelmäßig reinigen und warten (Filter, Dichtungen, Entkalkung).",
+        "Standby-Verluste mit einer schaltbaren Steckdosenleiste vermeiden."
+      ],
+      "faq": [
+        {
+          "question": "Wie viel Strom verbraucht ein 3D-Drucker (FDM) pro Stunde, Tag und Jahr?",
+          "answer": "Ein 3D-Drucker (FDM) hat eine typische Leistungsaufnahme von ca. 150 Watt. Im laufenden Betrieb verbraucht er ca. 0.150 kWh pro Stunde (ca. 0.05 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 120 kWh (42.00 €/Jahr)."
+        },
+        {
+          "question": "Was kostet die Nutzung von 3D-Drucker (FDM) pro Vorgang bzw. Monat?",
+          "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,42 € / 8 Stunden Druck. Pro Monat entspricht das etwa 3.50 € Stromkosten."
+        },
+        {
+          "question": "Wie kann man beim 3D-Drucker (FDM) am effektivsten Strom sparen?",
+          "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+        },
+        {
+          "question": "Zieht ein 3D-Drucker (FDM) Strom im Standby-Modus?",
+          "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+        },
+        {
+          "question": "Lohnt sich der Austausch eines alten 3D-Drucker (FDM) gegen ein Neugerät?",
+          "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+        }
       ]
     },
-    '3d-drucker': {
-      name: '3D-Drucker',
-      category: 'Hobby & Spezial',
-      shortDescription: 'Ein 3D-Drucker (FDM) verbraucht ca. 100 bis 180 Watt (ca. 3,5 bis 6,3 Cent pro Druckstunde).',
-      dutyCycleExplanation: 'Das beheizte Druckbett (Heatbed) zieht ca. 70 % der Gesamtenergie.',
-      savingAdvice: ['Gehäuse (Enclosure) nutzen, um Wärmeverluste des Betts zu verringern.'],
-      faq: [
-        { question: 'Was kostet ein 10-Stunden-Druck?', answer: 'Ein 10-stündiger Druck kostet ca. 40 bis 60 Cent an Strom.' }
+    "nas": {
+      "name": "NAS-Server / Netzwerkspeicher",
+      "category": "Unterhaltung & Büro",
+      "shortDescription": "Ein typischer NAS-Server / Netzwerkspeicher verbraucht ca. 260 kWh pro Jahr (ca. 91.00 € bei 35 ct/kWh). Typische Leistung: 30 Watt.",
+      "dutyCycleExplanation": "Die tatsächliche Leistungsaufnahme variiert je nach Betriebsstufe, Thermostatregelung und Nutzungsintensität.",
+      "savingAdvice": [
+        "Eco-Modi und energiesparende Programme nutzen.",
+        "Gerät regelmäßig reinigen und warten (Filter, Dichtungen, Entkalkung).",
+        "Standby-Verluste mit einer schaltbaren Steckdosenleiste vermeiden."
+      ],
+      "faq": [
+        {
+          "question": "Wie viel Strom verbraucht ein NAS-Server / Netzwerkspeicher pro Stunde, Tag und Jahr?",
+          "answer": "Ein NAS-Server / Netzwerkspeicher hat eine typische Leistungsaufnahme von ca. 30 Watt. Im laufenden Betrieb verbraucht er ca. 0.030 kWh pro Stunde (ca. 0.01 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 260 kWh (91.00 €/Jahr)."
+        },
+        {
+          "question": "Was kostet die Nutzung von NAS-Server / Netzwerkspeicher pro Vorgang bzw. Monat?",
+          "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,25 € / 24 Stunden Dauerbetrieb. Pro Monat entspricht das etwa 7.58 € Stromkosten."
+        },
+        {
+          "question": "Wie kann man beim NAS-Server / Netzwerkspeicher am effektivsten Strom sparen?",
+          "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+        },
+        {
+          "question": "Zieht ein NAS-Server / Netzwerkspeicher Strom im Standby-Modus?",
+          "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+        },
+        {
+          "question": "Lohnt sich der Austausch eines alten NAS-Server / Netzwerkspeicher gegen ein Neugerät?",
+          "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+        }
       ]
     },
-    'nas': {
-      name: 'NAS (Netzwerkspeicher)',
-      category: 'Hobby & Spezial',
-      shortDescription: 'Ein 2-Bay-NAS verbraucht ca. 15 bis 30 Watt im 24/7-Betrieb (ca. 45 bis 90 € pro Jahr).',
-      dutyCycleExplanation: 'Festplatten im Spindown senken den Ruhestrom auf unter 8 W.',
-      savingAdvice: ['Festplatten-Ruhezustand aktivieren.', 'Zeitgesteuertes Ein-/Ausschalten nachts.'],
-      faq: [
-        { question: 'Was kostet ein NAS im Dauerbetrieb pro Jahr?', answer: 'Bei 20 Watt Dauerleistung exakt 175 kWh bzw. rund 61 Euro pro Jahr.' }
-      ]
-    },
-    'server': {
-      name: 'Homeserver',
-      category: 'Hobby & Spezial',
-      shortDescription: 'Ein sparsamer Homeserver (z.B. Mini-PC) verbraucht ca. 10 bis 40 Watt (ca. 30 bis 120 €/Jahr).',
-      dutyCycleExplanation: 'Geringe Idle-Leistungsaufnahme bei moderner Hardware.',
-      savingAdvice: ['Effiziente Mini-PCs statt alter Desktop-Hardware nutzen.'],
-      faq: [
-        { question: 'Wie viel Strom verbraucht ein Homeserver?', answer: 'Ein moderner Mini-PC verbraucht ca. 10–15 W Idle (ca. 30–45 €/Jahr).' }
+    "server": {
+      "name": "Heimserver / Home Server",
+      "category": "Unterhaltung & Büro",
+      "shortDescription": "Ein typischer Heimserver / Home Server verbraucht ca. 570 kWh pro Jahr (ca. 199.50 € bei 35 ct/kWh). Typische Leistung: 65 Watt.",
+      "dutyCycleExplanation": "Die tatsächliche Leistungsaufnahme variiert je nach Betriebsstufe, Thermostatregelung und Nutzungsintensität.",
+      "savingAdvice": [
+        "Eco-Modi und energiesparende Programme nutzen.",
+        "Gerät regelmäßig reinigen und warten (Filter, Dichtungen, Entkalkung).",
+        "Standby-Verluste mit einer schaltbaren Steckdosenleiste vermeiden."
+      ],
+      "faq": [
+        {
+          "question": "Wie viel Strom verbraucht ein Heimserver / Home Server pro Stunde, Tag und Jahr?",
+          "answer": "Ein Heimserver / Home Server hat eine typische Leistungsaufnahme von ca. 65 Watt. Im laufenden Betrieb verbraucht er ca. 0.065 kWh pro Stunde (ca. 0.02 € bei 35 ct/kWh). Der typische Jahresverbrauch liegt bei etwa 570 kWh (199.50 €/Jahr)."
+        },
+        {
+          "question": "Was kostet die Nutzung von Heimserver / Home Server pro Vorgang bzw. Monat?",
+          "answer": "Die durchschnittlichen Betriebskosten betragen ca. 0,55 € / 24 Stunden Dauerbetrieb. Pro Monat entspricht das etwa 16.63 € Stromkosten."
+        },
+        {
+          "question": "Wie kann man beim Heimserver / Home Server am effektivsten Strom sparen?",
+          "answer": "Nutze Eco-Modi, vermeide unnötigen Dauer- oder Standby-Betrieb, reinige Filter und Dichtungen regelmäßig und schalte das Gerät bei längerer Nichtnutzung vollständig über eine schaltbare Steckdosenleiste ab."
+        },
+        {
+          "question": "Zieht ein Heimserver / Home Server Strom im Standby-Modus?",
+          "answer": "Ja, moderne Geräte ziehen im Ruhezustand meist zwischen 0,5 und 3 Watt. Ältere Modelle ohne automatisches Abschalten können bis zu 5–10 Watt Standby-Leistung aufnehmen, was jährlich 15 bis 30 € Zusatzkosten verursacht."
+        },
+        {
+          "question": "Lohnt sich der Austausch eines alten Heimserver / Home Server gegen ein Neugerät?",
+          "answer": "Wenn das bestehende Altgerät älter als 8–10 Jahre ist, verbraucht es meist 30 bis 50 % mehr Strom als ein modernes Neugerät mit hoher Energieeffizienzklasse. Ein Tausch spart oft 30 bis 80 € Stromkosten pro Jahr."
+        }
       ]
     }
   },
-  en: {
-    'kuehlschrank': {
-      name: 'Refrigerator (Fridge)',
-      category: 'Kitchen',
-      shortDescription: 'A modern refrigerator consumes around 100 to 160 kWh per year (approx. €35 to €56 / year). Older units often draw 250 to 350 kWh.',
-      dutyCycleExplanation: 'While a fridge runs 24/7, the compressor only operates for about 20 to 40 minutes per hour.',
-      savingAdvice: [
-        'Set optimal temperature: 7 °C (45 °F) in the fridge and -18 °C (0 °F) in the freezer.',
-        'Defrost regularly: A 5 mm ice layer increases electricity consumption by up to 30%.',
-        'Check door seals regularly to keep cold air locked in.',
+  "en": {
+    "kuehlschrank": {
+      "name": "Refrigerator",
+      "category": "Kitchen",
+      "shortDescription": "A typical Refrigerator uses approx. 120 kWh per year (around €42.00 at €0.35/kWh). Power rating: 90 Watts.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
       ],
-      faq: [{ question: 'How much electricity does a refrigerator consume per day?', answer: 'A modern standard refrigerator consumes approximately 0.3 to 0.45 kWh per day (about 10 to 16 cents).' }]
+      "faq": [
+        {
+          "question": "How much electricity does a Refrigerator use per hour, day, and year?",
+          "answer": "A typical Refrigerator operates at approximately 90 Watts, consuming roughly 0.090 kWh per hour (about €0.01/hr at €0.35/kWh). Typical annual consumption is around 120 kWh, costing approx. €42.00 per year."
+        },
+        {
+          "question": "How much does it cost to run a Refrigerator per cycle or per month?",
+          "answer": "Running a Refrigerator costs approximately 0,12 € / Tag. On a monthly basis, this averages to around €3.50 on your electricity bill."
+        },
+        {
+          "question": "How can I reduce the electricity consumption of my Refrigerator?",
+          "answer": "Use eco-friendly modes, perform regular maintenance (such as cleaning filters, vents, or seals), and turn the device off completely with a smart power strip to eliminate phantom standby draw."
+        },
+        {
+          "question": "Does a Refrigerator draw standby power when turned off?",
+          "answer": "Yes, many modern electronic units draw 0.5 to 3 Watts in standby mode. Older models can consume 5 to 10 Watts continuously, which adds €15 to €30 per year in phantom energy costs."
+        },
+        {
+          "question": "Is it worth upgrading an old Refrigerator to a modern energy-efficient model?",
+          "answer": "If your current unit is over 8–10 years old, upgrading to a high-efficiency Class A model can reduce power consumption by 30% to 50%, saving €30–€80 annually."
+        }
+      ]
     },
-    'waschmaschine': {
-      name: 'Washing Machine',
-      category: 'Household & Cleaning',
-      shortDescription: 'A modern washing machine consumes approx. 0.5 to 1.0 kWh per cycle (about €0.18 to €0.35 at €0.35/kWh).',
-      dutyCycleExplanation: 'Over 80% of electricity is used to heat the water. Motor spinning uses very little power.',
-      savingAdvice: ['Use Eco 30 °C programs to save up to 60% electricity.', 'Always run full loads when possible.'],
-      faq: [{ question: 'How much does a 60 °C cycle cost compared to 30 °C?', answer: 'A 60 °C cycle costs around €0.35–€0.50, whereas a 30 °C Eco cycle costs only about €0.15–€0.20.' }]
+    "waschmaschine": {
+      "name": "Washing Machine",
+      "category": "Household & Cleaning",
+      "shortDescription": "A typical Washing Machine uses approx. 140 kWh per year (around €49.00 at €0.35/kWh). Power rating: 2000 Watts.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "How much electricity does a Washing Machine use per hour, day, and year?",
+          "answer": "A typical Washing Machine operates at approximately 2000 Watts, consuming roughly 2.000 kWh per hour (about €0.70/hr at €0.35/kWh). Typical annual consumption is around 140 kWh, costing approx. €49.00 per year."
+        },
+        {
+          "question": "How much does it cost to run a Washing Machine per cycle or per month?",
+          "answer": "Running a Washing Machine costs approximately 0,25 € / Waschgang. On a monthly basis, this averages to around €4.08 on your electricity bill."
+        },
+        {
+          "question": "How can I reduce the electricity consumption of my Washing Machine?",
+          "answer": "Use eco-friendly modes, perform regular maintenance (such as cleaning filters, vents, or seals), and turn the device off completely with a smart power strip to eliminate phantom standby draw."
+        },
+        {
+          "question": "Does a Washing Machine draw standby power when turned off?",
+          "answer": "Yes, many modern electronic units draw 0.5 to 3 Watts in standby mode. Older models can consume 5 to 10 Watts continuously, which adds €15 to €30 per year in phantom energy costs."
+        },
+        {
+          "question": "Is it worth upgrading an old Washing Machine to a modern energy-efficient model?",
+          "answer": "If your current unit is over 8–10 years old, upgrading to a high-efficiency Class A model can reduce power consumption by 30% to 50%, saving €30–€80 annually."
+        }
+      ]
     },
-    'trockner': {
-      name: 'Tumble Dryer',
-      category: 'Household & Cleaning',
-      shortDescription: 'Heat pump dryers consume about 1.2 to 1.8 kWh per cycle, while older condenser dryers often exceed 4.0 kWh.',
-      dutyCycleExplanation: 'Heat pump dryers recycle warm air continuously, reducing energy consumption by over 60%.',
-      savingAdvice: ['Spin clothes at high speed (1,200–1,400 RPM) in the washer before drying.', 'Clean the lint filter after every cycle.'],
-      faq: [{ question: 'How much does a single dryer cycle cost?', answer: 'A modern heat pump dryer costs approx. €0.45 to €0.65 per load, whereas older condenser models can cost over €1.50.' }]
+    "trockner": {
+      "name": "Tumble Dryer",
+      "category": "Household & Cleaning",
+      "shortDescription": "A typical Tumble Dryer uses approx. 180 kWh per year (around €63.00 at €0.35/kWh). Power rating: 1500 Watts.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "How much electricity does a Tumble Dryer use per hour, day, and year?",
+          "answer": "A typical Tumble Dryer operates at approximately 1500 Watts, consuming roughly 1.500 kWh per hour (about €0.53/hr at €0.35/kWh). Typical annual consumption is around 180 kWh, costing approx. €63.00 per year."
+        },
+        {
+          "question": "How much does it cost to run a Tumble Dryer per cycle or per month?",
+          "answer": "Running a Tumble Dryer costs approximately 0,45 € / Ladung. On a monthly basis, this averages to around €5.25 on your electricity bill."
+        },
+        {
+          "question": "How can I reduce the electricity consumption of my Tumble Dryer?",
+          "answer": "Use eco-friendly modes, perform regular maintenance (such as cleaning filters, vents, or seals), and turn the device off completely with a smart power strip to eliminate phantom standby draw."
+        },
+        {
+          "question": "Does a Tumble Dryer draw standby power when turned off?",
+          "answer": "Yes, many modern electronic units draw 0.5 to 3 Watts in standby mode. Older models can consume 5 to 10 Watts continuously, which adds €15 to €30 per year in phantom energy costs."
+        },
+        {
+          "question": "Is it worth upgrading an old Tumble Dryer to a modern energy-efficient model?",
+          "answer": "If your current unit is over 8–10 years old, upgrading to a high-efficiency Class A model can reduce power consumption by 30% to 50%, saving €30–€80 annually."
+        }
+      ]
     },
-    'geschirrspueler': {
-      name: 'Dishwasher',
-      category: 'Kitchen',
-      shortDescription: 'An Eco cycle consumes about 0.7 to 0.9 kWh (€0.25 to €0.32). It is far more efficient than hand washing.',
-      dutyCycleExplanation: 'Water is heated efficiently in a closed circuit. The Eco cycle extends soaking time to save heating energy.',
-      savingAdvice: ['Use the Eco 50 °C setting as your default program.', 'Only run the dishwasher when completely full.'],
-      faq: [{ question: 'Is a dishwasher more economical than washing by hand?', answer: 'Yes, modern dishwashers use up to 50% less electricity and over 60% less water than washing by hand in the sink.' }]
+    "geschirrspueler": {
+      "name": "Dishwasher",
+      "category": "Kitchen",
+      "shortDescription": "A typical Dishwasher uses approx. 160 kWh per year (around €56.00 at €0.35/kWh). Power rating: 1800 Watts.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "How much electricity does a Dishwasher use per hour, day, and year?",
+          "answer": "A typical Dishwasher operates at approximately 1800 Watts, consuming roughly 1.800 kWh per hour (about €0.63/hr at €0.35/kWh). Typical annual consumption is around 160 kWh, costing approx. €56.00 per year."
+        },
+        {
+          "question": "How much does it cost to run a Dishwasher per cycle or per month?",
+          "answer": "Running a Dishwasher costs approximately 0,28 € / Spülgang. On a monthly basis, this averages to around €4.67 on your electricity bill."
+        },
+        {
+          "question": "How can I reduce the electricity consumption of my Dishwasher?",
+          "answer": "Use eco-friendly modes, perform regular maintenance (such as cleaning filters, vents, or seals), and turn the device off completely with a smart power strip to eliminate phantom standby draw."
+        },
+        {
+          "question": "Does a Dishwasher draw standby power when turned off?",
+          "answer": "Yes, many modern electronic units draw 0.5 to 3 Watts in standby mode. Older models can consume 5 to 10 Watts continuously, which adds €15 to €30 per year in phantom energy costs."
+        },
+        {
+          "question": "Is it worth upgrading an old Dishwasher to a modern energy-efficient model?",
+          "answer": "If your current unit is over 8–10 years old, upgrading to a high-efficiency Class A model can reduce power consumption by 30% to 50%, saving €30–€80 annually."
+        }
+      ]
     },
-    'backofen': {
-      name: 'Oven',
-      category: 'Kitchen',
-      shortDescription: 'A modern electric oven consumes approx. 0.8 to 1.5 kWh per operating hour (approx. €0.28 to €0.52).',
-      dutyCycleExplanation: 'Preheating uses the most power. Convection mode is ~20% more efficient than conventional heating.',
-      savingAdvice: ['Use fan convection mode instead of top/bottom heat.', 'Keep the oven door closed during baking.'],
-      faq: [{ question: 'Do you need to preheat the oven?', answer: 'In most everyday cooking, preheating is unnecessary and skipping it saves up to 20% electricity.' }]
+    "backofen": {
+      "name": "Electric Oven",
+      "category": "Kitchen",
+      "shortDescription": "A typical Electric Oven uses approx. 150 kWh per year (around €52.50 at €0.35/kWh). Power rating: 2500 Watts.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "How much electricity does a Electric Oven use per hour, day, and year?",
+          "answer": "A typical Electric Oven operates at approximately 2500 Watts, consuming roughly 2.500 kWh per hour (about €0.88/hr at €0.35/kWh). Typical annual consumption is around 150 kWh, costing approx. €52.50 per year."
+        },
+        {
+          "question": "How much does it cost to run a Electric Oven per cycle or per month?",
+          "answer": "Running a Electric Oven costs approximately 0,55 € / Nutzung. On a monthly basis, this averages to around €4.38 on your electricity bill."
+        },
+        {
+          "question": "How can I reduce the electricity consumption of my Electric Oven?",
+          "answer": "Use eco-friendly modes, perform regular maintenance (such as cleaning filters, vents, or seals), and turn the device off completely with a smart power strip to eliminate phantom standby draw."
+        },
+        {
+          "question": "Does a Electric Oven draw standby power when turned off?",
+          "answer": "Yes, many modern electronic units draw 0.5 to 3 Watts in standby mode. Older models can consume 5 to 10 Watts continuously, which adds €15 to €30 per year in phantom energy costs."
+        },
+        {
+          "question": "Is it worth upgrading an old Electric Oven to a modern energy-efficient model?",
+          "answer": "If your current unit is over 8–10 years old, upgrading to a high-efficiency Class A model can reduce power consumption by 30% to 50%, saving €30–€80 annually."
+        }
+      ]
     },
-    'herd': {
-      name: 'Cooktop / Induction Stove',
-      category: 'Kitchen',
-      shortDescription: 'An induction cooktop consumes approx. 0.3 to 0.7 kWh per meal and is 20–30% more efficient than glass-ceramic.',
-      dutyCycleExplanation: 'Induction generates heat directly in the ferromagnetic cookware base without thermal loss.',
-      savingAdvice: ['Always cook with a properly fitting lid.', 'Pre-boil water in a kettle.'],
-      faq: [{ question: 'How much electricity does induction save compared to glass-ceramic?', answer: 'Induction saves 20 to 30% electricity and heats up twice as fast.' }]
+    "herd": {
+      "name": "Induction Cooktop / Stove",
+      "category": "Kitchen",
+      "shortDescription": "A typical Induction Cooktop / Stove uses approx. 220 kWh per year (around €77.00 at €0.35/kWh). Power rating: 3000 Watts.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "How much electricity does a Induction Cooktop / Stove use per hour, day, and year?",
+          "answer": "A typical Induction Cooktop / Stove operates at approximately 3000 Watts, consuming roughly 3.000 kWh per hour (about €1.05/hr at €0.35/kWh). Typical annual consumption is around 220 kWh, costing approx. €77.00 per year."
+        },
+        {
+          "question": "How much does it cost to run a Induction Cooktop / Stove per cycle or per month?",
+          "answer": "Running a Induction Cooktop / Stove costs approximately 0,35 € / Kochvorgang. On a monthly basis, this averages to around €6.42 on your electricity bill."
+        },
+        {
+          "question": "How can I reduce the electricity consumption of my Induction Cooktop / Stove?",
+          "answer": "Use eco-friendly modes, perform regular maintenance (such as cleaning filters, vents, or seals), and turn the device off completely with a smart power strip to eliminate phantom standby draw."
+        },
+        {
+          "question": "Does a Induction Cooktop / Stove draw standby power when turned off?",
+          "answer": "Yes, many modern electronic units draw 0.5 to 3 Watts in standby mode. Older models can consume 5 to 10 Watts continuously, which adds €15 to €30 per year in phantom energy costs."
+        },
+        {
+          "question": "Is it worth upgrading an old Induction Cooktop / Stove to a modern energy-efficient model?",
+          "answer": "If your current unit is over 8–10 years old, upgrading to a high-efficiency Class A model can reduce power consumption by 30% to 50%, saving €30–€80 annually."
+        }
+      ]
     },
-    'wasserkocher': {
-      name: 'Electric Kettle',
-      category: 'Kitchen',
-      shortDescription: 'Boiling 1 liter of water draws approx. 0.1 kWh (approx. 3.5 cents).',
-      dutyCycleExplanation: 'Direct submerged heating element provides over 90% thermal efficiency.',
-      savingAdvice: ['Only boil the exact amount of water you need.', 'Descale regularly to preserve heating speed.'],
-      faq: [{ question: 'Is a kettle more efficient than a stovetop?', answer: 'Yes, an electric kettle is 30–50% more efficient than boiling water in a pot on a glass-ceramic stove.' }]
+    "wasserkocher": {
+      "name": "Electric Kettle",
+      "category": "Kitchen",
+      "shortDescription": "A typical Electric Kettle uses approx. 80 kWh per year (around €28.00 at €0.35/kWh). Power rating: 2200 Watts.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "How much electricity does a Electric Kettle use per hour, day, and year?",
+          "answer": "A typical Electric Kettle operates at approximately 2200 Watts, consuming roughly 2.200 kWh per hour (about €0.77/hr at €0.35/kWh). Typical annual consumption is around 80 kWh, costing approx. €28.00 per year."
+        },
+        {
+          "question": "How much does it cost to run a Electric Kettle per cycle or per month?",
+          "answer": "Running a Electric Kettle costs approximately 0,03 € / 1 Liter Kochen. On a monthly basis, this averages to around €2.33 on your electricity bill."
+        },
+        {
+          "question": "How can I reduce the electricity consumption of my Electric Kettle?",
+          "answer": "Use eco-friendly modes, perform regular maintenance (such as cleaning filters, vents, or seals), and turn the device off completely with a smart power strip to eliminate phantom standby draw."
+        },
+        {
+          "question": "Does a Electric Kettle draw standby power when turned off?",
+          "answer": "Yes, many modern electronic units draw 0.5 to 3 Watts in standby mode. Older models can consume 5 to 10 Watts continuously, which adds €15 to €30 per year in phantom energy costs."
+        },
+        {
+          "question": "Is it worth upgrading an old Electric Kettle to a modern energy-efficient model?",
+          "answer": "If your current unit is over 8–10 years old, upgrading to a high-efficiency Class A model can reduce power consumption by 30% to 50%, saving €30–€80 annually."
+        }
+      ]
     },
-    'kaffeemaschine': {
-      name: 'Coffee Machine',
-      category: 'Kitchen',
-      shortDescription: 'An automatic espresso machine uses approx. 0.02 to 0.04 kWh per cup (including heating and rinsing).',
-      dutyCycleExplanation: 'The thermoblock switches briefly to 1,400 W to flash-heat water on demand.',
-      savingAdvice: ['Enable auto-power-off after 10–15 minutes.', 'Avoid keeping hotplates on continuously.'],
-      faq: [{ question: 'How much does the electricity for a cup of coffee cost?', answer: 'Electricity for a single cup of coffee costs only about 1 to 1.5 cents.' }]
+    "kaffeemaschine": {
+      "name": "Coffee Maker / Espresso Machine",
+      "category": "Kitchen",
+      "shortDescription": "A typical Coffee Maker / Espresso Machine uses approx. 65 kWh per year (around €22.75 at €0.35/kWh). Power rating: 1400 Watts.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "How much electricity does a Coffee Maker / Espresso Machine use per hour, day, and year?",
+          "answer": "A typical Coffee Maker / Espresso Machine operates at approximately 1400 Watts, consuming roughly 1.400 kWh per hour (about €0.49/hr at €0.35/kWh). Typical annual consumption is around 65 kWh, costing approx. €22.75 per year."
+        },
+        {
+          "question": "How much does it cost to run a Coffee Maker / Espresso Machine per cycle or per month?",
+          "answer": "Running a Coffee Maker / Espresso Machine costs approximately 0,02 € / Tasse Kaffee. On a monthly basis, this averages to around €1.90 on your electricity bill."
+        },
+        {
+          "question": "How can I reduce the electricity consumption of my Coffee Maker / Espresso Machine?",
+          "answer": "Use eco-friendly modes, perform regular maintenance (such as cleaning filters, vents, or seals), and turn the device off completely with a smart power strip to eliminate phantom standby draw."
+        },
+        {
+          "question": "Does a Coffee Maker / Espresso Machine draw standby power when turned off?",
+          "answer": "Yes, many modern electronic units draw 0.5 to 3 Watts in standby mode. Older models can consume 5 to 10 Watts continuously, which adds €15 to €30 per year in phantom energy costs."
+        },
+        {
+          "question": "Is it worth upgrading an old Coffee Maker / Espresso Machine to a modern energy-efficient model?",
+          "answer": "If your current unit is over 8–10 years old, upgrading to a high-efficiency Class A model can reduce power consumption by 30% to 50%, saving €30–€80 annually."
+        }
+      ]
     },
-    'fernseher': {
-      name: 'Television (TV)',
-      category: 'Entertainment & Office',
-      shortDescription: 'A 55-inch LED/OLED TV draws approx. 70 to 130 Watts (about 2.5 to 4.5 cents per operating hour).',
-      dutyCycleExplanation: 'Screen brightness, ambient lighting sensors, and HDR mode directly determine live power draw.',
-      savingAdvice: ['Activate the ambient light sensor for automatic evening dimming.', 'Use standard or cinema mode instead of dynamic/vivid.'],
-      faq: [{ question: 'Do OLED TVs consume more electricity than LCD/LED?', answer: 'OLED draws slightly more power for full white screens, but turns off pixels completely in dark scenes.' }]
+    "fernseher": {
+      "name": "Smart TV (55-65 inch)",
+      "category": "Entertainment & Office",
+      "shortDescription": "A typical Smart TV (55-65 inch) uses approx. 175 kWh per year (around €61.25 at €0.35/kWh). Power rating: 120 Watts.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "How much electricity does a Smart TV (55-65 inch) use per hour, day, and year?",
+          "answer": "A typical Smart TV (55-65 inch) operates at approximately 120 Watts, consuming roughly 0.120 kWh per hour (about €0.04/hr at €0.35/kWh). Typical annual consumption is around 175 kWh, costing approx. €61.25 per year."
+        },
+        {
+          "question": "How much does it cost to run a Smart TV (55-65 inch) per cycle or per month?",
+          "answer": "Running a Smart TV (55-65 inch) costs approximately 0,17 € / 4 Stunden. On a monthly basis, this averages to around €5.10 on your electricity bill."
+        },
+        {
+          "question": "How can I reduce the electricity consumption of my Smart TV (55-65 inch)?",
+          "answer": "Use eco-friendly modes, perform regular maintenance (such as cleaning filters, vents, or seals), and turn the device off completely with a smart power strip to eliminate phantom standby draw."
+        },
+        {
+          "question": "Does a Smart TV (55-65 inch) draw standby power when turned off?",
+          "answer": "Yes, many modern electronic units draw 0.5 to 3 Watts in standby mode. Older models can consume 5 to 10 Watts continuously, which adds €15 to €30 per year in phantom energy costs."
+        },
+        {
+          "question": "Is it worth upgrading an old Smart TV (55-65 inch) to a modern energy-efficient model?",
+          "answer": "If your current unit is over 8–10 years old, upgrading to a high-efficiency Class A model can reduce power consumption by 30% to 50%, saving €30–€80 annually."
+        }
+      ]
     },
-    'gaming-pc': {
-      name: 'Gaming PC',
-      category: 'Entertainment & Office',
-      shortDescription: 'Under full load, a gaming PC draws 350 to 600 Watts (approx. 12 to 21 cents per gaming hour).',
-      dutyCycleExplanation: 'The GPU and CPU draw peak electrical wattage during intense 3D rendering.',
-      savingAdvice: ['Enable an FPS cap or G-Sync/FreeSync.', 'Undervolt the GPU for lower heat and power draw.'],
-      faq: [{ question: 'How much does 4 hours of daily gaming cost per month?', answer: 'At 400 W average draw and 4 hours daily, monthly electricity costs are around €17 to €20.' }]
+    "gaming-pc": {
+      "name": "Gaming PC (High-End)",
+      "category": "Entertainment & Office",
+      "shortDescription": "A typical Gaming PC (High-End) uses approx. 450 kWh per year (around €157.50 at €0.35/kWh). Power rating: 400 Watts.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "How much electricity does a Gaming PC (High-End) use per hour, day, and year?",
+          "answer": "A typical Gaming PC (High-End) operates at approximately 400 Watts, consuming roughly 0.400 kWh per hour (about €0.14/hr at €0.35/kWh). Typical annual consumption is around 450 kWh, costing approx. €157.50 per year."
+        },
+        {
+          "question": "How much does it cost to run a Gaming PC (High-End) per cycle or per month?",
+          "answer": "Running a Gaming PC (High-End) costs approximately 0,56 € / 4 Stunden Session. On a monthly basis, this averages to around €13.13 on your electricity bill."
+        },
+        {
+          "question": "How can I reduce the electricity consumption of my Gaming PC (High-End)?",
+          "answer": "Use eco-friendly modes, perform regular maintenance (such as cleaning filters, vents, or seals), and turn the device off completely with a smart power strip to eliminate phantom standby draw."
+        },
+        {
+          "question": "Does a Gaming PC (High-End) draw standby power when turned off?",
+          "answer": "Yes, many modern electronic units draw 0.5 to 3 Watts in standby mode. Older models can consume 5 to 10 Watts continuously, which adds €15 to €30 per year in phantom energy costs."
+        },
+        {
+          "question": "Is it worth upgrading an old Gaming PC (High-End) to a modern energy-efficient model?",
+          "answer": "If your current unit is over 8–10 years old, upgrading to a high-efficiency Class A model can reduce power consumption by 30% to 50%, saving €30–€80 annually."
+        }
+      ]
     },
-    'gamingpc': {
-      name: 'Gaming PC',
-      category: 'Entertainment & Office',
-      shortDescription: 'Under full load, a gaming PC draws 350 to 600 Watts (approx. 12 to 21 cents per gaming hour).',
-      dutyCycleExplanation: 'The GPU and CPU draw peak electrical wattage during intense 3D rendering.',
-      savingAdvice: ['Enable an FPS cap or G-Sync/FreeSync.', 'Undervolt the GPU for lower heat and power draw.'],
-      faq: [{ question: 'How much does 4 hours of daily gaming cost per month?', answer: 'At 400 W average draw and 4 hours daily, monthly electricity costs are around €17 to €20.' }]
+    "pc": {
+      "name": "Desktop PC / Office Computer",
+      "category": "Entertainment & Office",
+      "shortDescription": "A typical Desktop PC / Office Computer uses approx. 180 kWh per year (around €63.00 at €0.35/kWh). Power rating: 120 Watts.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "How much electricity does a Desktop PC / Office Computer use per hour, day, and year?",
+          "answer": "A typical Desktop PC / Office Computer operates at approximately 120 Watts, consuming roughly 0.120 kWh per hour (about €0.04/hr at €0.35/kWh). Typical annual consumption is around 180 kWh, costing approx. €63.00 per year."
+        },
+        {
+          "question": "How much does it cost to run a Desktop PC / Office Computer per cycle or per month?",
+          "answer": "Running a Desktop PC / Office Computer costs approximately 0,25 € / 6 Stunden Arbeit. On a monthly basis, this averages to around €5.25 on your electricity bill."
+        },
+        {
+          "question": "How can I reduce the electricity consumption of my Desktop PC / Office Computer?",
+          "answer": "Use eco-friendly modes, perform regular maintenance (such as cleaning filters, vents, or seals), and turn the device off completely with a smart power strip to eliminate phantom standby draw."
+        },
+        {
+          "question": "Does a Desktop PC / Office Computer draw standby power when turned off?",
+          "answer": "Yes, many modern electronic units draw 0.5 to 3 Watts in standby mode. Older models can consume 5 to 10 Watts continuously, which adds €15 to €30 per year in phantom energy costs."
+        },
+        {
+          "question": "Is it worth upgrading an old Desktop PC / Office Computer to a modern energy-efficient model?",
+          "answer": "If your current unit is over 8–10 years old, upgrading to a high-efficiency Class A model can reduce power consumption by 30% to 50%, saving €30–€80 annually."
+        }
+      ]
     },
-    'pc': {
-      name: 'Desktop PC (Office)',
-      category: 'Entertainment & Office',
-      shortDescription: 'A standard office desktop consumes approx. 50 to 100 Watts (approx. 1.8 to 3.5 cents per hour).',
-      dutyCycleExplanation: 'Low base power during writing, browsing, and office applications.',
-      savingAdvice: ['Set automatic sleep mode after 15 minutes of inactivity.', 'Use switchable power strips.'],
-      faq: [{ question: 'How much power does an office PC use when working from home?', answer: 'During an 8-hour workday, an office PC consumes approx. 0.5 to 0.8 kWh (approx. 18–28 cents).' }]
+    "laptop": {
+      "name": "Laptop / Notebook",
+      "category": "Entertainment & Office",
+      "shortDescription": "A typical Laptop / Notebook uses approx. 75 kWh per year (around €26.25 at €0.35/kWh). Power rating: 50 Watts.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "How much electricity does a Laptop / Notebook use per hour, day, and year?",
+          "answer": "A typical Laptop / Notebook operates at approximately 50 Watts, consuming roughly 0.050 kWh per hour (about €0.02/hr at €0.35/kWh). Typical annual consumption is around 75 kWh, costing approx. €26.25 per year."
+        },
+        {
+          "question": "How much does it cost to run a Laptop / Notebook per cycle or per month?",
+          "answer": "Running a Laptop / Notebook costs approximately 0,11 € / 6 Stunden Arbeit. On a monthly basis, this averages to around €2.19 on your electricity bill."
+        },
+        {
+          "question": "How can I reduce the electricity consumption of my Laptop / Notebook?",
+          "answer": "Use eco-friendly modes, perform regular maintenance (such as cleaning filters, vents, or seals), and turn the device off completely with a smart power strip to eliminate phantom standby draw."
+        },
+        {
+          "question": "Does a Laptop / Notebook draw standby power when turned off?",
+          "answer": "Yes, many modern electronic units draw 0.5 to 3 Watts in standby mode. Older models can consume 5 to 10 Watts continuously, which adds €15 to €30 per year in phantom energy costs."
+        },
+        {
+          "question": "Is it worth upgrading an old Laptop / Notebook to a modern energy-efficient model?",
+          "answer": "If your current unit is over 8–10 years old, upgrading to a high-efficiency Class A model can reduce power consumption by 30% to 50%, saving €30–€80 annually."
+        }
+      ]
     },
-    'laptop': {
-      name: 'Laptop / Notebook',
-      category: 'Entertainment & Office',
-      shortDescription: 'A laptop consumes only 20 to 60 Watts and is up to 70% more efficient than a desktop PC.',
-      dutyCycleExplanation: 'Highly optimized mobile processors designed for battery efficiency.',
-      savingAdvice: ['Lower screen brightness slightly.', 'Disconnect external peripherals when not needed.'],
-      faq: [{ question: 'What does running a laptop cost per day?', answer: 'For 8 hours of daily use, a laptop costs only about 6 to 12 cents per day.' }]
+    "monitor": {
+      "name": "Computer Monitor (27-32 inch)",
+      "category": "Entertainment & Office",
+      "shortDescription": "A typical Computer Monitor (27-32 inch) uses approx. 60 kWh per year (around €21.00 at €0.35/kWh). Power rating: 35 Watts.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "How much electricity does a Computer Monitor (27-32 inch) use per hour, day, and year?",
+          "answer": "A typical Computer Monitor (27-32 inch) operates at approximately 35 Watts, consuming roughly 0.035 kWh per hour (about €0.01/hr at €0.35/kWh). Typical annual consumption is around 60 kWh, costing approx. €21.00 per year."
+        },
+        {
+          "question": "How much does it cost to run a Computer Monitor (27-32 inch) per cycle or per month?",
+          "answer": "Running a Computer Monitor (27-32 inch) costs approximately 0,07 € / 6 Stunden Betrieb. On a monthly basis, this averages to around €1.75 on your electricity bill."
+        },
+        {
+          "question": "How can I reduce the electricity consumption of my Computer Monitor (27-32 inch)?",
+          "answer": "Use eco-friendly modes, perform regular maintenance (such as cleaning filters, vents, or seals), and turn the device off completely with a smart power strip to eliminate phantom standby draw."
+        },
+        {
+          "question": "Does a Computer Monitor (27-32 inch) draw standby power when turned off?",
+          "answer": "Yes, many modern electronic units draw 0.5 to 3 Watts in standby mode. Older models can consume 5 to 10 Watts continuously, which adds €15 to €30 per year in phantom energy costs."
+        },
+        {
+          "question": "Is it worth upgrading an old Computer Monitor (27-32 inch) to a modern energy-efficient model?",
+          "answer": "If your current unit is over 8–10 years old, upgrading to a high-efficiency Class A model can reduce power consumption by 30% to 50%, saving €30–€80 annually."
+        }
+      ]
     },
-    'monitor': {
-      name: 'Monitor (Display)',
-      category: 'Entertainment & Office',
-      shortDescription: 'A 27-inch computer monitor draws approx. 20 to 40 Watts (approx. 0.7 to 1.4 cents per hour).',
-      dutyCycleExplanation: 'LED backlighting produces a steady, continuous power draw.',
-      savingAdvice: ['Adjust brightness to match room ambient light.', 'Turn off monitor during breaks.'],
-      faq: [{ question: 'How much does a dual monitor setup cost per year?', answer: 'A second monitor adds approximately €10 to €20 per year in electricity costs.' }]
+    "ps5": {
+      "name": "PlayStation 5 (PS5)",
+      "category": "Entertainment & Office",
+      "shortDescription": "A typical PlayStation 5 (PS5) uses approx. 150 kWh per year (around €52.50 at €0.35/kWh). Power rating: 200 Watts.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "How much electricity does a PlayStation 5 (PS5) use per hour, day, and year?",
+          "answer": "A typical PlayStation 5 (PS5) operates at approximately 200 Watts, consuming roughly 0.200 kWh per hour (about €0.07/hr at €0.35/kWh). Typical annual consumption is around 150 kWh, costing approx. €52.50 per year."
+        },
+        {
+          "question": "How much does it cost to run a PlayStation 5 (PS5) per cycle or per month?",
+          "answer": "Running a PlayStation 5 (PS5) costs approximately 0,21 € / 3 Stunden Spielen. On a monthly basis, this averages to around €4.38 on your electricity bill."
+        },
+        {
+          "question": "How can I reduce the electricity consumption of my PlayStation 5 (PS5)?",
+          "answer": "Use eco-friendly modes, perform regular maintenance (such as cleaning filters, vents, or seals), and turn the device off completely with a smart power strip to eliminate phantom standby draw."
+        },
+        {
+          "question": "Does a PlayStation 5 (PS5) draw standby power when turned off?",
+          "answer": "Yes, many modern electronic units draw 0.5 to 3 Watts in standby mode. Older models can consume 5 to 10 Watts continuously, which adds €15 to €30 per year in phantom energy costs."
+        },
+        {
+          "question": "Is it worth upgrading an old PlayStation 5 (PS5) to a modern energy-efficient model?",
+          "answer": "If your current unit is over 8–10 years old, upgrading to a high-efficiency Class A model can reduce power consumption by 30% to 50%, saving €30–€80 annually."
+        }
+      ]
     },
-    'ps5': {
-      name: 'PlayStation 5 (PS5)',
-      category: 'Entertainment & Office',
-      shortDescription: 'The PS5 consumes approx. 180 to 220 Watts during active gaming (approx. 6.3 to 7.7 cents per hour).',
-      dutyCycleExplanation: 'Draws approx. 50 W on dashboard and up to 220 W during demanding next-gen games.',
-      savingAdvice: ['Limit rest mode USB power to necessary hours.', 'Enable auto-shutdown timer.'],
-      faq: [{ question: 'How much electricity does the PS5 draw in rest mode?', answer: 'In standard rest mode approx. 1.5–3 Watts; while downloading updates approx. 30 Watts.' }]
+    "xbox": {
+      "name": "Xbox Series X",
+      "category": "Entertainment & Office",
+      "shortDescription": "A typical Xbox Series X uses approx. 140 kWh per year (around €49.00 at €0.35/kWh). Power rating: 190 Watts.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "How much electricity does a Xbox Series X use per hour, day, and year?",
+          "answer": "A typical Xbox Series X operates at approximately 190 Watts, consuming roughly 0.190 kWh per hour (about €0.07/hr at €0.35/kWh). Typical annual consumption is around 140 kWh, costing approx. €49.00 per year."
+        },
+        {
+          "question": "How much does it cost to run a Xbox Series X per cycle or per month?",
+          "answer": "Running a Xbox Series X costs approximately 0,20 € / 3 Stunden Spielen. On a monthly basis, this averages to around €4.08 on your electricity bill."
+        },
+        {
+          "question": "How can I reduce the electricity consumption of my Xbox Series X?",
+          "answer": "Use eco-friendly modes, perform regular maintenance (such as cleaning filters, vents, or seals), and turn the device off completely with a smart power strip to eliminate phantom standby draw."
+        },
+        {
+          "question": "Does a Xbox Series X draw standby power when turned off?",
+          "answer": "Yes, many modern electronic units draw 0.5 to 3 Watts in standby mode. Older models can consume 5 to 10 Watts continuously, which adds €15 to €30 per year in phantom energy costs."
+        },
+        {
+          "question": "Is it worth upgrading an old Xbox Series X to a modern energy-efficient model?",
+          "answer": "If your current unit is over 8–10 years old, upgrading to a high-efficiency Class A model can reduce power consumption by 30% to 50%, saving €30–€80 annually."
+        }
+      ]
     },
-    'xbox': {
-      name: 'Xbox Series X',
-      category: 'Entertainment & Office',
-      shortDescription: 'The Xbox Series X consumes approx. 150 to 210 Watts during gaming (approx. 5.3 to 7.4 cents per hour).',
-      dutyCycleExplanation: 'Full load during 4K 120Hz gaming sessions.',
-      savingAdvice: ['Choose "Shutdown (energy saving)" mode over Instant-on standby.'],
-      faq: [{ question: 'How much does the Xbox energy saving mode save?', answer: 'Energy-saving mode consumes 0.5 W instead of 10–13 W in Instant-on, saving approx. €30/year.' }]
+    "klimaanlage": {
+      "name": "Air Conditioner (Split System)",
+      "category": "Climate & Heating",
+      "shortDescription": "A typical Air Conditioner (Split System) uses approx. 350 kWh per year (around €122.50 at €0.35/kWh). Power rating: 800 Watts.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "How much electricity does a Air Conditioner (Split System) use per hour, day, and year?",
+          "answer": "A typical Air Conditioner (Split System) operates at approximately 800 Watts, consuming roughly 0.800 kWh per hour (about €0.28/hr at €0.35/kWh). Typical annual consumption is around 350 kWh, costing approx. €122.50 per year."
+        },
+        {
+          "question": "How much does it cost to run a Air Conditioner (Split System) per cycle or per month?",
+          "answer": "Running a Air Conditioner (Split System) costs approximately 1,40 € / 5 Stunden Kühlung. On a monthly basis, this averages to around €10.21 on your electricity bill."
+        },
+        {
+          "question": "How can I reduce the electricity consumption of my Air Conditioner (Split System)?",
+          "answer": "Use eco-friendly modes, perform regular maintenance (such as cleaning filters, vents, or seals), and turn the device off completely with a smart power strip to eliminate phantom standby draw."
+        },
+        {
+          "question": "Does a Air Conditioner (Split System) draw standby power when turned off?",
+          "answer": "Yes, many modern electronic units draw 0.5 to 3 Watts in standby mode. Older models can consume 5 to 10 Watts continuously, which adds €15 to €30 per year in phantom energy costs."
+        },
+        {
+          "question": "Is it worth upgrading an old Air Conditioner (Split System) to a modern energy-efficient model?",
+          "answer": "If your current unit is over 8–10 years old, upgrading to a high-efficiency Class A model can reduce power consumption by 30% to 50%, saving €30–€80 annually."
+        }
+      ]
     },
-    'klimaanlage': {
-      name: 'Air Conditioner',
-      category: 'Climate & Heating',
-      shortDescription: 'Portable ACs draw 800 to 1,200 Watts (approx. 28 to 42 ct/h), whereas mini-split inverter ACs are about 50% more efficient.',
-      dutyCycleExplanation: 'The compressor ramps down into low-power inverter mode once target temperature is reached.',
-      savingAdvice: ['Set target temperature reasonably: 24–25 °C (75–77 °F).', 'Keep windows and blinds closed during daytime.'],
-      faq: [{ question: 'How much does running an air conditioner cost in summer?', answer: 'For 30 hot days with 6h daily runtime, a portable unit costs approx. €50–€75, while an efficient split system costs €25–€40.' }]
+    "ventilator": {
+      "name": "Electric Fan / Pedestal Fan",
+      "category": "Climate & Heating",
+      "shortDescription": "A typical Electric Fan / Pedestal Fan uses approx. 35 kWh per year (around €12.25 at €0.35/kWh). Power rating: 45 Watts.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "How much electricity does a Electric Fan / Pedestal Fan use per hour, day, and year?",
+          "answer": "A typical Electric Fan / Pedestal Fan operates at approximately 45 Watts, consuming roughly 0.045 kWh per hour (about €0.02/hr at €0.35/kWh). Typical annual consumption is around 35 kWh, costing approx. €12.25 per year."
+        },
+        {
+          "question": "How much does it cost to run a Electric Fan / Pedestal Fan per cycle or per month?",
+          "answer": "Running a Electric Fan / Pedestal Fan costs approximately 0,10 € / 6 Stunden. On a monthly basis, this averages to around €1.02 on your electricity bill."
+        },
+        {
+          "question": "How can I reduce the electricity consumption of my Electric Fan / Pedestal Fan?",
+          "answer": "Use eco-friendly modes, perform regular maintenance (such as cleaning filters, vents, or seals), and turn the device off completely with a smart power strip to eliminate phantom standby draw."
+        },
+        {
+          "question": "Does a Electric Fan / Pedestal Fan draw standby power when turned off?",
+          "answer": "Yes, many modern electronic units draw 0.5 to 3 Watts in standby mode. Older models can consume 5 to 10 Watts continuously, which adds €15 to €30 per year in phantom energy costs."
+        },
+        {
+          "question": "Is it worth upgrading an old Electric Fan / Pedestal Fan to a modern energy-efficient model?",
+          "answer": "If your current unit is over 8–10 years old, upgrading to a high-efficiency Class A model can reduce power consumption by 30% to 50%, saving €30–€80 annually."
+        }
+      ]
     },
-    'ventilator': {
-      name: 'Electric Fan',
-      category: 'Climate & Heating',
-      shortDescription: 'A standing pedestal fan draws only 25 to 50 Watts (approx. 0.9 to 1.8 cents per hour).',
-      dutyCycleExplanation: 'Direct mechanical air circulation without a power-hungry refrigeration compressor.',
-      savingAdvice: ['Turn off when leaving the room since fans cool people, not empty rooms.'],
-      faq: [{ question: 'Is a fan more economical than an air conditioner?', answer: 'Yes, a fan uses approx. 95% less electricity than an air conditioner.' }]
+    "heizluefter": {
+      "name": "Fan Heater / Space Heater",
+      "category": "Climate & Heating",
+      "shortDescription": "A typical Fan Heater / Space Heater uses approx. 300 kWh per year (around €105.00 at €0.35/kWh). Power rating: 2000 Watts.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "How much electricity does a Fan Heater / Space Heater use per hour, day, and year?",
+          "answer": "A typical Fan Heater / Space Heater operates at approximately 2000 Watts, consuming roughly 2.000 kWh per hour (about €0.70/hr at €0.35/kWh). Typical annual consumption is around 300 kWh, costing approx. €105.00 per year."
+        },
+        {
+          "question": "How much does it cost to run a Fan Heater / Space Heater per cycle or per month?",
+          "answer": "Running a Fan Heater / Space Heater costs approximately 1,40 € / 2 Stunden Heizen. On a monthly basis, this averages to around €8.75 on your electricity bill."
+        },
+        {
+          "question": "How can I reduce the electricity consumption of my Fan Heater / Space Heater?",
+          "answer": "Use eco-friendly modes, perform regular maintenance (such as cleaning filters, vents, or seals), and turn the device off completely with a smart power strip to eliminate phantom standby draw."
+        },
+        {
+          "question": "Does a Fan Heater / Space Heater draw standby power when turned off?",
+          "answer": "Yes, many modern electronic units draw 0.5 to 3 Watts in standby mode. Older models can consume 5 to 10 Watts continuously, which adds €15 to €30 per year in phantom energy costs."
+        },
+        {
+          "question": "Is it worth upgrading an old Fan Heater / Space Heater to a modern energy-efficient model?",
+          "answer": "If your current unit is over 8–10 years old, upgrading to a high-efficiency Class A model can reduce power consumption by 30% to 50%, saving €30–€80 annually."
+        }
+      ]
     },
-    'heizluefter': {
-      name: 'Fan Heater',
-      category: 'Climate & Heating',
-      shortDescription: 'A portable fan heater draws 1,500 to 2,000 Watts (approx. 53 to 70 cents per operating hour).',
-      dutyCycleExplanation: 'Resistance heating elements convert electricity 1:1 directly into thermal heat.',
-      savingAdvice: ['Use only for brief spot heating, never as a primary heating source.'],
-      faq: [{ question: 'What does it cost to run a fan heater all day?', answer: '8 hours of daily use costs €4.20 to €5.60 per day (over €150 per month).' }]
+    "luftentfeuchter": {
+      "name": "Dehumidifier",
+      "category": "Climate & Heating",
+      "shortDescription": "A typical Dehumidifier uses approx. 280 kWh per year (around €98.00 at €0.35/kWh). Power rating: 350 Watts.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "How much electricity does a Dehumidifier use per hour, day, and year?",
+          "answer": "A typical Dehumidifier operates at approximately 350 Watts, consuming roughly 0.350 kWh per hour (about €0.12/hr at €0.35/kWh). Typical annual consumption is around 280 kWh, costing approx. €98.00 per year."
+        },
+        {
+          "question": "How much does it cost to run a Dehumidifier per cycle or per month?",
+          "answer": "Running a Dehumidifier costs approximately 0,74 € / 6 Stunden. On a monthly basis, this averages to around €8.17 on your electricity bill."
+        },
+        {
+          "question": "How can I reduce the electricity consumption of my Dehumidifier?",
+          "answer": "Use eco-friendly modes, perform regular maintenance (such as cleaning filters, vents, or seals), and turn the device off completely with a smart power strip to eliminate phantom standby draw."
+        },
+        {
+          "question": "Does a Dehumidifier draw standby power when turned off?",
+          "answer": "Yes, many modern electronic units draw 0.5 to 3 Watts in standby mode. Older models can consume 5 to 10 Watts continuously, which adds €15 to €30 per year in phantom energy costs."
+        },
+        {
+          "question": "Is it worth upgrading an old Dehumidifier to a modern energy-efficient model?",
+          "answer": "If your current unit is over 8–10 years old, upgrading to a high-efficiency Class A model can reduce power consumption by 30% to 50%, saving €30–€80 annually."
+        }
+      ]
     },
-    'luftentfeuchter': {
-      name: 'Dehumidifier',
-      category: 'Climate & Heating',
-      shortDescription: 'An electric dehumidifier draws approx. 200 to 400 Watts (approx. 7 to 14 cents per operating hour).',
-      dutyCycleExplanation: 'Refrigeration coils condense moisture out of ambient air.',
-      savingAdvice: ['Set target relative humidity to 50–55%.', 'Keep room doors and windows closed while running.'],
-      faq: [{ question: 'How long should a dehumidifier run daily?', answer: 'In most moisture problems, 2 to 4 hours daily in closed rooms is sufficient.' }]
+    "aquarium": {
+      "name": "Aquarium (100–200L Fish Tank)",
+      "category": "Hobby & Special",
+      "shortDescription": "A typical Aquarium (100–200L Fish Tank) uses approx. 350 kWh per year (around €122.50 at €0.35/kWh). Power rating: 60 Watts.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "How much electricity does a Aquarium (100–200L Fish Tank) use per hour, day, and year?",
+          "answer": "A typical Aquarium (100–200L Fish Tank) operates at approximately 60 Watts, consuming roughly 0.060 kWh per hour (about €0.02/hr at €0.35/kWh). Typical annual consumption is around 350 kWh, costing approx. €122.50 per year."
+        },
+        {
+          "question": "How much does it cost to run a Aquarium (100–200L Fish Tank) per cycle or per month?",
+          "answer": "Running a Aquarium (100–200L Fish Tank) costs approximately 0,34 € / 24 Stunden Dauerbetrieb. On a monthly basis, this averages to around €10.21 on your electricity bill."
+        },
+        {
+          "question": "How can I reduce the electricity consumption of my Aquarium (100–200L Fish Tank)?",
+          "answer": "Use eco-friendly modes, perform regular maintenance (such as cleaning filters, vents, or seals), and turn the device off completely with a smart power strip to eliminate phantom standby draw."
+        },
+        {
+          "question": "Does a Aquarium (100–200L Fish Tank) draw standby power when turned off?",
+          "answer": "Yes, many modern electronic units draw 0.5 to 3 Watts in standby mode. Older models can consume 5 to 10 Watts continuously, which adds €15 to €30 per year in phantom energy costs."
+        },
+        {
+          "question": "Is it worth upgrading an old Aquarium (100–200L Fish Tank) to a modern energy-efficient model?",
+          "answer": "If your current unit is over 8–10 years old, upgrading to a high-efficiency Class A model can reduce power consumption by 30% to 50%, saving €30–€80 annually."
+        }
+      ]
     },
-    'aquarium': {
-      name: 'Aquarium',
-      category: 'Hobby & Special',
-      shortDescription: 'A 100-liter aquarium consumes approx. 150 to 300 kWh per year (approx. €53 to €105 / year).',
-      dutyCycleExplanation: 'Water heater and lighting account for the vast majority of electrical consumption.',
-      savingAdvice: ['Switch to high-efficiency LED lights.', 'Use a snug aquarium lid to prevent heat loss.'],
-      faq: [{ question: 'What uses the most electricity in an aquarium?', answer: 'The heating element, especially if the tank temperature is much higher than room temperature.' }]
+    "pool": {
+      "name": "Swimming Pool Pump & Filter",
+      "category": "Hobby & Special",
+      "shortDescription": "A typical Swimming Pool Pump & Filter uses approx. 480 kWh per year (around €168.00 at €0.35/kWh). Power rating: 500 Watts.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "How much electricity does a Swimming Pool Pump & Filter use per hour, day, and year?",
+          "answer": "A typical Swimming Pool Pump & Filter operates at approximately 500 Watts, consuming roughly 0.500 kWh per hour (about €0.17/hr at €0.35/kWh). Typical annual consumption is around 480 kWh, costing approx. €168.00 per year."
+        },
+        {
+          "question": "How much does it cost to run a Swimming Pool Pump & Filter per cycle or per month?",
+          "answer": "Running a Swimming Pool Pump & Filter costs approximately 1,05 € / 6 Stunden Filterung. On a monthly basis, this averages to around €14.00 on your electricity bill."
+        },
+        {
+          "question": "How can I reduce the electricity consumption of my Swimming Pool Pump & Filter?",
+          "answer": "Use eco-friendly modes, perform regular maintenance (such as cleaning filters, vents, or seals), and turn the device off completely with a smart power strip to eliminate phantom standby draw."
+        },
+        {
+          "question": "Does a Swimming Pool Pump & Filter draw standby power when turned off?",
+          "answer": "Yes, many modern electronic units draw 0.5 to 3 Watts in standby mode. Older models can consume 5 to 10 Watts continuously, which adds €15 to €30 per year in phantom energy costs."
+        },
+        {
+          "question": "Is it worth upgrading an old Swimming Pool Pump & Filter to a modern energy-efficient model?",
+          "answer": "If your current unit is over 8–10 years old, upgrading to a high-efficiency Class A model can reduce power consumption by 30% to 50%, saving €30–€80 annually."
+        }
+      ]
     },
-    'pool': {
-      name: 'Pool Pump',
-      category: 'Hobby & Special',
-      shortDescription: 'A swimming pool pump draws approx. 400 to 1,000 Watts (approx. 14 to 35 cents per hour).',
-      dutyCycleExplanation: 'Circulates the entire pool volume 2 to 3 times per day.',
-      savingAdvice: ['Install a timer to prevent unnecessary runtime.', 'Use a variable speed pump.'],
-      faq: [{ question: 'How many hours should a pool pump run in summer?', answer: 'In summer, 6 to 8 hours daily is typically ideal for proper water filtration.' }]
+    "whirlpool": {
+      "name": "Hot Tub / Outdoor Jacuzzi",
+      "category": "Hobby & Special",
+      "shortDescription": "A typical Hot Tub / Outdoor Jacuzzi uses approx. 2200 kWh per year (around €770.00 at €0.35/kWh). Power rating: 2500 Watts.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "How much electricity does a Hot Tub / Outdoor Jacuzzi use per hour, day, and year?",
+          "answer": "A typical Hot Tub / Outdoor Jacuzzi operates at approximately 2500 Watts, consuming roughly 2.500 kWh per hour (about €0.88/hr at €0.35/kWh). Typical annual consumption is around 2200 kWh, costing approx. €770.00 per year."
+        },
+        {
+          "question": "How much does it cost to run a Hot Tub / Outdoor Jacuzzi per cycle or per month?",
+          "answer": "Running a Hot Tub / Outdoor Jacuzzi costs approximately 2,10 € / Tag (Heizung & Zirkulation). On a monthly basis, this averages to around €64.17 on your electricity bill."
+        },
+        {
+          "question": "How can I reduce the electricity consumption of my Hot Tub / Outdoor Jacuzzi?",
+          "answer": "Use eco-friendly modes, perform regular maintenance (such as cleaning filters, vents, or seals), and turn the device off completely with a smart power strip to eliminate phantom standby draw."
+        },
+        {
+          "question": "Does a Hot Tub / Outdoor Jacuzzi draw standby power when turned off?",
+          "answer": "Yes, many modern electronic units draw 0.5 to 3 Watts in standby mode. Older models can consume 5 to 10 Watts continuously, which adds €15 to €30 per year in phantom energy costs."
+        },
+        {
+          "question": "Is it worth upgrading an old Hot Tub / Outdoor Jacuzzi to a modern energy-efficient model?",
+          "answer": "If your current unit is over 8–10 years old, upgrading to a high-efficiency Class A model can reduce power consumption by 30% to 50%, saving €30–€80 annually."
+        }
+      ]
     },
-    'whirlpool': {
-      name: 'Hot Tub / Jacuzzi',
-      category: 'Hobby & Special',
-      shortDescription: 'An outdoor hot tub consumes approx. 2,000 to 4,000 kWh per year (approx. €700 to €1,400 / year).',
-      dutyCycleExplanation: 'Maintaining water at 37–39 °C (99–102 °F) requires continuous heating against outdoor weather.',
-      savingAdvice: ['Use a thick insulated thermal cover.', 'Place the hot tub in a wind-sheltered location.'],
-      faq: [{ question: 'How much does running a hot tub cost per month?', answer: 'Depending on weather, electricity costs average €50 to €120 per month.' }]
+    "3d-drucker": {
+      "name": "3D Printer (FDM)",
+      "category": "Hobby & Special",
+      "shortDescription": "A typical 3D Printer (FDM) uses approx. 120 kWh per year (around €42.00 at €0.35/kWh). Power rating: 150 Watts.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "How much electricity does a 3D Printer (FDM) use per hour, day, and year?",
+          "answer": "A typical 3D Printer (FDM) operates at approximately 150 Watts, consuming roughly 0.150 kWh per hour (about €0.05/hr at €0.35/kWh). Typical annual consumption is around 120 kWh, costing approx. €42.00 per year."
+        },
+        {
+          "question": "How much does it cost to run a 3D Printer (FDM) per cycle or per month?",
+          "answer": "Running a 3D Printer (FDM) costs approximately 0,42 € / 8 Stunden Druck. On a monthly basis, this averages to around €3.50 on your electricity bill."
+        },
+        {
+          "question": "How can I reduce the electricity consumption of my 3D Printer (FDM)?",
+          "answer": "Use eco-friendly modes, perform regular maintenance (such as cleaning filters, vents, or seals), and turn the device off completely with a smart power strip to eliminate phantom standby draw."
+        },
+        {
+          "question": "Does a 3D Printer (FDM) draw standby power when turned off?",
+          "answer": "Yes, many modern electronic units draw 0.5 to 3 Watts in standby mode. Older models can consume 5 to 10 Watts continuously, which adds €15 to €30 per year in phantom energy costs."
+        },
+        {
+          "question": "Is it worth upgrading an old 3D Printer (FDM) to a modern energy-efficient model?",
+          "answer": "If your current unit is over 8–10 years old, upgrading to a high-efficiency Class A model can reduce power consumption by 30% to 50%, saving €30–€80 annually."
+        }
+      ]
     },
-    '3d-drucker': {
-      name: '3D Printer',
-      category: 'Hobby & Special',
-      shortDescription: 'An FDM 3D printer draws approx. 100 to 180 Watts (approx. 3.5 to 6.3 cents per printing hour).',
-      dutyCycleExplanation: 'The heated print bed accounts for around 70% of total electrical power.',
-      savingAdvice: ['Use an enclosure to maintain ambient heat and lower bed heater demand.'],
-      faq: [{ question: 'How much does a 10-hour 3D print cost?', answer: 'A 10-hour print costs approx. 40 to 60 cents in electricity.' }]
+    "nas": {
+      "name": "NAS Server / Network Storage",
+      "category": "Entertainment & Office",
+      "shortDescription": "A typical NAS Server / Network Storage uses approx. 260 kWh per year (around €91.00 at €0.35/kWh). Power rating: 30 Watts.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "How much electricity does a NAS Server / Network Storage use per hour, day, and year?",
+          "answer": "A typical NAS Server / Network Storage operates at approximately 30 Watts, consuming roughly 0.030 kWh per hour (about €0.01/hr at €0.35/kWh). Typical annual consumption is around 260 kWh, costing approx. €91.00 per year."
+        },
+        {
+          "question": "How much does it cost to run a NAS Server / Network Storage per cycle or per month?",
+          "answer": "Running a NAS Server / Network Storage costs approximately 0,25 € / 24 Stunden Dauerbetrieb. On a monthly basis, this averages to around €7.58 on your electricity bill."
+        },
+        {
+          "question": "How can I reduce the electricity consumption of my NAS Server / Network Storage?",
+          "answer": "Use eco-friendly modes, perform regular maintenance (such as cleaning filters, vents, or seals), and turn the device off completely with a smart power strip to eliminate phantom standby draw."
+        },
+        {
+          "question": "Does a NAS Server / Network Storage draw standby power when turned off?",
+          "answer": "Yes, many modern electronic units draw 0.5 to 3 Watts in standby mode. Older models can consume 5 to 10 Watts continuously, which adds €15 to €30 per year in phantom energy costs."
+        },
+        {
+          "question": "Is it worth upgrading an old NAS Server / Network Storage to a modern energy-efficient model?",
+          "answer": "If your current unit is over 8–10 years old, upgrading to a high-efficiency Class A model can reduce power consumption by 30% to 50%, saving €30–€80 annually."
+        }
+      ]
     },
-    'nas': {
-      name: 'NAS Storage',
-      category: 'Hobby & Special',
-      shortDescription: 'A 2-bay NAS server draws approx. 15 to 30 Watts running 24/7 (approx. €45 to €90 per year).',
-      dutyCycleExplanation: 'Hard drive spin-down reduces idle power draw to under 8 W.',
-      savingAdvice: ['Enable hard drive sleep mode.', 'Set automated scheduled shutdown at night.'],
-      faq: [{ question: 'What does running a NAS 24/7 cost per year?', answer: 'At 20 Watts continuous draw, a NAS uses 175 kWh per year (approx. €61 / year).' }]
-    },
-    'server': {
-      name: 'Home Server',
-      category: 'Hobby & Special',
-      shortDescription: 'A low-power home server (e.g. mini PC) draws approx. 10 to 40 Watts (approx. €30 to €120 / year).',
-      dutyCycleExplanation: 'Modern x86/ARM processors feature ultra-low idle wattage states.',
-      savingAdvice: ['Use efficient mini PCs instead of repurposed old desktop towers.'],
-      faq: [{ question: 'How much power does a home server consume?', answer: 'A modern mini PC server draws only 10–15 W at idle (approx. €30–€45 per year).' }]
+    "server": {
+      "name": "Home Server / Homelab",
+      "category": "Entertainment & Office",
+      "shortDescription": "A typical Home Server / Homelab uses approx. 570 kWh per year (around €199.50 at €0.35/kWh). Power rating: 65 Watts.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "How much electricity does a Home Server / Homelab use per hour, day, and year?",
+          "answer": "A typical Home Server / Homelab operates at approximately 65 Watts, consuming roughly 0.065 kWh per hour (about €0.02/hr at €0.35/kWh). Typical annual consumption is around 570 kWh, costing approx. €199.50 per year."
+        },
+        {
+          "question": "How much does it cost to run a Home Server / Homelab per cycle or per month?",
+          "answer": "Running a Home Server / Homelab costs approximately 0,55 € / 24 Stunden Dauerbetrieb. On a monthly basis, this averages to around €16.63 on your electricity bill."
+        },
+        {
+          "question": "How can I reduce the electricity consumption of my Home Server / Homelab?",
+          "answer": "Use eco-friendly modes, perform regular maintenance (such as cleaning filters, vents, or seals), and turn the device off completely with a smart power strip to eliminate phantom standby draw."
+        },
+        {
+          "question": "Does a Home Server / Homelab draw standby power when turned off?",
+          "answer": "Yes, many modern electronic units draw 0.5 to 3 Watts in standby mode. Older models can consume 5 to 10 Watts continuously, which adds €15 to €30 per year in phantom energy costs."
+        },
+        {
+          "question": "Is it worth upgrading an old Home Server / Homelab to a modern energy-efficient model?",
+          "answer": "If your current unit is over 8–10 years old, upgrading to a high-efficiency Class A model can reduce power consumption by 30% to 50%, saving €30–€80 annually."
+        }
+      ]
     }
   },
-  es: {
-    'kuehlschrank': {
-      name: 'Frigorífico / Refrigerador',
-      category: 'Cocina',
-      shortDescription: 'Un frigorífico moderno consume unos 100 a 160 kWh al año (aprox. 35 a 56 €/año). Modelos antiguos superan los 250–350 kWh.',
-      dutyCycleExplanation: 'Aunque está enchufado 24h, el compresor funciona unos 20 a 40 minutos por hora mediante termostato.',
-      savingAdvice: ['Temperatura ideal: 7 °C en la nevera y -18 °C en el congelador.', 'Descongelar periódicamente.', 'Comprobar las gomas de cierre.'],
-      faq: [{ question: '¿Cuánto consume una nevera al día?', answer: 'Un frigorífico estándar moderno consume entre 0,3 y 0,45 kWh al día (unos 10 a 16 céntimos).' }]
+  "es": {
+    "kuehlschrank": {
+      "name": "Frigorífico / Refrigerador",
+      "category": "Cocina",
+      "shortDescription": "Un Frigorífico / Refrigerador consume unos 120 kWh al año (aprox. 42.00 € con tarifa de 0,35 €/kWh). Potencia media: 90 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "¿Cuánta electricidad consume un Frigorífico / Refrigerador por hora, día y año?",
+          "answer": "Un Frigorífico / Refrigerador consume una potencia media de unos 90 vatios, lo que equivale a 0.090 kWh por hora (aprox. 0.01 €/hora a 0,35 €/kWh). El consumo anual medio es de unos 120 kWh (42.00 €/año)."
+        },
+        {
+          "question": "¿Cuánto cuesta utilizar un Frigorífico / Refrigerador al mes o por uso?",
+          "answer": "El coste estimado es de unos 0,12 € / Tag. En el cómputo mensual, representa un gasto de luz de aproximadamente 3.50 € al mes."
+        },
+        {
+          "question": "¿Cómo reducir el gasto de luz de un Frigorífico / Refrigerador?",
+          "answer": "Aprovecha los programas Eco, mantén limpios los filtros y juntas, y desenchúfalo o usa regletas con interruptor para evitar el consumo fantasma en modo de espera."
+        },
+        {
+          "question": "¿Un Frigorífico / Refrigerador sigue gastando electricidad en modo reposo (standby)?",
+          "answer": "Sí, en modo de espera suele consumir entre 0,5 y 3 vatios. En aparatos más antiguos, este consumo en reposo puede llegar a 5–10 W, sumando entre 15 y 30 € al año en la factura."
+        },
+        {
+          "question": "¿Merece la pena renovar un Frigorífico / Refrigerador antiguo por uno de bajo consumo?",
+          "answer": "Si tiene más de 8 o 10 años, un modelo nuevo de alta calificación energética ahorra entre un 30 % y un 50 % de electricidad, ahorrando de 30 a 80 € cada año."
+        }
+      ]
     },
-    'waschmaschine': {
-      name: 'Lavadora',
-      category: 'Hogar y Limpieza',
-      shortDescription: 'Una lavadora moderna consume entre 0,5 y 1,0 kWh por ciclo (aprox. 0,18 a 0,35 € por lavado).',
-      dutyCycleExplanation: 'Más del 80% de la energía se destina a calentar el agua.',
-      savingAdvice: ['Usa programas Eco a 30 °C para ahorrar hasta un 60% de energía.', 'Llena el tambor a plena carga.'],
-      faq: [{ question: '¿Cuánto cuesta lavar a 60 °C frente a 30 °C?', answer: 'Lavar a 60 °C cuesta unos 0,35 a 0,50 €, frente a 0,15 a 0,20 € en modo Eco 30 °C.' }]
+    "waschmaschine": {
+      "name": "Lavadora",
+      "category": "Hogar y Limpieza",
+      "shortDescription": "Un Lavadora consume unos 140 kWh al año (aprox. 49.00 € con tarifa de 0,35 €/kWh). Potencia media: 2000 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "¿Cuánta electricidad consume un Lavadora por hora, día y año?",
+          "answer": "Un Lavadora consume una potencia media de unos 2000 vatios, lo que equivale a 2.000 kWh por hora (aprox. 0.70 €/hora a 0,35 €/kWh). El consumo anual medio es de unos 140 kWh (49.00 €/año)."
+        },
+        {
+          "question": "¿Cuánto cuesta utilizar un Lavadora al mes o por uso?",
+          "answer": "El coste estimado es de unos 0,25 € / Waschgang. En el cómputo mensual, representa un gasto de luz de aproximadamente 4.08 € al mes."
+        },
+        {
+          "question": "¿Cómo reducir el gasto de luz de un Lavadora?",
+          "answer": "Aprovecha los programas Eco, mantén limpios los filtros y juntas, y desenchúfalo o usa regletas con interruptor para evitar el consumo fantasma en modo de espera."
+        },
+        {
+          "question": "¿Un Lavadora sigue gastando electricidad en modo reposo (standby)?",
+          "answer": "Sí, en modo de espera suele consumir entre 0,5 y 3 vatios. En aparatos más antiguos, este consumo en reposo puede llegar a 5–10 W, sumando entre 15 y 30 € al año en la factura."
+        },
+        {
+          "question": "¿Merece la pena renovar un Lavadora antiguo por uno de bajo consumo?",
+          "answer": "Si tiene más de 8 o 10 años, un modelo nuevo de alta calificación energética ahorra entre un 30 % y un 50 % de electricidad, ahorrando de 30 a 80 € cada año."
+        }
+      ]
     },
-    'trockner': {
-      name: 'Secadora de Ropa',
-      category: 'Hogar y Limpieza',
-      shortDescription: 'Las secadoras con bomba de calor consumen aprox. 1,2 a 1,8 kWh por secado, frente a más de 4 kWh en modelos antiguos.',
-      dutyCycleExplanation: 'La bomba de calor recircula el aire caliente ahorrando más del 60% de energía.',
-      savingAdvice: ['Centrifugar a 1.200–1.400 rpm en la lavadora.', 'Limpiar el filtro tras cada uso.'],
-      faq: [{ question: '¿Cuánto cuesta poner la secadora?', answer: 'Un ciclo con bomba de calor cuesta aprox. 0,45 a 0,65 €, frente a más de 1,50 € en modelos antiguos.' }]
+    "trockner": {
+      "name": "Secadora de Ropa",
+      "category": "Hogar y Limpieza",
+      "shortDescription": "Un Secadora de Ropa consume unos 180 kWh al año (aprox. 63.00 € con tarifa de 0,35 €/kWh). Potencia media: 1500 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "¿Cuánta electricidad consume un Secadora de Ropa por hora, día y año?",
+          "answer": "Un Secadora de Ropa consume una potencia media de unos 1500 vatios, lo que equivale a 1.500 kWh por hora (aprox. 0.53 €/hora a 0,35 €/kWh). El consumo anual medio es de unos 180 kWh (63.00 €/año)."
+        },
+        {
+          "question": "¿Cuánto cuesta utilizar un Secadora de Ropa al mes o por uso?",
+          "answer": "El coste estimado es de unos 0,45 € / Ladung. En el cómputo mensual, representa un gasto de luz de aproximadamente 5.25 € al mes."
+        },
+        {
+          "question": "¿Cómo reducir el gasto de luz de un Secadora de Ropa?",
+          "answer": "Aprovecha los programas Eco, mantén limpios los filtros y juntas, y desenchúfalo o usa regletas con interruptor para evitar el consumo fantasma en modo de espera."
+        },
+        {
+          "question": "¿Un Secadora de Ropa sigue gastando electricidad en modo reposo (standby)?",
+          "answer": "Sí, en modo de espera suele consumir entre 0,5 y 3 vatios. En aparatos más antiguos, este consumo en reposo puede llegar a 5–10 W, sumando entre 15 y 30 € al año en la factura."
+        },
+        {
+          "question": "¿Merece la pena renovar un Secadora de Ropa antiguo por uno de bajo consumo?",
+          "answer": "Si tiene más de 8 o 10 años, un modelo nuevo de alta calificación energética ahorra entre un 30 % y un 50 % de electricidad, ahorrando de 30 a 80 € cada año."
+        }
+      ]
     },
-    'geschirrspueler': {
-      name: 'Lavavajillas',
-      category: 'Cocina',
-      shortDescription: 'El programa Eco consume entre 0,7 y 0,9 kWh (0,25 a 0,32 €). Es mucho más eficiente que fregar a mano.',
-      dutyCycleExplanation: 'El agua se calienta en circuito cerrado y el remojo prolongado ahorra energía.',
-      savingAdvice: ['Usa el programa Eco a 50 °C habitualmente.', 'Pon el lavavajillas solo lleno.'],
-      faq: [{ question: '¿Es más económico el lavavajillas que fregar a mano?', answer: 'Sí, consume hasta un 50% menos electricidad y un 60% menos agua.' }]
+    "geschirrspueler": {
+      "name": "Lavavajillas",
+      "category": "Cocina",
+      "shortDescription": "Un Lavavajillas consume unos 160 kWh al año (aprox. 56.00 € con tarifa de 0,35 €/kWh). Potencia media: 1800 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "¿Cuánta electricidad consume un Lavavajillas por hora, día y año?",
+          "answer": "Un Lavavajillas consume una potencia media de unos 1800 vatios, lo que equivale a 1.800 kWh por hora (aprox. 0.63 €/hora a 0,35 €/kWh). El consumo anual medio es de unos 160 kWh (56.00 €/año)."
+        },
+        {
+          "question": "¿Cuánto cuesta utilizar un Lavavajillas al mes o por uso?",
+          "answer": "El coste estimado es de unos 0,28 € / Spülgang. En el cómputo mensual, representa un gasto de luz de aproximadamente 4.67 € al mes."
+        },
+        {
+          "question": "¿Cómo reducir el gasto de luz de un Lavavajillas?",
+          "answer": "Aprovecha los programas Eco, mantén limpios los filtros y juntas, y desenchúfalo o usa regletas con interruptor para evitar el consumo fantasma en modo de espera."
+        },
+        {
+          "question": "¿Un Lavavajillas sigue gastando electricidad en modo reposo (standby)?",
+          "answer": "Sí, en modo de espera suele consumir entre 0,5 y 3 vatios. En aparatos más antiguos, este consumo en reposo puede llegar a 5–10 W, sumando entre 15 y 30 € al año en la factura."
+        },
+        {
+          "question": "¿Merece la pena renovar un Lavavajillas antiguo por uno de bajo consumo?",
+          "answer": "Si tiene más de 8 o 10 años, un modelo nuevo de alta calificación energética ahorra entre un 30 % y un 50 % de electricidad, ahorrando de 30 a 80 € cada año."
+        }
+      ]
     },
-    'backofen': {
-      name: 'Horno Eléctrico',
-      category: 'Cocina',
-      shortDescription: 'Un horno eléctrico moderno consume unos 0,8 a 1,5 kWh por hora de uso (aprox. 0,28 a 0,52 €).',
-      dutyCycleExplanation: 'El precalentamiento es lo que más consume; el modo aire forzado ahorra un 20%.',
-      savingAdvice: ['Usa calor con ventilador/aire.', 'Evita abrir la puerta innecesariamente.'],
-      faq: [{ question: '¿Es necesario precalentar el horno?', answer: 'En la mayoría de recetas no es imprescindible y omitirlo ahorra hasta un 20% de energía.' }]
+    "backofen": {
+      "name": "Horno Eléctrico",
+      "category": "Cocina",
+      "shortDescription": "Un Horno Eléctrico consume unos 150 kWh al año (aprox. 52.50 € con tarifa de 0,35 €/kWh). Potencia media: 2500 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "¿Cuánta electricidad consume un Horno Eléctrico por hora, día y año?",
+          "answer": "Un Horno Eléctrico consume una potencia media de unos 2500 vatios, lo que equivale a 2.500 kWh por hora (aprox. 0.88 €/hora a 0,35 €/kWh). El consumo anual medio es de unos 150 kWh (52.50 €/año)."
+        },
+        {
+          "question": "¿Cuánto cuesta utilizar un Horno Eléctrico al mes o por uso?",
+          "answer": "El coste estimado es de unos 0,55 € / Nutzung. En el cómputo mensual, representa un gasto de luz de aproximadamente 4.38 € al mes."
+        },
+        {
+          "question": "¿Cómo reducir el gasto de luz de un Horno Eléctrico?",
+          "answer": "Aprovecha los programas Eco, mantén limpios los filtros y juntas, y desenchúfalo o usa regletas con interruptor para evitar el consumo fantasma en modo de espera."
+        },
+        {
+          "question": "¿Un Horno Eléctrico sigue gastando electricidad en modo reposo (standby)?",
+          "answer": "Sí, en modo de espera suele consumir entre 0,5 y 3 vatios. En aparatos más antiguos, este consumo en reposo puede llegar a 5–10 W, sumando entre 15 y 30 € al año en la factura."
+        },
+        {
+          "question": "¿Merece la pena renovar un Horno Eléctrico antiguo por uno de bajo consumo?",
+          "answer": "Si tiene más de 8 o 10 años, un modelo nuevo de alta calificación energética ahorra entre un 30 % y un 50 % de electricidad, ahorrando de 30 a 80 € cada año."
+        }
+      ]
     },
-    'herd': {
-      name: 'Placa de Inducción / Vitrocerámica',
-      category: 'Cocina',
-      shortDescription: 'La inducción consume unos 0,3 a 0,7 kWh por comida y es un 20–30% más eficiente que la vitrocerámica.',
-      dutyCycleExplanation: 'Calienta directamente la base de la sartén sin pérdidas de calor.',
-      savingAdvice: ['Cocina siempre con tapa.', 'Hierve agua previamente en hervidor eléctrico.'],
-      faq: [{ question: '¿Cuánto ahorra la inducción frente a la vitrocerámica?', answer: 'Ahorra entre un 20 y un 30% de luz y calienta en la mitad de tiempo.' }]
+    "herd": {
+      "name": "Placa de Inducción / Vitrocerámica",
+      "category": "Cocina",
+      "shortDescription": "Un Placa de Inducción / Vitrocerámica consume unos 220 kWh al año (aprox. 77.00 € con tarifa de 0,35 €/kWh). Potencia media: 3000 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "¿Cuánta electricidad consume un Placa de Inducción / Vitrocerámica por hora, día y año?",
+          "answer": "Un Placa de Inducción / Vitrocerámica consume una potencia media de unos 3000 vatios, lo que equivale a 3.000 kWh por hora (aprox. 1.05 €/hora a 0,35 €/kWh). El consumo anual medio es de unos 220 kWh (77.00 €/año)."
+        },
+        {
+          "question": "¿Cuánto cuesta utilizar un Placa de Inducción / Vitrocerámica al mes o por uso?",
+          "answer": "El coste estimado es de unos 0,35 € / Kochvorgang. En el cómputo mensual, representa un gasto de luz de aproximadamente 6.42 € al mes."
+        },
+        {
+          "question": "¿Cómo reducir el gasto de luz de un Placa de Inducción / Vitrocerámica?",
+          "answer": "Aprovecha los programas Eco, mantén limpios los filtros y juntas, y desenchúfalo o usa regletas con interruptor para evitar el consumo fantasma en modo de espera."
+        },
+        {
+          "question": "¿Un Placa de Inducción / Vitrocerámica sigue gastando electricidad en modo reposo (standby)?",
+          "answer": "Sí, en modo de espera suele consumir entre 0,5 y 3 vatios. En aparatos más antiguos, este consumo en reposo puede llegar a 5–10 W, sumando entre 15 y 30 € al año en la factura."
+        },
+        {
+          "question": "¿Merece la pena renovar un Placa de Inducción / Vitrocerámica antiguo por uno de bajo consumo?",
+          "answer": "Si tiene más de 8 o 10 años, un modelo nuevo de alta calificación energética ahorra entre un 30 % y un 50 % de electricidad, ahorrando de 30 a 80 € cada año."
+        }
+      ]
     },
-    'wasserkocher': {
-      name: 'Hervidor de Agua',
-      category: 'Cocina',
-      shortDescription: 'Hervir 1 litro de agua consume aprox. 0,1 kWh (unos 3,5 céntimos).',
-      dutyCycleExplanation: 'Transferencia térmica directa con más del 90% de eficiencia.',
-      savingAdvice: ['Hierve solo la cantidad de agua que vas a utilizar.', 'Descalcifica con regularidad.'],
-      faq: [{ question: '¿Es más eficiente el hervidor que el fuego?', answer: 'Sí, es un 30–50% más eficiente que calentar agua en cazo sobre la placa vitrocerámica.' }]
+    "wasserkocher": {
+      "name": "Hervidor de Agua Eléctrico",
+      "category": "Cocina",
+      "shortDescription": "Un Hervidor de Agua Eléctrico consume unos 80 kWh al año (aprox. 28.00 € con tarifa de 0,35 €/kWh). Potencia media: 2200 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "¿Cuánta electricidad consume un Hervidor de Agua Eléctrico por hora, día y año?",
+          "answer": "Un Hervidor de Agua Eléctrico consume una potencia media de unos 2200 vatios, lo que equivale a 2.200 kWh por hora (aprox. 0.77 €/hora a 0,35 €/kWh). El consumo anual medio es de unos 80 kWh (28.00 €/año)."
+        },
+        {
+          "question": "¿Cuánto cuesta utilizar un Hervidor de Agua Eléctrico al mes o por uso?",
+          "answer": "El coste estimado es de unos 0,03 € / 1 Liter Kochen. En el cómputo mensual, representa un gasto de luz de aproximadamente 2.33 € al mes."
+        },
+        {
+          "question": "¿Cómo reducir el gasto de luz de un Hervidor de Agua Eléctrico?",
+          "answer": "Aprovecha los programas Eco, mantén limpios los filtros y juntas, y desenchúfalo o usa regletas con interruptor para evitar el consumo fantasma en modo de espera."
+        },
+        {
+          "question": "¿Un Hervidor de Agua Eléctrico sigue gastando electricidad en modo reposo (standby)?",
+          "answer": "Sí, en modo de espera suele consumir entre 0,5 y 3 vatios. En aparatos más antiguos, este consumo en reposo puede llegar a 5–10 W, sumando entre 15 y 30 € al año en la factura."
+        },
+        {
+          "question": "¿Merece la pena renovar un Hervidor de Agua Eléctrico antiguo por uno de bajo consumo?",
+          "answer": "Si tiene más de 8 o 10 años, un modelo nuevo de alta calificación energética ahorra entre un 30 % y un 50 % de electricidad, ahorrando de 30 a 80 € cada año."
+        }
+      ]
     },
-    'kaffeemaschine': {
-      name: 'Cafetera Automática',
-      category: 'Cocina',
-      shortDescription: 'Una cafetera automática consume unos 0,02 a 0,04 kWh por taza (incluyendo enjuague).',
-      dutyCycleExplanation: 'El termobloque calienta el agua instantáneamente a máxima potencia.',
-      savingAdvice: ['Activa el apagado automático tras 10–15 min.'],
-      faq: [{ question: '¿Cuánto cuesta en luz hacer un café?', answer: 'El coste eléctrico de un café es de solo 1 a 1,5 céntimos.' }]
+    "kaffeemaschine": {
+      "name": "Cafetera Automática",
+      "category": "Cocina",
+      "shortDescription": "Un Cafetera Automática consume unos 65 kWh al año (aprox. 22.75 € con tarifa de 0,35 €/kWh). Potencia media: 1400 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "¿Cuánta electricidad consume un Cafetera Automática por hora, día y año?",
+          "answer": "Un Cafetera Automática consume una potencia media de unos 1400 vatios, lo que equivale a 1.400 kWh por hora (aprox. 0.49 €/hora a 0,35 €/kWh). El consumo anual medio es de unos 65 kWh (22.75 €/año)."
+        },
+        {
+          "question": "¿Cuánto cuesta utilizar un Cafetera Automática al mes o por uso?",
+          "answer": "El coste estimado es de unos 0,02 € / Tasse Kaffee. En el cómputo mensual, representa un gasto de luz de aproximadamente 1.90 € al mes."
+        },
+        {
+          "question": "¿Cómo reducir el gasto de luz de un Cafetera Automática?",
+          "answer": "Aprovecha los programas Eco, mantén limpios los filtros y juntas, y desenchúfalo o usa regletas con interruptor para evitar el consumo fantasma en modo de espera."
+        },
+        {
+          "question": "¿Un Cafetera Automática sigue gastando electricidad en modo reposo (standby)?",
+          "answer": "Sí, en modo de espera suele consumir entre 0,5 y 3 vatios. En aparatos más antiguos, este consumo en reposo puede llegar a 5–10 W, sumando entre 15 y 30 € al año en la factura."
+        },
+        {
+          "question": "¿Merece la pena renovar un Cafetera Automática antiguo por uno de bajo consumo?",
+          "answer": "Si tiene más de 8 o 10 años, un modelo nuevo de alta calificación energética ahorra entre un 30 % y un 50 % de electricidad, ahorrando de 30 a 80 € cada año."
+        }
+      ]
     },
-    'fernseher': {
-      name: 'Televisor (TV)',
-      category: 'Entretenimiento y Oficina',
-      shortDescription: 'Un televisor de 55 pulgadas LED/OLED consume entre 70 y 130 W (unos 2,5 a 4,5 céntimos por hora).',
-      dutyCycleExplanation: 'El brillo, HDR y sensores ambientales regulan el consumo en tiempo real.',
-      savingAdvice: ['Activa el sensor de luz ambiental.', 'Usa modo cine en vez de dinámico.'],
-      faq: [{ question: '¿Consume más OLED que LED?', answer: 'En imágenes muy claras sí, pero en escenas oscuras apaga píxeles y ahorra luz.' }]
+    "fernseher": {
+      "name": "Televisor Smart TV (55-65\")",
+      "category": "Entretenimiento y Oficina",
+      "shortDescription": "Un Televisor Smart TV (55-65\") consume unos 175 kWh al año (aprox. 61.25 € con tarifa de 0,35 €/kWh). Potencia media: 120 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "¿Cuánta electricidad consume un Televisor Smart TV (55-65\") por hora, día y año?",
+          "answer": "Un Televisor Smart TV (55-65\") consume una potencia media de unos 120 vatios, lo que equivale a 0.120 kWh por hora (aprox. 0.04 €/hora a 0,35 €/kWh). El consumo anual medio es de unos 175 kWh (61.25 €/año)."
+        },
+        {
+          "question": "¿Cuánto cuesta utilizar un Televisor Smart TV (55-65\") al mes o por uso?",
+          "answer": "El coste estimado es de unos 0,17 € / 4 Stunden. En el cómputo mensual, representa un gasto de luz de aproximadamente 5.10 € al mes."
+        },
+        {
+          "question": "¿Cómo reducir el gasto de luz de un Televisor Smart TV (55-65\")?",
+          "answer": "Aprovecha los programas Eco, mantén limpios los filtros y juntas, y desenchúfalo o usa regletas con interruptor para evitar el consumo fantasma en modo de espera."
+        },
+        {
+          "question": "¿Un Televisor Smart TV (55-65\") sigue gastando electricidad en modo reposo (standby)?",
+          "answer": "Sí, en modo de espera suele consumir entre 0,5 y 3 vatios. En aparatos más antiguos, este consumo en reposo puede llegar a 5–10 W, sumando entre 15 y 30 € al año en la factura."
+        },
+        {
+          "question": "¿Merece la pena renovar un Televisor Smart TV (55-65\") antiguo por uno de bajo consumo?",
+          "answer": "Si tiene más de 8 o 10 años, un modelo nuevo de alta calificación energética ahorra entre un 30 % y un 50 % de electricidad, ahorrando de 30 a 80 € cada año."
+        }
+      ]
     },
-    'gaming-pc': {
-      name: 'PC Gaming',
-      category: 'Entretenimiento y Oficina',
-      shortDescription: 'A plena carga jugando, consume entre 350 y 600 W (unos 0,12 a 0,21 € por hora de juego).',
-      dutyCycleExplanation: 'La GPU y la CPU demandan máxima potencia en gráficos 3D exigentes.',
-      savingAdvice: ['Limita los FPS con G-Sync/FreeSync.', 'Haz undervolting a la gráfica.'],
-      faq: [{ question: '¿Cuánto cuesta jugar 4h al día al mes?', answer: 'Aproximadamente 17 a 20 euros al mes de electricidad.' }]
+    "gaming-pc": {
+      "name": "PC Gaming de Alto Rendimiento",
+      "category": "Entretenimiento y Oficina",
+      "shortDescription": "Un PC Gaming de Alto Rendimiento consume unos 450 kWh al año (aprox. 157.50 € con tarifa de 0,35 €/kWh). Potencia media: 400 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "¿Cuánta electricidad consume un PC Gaming de Alto Rendimiento por hora, día y año?",
+          "answer": "Un PC Gaming de Alto Rendimiento consume una potencia media de unos 400 vatios, lo que equivale a 0.400 kWh por hora (aprox. 0.14 €/hora a 0,35 €/kWh). El consumo anual medio es de unos 450 kWh (157.50 €/año)."
+        },
+        {
+          "question": "¿Cuánto cuesta utilizar un PC Gaming de Alto Rendimiento al mes o por uso?",
+          "answer": "El coste estimado es de unos 0,56 € / 4 Stunden Session. En el cómputo mensual, representa un gasto de luz de aproximadamente 13.13 € al mes."
+        },
+        {
+          "question": "¿Cómo reducir el gasto de luz de un PC Gaming de Alto Rendimiento?",
+          "answer": "Aprovecha los programas Eco, mantén limpios los filtros y juntas, y desenchúfalo o usa regletas con interruptor para evitar el consumo fantasma en modo de espera."
+        },
+        {
+          "question": "¿Un PC Gaming de Alto Rendimiento sigue gastando electricidad en modo reposo (standby)?",
+          "answer": "Sí, en modo de espera suele consumir entre 0,5 y 3 vatios. En aparatos más antiguos, este consumo en reposo puede llegar a 5–10 W, sumando entre 15 y 30 € al año en la factura."
+        },
+        {
+          "question": "¿Merece la pena renovar un PC Gaming de Alto Rendimiento antiguo por uno de bajo consumo?",
+          "answer": "Si tiene más de 8 o 10 años, un modelo nuevo de alta calificación energética ahorra entre un 30 % y un 50 % de electricidad, ahorrando de 30 a 80 € cada año."
+        }
+      ]
     },
-    'gamingpc': {
-      name: 'PC Gaming',
-      category: 'Entretenimiento y Oficina',
-      shortDescription: 'A plena carga jugando, consume entre 350 y 600 W (unos 0,12 a 0,21 € por hora de juego).',
-      dutyCycleExplanation: 'La GPU y la CPU demandan máxima potencia en gráficos 3D exigentes.',
-      savingAdvice: ['Limita los FPS con G-Sync/FreeSync.', 'Haz undervolting a la gráfica.'],
-      faq: [{ question: '¿Cuánto cuesta jugar 4h al día al mes?', answer: 'Aproximadamente 17 a 20 euros al mes de electricidad.' }]
+    "pc": {
+      "name": "Ordenador de Sobremesa / PC de Oficina",
+      "category": "Entretenimiento y Oficina",
+      "shortDescription": "Un Ordenador de Sobremesa / PC de Oficina consume unos 180 kWh al año (aprox. 63.00 € con tarifa de 0,35 €/kWh). Potencia media: 120 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "¿Cuánta electricidad consume un Ordenador de Sobremesa / PC de Oficina por hora, día y año?",
+          "answer": "Un Ordenador de Sobremesa / PC de Oficina consume una potencia media de unos 120 vatios, lo que equivale a 0.120 kWh por hora (aprox. 0.04 €/hora a 0,35 €/kWh). El consumo anual medio es de unos 180 kWh (63.00 €/año)."
+        },
+        {
+          "question": "¿Cuánto cuesta utilizar un Ordenador de Sobremesa / PC de Oficina al mes o por uso?",
+          "answer": "El coste estimado es de unos 0,25 € / 6 Stunden Arbeit. En el cómputo mensual, representa un gasto de luz de aproximadamente 5.25 € al mes."
+        },
+        {
+          "question": "¿Cómo reducir el gasto de luz de un Ordenador de Sobremesa / PC de Oficina?",
+          "answer": "Aprovecha los programas Eco, mantén limpios los filtros y juntas, y desenchúfalo o usa regletas con interruptor para evitar el consumo fantasma en modo de espera."
+        },
+        {
+          "question": "¿Un Ordenador de Sobremesa / PC de Oficina sigue gastando electricidad en modo reposo (standby)?",
+          "answer": "Sí, en modo de espera suele consumir entre 0,5 y 3 vatios. En aparatos más antiguos, este consumo en reposo puede llegar a 5–10 W, sumando entre 15 y 30 € al año en la factura."
+        },
+        {
+          "question": "¿Merece la pena renovar un Ordenador de Sobremesa / PC de Oficina antiguo por uno de bajo consumo?",
+          "answer": "Si tiene más de 8 o 10 años, un modelo nuevo de alta calificación energética ahorra entre un 30 % y un 50 % de electricidad, ahorrando de 30 a 80 € cada año."
+        }
+      ]
     },
-    'pc': {
-      name: 'PC de Escritorio (Oficina)',
-      category: 'Entretenimiento y Oficina',
-      shortDescription: 'Un ordenador de oficina consume entre 50 y 100 W (unos 1,8 a 3,5 céntimos por hora).',
-      dutyCycleExplanation: 'Bajo consumo base en tareas ofimáticas y navegación.',
-      savingAdvice: ['Activa suspensión automática tras 15 min de inactividad.'],
-      faq: [{ question: '¿Cuánto gasta un PC teletrabajando?', answer: 'En 8 horas diarias consume unos 0,5 a 0,8 kWh (aprox. 18–28 céntimos).' }]
+    "laptop": {
+      "name": "Portátil / Laptop",
+      "category": "Entretenimiento y Oficina",
+      "shortDescription": "Un Portátil / Laptop consume unos 75 kWh al año (aprox. 26.25 € con tarifa de 0,35 €/kWh). Potencia media: 50 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "¿Cuánta electricidad consume un Portátil / Laptop por hora, día y año?",
+          "answer": "Un Portátil / Laptop consume una potencia media de unos 50 vatios, lo que equivale a 0.050 kWh por hora (aprox. 0.02 €/hora a 0,35 €/kWh). El consumo anual medio es de unos 75 kWh (26.25 €/año)."
+        },
+        {
+          "question": "¿Cuánto cuesta utilizar un Portátil / Laptop al mes o por uso?",
+          "answer": "El coste estimado es de unos 0,11 € / 6 Stunden Arbeit. En el cómputo mensual, representa un gasto de luz de aproximadamente 2.19 € al mes."
+        },
+        {
+          "question": "¿Cómo reducir el gasto de luz de un Portátil / Laptop?",
+          "answer": "Aprovecha los programas Eco, mantén limpios los filtros y juntas, y desenchúfalo o usa regletas con interruptor para evitar el consumo fantasma en modo de espera."
+        },
+        {
+          "question": "¿Un Portátil / Laptop sigue gastando electricidad en modo reposo (standby)?",
+          "answer": "Sí, en modo de espera suele consumir entre 0,5 y 3 vatios. En aparatos más antiguos, este consumo en reposo puede llegar a 5–10 W, sumando entre 15 y 30 € al año en la factura."
+        },
+        {
+          "question": "¿Merece la pena renovar un Portátil / Laptop antiguo por uno de bajo consumo?",
+          "answer": "Si tiene más de 8 o 10 años, un modelo nuevo de alta calificación energética ahorra entre un 30 % y un 50 % de electricidad, ahorrando de 30 a 80 € cada año."
+        }
+      ]
     },
-    'laptop': {
-      name: 'Portátil / Laptop',
-      category: 'Entretenimiento y Oficina',
-      shortDescription: 'Un portátil consume solo de 20 a 60 W y es hasta un 70% más eficiente que un sobremesa.',
-      dutyCycleExplanation: 'Procesadores móviles de bajo consumo.',
-      savingAdvice: ['Reduce ligeramente el brillo de la pantalla.'],
-      faq: [{ question: '¿Cuánto cuesta usar el portátil al día?', answer: 'Unas 8 horas de uso cuestan solo de 6 a 12 céntimos al día.' }]
+    "monitor": {
+      "name": "Monitor de Ordenador (27-32\")",
+      "category": "Entretenimiento y Oficina",
+      "shortDescription": "Un Monitor de Ordenador (27-32\") consume unos 60 kWh al año (aprox. 21.00 € con tarifa de 0,35 €/kWh). Potencia media: 35 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "¿Cuánta electricidad consume un Monitor de Ordenador (27-32\") por hora, día y año?",
+          "answer": "Un Monitor de Ordenador (27-32\") consume una potencia media de unos 35 vatios, lo que equivale a 0.035 kWh por hora (aprox. 0.01 €/hora a 0,35 €/kWh). El consumo anual medio es de unos 60 kWh (21.00 €/año)."
+        },
+        {
+          "question": "¿Cuánto cuesta utilizar un Monitor de Ordenador (27-32\") al mes o por uso?",
+          "answer": "El coste estimado es de unos 0,07 € / 6 Stunden Betrieb. En el cómputo mensual, representa un gasto de luz de aproximadamente 1.75 € al mes."
+        },
+        {
+          "question": "¿Cómo reducir el gasto de luz de un Monitor de Ordenador (27-32\")?",
+          "answer": "Aprovecha los programas Eco, mantén limpios los filtros y juntas, y desenchúfalo o usa regletas con interruptor para evitar el consumo fantasma en modo de espera."
+        },
+        {
+          "question": "¿Un Monitor de Ordenador (27-32\") sigue gastando electricidad en modo reposo (standby)?",
+          "answer": "Sí, en modo de espera suele consumir entre 0,5 y 3 vatios. En aparatos más antiguos, este consumo en reposo puede llegar a 5–10 W, sumando entre 15 y 30 € al año en la factura."
+        },
+        {
+          "question": "¿Merece la pena renovar un Monitor de Ordenador (27-32\") antiguo por uno de bajo consumo?",
+          "answer": "Si tiene más de 8 o 10 años, un modelo nuevo de alta calificación energética ahorra entre un 30 % y un 50 % de electricidad, ahorrando de 30 a 80 € cada año."
+        }
+      ]
     },
-    'monitor': {
-      name: 'Monitor de Ordenador',
-      category: 'Entretenimiento y Oficina',
-      shortDescription: 'Un monitor de 27 pulgadas consume unos 20 a 40 W (unos 0,7 a 1,4 céntimos por hora).',
-      dutyCycleExplanation: 'La retroiluminación LED genera un consumo constante.',
-      savingAdvice: ['Ajusta el brillo a la luz de la habitación.'],
-      faq: [{ question: '¿Cuánto cuesta un segundo monitor al año?', answer: 'Añadir un segundo monitor supone unos 10 a 20 € al año en electricidad.' }]
+    "ps5": {
+      "name": "PlayStation 5 (PS5)",
+      "category": "Entretenimiento y Oficina",
+      "shortDescription": "Un PlayStation 5 (PS5) consume unos 150 kWh al año (aprox. 52.50 € con tarifa de 0,35 €/kWh). Potencia media: 200 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "¿Cuánta electricidad consume un PlayStation 5 (PS5) por hora, día y año?",
+          "answer": "Un PlayStation 5 (PS5) consume una potencia media de unos 200 vatios, lo que equivale a 0.200 kWh por hora (aprox. 0.07 €/hora a 0,35 €/kWh). El consumo anual medio es de unos 150 kWh (52.50 €/año)."
+        },
+        {
+          "question": "¿Cuánto cuesta utilizar un PlayStation 5 (PS5) al mes o por uso?",
+          "answer": "El coste estimado es de unos 0,21 € / 3 Stunden Spielen. En el cómputo mensual, representa un gasto de luz de aproximadamente 4.38 € al mes."
+        },
+        {
+          "question": "¿Cómo reducir el gasto de luz de un PlayStation 5 (PS5)?",
+          "answer": "Aprovecha los programas Eco, mantén limpios los filtros y juntas, y desenchúfalo o usa regletas con interruptor para evitar el consumo fantasma en modo de espera."
+        },
+        {
+          "question": "¿Un PlayStation 5 (PS5) sigue gastando electricidad en modo reposo (standby)?",
+          "answer": "Sí, en modo de espera suele consumir entre 0,5 y 3 vatios. En aparatos más antiguos, este consumo en reposo puede llegar a 5–10 W, sumando entre 15 y 30 € al año en la factura."
+        },
+        {
+          "question": "¿Merece la pena renovar un PlayStation 5 (PS5) antiguo por uno de bajo consumo?",
+          "answer": "Si tiene más de 8 o 10 años, un modelo nuevo de alta calificación energética ahorra entre un 30 % y un 50 % de electricidad, ahorrando de 30 a 80 € cada año."
+        }
+      ]
     },
-    'ps5': {
-      name: 'PlayStation 5 (PS5)',
-      category: 'Entretenimiento y Oficina',
-      shortDescription: 'La PS5 consume entre 180 y 220 W jugando (unos 6,3 a 7,7 céntimos por hora).',
-      dutyCycleExplanation: 'En el menú consume 50 W y jugando a títulos 4K hasta 220 W.',
-      savingAdvice: ['Limita las horas de alimentación USB en modo reposo.'],
-      faq: [{ question: '¿Cuánto consume la PS5 en reposo?', answer: 'En reposo consume entre 1,5 y 3 W; descargando actualizaciones unos 30 W.' }]
+    "xbox": {
+      "name": "Xbox Series X",
+      "category": "Entretenimiento y Oficina",
+      "shortDescription": "Un Xbox Series X consume unos 140 kWh al año (aprox. 49.00 € con tarifa de 0,35 €/kWh). Potencia media: 190 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "¿Cuánta electricidad consume un Xbox Series X por hora, día y año?",
+          "answer": "Un Xbox Series X consume una potencia media de unos 190 vatios, lo que equivale a 0.190 kWh por hora (aprox. 0.07 €/hora a 0,35 €/kWh). El consumo anual medio es de unos 140 kWh (49.00 €/año)."
+        },
+        {
+          "question": "¿Cuánto cuesta utilizar un Xbox Series X al mes o por uso?",
+          "answer": "El coste estimado es de unos 0,20 € / 3 Stunden Spielen. En el cómputo mensual, representa un gasto de luz de aproximadamente 4.08 € al mes."
+        },
+        {
+          "question": "¿Cómo reducir el gasto de luz de un Xbox Series X?",
+          "answer": "Aprovecha los programas Eco, mantén limpios los filtros y juntas, y desenchúfalo o usa regletas con interruptor para evitar el consumo fantasma en modo de espera."
+        },
+        {
+          "question": "¿Un Xbox Series X sigue gastando electricidad en modo reposo (standby)?",
+          "answer": "Sí, en modo de espera suele consumir entre 0,5 y 3 vatios. En aparatos más antiguos, este consumo en reposo puede llegar a 5–10 W, sumando entre 15 y 30 € al año en la factura."
+        },
+        {
+          "question": "¿Merece la pena renovar un Xbox Series X antiguo por uno de bajo consumo?",
+          "answer": "Si tiene más de 8 o 10 años, un modelo nuevo de alta calificación energética ahorra entre un 30 % y un 50 % de electricidad, ahorrando de 30 a 80 € cada año."
+        }
+      ]
     },
-    'xbox': {
-      name: 'Xbox Series X',
-      category: 'Entretenimiento y Oficina',
-      shortDescription: 'La Xbox Series X consume entre 150 y 210 W jugando (unos 5,3 a 7,4 céntimos por hora).',
-      dutyCycleExplanation: 'Pleno rendimiento en juegos a 4K 120Hz.',
-      savingAdvice: ['Usa el modo "Apagado (ahorro de energía)" en lugar de inicio instantáneo.'],
-      faq: [{ question: '¿Cuánto ahorra el modo bajo consumo de Xbox?', answer: 'Consume 0,5 W frente a 10–13 W en reposo activo, ahorrando unos 30 €/año.' }]
+    "klimaanlage": {
+      "name": "Aire Acondicionado (Split)",
+      "category": "Climatización y Calefacción",
+      "shortDescription": "Un Aire Acondicionado (Split) consume unos 350 kWh al año (aprox. 122.50 € con tarifa de 0,35 €/kWh). Potencia media: 800 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "¿Cuánta electricidad consume un Aire Acondicionado (Split) por hora, día y año?",
+          "answer": "Un Aire Acondicionado (Split) consume una potencia media de unos 800 vatios, lo que equivale a 0.800 kWh por hora (aprox. 0.28 €/hora a 0,35 €/kWh). El consumo anual medio es de unos 350 kWh (122.50 €/año)."
+        },
+        {
+          "question": "¿Cuánto cuesta utilizar un Aire Acondicionado (Split) al mes o por uso?",
+          "answer": "El coste estimado es de unos 1,40 € / 5 Stunden Kühlung. En el cómputo mensual, representa un gasto de luz de aproximadamente 10.21 € al mes."
+        },
+        {
+          "question": "¿Cómo reducir el gasto de luz de un Aire Acondicionado (Split)?",
+          "answer": "Aprovecha los programas Eco, mantén limpios los filtros y juntas, y desenchúfalo o usa regletas con interruptor para evitar el consumo fantasma en modo de espera."
+        },
+        {
+          "question": "¿Un Aire Acondicionado (Split) sigue gastando electricidad en modo reposo (standby)?",
+          "answer": "Sí, en modo de espera suele consumir entre 0,5 y 3 vatios. En aparatos más antiguos, este consumo en reposo puede llegar a 5–10 W, sumando entre 15 y 30 € al año en la factura."
+        },
+        {
+          "question": "¿Merece la pena renovar un Aire Acondicionado (Split) antiguo por uno de bajo consumo?",
+          "answer": "Si tiene más de 8 o 10 años, un modelo nuevo de alta calificación energética ahorra entre un 30 % y un 50 % de electricidad, ahorrando de 30 a 80 € cada año."
+        }
+      ]
     },
-    'klimaanlage': {
-      name: 'Aire Acondicionado',
-      category: 'Climatización',
-      shortDescription: 'Los portátiles consumen 800 a 1.200 W (28 a 42 ct/h); los splits inverter son un 50% más eficientes.',
-      dutyCycleExplanation: 'El compresor modula la potencia al alcanzar la temperatura objetivo.',
-      savingAdvice: ['Fija la temperatura en 24–25 °C.', 'Baja persianas durante las horas de más sol.'],
-      faq: [{ question: '¿Cuánto cuesta el aire acondicionado en verano?', answer: 'En 30 días de calor a 6h diarias, un portátil cuesta aprox. 50–75 € y un split 25–40 €.' }]
+    "ventilator": {
+      "name": "Ventilador de Pie",
+      "category": "Climatización y Calefacción",
+      "shortDescription": "Un Ventilador de Pie consume unos 35 kWh al año (aprox. 12.25 € con tarifa de 0,35 €/kWh). Potencia media: 45 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "¿Cuánta electricidad consume un Ventilador de Pie por hora, día y año?",
+          "answer": "Un Ventilador de Pie consume una potencia media de unos 45 vatios, lo que equivale a 0.045 kWh por hora (aprox. 0.02 €/hora a 0,35 €/kWh). El consumo anual medio es de unos 35 kWh (12.25 €/año)."
+        },
+        {
+          "question": "¿Cuánto cuesta utilizar un Ventilador de Pie al mes o por uso?",
+          "answer": "El coste estimado es de unos 0,10 € / 6 Stunden. En el cómputo mensual, representa un gasto de luz de aproximadamente 1.02 € al mes."
+        },
+        {
+          "question": "¿Cómo reducir el gasto de luz de un Ventilador de Pie?",
+          "answer": "Aprovecha los programas Eco, mantén limpios los filtros y juntas, y desenchúfalo o usa regletas con interruptor para evitar el consumo fantasma en modo de espera."
+        },
+        {
+          "question": "¿Un Ventilador de Pie sigue gastando electricidad en modo reposo (standby)?",
+          "answer": "Sí, en modo de espera suele consumir entre 0,5 y 3 vatios. En aparatos más antiguos, este consumo en reposo puede llegar a 5–10 W, sumando entre 15 y 30 € al año en la factura."
+        },
+        {
+          "question": "¿Merece la pena renovar un Ventilador de Pie antiguo por uno de bajo consumo?",
+          "answer": "Si tiene más de 8 o 10 años, un modelo nuevo de alta calificación energética ahorra entre un 30 % y un 50 % de electricidad, ahorrando de 30 a 80 € cada año."
+        }
+      ]
     },
-    'ventilator': {
-      name: 'Ventilador',
-      category: 'Climatización',
-      shortDescription: 'Un ventilador de pie consume solo 25 a 50 W (unos 0,9 a 1,8 céntimos por hora).',
-      dutyCycleExplanation: 'Motor directo sin compresor de refrigeración.',
-      savingAdvice: ['Apágalo al salir de la habitación (refresca a las personas, no el aire).'],
-      faq: [{ question: '¿Gasta mucho menos un ventilador que el aire acondicionado?', answer: 'Sí, gasta hasta un 95% menos de luz.' }]
+    "heizluefter": {
+      "name": "Calefactor Eléctrico / Termoventilador",
+      "category": "Climatización y Calefacción",
+      "shortDescription": "Un Calefactor Eléctrico / Termoventilador consume unos 300 kWh al año (aprox. 105.00 € con tarifa de 0,35 €/kWh). Potencia media: 2000 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "¿Cuánta electricidad consume un Calefactor Eléctrico / Termoventilador por hora, día y año?",
+          "answer": "Un Calefactor Eléctrico / Termoventilador consume una potencia media de unos 2000 vatios, lo que equivale a 2.000 kWh por hora (aprox. 0.70 €/hora a 0,35 €/kWh). El consumo anual medio es de unos 300 kWh (105.00 €/año)."
+        },
+        {
+          "question": "¿Cuánto cuesta utilizar un Calefactor Eléctrico / Termoventilador al mes o por uso?",
+          "answer": "El coste estimado es de unos 1,40 € / 2 Stunden Heizen. En el cómputo mensual, representa un gasto de luz de aproximadamente 8.75 € al mes."
+        },
+        {
+          "question": "¿Cómo reducir el gasto de luz de un Calefactor Eléctrico / Termoventilador?",
+          "answer": "Aprovecha los programas Eco, mantén limpios los filtros y juntas, y desenchúfalo o usa regletas con interruptor para evitar el consumo fantasma en modo de espera."
+        },
+        {
+          "question": "¿Un Calefactor Eléctrico / Termoventilador sigue gastando electricidad en modo reposo (standby)?",
+          "answer": "Sí, en modo de espera suele consumir entre 0,5 y 3 vatios. En aparatos más antiguos, este consumo en reposo puede llegar a 5–10 W, sumando entre 15 y 30 € al año en la factura."
+        },
+        {
+          "question": "¿Merece la pena renovar un Calefactor Eléctrico / Termoventilador antiguo por uno de bajo consumo?",
+          "answer": "Si tiene más de 8 o 10 años, un modelo nuevo de alta calificación energética ahorra entre un 30 % y un 50 % de electricidad, ahorrando de 30 a 80 € cada año."
+        }
+      ]
     },
-    'heizluefter': {
-      name: 'Calefactor Eléctrico',
-      category: 'Climatización',
-      shortDescription: 'Un calefactor consume entre 1.500 y 2.000 W (unos 53 a 70 céntimos por hora de uso).',
-      dutyCycleExplanation: 'Resistencia eléctrica que convierte electricidad en calor 1:1.',
-      savingAdvice: ['Úsalo solo para calentar puntualmente unos minutos.'],
-      faq: [{ question: '¿Cuánto cuesta encenderlo todo el día?', answer: '8 horas al día cuestan entre 4,20 y 5,60 € diarios (más de 150 € al mes).' }]
+    "luftentfeuchter": {
+      "name": "Deshumidificador Eléctrico",
+      "category": "Climatización y Calefacción",
+      "shortDescription": "Un Deshumidificador Eléctrico consume unos 280 kWh al año (aprox. 98.00 € con tarifa de 0,35 €/kWh). Potencia media: 350 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "¿Cuánta electricidad consume un Deshumidificador Eléctrico por hora, día y año?",
+          "answer": "Un Deshumidificador Eléctrico consume una potencia media de unos 350 vatios, lo que equivale a 0.350 kWh por hora (aprox. 0.12 €/hora a 0,35 €/kWh). El consumo anual medio es de unos 280 kWh (98.00 €/año)."
+        },
+        {
+          "question": "¿Cuánto cuesta utilizar un Deshumidificador Eléctrico al mes o por uso?",
+          "answer": "El coste estimado es de unos 0,74 € / 6 Stunden. En el cómputo mensual, representa un gasto de luz de aproximadamente 8.17 € al mes."
+        },
+        {
+          "question": "¿Cómo reducir el gasto de luz de un Deshumidificador Eléctrico?",
+          "answer": "Aprovecha los programas Eco, mantén limpios los filtros y juntas, y desenchúfalo o usa regletas con interruptor para evitar el consumo fantasma en modo de espera."
+        },
+        {
+          "question": "¿Un Deshumidificador Eléctrico sigue gastando electricidad en modo reposo (standby)?",
+          "answer": "Sí, en modo de espera suele consumir entre 0,5 y 3 vatios. En aparatos más antiguos, este consumo en reposo puede llegar a 5–10 W, sumando entre 15 y 30 € al año en la factura."
+        },
+        {
+          "question": "¿Merece la pena renovar un Deshumidificador Eléctrico antiguo por uno de bajo consumo?",
+          "answer": "Si tiene más de 8 o 10 años, un modelo nuevo de alta calificación energética ahorra entre un 30 % y un 50 % de electricidad, ahorrando de 30 a 80 € cada año."
+        }
+      ]
     },
-    'luftentfeuchter': {
-      name: 'Deshumidificador',
-      category: 'Climatización',
-      shortDescription: 'Un deshumidificador consume entre 200 y 400 W (unos 7 a 14 céntimos por hora).',
-      dutyCycleExplanation: 'El compresor condensa la humedad del aire ambiente.',
-      savingAdvice: ['Fija la humedad deseada en 50–55%.', 'Cierra puertas y ventanas durante su uso.'],
-      faq: [{ question: '¿Cuántas horas debe funcionar al día?', answer: 'Con 2 a 4 horas al día con ventanas cerradas suele ser suficiente.' }]
+    "aquarium": {
+      "name": "Acuario (100–200 Litros)",
+      "category": "Ocio y Especial",
+      "shortDescription": "Un Acuario (100–200 Litros) consume unos 350 kWh al año (aprox. 122.50 € con tarifa de 0,35 €/kWh). Potencia media: 60 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "¿Cuánta electricidad consume un Acuario (100–200 Litros) por hora, día y año?",
+          "answer": "Un Acuario (100–200 Litros) consume una potencia media de unos 60 vatios, lo que equivale a 0.060 kWh por hora (aprox. 0.02 €/hora a 0,35 €/kWh). El consumo anual medio es de unos 350 kWh (122.50 €/año)."
+        },
+        {
+          "question": "¿Cuánto cuesta utilizar un Acuario (100–200 Litros) al mes o por uso?",
+          "answer": "El coste estimado es de unos 0,34 € / 24 Stunden Dauerbetrieb. En el cómputo mensual, representa un gasto de luz de aproximadamente 10.21 € al mes."
+        },
+        {
+          "question": "¿Cómo reducir el gasto de luz de un Acuario (100–200 Litros)?",
+          "answer": "Aprovecha los programas Eco, mantén limpios los filtros y juntas, y desenchúfalo o usa regletas con interruptor para evitar el consumo fantasma en modo de espera."
+        },
+        {
+          "question": "¿Un Acuario (100–200 Litros) sigue gastando electricidad en modo reposo (standby)?",
+          "answer": "Sí, en modo de espera suele consumir entre 0,5 y 3 vatios. En aparatos más antiguos, este consumo en reposo puede llegar a 5–10 W, sumando entre 15 y 30 € al año en la factura."
+        },
+        {
+          "question": "¿Merece la pena renovar un Acuario (100–200 Litros) antiguo por uno de bajo consumo?",
+          "answer": "Si tiene más de 8 o 10 años, un modelo nuevo de alta calificación energética ahorra entre un 30 % y un 50 % de electricidad, ahorrando de 30 a 80 € cada año."
+        }
+      ]
     },
-    'aquarium': {
-      name: 'Acuario',
-      category: 'Hobby y Especial',
-      shortDescription: 'Un acuario de 100 litros consume aprox. 150 a 300 kWh al año (unos 53 a 105 €/año).',
-      dutyCycleExplanation: 'El calentador y la iluminación suponen casi todo el consumo.',
-      savingAdvice: ['Usa luces LED y mantén el acuario tapado.'],
-      faq: [{ question: '¿Qué es lo que más gasta en un acuario?', answer: 'El calentador termostático de agua.' }]
+    "pool": {
+      "name": "Bomba de Piscina y Filtro",
+      "category": "Ocio y Especial",
+      "shortDescription": "Un Bomba de Piscina y Filtro consume unos 480 kWh al año (aprox. 168.00 € con tarifa de 0,35 €/kWh). Potencia media: 500 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "¿Cuánta electricidad consume un Bomba de Piscina y Filtro por hora, día y año?",
+          "answer": "Un Bomba de Piscina y Filtro consume una potencia media de unos 500 vatios, lo que equivale a 0.500 kWh por hora (aprox. 0.17 €/hora a 0,35 €/kWh). El consumo anual medio es de unos 480 kWh (168.00 €/año)."
+        },
+        {
+          "question": "¿Cuánto cuesta utilizar un Bomba de Piscina y Filtro al mes o por uso?",
+          "answer": "El coste estimado es de unos 1,05 € / 6 Stunden Filterung. En el cómputo mensual, representa un gasto de luz de aproximadamente 14.00 € al mes."
+        },
+        {
+          "question": "¿Cómo reducir el gasto de luz de un Bomba de Piscina y Filtro?",
+          "answer": "Aprovecha los programas Eco, mantén limpios los filtros y juntas, y desenchúfalo o usa regletas con interruptor para evitar el consumo fantasma en modo de espera."
+        },
+        {
+          "question": "¿Un Bomba de Piscina y Filtro sigue gastando electricidad en modo reposo (standby)?",
+          "answer": "Sí, en modo de espera suele consumir entre 0,5 y 3 vatios. En aparatos más antiguos, este consumo en reposo puede llegar a 5–10 W, sumando entre 15 y 30 € al año en la factura."
+        },
+        {
+          "question": "¿Merece la pena renovar un Bomba de Piscina y Filtro antiguo por uno de bajo consumo?",
+          "answer": "Si tiene más de 8 o 10 años, un modelo nuevo de alta calificación energética ahorra entre un 30 % y un 50 % de electricidad, ahorrando de 30 a 80 € cada año."
+        }
+      ]
     },
-    'pool': {
-      name: 'Bomba de Piscina',
-      category: 'Hobby y Especial',
-      shortDescription: 'Una bomba de piscina consume entre 400 y 1.000 W (unos 14 a 35 céntimos por hora).',
-      dutyCycleExplanation: 'Filtra el volumen total de agua 2 a 3 veces al día.',
-      savingAdvice: ['Usa un temporizador diario.', 'Elige bombas de velocidad variable.'],
-      faq: [{ question: '¿Cuántas horas debe funcionar en verano?', answer: 'Entre 6 y 8 horas diarias en temporada de baño.' }]
+    "whirlpool": {
+      "name": "Jacuzzi / Spa de Exterior",
+      "category": "Ocio y Especial",
+      "shortDescription": "Un Jacuzzi / Spa de Exterior consume unos 2200 kWh al año (aprox. 770.00 € con tarifa de 0,35 €/kWh). Potencia media: 2500 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "¿Cuánta electricidad consume un Jacuzzi / Spa de Exterior por hora, día y año?",
+          "answer": "Un Jacuzzi / Spa de Exterior consume una potencia media de unos 2500 vatios, lo que equivale a 2.500 kWh por hora (aprox. 0.88 €/hora a 0,35 €/kWh). El consumo anual medio es de unos 2200 kWh (770.00 €/año)."
+        },
+        {
+          "question": "¿Cuánto cuesta utilizar un Jacuzzi / Spa de Exterior al mes o por uso?",
+          "answer": "El coste estimado es de unos 2,10 € / Tag (Heizung & Zirkulation). En el cómputo mensual, representa un gasto de luz de aproximadamente 64.17 € al mes."
+        },
+        {
+          "question": "¿Cómo reducir el gasto de luz de un Jacuzzi / Spa de Exterior?",
+          "answer": "Aprovecha los programas Eco, mantén limpios los filtros y juntas, y desenchúfalo o usa regletas con interruptor para evitar el consumo fantasma en modo de espera."
+        },
+        {
+          "question": "¿Un Jacuzzi / Spa de Exterior sigue gastando electricidad en modo reposo (standby)?",
+          "answer": "Sí, en modo de espera suele consumir entre 0,5 y 3 vatios. En aparatos más antiguos, este consumo en reposo puede llegar a 5–10 W, sumando entre 15 y 30 € al año en la factura."
+        },
+        {
+          "question": "¿Merece la pena renovar un Jacuzzi / Spa de Exterior antiguo por uno de bajo consumo?",
+          "answer": "Si tiene más de 8 o 10 años, un modelo nuevo de alta calificación energética ahorra entre un 30 % y un 50 % de electricidad, ahorrando de 30 a 80 € cada año."
+        }
+      ]
     },
-    'whirlpool': {
-      name: 'Jacuzzi / Spa Exterior',
-      category: 'Hobby y Especial',
-      shortDescription: 'Un jacuzzi exterior consume entre 2.000 y 4.000 kWh al año (unos 700 a 1.400 €/año).',
-      dutyCycleExplanation: 'Mantener el agua caliente a 38 °C requiere calefacción continua.',
-      savingAdvice: ['Usa siempre una cubierta térmica gruesa.'],
-      faq: [{ question: '¿Cuánto cuesta un jacuzzi al mes?', answer: 'Entre 50 y 120 euros al mes de electricidad según la época del año.' }]
+    "3d-drucker": {
+      "name": "Impresora 3D (FDM)",
+      "category": "Ocio y Especial",
+      "shortDescription": "Un Impresora 3D (FDM) consume unos 120 kWh al año (aprox. 42.00 € con tarifa de 0,35 €/kWh). Potencia media: 150 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "¿Cuánta electricidad consume un Impresora 3D (FDM) por hora, día y año?",
+          "answer": "Un Impresora 3D (FDM) consume una potencia media de unos 150 vatios, lo que equivale a 0.150 kWh por hora (aprox. 0.05 €/hora a 0,35 €/kWh). El consumo anual medio es de unos 120 kWh (42.00 €/año)."
+        },
+        {
+          "question": "¿Cuánto cuesta utilizar un Impresora 3D (FDM) al mes o por uso?",
+          "answer": "El coste estimado es de unos 0,42 € / 8 Stunden Druck. En el cómputo mensual, representa un gasto de luz de aproximadamente 3.50 € al mes."
+        },
+        {
+          "question": "¿Cómo reducir el gasto de luz de un Impresora 3D (FDM)?",
+          "answer": "Aprovecha los programas Eco, mantén limpios los filtros y juntas, y desenchúfalo o usa regletas con interruptor para evitar el consumo fantasma en modo de espera."
+        },
+        {
+          "question": "¿Un Impresora 3D (FDM) sigue gastando electricidad en modo reposo (standby)?",
+          "answer": "Sí, en modo de espera suele consumir entre 0,5 y 3 vatios. En aparatos más antiguos, este consumo en reposo puede llegar a 5–10 W, sumando entre 15 y 30 € al año en la factura."
+        },
+        {
+          "question": "¿Merece la pena renovar un Impresora 3D (FDM) antiguo por uno de bajo consumo?",
+          "answer": "Si tiene más de 8 o 10 años, un modelo nuevo de alta calificación energética ahorra entre un 30 % y un 50 % de electricidad, ahorrando de 30 a 80 € cada año."
+        }
+      ]
     },
-    '3d-drucker': {
-      name: 'Impresora 3D',
-      category: 'Hobby y Especial',
-      shortDescription: 'Una impresora 3D consume entre 100 y 180 W (unos 3,5 a 6,3 céntimos por hora de impresión).',
-      dutyCycleExplanation: 'La cama caliente consume el 70% de la energía.',
-      savingAdvice: ['Usa un cerramiento (enclosure) para retener el calor.'],
-      faq: [{ question: '¿Cuánto cuesta una impresión de 10 horas?', answer: 'Unos 40 a 60 céntimos de electricidad.' }]
+    "nas": {
+      "name": "Servidor NAS / Almacenamiento en Red",
+      "category": "Entretenimiento y Oficina",
+      "shortDescription": "Un Servidor NAS / Almacenamiento en Red consume unos 260 kWh al año (aprox. 91.00 € con tarifa de 0,35 €/kWh). Potencia media: 30 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "¿Cuánta electricidad consume un Servidor NAS / Almacenamiento en Red por hora, día y año?",
+          "answer": "Un Servidor NAS / Almacenamiento en Red consume una potencia media de unos 30 vatios, lo que equivale a 0.030 kWh por hora (aprox. 0.01 €/hora a 0,35 €/kWh). El consumo anual medio es de unos 260 kWh (91.00 €/año)."
+        },
+        {
+          "question": "¿Cuánto cuesta utilizar un Servidor NAS / Almacenamiento en Red al mes o por uso?",
+          "answer": "El coste estimado es de unos 0,25 € / 24 Stunden Dauerbetrieb. En el cómputo mensual, representa un gasto de luz de aproximadamente 7.58 € al mes."
+        },
+        {
+          "question": "¿Cómo reducir el gasto de luz de un Servidor NAS / Almacenamiento en Red?",
+          "answer": "Aprovecha los programas Eco, mantén limpios los filtros y juntas, y desenchúfalo o usa regletas con interruptor para evitar el consumo fantasma en modo de espera."
+        },
+        {
+          "question": "¿Un Servidor NAS / Almacenamiento en Red sigue gastando electricidad en modo reposo (standby)?",
+          "answer": "Sí, en modo de espera suele consumir entre 0,5 y 3 vatios. En aparatos más antiguos, este consumo en reposo puede llegar a 5–10 W, sumando entre 15 y 30 € al año en la factura."
+        },
+        {
+          "question": "¿Merece la pena renovar un Servidor NAS / Almacenamiento en Red antiguo por uno de bajo consumo?",
+          "answer": "Si tiene más de 8 o 10 años, un modelo nuevo de alta calificación energética ahorra entre un 30 % y un 50 % de electricidad, ahorrando de 30 a 80 € cada año."
+        }
+      ]
     },
-    'nas': {
-      name: 'Servidor NAS',
-      category: 'Hobby y Especial',
-      shortDescription: 'Un NAS de 2 bahías consume entre 15 y 30 W encendido 24/7 (unos 45 a 90 € al año).',
-      dutyCycleExplanation: 'El apagado de discos (spindown) reduce el reposo a menos de 8 W.',
-      savingAdvice: ['Activa la hibernación de discos duros.'],
-      faq: [{ question: '¿Cuánto cuesta tener un NAS encendido todo el año?', answer: 'A 20 W continuos son unos 61 euros al año.' }]
-    },
-    'server': {
-      name: 'Servidor Doméstico',
-      category: 'Hobby y Especial',
-      shortDescription: 'Un servidor doméstico de bajo consumo (Mini PC) consume entre 10 y 40 W (unos 30 a 120 €/año).',
-      dutyCycleExplanation: 'Procesadores modernos con consumo ultrabajo en reposo.',
-      savingAdvice: ['Usa Mini PCs modernos en lugar de torres viejas.'],
-      faq: [{ question: '¿Cuánto consume un servidor casero?', answer: 'Un Mini PC moderno gasta solo 10–15 W en reposo (unos 30–45 € al año).' }]
+    "server": {
+      "name": "Servidor Doméstico / Home Server",
+      "category": "Entretenimiento y Oficina",
+      "shortDescription": "Un Servidor Doméstico / Home Server consume unos 570 kWh al año (aprox. 199.50 € con tarifa de 0,35 €/kWh). Potencia media: 65 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "¿Cuánta electricidad consume un Servidor Doméstico / Home Server por hora, día y año?",
+          "answer": "Un Servidor Doméstico / Home Server consume una potencia media de unos 65 vatios, lo que equivale a 0.065 kWh por hora (aprox. 0.02 €/hora a 0,35 €/kWh). El consumo anual medio es de unos 570 kWh (199.50 €/año)."
+        },
+        {
+          "question": "¿Cuánto cuesta utilizar un Servidor Doméstico / Home Server al mes o por uso?",
+          "answer": "El coste estimado es de unos 0,55 € / 24 Stunden Dauerbetrieb. En el cómputo mensual, representa un gasto de luz de aproximadamente 16.63 € al mes."
+        },
+        {
+          "question": "¿Cómo reducir el gasto de luz de un Servidor Doméstico / Home Server?",
+          "answer": "Aprovecha los programas Eco, mantén limpios los filtros y juntas, y desenchúfalo o usa regletas con interruptor para evitar el consumo fantasma en modo de espera."
+        },
+        {
+          "question": "¿Un Servidor Doméstico / Home Server sigue gastando electricidad en modo reposo (standby)?",
+          "answer": "Sí, en modo de espera suele consumir entre 0,5 y 3 vatios. En aparatos más antiguos, este consumo en reposo puede llegar a 5–10 W, sumando entre 15 y 30 € al año en la factura."
+        },
+        {
+          "question": "¿Merece la pena renovar un Servidor Doméstico / Home Server antiguo por uno de bajo consumo?",
+          "answer": "Si tiene más de 8 o 10 años, un modelo nuevo de alta calificación energética ahorra entre un 30 % y un 50 % de electricidad, ahorrando de 30 a 80 € cada año."
+        }
+      ]
     }
   },
-  ja: {
-    'kuehlschrank': {
-      name: '冷蔵庫',
-      category: 'キッチン家電',
-      shortDescription: '最新の冷蔵庫の年間消費電力量は約100〜160kWh（年間約35〜56€）。古い機器は250〜350kWhに達します。',
-      dutyCycleExplanation: '24時間稼働していますが、コンプレッサーは1時間あたり約20〜40分のみ作動します。',
-      savingAdvice: ['冷蔵室は7℃、冷凍室は-18℃を目安に設定。', '定期的に霜取りを行い、パッキンの密閉を確認。'],
-      faq: [{ question: '冷蔵庫の1日あたりの電気代は？', answer: '最新の標準型で1日約0.3〜0.45kWh（約10〜16セント）です。' }]
+  "ja": {
+    "kuehlschrank": {
+      "name": "冷蔵庫",
+      "category": "キッチン・台所",
+      "shortDescription": "冷蔵庫の年間消費電力量は約120 kWh（年間電気代約42.00ユーロ）。平均消費電力は90Wです。",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "冷蔵庫の消費電力と1時間・年間あたりの電気代はいくら？",
+          "answer": "冷蔵庫の消費電力は約90W（ワット）です。1時間あたりの電気消費量は約0.090 kWh（約0.01ユーロ）です。年間の平均消費電力量は約120 kWhで、年間の電気代は約42.00ユーロ（月額約3.50ユーロ）となります。"
+        },
+        {
+          "question": "冷蔵庫の電気代を最も安く抑える節電方法は？",
+          "answer": "エコモードを活用し、フィルターや吸気口の定期的な掃除を行い、長期間使用しない際は待機電力を防ぐために電源タップで主電源をオフにすることが推奨されます。"
+        },
+        {
+          "question": "冷蔵庫は使っていない待機状態でも電気を消費する？",
+          "answer": "はい。多くの電子機器は待機時に約0.5〜3Wの電力を消費します。旧型の製品では5〜10W消費する場合があり、年間で15〜30ユーロ程度の余分なコストになります。"
+        },
+        {
+          "question": "古い冷蔵庫を最新の省エネモデルに買い換えると節電になる？",
+          "answer": "8〜10年以上前の旧型製品から最新の省エネモデルに買い替えることで、約30〜50％の消費電力を削減でき、年間30〜80ユーロの電気代節約につながります。"
+        }
+      ]
     },
-    'waschmaschine': {
-      name: '洗濯機',
-      category: '生活・洗濯家電',
-      shortDescription: '最新の洗濯機は1回あたり約0.5〜1.0kWhを消費します（1回あたり約18〜35セント）。',
-      dutyCycleExplanation: '電力の80％以上は水温を上げるヒーターに使われます。',
-      savingAdvice: ['節電コース（30℃以下での洗濯）を活用する。', 'まとめ洗いを行う。'],
-      faq: [{ question: '水温による電気代の違いは？', answer: '60℃洗いはおよそ35〜50セント、30℃以下のエコ運転なら約15〜20セントに抑えられます。' }]
+    "waschmaschine": {
+      "name": "洗濯機",
+      "category": "生活家電・清掃",
+      "shortDescription": "洗濯機の年間消費電力量は約140 kWh（年間電気代約49.00ユーロ）。平均消費電力は2000Wです。",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "洗濯機の消費電力と1時間・年間あたりの電気代はいくら？",
+          "answer": "洗濯機の消費電力は約2000W（ワット）です。1時間あたりの電気消費量は約2.000 kWh（約0.70ユーロ）です。年間の平均消費電力量は約140 kWhで、年間の電気代は約49.00ユーロ（月額約4.08ユーロ）となります。"
+        },
+        {
+          "question": "洗濯機の電気代を最も安く抑える節電方法は？",
+          "answer": "エコモードを活用し、フィルターや吸気口の定期的な掃除を行い、長期間使用しない際は待機電力を防ぐために電源タップで主電源をオフにすることが推奨されます。"
+        },
+        {
+          "question": "洗濯機は使っていない待機状態でも電気を消費する？",
+          "answer": "はい。多くの電子機器は待機時に約0.5〜3Wの電力を消費します。旧型の製品では5〜10W消費する場合があり、年間で15〜30ユーロ程度の余分なコストになります。"
+        },
+        {
+          "question": "古い洗濯機を最新の省エネモデルに買い換えると節電になる？",
+          "answer": "8〜10年以上前の旧型製品から最新の省エネモデルに買い替えることで、約30〜50％の消費電力を削減でき、年間30〜80ユーロの電気代節約につながります。"
+        }
+      ]
     },
-    'trockner': {
-      name: '衣類乾燥機',
-      category: '生活・洗濯家電',
-      shortDescription: 'ヒートポンプ式乾燥機は1回あたり約1.2〜1.8kWh、従来のヒーター式は4kWh以上消費します。',
-      dutyCycleExplanation: 'ヒートポンプ式は熱を再利用するため60％以上の省エネが可能です。',
-      savingAdvice: ['洗濯機でしっかり脱水してから乾燥機に入れる。', '使用後は毎回フィルター掃除。'],
-      faq: [{ question: '乾燥機1回の電気代はいくらですか？', answer: '最新のヒートポンプ式で約45〜65セント、旧型では1.50€以上かかります。' }]
+    "trockner": {
+      "name": "衣類乾燥機",
+      "category": "生活家電・清掃",
+      "shortDescription": "衣類乾燥機の年間消費電力量は約180 kWh（年間電気代約63.00ユーロ）。平均消費電力は1500Wです。",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "衣類乾燥機の消費電力と1時間・年間あたりの電気代はいくら？",
+          "answer": "衣類乾燥機の消費電力は約1500W（ワット）です。1時間あたりの電気消費量は約1.500 kWh（約0.53ユーロ）です。年間の平均消費電力量は約180 kWhで、年間の電気代は約63.00ユーロ（月額約5.25ユーロ）となります。"
+        },
+        {
+          "question": "衣類乾燥機の電気代を最も安く抑える節電方法は？",
+          "answer": "エコモードを活用し、フィルターや吸気口の定期的な掃除を行い、長期間使用しない際は待機電力を防ぐために電源タップで主電源をオフにすることが推奨されます。"
+        },
+        {
+          "question": "衣類乾燥機は使っていない待機状態でも電気を消費する？",
+          "answer": "はい。多くの電子機器は待機時に約0.5〜3Wの電力を消費します。旧型の製品では5〜10W消費する場合があり、年間で15〜30ユーロ程度の余分なコストになります。"
+        },
+        {
+          "question": "古い衣類乾燥機を最新の省エネモデルに買い換えると節電になる？",
+          "answer": "8〜10年以上前の旧型製品から最新の省エネモデルに買い替えることで、約30〜50％の消費電力を削減でき、年間30〜80ユーロの電気代節約につながります。"
+        }
+      ]
     },
-    'geschirrspueler': {
-      name: '食器洗い乾燥機（食洗機）',
-      category: 'キッチン家電',
-      shortDescription: 'エコモードで1回あたり約0.7〜0.9kWh（約25〜32セント）。手洗いよりも水と電気の節約になります。',
-      dutyCycleExplanation: '循環水を効率よく加熱し、つけ置き時間を長くして電力を抑えます。',
-      savingAdvice: ['エコモード（50℃）を使用する。', '庫内いっぱいにまとめて洗う。'],
-      faq: [{ question: '手洗いと食洗機はどちらがお得ですか？', answer: '食洗機は手洗いと比べて電気代・ガス代を最大50％、水の使用量を60％以上削減できます。' }]
+    "geschirrspueler": {
+      "name": "食器洗い機（食洗機）",
+      "category": "キッチン・台所",
+      "shortDescription": "食器洗い機（食洗機）の年間消費電力量は約160 kWh（年間電気代約56.00ユーロ）。平均消費電力は1800Wです。",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "食器洗い機（食洗機）の消費電力と1時間・年間あたりの電気代はいくら？",
+          "answer": "食器洗い機（食洗機）の消費電力は約1800W（ワット）です。1時間あたりの電気消費量は約1.800 kWh（約0.63ユーロ）です。年間の平均消費電力量は約160 kWhで、年間の電気代は約56.00ユーロ（月額約4.67ユーロ）となります。"
+        },
+        {
+          "question": "食器洗い機（食洗機）の電気代を最も安く抑える節電方法は？",
+          "answer": "エコモードを活用し、フィルターや吸気口の定期的な掃除を行い、長期間使用しない際は待機電力を防ぐために電源タップで主電源をオフにすることが推奨されます。"
+        },
+        {
+          "question": "食器洗い機（食洗機）は使っていない待機状態でも電気を消費する？",
+          "answer": "はい。多くの電子機器は待機時に約0.5〜3Wの電力を消費します。旧型の製品では5〜10W消費する場合があり、年間で15〜30ユーロ程度の余分なコストになります。"
+        },
+        {
+          "question": "古い食器洗い機（食洗機）を最新の省エネモデルに買い換えると節電になる？",
+          "answer": "8〜10年以上前の旧型製品から最新の省エネモデルに買い替えることで、約30〜50％の消費電力を削減でき、年間30〜80ユーロの電気代節約につながります。"
+        }
+      ]
     },
-    'backofen': {
-      name: '電気オーブン',
-      category: 'キッチン家電',
-      shortDescription: '1時間あたり約0.8〜1.5kWh（約28〜52セント）を消費します。',
-      dutyCycleExplanation: '予熱時に最大電力を消費し、ファン対流（熱風）モードは従来比約20％省エネです。',
-      savingAdvice: ['ファン対流モードを活用する。', '調理中に無駄に扉を開けない。'],
-      faq: [{ question: 'オーブンの予熱は必須ですか？', answer: '多くの料理で予熱を省くことができ、最大20％の節電になります。' }]
+    "backofen": {
+      "name": "オーブン",
+      "category": "キッチン・台所",
+      "shortDescription": "オーブンの年間消費電力量は約150 kWh（年間電気代約52.50ユーロ）。平均消費電力は2500Wです。",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "オーブンの消費電力と1時間・年間あたりの電気代はいくら？",
+          "answer": "オーブンの消費電力は約2500W（ワット）です。1時間あたりの電気消費量は約2.500 kWh（約0.88ユーロ）です。年間の平均消費電力量は約150 kWhで、年間の電気代は約52.50ユーロ（月額約4.38ユーロ）となります。"
+        },
+        {
+          "question": "オーブンの電気代を最も安く抑える節電方法は？",
+          "answer": "エコモードを活用し、フィルターや吸気口の定期的な掃除を行い、長期間使用しない際は待機電力を防ぐために電源タップで主電源をオフにすることが推奨されます。"
+        },
+        {
+          "question": "オーブンは使っていない待機状態でも電気を消費する？",
+          "answer": "はい。多くの電子機器は待機時に約0.5〜3Wの電力を消費します。旧型の製品では5〜10W消費する場合があり、年間で15〜30ユーロ程度の余分なコストになります。"
+        },
+        {
+          "question": "古いオーブンを最新の省エネモデルに買い換えると節電になる？",
+          "answer": "8〜10年以上前の旧型製品から最新の省エネモデルに買い替えることで、約30〜50％の消費電力を削減でき、年間30〜80ユーロの電気代節約につながります。"
+        }
+      ]
     },
-    'herd': {
-      name: 'IHクッキングヒーター',
-      category: 'キッチン家電',
-      shortDescription: '1回の調理で約0.3〜0.7kWhを消費し、ラジエントヒーター比で20〜30％高効率です。',
-      dutyCycleExplanation: '磁力線で鍋底自体を発熱させるため熱損失がほぼありません。',
-      savingAdvice: ['鍋にフタをして調理する。', 'お湯は電気ケトルで沸かしてから使う。'],
-      faq: [{ question: 'IHは従来の電気コンロより電気代が安い？', answer: '熱効率が約90％と非常に高いため、20〜30％の省エネになります。' }]
+    "herd": {
+      "name": "IHクッキングヒーター",
+      "category": "キッチン・台所",
+      "shortDescription": "IHクッキングヒーターの年間消費電力量は約220 kWh（年間電気代約77.00ユーロ）。平均消費電力は3000Wです。",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "IHクッキングヒーターの消費電力と1時間・年間あたりの電気代はいくら？",
+          "answer": "IHクッキングヒーターの消費電力は約3000W（ワット）です。1時間あたりの電気消費量は約3.000 kWh（約1.05ユーロ）です。年間の平均消費電力量は約220 kWhで、年間の電気代は約77.00ユーロ（月額約6.42ユーロ）となります。"
+        },
+        {
+          "question": "IHクッキングヒーターの電気代を最も安く抑える節電方法は？",
+          "answer": "エコモードを活用し、フィルターや吸気口の定期的な掃除を行い、長期間使用しない際は待機電力を防ぐために電源タップで主電源をオフにすることが推奨されます。"
+        },
+        {
+          "question": "IHクッキングヒーターは使っていない待機状態でも電気を消費する？",
+          "answer": "はい。多くの電子機器は待機時に約0.5〜3Wの電力を消費します。旧型の製品では5〜10W消費する場合があり、年間で15〜30ユーロ程度の余分なコストになります。"
+        },
+        {
+          "question": "古いIHクッキングヒーターを最新の省エネモデルに買い換えると節電になる？",
+          "answer": "8〜10年以上前の旧型製品から最新の省エネモデルに買い替えることで、約30〜50％の消費電力を削減でき、年間30〜80ユーロの電気代節約につながります。"
+        }
+      ]
     },
-    'wasserkocher': {
-      name: '電気ケトル',
-      category: 'キッチン家電',
-      shortDescription: '1リットルのお湯を沸かすのに約0.1kWh（約3.5セント）を消費します。',
-      dutyCycleExplanation: 'ヒーターが水に直接接触し90％以上の熱効率を実現。',
-      savingAdvice: ['必要な分だけ水を沸かす。', '定期的にクエン酸で水垢を除去する。'],
-      faq: [{ question: 'コンロで沸かすよりケトルの方がお得？', answer: 'はい、電気ケトルはコンロで沸かすより30〜50％効率的です。' }]
+    "wasserkocher": {
+      "name": "電気ケトル",
+      "category": "キッチン・台所",
+      "shortDescription": "電気ケトルの年間消費電力量は約80 kWh（年間電気代約28.00ユーロ）。平均消費電力は2200Wです。",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "電気ケトルの消費電力と1時間・年間あたりの電気代はいくら？",
+          "answer": "電気ケトルの消費電力は約2200W（ワット）です。1時間あたりの電気消費量は約2.200 kWh（約0.77ユーロ）です。年間の平均消費電力量は約80 kWhで、年間の電気代は約28.00ユーロ（月額約2.33ユーロ）となります。"
+        },
+        {
+          "question": "電気ケトルの電気代を最も安く抑える節電方法は？",
+          "answer": "エコモードを活用し、フィルターや吸気口の定期的な掃除を行い、長期間使用しない際は待機電力を防ぐために電源タップで主電源をオフにすることが推奨されます。"
+        },
+        {
+          "question": "電気ケトルは使っていない待機状態でも電気を消費する？",
+          "answer": "はい。多くの電子機器は待機時に約0.5〜3Wの電力を消費します。旧型の製品では5〜10W消費する場合があり、年間で15〜30ユーロ程度の余分なコストになります。"
+        },
+        {
+          "question": "古い電気ケトルを最新の省エネモデルに買い換えると節電になる？",
+          "answer": "8〜10年以上前の旧型製品から最新の省エネモデルに買い替えることで、約30〜50％の消費電力を削減でき、年間30〜80ユーロの電気代節約につながります。"
+        }
+      ]
     },
-    'kaffeemaschine': {
-      name: '全自動コーヒーマシン',
-      category: 'キッチン家電',
-      shortDescription: '1杯あたり約0.02〜0.04kWh（加熱・自動洗浄含む）を消費します。',
-      dutyCycleExplanation: '瞬間湯沸かしサーモブロックで必要時のみ瞬間加熱。',
-      savingAdvice: ['10〜15分でのオートオフ機能を設定する。'],
-      faq: [{ question: 'コーヒー1杯の電気代は？', answer: '1杯あたり約1〜1.5セント（約1.5〜2.5円）です。' }]
+    "kaffeemaschine": {
+      "name": "コーヒーメーカー / 全自動エスプレッソマシン",
+      "category": "キッチン・台所",
+      "shortDescription": "コーヒーメーカー / 全自動エスプレッソマシンの年間消費電力量は約65 kWh（年間電気代約22.75ユーロ）。平均消費電力は1400Wです。",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "コーヒーメーカー / 全自動エスプレッソマシンの消費電力と1時間・年間あたりの電気代はいくら？",
+          "answer": "コーヒーメーカー / 全自動エスプレッソマシンの消費電力は約1400W（ワット）です。1時間あたりの電気消費量は約1.400 kWh（約0.49ユーロ）です。年間の平均消費電力量は約65 kWhで、年間の電気代は約22.75ユーロ（月額約1.90ユーロ）となります。"
+        },
+        {
+          "question": "コーヒーメーカー / 全自動エスプレッソマシンの電気代を最も安く抑える節電方法は？",
+          "answer": "エコモードを活用し、フィルターや吸気口の定期的な掃除を行い、長期間使用しない際は待機電力を防ぐために電源タップで主電源をオフにすることが推奨されます。"
+        },
+        {
+          "question": "コーヒーメーカー / 全自動エスプレッソマシンは使っていない待機状態でも電気を消費する？",
+          "answer": "はい。多くの電子機器は待機時に約0.5〜3Wの電力を消費します。旧型の製品では5〜10W消費する場合があり、年間で15〜30ユーロ程度の余分なコストになります。"
+        },
+        {
+          "question": "古いコーヒーメーカー / 全自動エスプレッソマシンを最新の省エネモデルに買い換えると節電になる？",
+          "answer": "8〜10年以上前の旧型製品から最新の省エネモデルに買い替えることで、約30〜50％の消費電力を削減でき、年間30〜80ユーロの電気代節約につながります。"
+        }
+      ]
     },
-    'fernseher': {
-      name: 'テレビ（液晶・有機EL）',
-      category: 'エンタメ・パソコン',
-      shortDescription: '55インチのテレビは約70〜130W（1時間あたり約2.5〜4.5セント）を消費します。',
-      dutyCycleExplanation: '画面の明るさ、HDR、周囲の明るさセンサーでリアルタイムに変動。',
-      savingAdvice: ['明るさ自動調整センサーを有効にする。', '標準または映画モードを選択。'],
-      faq: [{ question: '有機ELテレビは液晶より電気代が高い？', answer: '明るい画面ではやや高いですが、暗いシーンでは素子が消灯し省エネになります。' }]
+    "fernseher": {
+      "name": "液晶テレビ / 有機ELテレビ (55-65型)",
+      "category": "エンタメ・オフィス",
+      "shortDescription": "液晶テレビ / 有機ELテレビ (55-65型)の年間消費電力量は約175 kWh（年間電気代約61.25ユーロ）。平均消費電力は120Wです。",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "液晶テレビ / 有機ELテレビ (55-65型)の消費電力と1時間・年間あたりの電気代はいくら？",
+          "answer": "液晶テレビ / 有機ELテレビ (55-65型)の消費電力は約120W（ワット）です。1時間あたりの電気消費量は約0.120 kWh（約0.04ユーロ）です。年間の平均消費電力量は約175 kWhで、年間の電気代は約61.25ユーロ（月額約5.10ユーロ）となります。"
+        },
+        {
+          "question": "液晶テレビ / 有機ELテレビ (55-65型)の電気代を最も安く抑える節電方法は？",
+          "answer": "エコモードを活用し、フィルターや吸気口の定期的な掃除を行い、長期間使用しない際は待機電力を防ぐために電源タップで主電源をオフにすることが推奨されます。"
+        },
+        {
+          "question": "液晶テレビ / 有機ELテレビ (55-65型)は使っていない待機状態でも電気を消費する？",
+          "answer": "はい。多くの電子機器は待機時に約0.5〜3Wの電力を消費します。旧型の製品では5〜10W消費する場合があり、年間で15〜30ユーロ程度の余分なコストになります。"
+        },
+        {
+          "question": "古い液晶テレビ / 有機ELテレビ (55-65型)を最新の省エネモデルに買い換えると節電になる？",
+          "answer": "8〜10年以上前の旧型製品から最新の省エネモデルに買い替えることで、約30〜50％の消費電力を削減でき、年間30〜80ユーロの電気代節約につながります。"
+        }
+      ]
     },
-    'gaming-pc': {
-      name: 'ゲーミングPC',
-      category: 'エンタメ・パソコン',
-      shortDescription: 'ゲームプレイ時の消費電力は約350〜600W（1時間あたり約12〜21セント）。',
-      dutyCycleExplanation: 'グラフィックボード（GPU）とCPUが3D処理時に大電力を消費。',
-      savingAdvice: ['FPS上限を設定して過剰なGPU負荷を抑制。', 'GPUのアンダーボルト。'],
-      faq: [{ question: '1日4時間ゲームをすると1ヶ月の電気代は？', answer: '月々約17〜20ユーロ（約2,700〜3,200円）となります。' }]
+    "gaming-pc": {
+      "name": "ゲーミングPC (高性能)",
+      "category": "エンタメ・オフィス",
+      "shortDescription": "ゲーミングPC (高性能)の年間消費電力量は約450 kWh（年間電気代約157.50ユーロ）。平均消費電力は400Wです。",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "ゲーミングPC (高性能)の消費電力と1時間・年間あたりの電気代はいくら？",
+          "answer": "ゲーミングPC (高性能)の消費電力は約400W（ワット）です。1時間あたりの電気消費量は約0.400 kWh（約0.14ユーロ）です。年間の平均消費電力量は約450 kWhで、年間の電気代は約157.50ユーロ（月額約13.13ユーロ）となります。"
+        },
+        {
+          "question": "ゲーミングPC (高性能)の電気代を最も安く抑える節電方法は？",
+          "answer": "エコモードを活用し、フィルターや吸気口の定期的な掃除を行い、長期間使用しない際は待機電力を防ぐために電源タップで主電源をオフにすることが推奨されます。"
+        },
+        {
+          "question": "ゲーミングPC (高性能)は使っていない待機状態でも電気を消費する？",
+          "answer": "はい。多くの電子機器は待機時に約0.5〜3Wの電力を消費します。旧型の製品では5〜10W消費する場合があり、年間で15〜30ユーロ程度の余分なコストになります。"
+        },
+        {
+          "question": "古いゲーミングPC (高性能)を最新の省エネモデルに買い換えると節電になる？",
+          "answer": "8〜10年以上前の旧型製品から最新の省エネモデルに買い替えることで、約30〜50％の消費電力を削減でき、年間30〜80ユーロの電気代節約につながります。"
+        }
+      ]
     },
-    'gamingpc': {
-      name: 'ゲーミングPC',
-      category: 'エンタメ・パソコン',
-      shortDescription: 'ゲームプレイ時の消費電力は約350〜600W（1時間あたり約12〜21セント）。',
-      dutyCycleExplanation: 'グラフィックボード（GPU）とCPUが3D処理時に大電力を消費。',
-      savingAdvice: ['FPS上限を設定して過剰なGPU負荷を抑制。', 'GPUのアンダーボルト。'],
-      faq: [{ question: '1日4時間ゲームをすると1ヶ月の電気代は？', answer: '月々約17〜20ユーロ（約2,700〜3,200円）となります。' }]
+    "pc": {
+      "name": "デスクトップPC（事務・オフィス用）",
+      "category": "エンタメ・オフィス",
+      "shortDescription": "デスクトップPC（事務・オフィス用）の年間消費電力量は約180 kWh（年間電気代約63.00ユーロ）。平均消費電力は120Wです。",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "デスクトップPC（事務・オフィス用）の消費電力と1時間・年間あたりの電気代はいくら？",
+          "answer": "デスクトップPC（事務・オフィス用）の消費電力は約120W（ワット）です。1時間あたりの電気消費量は約0.120 kWh（約0.04ユーロ）です。年間の平均消費電力量は約180 kWhで、年間の電気代は約63.00ユーロ（月額約5.25ユーロ）となります。"
+        },
+        {
+          "question": "デスクトップPC（事務・オフィス用）の電気代を最も安く抑える節電方法は？",
+          "answer": "エコモードを活用し、フィルターや吸気口の定期的な掃除を行い、長期間使用しない際は待機電力を防ぐために電源タップで主電源をオフにすることが推奨されます。"
+        },
+        {
+          "question": "デスクトップPC（事務・オフィス用）は使っていない待機状態でも電気を消費する？",
+          "answer": "はい。多くの電子機器は待機時に約0.5〜3Wの電力を消費します。旧型の製品では5〜10W消費する場合があり、年間で15〜30ユーロ程度の余分なコストになります。"
+        },
+        {
+          "question": "古いデスクトップPC（事務・オフィス用）を最新の省エネモデルに買い換えると節電になる？",
+          "answer": "8〜10年以上前の旧型製品から最新の省エネモデルに買い替えることで、約30〜50％の消費電力を削減でき、年間30〜80ユーロの電気代節約につながります。"
+        }
+      ]
     },
-    'pc': {
-      name: 'デスクトップPC（事務用）',
-      category: 'エンタメ・パソコン',
-      shortDescription: '事務用PCは約50〜100W（1時間あたり約1.8〜3.5セント）を消費します。',
-      dutyCycleExplanation: '書類作成やブラウジング時は低い待機電力を維持。',
-      savingAdvice: ['15分でのスリープ設定を有効にする。'],
-      faq: [{ question: '在宅勤務でのPC電気代は？', answer: '1日8時間で約0.5〜0.8kWh（約18〜28セント）です。' }]
+    "laptop": {
+      "name": "ノートパソコン（ノートPC）",
+      "category": "エンタメ・オフィス",
+      "shortDescription": "ノートパソコン（ノートPC）の年間消費電力量は約75 kWh（年間電気代約26.25ユーロ）。平均消費電力は50Wです。",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "ノートパソコン（ノートPC）の消費電力と1時間・年間あたりの電気代はいくら？",
+          "answer": "ノートパソコン（ノートPC）の消費電力は約50W（ワット）です。1時間あたりの電気消費量は約0.050 kWh（約0.02ユーロ）です。年間の平均消費電力量は約75 kWhで、年間の電気代は約26.25ユーロ（月額約2.19ユーロ）となります。"
+        },
+        {
+          "question": "ノートパソコン（ノートPC）の電気代を最も安く抑える節電方法は？",
+          "answer": "エコモードを活用し、フィルターや吸気口の定期的な掃除を行い、長期間使用しない際は待機電力を防ぐために電源タップで主電源をオフにすることが推奨されます。"
+        },
+        {
+          "question": "ノートパソコン（ノートPC）は使っていない待機状態でも電気を消費する？",
+          "answer": "はい。多くの電子機器は待機時に約0.5〜3Wの電力を消費します。旧型の製品では5〜10W消費する場合があり、年間で15〜30ユーロ程度の余分なコストになります。"
+        },
+        {
+          "question": "古いノートパソコン（ノートPC）を最新の省エネモデルに買い換えると節電になる？",
+          "answer": "8〜10年以上前の旧型製品から最新の省エネモデルに買い替えることで、約30〜50％の消費電力を削減でき、年間30〜80ユーロの電気代節約につながります。"
+        }
+      ]
     },
-    'laptop': {
-      name: 'ノートパソコン',
-      category: 'エンタメ・パソコン',
-      shortDescription: 'ノートPCはわずか20〜60Wしか消費せず、デスクトップより最大70％省エネです。',
-      dutyCycleExplanation: 'バッテリー駆動に最適化された省電力CPUを搭載。',
-      savingAdvice: ['画面の明るさを適度に下げる。'],
-      faq: [{ question: 'ノートPCの1日の電気代は？', answer: '8時間使用しても1日あたり約6〜12セントです。' }]
+    "monitor": {
+      "name": "PCモニター・ディスプレイ (27-32型)",
+      "category": "エンタメ・オフィス",
+      "shortDescription": "PCモニター・ディスプレイ (27-32型)の年間消費電力量は約60 kWh（年間電気代約21.00ユーロ）。平均消費電力は35Wです。",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "PCモニター・ディスプレイ (27-32型)の消費電力と1時間・年間あたりの電気代はいくら？",
+          "answer": "PCモニター・ディスプレイ (27-32型)の消費電力は約35W（ワット）です。1時間あたりの電気消費量は約0.035 kWh（約0.01ユーロ）です。年間の平均消費電力量は約60 kWhで、年間の電気代は約21.00ユーロ（月額約1.75ユーロ）となります。"
+        },
+        {
+          "question": "PCモニター・ディスプレイ (27-32型)の電気代を最も安く抑える節電方法は？",
+          "answer": "エコモードを活用し、フィルターや吸気口の定期的な掃除を行い、長期間使用しない際は待機電力を防ぐために電源タップで主電源をオフにすることが推奨されます。"
+        },
+        {
+          "question": "PCモニター・ディスプレイ (27-32型)は使っていない待機状態でも電気を消費する？",
+          "answer": "はい。多くの電子機器は待機時に約0.5〜3Wの電力を消費します。旧型の製品では5〜10W消費する場合があり、年間で15〜30ユーロ程度の余分なコストになります。"
+        },
+        {
+          "question": "古いPCモニター・ディスプレイ (27-32型)を最新の省エネモデルに買い換えると節電になる？",
+          "answer": "8〜10年以上前の旧型製品から最新の省エネモデルに買い替えることで、約30〜50％の消費電力を削減でき、年間30〜80ユーロの電気代節約につながります。"
+        }
+      ]
     },
-    'monitor': {
-      name: 'PCモニター',
-      category: 'エンタメ・パソコン',
-      shortDescription: '27インチモニターは約20〜40W（1時間あたり約0.7〜1.4セント）を消費します。',
-      dutyCycleExplanation: 'LEDバックライトによる一定の電力消費。',
-      savingAdvice: ['部屋の明るさに合わせて輝度を調節。'],
-      faq: [{ question: 'デュアルモニターにすると電気代はいくら増える？', answer: '年間で約10〜20ユーロ程度です。' }]
+    "ps5": {
+      "name": "PlayStation 5 (PS5)",
+      "category": "エンタメ・オフィス",
+      "shortDescription": "PlayStation 5 (PS5)の年間消費電力量は約150 kWh（年間電気代約52.50ユーロ）。平均消費電力は200Wです。",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "PlayStation 5 (PS5)の消費電力と1時間・年間あたりの電気代はいくら？",
+          "answer": "PlayStation 5 (PS5)の消費電力は約200W（ワット）です。1時間あたりの電気消費量は約0.200 kWh（約0.07ユーロ）です。年間の平均消費電力量は約150 kWhで、年間の電気代は約52.50ユーロ（月額約4.38ユーロ）となります。"
+        },
+        {
+          "question": "PlayStation 5 (PS5)の電気代を最も安く抑える節電方法は？",
+          "answer": "エコモードを活用し、フィルターや吸気口の定期的な掃除を行い、長期間使用しない際は待機電力を防ぐために電源タップで主電源をオフにすることが推奨されます。"
+        },
+        {
+          "question": "PlayStation 5 (PS5)は使っていない待機状態でも電気を消費する？",
+          "answer": "はい。多くの電子機器は待機時に約0.5〜3Wの電力を消費します。旧型の製品では5〜10W消費する場合があり、年間で15〜30ユーロ程度の余分なコストになります。"
+        },
+        {
+          "question": "古いPlayStation 5 (PS5)を最新の省エネモデルに買い換えると節電になる？",
+          "answer": "8〜10年以上前の旧型製品から最新の省エネモデルに買い替えることで、約30〜50％の消費電力を削減でき、年間30〜80ユーロの電気代節約につながります。"
+        }
+      ]
     },
-    'ps5': {
-      name: 'PlayStation 5 (PS5)',
-      category: 'エンタメ・パソコン',
-      shortDescription: 'ゲームプレイ時に約180〜220W（1時間あたり約6.3〜7.7セント）を消費します。',
-      dutyCycleExplanation: 'ホーム画面で約50W、4Kゲームプレイ時に最大220W。',
-      savingAdvice: ['レストモード中のUSB給電時間を制限。'],
-      faq: [{ question: 'PS5のレストモード待機電力は？', answer: '通常時約1.5〜3W、ダウンロード時約30Wです。' }]
+    "xbox": {
+      "name": "Xbox Series X",
+      "category": "エンタメ・オフィス",
+      "shortDescription": "Xbox Series Xの年間消費電力量は約140 kWh（年間電気代約49.00ユーロ）。平均消費電力は190Wです。",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Xbox Series Xの消費電力と1時間・年間あたりの電気代はいくら？",
+          "answer": "Xbox Series Xの消費電力は約190W（ワット）です。1時間あたりの電気消費量は約0.190 kWh（約0.07ユーロ）です。年間の平均消費電力量は約140 kWhで、年間の電気代は約49.00ユーロ（月額約4.08ユーロ）となります。"
+        },
+        {
+          "question": "Xbox Series Xの電気代を最も安く抑える節電方法は？",
+          "answer": "エコモードを活用し、フィルターや吸気口の定期的な掃除を行い、長期間使用しない際は待機電力を防ぐために電源タップで主電源をオフにすることが推奨されます。"
+        },
+        {
+          "question": "Xbox Series Xは使っていない待機状態でも電気を消費する？",
+          "answer": "はい。多くの電子機器は待機時に約0.5〜3Wの電力を消費します。旧型の製品では5〜10W消費する場合があり、年間で15〜30ユーロ程度の余分なコストになります。"
+        },
+        {
+          "question": "古いXbox Series Xを最新の省エネモデルに買い換えると節電になる？",
+          "answer": "8〜10年以上前の旧型製品から最新の省エネモデルに買い替えることで、約30〜50％の消費電力を削減でき、年間30〜80ユーロの電気代節約につながります。"
+        }
+      ]
     },
-    'xbox': {
-      name: 'Xbox Series X',
-      category: 'エンタメ・パソコン',
-      shortDescription: 'ゲームプレイ時に約150〜210W（1時間あたり約5.3〜7.4セント）を消費します。',
-      dutyCycleExplanation: '4K 120Hz駆動時に最大負荷。',
-      savingAdvice: ['「省電力（完全シャットダウン）」モードを選択。'],
-      faq: [{ question: '省電力モードでいくら節約できる？', answer: '待機電力が10〜13Wから0.5Wになり、年間約30€節約できます。' }]
+    "klimaanlage": {
+      "name": "エアコン（冷房・暖房）",
+      "category": "冷暖房・空調",
+      "shortDescription": "エアコン（冷房・暖房）の年間消費電力量は約350 kWh（年間電気代約122.50ユーロ）。平均消費電力は800Wです。",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "エアコン（冷房・暖房）の消費電力と1時間・年間あたりの電気代はいくら？",
+          "answer": "エアコン（冷房・暖房）の消費電力は約800W（ワット）です。1時間あたりの電気消費量は約0.800 kWh（約0.28ユーロ）です。年間の平均消費電力量は約350 kWhで、年間の電気代は約122.50ユーロ（月額約10.21ユーロ）となります。"
+        },
+        {
+          "question": "エアコン（冷房・暖房）の電気代を最も安く抑える節電方法は？",
+          "answer": "エコモードを活用し、フィルターや吸気口の定期的な掃除を行い、長期間使用しない際は待機電力を防ぐために電源タップで主電源をオフにすることが推奨されます。"
+        },
+        {
+          "question": "エアコン（冷房・暖房）は使っていない待機状態でも電気を消費する？",
+          "answer": "はい。多くの電子機器は待機時に約0.5〜3Wの電力を消費します。旧型の製品では5〜10W消費する場合があり、年間で15〜30ユーロ程度の余分なコストになります。"
+        },
+        {
+          "question": "古いエアコン（冷房・暖房）を最新の省エネモデルに買い換えると節電になる？",
+          "answer": "8〜10年以上前の旧型製品から最新の省エネモデルに買い替えることで、約30〜50％の消費電力を削減でき、年間30〜80ユーロの電気代節約につながります。"
+        }
+      ]
     },
-    'klimaanlage': {
-      name: 'エアコン（クーラー）',
-      category: '空調・暖房',
-      shortDescription: 'ポータブル式は約800〜1,200W（28〜42 ct/h）、セパレート型インバーター式は約50％省エネです。',
-      dutyCycleExplanation: '設定温度に達するとインバーター制御で低出力運転に移行。',
-      savingAdvice: ['冷房時は24〜26℃を目安に設定。', '直射日光をカーテンで遮る。'],
-      faq: [{ question: '夏のエアコン代はどれくらい？', answer: '30日間に1日6時間運転した場合、ポータブルで約50〜75€、セパレート型で約25〜40€です。' }]
+    "ventilator": {
+      "name": "扇風機 / サーキュレーター",
+      "category": "冷暖房・空調",
+      "shortDescription": "扇風機 / サーキュレーターの年間消費電力量は約35 kWh（年間電気代約12.25ユーロ）。平均消費電力は45Wです。",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "扇風機 / サーキュレーターの消費電力と1時間・年間あたりの電気代はいくら？",
+          "answer": "扇風機 / サーキュレーターの消費電力は約45W（ワット）です。1時間あたりの電気消費量は約0.045 kWh（約0.02ユーロ）です。年間の平均消費電力量は約35 kWhで、年間の電気代は約12.25ユーロ（月額約1.02ユーロ）となります。"
+        },
+        {
+          "question": "扇風機 / サーキュレーターの電気代を最も安く抑える節電方法は？",
+          "answer": "エコモードを活用し、フィルターや吸気口の定期的な掃除を行い、長期間使用しない際は待機電力を防ぐために電源タップで主電源をオフにすることが推奨されます。"
+        },
+        {
+          "question": "扇風機 / サーキュレーターは使っていない待機状態でも電気を消費する？",
+          "answer": "はい。多くの電子機器は待機時に約0.5〜3Wの電力を消費します。旧型の製品では5〜10W消費する場合があり、年間で15〜30ユーロ程度の余分なコストになります。"
+        },
+        {
+          "question": "古い扇風機 / サーキュレーターを最新の省エネモデルに買い換えると節電になる？",
+          "answer": "8〜10年以上前の旧型製品から最新の省エネモデルに買い替えることで、約30〜50％の消費電力を削減でき、年間30〜80ユーロの電気代節約につながります。"
+        }
+      ]
     },
-    'ventilator': {
-      name: '扇風機 / サーキュレーター',
-      category: '空調・暖房',
-      shortDescription: '扇風機はわずか25〜50W（1時間あたり約0.9〜1.8セント）しか消費しません。',
-      dutyCycleExplanation: 'コンプレッサーを使わずモーターのみで送風。',
-      savingAdvice: ['部屋を空ける時は消す（風が当たっている人だけが涼しさを感じるため）。'],
-      faq: [{ question: 'エアコンよりどれくらい節電になる？', answer: 'エアコンと比べて約95％の電力を削減できます。' }]
+    "heizluefter": {
+      "name": "電気ファンヒーター / セラミックヒーター",
+      "category": "冷暖房・空調",
+      "shortDescription": "電気ファンヒーター / セラミックヒーターの年間消費電力量は約300 kWh（年間電気代約105.00ユーロ）。平均消費電力は2000Wです。",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "電気ファンヒーター / セラミックヒーターの消費電力と1時間・年間あたりの電気代はいくら？",
+          "answer": "電気ファンヒーター / セラミックヒーターの消費電力は約2000W（ワット）です。1時間あたりの電気消費量は約2.000 kWh（約0.70ユーロ）です。年間の平均消費電力量は約300 kWhで、年間の電気代は約105.00ユーロ（月額約8.75ユーロ）となります。"
+        },
+        {
+          "question": "電気ファンヒーター / セラミックヒーターの電気代を最も安く抑える節電方法は？",
+          "answer": "エコモードを活用し、フィルターや吸気口の定期的な掃除を行い、長期間使用しない際は待機電力を防ぐために電源タップで主電源をオフにすることが推奨されます。"
+        },
+        {
+          "question": "電気ファンヒーター / セラミックヒーターは使っていない待機状態でも電気を消費する？",
+          "answer": "はい。多くの電子機器は待機時に約0.5〜3Wの電力を消費します。旧型の製品では5〜10W消費する場合があり、年間で15〜30ユーロ程度の余分なコストになります。"
+        },
+        {
+          "question": "古い電気ファンヒーター / セラミックヒーターを最新の省エネモデルに買い換えると節電になる？",
+          "answer": "8〜10年以上前の旧型製品から最新の省エネモデルに買い替えることで、約30〜50％の消費電力を削減でき、年間30〜80ユーロの電気代節約につながります。"
+        }
+      ]
     },
-    'heizluefter': {
-      name: 'セラミックファンヒーター',
-      category: '空調・暖房',
-      shortDescription: '電気ファンヒーターは約1,500〜2,000W（1時間あたり約53〜70セント）を消費します。',
-      dutyCycleExplanation: '電気を1:1で直接熱に変換するため大電力を消費。',
-      savingAdvice: ['短時間のスポット暖房のみに使用する。'],
-      faq: [{ question: '1日中つけっぱなしにするといくら？', answer: '1日8時間で約4.20〜5.60€（月額150€以上）かかります。' }]
+    "luftentfeuchter": {
+      "name": "除湿機",
+      "category": "冷暖房・空調",
+      "shortDescription": "除湿機の年間消費電力量は約280 kWh（年間電気代約98.00ユーロ）。平均消費電力は350Wです。",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "除湿機の消費電力と1時間・年間あたりの電気代はいくら？",
+          "answer": "除湿機の消費電力は約350W（ワット）です。1時間あたりの電気消費量は約0.350 kWh（約0.12ユーロ）です。年間の平均消費電力量は約280 kWhで、年間の電気代は約98.00ユーロ（月額約8.17ユーロ）となります。"
+        },
+        {
+          "question": "除湿機の電気代を最も安く抑える節電方法は？",
+          "answer": "エコモードを活用し、フィルターや吸気口の定期的な掃除を行い、長期間使用しない際は待機電力を防ぐために電源タップで主電源をオフにすることが推奨されます。"
+        },
+        {
+          "question": "除湿機は使っていない待機状態でも電気を消費する？",
+          "answer": "はい。多くの電子機器は待機時に約0.5〜3Wの電力を消費します。旧型の製品では5〜10W消費する場合があり、年間で15〜30ユーロ程度の余分なコストになります。"
+        },
+        {
+          "question": "古い除湿機を最新の省エネモデルに買い換えると節電になる？",
+          "answer": "8〜10年以上前の旧型製品から最新の省エネモデルに買い替えることで、約30〜50％の消費電力を削減でき、年間30〜80ユーロの電気代節約につながります。"
+        }
+      ]
     },
-    'luftentfeuchter': {
-      name: '除湿機',
-      category: '空調・暖房',
-      shortDescription: 'コンプレッサー式除湿機は約200〜400W（1時間あたり約7〜14セント）を消費します。',
-      dutyCycleExplanation: '冷却器で湿気を結露させて除去。',
-      savingAdvice: ['目標湿度を50〜55％に設定。', '部屋の窓やドアを閉めて運転。'],
-      faq: [{ question: '1日何時間運転すれば良い？', answer: '密閉空間で1日2〜4時間稼働させれば十分に除湿できます。' }]
+    "aquarium": {
+      "name": "熱帯魚アクアリウム水槽 (100〜200L)",
+      "category": "趣味・その他",
+      "shortDescription": "熱帯魚アクアリウム水槽 (100〜200L)の年間消費電力量は約350 kWh（年間電気代約122.50ユーロ）。平均消費電力は60Wです。",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "熱帯魚アクアリウム水槽 (100〜200L)の消費電力と1時間・年間あたりの電気代はいくら？",
+          "answer": "熱帯魚アクアリウム水槽 (100〜200L)の消費電力は約60W（ワット）です。1時間あたりの電気消費量は約0.060 kWh（約0.02ユーロ）です。年間の平均消費電力量は約350 kWhで、年間の電気代は約122.50ユーロ（月額約10.21ユーロ）となります。"
+        },
+        {
+          "question": "熱帯魚アクアリウム水槽 (100〜200L)の電気代を最も安く抑える節電方法は？",
+          "answer": "エコモードを活用し、フィルターや吸気口の定期的な掃除を行い、長期間使用しない際は待機電力を防ぐために電源タップで主電源をオフにすることが推奨されます。"
+        },
+        {
+          "question": "熱帯魚アクアリウム水槽 (100〜200L)は使っていない待機状態でも電気を消費する？",
+          "answer": "はい。多くの電子機器は待機時に約0.5〜3Wの電力を消費します。旧型の製品では5〜10W消費する場合があり、年間で15〜30ユーロ程度の余分なコストになります。"
+        },
+        {
+          "question": "古い熱帯魚アクアリウム水槽 (100〜200L)を最新の省エネモデルに買い換えると節電になる？",
+          "answer": "8〜10年以上前の旧型製品から最新の省エネモデルに買い替えることで、約30〜50％の消費電力を削減でき、年間30〜80ユーロの電気代節約につながります。"
+        }
+      ]
     },
-    'aquarium': {
-      name: 'アクアリウム（水槽）',
-      category: '趣味・特殊設備',
-      shortDescription: '100L水槽で年間約150〜300kWh（年間約53〜105€）を消費します。',
-      dutyCycleExplanation: '水温ヒーターと照明が消費電力の大部分を占めます。',
-      savingAdvice: ['LED照明を採用し、フタで放熱を防ぐ。'],
-      faq: [{ question: '水槽で一番電気を食う器具は？', answer: '水温を室温より高く保つオートヒーターです。' }]
+    "pool": {
+      "name": "プール用循環ポンプ・ろ過装置",
+      "category": "趣味・その他",
+      "shortDescription": "プール用循環ポンプ・ろ過装置の年間消費電力量は約480 kWh（年間電気代約168.00ユーロ）。平均消費電力は500Wです。",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "プール用循環ポンプ・ろ過装置の消費電力と1時間・年間あたりの電気代はいくら？",
+          "answer": "プール用循環ポンプ・ろ過装置の消費電力は約500W（ワット）です。1時間あたりの電気消費量は約0.500 kWh（約0.17ユーロ）です。年間の平均消費電力量は約480 kWhで、年間の電気代は約168.00ユーロ（月額約14.00ユーロ）となります。"
+        },
+        {
+          "question": "プール用循環ポンプ・ろ過装置の電気代を最も安く抑える節電方法は？",
+          "answer": "エコモードを活用し、フィルターや吸気口の定期的な掃除を行い、長期間使用しない際は待機電力を防ぐために電源タップで主電源をオフにすることが推奨されます。"
+        },
+        {
+          "question": "プール用循環ポンプ・ろ過装置は使っていない待機状態でも電気を消費する？",
+          "answer": "はい。多くの電子機器は待機時に約0.5〜3Wの電力を消費します。旧型の製品では5〜10W消費する場合があり、年間で15〜30ユーロ程度の余分なコストになります。"
+        },
+        {
+          "question": "古いプール用循環ポンプ・ろ過装置を最新の省エネモデルに買い換えると節電になる？",
+          "answer": "8〜10年以上前の旧型製品から最新の省エネモデルに買い替えることで、約30〜50％の消費電力を削減でき、年間30〜80ユーロの電気代節約につながります。"
+        }
+      ]
     },
-    'pool': {
-      name: 'プール循環ポンプ',
-      category: '趣味・特殊設備',
-      shortDescription: 'プールポンプは約400〜1,000W（1時間あたり約14〜35セント）を消費します。',
-      dutyCycleExplanation: '1日にプール全体の水量を2〜3回循環ろ過。',
-      savingAdvice: ['タイマーで運転時間を管理。', '可変速ポンプを導入。'],
-      faq: [{ question: '夏場は何時間回すべき？', answer: '1日あたり6〜8時間が目安です。' }]
+    "whirlpool": {
+      "name": "ジャグジー / 屋外ホットタブ",
+      "category": "趣味・その他",
+      "shortDescription": "ジャグジー / 屋外ホットタブの年間消費電力量は約2200 kWh（年間電気代約770.00ユーロ）。平均消費電力は2500Wです。",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "ジャグジー / 屋外ホットタブの消費電力と1時間・年間あたりの電気代はいくら？",
+          "answer": "ジャグジー / 屋外ホットタブの消費電力は約2500W（ワット）です。1時間あたりの電気消費量は約2.500 kWh（約0.88ユーロ）です。年間の平均消費電力量は約2200 kWhで、年間の電気代は約770.00ユーロ（月額約64.17ユーロ）となります。"
+        },
+        {
+          "question": "ジャグジー / 屋外ホットタブの電気代を最も安く抑える節電方法は？",
+          "answer": "エコモードを活用し、フィルターや吸気口の定期的な掃除を行い、長期間使用しない際は待機電力を防ぐために電源タップで主電源をオフにすることが推奨されます。"
+        },
+        {
+          "question": "ジャグジー / 屋外ホットタブは使っていない待機状態でも電気を消費する？",
+          "answer": "はい。多くの電子機器は待機時に約0.5〜3Wの電力を消費します。旧型の製品では5〜10W消費する場合があり、年間で15〜30ユーロ程度の余分なコストになります。"
+        },
+        {
+          "question": "古いジャグジー / 屋外ホットタブを最新の省エネモデルに買い換えると節電になる？",
+          "answer": "8〜10年以上前の旧型製品から最新の省エネモデルに買い替えることで、約30〜50％の消費電力を削減でき、年間30〜80ユーロの電気代節約につながります。"
+        }
+      ]
     },
-    'whirlpool': {
-      name: '屋外ジャグジー / スパ',
-      category: '趣味・特殊設備',
-      shortDescription: '年間約2,000〜4,000kWh（年間約700〜1,400€）を消費します。',
-      dutyCycleExplanation: '水温38℃前後を年中維持するため常にヒーターが稼働。',
-      savingAdvice: ['厚手の保温サーモカバーを使用。'],
-      faq: [{ question: '1ヶ月の電気代はどれくらい？', answer: '季節により月額約50〜120€の電気代がかかります。' }]
+    "3d-drucker": {
+      "name": "3Dプリンター (FDM方式)",
+      "category": "趣味・その他",
+      "shortDescription": "3Dプリンター (FDM方式)の年間消費電力量は約120 kWh（年間電気代約42.00ユーロ）。平均消費電力は150Wです。",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "3Dプリンター (FDM方式)の消費電力と1時間・年間あたりの電気代はいくら？",
+          "answer": "3Dプリンター (FDM方式)の消費電力は約150W（ワット）です。1時間あたりの電気消費量は約0.150 kWh（約0.05ユーロ）です。年間の平均消費電力量は約120 kWhで、年間の電気代は約42.00ユーロ（月額約3.50ユーロ）となります。"
+        },
+        {
+          "question": "3Dプリンター (FDM方式)の電気代を最も安く抑える節電方法は？",
+          "answer": "エコモードを活用し、フィルターや吸気口の定期的な掃除を行い、長期間使用しない際は待機電力を防ぐために電源タップで主電源をオフにすることが推奨されます。"
+        },
+        {
+          "question": "3Dプリンター (FDM方式)は使っていない待機状態でも電気を消費する？",
+          "answer": "はい。多くの電子機器は待機時に約0.5〜3Wの電力を消費します。旧型の製品では5〜10W消費する場合があり、年間で15〜30ユーロ程度の余分なコストになります。"
+        },
+        {
+          "question": "古い3Dプリンター (FDM方式)を最新の省エネモデルに買い換えると節電になる？",
+          "answer": "8〜10年以上前の旧型製品から最新の省エネモデルに買い替えることで、約30〜50％の消費電力を削減でき、年間30〜80ユーロの電気代節約につながります。"
+        }
+      ]
     },
-    '3d-drucker': {
-      name: '3Dプリンター',
-      category: '趣味・特殊設備',
-      shortDescription: 'FDM方式で約100〜180W（1時間あたり約3.5〜6.3セント）を消費します。',
-      dutyCycleExplanation: '加熱ヒートベッドが全電力の約70％を消費。',
-      savingAdvice: ['エンクロージャー（囲い）で保温する。'],
-      faq: [{ question: '10時間の造形で電気代はいくら？', answer: '約40〜60セント程度です。' }]
+    "nas": {
+      "name": "NASサーバー（ネットワークHDD）",
+      "category": "エンタメ・オフィス",
+      "shortDescription": "NASサーバー（ネットワークHDD）の年間消費電力量は約260 kWh（年間電気代約91.00ユーロ）。平均消費電力は30Wです。",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "NASサーバー（ネットワークHDD）の消費電力と1時間・年間あたりの電気代はいくら？",
+          "answer": "NASサーバー（ネットワークHDD）の消費電力は約30W（ワット）です。1時間あたりの電気消費量は約0.030 kWh（約0.01ユーロ）です。年間の平均消費電力量は約260 kWhで、年間の電気代は約91.00ユーロ（月額約7.58ユーロ）となります。"
+        },
+        {
+          "question": "NASサーバー（ネットワークHDD）の電気代を最も安く抑える節電方法は？",
+          "answer": "エコモードを活用し、フィルターや吸気口の定期的な掃除を行い、長期間使用しない際は待機電力を防ぐために電源タップで主電源をオフにすることが推奨されます。"
+        },
+        {
+          "question": "NASサーバー（ネットワークHDD）は使っていない待機状態でも電気を消費する？",
+          "answer": "はい。多くの電子機器は待機時に約0.5〜3Wの電力を消費します。旧型の製品では5〜10W消費する場合があり、年間で15〜30ユーロ程度の余分なコストになります。"
+        },
+        {
+          "question": "古いNASサーバー（ネットワークHDD）を最新の省エネモデルに買い換えると節電になる？",
+          "answer": "8〜10年以上前の旧型製品から最新の省エネモデルに買い替えることで、約30〜50％の消費電力を削減でき、年間30〜80ユーロの電気代節約につながります。"
+        }
+      ]
     },
-    'nas': {
-      name: 'NAS（ネットワークHDD）',
-      category: '趣味・特殊設備',
-      shortDescription: '2ベイNASで約15〜30W（年間約45〜90€）を消費します。',
-      dutyCycleExplanation: 'HDDスピンダウン機能で待機電力を8W以下に低減。',
-      savingAdvice: ['HDDハイバネーションを有効にする。'],
-      faq: [{ question: '24時間つけっぱなしで年間いくら？', answer: '20W稼働で年間約61€（約9,700円）です。' }]
-    },
-    'server': {
-      name: '自宅サーバー',
-      category: '趣味・特殊設備',
-      shortDescription: '省電力ミニPCサーバーで約10〜40W（年間約30〜120€）を消費します。',
-      dutyCycleExplanation: '最新CPUはアイドル時の消費電力が極めて低く設計されています。',
-      savingAdvice: ['古いタワーPCではなく最新のミニPCを活用。'],
-      faq: [{ question: '常時稼働サーバーの電気代は？', answer: '最新ミニPCならアイドル時10〜15Wで年間約30〜45€です。' }]
+    "server": {
+      "name": "自宅サーバー / ホームラボ",
+      "category": "エンタメ・オフィス",
+      "shortDescription": "自宅サーバー / ホームラボの年間消費電力量は約570 kWh（年間電気代約199.50ユーロ）。平均消費電力は65Wです。",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "自宅サーバー / ホームラボの消費電力と1時間・年間あたりの電気代はいくら？",
+          "answer": "自宅サーバー / ホームラボの消費電力は約65W（ワット）です。1時間あたりの電気消費量は約0.065 kWh（約0.02ユーロ）です。年間の平均消費電力量は約570 kWhで、年間の電気代は約199.50ユーロ（月額約16.63ユーロ）となります。"
+        },
+        {
+          "question": "自宅サーバー / ホームラボの電気代を最も安く抑える節電方法は？",
+          "answer": "エコモードを活用し、フィルターや吸気口の定期的な掃除を行い、長期間使用しない際は待機電力を防ぐために電源タップで主電源をオフにすることが推奨されます。"
+        },
+        {
+          "question": "自宅サーバー / ホームラボは使っていない待機状態でも電気を消費する？",
+          "answer": "はい。多くの電子機器は待機時に約0.5〜3Wの電力を消費します。旧型の製品では5〜10W消費する場合があり、年間で15〜30ユーロ程度の余分なコストになります。"
+        },
+        {
+          "question": "古い自宅サーバー / ホームラボを最新の省エネモデルに買い換えると節電になる？",
+          "answer": "8〜10年以上前の旧型製品から最新の省エネモデルに買い替えることで、約30〜50％の消費電力を削減でき、年間30〜80ユーロの電気代節約につながります。"
+        }
+      ]
     }
   },
-  fr: {
-    'kuehlschrank': {
-      name: 'Réfrigérateur (Frigo)',
-      category: 'Cuisine',
-      shortDescription: 'Un réfrigérateur moderne consomme environ 100 à 160 kWh par an (environ 35 à 56 €/an).',
-      dutyCycleExplanation: 'Le compresseur ne fonctionne que 20 à 40 minutes par heure grâce au thermostat.',
-      savingAdvice: ['Réglez la température à 7 °C et -18 °C au congélateur.', 'Dégivrez régulièrement.'],
-      faq: [{ question: 'Combien consomme un frigo par jour ?', answer: 'Environ 0,3 à 0,45 kWh par jour (10 à 16 centimes).' }]
+  "fr": {
+    "kuehlschrank": {
+      "name": "Réfrigérateur",
+      "category": "Cuisine",
+      "shortDescription": "Un Réfrigérateur consomme environ 120 kWh par an (environ 42.00 € à 35 ct/kWh). Puissance moyenne : 90 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quelle est la consommation électrique d'un Réfrigérateur par heure et par an ?",
+          "answer": "Un Réfrigérateur consomme environ 90 Watts, soit environ 0.090 kWh par heure (environ 0.01 €/h à 0,35 €/kWh). Sa consommation annuelle typique est de 120 kWh (42.00 €/an)."
+        },
+        {
+          "question": "Combien coûte l'utilisation d'un Réfrigérateur par mois ?",
+          "answer": "Le coût moyen est de 0,12 € / Tag, ce qui représente environ 3.50 € par mois sur la facture d'électricité."
+        },
+        {
+          "question": "Comment faire des économies d'énergie avec un Réfrigérateur ?",
+          "answer": "Utilisez les modes Éco, nettoyez régulièrement les filtres et les grilles, et éteignez complètement l'appareil à l'aide d'une multiprise avec interrupteur pour éviter la consommation de veille."
+        },
+        {
+          "question": "Un Réfrigérateur consomme-t-il de l'électricité en mode veille ?",
+          "answer": "Oui, la plupart des appareils récents consomment entre 0,5 et 3 Watts en veille. Sur les modèles anciens, cette veille passive peut atteindre 5 à 10 Watts."
+        }
+      ]
     },
-    'waschmaschine': {
-      name: 'Lave-linge',
-      category: 'Ménage & Entretien',
-      shortDescription: 'Un lave-linge moderne consomme environ 0,5 à 1,0 kWh par cycle (environ 0,18 à 0,35 € par lavage).',
-      dutyCycleExplanation: 'Plus de 80 % de l\'énergie sert à chauffer l\'eau.',
-      savingAdvice: ['Utilisez les programmes Éco 30 °C.', 'Remplissez le tambour à pleine charge.'],
-      faq: [{ question: 'Quel est le coût d\'un lavage à 60 °C comparé à 30 °C ?', answer: 'Un lavage à 60 °C coûte environ 0,35 à 0,50 €, contre 0,15 à 0,20 € en Éco 30 °C.' }]
+    "waschmaschine": {
+      "name": "Lave-linge",
+      "category": "Ménage & Entretien",
+      "shortDescription": "Un Lave-linge consomme environ 140 kWh par an (environ 49.00 € à 35 ct/kWh). Puissance moyenne : 2000 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quelle est la consommation électrique d'un Lave-linge par heure et par an ?",
+          "answer": "Un Lave-linge consomme environ 2000 Watts, soit environ 2.000 kWh par heure (environ 0.70 €/h à 0,35 €/kWh). Sa consommation annuelle typique est de 140 kWh (49.00 €/an)."
+        },
+        {
+          "question": "Combien coûte l'utilisation d'un Lave-linge par mois ?",
+          "answer": "Le coût moyen est de 0,25 € / Waschgang, ce qui représente environ 4.08 € par mois sur la facture d'électricité."
+        },
+        {
+          "question": "Comment faire des économies d'énergie avec un Lave-linge ?",
+          "answer": "Utilisez les modes Éco, nettoyez régulièrement les filtres et les grilles, et éteignez complètement l'appareil à l'aide d'une multiprise avec interrupteur pour éviter la consommation de veille."
+        },
+        {
+          "question": "Un Lave-linge consomme-t-il de l'électricité en mode veille ?",
+          "answer": "Oui, la plupart des appareils récents consomment entre 0,5 et 3 Watts en veille. Sur les modèles anciens, cette veille passive peut atteindre 5 à 10 Watts."
+        }
+      ]
     },
-    'trockner': {
-      name: 'Sèche-linge',
-      category: 'Ménage & Entretien',
-      shortDescription: 'Les sèche-linge pompe à chaleur consomment environ 1,2 à 1,8 kWh par cycle (contre 4 kWh pour les anciens).',
-      dutyCycleExplanation: 'La pompe à chaleur recycle l\'air chaud et économise plus de 60 % d\'énergie.',
-      savingAdvice: ['Essorez à 1 200–1 400 tr/min dans le lave-linge.', 'Nettoyez le filtre après chaque cycle.'],
-      faq: [{ question: 'Combien coûte un cycle de sèche-linge ?', answer: 'Environ 0,45 à 0,65 € par cycle avec pompe à chaleur.' }]
+    "trockner": {
+      "name": "Sèche-linge",
+      "category": "Ménage & Entretien",
+      "shortDescription": "Un Sèche-linge consomme environ 180 kWh par an (environ 63.00 € à 35 ct/kWh). Puissance moyenne : 1500 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quelle est la consommation électrique d'un Sèche-linge par heure et par an ?",
+          "answer": "Un Sèche-linge consomme environ 1500 Watts, soit environ 1.500 kWh par heure (environ 0.53 €/h à 0,35 €/kWh). Sa consommation annuelle typique est de 180 kWh (63.00 €/an)."
+        },
+        {
+          "question": "Combien coûte l'utilisation d'un Sèche-linge par mois ?",
+          "answer": "Le coût moyen est de 0,45 € / Ladung, ce qui représente environ 5.25 € par mois sur la facture d'électricité."
+        },
+        {
+          "question": "Comment faire des économies d'énergie avec un Sèche-linge ?",
+          "answer": "Utilisez les modes Éco, nettoyez régulièrement les filtres et les grilles, et éteignez complètement l'appareil à l'aide d'une multiprise avec interrupteur pour éviter la consommation de veille."
+        },
+        {
+          "question": "Un Sèche-linge consomme-t-il de l'électricité en mode veille ?",
+          "answer": "Oui, la plupart des appareils récents consomment entre 0,5 et 3 Watts en veille. Sur les modèles anciens, cette veille passive peut atteindre 5 à 10 Watts."
+        }
+      ]
     },
-    'geschirrspueler': {
-      name: 'Lave-vaisselle',
-      category: 'Cuisine',
-      shortDescription: 'Le cycle Éco consomme environ 0,7 à 0,9 kWh (0,25 à 0,32 €). C\'est plus économique que la vaisselle à la main.',
-      dutyCycleExplanation: 'L\'eau est chauffée en circuit fermé optimisé.',
-      savingAdvice: ['Utilisez le programme Éco 50 °C.', 'Ne lancez que plein.'],
-      faq: [{ question: 'Est-il plus économique que la vaisselle à la main ?', answer: 'Oui, il consomme jusqu\'à 50 % d\'électricité et 60 % d\'eau en moins.' }]
+    "geschirrspueler": {
+      "name": "Lave-vaisselle",
+      "category": "Cuisine",
+      "shortDescription": "Un Lave-vaisselle consomme environ 160 kWh par an (environ 56.00 € à 35 ct/kWh). Puissance moyenne : 1800 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quelle est la consommation électrique d'un Lave-vaisselle par heure et par an ?",
+          "answer": "Un Lave-vaisselle consomme environ 1800 Watts, soit environ 1.800 kWh par heure (environ 0.63 €/h à 0,35 €/kWh). Sa consommation annuelle typique est de 160 kWh (56.00 €/an)."
+        },
+        {
+          "question": "Combien coûte l'utilisation d'un Lave-vaisselle par mois ?",
+          "answer": "Le coût moyen est de 0,28 € / Spülgang, ce qui représente environ 4.67 € par mois sur la facture d'électricité."
+        },
+        {
+          "question": "Comment faire des économies d'énergie avec un Lave-vaisselle ?",
+          "answer": "Utilisez les modes Éco, nettoyez régulièrement les filtres et les grilles, et éteignez complètement l'appareil à l'aide d'une multiprise avec interrupteur pour éviter la consommation de veille."
+        },
+        {
+          "question": "Un Lave-vaisselle consomme-t-il de l'électricité en mode veille ?",
+          "answer": "Oui, la plupart des appareils récents consomment entre 0,5 et 3 Watts en veille. Sur les modèles anciens, cette veille passive peut atteindre 5 à 10 Watts."
+        }
+      ]
     },
-    'backofen': {
-      name: 'Four Électrique',
-      category: 'Cuisine',
-      shortDescription: 'Un four électrique consomme environ 0,8 à 1,5 kWh par heure (environ 0,28 à 0,52 €).',
-      dutyCycleExplanation: 'La chaleur tournante est environ 20 % plus économe que la convection naturelle.',
-      savingAdvice: ['Privilégiez la chaleur tournante.', 'Gardez la porte fermée.'],
-      faq: [{ question: 'Faut-il préchauffer le four ?', answer: 'La plupart du temps non, ce qui économise jusqu\'à 20 % d\'électricité.' }]
+    "backofen": {
+      "name": "Four électrique",
+      "category": "Cuisine",
+      "shortDescription": "Un Four électrique consomme environ 150 kWh par an (environ 52.50 € à 35 ct/kWh). Puissance moyenne : 2500 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quelle est la consommation électrique d'un Four électrique par heure et par an ?",
+          "answer": "Un Four électrique consomme environ 2500 Watts, soit environ 2.500 kWh par heure (environ 0.88 €/h à 0,35 €/kWh). Sa consommation annuelle typique est de 150 kWh (52.50 €/an)."
+        },
+        {
+          "question": "Combien coûte l'utilisation d'un Four électrique par mois ?",
+          "answer": "Le coût moyen est de 0,55 € / Nutzung, ce qui représente environ 4.38 € par mois sur la facture d'électricité."
+        },
+        {
+          "question": "Comment faire des économies d'énergie avec un Four électrique ?",
+          "answer": "Utilisez les modes Éco, nettoyez régulièrement les filtres et les grilles, et éteignez complètement l'appareil à l'aide d'une multiprise avec interrupteur pour éviter la consommation de veille."
+        },
+        {
+          "question": "Un Four électrique consomme-t-il de l'électricité en mode veille ?",
+          "answer": "Oui, la plupart des appareils récents consomment entre 0,5 et 3 Watts en veille. Sur les modèles anciens, cette veille passive peut atteindre 5 à 10 Watts."
+        }
+      ]
     },
-    'herd': {
-      name: 'Plaque à Induction',
-      category: 'Cuisine',
-      shortDescription: 'L\'induction consomme 0,3 à 0,7 kWh par repas et est 20–30 % plus efficace que la vitrocéramique.',
-      dutyCycleExplanation: 'Chauffe directement le fond des récipients magnétiques sans déperdition.',
-      savingAdvice: ['Cuisinez toujours avec un couvercle.', 'Chauffez l\'eau à la bouilloire avant.'],
-      faq: [{ question: 'L\'induction est-elle plus économique que la vitrocéramique ?', answer: 'Oui, elle économise 20 à 30 % d\'énergie et chauffe deux fois plus vite.' }]
+    "herd": {
+      "name": "Plaque à induction / Cuisinière",
+      "category": "Cuisine",
+      "shortDescription": "Un Plaque à induction / Cuisinière consomme environ 220 kWh par an (environ 77.00 € à 35 ct/kWh). Puissance moyenne : 3000 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quelle est la consommation électrique d'un Plaque à induction / Cuisinière par heure et par an ?",
+          "answer": "Un Plaque à induction / Cuisinière consomme environ 3000 Watts, soit environ 3.000 kWh par heure (environ 1.05 €/h à 0,35 €/kWh). Sa consommation annuelle typique est de 220 kWh (77.00 €/an)."
+        },
+        {
+          "question": "Combien coûte l'utilisation d'un Plaque à induction / Cuisinière par mois ?",
+          "answer": "Le coût moyen est de 0,35 € / Kochvorgang, ce qui représente environ 6.42 € par mois sur la facture d'électricité."
+        },
+        {
+          "question": "Comment faire des économies d'énergie avec un Plaque à induction / Cuisinière ?",
+          "answer": "Utilisez les modes Éco, nettoyez régulièrement les filtres et les grilles, et éteignez complètement l'appareil à l'aide d'une multiprise avec interrupteur pour éviter la consommation de veille."
+        },
+        {
+          "question": "Un Plaque à induction / Cuisinière consomme-t-il de l'électricité en mode veille ?",
+          "answer": "Oui, la plupart des appareils récents consomment entre 0,5 et 3 Watts en veille. Sur les modèles anciens, cette veille passive peut atteindre 5 à 10 Watts."
+        }
+      ]
     },
-    'wasserkocher': {
-      name: 'Bouilloire Électrique',
-      category: 'Cuisine',
-      shortDescription: 'Faire bouillir 1 litre d\'eau consomme environ 0,1 kWh (environ 3,5 centimes).',
-      dutyCycleExplanation: 'Transfert thermique direct avec plus de 90 % d\'efficacité.',
-      savingAdvice: ['Ne chauffez que la quantité d\'eau nécessaire.', 'Détartrez régulièrement.'],
-      faq: [{ question: 'La bouilloire est-elle plus économe que la plaque ?', answer: 'Oui, elle est 30 à 50 % plus économe qu\'une casserole sur plaque.' }]
+    "wasserkocher": {
+      "name": "Bouilloire électrique",
+      "category": "Cuisine",
+      "shortDescription": "Un Bouilloire électrique consomme environ 80 kWh par an (environ 28.00 € à 35 ct/kWh). Puissance moyenne : 2200 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quelle est la consommation électrique d'un Bouilloire électrique par heure et par an ?",
+          "answer": "Un Bouilloire électrique consomme environ 2200 Watts, soit environ 2.200 kWh par heure (environ 0.77 €/h à 0,35 €/kWh). Sa consommation annuelle typique est de 80 kWh (28.00 €/an)."
+        },
+        {
+          "question": "Combien coûte l'utilisation d'un Bouilloire électrique par mois ?",
+          "answer": "Le coût moyen est de 0,03 € / 1 Liter Kochen, ce qui représente environ 2.33 € par mois sur la facture d'électricité."
+        },
+        {
+          "question": "Comment faire des économies d'énergie avec un Bouilloire électrique ?",
+          "answer": "Utilisez les modes Éco, nettoyez régulièrement les filtres et les grilles, et éteignez complètement l'appareil à l'aide d'une multiprise avec interrupteur pour éviter la consommation de veille."
+        },
+        {
+          "question": "Un Bouilloire électrique consomme-t-il de l'électricité en mode veille ?",
+          "answer": "Oui, la plupart des appareils récents consomment entre 0,5 et 3 Watts en veille. Sur les modèles anciens, cette veille passive peut atteindre 5 à 10 Watts."
+        }
+      ]
     },
-    'kaffeemaschine': {
-      name: 'Machine à Café Automatique',
-      category: 'Cuisine',
-      shortDescription: 'Une machine à café consomme environ 0,02 à 0,04 kWh par tasse.',
-      dutyCycleExplanation: 'Le thermobloc chauffe l\'eau instantanément à la demande.',
-      savingAdvice: ['Activez l\'extinction automatique après 10–15 min.'],
-      faq: [{ question: 'Combien coûte l\'électricité pour un café ?', answer: 'Environ 1 à 1,5 centime par tasse.' }]
+    "kaffeemaschine": {
+      "name": "Machine à café / Expresso",
+      "category": "Cuisine",
+      "shortDescription": "Un Machine à café / Expresso consomme environ 65 kWh par an (environ 22.75 € à 35 ct/kWh). Puissance moyenne : 1400 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quelle est la consommation électrique d'un Machine à café / Expresso par heure et par an ?",
+          "answer": "Un Machine à café / Expresso consomme environ 1400 Watts, soit environ 1.400 kWh par heure (environ 0.49 €/h à 0,35 €/kWh). Sa consommation annuelle typique est de 65 kWh (22.75 €/an)."
+        },
+        {
+          "question": "Combien coûte l'utilisation d'un Machine à café / Expresso par mois ?",
+          "answer": "Le coût moyen est de 0,02 € / Tasse Kaffee, ce qui représente environ 1.90 € par mois sur la facture d'électricité."
+        },
+        {
+          "question": "Comment faire des économies d'énergie avec un Machine à café / Expresso ?",
+          "answer": "Utilisez les modes Éco, nettoyez régulièrement les filtres et les grilles, et éteignez complètement l'appareil à l'aide d'une multiprise avec interrupteur pour éviter la consommation de veille."
+        },
+        {
+          "question": "Un Machine à café / Expresso consomme-t-il de l'électricité en mode veille ?",
+          "answer": "Oui, la plupart des appareils récents consomment entre 0,5 et 3 Watts en veille. Sur les modèles anciens, cette veille passive peut atteindre 5 à 10 Watts."
+        }
+      ]
     },
-    'fernseher': {
-      name: 'Téléviseur (TV)',
-      category: 'Multimédia & Bureau',
-      shortDescription: 'Un téléviseur 55 pouces LED/OLED consomme entre 70 et 130 W (environ 2,5 à 4,5 centimes par heure).',
-      dutyCycleExplanation: 'La luminosité et les modes HDR influent sur la consommation.',
-      savingAdvice: ['Activez le capteur de lumière ambiante.', 'Choisissez le mode cinéma.'],
-      faq: [{ question: 'L\'OLED consomme-t-il plus que le LED ?', answer: 'Légèrement plus sur fond blanc, mais moins dans les scènes sombres.' }]
+    "fernseher": {
+      "name": "Téléviseur Smart TV (55-65\")",
+      "category": "Divertissement & Bureau",
+      "shortDescription": "Un Téléviseur Smart TV (55-65\") consomme environ 175 kWh par an (environ 61.25 € à 35 ct/kWh). Puissance moyenne : 120 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quelle est la consommation électrique d'un Téléviseur Smart TV (55-65\") par heure et par an ?",
+          "answer": "Un Téléviseur Smart TV (55-65\") consomme environ 120 Watts, soit environ 0.120 kWh par heure (environ 0.04 €/h à 0,35 €/kWh). Sa consommation annuelle typique est de 175 kWh (61.25 €/an)."
+        },
+        {
+          "question": "Combien coûte l'utilisation d'un Téléviseur Smart TV (55-65\") par mois ?",
+          "answer": "Le coût moyen est de 0,17 € / 4 Stunden, ce qui représente environ 5.10 € par mois sur la facture d'électricité."
+        },
+        {
+          "question": "Comment faire des économies d'énergie avec un Téléviseur Smart TV (55-65\") ?",
+          "answer": "Utilisez les modes Éco, nettoyez régulièrement les filtres et les grilles, et éteignez complètement l'appareil à l'aide d'une multiprise avec interrupteur pour éviter la consommation de veille."
+        },
+        {
+          "question": "Un Téléviseur Smart TV (55-65\") consomme-t-il de l'électricité en mode veille ?",
+          "answer": "Oui, la plupart des appareils récents consomment entre 0,5 et 3 Watts en veille. Sur les modèles anciens, cette veille passive peut atteindre 5 à 10 Watts."
+        }
+      ]
     },
-    'gaming-pc': {
-      name: 'PC Gamer',
-      category: 'Multimédia & Bureau',
-      shortDescription: 'En pleine charge de jeu, il consomme entre 350 et 600 W (environ 0,12 à 0,21 € par heure).',
-      dutyCycleExplanation: 'La carte graphique et le processeur tournent à puissance maximale.',
-      savingAdvice: ['Limitez le taux de rafraîchissement (FPS cap).', 'Undervoltez la carte graphique.'],
-      faq: [{ question: 'Combien coûte 4h de jeu par jour sur un mois ?', answer: 'Environ 17 à 20 euros par mois.' }]
+    "gaming-pc": {
+      "name": "PC Gamer (Haut de Gamme)",
+      "category": "Divertissement & Bureau",
+      "shortDescription": "Un PC Gamer (Haut de Gamme) consomme environ 450 kWh par an (environ 157.50 € à 35 ct/kWh). Puissance moyenne : 400 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quelle est la consommation électrique d'un PC Gamer (Haut de Gamme) par heure et par an ?",
+          "answer": "Un PC Gamer (Haut de Gamme) consomme environ 400 Watts, soit environ 0.400 kWh par heure (environ 0.14 €/h à 0,35 €/kWh). Sa consommation annuelle typique est de 450 kWh (157.50 €/an)."
+        },
+        {
+          "question": "Combien coûte l'utilisation d'un PC Gamer (Haut de Gamme) par mois ?",
+          "answer": "Le coût moyen est de 0,56 € / 4 Stunden Session, ce qui représente environ 13.13 € par mois sur la facture d'électricité."
+        },
+        {
+          "question": "Comment faire des économies d'énergie avec un PC Gamer (Haut de Gamme) ?",
+          "answer": "Utilisez les modes Éco, nettoyez régulièrement les filtres et les grilles, et éteignez complètement l'appareil à l'aide d'une multiprise avec interrupteur pour éviter la consommation de veille."
+        },
+        {
+          "question": "Un PC Gamer (Haut de Gamme) consomme-t-il de l'électricité en mode veille ?",
+          "answer": "Oui, la plupart des appareils récents consomment entre 0,5 et 3 Watts en veille. Sur les modèles anciens, cette veille passive peut atteindre 5 à 10 Watts."
+        }
+      ]
     },
-    'gamingpc': {
-      name: 'PC Gamer',
-      category: 'Multimédia & Bureau',
-      shortDescription: 'En pleine charge de jeu, il consomme entre 350 et 600 W (environ 0,12 à 0,21 € par heure).',
-      dutyCycleExplanation: 'La carte graphique et le processeur tournent à puissance maximale.',
-      savingAdvice: ['Limitez le taux de rafraîchissement (FPS cap).', 'Undervoltez la carte graphique.'],
-      faq: [{ question: 'Combien coûte 4h de jeu par jour sur un mois ?', answer: 'Environ 17 à 20 euros par mois.' }]
+    "pc": {
+      "name": "Ordinateur de Bureau / PC fixe",
+      "category": "Divertissement & Bureau",
+      "shortDescription": "Un Ordinateur de Bureau / PC fixe consomme environ 180 kWh par an (environ 63.00 € à 35 ct/kWh). Puissance moyenne : 120 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quelle est la consommation électrique d'un Ordinateur de Bureau / PC fixe par heure et par an ?",
+          "answer": "Un Ordinateur de Bureau / PC fixe consomme environ 120 Watts, soit environ 0.120 kWh par heure (environ 0.04 €/h à 0,35 €/kWh). Sa consommation annuelle typique est de 180 kWh (63.00 €/an)."
+        },
+        {
+          "question": "Combien coûte l'utilisation d'un Ordinateur de Bureau / PC fixe par mois ?",
+          "answer": "Le coût moyen est de 0,25 € / 6 Stunden Arbeit, ce qui représente environ 5.25 € par mois sur la facture d'électricité."
+        },
+        {
+          "question": "Comment faire des économies d'énergie avec un Ordinateur de Bureau / PC fixe ?",
+          "answer": "Utilisez les modes Éco, nettoyez régulièrement les filtres et les grilles, et éteignez complètement l'appareil à l'aide d'une multiprise avec interrupteur pour éviter la consommation de veille."
+        },
+        {
+          "question": "Un Ordinateur de Bureau / PC fixe consomme-t-il de l'électricité en mode veille ?",
+          "answer": "Oui, la plupart des appareils récents consomment entre 0,5 et 3 Watts en veille. Sur les modèles anciens, cette veille passive peut atteindre 5 à 10 Watts."
+        }
+      ]
     },
-    'pc': {
-      name: 'PC de Bureau (Bureautique)',
-      category: 'Multimédia & Bureau',
-      shortDescription: 'Un PC de bureau consomme environ 50 à 100 W (environ 1,8 à 3,5 centimes par heure).',
-      dutyCycleExplanation: 'Faible consommation de base en bureautique.',
-      savingAdvice: ['Activez la mise en veille après 15 min.'],
-      faq: [{ question: 'Combien consomme un PC en télétravail ?', answer: 'Pour 8h par jour, environ 0,5 à 0,8 kWh (18 à 28 centimes).' }]
+    "laptop": {
+      "name": "Ordinateur Portable / Laptop",
+      "category": "Divertissement & Bureau",
+      "shortDescription": "Un Ordinateur Portable / Laptop consomme environ 75 kWh par an (environ 26.25 € à 35 ct/kWh). Puissance moyenne : 50 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quelle est la consommation électrique d'un Ordinateur Portable / Laptop par heure et par an ?",
+          "answer": "Un Ordinateur Portable / Laptop consomme environ 50 Watts, soit environ 0.050 kWh par heure (environ 0.02 €/h à 0,35 €/kWh). Sa consommation annuelle typique est de 75 kWh (26.25 €/an)."
+        },
+        {
+          "question": "Combien coûte l'utilisation d'un Ordinateur Portable / Laptop par mois ?",
+          "answer": "Le coût moyen est de 0,11 € / 6 Stunden Arbeit, ce qui représente environ 2.19 € par mois sur la facture d'électricité."
+        },
+        {
+          "question": "Comment faire des économies d'énergie avec un Ordinateur Portable / Laptop ?",
+          "answer": "Utilisez les modes Éco, nettoyez régulièrement les filtres et les grilles, et éteignez complètement l'appareil à l'aide d'une multiprise avec interrupteur pour éviter la consommation de veille."
+        },
+        {
+          "question": "Un Ordinateur Portable / Laptop consomme-t-il de l'électricité en mode veille ?",
+          "answer": "Oui, la plupart des appareils récents consomment entre 0,5 et 3 Watts en veille. Sur les modèles anciens, cette veille passive peut atteindre 5 à 10 Watts."
+        }
+      ]
     },
-    'laptop': {
-      name: 'Ordinateur Portable',
-      category: 'Multimédia & Bureau',
-      shortDescription: 'Un ordinateur portable consomme seulement 20 à 60 W (jusqu\'à 70 % plus économe qu\'un fixe).',
-      dutyCycleExplanation: 'Processeurs mobiles basse consommation.',
-      savingAdvice: ['Diminuez légèrement la luminosité de l\'écran.'],
-      faq: [{ question: 'Combien coûte un portable par jour ?', answer: 'Pour 8 heures de travail, seulement 6 à 12 centimes par jour.' }]
+    "monitor": {
+      "name": "Écran PC / Moniteur (27-32\")",
+      "category": "Divertissement & Bureau",
+      "shortDescription": "Un Écran PC / Moniteur (27-32\") consomme environ 60 kWh par an (environ 21.00 € à 35 ct/kWh). Puissance moyenne : 35 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quelle est la consommation électrique d'un Écran PC / Moniteur (27-32\") par heure et par an ?",
+          "answer": "Un Écran PC / Moniteur (27-32\") consomme environ 35 Watts, soit environ 0.035 kWh par heure (environ 0.01 €/h à 0,35 €/kWh). Sa consommation annuelle typique est de 60 kWh (21.00 €/an)."
+        },
+        {
+          "question": "Combien coûte l'utilisation d'un Écran PC / Moniteur (27-32\") par mois ?",
+          "answer": "Le coût moyen est de 0,07 € / 6 Stunden Betrieb, ce qui représente environ 1.75 € par mois sur la facture d'électricité."
+        },
+        {
+          "question": "Comment faire des économies d'énergie avec un Écran PC / Moniteur (27-32\") ?",
+          "answer": "Utilisez les modes Éco, nettoyez régulièrement les filtres et les grilles, et éteignez complètement l'appareil à l'aide d'une multiprise avec interrupteur pour éviter la consommation de veille."
+        },
+        {
+          "question": "Un Écran PC / Moniteur (27-32\") consomme-t-il de l'électricité en mode veille ?",
+          "answer": "Oui, la plupart des appareils récents consomment entre 0,5 et 3 Watts en veille. Sur les modèles anciens, cette veille passive peut atteindre 5 à 10 Watts."
+        }
+      ]
     },
-    'monitor': {
-      name: 'Écran / Moniteur',
-      category: 'Multimédia & Bureau',
-      shortDescription: 'Un moniteur 27 pouces consomme environ 20 à 40 W (environ 0,7 à 1,4 centime par heure).',
-      dutyCycleExplanation: 'Rétroéclairage LED à consommation stable.',
-      savingAdvice: ['Ajustez la luminosité à l\'éclairage de la pièce.'],
-      faq: [{ question: 'Combien coûte un second écran par an ?', answer: 'Environ 10 à 20 € d\'électricité par an.' }]
+    "ps5": {
+      "name": "PlayStation 5 (PS5)",
+      "category": "Divertissement & Bureau",
+      "shortDescription": "Un PlayStation 5 (PS5) consomme environ 150 kWh par an (environ 52.50 € à 35 ct/kWh). Puissance moyenne : 200 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quelle est la consommation électrique d'un PlayStation 5 (PS5) par heure et par an ?",
+          "answer": "Un PlayStation 5 (PS5) consomme environ 200 Watts, soit environ 0.200 kWh par heure (environ 0.07 €/h à 0,35 €/kWh). Sa consommation annuelle typique est de 150 kWh (52.50 €/an)."
+        },
+        {
+          "question": "Combien coûte l'utilisation d'un PlayStation 5 (PS5) par mois ?",
+          "answer": "Le coût moyen est de 0,21 € / 3 Stunden Spielen, ce qui représente environ 4.38 € par mois sur la facture d'électricité."
+        },
+        {
+          "question": "Comment faire des économies d'énergie avec un PlayStation 5 (PS5) ?",
+          "answer": "Utilisez les modes Éco, nettoyez régulièrement les filtres et les grilles, et éteignez complètement l'appareil à l'aide d'une multiprise avec interrupteur pour éviter la consommation de veille."
+        },
+        {
+          "question": "Un PlayStation 5 (PS5) consomme-t-il de l'électricité en mode veille ?",
+          "answer": "Oui, la plupart des appareils récents consomment entre 0,5 et 3 Watts en veille. Sur les modèles anciens, cette veille passive peut atteindre 5 à 10 Watts."
+        }
+      ]
     },
-    'ps5': {
-      name: 'PlayStation 5 (PS5)',
-      category: 'Multimédia & Bureau',
-      shortDescription: 'La PS5 consomme environ 180 à 220 W en jeu (environ 6,3 à 7,7 centimes par heure).',
-      dutyCycleExplanation: '50 W sur le menu, jusqu\'à 220 W en jeu 4K.',
-      savingAdvice: ['Désactivez l\'alimentation USB continue en veille.'],
-      faq: [{ question: 'Combien consomme la PS5 en veille ?', answer: '1,5 à 3 W en veille simple, 30 W lors des téléchargements.' }]
+    "xbox": {
+      "name": "Xbox Series X",
+      "category": "Divertissement & Bureau",
+      "shortDescription": "Un Xbox Series X consomme environ 140 kWh par an (environ 49.00 € à 35 ct/kWh). Puissance moyenne : 190 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quelle est la consommation électrique d'un Xbox Series X par heure et par an ?",
+          "answer": "Un Xbox Series X consomme environ 190 Watts, soit environ 0.190 kWh par heure (environ 0.07 €/h à 0,35 €/kWh). Sa consommation annuelle typique est de 140 kWh (49.00 €/an)."
+        },
+        {
+          "question": "Combien coûte l'utilisation d'un Xbox Series X par mois ?",
+          "answer": "Le coût moyen est de 0,20 € / 3 Stunden Spielen, ce qui représente environ 4.08 € par mois sur la facture d'électricité."
+        },
+        {
+          "question": "Comment faire des économies d'énergie avec un Xbox Series X ?",
+          "answer": "Utilisez les modes Éco, nettoyez régulièrement les filtres et les grilles, et éteignez complètement l'appareil à l'aide d'une multiprise avec interrupteur pour éviter la consommation de veille."
+        },
+        {
+          "question": "Un Xbox Series X consomme-t-il de l'électricité en mode veille ?",
+          "answer": "Oui, la plupart des appareils récents consomment entre 0,5 et 3 Watts en veille. Sur les modèles anciens, cette veille passive peut atteindre 5 à 10 Watts."
+        }
+      ]
     },
-    'xbox': {
-      name: 'Xbox Series X',
-      category: 'Multimédia & Bureau',
-      shortDescription: 'La Xbox Series X consomme environ 150 à 210 W en jeu (environ 5,3 à 7,4 centimes par heure).',
-      dutyCycleExplanation: 'Pleine charge lors des jeux 4K 120Hz.',
-      savingAdvice: ['Choisissez le mode extinction éco au lieu de l\'allumage instantané.'],
-      faq: [{ question: 'Combien économise le mode éco ?', answer: 'Il consomme 0,5 W contre 10–13 W en veille active, économisant environ 30 €/an.' }]
+    "klimaanlage": {
+      "name": "Climatiseur (Split)",
+      "category": "Climatisation & Chauffage",
+      "shortDescription": "Un Climatiseur (Split) consomme environ 350 kWh par an (environ 122.50 € à 35 ct/kWh). Puissance moyenne : 800 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quelle est la consommation électrique d'un Climatiseur (Split) par heure et par an ?",
+          "answer": "Un Climatiseur (Split) consomme environ 800 Watts, soit environ 0.800 kWh par heure (environ 0.28 €/h à 0,35 €/kWh). Sa consommation annuelle typique est de 350 kWh (122.50 €/an)."
+        },
+        {
+          "question": "Combien coûte l'utilisation d'un Climatiseur (Split) par mois ?",
+          "answer": "Le coût moyen est de 1,40 € / 5 Stunden Kühlung, ce qui représente environ 10.21 € par mois sur la facture d'électricité."
+        },
+        {
+          "question": "Comment faire des économies d'énergie avec un Climatiseur (Split) ?",
+          "answer": "Utilisez les modes Éco, nettoyez régulièrement les filtres et les grilles, et éteignez complètement l'appareil à l'aide d'une multiprise avec interrupteur pour éviter la consommation de veille."
+        },
+        {
+          "question": "Un Climatiseur (Split) consomme-t-il de l'électricité en mode veille ?",
+          "answer": "Oui, la plupart des appareils récents consomment entre 0,5 et 3 Watts en veille. Sur les modèles anciens, cette veille passive peut atteindre 5 à 10 Watts."
+        }
+      ]
     },
-    'klimaanlage': {
-      name: 'Climatisation',
-      category: 'Climat & Chauffage',
-      shortDescription: 'Les climatiseurs mobiles consomment 800 à 1 200 W (28 à 42 ct/h), les splits sont 50 % plus économes.',
-      dutyCycleExplanation: 'Le compresseur réduit sa puissance une fois la consigne atteinte.',
-      savingAdvice: ['Réglez entre 24 et 26 °C.', 'Fermez les volets le jour.'],
-      faq: [{ question: 'Combien coûte la clim en été ?', answer: 'Pour 30 jours à 6h/jour, environ 50–75 € en mobile contre 25–40 € en split.' }]
+    "ventilator": {
+      "name": "Ventilateur sur pied",
+      "category": "Climatisation & Chauffage",
+      "shortDescription": "Un Ventilateur sur pied consomme environ 35 kWh par an (environ 12.25 € à 35 ct/kWh). Puissance moyenne : 45 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quelle est la consommation électrique d'un Ventilateur sur pied par heure et par an ?",
+          "answer": "Un Ventilateur sur pied consomme environ 45 Watts, soit environ 0.045 kWh par heure (environ 0.02 €/h à 0,35 €/kWh). Sa consommation annuelle typique est de 35 kWh (12.25 €/an)."
+        },
+        {
+          "question": "Combien coûte l'utilisation d'un Ventilateur sur pied par mois ?",
+          "answer": "Le coût moyen est de 0,10 € / 6 Stunden, ce qui représente environ 1.02 € par mois sur la facture d'électricité."
+        },
+        {
+          "question": "Comment faire des économies d'énergie avec un Ventilateur sur pied ?",
+          "answer": "Utilisez les modes Éco, nettoyez régulièrement les filtres et les grilles, et éteignez complètement l'appareil à l'aide d'une multiprise avec interrupteur pour éviter la consommation de veille."
+        },
+        {
+          "question": "Un Ventilateur sur pied consomme-t-il de l'électricité en mode veille ?",
+          "answer": "Oui, la plupart des appareils récents consomment entre 0,5 et 3 Watts en veille. Sur les modèles anciens, cette veille passive peut atteindre 5 à 10 Watts."
+        }
+      ]
     },
-    'ventilator': {
-      name: 'Ventilateur',
-      category: 'Climat & Chauffage',
-      shortDescription: 'Un ventilateur sur pied consomme seulement 25 à 50 W (environ 0,9 à 1,8 centime par heure).',
-      dutyCycleExplanation: 'Moteur direct sans compresseur frigorifique.',
-      savingAdvice: ['Éteignez-le quand vous quittez la pièce.'],
-      faq: [{ question: 'Consomme-t-il beaucoup moins que la clim ?', answer: 'Oui, environ 95 % d\'électricité en moins.' }]
+    "heizluefter": {
+      "name": "Radiateur Soufflant / Chauffage d'appoint",
+      "category": "Climatisation & Chauffage",
+      "shortDescription": "Un Radiateur Soufflant / Chauffage d'appoint consomme environ 300 kWh par an (environ 105.00 € à 35 ct/kWh). Puissance moyenne : 2000 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quelle est la consommation électrique d'un Radiateur Soufflant / Chauffage d'appoint par heure et par an ?",
+          "answer": "Un Radiateur Soufflant / Chauffage d'appoint consomme environ 2000 Watts, soit environ 2.000 kWh par heure (environ 0.70 €/h à 0,35 €/kWh). Sa consommation annuelle typique est de 300 kWh (105.00 €/an)."
+        },
+        {
+          "question": "Combien coûte l'utilisation d'un Radiateur Soufflant / Chauffage d'appoint par mois ?",
+          "answer": "Le coût moyen est de 1,40 € / 2 Stunden Heizen, ce qui représente environ 8.75 € par mois sur la facture d'électricité."
+        },
+        {
+          "question": "Comment faire des économies d'énergie avec un Radiateur Soufflant / Chauffage d'appoint ?",
+          "answer": "Utilisez les modes Éco, nettoyez régulièrement les filtres et les grilles, et éteignez complètement l'appareil à l'aide d'une multiprise avec interrupteur pour éviter la consommation de veille."
+        },
+        {
+          "question": "Un Radiateur Soufflant / Chauffage d'appoint consomme-t-il de l'électricité en mode veille ?",
+          "answer": "Oui, la plupart des appareils récents consomment entre 0,5 et 3 Watts en veille. Sur les modèles anciens, cette veille passive peut atteindre 5 à 10 Watts."
+        }
+      ]
     },
-    'heizluefter': {
-      name: 'Radiateur Soufflant',
-      category: 'Climat & Chauffage',
-      shortDescription: 'Un radiateur soufflant consomme 1 500 à 2 000 W (environ 53 à 70 centimes par heure).',
-      dutyCycleExplanation: 'Résistance électrique convertissant l\'électricité en chaleur 1:1.',
-      savingAdvice: ['Utilisez uniquement comme chauffage d\'appoint ponctuel.'],
-      faq: [{ question: 'Combien coûte son utilisation 8h par jour ?', answer: 'Environ 4,20 à 5,60 € par jour (plus de 150 € par mois).' }]
+    "luftentfeuchter": {
+      "name": "Déshumidificateur d'air",
+      "category": "Climatisation & Chauffage",
+      "shortDescription": "Un Déshumidificateur d'air consomme environ 280 kWh par an (environ 98.00 € à 35 ct/kWh). Puissance moyenne : 350 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quelle est la consommation électrique d'un Déshumidificateur d'air par heure et par an ?",
+          "answer": "Un Déshumidificateur d'air consomme environ 350 Watts, soit environ 0.350 kWh par heure (environ 0.12 €/h à 0,35 €/kWh). Sa consommation annuelle typique est de 280 kWh (98.00 €/an)."
+        },
+        {
+          "question": "Combien coûte l'utilisation d'un Déshumidificateur d'air par mois ?",
+          "answer": "Le coût moyen est de 0,74 € / 6 Stunden, ce qui représente environ 8.17 € par mois sur la facture d'électricité."
+        },
+        {
+          "question": "Comment faire des économies d'énergie avec un Déshumidificateur d'air ?",
+          "answer": "Utilisez les modes Éco, nettoyez régulièrement les filtres et les grilles, et éteignez complètement l'appareil à l'aide d'une multiprise avec interrupteur pour éviter la consommation de veille."
+        },
+        {
+          "question": "Un Déshumidificateur d'air consomme-t-il de l'électricité en mode veille ?",
+          "answer": "Oui, la plupart des appareils récents consomment entre 0,5 et 3 Watts en veille. Sur les modèles anciens, cette veille passive peut atteindre 5 à 10 Watts."
+        }
+      ]
     },
-    'luftentfeuchter': {
-      name: 'Déshumidificateur',
-      category: 'Climat & Chauffage',
-      shortDescription: 'Un déshumidificateur consomme environ 200 à 400 W (environ 7 à 14 centimes par heure).',
-      dutyCycleExplanation: 'Condense l\'humidité de l\'air ambiant.',
-      savingAdvice: ['Réglez à 50–55 % d\'humidité relative.', 'Fermez portes et fenêtres.'],
-      faq: [{ question: 'Combien de temps le faire tourner ?', answer: '2 à 4 heures par jour suffisent généralement.' }]
+    "aquarium": {
+      "name": "Aquarium (100–200 Litres)",
+      "category": "Loisirs & Spécial",
+      "shortDescription": "Un Aquarium (100–200 Litres) consomme environ 350 kWh par an (environ 122.50 € à 35 ct/kWh). Puissance moyenne : 60 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quelle est la consommation électrique d'un Aquarium (100–200 Litres) par heure et par an ?",
+          "answer": "Un Aquarium (100–200 Litres) consomme environ 60 Watts, soit environ 0.060 kWh par heure (environ 0.02 €/h à 0,35 €/kWh). Sa consommation annuelle typique est de 350 kWh (122.50 €/an)."
+        },
+        {
+          "question": "Combien coûte l'utilisation d'un Aquarium (100–200 Litres) par mois ?",
+          "answer": "Le coût moyen est de 0,34 € / 24 Stunden Dauerbetrieb, ce qui représente environ 10.21 € par mois sur la facture d'électricité."
+        },
+        {
+          "question": "Comment faire des économies d'énergie avec un Aquarium (100–200 Litres) ?",
+          "answer": "Utilisez les modes Éco, nettoyez régulièrement les filtres et les grilles, et éteignez complètement l'appareil à l'aide d'une multiprise avec interrupteur pour éviter la consommation de veille."
+        },
+        {
+          "question": "Un Aquarium (100–200 Litres) consomme-t-il de l'électricité en mode veille ?",
+          "answer": "Oui, la plupart des appareils récents consomment entre 0,5 et 3 Watts en veille. Sur les modèles anciens, cette veille passive peut atteindre 5 à 10 Watts."
+        }
+      ]
     },
-    'aquarium': {
-      name: 'Aquarium',
-      category: 'Hobby & Spécial',
-      shortDescription: 'Un aquarium de 100 L consomme environ 150 à 300 kWh par an (environ 53 à 105 €/an).',
-      dutyCycleExplanation: 'Le chauffage et l\'éclairage constituent l\'essentiel du coût.',
-      savingAdvice: ['Utilisez un éclairage LED et un couvercle thermique.'],
-      faq: [{ question: 'Qu\'est-ce qui consomme le plus dans un aquarium ?', answer: 'Le thermoplongeur (chauffage de l\'eau).' }]
+    "pool": {
+      "name": "Pompe de Piscine & Filtration",
+      "category": "Loisirs & Spécial",
+      "shortDescription": "Un Pompe de Piscine & Filtration consomme environ 480 kWh par an (environ 168.00 € à 35 ct/kWh). Puissance moyenne : 500 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quelle est la consommation électrique d'un Pompe de Piscine & Filtration par heure et par an ?",
+          "answer": "Un Pompe de Piscine & Filtration consomme environ 500 Watts, soit environ 0.500 kWh par heure (environ 0.17 €/h à 0,35 €/kWh). Sa consommation annuelle typique est de 480 kWh (168.00 €/an)."
+        },
+        {
+          "question": "Combien coûte l'utilisation d'un Pompe de Piscine & Filtration par mois ?",
+          "answer": "Le coût moyen est de 1,05 € / 6 Stunden Filterung, ce qui représente environ 14.00 € par mois sur la facture d'électricité."
+        },
+        {
+          "question": "Comment faire des économies d'énergie avec un Pompe de Piscine & Filtration ?",
+          "answer": "Utilisez les modes Éco, nettoyez régulièrement les filtres et les grilles, et éteignez complètement l'appareil à l'aide d'une multiprise avec interrupteur pour éviter la consommation de veille."
+        },
+        {
+          "question": "Un Pompe de Piscine & Filtration consomme-t-il de l'électricité en mode veille ?",
+          "answer": "Oui, la plupart des appareils récents consomment entre 0,5 et 3 Watts en veille. Sur les modèles anciens, cette veille passive peut atteindre 5 à 10 Watts."
+        }
+      ]
     },
-    'pool': {
-      name: 'Pompe de Piscine',
-      category: 'Hobby & Spécial',
-      shortDescription: 'Une pompe de piscine consomme 400 à 1 000 W (environ 14 à 35 centimes par heure).',
-      dutyCycleExplanation: 'Recycle l\'eau du bassin 2 à 3 fois par jour.',
-      savingAdvice: ['Installez une minuterie programmable.'],
-      faq: [{ question: 'Combien d\'heures la faire tourner en été ?', answer: 'Environ 6 à 8 heures par jour.' }]
+    "whirlpool": {
+      "name": "Jacuzzi / Spa Extérieur",
+      "category": "Loisirs & Spécial",
+      "shortDescription": "Un Jacuzzi / Spa Extérieur consomme environ 2200 kWh par an (environ 770.00 € à 35 ct/kWh). Puissance moyenne : 2500 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quelle est la consommation électrique d'un Jacuzzi / Spa Extérieur par heure et par an ?",
+          "answer": "Un Jacuzzi / Spa Extérieur consomme environ 2500 Watts, soit environ 2.500 kWh par heure (environ 0.88 €/h à 0,35 €/kWh). Sa consommation annuelle typique est de 2200 kWh (770.00 €/an)."
+        },
+        {
+          "question": "Combien coûte l'utilisation d'un Jacuzzi / Spa Extérieur par mois ?",
+          "answer": "Le coût moyen est de 2,10 € / Tag (Heizung & Zirkulation), ce qui représente environ 64.17 € par mois sur la facture d'électricité."
+        },
+        {
+          "question": "Comment faire des économies d'énergie avec un Jacuzzi / Spa Extérieur ?",
+          "answer": "Utilisez les modes Éco, nettoyez régulièrement les filtres et les grilles, et éteignez complètement l'appareil à l'aide d'une multiprise avec interrupteur pour éviter la consommation de veille."
+        },
+        {
+          "question": "Un Jacuzzi / Spa Extérieur consomme-t-il de l'électricité en mode veille ?",
+          "answer": "Oui, la plupart des appareils récents consomment entre 0,5 et 3 Watts en veille. Sur les modèles anciens, cette veille passive peut atteindre 5 à 10 Watts."
+        }
+      ]
     },
-    'whirlpool': {
-      name: 'Spa / Jacuzzi Extérieur',
-      category: 'Hobby & Spécial',
-      shortDescription: 'Un spa extérieur consomme environ 2 000 à 4 000 kWh par an (environ 700 à 1 400 €/an).',
-      dutyCycleExplanation: 'Maintenir l\'eau à 38 °C nécessite un chauffage permanent.',
-      savingAdvice: ['Utilisez une couverture isothermique épaisse.'],
-      faq: [{ question: 'Combien coûte un jacuzzi par mois ?', answer: 'Environ 50 à 120 € par mois selon la saison.' }]
+    "3d-drucker": {
+      "name": "Imprimante 3D (FDM)",
+      "category": "Loisirs & Spécial",
+      "shortDescription": "Un Imprimante 3D (FDM) consomme environ 120 kWh par an (environ 42.00 € à 35 ct/kWh). Puissance moyenne : 150 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quelle est la consommation électrique d'un Imprimante 3D (FDM) par heure et par an ?",
+          "answer": "Un Imprimante 3D (FDM) consomme environ 150 Watts, soit environ 0.150 kWh par heure (environ 0.05 €/h à 0,35 €/kWh). Sa consommation annuelle typique est de 120 kWh (42.00 €/an)."
+        },
+        {
+          "question": "Combien coûte l'utilisation d'un Imprimante 3D (FDM) par mois ?",
+          "answer": "Le coût moyen est de 0,42 € / 8 Stunden Druck, ce qui représente environ 3.50 € par mois sur la facture d'électricité."
+        },
+        {
+          "question": "Comment faire des économies d'énergie avec un Imprimante 3D (FDM) ?",
+          "answer": "Utilisez les modes Éco, nettoyez régulièrement les filtres et les grilles, et éteignez complètement l'appareil à l'aide d'une multiprise avec interrupteur pour éviter la consommation de veille."
+        },
+        {
+          "question": "Un Imprimante 3D (FDM) consomme-t-il de l'électricité en mode veille ?",
+          "answer": "Oui, la plupart des appareils récents consomment entre 0,5 et 3 Watts en veille. Sur les modèles anciens, cette veille passive peut atteindre 5 à 10 Watts."
+        }
+      ]
     },
-    '3d-drucker': {
-      name: 'Imprimante 3D',
-      category: 'Hobby & Spécial',
-      shortDescription: 'Une imprimante 3D FDM consomme 100 à 180 W (environ 3,5 à 6,3 centimes par heure).',
-      dutyCycleExplanation: 'Le plateau chauffant consomme 70 % de l\'énergie totale.',
-      savingAdvice: ['Utilisez un caisson pour retenir la chaleur.'],
-      faq: [{ question: 'Combien coûte une impression de 10 heures ?', answer: 'Environ 40 à 60 centimes d\'électricité.' }]
+    "nas": {
+      "name": "Serveur NAS / Stockage Réseau",
+      "category": "Divertissement & Bureau",
+      "shortDescription": "Un Serveur NAS / Stockage Réseau consomme environ 260 kWh par an (environ 91.00 € à 35 ct/kWh). Puissance moyenne : 30 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quelle est la consommation électrique d'un Serveur NAS / Stockage Réseau par heure et par an ?",
+          "answer": "Un Serveur NAS / Stockage Réseau consomme environ 30 Watts, soit environ 0.030 kWh par heure (environ 0.01 €/h à 0,35 €/kWh). Sa consommation annuelle typique est de 260 kWh (91.00 €/an)."
+        },
+        {
+          "question": "Combien coûte l'utilisation d'un Serveur NAS / Stockage Réseau par mois ?",
+          "answer": "Le coût moyen est de 0,25 € / 24 Stunden Dauerbetrieb, ce qui représente environ 7.58 € par mois sur la facture d'électricité."
+        },
+        {
+          "question": "Comment faire des économies d'énergie avec un Serveur NAS / Stockage Réseau ?",
+          "answer": "Utilisez les modes Éco, nettoyez régulièrement les filtres et les grilles, et éteignez complètement l'appareil à l'aide d'une multiprise avec interrupteur pour éviter la consommation de veille."
+        },
+        {
+          "question": "Un Serveur NAS / Stockage Réseau consomme-t-il de l'électricité en mode veille ?",
+          "answer": "Oui, la plupart des appareils récents consomment entre 0,5 et 3 Watts en veille. Sur les modèles anciens, cette veille passive peut atteindre 5 à 10 Watts."
+        }
+      ]
     },
-    'nas': {
-      name: 'Serveur NAS',
-      category: 'Hobby & Spécial',
-      shortDescription: 'Un NAS 2 baies consomme 15 à 30 W allumé 24h/24 (environ 45 à 90 € par an).',
-      dutyCycleExplanation: 'La mise en veille des disques réduit la consommation à moins de 8 W.',
-      savingAdvice: ['Activez l\'hibernation des disques durs.'],
-      faq: [{ question: 'Combien coûte un NAS allumé toute l\'année ?', answer: 'À 20 W continus, environ 61 € par an.' }]
-    },
-    'server': {
-      name: 'Serveur Domestique',
-      category: 'Hobby & Spécial',
-      shortDescription: 'Un serveur basse consommation (Mini PC) consomme 10 à 40 W (environ 30 à 120 €/an).',
-      dutyCycleExplanation: 'Processeurs modernes à très faible consommation au repos.',
-      savingAdvice: ['Privilégiez les Mini PC récents aux vieilles tours.'],
-      faq: [{ question: 'Combien consomme un serveur maison ?', answer: 'Environ 10–15 W au repos (30 à 45 € par an).' }]
+    "server": {
+      "name": "Serveur Domestique / Homelab",
+      "category": "Divertissement & Bureau",
+      "shortDescription": "Un Serveur Domestique / Homelab consomme environ 570 kWh par an (environ 199.50 € à 35 ct/kWh). Puissance moyenne : 65 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quelle est la consommation électrique d'un Serveur Domestique / Homelab par heure et par an ?",
+          "answer": "Un Serveur Domestique / Homelab consomme environ 65 Watts, soit environ 0.065 kWh par heure (environ 0.02 €/h à 0,35 €/kWh). Sa consommation annuelle typique est de 570 kWh (199.50 €/an)."
+        },
+        {
+          "question": "Combien coûte l'utilisation d'un Serveur Domestique / Homelab par mois ?",
+          "answer": "Le coût moyen est de 0,55 € / 24 Stunden Dauerbetrieb, ce qui représente environ 16.63 € par mois sur la facture d'électricité."
+        },
+        {
+          "question": "Comment faire des économies d'énergie avec un Serveur Domestique / Homelab ?",
+          "answer": "Utilisez les modes Éco, nettoyez régulièrement les filtres et les grilles, et éteignez complètement l'appareil à l'aide d'une multiprise avec interrupteur pour éviter la consommation de veille."
+        },
+        {
+          "question": "Un Serveur Domestique / Homelab consomme-t-il de l'électricité en mode veille ?",
+          "answer": "Oui, la plupart des appareils récents consomment entre 0,5 et 3 Watts en veille. Sur les modèles anciens, cette veille passive peut atteindre 5 à 10 Watts."
+        }
+      ]
     }
   },
-  pt: {
-    'kuehlschrank': {
-      name: 'Geladeira / Frigorífico',
-      category: 'Cozinha',
-      shortDescription: 'Uma geladeira moderna consome cerca de 100 a 160 kWh por ano (aprox. 35 a 56 €/ano).',
-      dutyCycleExplanation: 'O compressor funciona de 20 a 40 minutos por hora via termostato.',
-      savingAdvice: ['Ajuste para 7 °C no refrigerador e -18 °C no freezer.', 'Descongele periodicamente.'],
-      faq: [{ question: 'Quanto consome uma geladeira por dia?', answer: 'Cerca de 0,3 a 0,45 kWh por dia (10 a 16 centavos).' }]
+  "pt": {
+    "kuehlschrank": {
+      "name": "Frigorífico / Geladeira",
+      "category": "Cozinha",
+      "shortDescription": "Um Frigorífico / Geladeira consome cerca de 120 kWh por ano (cerca de 42.00 € a 35 ct/kWh). Potência média: 90 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto gasta um Frigorífico / Geladeira por hora, dia e ano em eletricidade?",
+          "answer": "Um Frigorífico / Geladeira consome em média cerca de 90 Watts, o que equivale a 0.090 kWh por hora (cerca de 0.01 €/hora a 35 ct/kWh). O consumo anual típico ronda os 120 kWh (42.00 €/ano)."
+        },
+        {
+          "question": "Quanto custa utilizar um Frigorífico / Geladeira por mês?",
+          "answer": "O custo médio de operação é de cerca de 0,12 € / Tag, totalizando cerca de 3.50 € por mês na fatura de eletricidade."
+        },
+        {
+          "question": "Como poupar energia e baixar a conta de luz com o Frigorífico / Geladeira?",
+          "answer": "Utilize modos económicos (Eco), mantenha os filtros e borrachas limpos e desligue o aparelho na tomada para eliminar o consumo fantasma em standby."
+        }
+      ]
     },
-    'waschmaschine': {
-      name: 'Máquina de Lavar Roupa',
-      category: 'Casa & Limpeza',
-      shortDescription: 'Consome cerca de 0,5 a 1,0 kWh por ciclo (aprox. 0,18 a 0,35 € por lavagem).',
-      dutyCycleExplanation: 'Mais de 80% da energia é usada no aquecimento da água.',
-      savingAdvice: ['Use ciclos Eco a 30 °C.', 'Lave sempre com carga cheia.'],
-      faq: [{ question: 'Qual a diferença entre lavar a 60 °C e 30 °C?', answer: 'Lavar a 60 °C custa cerca de 0,35 a 0,50 €, contra 0,15 a 0,20 € no modo Eco 30 °C.' }]
+    "waschmaschine": {
+      "name": "Máquina de Lavar Roupa",
+      "category": "Casa e Limpeza",
+      "shortDescription": "Um Máquina de Lavar Roupa consome cerca de 140 kWh por ano (cerca de 49.00 € a 35 ct/kWh). Potência média: 2000 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto gasta um Máquina de Lavar Roupa por hora, dia e ano em eletricidade?",
+          "answer": "Um Máquina de Lavar Roupa consome em média cerca de 2000 Watts, o que equivale a 2.000 kWh por hora (cerca de 0.70 €/hora a 35 ct/kWh). O consumo anual típico ronda os 140 kWh (49.00 €/ano)."
+        },
+        {
+          "question": "Quanto custa utilizar um Máquina de Lavar Roupa por mês?",
+          "answer": "O custo médio de operação é de cerca de 0,25 € / Waschgang, totalizando cerca de 4.08 € por mês na fatura de eletricidade."
+        },
+        {
+          "question": "Como poupar energia e baixar a conta de luz com o Máquina de Lavar Roupa?",
+          "answer": "Utilize modos económicos (Eco), mantenha os filtros e borrachas limpos e desligue o aparelho na tomada para eliminar o consumo fantasma em standby."
+        }
+      ]
     },
-    'trockner': {
-      name: 'Secadora de Roupas',
-      category: 'Casa & Limpeza',
-      shortDescription: 'Secadoras com bomba de calor consomem 1,2 a 1,8 kWh por ciclo (contra mais de 4 kWh nas antigas).',
-      dutyCycleExplanation: 'A bomba de calor recicla o ar quente economizando mais de 60%.',
-      savingAdvice: ['Centrifugue a 1.200–1.400 RPM na lavadora.', 'Limpe o filtro de fiapos.'],
-      faq: [{ question: 'Quanto custa usar a secadora?', answer: 'Aprox. 0,45 a 0,65 € por ciclo em modelos com bomba de calor.' }]
+    "trockner": {
+      "name": "Secadora de Roupa",
+      "category": "Casa e Limpeza",
+      "shortDescription": "Um Secadora de Roupa consome cerca de 180 kWh por ano (cerca de 63.00 € a 35 ct/kWh). Potência média: 1500 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto gasta um Secadora de Roupa por hora, dia e ano em eletricidade?",
+          "answer": "Um Secadora de Roupa consome em média cerca de 1500 Watts, o que equivale a 1.500 kWh por hora (cerca de 0.53 €/hora a 35 ct/kWh). O consumo anual típico ronda os 180 kWh (63.00 €/ano)."
+        },
+        {
+          "question": "Quanto custa utilizar um Secadora de Roupa por mês?",
+          "answer": "O custo médio de operação é de cerca de 0,45 € / Ladung, totalizando cerca de 5.25 € por mês na fatura de eletricidade."
+        },
+        {
+          "question": "Como poupar energia e baixar a conta de luz com o Secadora de Roupa?",
+          "answer": "Utilize modos económicos (Eco), mantenha os filtros e borrachas limpos e desligue o aparelho na tomada para eliminar o consumo fantasma em standby."
+        }
+      ]
     },
-    'geschirrspueler': {
-      name: 'Lava-Louças',
-      category: 'Cozinha',
-      shortDescription: 'O programa Eco consome cerca de 0,7 a 0,9 kWh (0,25 a 0,32 €), sendo mais econômico que lavar à mão.',
-      dutyCycleExplanation: 'Aquecimento eficiente em circuito fechado.',
-      savingAdvice: ['Use o programa Eco 50 °C.', 'Ligue apenas cheia.'],
-      faq: [{ question: 'Lava-louças é mais econômica que lavar na pia?', answer: 'Sim, consome até 50% menos energia e 60% menos água.' }]
+    "geschirrspueler": {
+      "name": "Máquina de Lavar Louça",
+      "category": "Cozinha",
+      "shortDescription": "Um Máquina de Lavar Louça consome cerca de 160 kWh por ano (cerca de 56.00 € a 35 ct/kWh). Potência média: 1800 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto gasta um Máquina de Lavar Louça por hora, dia e ano em eletricidade?",
+          "answer": "Um Máquina de Lavar Louça consome em média cerca de 1800 Watts, o que equivale a 1.800 kWh por hora (cerca de 0.63 €/hora a 35 ct/kWh). O consumo anual típico ronda os 160 kWh (56.00 €/ano)."
+        },
+        {
+          "question": "Quanto custa utilizar um Máquina de Lavar Louça por mês?",
+          "answer": "O custo médio de operação é de cerca de 0,28 € / Spülgang, totalizando cerca de 4.67 € por mês na fatura de eletricidade."
+        },
+        {
+          "question": "Como poupar energia e baixar a conta de luz com o Máquina de Lavar Louça?",
+          "answer": "Utilize modos económicos (Eco), mantenha os filtros e borrachas limpos e desligue o aparelho na tomada para eliminar o consumo fantasma em standby."
+        }
+      ]
     },
-    'backofen': {
-      name: 'Forno Elétrico',
-      category: 'Cozinha',
-      shortDescription: 'Consome cerca de 0,8 a 1,5 kWh por hora (aprox. 0,28 a 0,52 €).',
-      dutyCycleExplanation: 'O modo convecção com ventilação economiza cerca de 20%.',
-      savingAdvice: ['Use calor com convecção de ar.', 'Evite abrir a porta durante o preparo.'],
-      faq: [{ question: 'É obrigatório pré-aquecer o forno?', answer: 'Geralmente não, e pular o pré-aquecimento economiza até 20% de energia.' }]
+    "backofen": {
+      "name": "Forno Elétrico",
+      "category": "Cozinha",
+      "shortDescription": "Um Forno Elétrico consome cerca de 150 kWh por ano (cerca de 52.50 € a 35 ct/kWh). Potência média: 2500 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto gasta um Forno Elétrico por hora, dia e ano em eletricidade?",
+          "answer": "Um Forno Elétrico consome em média cerca de 2500 Watts, o que equivale a 2.500 kWh por hora (cerca de 0.88 €/hora a 35 ct/kWh). O consumo anual típico ronda os 150 kWh (52.50 €/ano)."
+        },
+        {
+          "question": "Quanto custa utilizar um Forno Elétrico por mês?",
+          "answer": "O custo médio de operação é de cerca de 0,55 € / Nutzung, totalizando cerca de 4.38 € por mês na fatura de eletricidade."
+        },
+        {
+          "question": "Como poupar energia e baixar a conta de luz com o Forno Elétrico?",
+          "answer": "Utilize modos económicos (Eco), mantenha os filtros e borrachas limpos e desligue o aparelho na tomada para eliminar o consumo fantasma em standby."
+        }
+      ]
     },
-    'herd': {
-      name: 'Fogão de Indução',
-      category: 'Cozinha',
-      shortDescription: 'Consome cerca de 0,3 a 0,7 kWh por refeição e é 20–30% mais eficiente que o vitrocerâmico.',
-      dutyCycleExplanation: 'Gera calor diretamente na panela magnética sem perdas térmicas.',
-      savingAdvice: ['Cozinhe sempre com tampa.', 'Ferva a água na chaleira elétrica antes.'],
-      faq: [{ question: 'Indução gasta menos energia?', answer: 'Sim, economiza de 20 a 30% de luz e ferve duas vezes mais rápido.' }]
+    "herd": {
+      "name": "Placa de Indução / Fogão",
+      "category": "Cozinha",
+      "shortDescription": "Um Placa de Indução / Fogão consome cerca de 220 kWh por ano (cerca de 77.00 € a 35 ct/kWh). Potência média: 3000 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto gasta um Placa de Indução / Fogão por hora, dia e ano em eletricidade?",
+          "answer": "Um Placa de Indução / Fogão consome em média cerca de 3000 Watts, o que equivale a 3.000 kWh por hora (cerca de 1.05 €/hora a 35 ct/kWh). O consumo anual típico ronda os 220 kWh (77.00 €/ano)."
+        },
+        {
+          "question": "Quanto custa utilizar um Placa de Indução / Fogão por mês?",
+          "answer": "O custo médio de operação é de cerca de 0,35 € / Kochvorgang, totalizando cerca de 6.42 € por mês na fatura de eletricidade."
+        },
+        {
+          "question": "Como poupar energia e baixar a conta de luz com o Placa de Indução / Fogão?",
+          "answer": "Utilize modos económicos (Eco), mantenha os filtros e borrachas limpos e desligue o aparelho na tomada para eliminar o consumo fantasma em standby."
+        }
+      ]
     },
-    'wasserkocher': {
-      name: 'Chaleira Elétrica',
-      category: 'Cozinha',
-      shortDescription: 'Ferver 1 litro de água consome aprox. 0,1 kWh (cerca de 3,5 centavos).',
-      dutyCycleExplanation: 'Elemento térmico direto com mais de 90% de eficiência.',
-      savingAdvice: ['Ferva apenas o volume que for consumir.', 'Descalcifique regularmente.'],
-      faq: [{ question: 'A chaleira é mais rápida e econômica que o fogão?', answer: 'Sim, é de 30 a 50% mais eficiente que esquentar água em panela.' }]
+    "wasserkocher": {
+      "name": "Chaleira Elétrica",
+      "category": "Cozinha",
+      "shortDescription": "Um Chaleira Elétrica consome cerca de 80 kWh por ano (cerca de 28.00 € a 35 ct/kWh). Potência média: 2200 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto gasta um Chaleira Elétrica por hora, dia e ano em eletricidade?",
+          "answer": "Um Chaleira Elétrica consome em média cerca de 2200 Watts, o que equivale a 2.200 kWh por hora (cerca de 0.77 €/hora a 35 ct/kWh). O consumo anual típico ronda os 80 kWh (28.00 €/ano)."
+        },
+        {
+          "question": "Quanto custa utilizar um Chaleira Elétrica por mês?",
+          "answer": "O custo médio de operação é de cerca de 0,03 € / 1 Liter Kochen, totalizando cerca de 2.33 € por mês na fatura de eletricidade."
+        },
+        {
+          "question": "Como poupar energia e baixar a conta de luz com o Chaleira Elétrica?",
+          "answer": "Utilize modos económicos (Eco), mantenha os filtros e borrachas limpos e desligue o aparelho na tomada para eliminar o consumo fantasma em standby."
+        }
+      ]
     },
-    'kaffeemaschine': {
-      name: 'Cafeteira Automática',
-      category: 'Cozinha',
-      shortDescription: 'Consome cerca de 0,02 a 0,04 kWh por xícara (incluindo enxágue).',
-      dutyCycleExplanation: 'Bloco térmico aquece a água instantaneamente sob demanda.',
-      savingAdvice: ['Ative o desligamento automático após 10–15 min.'],
-      faq: [{ question: 'Quanto custa a eletricidade de um café?', answer: 'Cerca de 1 a 1,5 centavo por xícara.' }]
+    "kaffeemaschine": {
+      "name": "Máquina de Café / Expresso",
+      "category": "Cozinha",
+      "shortDescription": "Um Máquina de Café / Expresso consome cerca de 65 kWh por ano (cerca de 22.75 € a 35 ct/kWh). Potência média: 1400 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto gasta um Máquina de Café / Expresso por hora, dia e ano em eletricidade?",
+          "answer": "Um Máquina de Café / Expresso consome em média cerca de 1400 Watts, o que equivale a 1.400 kWh por hora (cerca de 0.49 €/hora a 35 ct/kWh). O consumo anual típico ronda os 65 kWh (22.75 €/ano)."
+        },
+        {
+          "question": "Quanto custa utilizar um Máquina de Café / Expresso por mês?",
+          "answer": "O custo médio de operação é de cerca de 0,02 € / Tasse Kaffee, totalizando cerca de 1.90 € por mês na fatura de eletricidade."
+        },
+        {
+          "question": "Como poupar energia e baixar a conta de luz com o Máquina de Café / Expresso?",
+          "answer": "Utilize modos económicos (Eco), mantenha os filtros e borrachas limpos e desligue o aparelho na tomada para eliminar o consumo fantasma em standby."
+        }
+      ]
     },
-    'fernseher': {
-      name: 'Televisão (TV)',
-      category: 'Entretenimento & Escritório',
-      shortDescription: 'Uma TV 55 polegadas LED/OLED consome entre 70 e 130 W (cerca de 2,5 a 4,5 centavos por hora).',
-      dutyCycleExplanation: 'Brilho, HDR e sensores de iluminação determinam o consumo instantâneo.',
-      savingAdvice: ['Ative o sensor de luz ambiente.', 'Escolha o modo cinema ou padrão.'],
-      faq: [{ question: 'A TV OLED gasta mais que a LED?', answer: 'Gasta um pouco mais em telas muito claras, mas desliga pixels em cenas escuras.' }]
+    "fernseher": {
+      "name": "Smart TV (55-65 polegadas)",
+      "category": "Entretenimento e Escritório",
+      "shortDescription": "Um Smart TV (55-65 polegadas) consome cerca de 175 kWh por ano (cerca de 61.25 € a 35 ct/kWh). Potência média: 120 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto gasta um Smart TV (55-65 polegadas) por hora, dia e ano em eletricidade?",
+          "answer": "Um Smart TV (55-65 polegadas) consome em média cerca de 120 Watts, o que equivale a 0.120 kWh por hora (cerca de 0.04 €/hora a 35 ct/kWh). O consumo anual típico ronda os 175 kWh (61.25 €/ano)."
+        },
+        {
+          "question": "Quanto custa utilizar um Smart TV (55-65 polegadas) por mês?",
+          "answer": "O custo médio de operação é de cerca de 0,17 € / 4 Stunden, totalizando cerca de 5.10 € por mês na fatura de eletricidade."
+        },
+        {
+          "question": "Como poupar energia e baixar a conta de luz com o Smart TV (55-65 polegadas)?",
+          "answer": "Utilize modos económicos (Eco), mantenha os filtros e borrachas limpos e desligue o aparelho na tomada para eliminar o consumo fantasma em standby."
+        }
+      ]
     },
-    'gaming-pc': {
-      name: 'PC Gamer',
-      category: 'Entretenimento & Escritório',
-      shortDescription: 'Em jogos pesados, consome entre 350 e 600 W (cerca de 0,12 a 0,21 € por hora).',
-      dutyCycleExplanation: 'Placa de vídeo e processador operam em capacidade máxima.',
-      savingAdvice: ['Limite a taxa de quadros (FPS cap).', 'Faça undervolting na GPU.'],
-      faq: [{ question: 'Quanto custa jogar 4h por dia no mês?', answer: 'Cerca de 17 a 20 euros mensais de energia.' }]
+    "gaming-pc": {
+      "name": "PC Gamer de Alta Performance",
+      "category": "Entretenimento e Escritório",
+      "shortDescription": "Um PC Gamer de Alta Performance consome cerca de 450 kWh por ano (cerca de 157.50 € a 35 ct/kWh). Potência média: 400 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto gasta um PC Gamer de Alta Performance por hora, dia e ano em eletricidade?",
+          "answer": "Um PC Gamer de Alta Performance consome em média cerca de 400 Watts, o que equivale a 0.400 kWh por hora (cerca de 0.14 €/hora a 35 ct/kWh). O consumo anual típico ronda os 450 kWh (157.50 €/ano)."
+        },
+        {
+          "question": "Quanto custa utilizar um PC Gamer de Alta Performance por mês?",
+          "answer": "O custo médio de operação é de cerca de 0,56 € / 4 Stunden Session, totalizando cerca de 13.13 € por mês na fatura de eletricidade."
+        },
+        {
+          "question": "Como poupar energia e baixar a conta de luz com o PC Gamer de Alta Performance?",
+          "answer": "Utilize modos económicos (Eco), mantenha os filtros e borrachas limpos e desligue o aparelho na tomada para eliminar o consumo fantasma em standby."
+        }
+      ]
     },
-    'gamingpc': {
-      name: 'PC Gamer',
-      category: 'Entretenimento & Escritório',
-      shortDescription: 'Em jogos pesados, consome entre 350 e 600 W (cerca de 0,12 a 0,21 € por hora).',
-      dutyCycleExplanation: 'Placa de vídeo e processador operam em capacidade máxima.',
-      savingAdvice: ['Limite a taxa de quadros (FPS cap).', 'Faça undervolting na GPU.'],
-      faq: [{ question: 'Quanto custa jogar 4h por dia no mês?', answer: 'Cerca de 17 a 20 euros mensais de energia.' }]
+    "pc": {
+      "name": "Computador Desktop / PC de Escritório",
+      "category": "Entretenimento e Escritório",
+      "shortDescription": "Um Computador Desktop / PC de Escritório consome cerca de 180 kWh por ano (cerca de 63.00 € a 35 ct/kWh). Potência média: 120 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto gasta um Computador Desktop / PC de Escritório por hora, dia e ano em eletricidade?",
+          "answer": "Um Computador Desktop / PC de Escritório consome em média cerca de 120 Watts, o que equivale a 0.120 kWh por hora (cerca de 0.04 €/hora a 35 ct/kWh). O consumo anual típico ronda os 180 kWh (63.00 €/ano)."
+        },
+        {
+          "question": "Quanto custa utilizar um Computador Desktop / PC de Escritório por mês?",
+          "answer": "O custo médio de operação é de cerca de 0,25 € / 6 Stunden Arbeit, totalizando cerca de 5.25 € por mês na fatura de eletricidade."
+        },
+        {
+          "question": "Como poupar energia e baixar a conta de luz com o Computador Desktop / PC de Escritório?",
+          "answer": "Utilize modos económicos (Eco), mantenha os filtros e borrachas limpos e desligue o aparelho na tomada para eliminar o consumo fantasma em standby."
+        }
+      ]
     },
-    'pc': {
-      name: 'Computador de Mesa (Escritório)',
-      category: 'Entretenimento & Escritório',
-      shortDescription: 'Consome cerca de 50 a 100 W (aprox. 1,8 a 3,5 centavos por hora).',
-      dutyCycleExplanation: 'Baixo consumo contínuo em tarefas leves.',
-      savingAdvice: ['Ative suspensão após 15 minutos.'],
-      faq: [{ question: 'Quanto gasta um PC em home office?', answer: 'Em 8 horas de trabalho consome cerca de 0,5 a 0,8 kWh (18 a 28 centavos).' }]
+    "laptop": {
+      "name": "Portátil / Notebook",
+      "category": "Entretenimento e Escritório",
+      "shortDescription": "Um Portátil / Notebook consome cerca de 75 kWh por ano (cerca de 26.25 € a 35 ct/kWh). Potência média: 50 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto gasta um Portátil / Notebook por hora, dia e ano em eletricidade?",
+          "answer": "Um Portátil / Notebook consome em média cerca de 50 Watts, o que equivale a 0.050 kWh por hora (cerca de 0.02 €/hora a 35 ct/kWh). O consumo anual típico ronda os 75 kWh (26.25 €/ano)."
+        },
+        {
+          "question": "Quanto custa utilizar um Portátil / Notebook por mês?",
+          "answer": "O custo médio de operação é de cerca de 0,11 € / 6 Stunden Arbeit, totalizando cerca de 2.19 € por mês na fatura de eletricidade."
+        },
+        {
+          "question": "Como poupar energia e baixar a conta de luz com o Portátil / Notebook?",
+          "answer": "Utilize modos económicos (Eco), mantenha os filtros e borrachas limpos e desligue o aparelho na tomada para eliminar o consumo fantasma em standby."
+        }
+      ]
     },
-    'laptop': {
-      name: 'Notebook / Laptop',
-      category: 'Entretenimento & Escritório',
-      shortDescription: 'Consome apenas 20 a 60 W e é até 70% mais econômico que um desktop.',
-      dutyCycleExplanation: 'Processadores móveis de alta eficiência energética.',
-      savingAdvice: ['Diminua o brilho da tela.'],
-      faq: [{ question: 'Quanto custa usar notebook por dia?', answer: 'Em 8 horas de uso custa apenas 6 a 12 centavos.' }]
+    "monitor": {
+      "name": "Monitor de PC (27-32 polegadas)",
+      "category": "Entretenimento e Escritório",
+      "shortDescription": "Um Monitor de PC (27-32 polegadas) consome cerca de 60 kWh por ano (cerca de 21.00 € a 35 ct/kWh). Potência média: 35 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto gasta um Monitor de PC (27-32 polegadas) por hora, dia e ano em eletricidade?",
+          "answer": "Um Monitor de PC (27-32 polegadas) consome em média cerca de 35 Watts, o que equivale a 0.035 kWh por hora (cerca de 0.01 €/hora a 35 ct/kWh). O consumo anual típico ronda os 60 kWh (21.00 €/ano)."
+        },
+        {
+          "question": "Quanto custa utilizar um Monitor de PC (27-32 polegadas) por mês?",
+          "answer": "O custo médio de operação é de cerca de 0,07 € / 6 Stunden Betrieb, totalizando cerca de 1.75 € por mês na fatura de eletricidade."
+        },
+        {
+          "question": "Como poupar energia e baixar a conta de luz com o Monitor de PC (27-32 polegadas)?",
+          "answer": "Utilize modos económicos (Eco), mantenha os filtros e borrachas limpos e desligue o aparelho na tomada para eliminar o consumo fantasma em standby."
+        }
+      ]
     },
-    'monitor': {
-      name: 'Monitor de Computador',
-      category: 'Entretenimento & Escritório',
-      shortDescription: 'Um monitor de 27 polegadas consome cerca de 20 a 40 W (cerca de 0,7 a 1,4 centavo por hora).',
-      dutyCycleExplanation: 'Retroiluminação LED constante.',
-      savingAdvice: ['Ajuste o brilho de acordo com a luz do ambiente.'],
-      faq: [{ question: 'Quanto custa um segundo monitor por ano?', answer: 'Aproximadamente 10 a 20 € anuais de eletricidade.' }]
+    "ps5": {
+      "name": "PlayStation 5 (PS5)",
+      "category": "Entretenimento e Escritório",
+      "shortDescription": "Um PlayStation 5 (PS5) consome cerca de 150 kWh por ano (cerca de 52.50 € a 35 ct/kWh). Potência média: 200 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto gasta um PlayStation 5 (PS5) por hora, dia e ano em eletricidade?",
+          "answer": "Um PlayStation 5 (PS5) consome em média cerca de 200 Watts, o que equivale a 0.200 kWh por hora (cerca de 0.07 €/hora a 35 ct/kWh). O consumo anual típico ronda os 150 kWh (52.50 €/ano)."
+        },
+        {
+          "question": "Quanto custa utilizar um PlayStation 5 (PS5) por mês?",
+          "answer": "O custo médio de operação é de cerca de 0,21 € / 3 Stunden Spielen, totalizando cerca de 4.38 € por mês na fatura de eletricidade."
+        },
+        {
+          "question": "Como poupar energia e baixar a conta de luz com o PlayStation 5 (PS5)?",
+          "answer": "Utilize modos económicos (Eco), mantenha os filtros e borrachas limpos e desligue o aparelho na tomada para eliminar o consumo fantasma em standby."
+        }
+      ]
     },
-    'ps5': {
-      name: 'PlayStation 5 (PS5)',
-      category: 'Entretenimento & Escritório',
-      shortDescription: 'Consome cerca de 180 a 220 W durante o jogo (cerca de 6,3 a 7,7 centavos por hora).',
-      dutyCycleExplanation: '50 W no menu e até 220 W em jogos 4K.',
-      savingAdvice: ['Desative portas USB ligadas no modo repouso.'],
-      faq: [{ question: 'Quanto gasta a PS5 no modo de repouso?', answer: '1,5 a 3 W em repouso simples, 30 W baixando atualizações.' }]
+    "xbox": {
+      "name": "Xbox Series X",
+      "category": "Entretenimento e Escritório",
+      "shortDescription": "Um Xbox Series X consome cerca de 140 kWh por ano (cerca de 49.00 € a 35 ct/kWh). Potência média: 190 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto gasta um Xbox Series X por hora, dia e ano em eletricidade?",
+          "answer": "Um Xbox Series X consome em média cerca de 190 Watts, o que equivale a 0.190 kWh por hora (cerca de 0.07 €/hora a 35 ct/kWh). O consumo anual típico ronda os 140 kWh (49.00 €/ano)."
+        },
+        {
+          "question": "Quanto custa utilizar um Xbox Series X por mês?",
+          "answer": "O custo médio de operação é de cerca de 0,20 € / 3 Stunden Spielen, totalizando cerca de 4.08 € por mês na fatura de eletricidade."
+        },
+        {
+          "question": "Como poupar energia e baixar a conta de luz com o Xbox Series X?",
+          "answer": "Utilize modos económicos (Eco), mantenha os filtros e borrachas limpos e desligue o aparelho na tomada para eliminar o consumo fantasma em standby."
+        }
+      ]
     },
-    'xbox': {
-      name: 'Xbox Series X',
-      category: 'Entretenimento & Escritório',
-      shortDescription: 'Consome cerca de 150 a 210 W jogando (cerca de 5,3 a 7,4 centavos por hora).',
-      dutyCycleExplanation: 'Carga total em 4K 120Hz.',
-      savingAdvice: ['Use o modo "Desligamento (economia de energia)".'],
-      faq: [{ question: 'Quanto economiza o modo de economia da Xbox?', answer: 'Consome 0,5 W em vez de 10–13 W no standby ativo (economiza cerca de 30 €/ano).' }]
+    "klimaanlage": {
+      "name": "Ar Condicionado (Split)",
+      "category": "Climatização e Aquecimento",
+      "shortDescription": "Um Ar Condicionado (Split) consome cerca de 350 kWh por ano (cerca de 122.50 € a 35 ct/kWh). Potência média: 800 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto gasta um Ar Condicionado (Split) por hora, dia e ano em eletricidade?",
+          "answer": "Um Ar Condicionado (Split) consome em média cerca de 800 Watts, o que equivale a 0.800 kWh por hora (cerca de 0.28 €/hora a 35 ct/kWh). O consumo anual típico ronda os 350 kWh (122.50 €/ano)."
+        },
+        {
+          "question": "Quanto custa utilizar um Ar Condicionado (Split) por mês?",
+          "answer": "O custo médio de operação é de cerca de 1,40 € / 5 Stunden Kühlung, totalizando cerca de 10.21 € por mês na fatura de eletricidade."
+        },
+        {
+          "question": "Como poupar energia e baixar a conta de luz com o Ar Condicionado (Split)?",
+          "answer": "Utilize modos económicos (Eco), mantenha os filtros e borrachas limpos e desligue o aparelho na tomada para eliminar o consumo fantasma em standby."
+        }
+      ]
     },
-    'klimaanlage': {
-      name: 'Ar-Condicionado',
-      category: 'Climatização & Aquecimento',
-      shortDescription: 'Modelos portáteis consomem 800 a 1.200 W (28 a 42 ct/h); splits inverter são 50% mais eficientes.',
-      dutyCycleExplanation: 'O compressor reduz a potência ao atingir a temperatura programada.',
-      savingAdvice: ['Mantenha a temperatura em 24–25 °C.', 'Feche cortinas durante o sol forte.'],
-      faq: [{ question: 'Quanto custa usar ar-condicionado no verão?', answer: 'Para 30 dias usando 6h/dia, cerca de 50–75 € em portáteis e 25–40 € em splits.' }]
+    "ventilator": {
+      "name": "Ventilador de Pé",
+      "category": "Climatização e Aquecimento",
+      "shortDescription": "Um Ventilador de Pé consome cerca de 35 kWh por ano (cerca de 12.25 € a 35 ct/kWh). Potência média: 45 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto gasta um Ventilador de Pé por hora, dia e ano em eletricidade?",
+          "answer": "Um Ventilador de Pé consome em média cerca de 45 Watts, o que equivale a 0.045 kWh por hora (cerca de 0.02 €/hora a 35 ct/kWh). O consumo anual típico ronda os 35 kWh (12.25 €/ano)."
+        },
+        {
+          "question": "Quanto custa utilizar um Ventilador de Pé por mês?",
+          "answer": "O custo médio de operação é de cerca de 0,10 € / 6 Stunden, totalizando cerca de 1.02 € por mês na fatura de eletricidade."
+        },
+        {
+          "question": "Como poupar energia e baixar a conta de luz com o Ventilador de Pé?",
+          "answer": "Utilize modos económicos (Eco), mantenha os filtros e borrachas limpos e desligue o aparelho na tomada para eliminar o consumo fantasma em standby."
+        }
+      ]
     },
-    'ventilator': {
-      name: 'Ventilador',
-      category: 'Climatização & Aquecimento',
-      shortDescription: 'Um ventilador de coluna consome apenas 25 a 50 W (cerca de 0,9 a 1,8 centavo por hora).',
-      dutyCycleExplanation: 'Motor direto sem compressor de refrigeração.',
-      savingAdvice: ['Desligue ao sair do ambiente.'],
-      faq: [{ question: 'Gasta muito menos que o ar-condicionado?', answer: 'Sim, consome cerca de 95% menos energia.' }]
+    "heizluefter": {
+      "name": "Termoventilador / Aquecedor Elétrico",
+      "category": "Climatização e Aquecimento",
+      "shortDescription": "Um Termoventilador / Aquecedor Elétrico consome cerca de 300 kWh por ano (cerca de 105.00 € a 35 ct/kWh). Potência média: 2000 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto gasta um Termoventilador / Aquecedor Elétrico por hora, dia e ano em eletricidade?",
+          "answer": "Um Termoventilador / Aquecedor Elétrico consome em média cerca de 2000 Watts, o que equivale a 2.000 kWh por hora (cerca de 0.70 €/hora a 35 ct/kWh). O consumo anual típico ronda os 300 kWh (105.00 €/ano)."
+        },
+        {
+          "question": "Quanto custa utilizar um Termoventilador / Aquecedor Elétrico por mês?",
+          "answer": "O custo médio de operação é de cerca de 1,40 € / 2 Stunden Heizen, totalizando cerca de 8.75 € por mês na fatura de eletricidade."
+        },
+        {
+          "question": "Como poupar energia e baixar a conta de luz com o Termoventilador / Aquecedor Elétrico?",
+          "answer": "Utilize modos económicos (Eco), mantenha os filtros e borrachas limpos e desligue o aparelho na tomada para eliminar o consumo fantasma em standby."
+        }
+      ]
     },
-    'heizluefter': {
-      name: 'Aquecedor Elétrico Portátil',
-      category: 'Climatização & Aquecimento',
-      shortDescription: 'Consome entre 1.500 e 2.000 W (cerca de 53 a 70 centavos por hora de uso).',
-      dutyCycleExplanation: 'Resistência elétrica transformando energia em calor 1:1.',
-      savingAdvice: ['Use apenas para aquecimento rápido de emergência.'],
-      faq: [{ question: 'Quanto custa ligar 8h por dia?', answer: 'Cerca de 4,20 a 5,60 € diários (mais de 150 € por mês).' }]
+    "luftentfeuchter": {
+      "name": "Desumidificador de Ar",
+      "category": "Climatização e Aquecimento",
+      "shortDescription": "Um Desumidificador de Ar consome cerca de 280 kWh por ano (cerca de 98.00 € a 35 ct/kWh). Potência média: 350 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto gasta um Desumidificador de Ar por hora, dia e ano em eletricidade?",
+          "answer": "Um Desumidificador de Ar consome em média cerca de 350 Watts, o que equivale a 0.350 kWh por hora (cerca de 0.12 €/hora a 35 ct/kWh). O consumo anual típico ronda os 280 kWh (98.00 €/ano)."
+        },
+        {
+          "question": "Quanto custa utilizar um Desumidificador de Ar por mês?",
+          "answer": "O custo médio de operação é de cerca de 0,74 € / 6 Stunden, totalizando cerca de 8.17 € por mês na fatura de eletricidade."
+        },
+        {
+          "question": "Como poupar energia e baixar a conta de luz com o Desumidificador de Ar?",
+          "answer": "Utilize modos económicos (Eco), mantenha os filtros e borrachas limpos e desligue o aparelho na tomada para eliminar o consumo fantasma em standby."
+        }
+      ]
     },
-    'luftentfeuchter': {
-      name: 'Desumidificador',
-      category: 'Climatização & Aquecimento',
-      shortDescription: 'Consome entre 200 e 400 W (cerca de 7 a 14 centavos por hora).',
-      dutyCycleExplanation: 'Condensa a umidade do ar ambiente.',
-      savingAdvice: ['Defina a umidade alvo para 50–55%.', 'Mantenha portas e janelas fechadas.'],
-      faq: [{ question: 'Quantas horas deve funcionar por dia?', answer: 'De 2 a 4 horas diárias em cômodos fechados são suficientes.' }]
+    "aquarium": {
+      "name": "Aquário (100–200 Litros)",
+      "category": "Hobbies e Especial",
+      "shortDescription": "Um Aquário (100–200 Litros) consome cerca de 350 kWh por ano (cerca de 122.50 € a 35 ct/kWh). Potência média: 60 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto gasta um Aquário (100–200 Litros) por hora, dia e ano em eletricidade?",
+          "answer": "Um Aquário (100–200 Litros) consome em média cerca de 60 Watts, o que equivale a 0.060 kWh por hora (cerca de 0.02 €/hora a 35 ct/kWh). O consumo anual típico ronda os 350 kWh (122.50 €/ano)."
+        },
+        {
+          "question": "Quanto custa utilizar um Aquário (100–200 Litros) por mês?",
+          "answer": "O custo médio de operação é de cerca de 0,34 € / 24 Stunden Dauerbetrieb, totalizando cerca de 10.21 € por mês na fatura de eletricidade."
+        },
+        {
+          "question": "Como poupar energia e baixar a conta de luz com o Aquário (100–200 Litros)?",
+          "answer": "Utilize modos económicos (Eco), mantenha os filtros e borrachas limpos e desligue o aparelho na tomada para eliminar o consumo fantasma em standby."
+        }
+      ]
     },
-    'aquarium': {
-      name: 'Aquário',
-      category: 'Hobby & Especial',
-      shortDescription: 'Um aquário de 100 L consome cerca de 150 a 300 kWh por ano (aprox. 53 a 105 €/ano).',
-      dutyCycleExplanation: 'Termostato e iluminação respondem por quase todo o consumo.',
-      savingAdvice: ['Use iluminação LED e tampa de proteção.'],
-      faq: [{ question: 'O que mais consome em um aquário?', answer: 'O aquecedor termostático de água.' }]
+    "pool": {
+      "name": "Bomba de Piscina e Filtro",
+      "category": "Hobbies e Especial",
+      "shortDescription": "Um Bomba de Piscina e Filtro consome cerca de 480 kWh por ano (cerca de 168.00 € a 35 ct/kWh). Potência média: 500 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto gasta um Bomba de Piscina e Filtro por hora, dia e ano em eletricidade?",
+          "answer": "Um Bomba de Piscina e Filtro consome em média cerca de 500 Watts, o que equivale a 0.500 kWh por hora (cerca de 0.17 €/hora a 35 ct/kWh). O consumo anual típico ronda os 480 kWh (168.00 €/ano)."
+        },
+        {
+          "question": "Quanto custa utilizar um Bomba de Piscina e Filtro por mês?",
+          "answer": "O custo médio de operação é de cerca de 1,05 € / 6 Stunden Filterung, totalizando cerca de 14.00 € por mês na fatura de eletricidade."
+        },
+        {
+          "question": "Como poupar energia e baixar a conta de luz com o Bomba de Piscina e Filtro?",
+          "answer": "Utilize modos económicos (Eco), mantenha os filtros e borrachas limpos e desligue o aparelho na tomada para eliminar o consumo fantasma em standby."
+        }
+      ]
     },
-    'pool': {
-      name: 'Bomba de Piscina',
-      category: 'Hobby & Especial',
-      shortDescription: 'Consome entre 400 e 1.000 W (cerca de 14 a 35 centavos por hora).',
-      dutyCycleExplanation: 'Filtra todo o volume da piscina 2 a 3 vezes ao dia.',
-      savingAdvice: ['Use temporizador programável.'],
-      faq: [{ question: 'Quantas horas deve funcionar no verão?', answer: 'Cerca de 6 a 8 horas por dia.' }]
+    "whirlpool": {
+      "name": "Jacuzzi / Banheira de Hidromassagem",
+      "category": "Hobbies e Especial",
+      "shortDescription": "Um Jacuzzi / Banheira de Hidromassagem consome cerca de 2200 kWh por ano (cerca de 770.00 € a 35 ct/kWh). Potência média: 2500 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto gasta um Jacuzzi / Banheira de Hidromassagem por hora, dia e ano em eletricidade?",
+          "answer": "Um Jacuzzi / Banheira de Hidromassagem consome em média cerca de 2500 Watts, o que equivale a 2.500 kWh por hora (cerca de 0.88 €/hora a 35 ct/kWh). O consumo anual típico ronda os 2200 kWh (770.00 €/ano)."
+        },
+        {
+          "question": "Quanto custa utilizar um Jacuzzi / Banheira de Hidromassagem por mês?",
+          "answer": "O custo médio de operação é de cerca de 2,10 € / Tag (Heizung & Zirkulation), totalizando cerca de 64.17 € por mês na fatura de eletricidade."
+        },
+        {
+          "question": "Como poupar energia e baixar a conta de luz com o Jacuzzi / Banheira de Hidromassagem?",
+          "answer": "Utilize modos económicos (Eco), mantenha os filtros e borrachas limpos e desligue o aparelho na tomada para eliminar o consumo fantasma em standby."
+        }
+      ]
     },
-    'whirlpool': {
-      name: 'Jacuzzi / Spa Externo',
-      category: 'Hobby & Especial',
-      shortDescription: 'Consome cerca de 2.000 a 4.000 kWh por ano (aprox. 700 a 1.400 €/ano).',
-      dutyCycleExplanation: 'Manter a água a 38 °C exige aquecimento ininterrupto.',
-      savingAdvice: ['Use cobertura térmica grossa.'],
-      faq: [{ question: 'Quanto custa manter um jacuzzi por mês?', answer: 'Cerca de 50 a 120 € por mês em eletricidade.' }]
+    "3d-drucker": {
+      "name": "Impressora 3D (FDM)",
+      "category": "Hobbies e Especial",
+      "shortDescription": "Um Impressora 3D (FDM) consome cerca de 120 kWh por ano (cerca de 42.00 € a 35 ct/kWh). Potência média: 150 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto gasta um Impressora 3D (FDM) por hora, dia e ano em eletricidade?",
+          "answer": "Um Impressora 3D (FDM) consome em média cerca de 150 Watts, o que equivale a 0.150 kWh por hora (cerca de 0.05 €/hora a 35 ct/kWh). O consumo anual típico ronda os 120 kWh (42.00 €/ano)."
+        },
+        {
+          "question": "Quanto custa utilizar um Impressora 3D (FDM) por mês?",
+          "answer": "O custo médio de operação é de cerca de 0,42 € / 8 Stunden Druck, totalizando cerca de 3.50 € por mês na fatura de eletricidade."
+        },
+        {
+          "question": "Como poupar energia e baixar a conta de luz com o Impressora 3D (FDM)?",
+          "answer": "Utilize modos económicos (Eco), mantenha os filtros e borrachas limpos e desligue o aparelho na tomada para eliminar o consumo fantasma em standby."
+        }
+      ]
     },
-    '3d-drucker': {
-      name: 'Impressora 3D',
-      category: 'Hobby & Especial',
-      shortDescription: 'Consome de 100 a 180 W (cerca de 3,5 a 6,3 centavos por hora).',
-      dutyCycleExplanation: 'A mesa aquecida consome 70% da energia.',
-      savingAdvice: ['Use uma câmara fechada para reter calor.'],
-      faq: [{ question: 'Quanto custa uma impressão de 10 horas?', answer: 'Cerca de 40 a 60 centavos de eletricidade.' }]
+    "nas": {
+      "name": "Servidor NAS / Armazenamento em Rede",
+      "category": "Entretenimento e Escritório",
+      "shortDescription": "Um Servidor NAS / Armazenamento em Rede consome cerca de 260 kWh por ano (cerca de 91.00 € a 35 ct/kWh). Potência média: 30 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto gasta um Servidor NAS / Armazenamento em Rede por hora, dia e ano em eletricidade?",
+          "answer": "Um Servidor NAS / Armazenamento em Rede consome em média cerca de 30 Watts, o que equivale a 0.030 kWh por hora (cerca de 0.01 €/hora a 35 ct/kWh). O consumo anual típico ronda os 260 kWh (91.00 €/ano)."
+        },
+        {
+          "question": "Quanto custa utilizar um Servidor NAS / Armazenamento em Rede por mês?",
+          "answer": "O custo médio de operação é de cerca de 0,25 € / 24 Stunden Dauerbetrieb, totalizando cerca de 7.58 € por mês na fatura de eletricidade."
+        },
+        {
+          "question": "Como poupar energia e baixar a conta de luz com o Servidor NAS / Armazenamento em Rede?",
+          "answer": "Utilize modos económicos (Eco), mantenha os filtros e borrachas limpos e desligue o aparelho na tomada para eliminar o consumo fantasma em standby."
+        }
+      ]
     },
-    'nas': {
-      name: 'Servidor NAS',
-      category: 'Hobby & Especial',
-      shortDescription: 'Consome 15 a 30 W ligado 24/7 (cerca de 45 a 90 € por ano).',
-      dutyCycleExplanation: 'A suspensão de discos reduz para menos de 8 W em repouso.',
-      savingAdvice: ['Ative a hibernação de discos.'],
-      faq: [{ question: 'Quanto custa manter um NAS ligado o ano todo?', answer: 'A 20 W contínuos, cerca de 61 € ao ano.' }]
-    },
-    'server': {
-      name: 'Servidor Doméstico',
-      category: 'Hobby & Especial',
-      shortDescription: 'Um Mini PC consome de 10 a 40 W (cerca de 30 a 120 € por ano).',
-      dutyCycleExplanation: 'Processadores modernos com baixíssimo consumo em repouso.',
-      savingAdvice: ['Use Mini PCs modernos.'],
-      faq: [{ question: 'Quanto consome um servidor doméstico?', answer: 'Cerca de 10–15 W em repouso (30 a 45 € anuais).' }]
+    "server": {
+      "name": "Servidor Doméstico / Home Server",
+      "category": "Entretenimento e Escritório",
+      "shortDescription": "Um Servidor Doméstico / Home Server consome cerca de 570 kWh por ano (cerca de 199.50 € a 35 ct/kWh). Potência média: 65 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto gasta um Servidor Doméstico / Home Server por hora, dia e ano em eletricidade?",
+          "answer": "Um Servidor Doméstico / Home Server consome em média cerca de 65 Watts, o que equivale a 0.065 kWh por hora (cerca de 0.02 €/hora a 35 ct/kWh). O consumo anual típico ronda os 570 kWh (199.50 €/ano)."
+        },
+        {
+          "question": "Quanto custa utilizar um Servidor Doméstico / Home Server por mês?",
+          "answer": "O custo médio de operação é de cerca de 0,55 € / 24 Stunden Dauerbetrieb, totalizando cerca de 16.63 € por mês na fatura de eletricidade."
+        },
+        {
+          "question": "Como poupar energia e baixar a conta de luz com o Servidor Doméstico / Home Server?",
+          "answer": "Utilize modos económicos (Eco), mantenha os filtros e borrachas limpos e desligue o aparelho na tomada para eliminar o consumo fantasma em standby."
+        }
+      ]
     }
   },
-  ko: {
-    'kuehlschrank': {
-      name: '냉장고',
-      category: '주방 가전',
-      shortDescription: '최신 냉장고는 연간 약 100~160kWh(연간 약 35~56€)를 소비합니다.',
-      dutyCycleExplanation: '컴프레서는 온도 센서에 따라 시간당 20~40분만 작동합니다.',
-      savingAdvice: ['냉장실 7℃, 냉동실 -18℃로 설정하세요.', '성에를 정기적으로 제거하세요.'],
-      faq: [{ question: '냉장고 하루 전기요금은?', answer: '최신 표준형 기준 하루 약 0.3~0.45kWh(약 10~16센트)입니다.' }]
+  "ko": {
+    "kuehlschrank": {
+      "name": "냉장고",
+      "category": "주방 가전",
+      "shortDescription": "냉장고의 연간 소비전력량은 약 120 kWh(연간 약 42.00유로)이며, 평균 소비전력은 90W입니다.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "냉장고의 소비전력과 시간당·연간 전기요금은 얼마인가요?",
+          "answer": "냉장고의 정격 소비전력은 약 90W입니다. 1시간 작동 시 약 0.090 kWh(약 0.01유로)를 소모하며, 연간 평균 소비전력량은 약 120 kWh(연간 약 42.00유로, 월 약 3.50유로)입니다."
+        },
+        {
+          "question": "냉장고의 전기요금을 효과적으로 줄이는 절약 팁은?",
+          "answer": "에코 모드를 적극 활용하고, 정기적으로 필터와 통풍구를 청소하며, 미사용 시 대기전력 차단 콘센트를 활용해 불필요한 전력 낭비를 방지하세요."
+        },
+        {
+          "question": "냉장고을 최신 고효율 모델로 교체하면 얼마나 절약되나요?",
+          "answer": "8~10년 이상 된 구형 모델을 에너지소비효율 1등급 제품으로 교체할 경우 연간 전력 소모를 30~50% 줄여 매년 30~80유로의 요금을 절감할 수 있습니다."
+        }
+      ]
     },
-    'waschmaschine': {
-      name: '세탁기',
-      category: '생활·세탁 가전',
-      shortDescription: '1회 세탁 시 약 0.5~1.0kWh(약 18~35센트)의 전력을 소비합니다.',
-      dutyCycleExplanation: '전력의 80% 이상이 물을 가열하는 데 사용됩니다.',
-      savingAdvice: ['30℃ 에코 코스를 활용하세요.', '세탁물을 모아서 가득 채워 세탁하세요.'],
-      faq: [{ question: '60℃ 온수 세탁과 30℃ 에코 세탁의 비용 차이는?', answer: '60℃ 세탁은 약 35~50센트인 반면, 30℃ 에코 세탁은 약 15~20센트입니다.' }]
+    "waschmaschine": {
+      "name": "세탁기",
+      "category": "생활/세탁 가전",
+      "shortDescription": "세탁기의 연간 소비전력량은 약 140 kWh(연간 약 49.00유로)이며, 평균 소비전력은 2000W입니다.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "세탁기의 소비전력과 시간당·연간 전기요금은 얼마인가요?",
+          "answer": "세탁기의 정격 소비전력은 약 2000W입니다. 1시간 작동 시 약 2.000 kWh(약 0.70유로)를 소모하며, 연간 평균 소비전력량은 약 140 kWh(연간 약 49.00유로, 월 약 4.08유로)입니다."
+        },
+        {
+          "question": "세탁기의 전기요금을 효과적으로 줄이는 절약 팁은?",
+          "answer": "에코 모드를 적극 활용하고, 정기적으로 필터와 통풍구를 청소하며, 미사용 시 대기전력 차단 콘센트를 활용해 불필요한 전력 낭비를 방지하세요."
+        },
+        {
+          "question": "세탁기을 최신 고효율 모델로 교체하면 얼마나 절약되나요?",
+          "answer": "8~10년 이상 된 구형 모델을 에너지소비효율 1등급 제품으로 교체할 경우 연간 전력 소모를 30~50% 줄여 매년 30~80유로의 요금을 절감할 수 있습니다."
+        }
+      ]
     },
-    'trockner': {
-      name: '의류 건조기',
-      category: '생활·세탁 가전',
-      shortDescription: '히트펌프 건조기는 1회당 약 1.2~1.8kWh를 소비하여 기존 방식 대비 60% 이상 절약합니다.',
-      dutyCycleExplanation: '폐열을 재활용하는 히트펌프 기술을 사용합니다.',
-      savingAdvice: ['세탁기 탈수 시 고속 탈수를 진행하세요.', '필터를 매번 청소하세요.'],
-      faq: [{ question: '건조기 1회 전기요금은?', answer: '최신 히트펌프 기준 약 45~65센트입니다.' }]
+    "trockner": {
+      "name": "의류건조기",
+      "category": "생활/세탁 가전",
+      "shortDescription": "의류건조기의 연간 소비전력량은 약 180 kWh(연간 약 63.00유로)이며, 평균 소비전력은 1500W입니다.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "의류건조기의 소비전력과 시간당·연간 전기요금은 얼마인가요?",
+          "answer": "의류건조기의 정격 소비전력은 약 1500W입니다. 1시간 작동 시 약 1.500 kWh(약 0.53유로)를 소모하며, 연간 평균 소비전력량은 약 180 kWh(연간 약 63.00유로, 월 약 5.25유로)입니다."
+        },
+        {
+          "question": "의류건조기의 전기요금을 효과적으로 줄이는 절약 팁은?",
+          "answer": "에코 모드를 적극 활용하고, 정기적으로 필터와 통풍구를 청소하며, 미사용 시 대기전력 차단 콘센트를 활용해 불필요한 전력 낭비를 방지하세요."
+        },
+        {
+          "question": "의류건조기을 최신 고효율 모델로 교체하면 얼마나 절약되나요?",
+          "answer": "8~10년 이상 된 구형 모델을 에너지소비효율 1등급 제품으로 교체할 경우 연간 전력 소모를 30~50% 줄여 매년 30~80유로의 요금을 절감할 수 있습니다."
+        }
+      ]
     },
-    'geschirrspueler': {
-      name: '식기세척기',
-      category: '주방 가전',
-      shortDescription: '에코 모드 1회당 약 0.7~0.9kWh(약 25~32센트)를 소비하여 손설거지보다 경제적입니다.',
-      dutyCycleExplanation: '밀폐 순환 가열 방식으로 물과 전력을 절약합니다.',
-      savingAdvice: ['에코 50℃ 코스를 기본으로 사용하세요.', '가득 채운 후 작동하세요.'],
-      faq: [{ question: '식기세척기가 손설거지보다 경제적인가요?', answer: '네, 전기 에너지를 최대 50%, 물을 60% 이상 절약합니다.' }]
+    "geschirrspueler": {
+      "name": "식기세척기",
+      "category": "주방 가전",
+      "shortDescription": "식기세척기의 연간 소비전력량은 약 160 kWh(연간 약 56.00유로)이며, 평균 소비전력은 1800W입니다.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "식기세척기의 소비전력과 시간당·연간 전기요금은 얼마인가요?",
+          "answer": "식기세척기의 정격 소비전력은 약 1800W입니다. 1시간 작동 시 약 1.800 kWh(약 0.63유로)를 소모하며, 연간 평균 소비전력량은 약 160 kWh(연간 약 56.00유로, 월 약 4.67유로)입니다."
+        },
+        {
+          "question": "식기세척기의 전기요금을 효과적으로 줄이는 절약 팁은?",
+          "answer": "에코 모드를 적극 활용하고, 정기적으로 필터와 통풍구를 청소하며, 미사용 시 대기전력 차단 콘센트를 활용해 불필요한 전력 낭비를 방지하세요."
+        },
+        {
+          "question": "식기세척기을 최신 고효율 모델로 교체하면 얼마나 절약되나요?",
+          "answer": "8~10년 이상 된 구형 모델을 에너지소비효율 1등급 제품으로 교체할 경우 연간 전력 소모를 30~50% 줄여 매년 30~80유로의 요금을 절감할 수 있습니다."
+        }
+      ]
     },
-    'backofen': {
-      name: '전기 오븐',
-      category: '주방 가전',
-      shortDescription: '1시간당 약 0.8~1.5kWh(약 28~52센트)를 소비합니다.',
-      dutyCycleExplanation: '열풍 대류(컨벡션) 모드는 일반 모드 대비 약 20% 전력을 덜 씁니다.',
-      savingAdvice: ['컨벡션 열풍 모드를 활용하세요.', '조리 중 문을 자주 열지 마세요.'],
-      faq: [{ question: '오븐 예열이 꼭 필요한가요?', answer: '대부분의 일상 요리에서는 예열을 생략해도 무방하며 최대 20% 절약됩니다.' }]
+    "backofen": {
+      "name": "전기오븐",
+      "category": "주방 가전",
+      "shortDescription": "전기오븐의 연간 소비전력량은 약 150 kWh(연간 약 52.50유로)이며, 평균 소비전력은 2500W입니다.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "전기오븐의 소비전력과 시간당·연간 전기요금은 얼마인가요?",
+          "answer": "전기오븐의 정격 소비전력은 약 2500W입니다. 1시간 작동 시 약 2.500 kWh(약 0.88유로)를 소모하며, 연간 평균 소비전력량은 약 150 kWh(연간 약 52.50유로, 월 약 4.38유로)입니다."
+        },
+        {
+          "question": "전기오븐의 전기요금을 효과적으로 줄이는 절약 팁은?",
+          "answer": "에코 모드를 적극 활용하고, 정기적으로 필터와 통풍구를 청소하며, 미사용 시 대기전력 차단 콘센트를 활용해 불필요한 전력 낭비를 방지하세요."
+        },
+        {
+          "question": "전기오븐을 최신 고효율 모델로 교체하면 얼마나 절약되나요?",
+          "answer": "8~10년 이상 된 구형 모델을 에너지소비효율 1등급 제품으로 교체할 경우 연간 전력 소모를 30~50% 줄여 매년 30~80유로의 요금을 절감할 수 있습니다."
+        }
+      ]
     },
-    'herd': {
-      name: '인덕션 레인지',
-      category: '주방 가전',
-      shortDescription: '1회 조리당 약 0.3~0.7kWh를 소비하며 하이라이트 대비 20~30% 효율적입니다.',
-      dutyCycleExplanation: '자력선으로 조리 용기 자체를 직접 가열하여 열 손실이 없습니다.',
-      savingAdvice: ['뚜껑을 덮고 조리하세요.', '물은 전기포트로 먼저 끓여서 사용하세요.'],
-      faq: [{ question: '인덕션이 일반 전기레인지보다 절전되나요?', answer: '네, 열효율이 90% 이상으로 20~30% 전력을 절약하고 2배 빠르게 가열합니다.' }]
+    "herd": {
+      "name": "인덕션 / 전기레인지",
+      "category": "주방 가전",
+      "shortDescription": "인덕션 / 전기레인지의 연간 소비전력량은 약 220 kWh(연간 약 77.00유로)이며, 평균 소비전력은 3000W입니다.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "인덕션 / 전기레인지의 소비전력과 시간당·연간 전기요금은 얼마인가요?",
+          "answer": "인덕션 / 전기레인지의 정격 소비전력은 약 3000W입니다. 1시간 작동 시 약 3.000 kWh(약 1.05유로)를 소모하며, 연간 평균 소비전력량은 약 220 kWh(연간 약 77.00유로, 월 약 6.42유로)입니다."
+        },
+        {
+          "question": "인덕션 / 전기레인지의 전기요금을 효과적으로 줄이는 절약 팁은?",
+          "answer": "에코 모드를 적극 활용하고, 정기적으로 필터와 통풍구를 청소하며, 미사용 시 대기전력 차단 콘센트를 활용해 불필요한 전력 낭비를 방지하세요."
+        },
+        {
+          "question": "인덕션 / 전기레인지을 최신 고효율 모델로 교체하면 얼마나 절약되나요?",
+          "answer": "8~10년 이상 된 구형 모델을 에너지소비효율 1등급 제품으로 교체할 경우 연간 전력 소모를 30~50% 줄여 매년 30~80유로의 요금을 절감할 수 있습니다."
+        }
+      ]
     },
-    'wasserkocher': {
-      name: '전기포트 / 무선주전자',
-      category: '주방 가전',
-      shortDescription: '물 1리터를 끓이는 데 약 0.1kWh(약 3.5센트)가 소모됩니다.',
-      dutyCycleExplanation: '열선 직접 가열로 90% 이상의 높은 열효율을 자랑합니다.',
-      savingAdvice: ['필요한 만큼의 물만 끓이세요.', '물때를 정기적으로 세척하세요.'],
-      faq: [{ question: '가스레인지나 인덕션보다 전기포트가 효율적인가요?', answer: '네, 냄비로 끓이는 것보다 30~50% 더 적은 에너지를 사용합니다.' }]
+    "wasserkocher": {
+      "name": "전기포트 / 무선주전자",
+      "category": "주방 가전",
+      "shortDescription": "전기포트 / 무선주전자의 연간 소비전력량은 약 80 kWh(연간 약 28.00유로)이며, 평균 소비전력은 2200W입니다.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "전기포트 / 무선주전자의 소비전력과 시간당·연간 전기요금은 얼마인가요?",
+          "answer": "전기포트 / 무선주전자의 정격 소비전력은 약 2200W입니다. 1시간 작동 시 약 2.200 kWh(약 0.77유로)를 소모하며, 연간 평균 소비전력량은 약 80 kWh(연간 약 28.00유로, 월 약 2.33유로)입니다."
+        },
+        {
+          "question": "전기포트 / 무선주전자의 전기요금을 효과적으로 줄이는 절약 팁은?",
+          "answer": "에코 모드를 적극 활용하고, 정기적으로 필터와 통풍구를 청소하며, 미사용 시 대기전력 차단 콘센트를 활용해 불필요한 전력 낭비를 방지하세요."
+        },
+        {
+          "question": "전기포트 / 무선주전자을 최신 고효율 모델로 교체하면 얼마나 절약되나요?",
+          "answer": "8~10년 이상 된 구형 모델을 에너지소비효율 1등급 제품으로 교체할 경우 연간 전력 소모를 30~50% 줄여 매년 30~80유로의 요금을 절감할 수 있습니다."
+        }
+      ]
     },
-    'kaffeemaschine': {
-      name: '전자동 커피머신',
-      category: '주방 가전',
-      shortDescription: '1잔 추출 시 약 0.02~0.04kWh를 소비합니다.',
-      dutyCycleExplanation: '순간 가열 써모블록으로 추출 시에만 최대 전력을 사용합니다.',
-      savingAdvice: ['10~15분 자동 전원 꺼짐 기능을 설정하세요.'],
-      faq: [{ question: '커피 1잔 추출 시 전기요금은?', answer: '1잔당 약 1~1.5센트에 불과합니다.' }]
+    "kaffeemaschine": {
+      "name": "커피머신 / 에스프레소 머신",
+      "category": "주방 가전",
+      "shortDescription": "커피머신 / 에스프레소 머신의 연간 소비전력량은 약 65 kWh(연간 약 22.75유로)이며, 평균 소비전력은 1400W입니다.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "커피머신 / 에스프레소 머신의 소비전력과 시간당·연간 전기요금은 얼마인가요?",
+          "answer": "커피머신 / 에스프레소 머신의 정격 소비전력은 약 1400W입니다. 1시간 작동 시 약 1.400 kWh(약 0.49유로)를 소모하며, 연간 평균 소비전력량은 약 65 kWh(연간 약 22.75유로, 월 약 1.90유로)입니다."
+        },
+        {
+          "question": "커피머신 / 에스프레소 머신의 전기요금을 효과적으로 줄이는 절약 팁은?",
+          "answer": "에코 모드를 적극 활용하고, 정기적으로 필터와 통풍구를 청소하며, 미사용 시 대기전력 차단 콘센트를 활용해 불필요한 전력 낭비를 방지하세요."
+        },
+        {
+          "question": "커피머신 / 에스프레소 머신을 최신 고효율 모델로 교체하면 얼마나 절약되나요?",
+          "answer": "8~10년 이상 된 구형 모델을 에너지소비효율 1등급 제품으로 교체할 경우 연간 전력 소모를 30~50% 줄여 매년 30~80유로의 요금을 절감할 수 있습니다."
+        }
+      ]
     },
-    'fernseher': {
-      name: '텔레비전 (TV)',
-      category: '엔터테인먼트·사무',
-      shortDescription: '55인치 TV는 약 70~130W(시간당 약 2.5~4.5센트)의 전력을 소비합니다.',
-      dutyCycleExplanation: '화면 밝기 및 HDR 모드에 따라 소비전력이 실시간 변동합니다.',
-      savingAdvice: ['조도 센서를 켜두세요.', '표준 또는 영화 모드를 선택하세요.'],
-      faq: [{ question: 'OLED TV가 LED TV보다 전기를 더 쓰나요?', answer: '밝은 화면에서는 조금 더 쓰지만, 어두운 장면에서는 픽셀이 꺼져 절전됩니다.' }]
+    "fernseher": {
+      "name": "스마트 TV (55-65인치)",
+      "category": "엔터테인먼트/사무 가전",
+      "shortDescription": "스마트 TV (55-65인치)의 연간 소비전력량은 약 175 kWh(연간 약 61.25유로)이며, 평균 소비전력은 120W입니다.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "스마트 TV (55-65인치)의 소비전력과 시간당·연간 전기요금은 얼마인가요?",
+          "answer": "스마트 TV (55-65인치)의 정격 소비전력은 약 120W입니다. 1시간 작동 시 약 0.120 kWh(약 0.04유로)를 소모하며, 연간 평균 소비전력량은 약 175 kWh(연간 약 61.25유로, 월 약 5.10유로)입니다."
+        },
+        {
+          "question": "스마트 TV (55-65인치)의 전기요금을 효과적으로 줄이는 절약 팁은?",
+          "answer": "에코 모드를 적극 활용하고, 정기적으로 필터와 통풍구를 청소하며, 미사용 시 대기전력 차단 콘센트를 활용해 불필요한 전력 낭비를 방지하세요."
+        },
+        {
+          "question": "스마트 TV (55-65인치)을 최신 고효율 모델로 교체하면 얼마나 절약되나요?",
+          "answer": "8~10년 이상 된 구형 모델을 에너지소비효율 1등급 제품으로 교체할 경우 연간 전력 소모를 30~50% 줄여 매년 30~80유로의 요금을 절감할 수 있습니다."
+        }
+      ]
     },
-    'gaming-pc': {
-      name: '게이밍 PC',
-      category: '엔터테인먼트·사무',
-      shortDescription: '게임 구동 시 약 350~600W(시간당 약 12~21센트)의 전력을 소비합니다.',
-      dutyCycleExplanation: '고사양 3D 렌더링 시 그래픽카드와 CPU가 최대 전력을 소비합니다.',
-      savingAdvice: ['FPS 상한을 설정하세요.', '그래픽카드 언더볼팅을 적용하세요.'],
-      faq: [{ question: '하루 4시간 게임 시 월 요금은?', answer: '월 약 17~20유로(약 25,000~30,000원)입니다.' }]
+    "gaming-pc": {
+      "name": "고성능 게이밍 PC",
+      "category": "엔터테인먼트/사무 가전",
+      "shortDescription": "고성능 게이밍 PC의 연간 소비전력량은 약 450 kWh(연간 약 157.50유로)이며, 평균 소비전력은 400W입니다.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "고성능 게이밍 PC의 소비전력과 시간당·연간 전기요금은 얼마인가요?",
+          "answer": "고성능 게이밍 PC의 정격 소비전력은 약 400W입니다. 1시간 작동 시 약 0.400 kWh(약 0.14유로)를 소모하며, 연간 평균 소비전력량은 약 450 kWh(연간 약 157.50유로, 월 약 13.13유로)입니다."
+        },
+        {
+          "question": "고성능 게이밍 PC의 전기요금을 효과적으로 줄이는 절약 팁은?",
+          "answer": "에코 모드를 적극 활용하고, 정기적으로 필터와 통풍구를 청소하며, 미사용 시 대기전력 차단 콘센트를 활용해 불필요한 전력 낭비를 방지하세요."
+        },
+        {
+          "question": "고성능 게이밍 PC을 최신 고효율 모델로 교체하면 얼마나 절약되나요?",
+          "answer": "8~10년 이상 된 구형 모델을 에너지소비효율 1등급 제품으로 교체할 경우 연간 전력 소모를 30~50% 줄여 매년 30~80유로의 요금을 절감할 수 있습니다."
+        }
+      ]
     },
-    'gamingpc': {
-      name: '게이밍 PC',
-      category: '엔터테인먼트·사무',
-      shortDescription: '게임 구동 시 약 350~600W(시간당 약 12~21센트)의 전력을 소비합니다.',
-      dutyCycleExplanation: '고사양 3D 렌더링 시 그래픽카드와 CPU가 최대 전력을 소비합니다.',
-      savingAdvice: ['FPS 상한을 설정하세요.', '그래픽카드 언더볼팅을 적용하세요.'],
-      faq: [{ question: '하루 4시간 게임 시 월 요금은?', answer: '월 약 17~20유로(약 25,000~30,000원)입니다.' }]
+    "pc": {
+      "name": "사무용 데스크톱 PC",
+      "category": "엔터테인먼트/사무 가전",
+      "shortDescription": "사무용 데스크톱 PC의 연간 소비전력량은 약 180 kWh(연간 약 63.00유로)이며, 평균 소비전력은 120W입니다.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "사무용 데스크톱 PC의 소비전력과 시간당·연간 전기요금은 얼마인가요?",
+          "answer": "사무용 데스크톱 PC의 정격 소비전력은 약 120W입니다. 1시간 작동 시 약 0.120 kWh(약 0.04유로)를 소모하며, 연간 평균 소비전력량은 약 180 kWh(연간 약 63.00유로, 월 약 5.25유로)입니다."
+        },
+        {
+          "question": "사무용 데스크톱 PC의 전기요금을 효과적으로 줄이는 절약 팁은?",
+          "answer": "에코 모드를 적극 활용하고, 정기적으로 필터와 통풍구를 청소하며, 미사용 시 대기전력 차단 콘센트를 활용해 불필요한 전력 낭비를 방지하세요."
+        },
+        {
+          "question": "사무용 데스크톱 PC을 최신 고효율 모델로 교체하면 얼마나 절약되나요?",
+          "answer": "8~10년 이상 된 구형 모델을 에너지소비효율 1등급 제품으로 교체할 경우 연간 전력 소모를 30~50% 줄여 매년 30~80유로의 요금을 절감할 수 있습니다."
+        }
+      ]
     },
-    'pc': {
-      name: '사무용 데스크톱 PC',
-      category: '엔터테인먼트·사무',
-      shortDescription: '사무용 PC는 약 50~100W(시간당 약 1.8~3.5센트)를 소비합니다.',
-      dutyCycleExplanation: '문서 작업 및 웹서핑 시 낮은 전력을 유지합니다.',
-      savingAdvice: ['15분 절전 모드를 설정하세요.'],
-      faq: [{ question: '재택근무 시 PC 전기요금은?', answer: '하루 8시간 작업 시 약 0.5~0.8kWh(약 18~28센트)입니다.' }]
+    "laptop": {
+      "name": "노트북 / 랩톱",
+      "category": "엔터테인먼트/사무 가전",
+      "shortDescription": "노트북 / 랩톱의 연간 소비전력량은 약 75 kWh(연간 약 26.25유로)이며, 평균 소비전력은 50W입니다.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "노트북 / 랩톱의 소비전력과 시간당·연간 전기요금은 얼마인가요?",
+          "answer": "노트북 / 랩톱의 정격 소비전력은 약 50W입니다. 1시간 작동 시 약 0.050 kWh(약 0.02유로)를 소모하며, 연간 평균 소비전력량은 약 75 kWh(연간 약 26.25유로, 월 약 2.19유로)입니다."
+        },
+        {
+          "question": "노트북 / 랩톱의 전기요금을 효과적으로 줄이는 절약 팁은?",
+          "answer": "에코 모드를 적극 활용하고, 정기적으로 필터와 통풍구를 청소하며, 미사용 시 대기전력 차단 콘센트를 활용해 불필요한 전력 낭비를 방지하세요."
+        },
+        {
+          "question": "노트북 / 랩톱을 최신 고효율 모델로 교체하면 얼마나 절약되나요?",
+          "answer": "8~10년 이상 된 구형 모델을 에너지소비효율 1등급 제품으로 교체할 경우 연간 전력 소모를 30~50% 줄여 매년 30~80유로의 요금을 절감할 수 있습니다."
+        }
+      ]
     },
-    'laptop': {
-      name: '노트북 / 랩톱',
-      category: '엔터테인먼트·사무',
-      shortDescription: '노트북은 20~60W만 소비하여 데스크톱 대비 최대 70% 절전됩니다.',
-      dutyCycleExplanation: '배터리 효율에 최적화된 모바일 저전력 프로세서를 사용합니다.',
-      savingAdvice: ['화면 밝기를 알맞게 조절하세요.'],
-      faq: [{ question: '노트북 하루 사용 요금은?', answer: '8시간 작업 시 하루 약 6~12센트에 불과합니다.' }]
+    "monitor": {
+      "name": "PC 모니터 (27-32인치)",
+      "category": "엔터테인먼트/사무 가전",
+      "shortDescription": "PC 모니터 (27-32인치)의 연간 소비전력량은 약 60 kWh(연간 약 21.00유로)이며, 평균 소비전력은 35W입니다.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "PC 모니터 (27-32인치)의 소비전력과 시간당·연간 전기요금은 얼마인가요?",
+          "answer": "PC 모니터 (27-32인치)의 정격 소비전력은 약 35W입니다. 1시간 작동 시 약 0.035 kWh(약 0.01유로)를 소모하며, 연간 평균 소비전력량은 약 60 kWh(연간 약 21.00유로, 월 약 1.75유로)입니다."
+        },
+        {
+          "question": "PC 모니터 (27-32인치)의 전기요금을 효과적으로 줄이는 절약 팁은?",
+          "answer": "에코 모드를 적극 활용하고, 정기적으로 필터와 통풍구를 청소하며, 미사용 시 대기전력 차단 콘센트를 활용해 불필요한 전력 낭비를 방지하세요."
+        },
+        {
+          "question": "PC 모니터 (27-32인치)을 최신 고효율 모델로 교체하면 얼마나 절약되나요?",
+          "answer": "8~10년 이상 된 구형 모델을 에너지소비효율 1등급 제품으로 교체할 경우 연간 전력 소모를 30~50% 줄여 매년 30~80유로의 요금을 절감할 수 있습니다."
+        }
+      ]
     },
-    'monitor': {
-      name: 'PC 모니터',
-      category: '엔터테인먼트·사무',
-      shortDescription: '27인치 모니터는 약 20~40W(시간당 약 0.7~1.4센트)를 소비합니다.',
-      dutyCycleExplanation: 'LED 백라이트로 일정한 전력을 소비합니다.',
-      savingAdvice: ['실내 밝기에 맞게 모니터 밝기를 조절하세요.'],
-      faq: [{ question: '듀얼 모니터 사용 시 추가 요금은?', answer: '보조 모니터 1대당 연간 약 10~20유로입니다.' }]
+    "ps5": {
+      "name": "플레이스테이션 5 (PS5)",
+      "category": "엔터테인먼트/사무 가전",
+      "shortDescription": "플레이스테이션 5 (PS5)의 연간 소비전력량은 약 150 kWh(연간 약 52.50유로)이며, 평균 소비전력은 200W입니다.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "플레이스테이션 5 (PS5)의 소비전력과 시간당·연간 전기요금은 얼마인가요?",
+          "answer": "플레이스테이션 5 (PS5)의 정격 소비전력은 약 200W입니다. 1시간 작동 시 약 0.200 kWh(약 0.07유로)를 소모하며, 연간 평균 소비전력량은 약 150 kWh(연간 약 52.50유로, 월 약 4.38유로)입니다."
+        },
+        {
+          "question": "플레이스테이션 5 (PS5)의 전기요금을 효과적으로 줄이는 절약 팁은?",
+          "answer": "에코 모드를 적극 활용하고, 정기적으로 필터와 통풍구를 청소하며, 미사용 시 대기전력 차단 콘센트를 활용해 불필요한 전력 낭비를 방지하세요."
+        },
+        {
+          "question": "플레이스테이션 5 (PS5)을 최신 고효율 모델로 교체하면 얼마나 절약되나요?",
+          "answer": "8~10년 이상 된 구형 모델을 에너지소비효율 1등급 제품으로 교체할 경우 연간 전력 소모를 30~50% 줄여 매년 30~80유로의 요금을 절감할 수 있습니다."
+        }
+      ]
     },
-    'ps5': {
-      name: 'PlayStation 5 (PS5)',
-      category: '엔터테인먼트·사무',
-      shortDescription: '게임 플레이 시 약 180~220W(시간당 약 6.3~7.7센트)를 소비합니다.',
-      dutyCycleExplanation: '대기 메뉴에서 50W, 4K 게임 구동 시 최대 220W.',
-      savingAdvice: ['대기모드 시 USB 상시 전원을 필요한 시간으로 제한하세요.'],
-      faq: [{ question: 'PS5 대기모드 전력은?', answer: '일반 대기 시 1.5~3W, 다운로드 시 약 30W입니다.' }]
+    "xbox": {
+      "name": "엑스박스 시리즈 X (Xbox Series X)",
+      "category": "엔터테인먼트/사무 가전",
+      "shortDescription": "엑스박스 시리즈 X (Xbox Series X)의 연간 소비전력량은 약 140 kWh(연간 약 49.00유로)이며, 평균 소비전력은 190W입니다.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "엑스박스 시리즈 X (Xbox Series X)의 소비전력과 시간당·연간 전기요금은 얼마인가요?",
+          "answer": "엑스박스 시리즈 X (Xbox Series X)의 정격 소비전력은 약 190W입니다. 1시간 작동 시 약 0.190 kWh(약 0.07유로)를 소모하며, 연간 평균 소비전력량은 약 140 kWh(연간 약 49.00유로, 월 약 4.08유로)입니다."
+        },
+        {
+          "question": "엑스박스 시리즈 X (Xbox Series X)의 전기요금을 효과적으로 줄이는 절약 팁은?",
+          "answer": "에코 모드를 적극 활용하고, 정기적으로 필터와 통풍구를 청소하며, 미사용 시 대기전력 차단 콘센트를 활용해 불필요한 전력 낭비를 방지하세요."
+        },
+        {
+          "question": "엑스박스 시리즈 X (Xbox Series X)을 최신 고효율 모델로 교체하면 얼마나 절약되나요?",
+          "answer": "8~10년 이상 된 구형 모델을 에너지소비효율 1등급 제품으로 교체할 경우 연간 전력 소모를 30~50% 줄여 매년 30~80유로의 요금을 절감할 수 있습니다."
+        }
+      ]
     },
-    'xbox': {
-      name: 'Xbox Series X',
-      category: '엔터테인먼트·사무',
-      shortDescription: '게임 플레이 시 약 150~210W(시간당 약 5.3~7.4센트)를 소비합니다.',
-      dutyCycleExplanation: '4K 120Hz 구동 시 최대 전력을 소비합니다.',
-      savingAdvice: ['즉시 켜기 대신 "절전 모드 (완전 종료)"를 선택하세요.'],
-      faq: [{ question: '절전 모드 선택 시 절약 효과는?', answer: '대기전력이 10~13W에서 0.5W로 줄어 연간 약 30€ 절약됩니다.' }]
+    "klimaanlage": {
+      "name": "에어컨 (스탠드/벽걸이)",
+      "category": "냉난방/공조 가전",
+      "shortDescription": "에어컨 (스탠드/벽걸이)의 연간 소비전력량은 약 350 kWh(연간 약 122.50유로)이며, 평균 소비전력은 800W입니다.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "에어컨 (스탠드/벽걸이)의 소비전력과 시간당·연간 전기요금은 얼마인가요?",
+          "answer": "에어컨 (스탠드/벽걸이)의 정격 소비전력은 약 800W입니다. 1시간 작동 시 약 0.800 kWh(약 0.28유로)를 소모하며, 연간 평균 소비전력량은 약 350 kWh(연간 약 122.50유로, 월 약 10.21유로)입니다."
+        },
+        {
+          "question": "에어컨 (스탠드/벽걸이)의 전기요금을 효과적으로 줄이는 절약 팁은?",
+          "answer": "에코 모드를 적극 활용하고, 정기적으로 필터와 통풍구를 청소하며, 미사용 시 대기전력 차단 콘센트를 활용해 불필요한 전력 낭비를 방지하세요."
+        },
+        {
+          "question": "에어컨 (스탠드/벽걸이)을 최신 고효율 모델로 교체하면 얼마나 절약되나요?",
+          "answer": "8~10년 이상 된 구형 모델을 에너지소비효율 1등급 제품으로 교체할 경우 연간 전력 소모를 30~50% 줄여 매년 30~80유로의 요금을 절감할 수 있습니다."
+        }
+      ]
     },
-    'klimaanlage': {
-      name: '에어컨',
-      category: '냉난방·공조',
-      shortDescription: '이동식은 800~1,200W(28~42 ct/h), 인버터 분리형은 50% 더 효율적입니다.',
-      dutyCycleExplanation: '희망 온도 도달 시 인버터 절전 모드로 자동 전환됩니다.',
-      savingAdvice: ['희망 온도를 24~26℃로 설정하세요.', '낮에는 블라인드로 직사광선을 막으세요.'],
-      faq: [{ question: '여름철 에어컨 전기요금은?', answer: '한 달 30일간 하루 6시간 가동 시 이동식은 약 50~75€, 인버터 분리형은 약 25~40€입니다.' }]
+    "ventilator": {
+      "name": "선풍기 / 서큘레이터",
+      "category": "냉난방/공조 가전",
+      "shortDescription": "선풍기 / 서큘레이터의 연간 소비전력량은 약 35 kWh(연간 약 12.25유로)이며, 평균 소비전력은 45W입니다.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "선풍기 / 서큘레이터의 소비전력과 시간당·연간 전기요금은 얼마인가요?",
+          "answer": "선풍기 / 서큘레이터의 정격 소비전력은 약 45W입니다. 1시간 작동 시 약 0.045 kWh(약 0.02유로)를 소모하며, 연간 평균 소비전력량은 약 35 kWh(연간 약 12.25유로, 월 약 1.02유로)입니다."
+        },
+        {
+          "question": "선풍기 / 서큘레이터의 전기요금을 효과적으로 줄이는 절약 팁은?",
+          "answer": "에코 모드를 적극 활용하고, 정기적으로 필터와 통풍구를 청소하며, 미사용 시 대기전력 차단 콘센트를 활용해 불필요한 전력 낭비를 방지하세요."
+        },
+        {
+          "question": "선풍기 / 서큘레이터을 최신 고효율 모델로 교체하면 얼마나 절약되나요?",
+          "answer": "8~10년 이상 된 구형 모델을 에너지소비효율 1등급 제품으로 교체할 경우 연간 전력 소모를 30~50% 줄여 매년 30~80유로의 요금을 절감할 수 있습니다."
+        }
+      ]
     },
-    'ventilator': {
-      name: '선풍기 / 서큘레이터',
-      category: '냉난방·공조',
-      shortDescription: '선풍기는 25~50W(시간당 약 0.9~1.8센트)만 소비합니다.',
-      dutyCycleExplanation: '냉매 컴프레서 없이 모터로만 바람을 일으킵니다.',
-      savingAdvice: ['방을 비울 때는 전원을 끄세요.'],
-      faq: [{ question: '에어컨보다 전기를 얼마나 덜 쓰나요?', answer: '에어컨 대비 약 95%의 전력을 절약할 수 있습니다.' }]
+    "heizluefter": {
+      "name": "온풍기 / 전기히터",
+      "category": "냉난방/공조 가전",
+      "shortDescription": "온풍기 / 전기히터의 연간 소비전력량은 약 300 kWh(연간 약 105.00유로)이며, 평균 소비전력은 2000W입니다.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "온풍기 / 전기히터의 소비전력과 시간당·연간 전기요금은 얼마인가요?",
+          "answer": "온풍기 / 전기히터의 정격 소비전력은 약 2000W입니다. 1시간 작동 시 약 2.000 kWh(약 0.70유로)를 소모하며, 연간 평균 소비전력량은 약 300 kWh(연간 약 105.00유로, 월 약 8.75유로)입니다."
+        },
+        {
+          "question": "온풍기 / 전기히터의 전기요금을 효과적으로 줄이는 절약 팁은?",
+          "answer": "에코 모드를 적극 활용하고, 정기적으로 필터와 통풍구를 청소하며, 미사용 시 대기전력 차단 콘센트를 활용해 불필요한 전력 낭비를 방지하세요."
+        },
+        {
+          "question": "온풍기 / 전기히터을 최신 고효율 모델로 교체하면 얼마나 절약되나요?",
+          "answer": "8~10년 이상 된 구형 모델을 에너지소비효율 1등급 제품으로 교체할 경우 연간 전력 소모를 30~50% 줄여 매년 30~80유로의 요금을 절감할 수 있습니다."
+        }
+      ]
     },
-    'heizluefter': {
-      name: '온풍기 / 전기 히터',
-      category: '냉난방·공조',
-      shortDescription: '온풍기는 1,500~2,000W(시간당 약 53~70센트)의 대전력을 소비합니다.',
-      dutyCycleExplanation: '전기 에너지를 1:1로 직접 열로 변환합니다.',
-      savingAdvice: ['단시간 보조 난방으로만 사용하세요.'],
-      faq: [{ question: '온풍기를 하루 종일 틀면 요금이 얼마나 나오나요?', answer: '하루 8시간 가동 시 4.20~5.60€(월 150€ 이상)가 발생합니다.' }]
+    "luftentfeuchter": {
+      "name": "제습기",
+      "category": "냉난방/공조 가전",
+      "shortDescription": "제습기의 연간 소비전력량은 약 280 kWh(연간 약 98.00유로)이며, 평균 소비전력은 350W입니다.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "제습기의 소비전력과 시간당·연간 전기요금은 얼마인가요?",
+          "answer": "제습기의 정격 소비전력은 약 350W입니다. 1시간 작동 시 약 0.350 kWh(약 0.12유로)를 소모하며, 연간 평균 소비전력량은 약 280 kWh(연간 약 98.00유로, 월 약 8.17유로)입니다."
+        },
+        {
+          "question": "제습기의 전기요금을 효과적으로 줄이는 절약 팁은?",
+          "answer": "에코 모드를 적극 활용하고, 정기적으로 필터와 통풍구를 청소하며, 미사용 시 대기전력 차단 콘센트를 활용해 불필요한 전력 낭비를 방지하세요."
+        },
+        {
+          "question": "제습기을 최신 고효율 모델로 교체하면 얼마나 절약되나요?",
+          "answer": "8~10년 이상 된 구형 모델을 에너지소비효율 1등급 제품으로 교체할 경우 연간 전력 소모를 30~50% 줄여 매년 30~80유로의 요금을 절감할 수 있습니다."
+        }
+      ]
     },
-    'luftentfeuchter': {
-      name: '제습기',
-      category: '냉난방·공조',
-      shortDescription: '제습기는 약 200~400W(시간당 약 7~14센트)를 소비합니다.',
-      dutyCycleExplanation: '컴프레서로 공기 중의 습기를 응축 제거합니다.',
-      savingAdvice: ['희망 습도를 50~55%로 설정하세요.', '가동 중에는 창문을 닫으세요.'],
-      faq: [{ question: '하루에 몇 시간 틀어야 하나요?', answer: '밀폐된 방에서 하루 2~4시간 가동하면 충분합니다.' }]
+    "aquarium": {
+      "name": "어항 / 열대어 수조 (100~200L)",
+      "category": "취미/기타 가전",
+      "shortDescription": "어항 / 열대어 수조 (100~200L)의 연간 소비전력량은 약 350 kWh(연간 약 122.50유로)이며, 평균 소비전력은 60W입니다.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "어항 / 열대어 수조 (100~200L)의 소비전력과 시간당·연간 전기요금은 얼마인가요?",
+          "answer": "어항 / 열대어 수조 (100~200L)의 정격 소비전력은 약 60W입니다. 1시간 작동 시 약 0.060 kWh(약 0.02유로)를 소모하며, 연간 평균 소비전력량은 약 350 kWh(연간 약 122.50유로, 월 약 10.21유로)입니다."
+        },
+        {
+          "question": "어항 / 열대어 수조 (100~200L)의 전기요금을 효과적으로 줄이는 절약 팁은?",
+          "answer": "에코 모드를 적극 활용하고, 정기적으로 필터와 통풍구를 청소하며, 미사용 시 대기전력 차단 콘센트를 활용해 불필요한 전력 낭비를 방지하세요."
+        },
+        {
+          "question": "어항 / 열대어 수조 (100~200L)을 최신 고효율 모델로 교체하면 얼마나 절약되나요?",
+          "answer": "8~10년 이상 된 구형 모델을 에너지소비효율 1등급 제품으로 교체할 경우 연간 전력 소모를 30~50% 줄여 매년 30~80유로의 요금을 절감할 수 있습니다."
+        }
+      ]
     },
-    'aquarium': {
-      name: '수족관 / 어항',
-      category: '취미·특수설비',
-      shortDescription: '100L 수조 기준 연간 약 150~300kWh(연간 약 53~105€)를 소비합니다.',
-      dutyCycleExplanation: '수온 히터와 조명이 전력 소비의 대부분을 차지합니다.',
-      savingAdvice: ['LED 조명으로 교체하고 뚜껑을 덮어 열 손실을 줄이세요.'],
-      faq: [{ question: '어항에서 전기를 가장 많이 쓰는 장치는?', answer: '수온을 일정하게 유지하는 자동 히터입니다.' }]
+    "pool": {
+      "name": "수영장 순환 펌프 및 여과기",
+      "category": "취미/기타 가전",
+      "shortDescription": "수영장 순환 펌프 및 여과기의 연간 소비전력량은 약 480 kWh(연간 약 168.00유로)이며, 평균 소비전력은 500W입니다.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "수영장 순환 펌프 및 여과기의 소비전력과 시간당·연간 전기요금은 얼마인가요?",
+          "answer": "수영장 순환 펌프 및 여과기의 정격 소비전력은 약 500W입니다. 1시간 작동 시 약 0.500 kWh(약 0.17유로)를 소모하며, 연간 평균 소비전력량은 약 480 kWh(연간 약 168.00유로, 월 약 14.00유로)입니다."
+        },
+        {
+          "question": "수영장 순환 펌프 및 여과기의 전기요금을 효과적으로 줄이는 절약 팁은?",
+          "answer": "에코 모드를 적극 활용하고, 정기적으로 필터와 통풍구를 청소하며, 미사용 시 대기전력 차단 콘센트를 활용해 불필요한 전력 낭비를 방지하세요."
+        },
+        {
+          "question": "수영장 순환 펌프 및 여과기을 최신 고효율 모델로 교체하면 얼마나 절약되나요?",
+          "answer": "8~10년 이상 된 구형 모델을 에너지소비효율 1등급 제품으로 교체할 경우 연간 전력 소모를 30~50% 줄여 매년 30~80유로의 요금을 절감할 수 있습니다."
+        }
+      ]
     },
-    'pool': {
-      name: '수영장 여과 펌프',
-      category: '취미·특수설비',
-      shortDescription: '약 400~1,000W(시간당 약 14~35센트)를 소비합니다.',
-      dutyCycleExplanation: '수영장 전체 물을 하루 2~3회 순환 여과합니다.',
-      savingAdvice: ['타이머로 가동 시간을 제어하세요.'],
-      faq: [{ question: '여름철 펌프는 몇 시간 돌려야 하나요?', answer: '하루 약 6~8시간 가동이 적당합니다.' }]
+    "whirlpool": {
+      "name": "야외 자쿠지 / 온수 스파",
+      "category": "취미/기타 가전",
+      "shortDescription": "야외 자쿠지 / 온수 스파의 연간 소비전력량은 약 2200 kWh(연간 약 770.00유로)이며, 평균 소비전력은 2500W입니다.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "야외 자쿠지 / 온수 스파의 소비전력과 시간당·연간 전기요금은 얼마인가요?",
+          "answer": "야외 자쿠지 / 온수 스파의 정격 소비전력은 약 2500W입니다. 1시간 작동 시 약 2.500 kWh(약 0.88유로)를 소모하며, 연간 평균 소비전력량은 약 2200 kWh(연간 약 770.00유로, 월 약 64.17유로)입니다."
+        },
+        {
+          "question": "야외 자쿠지 / 온수 스파의 전기요금을 효과적으로 줄이는 절약 팁은?",
+          "answer": "에코 모드를 적극 활용하고, 정기적으로 필터와 통풍구를 청소하며, 미사용 시 대기전력 차단 콘센트를 활용해 불필요한 전력 낭비를 방지하세요."
+        },
+        {
+          "question": "야외 자쿠지 / 온수 스파을 최신 고효율 모델로 교체하면 얼마나 절약되나요?",
+          "answer": "8~10년 이상 된 구형 모델을 에너지소비효율 1등급 제품으로 교체할 경우 연간 전력 소모를 30~50% 줄여 매년 30~80유로의 요금을 절감할 수 있습니다."
+        }
+      ]
     },
-    'whirlpool': {
-      name: '야외 자쿠지 / 스파',
-      category: '취미·특수설비',
-      shortDescription: '연간 약 2,000~4,000kWh(연간 약 700~1,400€)를 소비합니다.',
-      dutyCycleExplanation: '38℃ 수온을 유지하기 위해 지속적으로 가열합니다.',
-      savingAdvice: ['두꺼운 단열 덮개를 사용하세요.'],
-      faq: [{ question: '자쿠지 월 전기요금은?', answer: '계절에 따라 월 약 50~120€ 수준입니다.' }]
+    "3d-drucker": {
+      "name": "3D 프린터 (FDM 방식)",
+      "category": "취미/기타 가전",
+      "shortDescription": "3D 프린터 (FDM 방식)의 연간 소비전력량은 약 120 kWh(연간 약 42.00유로)이며, 평균 소비전력은 150W입니다.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "3D 프린터 (FDM 방식)의 소비전력과 시간당·연간 전기요금은 얼마인가요?",
+          "answer": "3D 프린터 (FDM 방식)의 정격 소비전력은 약 150W입니다. 1시간 작동 시 약 0.150 kWh(약 0.05유로)를 소모하며, 연간 평균 소비전력량은 약 120 kWh(연간 약 42.00유로, 월 약 3.50유로)입니다."
+        },
+        {
+          "question": "3D 프린터 (FDM 방식)의 전기요금을 효과적으로 줄이는 절약 팁은?",
+          "answer": "에코 모드를 적극 활용하고, 정기적으로 필터와 통풍구를 청소하며, 미사용 시 대기전력 차단 콘센트를 활용해 불필요한 전력 낭비를 방지하세요."
+        },
+        {
+          "question": "3D 프린터 (FDM 방식)을 최신 고효율 모델로 교체하면 얼마나 절약되나요?",
+          "answer": "8~10년 이상 된 구형 모델을 에너지소비효율 1등급 제품으로 교체할 경우 연간 전력 소모를 30~50% 줄여 매년 30~80유로의 요금을 절감할 수 있습니다."
+        }
+      ]
     },
-    '3d-drucker': {
-      name: '3D 프린터',
-      category: '취미·특수설비',
-      shortDescription: 'FDM 프린터는 약 100~180W(출력 시간당 약 3.5~6.3센트)를 소비합니다.',
-      dutyCycleExplanation: '가열 히팅베드가 전체 전력의 약 70%를 소비합니다.',
-      savingAdvice: ['챔버(인클로저)로 보온하세요.'],
-      faq: [{ question: '10시간 출력 시 전기요금은?', answer: '약 40~60센트 수준입니다.' }]
+    "nas": {
+      "name": "NAS 서버 (네트워크 스토리지)",
+      "category": "엔터테인먼트/사무 가전",
+      "shortDescription": "NAS 서버 (네트워크 스토리지)의 연간 소비전력량은 약 260 kWh(연간 약 91.00유로)이며, 평균 소비전력은 30W입니다.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "NAS 서버 (네트워크 스토리지)의 소비전력과 시간당·연간 전기요금은 얼마인가요?",
+          "answer": "NAS 서버 (네트워크 스토리지)의 정격 소비전력은 약 30W입니다. 1시간 작동 시 약 0.030 kWh(약 0.01유로)를 소모하며, 연간 평균 소비전력량은 약 260 kWh(연간 약 91.00유로, 월 약 7.58유로)입니다."
+        },
+        {
+          "question": "NAS 서버 (네트워크 스토리지)의 전기요금을 효과적으로 줄이는 절약 팁은?",
+          "answer": "에코 모드를 적극 활용하고, 정기적으로 필터와 통풍구를 청소하며, 미사용 시 대기전력 차단 콘센트를 활용해 불필요한 전력 낭비를 방지하세요."
+        },
+        {
+          "question": "NAS 서버 (네트워크 스토리지)을 최신 고효율 모델로 교체하면 얼마나 절약되나요?",
+          "answer": "8~10년 이상 된 구형 모델을 에너지소비효율 1등급 제품으로 교체할 경우 연간 전력 소모를 30~50% 줄여 매년 30~80유로의 요금을 절감할 수 있습니다."
+        }
+      ]
     },
-    'nas': {
-      name: 'NAS 스토리지',
-      category: '취미·특수설비',
-      shortDescription: '2베이 NAS 기준 24시간 가동 시 약 15~30W(연간 약 45~90€)를 소비합니다.',
-      dutyCycleExplanation: 'HDD 절전 모드 시 8W 이하로 낮아집니다.',
-      savingAdvice: ['하드디스크 절전 기능을 활성화하세요.'],
-      faq: [{ question: '24시간 켜둘 때 연간 전기요금은?', answer: '20W 기준 연간 약 61€입니다.' }]
-    },
-    'server': {
-      name: '홈서버',
-      category: '취미·특수설비',
-      shortDescription: '저전력 미니 PC 서버는 약 10~40W(연간 약 30~120€)를 소비합니다.',
-      dutyCycleExplanation: '최신 프로세서는 대기 시 매우 낮은 전력을 소비합니다.',
-      savingAdvice: ['구형 데스크톱 대신 최신 미니 PC를 활용하세요.'],
-      faq: [{ question: '홈서버 소비전력은 어느 정도인가요?', answer: '최신 미니 PC 기준 대기 시 10~15W(연간 30~45€)입니다.' }]
+    "server": {
+      "name": "홈 서버 / 홈랩",
+      "category": "엔터테인먼트/사무 가전",
+      "shortDescription": "홈 서버 / 홈랩의 연간 소비전력량은 약 570 kWh(연간 약 199.50유로)이며, 평균 소비전력은 65W입니다.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "홈 서버 / 홈랩의 소비전력과 시간당·연간 전기요금은 얼마인가요?",
+          "answer": "홈 서버 / 홈랩의 정격 소비전력은 약 65W입니다. 1시간 작동 시 약 0.065 kWh(약 0.02유로)를 소모하며, 연간 평균 소비전력량은 약 570 kWh(연간 약 199.50유로, 월 약 16.63유로)입니다."
+        },
+        {
+          "question": "홈 서버 / 홈랩의 전기요금을 효과적으로 줄이는 절약 팁은?",
+          "answer": "에코 모드를 적극 활용하고, 정기적으로 필터와 통풍구를 청소하며, 미사용 시 대기전력 차단 콘센트를 활용해 불필요한 전력 낭비를 방지하세요."
+        },
+        {
+          "question": "홈 서버 / 홈랩을 최신 고효율 모델로 교체하면 얼마나 절약되나요?",
+          "answer": "8~10년 이상 된 구형 모델을 에너지소비효율 1등급 제품으로 교체할 경우 연간 전력 소모를 30~50% 줄여 매년 30~80유로의 요금을 절감할 수 있습니다."
+        }
+      ]
     }
   },
-  it: {
-    'kuehlschrank': {
-      name: 'Frigorifero',
-      category: 'Cucina',
-      shortDescription: 'Un frigorifero moderno consuma circa 100-160 kWh all\'anno (circa 35-56 €/anno).',
-      dutyCycleExplanation: 'Il compressore funziona solo per circa 20-40 minuti all\'ora tramite termostato.',
-      savingAdvice: ['Imposta 7 °C nel frigo e -18 °C nel congelatore.', 'Sbrina regolarmente.'],
-      faq: [{ question: 'Quanto consuma un frigo al giorno?', answer: 'Circa 0,3-0,45 kWh al giorno (10-16 centesimi).' }]
+  "it": {
+    "kuehlschrank": {
+      "name": "Frigorifero",
+      "category": "Cucina",
+      "shortDescription": "Un Frigorifero consuma circa 120 kWh all'anno (circa 42.00 € a 35 ct/kWh). Potenza media: 90 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto consuma un Frigorifero all'ora e all'anno in bolletta?",
+          "answer": "Un Frigorifero assorbe una potenza media di circa 90 Watt, consumando 0.090 kWh all'ora (circa 0.01 €/ora a 0,35 €/kWh). Il consumo annuo tipico è di circa 120 kWh (42.00 € all'anno)."
+        },
+        {
+          "question": "Quanto costa usare un Frigorifero al mese?",
+          "answer": "Il costo medio è di circa 0,12 € / Tag, pari a circa 3.50 € al mese in bolletta."
+        },
+        {
+          "question": "Come risparmiare corrente con il proprio Frigorifero?",
+          "answer": "Scegli i programmi Eco, effettua una pulizia periodica di filtri e guarnizioni e scollega la spina quando non in uso per evitare consumi inutili in standby."
+        }
+      ]
     },
-    'waschmaschine': {
-      name: 'Lavatrice',
-      category: 'Casa e Pulizia',
-      shortDescription: 'Consuma circa 0,5-1,0 kWh per ciclo (circa 0,18-0,35 € per lavaggio).',
-      dutyCycleExplanation: 'Oltre l\'80% dell\'elettricità serve a scaldare l\'acqua.',
-      savingAdvice: ['Usa programmi Eco a 30 °C.', 'Lava sempre a pieno carico.'],
-      faq: [{ question: 'Quanto costa lavare a 60 °C rispetto a 30 °C?', answer: 'A 60 °C costa circa 0,35-0,50 €, contro 0,15-0,20 € in Eco 30 °C.' }]
+    "waschmaschine": {
+      "name": "Lavatrice",
+      "category": "Casa & Pulizia",
+      "shortDescription": "Un Lavatrice consuma circa 140 kWh all'anno (circa 49.00 € a 35 ct/kWh). Potenza media: 2000 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto consuma un Lavatrice all'ora e all'anno in bolletta?",
+          "answer": "Un Lavatrice assorbe una potenza media di circa 2000 Watt, consumando 2.000 kWh all'ora (circa 0.70 €/ora a 0,35 €/kWh). Il consumo annuo tipico è di circa 140 kWh (49.00 € all'anno)."
+        },
+        {
+          "question": "Quanto costa usare un Lavatrice al mese?",
+          "answer": "Il costo medio è di circa 0,25 € / Waschgang, pari a circa 4.08 € al mese in bolletta."
+        },
+        {
+          "question": "Come risparmiare corrente con il proprio Lavatrice?",
+          "answer": "Scegli i programmi Eco, effettua una pulizia periodica di filtri e guarnizioni e scollega la spina quando non in uso per evitare consumi inutili in standby."
+        }
+      ]
     },
-    'trockner': {
-      name: 'Asciugatrice',
-      category: 'Casa e Pulizia',
-      shortDescription: 'Le asciugatrici a pompa di calore consumano 1,2-1,8 kWh per ciclo (contro oltre 4 kWh dei vecchi modelli).',
-      dutyCycleExplanation: 'La pompa di calore ricicla l\'aria calda risparmiando oltre il 60%.',
-      savingAdvice: ['Centrifuga a 1.200–1.400 giri nella lavatrice.', 'Pulisci il filtro pelucchi.'],
-      faq: [{ question: 'Quanto costa un ciclo di asciugatrice?', answer: 'Circa 0,45-0,65 € a carico con pompa di calore.' }]
+    "trockner": {
+      "name": "Asciugatrice",
+      "category": "Casa & Pulizia",
+      "shortDescription": "Un Asciugatrice consuma circa 180 kWh all'anno (circa 63.00 € a 35 ct/kWh). Potenza media: 1500 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto consuma un Asciugatrice all'ora e all'anno in bolletta?",
+          "answer": "Un Asciugatrice assorbe una potenza media di circa 1500 Watt, consumando 1.500 kWh all'ora (circa 0.53 €/ora a 0,35 €/kWh). Il consumo annuo tipico è di circa 180 kWh (63.00 € all'anno)."
+        },
+        {
+          "question": "Quanto costa usare un Asciugatrice al mese?",
+          "answer": "Il costo medio è di circa 0,45 € / Ladung, pari a circa 5.25 € al mese in bolletta."
+        },
+        {
+          "question": "Come risparmiare corrente con il proprio Asciugatrice?",
+          "answer": "Scegli i programmi Eco, effettua una pulizia periodica di filtri e guarnizioni e scollega la spina quando non in uso per evitare consumi inutili in standby."
+        }
+      ]
     },
-    'geschirrspueler': {
-      name: 'Lavastoviglie',
-      category: 'Cucina',
-      shortDescription: 'Il ciclo Eco consuma circa 0,7-0,9 kWh (0,25-0,32 €), risparmiando rispetto al lavaggio a mano.',
-      dutyCycleExplanation: 'Riscaldamento efficiente in circuito chiuso.',
-      savingAdvice: ['Usa il programma Eco 50 °C.', 'Avvia solo a pieno carico.'],
-      faq: [{ question: 'La lavastoviglie consuma meno del lavaggio a mano?', answer: 'Sì, usa fino al 50% in meno di elettricità e il 60% in meno di acqua.' }]
+    "geschirrspueler": {
+      "name": "Lavastoviglie",
+      "category": "Cucina",
+      "shortDescription": "Un Lavastoviglie consuma circa 160 kWh all'anno (circa 56.00 € a 35 ct/kWh). Potenza media: 1800 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto consuma un Lavastoviglie all'ora e all'anno in bolletta?",
+          "answer": "Un Lavastoviglie assorbe una potenza media di circa 1800 Watt, consumando 1.800 kWh all'ora (circa 0.63 €/ora a 0,35 €/kWh). Il consumo annuo tipico è di circa 160 kWh (56.00 € all'anno)."
+        },
+        {
+          "question": "Quanto costa usare un Lavastoviglie al mese?",
+          "answer": "Il costo medio è di circa 0,28 € / Spülgang, pari a circa 4.67 € al mese in bolletta."
+        },
+        {
+          "question": "Come risparmiare corrente con il proprio Lavastoviglie?",
+          "answer": "Scegli i programmi Eco, effettua una pulizia periodica di filtri e guarnizioni e scollega la spina quando non in uso per evitare consumi inutili in standby."
+        }
+      ]
     },
-    'backofen': {
-      name: 'Forno Elettrico',
-      category: 'Cucina',
-      shortDescription: 'Consuma circa 0,8-1,5 kWh per ora (circa 0,28-0,52 €).',
-      dutyCycleExplanation: 'La modalità ventilata è circa il 20% più efficiente della statica.',
-      savingAdvice: ['Usa il forno ventilato.', 'Evita di aprire lo sportello.'],
-      faq: [{ question: 'È necessario preriscaldare il forno?', answer: 'Spesso no, ed evitarlo fa risparmiare fino al 20% di energia.' }]
+    "backofen": {
+      "name": "Forno Elettrico",
+      "category": "Cucina",
+      "shortDescription": "Un Forno Elettrico consuma circa 150 kWh all'anno (circa 52.50 € a 35 ct/kWh). Potenza media: 2500 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto consuma un Forno Elettrico all'ora e all'anno in bolletta?",
+          "answer": "Un Forno Elettrico assorbe una potenza media di circa 2500 Watt, consumando 2.500 kWh all'ora (circa 0.88 €/ora a 0,35 €/kWh). Il consumo annuo tipico è di circa 150 kWh (52.50 € all'anno)."
+        },
+        {
+          "question": "Quanto costa usare un Forno Elettrico al mese?",
+          "answer": "Il costo medio è di circa 0,55 € / Nutzung, pari a circa 4.38 € al mese in bolletta."
+        },
+        {
+          "question": "Come risparmiare corrente con il proprio Forno Elettrico?",
+          "answer": "Scegli i programmi Eco, effettua una pulizia periodica di filtri e guarnizioni e scollega la spina quando non in uso per evitare consumi inutili in standby."
+        }
+      ]
     },
-    'herd': {
-      name: 'Piano Cottura a Induzione',
-      category: 'Cucina',
-      shortDescription: 'L\'induzione consuma 0,3-0,7 kWh per pasto ed è il 20–30% più efficiente del piano in vetroceramica.',
-      dutyCycleExplanation: 'Genera calore direttamente nel fondo della pentola.',
-      savingAdvice: ['Cucina sempre col coperchio.', 'Fai bollire prima l\'acqua nel bollitore.'],
-      faq: [{ question: 'L\'induzione fa risparmiare rispetto al vetroceramica?', answer: 'Sì, risparmia il 20-30% di energia e scalda nella metà del tempo.' }]
+    "herd": {
+      "name": "Piano cottura a induzione",
+      "category": "Cucina",
+      "shortDescription": "Un Piano cottura a induzione consuma circa 220 kWh all'anno (circa 77.00 € a 35 ct/kWh). Potenza media: 3000 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto consuma un Piano cottura a induzione all'ora e all'anno in bolletta?",
+          "answer": "Un Piano cottura a induzione assorbe una potenza media di circa 3000 Watt, consumando 3.000 kWh all'ora (circa 1.05 €/ora a 0,35 €/kWh). Il consumo annuo tipico è di circa 220 kWh (77.00 € all'anno)."
+        },
+        {
+          "question": "Quanto costa usare un Piano cottura a induzione al mese?",
+          "answer": "Il costo medio è di circa 0,35 € / Kochvorgang, pari a circa 6.42 € al mese in bolletta."
+        },
+        {
+          "question": "Come risparmiare corrente con il proprio Piano cottura a induzione?",
+          "answer": "Scegli i programmi Eco, effettua una pulizia periodica di filtri e guarnizioni e scollega la spina quando non in uso per evitare consumi inutili in standby."
+        }
+      ]
     },
-    'wasserkocher': {
-      name: 'Bollitore Elettrico',
-      category: 'Cucina',
-      shortDescription: 'Far bollire 1 litro d\'acqua consuma circa 0,1 kWh (circa 3,5 centesimi).',
-      dutyCycleExplanation: 'Riscaldamento diretto con oltre il 90% di rendimento termico.',
-      savingAdvice: ['Fai bollire solo la quantità d\'acqua necessaria.', 'Decalcifica regolarmente.'],
-      faq: [{ question: 'Il bollitore consuma meno del fornello?', answer: 'Sì, è del 30–50% più efficiente di una pentola su piano cottura.' }]
+    "wasserkocher": {
+      "name": "Bollitore Elettrico",
+      "category": "Cucina",
+      "shortDescription": "Un Bollitore Elettrico consuma circa 80 kWh all'anno (circa 28.00 € a 35 ct/kWh). Potenza media: 2200 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto consuma un Bollitore Elettrico all'ora e all'anno in bolletta?",
+          "answer": "Un Bollitore Elettrico assorbe una potenza media di circa 2200 Watt, consumando 2.200 kWh all'ora (circa 0.77 €/ora a 0,35 €/kWh). Il consumo annuo tipico è di circa 80 kWh (28.00 € all'anno)."
+        },
+        {
+          "question": "Quanto costa usare un Bollitore Elettrico al mese?",
+          "answer": "Il costo medio è di circa 0,03 € / 1 Liter Kochen, pari a circa 2.33 € al mese in bolletta."
+        },
+        {
+          "question": "Come risparmiare corrente con il proprio Bollitore Elettrico?",
+          "answer": "Scegli i programmi Eco, effettua una pulizia periodica di filtri e guarnizioni e scollega la spina quando non in uso per evitare consumi inutili in standby."
+        }
+      ]
     },
-    'kaffeemaschine': {
-      name: 'Macchina da Caffè Automatica',
-      category: 'Cucina',
-      shortDescription: 'Consuma circa 0,02-0,04 kWh a tazzina (inclusi risciacqui).',
-      dutyCycleExplanation: 'Il thermoblock riscalda l\'acqua all\'istante solo al bisogno.',
-      savingAdvice: ['Attiva lo spegnimento automatico dopo 10–15 min.'],
-      faq: [{ question: 'Quanto costa l\'elettricità per un caffè?', answer: 'Solo circa 1-1,5 centesimi a tazzina.' }]
+    "kaffeemaschine": {
+      "name": "Macchina da Caffè",
+      "category": "Cucina",
+      "shortDescription": "Un Macchina da Caffè consuma circa 65 kWh all'anno (circa 22.75 € a 35 ct/kWh). Potenza media: 1400 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto consuma un Macchina da Caffè all'ora e all'anno in bolletta?",
+          "answer": "Un Macchina da Caffè assorbe una potenza media di circa 1400 Watt, consumando 1.400 kWh all'ora (circa 0.49 €/ora a 0,35 €/kWh). Il consumo annuo tipico è di circa 65 kWh (22.75 € all'anno)."
+        },
+        {
+          "question": "Quanto costa usare un Macchina da Caffè al mese?",
+          "answer": "Il costo medio è di circa 0,02 € / Tasse Kaffee, pari a circa 1.90 € al mese in bolletta."
+        },
+        {
+          "question": "Come risparmiare corrente con il proprio Macchina da Caffè?",
+          "answer": "Scegli i programmi Eco, effettua una pulizia periodica di filtri e guarnizioni e scollega la spina quando non in uso per evitare consumi inutili in standby."
+        }
+      ]
     },
-    'fernseher': {
-      name: 'Televisore (TV)',
-      category: 'Intrattenimento & Ufficio',
-      shortDescription: 'Una TV 55 pollici LED/OLED consuma tra 70 e 130 W (circa 2,5-4,5 centesimi all\'ora).',
-      dutyCycleExplanation: 'Luminosità, sensori e HDR regolano il consumo in tempo reale.',
-      savingAdvice: ['Attiva il sensore di luce ambientale.', 'Scegli la modalità cinema o standard.'],
-      faq: [{ question: 'I TV OLED consumano più dei LED?', answer: 'Leggermente di più su sfondi bianchi, ma meno nelle scene scure.' }]
+    "fernseher": {
+      "name": "Smart TV (55-65 pollici)",
+      "category": "Intrattenimento & Ufficio",
+      "shortDescription": "Un Smart TV (55-65 pollici) consuma circa 175 kWh all'anno (circa 61.25 € a 35 ct/kWh). Potenza media: 120 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto consuma un Smart TV (55-65 pollici) all'ora e all'anno in bolletta?",
+          "answer": "Un Smart TV (55-65 pollici) assorbe una potenza media di circa 120 Watt, consumando 0.120 kWh all'ora (circa 0.04 €/ora a 0,35 €/kWh). Il consumo annuo tipico è di circa 175 kWh (61.25 € all'anno)."
+        },
+        {
+          "question": "Quanto costa usare un Smart TV (55-65 pollici) al mese?",
+          "answer": "Il costo medio è di circa 0,17 € / 4 Stunden, pari a circa 5.10 € al mese in bolletta."
+        },
+        {
+          "question": "Come risparmiare corrente con il proprio Smart TV (55-65 pollici)?",
+          "answer": "Scegli i programmi Eco, effettua una pulizia periodica di filtri e guarnizioni e scollega la spina quando non in uso per evitare consumi inutili in standby."
+        }
+      ]
     },
-    'gaming-pc': {
-      name: 'PC da Gaming',
-      category: 'Intrattenimento & Ufficio',
-      shortDescription: 'In gioco a pieno carico consuma tra 350 e 600 W (circa 0,12-0,21 € per ora).',
-      dutyCycleExplanation: 'Scheda video e processore assorbono la massima potenza.',
-      savingAdvice: ['Imposta un limite FPS con G-Sync/FreeSync.', 'Effettua l\'undervolting della GPU.'],
-      faq: [{ question: 'Quanto costano 4 ore di gioco al giorno al mese?', answer: 'Circa 17-20 euro al mese di elettricità.' }]
+    "gaming-pc": {
+      "name": "PC da Gaming ad Alte Prestazioni",
+      "category": "Intrattenimento & Ufficio",
+      "shortDescription": "Un PC da Gaming ad Alte Prestazioni consuma circa 450 kWh all'anno (circa 157.50 € a 35 ct/kWh). Potenza media: 400 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto consuma un PC da Gaming ad Alte Prestazioni all'ora e all'anno in bolletta?",
+          "answer": "Un PC da Gaming ad Alte Prestazioni assorbe una potenza media di circa 400 Watt, consumando 0.400 kWh all'ora (circa 0.14 €/ora a 0,35 €/kWh). Il consumo annuo tipico è di circa 450 kWh (157.50 € all'anno)."
+        },
+        {
+          "question": "Quanto costa usare un PC da Gaming ad Alte Prestazioni al mese?",
+          "answer": "Il costo medio è di circa 0,56 € / 4 Stunden Session, pari a circa 13.13 € al mese in bolletta."
+        },
+        {
+          "question": "Come risparmiare corrente con il proprio PC da Gaming ad Alte Prestazioni?",
+          "answer": "Scegli i programmi Eco, effettua una pulizia periodica di filtri e guarnizioni e scollega la spina quando non in uso per evitare consumi inutili in standby."
+        }
+      ]
     },
-    'gamingpc': {
-      name: 'PC da Gaming',
-      category: 'Intrattenimento & Ufficio',
-      shortDescription: 'In gioco a pieno carico consuma tra 350 e 600 W (circa 0,12-0,21 € per ora).',
-      dutyCycleExplanation: 'Scheda video e processore assorbono la massima potenza.',
-      savingAdvice: ['Imposta un limite FPS con G-Sync/FreeSync.', 'Effettua l\'undervolting della GPU.'],
-      faq: [{ question: 'Quanto costano 4 ore di gioco al giorno al mese?', answer: 'Circa 17-20 euro al mese di elettricità.' }]
+    "pc": {
+      "name": "PC Fisso / Computer da Ufficio",
+      "category": "Intrattenimento & Ufficio",
+      "shortDescription": "Un PC Fisso / Computer da Ufficio consuma circa 180 kWh all'anno (circa 63.00 € a 35 ct/kWh). Potenza media: 120 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto consuma un PC Fisso / Computer da Ufficio all'ora e all'anno in bolletta?",
+          "answer": "Un PC Fisso / Computer da Ufficio assorbe una potenza media di circa 120 Watt, consumando 0.120 kWh all'ora (circa 0.04 €/ora a 0,35 €/kWh). Il consumo annuo tipico è di circa 180 kWh (63.00 € all'anno)."
+        },
+        {
+          "question": "Quanto costa usare un PC Fisso / Computer da Ufficio al mese?",
+          "answer": "Il costo medio è di circa 0,25 € / 6 Stunden Arbeit, pari a circa 5.25 € al mese in bolletta."
+        },
+        {
+          "question": "Come risparmiare corrente con il proprio PC Fisso / Computer da Ufficio?",
+          "answer": "Scegli i programmi Eco, effettua una pulizia periodica di filtri e guarnizioni e scollega la spina quando non in uso per evitare consumi inutili in standby."
+        }
+      ]
     },
-    'pc': {
-      name: 'PC Desktop (Ufficio)',
-      category: 'Intrattenimento & Ufficio',
-      shortDescription: 'Consuma circa 50-100 W (circa 1,8-3,5 centesimi all\'ora).',
-      dutyCycleExplanation: 'Basso consumo base durante navigazione e lavoro d\'ufficio.',
-      savingAdvice: ['Attiva la sospensione automatica dopo 15 min.'],
-      faq: [{ question: 'Quanto consuma un PC in smart working?', answer: 'In 8 ore di lavoro circa 0,5-0,8 kWh (18-28 centesimi).' }]
+    "laptop": {
+      "name": "Portatile / Laptop",
+      "category": "Intrattenimento & Ufficio",
+      "shortDescription": "Un Portatile / Laptop consuma circa 75 kWh all'anno (circa 26.25 € a 35 ct/kWh). Potenza media: 50 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto consuma un Portatile / Laptop all'ora e all'anno in bolletta?",
+          "answer": "Un Portatile / Laptop assorbe una potenza media di circa 50 Watt, consumando 0.050 kWh all'ora (circa 0.02 €/ora a 0,35 €/kWh). Il consumo annuo tipico è di circa 75 kWh (26.25 € all'anno)."
+        },
+        {
+          "question": "Quanto costa usare un Portatile / Laptop al mese?",
+          "answer": "Il costo medio è di circa 0,11 € / 6 Stunden Arbeit, pari a circa 2.19 € al mese in bolletta."
+        },
+        {
+          "question": "Come risparmiare corrente con il proprio Portatile / Laptop?",
+          "answer": "Scegli i programmi Eco, effettua una pulizia periodica di filtri e guarnizioni e scollega la spina quando non in uso per evitare consumi inutili in standby."
+        }
+      ]
     },
-    'laptop': {
-      name: 'Computer Portatile / Notebook',
-      category: 'Intrattenimento & Ufficio',
-      shortDescription: 'Consuma solo 20-60 W ed è fino al 70% più efficiente di un desktop.',
-      dutyCycleExplanation: 'Processori mobili a bassissimo consumo.',
-      savingAdvice: ['Riduci leggermente la luminosità dello schermo.'],
-      faq: [{ question: 'Quanto costa usare il portatile al giorno?', answer: 'Per 8 ore di lavoro solo circa 6-12 centesimi.' }]
+    "monitor": {
+      "name": "Monitor PC (27-32 pollici)",
+      "category": "Intrattenimento & Ufficio",
+      "shortDescription": "Un Monitor PC (27-32 pollici) consuma circa 60 kWh all'anno (circa 21.00 € a 35 ct/kWh). Potenza media: 35 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto consuma un Monitor PC (27-32 pollici) all'ora e all'anno in bolletta?",
+          "answer": "Un Monitor PC (27-32 pollici) assorbe una potenza media di circa 35 Watt, consumando 0.035 kWh all'ora (circa 0.01 €/ora a 0,35 €/kWh). Il consumo annuo tipico è di circa 60 kWh (21.00 € all'anno)."
+        },
+        {
+          "question": "Quanto costa usare un Monitor PC (27-32 pollici) al mese?",
+          "answer": "Il costo medio è di circa 0,07 € / 6 Stunden Betrieb, pari a circa 1.75 € al mese in bolletta."
+        },
+        {
+          "question": "Come risparmiare corrente con il proprio Monitor PC (27-32 pollici)?",
+          "answer": "Scegli i programmi Eco, effettua una pulizia periodica di filtri e guarnizioni e scollega la spina quando non in uso per evitare consumi inutili in standby."
+        }
+      ]
     },
-    'monitor': {
-      name: 'Monitor PC',
-      category: 'Intrattenimento & Ufficio',
-      shortDescription: 'Un monitor da 27 pollici consuma circa 20-40 W (circa 0,7-1,4 centesimi all\'ora).',
-      dutyCycleExplanation: 'Retroilluminazione LED costante.',
-      savingAdvice: ['Regola la luminosità in base alla luce della stanza.'],
-      faq: [{ question: 'Quanto costa un secondo monitor all\'anno?', answer: 'Circa 10-20 € all\'anno di elettricità.' }]
+    "ps5": {
+      "name": "PlayStation 5 (PS5)",
+      "category": "Intrattenimento & Ufficio",
+      "shortDescription": "Un PlayStation 5 (PS5) consuma circa 150 kWh all'anno (circa 52.50 € a 35 ct/kWh). Potenza media: 200 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto consuma un PlayStation 5 (PS5) all'ora e all'anno in bolletta?",
+          "answer": "Un PlayStation 5 (PS5) assorbe una potenza media di circa 200 Watt, consumando 0.200 kWh all'ora (circa 0.07 €/ora a 0,35 €/kWh). Il consumo annuo tipico è di circa 150 kWh (52.50 € all'anno)."
+        },
+        {
+          "question": "Quanto costa usare un PlayStation 5 (PS5) al mese?",
+          "answer": "Il costo medio è di circa 0,21 € / 3 Stunden Spielen, pari a circa 4.38 € al mese in bolletta."
+        },
+        {
+          "question": "Come risparmiare corrente con il proprio PlayStation 5 (PS5)?",
+          "answer": "Scegli i programmi Eco, effettua una pulizia periodica di filtri e guarnizioni e scollega la spina quando non in uso per evitare consumi inutili in standby."
+        }
+      ]
     },
-    'ps5': {
-      name: 'PlayStation 5 (PS5)',
-      category: 'Intrattenimento & Ufficio',
-      shortDescription: 'La PS5 consuma circa 180-220 W in gioco (circa 6,3-7,7 centesimi all\'ora).',
-      dutyCycleExplanation: '50 W nella home, fino a 220 W nei giochi in 4K.',
-      savingAdvice: ['Disattiva l\'alimentazione USB fissa in modalità riposo.'],
-      faq: [{ question: 'Quanto consuma la PS5 in riposo?', answer: '1,5-3 W in riposo semplice, 30 W durante i download.' }]
+    "xbox": {
+      "name": "Xbox Series X",
+      "category": "Intrattenimento & Ufficio",
+      "shortDescription": "Un Xbox Series X consuma circa 140 kWh all'anno (circa 49.00 € a 35 ct/kWh). Potenza media: 190 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto consuma un Xbox Series X all'ora e all'anno in bolletta?",
+          "answer": "Un Xbox Series X assorbe una potenza media di circa 190 Watt, consumando 0.190 kWh all'ora (circa 0.07 €/ora a 0,35 €/kWh). Il consumo annuo tipico è di circa 140 kWh (49.00 € all'anno)."
+        },
+        {
+          "question": "Quanto costa usare un Xbox Series X al mese?",
+          "answer": "Il costo medio è di circa 0,20 € / 3 Stunden Spielen, pari a circa 4.08 € al mese in bolletta."
+        },
+        {
+          "question": "Come risparmiare corrente con il proprio Xbox Series X?",
+          "answer": "Scegli i programmi Eco, effettua una pulizia periodica di filtri e guarnizioni e scollega la spina quando non in uso per evitare consumi inutili in standby."
+        }
+      ]
     },
-    'xbox': {
-      name: 'Xbox Series X',
-      category: 'Intrattenimento & Ufficio',
-      shortDescription: 'Consuma circa 150-210 W in gioco (circa 5,3-7,4 centesimi all\'ora).',
-      dutyCycleExplanation: 'Pieno carico in 4K 120Hz.',
-      savingAdvice: ['Scegli la modalità "Spegnimento (risparmio energetico)".'],
-      faq: [{ question: 'Quanto fa risparmiare la modalità risparmio di Xbox?', answer: 'Consuma 0,5 W invece di 10–13 W in standby attivo (risparmia circa 30 €/anno).' }]
+    "klimaanlage": {
+      "name": "Condizionatore / Climatizzatore",
+      "category": "Climatizzazione & Riscaldamento",
+      "shortDescription": "Un Condizionatore / Climatizzatore consuma circa 350 kWh all'anno (circa 122.50 € a 35 ct/kWh). Potenza media: 800 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto consuma un Condizionatore / Climatizzatore all'ora e all'anno in bolletta?",
+          "answer": "Un Condizionatore / Climatizzatore assorbe una potenza media di circa 800 Watt, consumando 0.800 kWh all'ora (circa 0.28 €/ora a 0,35 €/kWh). Il consumo annuo tipico è di circa 350 kWh (122.50 € all'anno)."
+        },
+        {
+          "question": "Quanto costa usare un Condizionatore / Climatizzatore al mese?",
+          "answer": "Il costo medio è di circa 1,40 € / 5 Stunden Kühlung, pari a circa 10.21 € al mese in bolletta."
+        },
+        {
+          "question": "Come risparmiare corrente con il proprio Condizionatore / Climatizzatore?",
+          "answer": "Scegli i programmi Eco, effettua una pulizia periodica di filtri e guarnizioni e scollega la spina quando non in uso per evitare consumi inutili in standby."
+        }
+      ]
     },
-    'klimaanlage': {
-      name: 'Condizionatore',
-      category: 'Climatizzazione & Riscaldamento',
-      shortDescription: 'I modelli portatili consumano 800-1.200 W (28-42 ct/h); i modelli split inverter sono più efficienti del 50%.',
-      dutyCycleExplanation: 'Il compressore riduce la potenza al raggiungimento della temperatura.',
-      savingAdvice: ['Imposta 24-25 °C.', 'Chiudi tapparelle durante le ore di sole.'],
-      faq: [{ question: 'Quanto costa il condizionatore in estate?', answer: 'Per 30 giorni a 6h/giorno, circa 50–75 € in portatile e 25–40 € in split.' }]
+    "ventilator": {
+      "name": "Ventilatore a Piantana",
+      "category": "Climatizzazione & Riscaldamento",
+      "shortDescription": "Un Ventilatore a Piantana consuma circa 35 kWh all'anno (circa 12.25 € a 35 ct/kWh). Potenza media: 45 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto consuma un Ventilatore a Piantana all'ora e all'anno in bolletta?",
+          "answer": "Un Ventilatore a Piantana assorbe una potenza media di circa 45 Watt, consumando 0.045 kWh all'ora (circa 0.02 €/ora a 0,35 €/kWh). Il consumo annuo tipico è di circa 35 kWh (12.25 € all'anno)."
+        },
+        {
+          "question": "Quanto costa usare un Ventilatore a Piantana al mese?",
+          "answer": "Il costo medio è di circa 0,10 € / 6 Stunden, pari a circa 1.02 € al mese in bolletta."
+        },
+        {
+          "question": "Come risparmiare corrente con il proprio Ventilatore a Piantana?",
+          "answer": "Scegli i programmi Eco, effettua una pulizia periodica di filtri e guarnizioni e scollega la spina quando non in uso per evitare consumi inutili in standby."
+        }
+      ]
     },
-    'ventilator': {
-      name: 'Ventilatore',
-      category: 'Climatizzazione & Riscaldamento',
-      shortDescription: 'Un ventilatore a piantana consuma solo 25-50 W (circa 0,9-1,8 centesimi all\'ora).',
-      dutyCycleExplanation: 'Motore diretto senza compressore frigorifero.',
-      savingAdvice: ['Spegni quando esci dalla stanza.'],
-      faq: [{ question: 'Consuma molto meno del condizionatore?', answer: 'Sì, consuma circa il 95% in meno di elettricità.' }]
+    "heizluefter": {
+      "name": "Termoventilatore / Stufetta Elettrica",
+      "category": "Climatizzazione & Riscaldamento",
+      "shortDescription": "Un Termoventilatore / Stufetta Elettrica consuma circa 300 kWh all'anno (circa 105.00 € a 35 ct/kWh). Potenza media: 2000 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto consuma un Termoventilatore / Stufetta Elettrica all'ora e all'anno in bolletta?",
+          "answer": "Un Termoventilatore / Stufetta Elettrica assorbe una potenza media di circa 2000 Watt, consumando 2.000 kWh all'ora (circa 0.70 €/ora a 0,35 €/kWh). Il consumo annuo tipico è di circa 300 kWh (105.00 € all'anno)."
+        },
+        {
+          "question": "Quanto costa usare un Termoventilatore / Stufetta Elettrica al mese?",
+          "answer": "Il costo medio è di circa 1,40 € / 2 Stunden Heizen, pari a circa 8.75 € al mese in bolletta."
+        },
+        {
+          "question": "Come risparmiare corrente con il proprio Termoventilatore / Stufetta Elettrica?",
+          "answer": "Scegli i programmi Eco, effettua una pulizia periodica di filtri e guarnizioni e scollega la spina quando non in uso per evitare consumi inutili in standby."
+        }
+      ]
     },
-    'heizluefter': {
-      name: 'Termoventilatore / Stufetta',
-      category: 'Climatizzazione & Riscaldamento',
-      shortDescription: 'Consuma tra 1.500 e 2.000 W (circa 53-70 centesimi per ora di utilizzo).',
-      dutyCycleExplanation: 'Resistenza elettrica che converte l\'energia in calore 1:1.',
-      savingAdvice: ['Usa solo come riscaldamento d\'emergenza per brevi periodi.'],
-      faq: [{ question: 'Quanto costa tenerlo acceso tutto il giorno?', answer: '8 ore al giorno costano circa 4,20-5,60 € (oltre 150 € al mese).' }]
+    "luftentfeuchter": {
+      "name": "Deumidificatore Elettrico",
+      "category": "Climatizzazione & Riscaldamento",
+      "shortDescription": "Un Deumidificatore Elettrico consuma circa 280 kWh all'anno (circa 98.00 € a 35 ct/kWh). Potenza media: 350 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto consuma un Deumidificatore Elettrico all'ora e all'anno in bolletta?",
+          "answer": "Un Deumidificatore Elettrico assorbe una potenza media di circa 350 Watt, consumando 0.350 kWh all'ora (circa 0.12 €/ora a 0,35 €/kWh). Il consumo annuo tipico è di circa 280 kWh (98.00 € all'anno)."
+        },
+        {
+          "question": "Quanto costa usare un Deumidificatore Elettrico al mese?",
+          "answer": "Il costo medio è di circa 0,74 € / 6 Stunden, pari a circa 8.17 € al mese in bolletta."
+        },
+        {
+          "question": "Come risparmiare corrente con il proprio Deumidificatore Elettrico?",
+          "answer": "Scegli i programmi Eco, effettua una pulizia periodica di filtri e guarnizioni e scollega la spina quando non in uso per evitare consumi inutili in standby."
+        }
+      ]
     },
-    'luftentfeuchter': {
-      name: 'Deumidificatore',
-      category: 'Climatizzazione & Riscaldamento',
-      shortDescription: 'Consuma circa 200-400 W (circa 7-14 centesimi all\'ora).',
-      dutyCycleExplanation: 'Condensa l\'umidità presente nell\'aria ambiente.',
-      savingAdvice: ['Imposta l\'umidità desiderata al 50–55%.', 'Chiudi porte e finestre.'],
-      faq: [{ question: 'Quante ore deve funzionare al giorno?', answer: '2-4 ore al giorno in stanze chiuse sono di norma sufficienti.' }]
+    "aquarium": {
+      "name": "Acquario (100–200 Litri)",
+      "category": "Hobby & Speciale",
+      "shortDescription": "Un Acquario (100–200 Litri) consuma circa 350 kWh all'anno (circa 122.50 € a 35 ct/kWh). Potenza media: 60 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto consuma un Acquario (100–200 Litri) all'ora e all'anno in bolletta?",
+          "answer": "Un Acquario (100–200 Litri) assorbe una potenza media di circa 60 Watt, consumando 0.060 kWh all'ora (circa 0.02 €/ora a 0,35 €/kWh). Il consumo annuo tipico è di circa 350 kWh (122.50 € all'anno)."
+        },
+        {
+          "question": "Quanto costa usare un Acquario (100–200 Litri) al mese?",
+          "answer": "Il costo medio è di circa 0,34 € / 24 Stunden Dauerbetrieb, pari a circa 10.21 € al mese in bolletta."
+        },
+        {
+          "question": "Come risparmiare corrente con il proprio Acquario (100–200 Litri)?",
+          "answer": "Scegli i programmi Eco, effettua una pulizia periodica di filtri e guarnizioni e scollega la spina quando non in uso per evitare consumi inutili in standby."
+        }
+      ]
     },
-    'aquarium': {
-      name: 'Acquario',
-      category: 'Hobby & Speciale',
-      shortDescription: 'Un acquario da 100 litri consuma circa 150-300 kWh all\'anno (circa 53-105 €/anno).',
-      dutyCycleExplanation: 'Il riscaldatore e le luci costituiscono la maggior parte dei consumi.',
-      savingAdvice: ['Usa luci LED e tieni l\'acquario coperto.'],
-      faq: [{ question: 'Cosa consuma di più in un acquario?', answer: 'Il riscaldatore termostatico dell\'acqua.' }]
+    "pool": {
+      "name": "Pompa per Piscina & Filtro",
+      "category": "Hobby & Speciale",
+      "shortDescription": "Un Pompa per Piscina & Filtro consuma circa 480 kWh all'anno (circa 168.00 € a 35 ct/kWh). Potenza media: 500 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto consuma un Pompa per Piscina & Filtro all'ora e all'anno in bolletta?",
+          "answer": "Un Pompa per Piscina & Filtro assorbe una potenza media di circa 500 Watt, consumando 0.500 kWh all'ora (circa 0.17 €/ora a 0,35 €/kWh). Il consumo annuo tipico è di circa 480 kWh (168.00 € all'anno)."
+        },
+        {
+          "question": "Quanto costa usare un Pompa per Piscina & Filtro al mese?",
+          "answer": "Il costo medio è di circa 1,05 € / 6 Stunden Filterung, pari a circa 14.00 € al mese in bolletta."
+        },
+        {
+          "question": "Come risparmiare corrente con il proprio Pompa per Piscina & Filtro?",
+          "answer": "Scegli i programmi Eco, effettua una pulizia periodica di filtri e guarnizioni e scollega la spina quando non in uso per evitare consumi inutili in standby."
+        }
+      ]
     },
-    'pool': {
-      name: 'Pompa per Piscina',
-      category: 'Hobby & Speciale',
-      shortDescription: 'Consuma tra 400 e 1.000 W (circa 14-35 centesimi all\'ora).',
-      dutyCycleExplanation: 'Filtra il volume della piscina 2-3 volte al giorno.',
-      savingAdvice: ['Usa un timer programmabile.'],
-      faq: [{ question: 'Quante ore deve funzionare in estate?', answer: 'Circa 6-8 ore al giorno.' }]
+    "whirlpool": {
+      "name": "Idromassaggio / Jacuzzi da Esterno",
+      "category": "Hobby & Speciale",
+      "shortDescription": "Un Idromassaggio / Jacuzzi da Esterno consuma circa 2200 kWh all'anno (circa 770.00 € a 35 ct/kWh). Potenza media: 2500 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto consuma un Idromassaggio / Jacuzzi da Esterno all'ora e all'anno in bolletta?",
+          "answer": "Un Idromassaggio / Jacuzzi da Esterno assorbe una potenza media di circa 2500 Watt, consumando 2.500 kWh all'ora (circa 0.88 €/ora a 0,35 €/kWh). Il consumo annuo tipico è di circa 2200 kWh (770.00 € all'anno)."
+        },
+        {
+          "question": "Quanto costa usare un Idromassaggio / Jacuzzi da Esterno al mese?",
+          "answer": "Il costo medio è di circa 2,10 € / Tag (Heizung & Zirkulation), pari a circa 64.17 € al mese in bolletta."
+        },
+        {
+          "question": "Come risparmiare corrente con il proprio Idromassaggio / Jacuzzi da Esterno?",
+          "answer": "Scegli i programmi Eco, effettua una pulizia periodica di filtri e guarnizioni e scollega la spina quando non in uso per evitare consumi inutili in standby."
+        }
+      ]
     },
-    'whirlpool': {
-      name: 'Idromassaggio / Spa da Esterno',
-      category: 'Hobby & Speciale',
-      shortDescription: 'Consuma circa 2.000-4.000 kWh all\'anno (circa 700-1.400 €/anno).',
-      dutyCycleExplanation: 'Mantenere l\'acqua a 38 °C richiede riscaldamento costante.',
-      savingAdvice: ['Usa una copertura termica spessa.'],
-      faq: [{ question: 'Quanto costa un idromassaggio al mese?', answer: 'Circa 50-120 € al mese a seconda della stagione.' }]
+    "3d-drucker": {
+      "name": "Stampante 3D (FDM)",
+      "category": "Hobby & Speciale",
+      "shortDescription": "Un Stampante 3D (FDM) consuma circa 120 kWh all'anno (circa 42.00 € a 35 ct/kWh). Potenza media: 150 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto consuma un Stampante 3D (FDM) all'ora e all'anno in bolletta?",
+          "answer": "Un Stampante 3D (FDM) assorbe una potenza media di circa 150 Watt, consumando 0.150 kWh all'ora (circa 0.05 €/ora a 0,35 €/kWh). Il consumo annuo tipico è di circa 120 kWh (42.00 € all'anno)."
+        },
+        {
+          "question": "Quanto costa usare un Stampante 3D (FDM) al mese?",
+          "answer": "Il costo medio è di circa 0,42 € / 8 Stunden Druck, pari a circa 3.50 € al mese in bolletta."
+        },
+        {
+          "question": "Come risparmiare corrente con il proprio Stampante 3D (FDM)?",
+          "answer": "Scegli i programmi Eco, effettua una pulizia periodica di filtri e guarnizioni e scollega la spina quando non in uso per evitare consumi inutili in standby."
+        }
+      ]
     },
-    '3d-drucker': {
-      name: 'Stampante 3D',
-      category: 'Hobby & Speciale',
-      shortDescription: 'Consuma circa 100-180 W (circa 3,5-6,3 centesimi per ora di stampa).',
-      dutyCycleExplanation: 'Il piano riscaldato assorbe il 70% dell\'energia totale.',
-      savingAdvice: ['Usa una camera chiusa per trattenere il calore.'],
-      faq: [{ question: 'Quanto costa una stampa di 10 ore?', answer: 'Circa 40-60 centesimi di elettricità.' }]
+    "nas": {
+      "name": "Server NAS / Storage di Rete",
+      "category": "Intrattenimento & Ufficio",
+      "shortDescription": "Un Server NAS / Storage di Rete consuma circa 260 kWh all'anno (circa 91.00 € a 35 ct/kWh). Potenza media: 30 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto consuma un Server NAS / Storage di Rete all'ora e all'anno in bolletta?",
+          "answer": "Un Server NAS / Storage di Rete assorbe una potenza media di circa 30 Watt, consumando 0.030 kWh all'ora (circa 0.01 €/ora a 0,35 €/kWh). Il consumo annuo tipico è di circa 260 kWh (91.00 € all'anno)."
+        },
+        {
+          "question": "Quanto costa usare un Server NAS / Storage di Rete al mese?",
+          "answer": "Il costo medio è di circa 0,25 € / 24 Stunden Dauerbetrieb, pari a circa 7.58 € al mese in bolletta."
+        },
+        {
+          "question": "Come risparmiare corrente con il proprio Server NAS / Storage di Rete?",
+          "answer": "Scegli i programmi Eco, effettua una pulizia periodica di filtri e guarnizioni e scollega la spina quando non in uso per evitare consumi inutili in standby."
+        }
+      ]
     },
-    'nas': {
-      name: 'Server NAS',
-      category: 'Hobby & Speciale',
-      shortDescription: 'Consuma 15-30 W acceso 24/7 (circa 45-90 € all\'anno).',
-      dutyCycleExplanation: 'Lo standby dei dischi riduce il consumo a meno di 8 W.',
-      savingAdvice: ['Attiva l\'ibernazione dei dischi rigidi.'],
-      faq: [{ question: 'Quanto costa un NAS acceso tutto l\'anno?', answer: 'A 20 W continui, circa 61 € all\'anno.' }]
-    },
-    'server': {
-      name: 'Server Domestico',
-      category: 'Hobby & Speciale',
-      shortDescription: 'Un Mini PC a basso consumo consuma 10-40 W (circa 30-120 € all\'anno).',
-      dutyCycleExplanation: 'Processori moderni a bassissimo consumo in idle.',
-      savingAdvice: ['Usa Mini PC moderni al posto di vecchi desktop.'],
-      faq: [{ question: 'Quanto consuma un server casalingo?', answer: 'Circa 10–15 W in idle (30-45 € all\'anno).' }]
+    "server": {
+      "name": "Home Server Domestico",
+      "category": "Intrattenimento & Ufficio",
+      "shortDescription": "Un Home Server Domestico consuma circa 570 kWh all'anno (circa 199.50 € a 35 ct/kWh). Potenza media: 65 W.",
+      "dutyCycleExplanation": "The actual power draw varies based on operating mode, thermostat cycling, and daily usage habits.",
+      "savingAdvice": [
+        "Use eco modes and power-saving settings whenever possible.",
+        "Regularly clean and maintain filters, seals, and vents.",
+        "Eliminate standby drain by using a switchable power strip."
+      ],
+      "faq": [
+        {
+          "question": "Quanto consuma un Home Server Domestico all'ora e all'anno in bolletta?",
+          "answer": "Un Home Server Domestico assorbe una potenza media di circa 65 Watt, consumando 0.065 kWh all'ora (circa 0.02 €/ora a 0,35 €/kWh). Il consumo annuo tipico è di circa 570 kWh (199.50 € all'anno)."
+        },
+        {
+          "question": "Quanto costa usare un Home Server Domestico al mese?",
+          "answer": "Il costo medio è di circa 0,55 € / 24 Stunden Dauerbetrieb, pari a circa 16.63 € al mese in bolletta."
+        },
+        {
+          "question": "Come risparmiare corrente con il proprio Home Server Domestico?",
+          "answer": "Scegli i programmi Eco, effettua una pulizia periodica di filtri e guarnizioni e scollega la spina quando non in uso per evitare consumi inutili in standby."
+        }
+      ]
     }
   }
 };
 
-export function getLocalizedAppliance(slug: string, lang: SupportedLanguage): LocalizedAppliance | null {
-  const langDict = applianceTranslations[lang] || applianceTranslations.en || applianceTranslations.de;
-  return langDict[slug] || null;
+export function getLocalizedAppliance(slug: string, lang: SupportedLanguage = 'de'): LocalizedAppliance | null {
+  const langData = applianceTranslations[lang];
+  if (langData && langData[slug]) {
+    return langData[slug];
+  }
+  return applianceTranslations['de']?.[slug] || null;
 }

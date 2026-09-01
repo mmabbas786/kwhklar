@@ -12,6 +12,8 @@ import { useTranslations, getLocalizedPath } from '../../i18n/utils';
 import { getLocalizedAppliance } from '../../i18n/appliances';
 import { getLocalizedTopic } from '../../i18n/topics';
 
+import { getCalculatorSchema, getFaqSchema } from '../../lib/structured-data';
+
 export function getStaticPaths() {
   const nonDefaultLangs: SupportedLanguage[] = ['en', 'es', 'ja', 'fr', 'pt', 'ko', 'it'];
   
@@ -106,12 +108,21 @@ const relatedLinks = [
   { title: t('cat.kwh.title') || 'kWh in Euro', href: '/kwh-rechner', description: t('cat.kwh.desc') },
   { title: t('cat.house.title') || 'Haushalt', href: '/stromverbrauch-haushalt', description: t('cat.house.desc') },
 ];
+
+const calcSchema = getCalculatorSchema(
+  `${formattedTitle} — ${t('calc.title')}`,
+  pageDescription,
+  `/${lang}/${slug}`
+);
+const faqSchema = getFaqSchema(faqs);
+const pageSchemas = faqSchema ? [calcSchema, faqSchema] : [calcSchema];
 ---
 
 <BaseLayout
   title={`${formattedTitle} — ${t('site.title')}`}
   description={pageDescription}
   canonical={`https://kwhklar.de/${lang}/${slug}`}
+  jsonLd={pageSchemas}
 >
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
     <!-- Breadcrumb / Badge -->
