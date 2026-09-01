@@ -1,5 +1,6 @@
 ---
 import { formatEuro, formatKwh } from '../../lib/formatters';
+import { type SupportedLanguage, languages } from '../../i18n/languages';
 
 interface Props {
   defaultWatt?: number;
@@ -10,6 +11,7 @@ interface Props {
   subtitle?: string;
   applianceName?: string;
   showPresets?: boolean;
+  lang?: SupportedLanguage;
 }
 
 const {
@@ -17,10 +19,331 @@ const {
   defaultHours = 1,
   defaultPriceCt = 35.0,
   defaultDaysPerWeek = 7,
-  title = 'Stromkostenrechner',
-  subtitle = 'Berechne Stromverbrauch (kWh) und Stromkosten (€) präzise für jede Nutzungsdauer.',
+  title,
+  subtitle,
+  applianceName,
   showPresets = true,
+  lang = 'de',
 } = Astro.props;
+
+const calcI18n = {
+  de: {
+    liveBadge: 'Live-Berechnung',
+    defaultTitle: 'Live Stromkostenrechner',
+    defaultSubtitle: 'Berechne Stromverbrauch (kWh) und Stromkosten (€) präzise für jede Nutzungsdauer.',
+    presetsLabel: 'Schnellwahl / Typische Leistung:',
+    presetLighting: '💡 60 W (Beleuchtung)',
+    presetTv: '📺 120 W (Fernseher)',
+    presetGaming: '🎮 400 W (Gaming-PC)',
+    preset1kw: '⚡ 1.000 W (1 kW)',
+    presetWasher: '🧺 2.000 W (Waschmaschine)',
+    powerLabel: 'Leistung des Geräts',
+    durationLabel: 'Nutzungsdauer pro Tag',
+    priceLabel: 'Strompreis (Arbeitspreis)',
+    referencePrice: 'Referenz: 35 ct/kWh',
+    priceTip: 'Tipp: Den genauen Arbeitspreis findest du auf deiner letzten Stromrechnung.',
+    advancedOptions: 'Erweiterte Optionen (Tage/Woche & Grundpreis)',
+    daysPerWeekLabel: 'Nutzungstage pro Woche:',
+    daily7: 'Täglich (7 Tage / Woche)',
+    weekdays5: 'Werktags (5 Tage / Woche)',
+    days3: '3 Tage / Woche',
+    weekend2: 'Wochenende (2 Tage / Woche)',
+    day1: '1 Tag / Woche',
+    baseFeeLabel: 'Monatlicher Grundpreis (optional):',
+    btnReset: 'Zurücksetzen',
+    btnCopy: 'Ergebnis kopieren',
+    copiedText: 'Kopiert!',
+    calculatedResult: 'Berechnetes Ergebnis',
+    costPerMonth: 'Kosten pro Monat',
+    costPerYear: 'Kosten pro Jahr',
+    perHour: 'Pro Stunde',
+    perDay: 'Pro Tag',
+    perWeek: 'Pro Woche',
+    formulaTitle: 'Formel:',
+    formulaText1: 'kWh = Watt × Std. ÷ 1.000',
+    formulaText2: 'Kosten = kWh × ct/kWh ÷ 100',
+    hoursUnit: 'Std./Tag',
+    wattUnit: 'Watt',
+    hoursShort: 'h/Tag',
+  },
+  en: {
+    liveBadge: 'Live Calculation',
+    defaultTitle: 'Live Electricity Cost Calculator',
+    defaultSubtitle: 'Calculate electricity consumption (kWh) and costs accurately for any operating time.',
+    presetsLabel: 'Quick Presets / Typical Power:',
+    presetLighting: '💡 60 W (Lighting)',
+    presetTv: '📺 120 W (Television)',
+    presetGaming: '🎮 400 W (Gaming PC)',
+    preset1kw: '⚡ 1,000 W (1 kW)',
+    presetWasher: '🧺 2,000 W (Washing Machine)',
+    powerLabel: 'Appliance Power Rating',
+    durationLabel: 'Usage Duration per Day',
+    priceLabel: 'Electricity Price (Rate)',
+    referencePrice: 'Benchmark: 35 ct/kWh',
+    priceTip: 'Tip: Check your latest electricity bill for your exact price per kWh.',
+    advancedOptions: 'Advanced Options (Days/Week & Base Fee)',
+    daysPerWeekLabel: 'Usage Days per Week:',
+    daily7: 'Daily (7 days / week)',
+    weekdays5: 'Weekdays (5 days / week)',
+    days3: '3 days / week',
+    weekend2: 'Weekend (2 days / week)',
+    day1: '1 day / week',
+    baseFeeLabel: 'Monthly Base Fee (optional):',
+    btnReset: 'Reset',
+    btnCopy: 'Copy Results',
+    copiedText: 'Copied!',
+    calculatedResult: 'Calculated Results',
+    costPerMonth: 'Cost per Month',
+    costPerYear: 'Cost per Year',
+    perHour: 'Per Hour',
+    perDay: 'Per Day',
+    perWeek: 'Per Week',
+    formulaTitle: 'Formula:',
+    formulaText1: 'kWh = Watts × Hours ÷ 1,000',
+    formulaText2: 'Cost = kWh × Rate ÷ 100',
+    hoursUnit: 'hrs/day',
+    wattUnit: 'Watts',
+    hoursShort: 'h/day',
+  },
+  es: {
+    liveBadge: 'Cálculo en vivo',
+    defaultTitle: 'Calculadora de Coste Eléctrico en Vivo',
+    defaultSubtitle: 'Calcula el consumo de luz (kWh) y los costes con total precisión según el tiempo de uso.',
+    presetsLabel: 'Selección rápida / Potencia típica:',
+    presetLighting: '💡 60 W (Iluminación)',
+    presetTv: '📺 120 W (Televisor)',
+    presetGaming: '🎮 400 W (PC Gaming)',
+    preset1kw: '⚡ 1.000 W (1 kW)',
+    presetWasher: '🧺 2.000 W (Lavadora)',
+    powerLabel: 'Potencia del aparato',
+    durationLabel: 'Tiempo de uso diario',
+    priceLabel: 'Precio de la luz (Tarifa)',
+    referencePrice: 'Referencia: 35 ct/kWh',
+    priceTip: 'Consejo: Consulta tu última factura de luz para ver tu precio exacto por kWh.',
+    advancedOptions: 'Opciones avanzadas (Días/semana y cuota fija)',
+    daysPerWeekLabel: 'Días de uso por semana:',
+    daily7: 'Diario (7 días / semana)',
+    weekdays5: 'Laborables (5 días / semana)',
+    days3: '3 días / semana',
+    weekend2: 'Fin de semana (2 días / semana)',
+    day1: '1 día / semana',
+    baseFeeLabel: 'Cuota fija mensual (opcional):',
+    btnReset: 'Restablecer',
+    btnCopy: 'Copiar resultado',
+    copiedText: '¡Copiado!',
+    calculatedResult: 'Resultado calculado',
+    costPerMonth: 'Coste mensual',
+    costPerYear: 'Coste anual',
+    perHour: 'Por hora',
+    perDay: 'Por día',
+    perWeek: 'Por semana',
+    formulaTitle: 'Fórmula:',
+    formulaText1: 'kWh = Vatios × Horas ÷ 1.000',
+    formulaText2: 'Coste = kWh × Tarifa ÷ 100',
+    hoursUnit: 'h/día',
+    wattUnit: 'Vatios',
+    hoursShort: 'h/día',
+  },
+  ja: {
+    liveBadge: 'リアルタイム計算',
+    defaultTitle: '電気代リアルタイム計算機',
+    defaultSubtitle: 'あらゆる家電の消費電力（kWh）と電気代を、使用時間に応じて即座に正確計算。',
+    presetsLabel: 'クイック選択 / 代表的な消費電力:',
+    presetLighting: '💡 60 W (照明・ライト)',
+    presetTv: '📺 120 W (テレビ)',
+    presetGaming: '🎮 400 W (ゲーミングPC)',
+    preset1kw: '⚡ 1,000 W (1 kW)',
+    presetWasher: '🧺 2,000 W (洗濯機・ヒーター)',
+    powerLabel: '機器の定格消費電力',
+    durationLabel: '1日の使用時間',
+    priceLabel: '電気料金単価',
+    referencePrice: '標準目安: 35 ct/kWh',
+    priceTip: 'ヒント: 正確な単価は最新の電気料金請求書でご確認いただけます。',
+    advancedOptions: '詳細設定（週あたりの使用日数・基本料金）',
+    daysPerWeekLabel: '週あたりの使用日数:',
+    daily7: '毎日（週7日）',
+    weekdays5: '平日（週5日）',
+    days3: '週3日',
+    weekend2: '週末（週2日）',
+    day1: '週1日',
+    baseFeeLabel: '月額基本料金（任意）:',
+    btnReset: 'リセット',
+    btnCopy: '結果をコピー',
+    copiedText: 'コピー完了!',
+    calculatedResult: '計算結果',
+    costPerMonth: '月額コスト',
+    costPerYear: '年間コスト',
+    perHour: '1時間あたり',
+    perDay: '1日あたり',
+    perWeek: '1週間あたり',
+    formulaTitle: '計算式:',
+    formulaText1: 'kWh = W × 時間 ÷ 1,000',
+    formulaText2: '電気代 = kWh × 単価 ÷ 100',
+    hoursUnit: '時間/日',
+    wattUnit: 'W (ワット)',
+    hoursShort: '時間/日',
+  },
+  fr: {
+    liveBadge: 'Calcul en direct',
+    defaultTitle: 'Calculateur de Coût d\'Électricité en Direct',
+    defaultSubtitle: 'Calculez la consommation électrique (kWh) et les coûts avec précision pour toute durée d\'utilisation.',
+    presetsLabel: 'Préréglages rapides / Puissance type :',
+    presetLighting: '💡 60 W (Éclairage)',
+    presetTv: '📺 120 W (Téléviseur)',
+    presetGaming: '🎮 400 W (PC Gamer)',
+    preset1kw: '⚡ 1 000 W (1 kW)',
+    presetWasher: '🧺 2 000 W (Lave-linge)',
+    powerLabel: 'Puissance de l\'appareil',
+    durationLabel: 'Durée d\'utilisation par jour',
+    priceLabel: 'Prix de l\'électricité (Tarif)',
+    referencePrice: 'Référence : 35 ct/kWh',
+    priceTip: 'Astuce : Consultez votre dernière facture pour trouver votre tarif exact par kWh.',
+    advancedOptions: 'Options avancées (Jours/semaine & Abonnement)',
+    daysPerWeekLabel: 'Jours d\'utilisation par semaine :',
+    daily7: 'Quotidien (7 j / sem.)',
+    weekdays5: 'Jours ouvrés (5 j / sem.)',
+    days3: '3 jours / sem.',
+    weekend2: 'Week-end (2 j / sem.)',
+    day1: '1 jour / sem.',
+    baseFeeLabel: 'Abonnement mensuel de base (facultatif) :',
+    btnReset: 'Réinitialiser',
+    btnCopy: 'Copier le résultat',
+    copiedText: 'Copié !',
+    calculatedResult: 'Résultats calculés',
+    costPerMonth: 'Coût par mois',
+    costPerYear: 'Coût par an',
+    perHour: 'Par heure',
+    perDay: 'Par jour',
+    perWeek: 'Par semaine',
+    formulaTitle: 'Formule :',
+    formulaText1: 'kWh = Watts × Heures ÷ 1 000',
+    formulaText2: 'Coût = kWh × Tarif ÷ 100',
+    hoursUnit: 'h/jour',
+    wattUnit: 'Watts',
+    hoursShort: 'h/jour',
+  },
+  pt: {
+    liveBadge: 'Cálculo em tempo real',
+    defaultTitle: 'Calculadora de Custo de Energia em Tempo Real',
+    defaultSubtitle: 'Calcule o consumo de energia (kWh) e os custos com precisão para qualquer tempo de uso.',
+    presetsLabel: 'Seleção rápida / Potência típica:',
+    presetLighting: '💡 60 W (Iluminação)',
+    presetTv: '📺 120 W (Televisão)',
+    presetGaming: '🎮 400 W (PC Gamer)',
+    preset1kw: '⚡ 1.000 W (1 kW)',
+    presetWasher: '🧺 2.000 W (Máquina de Lavar)',
+    powerLabel: 'Potência do aparelho',
+    durationLabel: 'Tempo de uso por dia',
+    priceLabel: 'Preço da eletricidade (Tarifa)',
+    referencePrice: 'Referência: 35 ct/kWh',
+    priceTip: 'Dica: Veja na sua última fatura o valor exato cobrado por kWh.',
+    advancedOptions: 'Opções avançadas (Dias/semana e taxa fixa)',
+    daysPerWeekLabel: 'Dias de uso por semana:',
+    daily7: 'Diariamente (7 dias / semana)',
+    weekdays5: 'Dias úteis (5 dias / semana)',
+    days3: '3 dias / semana',
+    weekend2: 'Fim de semana (2 dias / semana)',
+    day1: '1 dia / semana',
+    baseFeeLabel: 'Taxa fixa mensal (opcional):',
+    btnReset: 'Redefinir',
+    btnCopy: 'Copiar resultado',
+    copiedText: 'Copiado!',
+    calculatedResult: 'Resultado calculado',
+    costPerMonth: 'Custo mensal',
+    costPerYear: 'Custo anual',
+    perHour: 'Por hora',
+    perDay: 'Por dia',
+    perWeek: 'Por semana',
+    formulaTitle: 'Fórmula:',
+    formulaText1: 'kWh = Watts × Horas ÷ 1.000',
+    formulaText2: 'Custo = kWh × Tarifa ÷ 100',
+    hoursUnit: 'h/dia',
+    wattUnit: 'Watts',
+    hoursShort: 'h/dia',
+  },
+  ko: {
+    liveBadge: '실시간 자동 계산',
+    defaultTitle: '실시간 전기요금 계산기',
+    defaultSubtitle: '가전제품의 소비전력(kWh)과 전기요금을 사용 시간에 맞춰 실시간으로 정밀 계산합니다.',
+    presetsLabel: '빠른 선택 / 대표 소비전력:',
+    presetLighting: '💡 60 W (조명·전등)',
+    presetTv: '📺 120 W (텔레비전)',
+    presetGaming: '🎮 400 W (게이밍 PC)',
+    preset1kw: '⚡ 1,000 W (1 kW)',
+    presetWasher: '🧺 2,000 W (세탁기·온풍기)',
+    powerLabel: '기기 소비전력',
+    durationLabel: '하루 사용 시간',
+    priceLabel: '전기요금 단가',
+    referencePrice: '표준 기준: 35 ct/kWh',
+    priceTip: '팁: 정확한 단가는 최근 전기요금 고지서에서 확인하실 수 있습니다.',
+    advancedOptions: '상세 설정 (주당 사용 일수 및 기본요금)',
+    daysPerWeekLabel: '주당 사용 일수:',
+    daily7: '매일 (주 7일)',
+    weekdays5: '평일 (주 5일)',
+    days3: '주 3일',
+    weekend2: '주말 (주 2일)',
+    day1: '주 1일',
+    baseFeeLabel: '월 기본요금 (선택사항):',
+    btnReset: '초기화',
+    btnCopy: '결과 복사',
+    copiedText: '복사됨!',
+    calculatedResult: '계산 결과',
+    costPerMonth: '월간 요금',
+    costPerYear: '연간 요금',
+    perHour: '시간당',
+    perDay: '하루 기준',
+    perWeek: '1주일 기준',
+    formulaTitle: '공식:',
+    formulaText1: 'kWh = W × 시간 ÷ 1,000',
+    formulaText2: '요금 = kWh × 단가 ÷ 100',
+    hoursUnit: '시간/일',
+    wattUnit: 'W (와트)',
+    hoursShort: '시간/일',
+  },
+  it: {
+    liveBadge: 'Calcolo in tempo reale',
+    defaultTitle: 'Calcolatore Costo Energia Elettrica in Tempo Reale',
+    defaultSubtitle: 'Calcola il consumo di elettricità (kWh) e i costi con precisione per ogni durata di utilizzo.',
+    presetsLabel: 'Selezione rapida / Potenza tipica:',
+    presetLighting: '💡 60 W (Illuminazione)',
+    presetTv: '📺 120 W (Televisore)',
+    presetGaming: '🎮 400 W (PC da Gaming)',
+    preset1kw: '⚡ 1.000 W (1 kW)',
+    presetWasher: '🧺 2.000 W (Lavatrice)',
+    powerLabel: 'Potenza dell\'apparecchio',
+    durationLabel: 'Tempo di utilizzo al giorno',
+    priceLabel: 'Prezzo dell\'energia (Tariffa)',
+    referencePrice: 'Riferimento: 35 ct/kWh',
+    priceTip: 'Consiglio: Controlla la tua ultima bolletta per il costo esatto per kWh.',
+    advancedOptions: 'Opzioni avanzate (Giorni/settimana & Quota fissa)',
+    daysPerWeekLabel: 'Giorni di utilizzo a settimana:',
+    daily7: 'Tutti i giorni (7 gg / settimana)',
+    weekdays5: 'Giorni feriali (5 gg / settimana)',
+    days3: '3 giorni / settimana',
+    weekend2: 'Fine settimana (2 gg / settimana)',
+    day1: '1 giorno / settimana',
+    baseFeeLabel: 'Quota fissa mensile (opzionale):',
+    btnReset: 'Reimposta',
+    btnCopy: 'Copia risultato',
+    copiedText: 'Copiato!',
+    calculatedResult: 'Risultato calcolato',
+    costPerMonth: 'Costo al mese',
+    costPerYear: 'Costo all\'anno',
+    perHour: 'All\'ora',
+    perDay: 'Al giorno',
+    perWeek: 'A settimana',
+    formulaTitle: 'Formula:',
+    formulaText1: 'kWh = Watt × Ore ÷ 1.000',
+    formulaText2: 'Costo = kWh × Tariffa ÷ 100',
+    hoursUnit: 'h/giorno',
+    wattUnit: 'Watt',
+    hoursShort: 'h/giorno',
+  },
+};
+
+const curI18n = calcI18n[lang] || calcI18n.de;
+const displayTitle = title || curI18n.defaultTitle;
+const displaySubtitle = subtitle || curI18n.defaultSubtitle;
 
 const initialKwhDay = (defaultWatt * defaultHours) / 1000;
 const initialCostDay = initialKwhDay * (defaultPriceCt / 100);
@@ -34,28 +357,30 @@ const initialCostMonth = initialCostYear / 12;
   <div class="mb-6">
     <div class="flex flex-wrap items-center justify-between gap-2">
       <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
-        {title}
+        {displayTitle}
       </h2>
       <span class="inline-flex items-center gap-1 rounded-full bg-emerald-50 dark:bg-emerald-950/80 px-3 py-1 text-xs font-semibold text-emerald-700 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-800/60">
         <span class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-        Live-Berechnung
+        {curI18n.liveBadge}
       </span>
     </div>
-    <p class="mt-1.5 text-sm text-slate-600 dark:text-slate-400">
-      {subtitle}
+    <p class="mt-1.5 text-sm text-slate-600 dark:text-slate-300">
+      {displaySubtitle}
     </p>
   </div>
 
   <!-- Presets -->
   {showPresets && (
     <div class="mb-6 pb-6 border-b border-slate-100 dark:border-slate-800">
-      <span class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider block mb-2">Schnellwahl / Typische Leistung:</span>
+      <span class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider block mb-2">
+        {curI18n.presetsLabel}
+      </span>
       <div class="flex flex-wrap gap-2">
-        <button type="button" class="preset-btn rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-300 hover:border-emerald-400 dark:hover:border-emerald-500 hover:bg-emerald-50 dark:hover:bg-slate-700 hover:text-emerald-800 dark:hover:text-emerald-300 transition cursor-pointer" data-watt="60" data-hours="6">💡 60 W (Beleuchtung)</button>
-        <button type="button" class="preset-btn rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-300 hover:border-emerald-400 dark:hover:border-emerald-500 hover:bg-emerald-50 dark:hover:bg-slate-700 hover:text-emerald-800 dark:hover:text-emerald-300 transition cursor-pointer" data-watt="120" data-hours="4">📺 120 W (Fernseher)</button>
-        <button type="button" class="preset-btn rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-300 hover:border-emerald-400 dark:hover:border-emerald-500 hover:bg-emerald-50 dark:hover:bg-slate-700 hover:text-emerald-800 dark:hover:text-emerald-300 transition cursor-pointer" data-watt="400" data-hours="4">🎮 400 W (Gaming-PC)</button>
-        <button type="button" class="preset-btn rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-300 hover:border-emerald-400 dark:hover:border-emerald-500 hover:bg-emerald-50 dark:hover:bg-slate-700 hover:text-emerald-800 dark:hover:text-emerald-300 transition cursor-pointer" data-watt="1000" data-hours="1">⚡ 1.000 W (1 kW)</button>
-        <button type="button" class="preset-btn rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-300 hover:border-emerald-400 dark:hover:border-emerald-500 hover:bg-emerald-50 dark:hover:bg-slate-700 hover:text-emerald-800 dark:hover:text-emerald-300 transition cursor-pointer" data-watt="2000" data-hours="0.5">🧺 2.000 W (Waschmaschine/Heizlüfter)</button>
+        <button type="button" class="preset-btn rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-300 hover:border-emerald-400 dark:hover:border-emerald-500 hover:bg-emerald-50 dark:hover:bg-slate-700 hover:text-emerald-800 dark:hover:text-emerald-300 transition cursor-pointer" data-watt="60" data-hours="6">{curI18n.presetLighting}</button>
+        <button type="button" class="preset-btn rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-300 hover:border-emerald-400 dark:hover:border-emerald-500 hover:bg-emerald-50 dark:hover:bg-slate-700 hover:text-emerald-800 dark:hover:text-emerald-300 transition cursor-pointer" data-watt="120" data-hours="4">{curI18n.presetTv}</button>
+        <button type="button" class="preset-btn rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-300 hover:border-emerald-400 dark:hover:border-emerald-500 hover:bg-emerald-50 dark:hover:bg-slate-700 hover:text-emerald-800 dark:hover:text-emerald-300 transition cursor-pointer" data-watt="400" data-hours="4">{curI18n.presetGaming}</button>
+        <button type="button" class="preset-btn rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-300 hover:border-emerald-400 dark:hover:border-emerald-500 hover:bg-emerald-50 dark:hover:bg-slate-700 hover:text-emerald-800 dark:hover:text-emerald-300 transition cursor-pointer" data-watt="1000" data-hours="1">{curI18n.preset1kw}</button>
+        <button type="button" class="preset-btn rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-300 hover:border-emerald-400 dark:hover:border-emerald-500 hover:bg-emerald-50 dark:hover:bg-slate-700 hover:text-emerald-800 dark:hover:text-emerald-300 transition cursor-pointer" data-watt="2000" data-hours="0.5">{curI18n.presetWasher}</button>
       </div>
     </div>
   )}
@@ -67,10 +392,10 @@ const initialCostMonth = initialCostYear / 12;
       <!-- Watt Input -->
       <div>
         <div class="flex items-center justify-between mb-1.5">
-          <label for="calc-watt" class="text-sm font-semibold text-slate-900">
-            Leistung des Geräts
+          <label for="calc-watt" class="text-sm font-semibold text-slate-900 dark:text-white">
+            {curI18n.powerLabel}
           </label>
-          <span class="text-xs text-slate-500" id="watt-kw-preview">{defaultWatt} Watt ({defaultWatt / 1000} kW)</span>
+          <span class="text-xs text-slate-500 dark:text-slate-400" id="watt-kw-preview">{defaultWatt} {curI18n.wattUnit} ({defaultWatt / 1000} kW)</span>
         </div>
         <div class="relative rounded-xl shadow-2xs">
           <input
@@ -80,11 +405,11 @@ const initialCostMonth = initialCostYear / 12;
             max="50000"
             step="1"
             value={defaultWatt}
-            class="block w-full rounded-xl border border-slate-200 bg-white py-2.5 pl-4 pr-12 text-base font-semibold text-slate-900 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
-            placeholder="z.B. 1000"
+            class="block w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 py-2.5 pl-4 pr-16 text-base font-semibold text-slate-900 dark:text-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+            placeholder="1000"
           />
           <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-            <span class="text-sm font-medium text-slate-500">Watt</span>
+            <span class="text-sm font-medium text-slate-500 dark:text-slate-400">{curI18n.wattUnit}</span>
           </div>
         </div>
         <input
@@ -95,17 +420,17 @@ const initialCostMonth = initialCostYear / 12;
           step="10"
           value={defaultWatt}
           class="mt-2 w-full accent-emerald-600 cursor-pointer"
-          aria-label="Leistungsschieberegler"
+          aria-label={curI18n.powerLabel}
         />
       </div>
 
       <!-- Hours per Day Input -->
       <div>
         <div class="flex items-center justify-between mb-1.5">
-          <label for="calc-hours" class="text-sm font-semibold text-slate-900">
-            Nutzungsdauer pro Tag
+          <label for="calc-hours" class="text-sm font-semibold text-slate-900 dark:text-white">
+            {curI18n.durationLabel}
           </label>
-          <span class="text-xs text-slate-500" id="hours-display">{defaultHours} Std./Tag</span>
+          <span class="text-xs text-slate-500 dark:text-slate-400" id="hours-display">{defaultHours} {curI18n.hoursUnit}</span>
         </div>
         <div class="relative rounded-xl shadow-2xs">
           <input
@@ -115,11 +440,11 @@ const initialCostMonth = initialCostYear / 12;
             max="24"
             step="0.1"
             value={defaultHours}
-            class="block w-full rounded-xl border border-slate-200 bg-white py-2.5 pl-4 pr-16 text-base font-semibold text-slate-900 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
-            placeholder="z.B. 2"
+            class="block w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 py-2.5 pl-4 pr-20 text-base font-semibold text-slate-900 dark:text-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+            placeholder="2"
           />
           <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-            <span class="text-sm font-medium text-slate-500">Stunden</span>
+            <span class="text-sm font-medium text-slate-500 dark:text-slate-400">{curI18n.hoursUnit}</span>
           </div>
         </div>
         <input
@@ -130,17 +455,19 @@ const initialCostMonth = initialCostYear / 12;
           step="0.1"
           value={defaultHours}
           class="mt-2 w-full accent-emerald-600 cursor-pointer"
-          aria-label="Stundenschieberegler"
+          aria-label={curI18n.durationLabel}
         />
       </div>
 
       <!-- Electricity Price Input -->
       <div>
         <div class="flex items-center justify-between mb-1.5">
-          <label for="calc-price" class="text-sm font-semibold text-slate-900">
-            Strompreis (Arbeitspreis)
+          <label for="calc-price" class="text-sm font-semibold text-slate-900 dark:text-white">
+            {curI18n.priceLabel}
           </label>
-          <span class="text-xs text-emerald-700 font-medium bg-emerald-50 px-2 py-0.5 rounded">Referenz: 35 ct/kWh</span>
+          <span class="text-xs text-emerald-700 dark:text-emerald-300 font-medium bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-200/50 dark:border-emerald-800/50">
+            {curI18n.referencePrice}
+          </span>
         </div>
         <div class="relative rounded-xl shadow-2xs">
           <input
@@ -150,37 +477,37 @@ const initialCostMonth = initialCostYear / 12;
             max="150"
             step="0.1"
             value={defaultPriceCt}
-            class="block w-full rounded-xl border border-slate-200 bg-white py-2.5 pl-4 pr-16 text-base font-semibold text-slate-900 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+            class="block w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 py-2.5 pl-4 pr-16 text-base font-semibold text-slate-900 dark:text-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
             placeholder="35.0"
           />
           <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-            <span class="text-sm font-medium text-slate-500">ct/kWh</span>
+            <span class="text-sm font-medium text-slate-500 dark:text-slate-400">ct/kWh</span>
           </div>
         </div>
-        <p class="mt-1 text-[11px] text-slate-500">
-          Tipp: Den genauen Arbeitspreis findest du auf deiner letzten Stromrechnung.
+        <p class="mt-1 text-[11px] text-slate-500 dark:text-slate-400">
+          {curI18n.priceTip}
         </p>
       </div>
 
       <!-- Days per Week (Collapsible / Advanced) -->
-      <details class="rounded-xl border border-slate-200/80 bg-slate-50/60 p-3.5 text-xs text-slate-700">
-        <summary class="cursor-pointer font-medium text-slate-800 hover:text-emerald-700 flex items-center justify-between">
-          <span>Erweiterte Optionen (Tage/Woche & Grundpreis)</span>
+      <details class="rounded-xl border border-slate-200/80 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-800/50 p-3.5 text-xs text-slate-700 dark:text-slate-300">
+        <summary class="cursor-pointer font-medium text-slate-800 dark:text-slate-200 hover:text-emerald-700 dark:hover:text-emerald-400 flex items-center justify-between">
+          <span>{curI18n.advancedOptions}</span>
           <span class="text-slate-400">▼</span>
         </summary>
-        <div class="mt-3 space-y-3 pt-2 border-t border-slate-200">
+        <div class="mt-3 space-y-3 pt-2 border-t border-slate-200 dark:border-slate-700">
           <div>
-            <label for="calc-days-week" class="block font-medium mb-1">Nutzungstage pro Woche:</label>
-            <select id="calc-days-week" class="w-full rounded-lg border border-slate-200 bg-white p-2 text-xs font-semibold">
-              <option value="7" selected={defaultDaysPerWeek === 7}>Täglich (7 Tage / Woche)</option>
-              <option value="5" selected={defaultDaysPerWeek === 5}>Werktags (5 Tage / Woche)</option>
-              <option value="3">3 Tage / Woche</option>
-              <option value="2">Wochenende (2 Tage / Woche)</option>
-              <option value="1">1 Tag / Woche</option>
+            <label for="calc-days-week" class="block font-medium mb-1">{curI18n.daysPerWeekLabel}</label>
+            <select id="calc-days-week" class="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-2 text-xs font-semibold text-slate-900 dark:text-white">
+              <option value="7" selected={defaultDaysPerWeek === 7}>{curI18n.daily7}</option>
+              <option value="5" selected={defaultDaysPerWeek === 5}>{curI18n.weekdays5}</option>
+              <option value="3">{curI18n.days3}</option>
+              <option value="2">{curI18n.weekend2}</option>
+              <option value="1">{curI18n.day1}</option>
             </select>
           </div>
           <div>
-            <label for="calc-base-fee" class="block font-medium mb-1">Monatlicher Grundpreis (optional):</label>
+            <label for="calc-base-fee" class="block font-medium mb-1">{curI18n.baseFeeLabel}</label>
             <div class="relative">
               <input
                 type="number"
@@ -188,7 +515,7 @@ const initialCostMonth = initialCostYear / 12;
                 min="0"
                 step="0.5"
                 value="0"
-                class="w-full rounded-lg border border-slate-200 bg-white p-2 pr-8 text-xs font-semibold"
+                class="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-2 pr-8 text-xs font-semibold text-slate-900 dark:text-white"
                 placeholder="0.00"
               />
               <span class="absolute right-3 top-2 text-xs text-slate-400">€/Monat</span>
@@ -202,19 +529,19 @@ const initialCostMonth = initialCostYear / 12;
         <button
           type="button"
           id="btn-reset"
-          class="flex-1 rounded-xl border border-slate-200 bg-white py-2 px-4 text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition"
+          class="flex-1 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 py-2 px-4 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition"
         >
-          Zurücksetzen
+          {curI18n.btnReset}
         </button>
         <button
           type="button"
           id="btn-copy"
-          class="flex-1 rounded-xl bg-slate-900 py-2 px-4 text-xs font-semibold text-white hover:bg-slate-800 transition flex items-center justify-center gap-1.5"
+          class="flex-1 rounded-xl bg-slate-900 dark:bg-emerald-600 py-2 px-4 text-xs font-semibold text-white hover:bg-slate-800 dark:hover:bg-emerald-700 transition flex items-center justify-center gap-1.5 cursor-pointer shadow-sm"
         >
           <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
           </svg>
-          <span id="copy-btn-text">Ergebnis kopieren</span>
+          <span id="copy-btn-text">{curI18n.btnCopy}</span>
         </button>
       </div>
     </div>
@@ -223,14 +550,16 @@ const initialCostMonth = initialCostYear / 12;
     <div class="lg:col-span-6 flex flex-col justify-between rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 p-6 text-white shadow-lg" aria-live="polite">
       <div>
         <div class="flex items-center justify-between pb-4 border-b border-slate-700/60">
-          <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">Berechnetes Ergebnis</span>
-          <span class="text-xs text-slate-400" id="calc-summary-badge">1.000 W • 1h/Tag</span>
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">
+            {curI18n.calculatedResult}
+          </span>
+          <span class="text-xs text-slate-400" id="calc-summary-badge">{defaultWatt} W • {defaultHours}{curI18n.hoursShort}</span>
         </div>
 
         <!-- Main Big Highlights: Month & Year -->
         <div class="mt-6 grid grid-cols-2 gap-4">
           <div class="rounded-xl bg-slate-800/80 p-4 border border-slate-700/50">
-            <span class="text-xs font-medium text-slate-400 block">Kosten pro Monat</span>
+            <span class="text-xs font-medium text-slate-400 block">{curI18n.costPerMonth}</span>
             <span class="mt-1 text-2xl sm:text-3xl font-extrabold text-white tracking-tight block" id="res-cost-month">
               {formatEuro(initialCostMonth)}
             </span>
@@ -240,7 +569,7 @@ const initialCostMonth = initialCostYear / 12;
           </div>
 
           <div class="rounded-xl bg-emerald-950/50 p-4 border border-emerald-500/30">
-            <span class="text-xs font-medium text-emerald-300 block">Kosten pro Jahr</span>
+            <span class="text-xs font-medium text-emerald-300 block">{curI18n.costPerYear}</span>
             <span class="mt-1 text-2xl sm:text-3xl font-extrabold text-emerald-400 tracking-tight block" id="res-cost-year">
               {formatEuro(initialCostYear)}
             </span>
@@ -253,7 +582,7 @@ const initialCostMonth = initialCostYear / 12;
         <!-- Detailed Breakdown Grid -->
         <div class="mt-4 grid grid-cols-3 gap-2 pt-4 border-t border-slate-700/60 text-center">
           <div class="rounded-lg bg-slate-800/40 p-2.5">
-            <span class="text-[11px] text-slate-400 block">Pro Stunde</span>
+            <span class="text-[11px] text-slate-400 block">{curI18n.perHour}</span>
             <span class="mt-1 text-sm sm:text-base font-bold text-slate-200 block" id="res-cost-hour">
               {formatEuro(initialCostDay / defaultHours)}
             </span>
@@ -261,7 +590,7 @@ const initialCostMonth = initialCostYear / 12;
           </div>
 
           <div class="rounded-lg bg-slate-800/40 p-2.5">
-            <span class="text-[11px] text-slate-400 block">Pro Tag</span>
+            <span class="text-[11px] text-slate-400 block">{curI18n.perDay}</span>
             <span class="mt-1 text-sm sm:text-base font-bold text-slate-200 block" id="res-cost-day">
               {formatEuro(initialCostDay)}
             </span>
@@ -269,7 +598,7 @@ const initialCostMonth = initialCostYear / 12;
           </div>
 
           <div class="rounded-lg bg-slate-800/40 p-2.5">
-            <span class="text-[11px] text-slate-400 block">Pro Woche</span>
+            <span class="text-[11px] text-slate-400 block">{curI18n.perWeek}</span>
             <span class="mt-1 text-sm sm:text-base font-bold text-slate-200 block" id="res-cost-week">
               {formatEuro(initialCostDay * 7)}
             </span>
@@ -280,23 +609,23 @@ const initialCostMonth = initialCostYear / 12;
 
       <!-- Formula Footnote -->
       <div class="mt-6 pt-4 border-t border-slate-700/60 text-[11px] text-slate-400 leading-relaxed">
-        <span class="font-semibold text-slate-300">Formel:</span>
-        <code class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono">kWh = Watt × Std. ÷ 1000</code> &nbsp;•&nbsp;
-        <code class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono">Kosten = kWh × ct/kWh ÷ 100</code>
+        <span class="font-semibold text-slate-300">{curI18n.formulaTitle}</span>
+        <code class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono">{curI18n.formulaText1}</code> &nbsp;•&nbsp;
+        <code class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono">{curI18n.formulaText2}</code>
       </div>
     </div>
   </div>
 </div>
 
-<script>
+<script define:vars={{ curI18n, lang }}>
   function initCalculator() {
-    const wattInput = document.getElementById('calc-watt') as HTMLInputElement | null;
-    const wattSlider = document.getElementById('calc-watt-slider') as HTMLInputElement | null;
-    const hoursInput = document.getElementById('calc-hours') as HTMLInputElement | null;
-    const hoursSlider = document.getElementById('calc-hours-slider') as HTMLInputElement | null;
-    const priceInput = document.getElementById('calc-price') as HTMLInputElement | null;
-    const daysSelect = document.getElementById('calc-days-week') as HTMLSelectElement | null;
-    const baseFeeInput = document.getElementById('calc-base-fee') as HTMLInputElement | null;
+    const wattInput = document.getElementById('calc-watt');
+    const wattSlider = document.getElementById('calc-watt-slider');
+    const hoursInput = document.getElementById('calc-hours');
+    const hoursSlider = document.getElementById('calc-hours-slider');
+    const priceInput = document.getElementById('calc-price');
+    const daysSelect = document.getElementById('calc-days-week');
+    const baseFeeInput = document.getElementById('calc-base-fee');
 
     const resCostMonth = document.getElementById('res-cost-month');
     const resKwhMonth = document.getElementById('res-kwh-month');
@@ -318,12 +647,24 @@ const initialCostMonth = initialCostYear / 12;
 
     if (!wattInput || !hoursInput || !priceInput) return;
 
-    function formatEuroJs(val: number) {
-      return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(val);
+    const localeMap = {
+      de: 'de-DE',
+      en: 'en-US',
+      es: 'es-ES',
+      ja: 'ja-JP',
+      fr: 'fr-FR',
+      pt: 'pt-PT',
+      ko: 'ko-KR',
+      it: 'it-IT',
+    };
+    const activeLocale = localeMap[lang] || 'de-DE';
+
+    function formatEuroJs(val) {
+      return new Intl.NumberFormat(activeLocale, { style: 'currency', currency: 'EUR' }).format(val);
     }
 
-    function formatKwhJs(val: number, dec = 2) {
-      return `${new Intl.NumberFormat('de-DE', { maximumFractionDigits: dec }).format(val)} kWh`;
+    function formatKwhJs(val, dec = 2) {
+      return `${new Intl.NumberFormat(activeLocale, { maximumFractionDigits: dec }).format(val)} kWh`;
     }
 
     function calculate() {
@@ -361,20 +702,20 @@ const initialCostMonth = initialCostYear / 12;
       if (resKwhYear) resKwhYear.textContent = formatKwhJs(kwhYear, 0);
 
       if (resCostHour) resCostHour.textContent = formatEuroJs(costHour);
-      if (resKwhHour) resKwhHour.textContent = `${(watt / 1000).toFixed(3).replace('.', ',')} kWh`;
+      if (resKwhHour) resKwhHour.textContent = `${(watt / 1000).toFixed(3)} kWh`;
       if (resCostDay) resCostDay.textContent = formatEuroJs(costDay);
       if (resKwhDay) resKwhDay.textContent = formatKwhJs(kwhDay, 2);
       if (resCostWeek) resCostWeek.textContent = formatEuroJs(costWeek);
       if (resKwhWeek) resKwhWeek.textContent = formatKwhJs(kwhWeek, 1);
 
       if (summaryBadge) {
-        summaryBadge.textContent = `${watt.toLocaleString('de-DE')} W • ${hours.toLocaleString('de-DE')}h/Tag`;
+        summaryBadge.textContent = `${watt.toLocaleString(activeLocale)} W • ${hours.toLocaleString(activeLocale)}${curI18n.hoursShort}`;
       }
       if (wattKwPreview) {
-        wattKwPreview.textContent = `${watt.toLocaleString('de-DE')} Watt (${(watt / 1000).toLocaleString('de-DE')} kW)`;
+        wattKwPreview.textContent = `${watt.toLocaleString(activeLocale)} ${curI18n.wattUnit} (${(watt / 1000).toLocaleString(activeLocale)} kW)`;
       }
       if (hoursDisplay) {
-        hoursDisplay.textContent = `${hours.toLocaleString('de-DE')} Std./Tag`;
+        hoursDisplay.textContent = `${hours.toLocaleString(activeLocale)} ${curI18n.hoursUnit}`;
       }
     }
 
@@ -408,7 +749,7 @@ const initialCostMonth = initialCostYear / 12;
     // Presets
     document.querySelectorAll('.preset-btn').forEach((btn) => {
       btn.addEventListener('click', (e) => {
-        const target = e.currentTarget as HTMLElement;
+        const target = e.currentTarget;
         const pWatt = target.dataset.watt;
         const pHours = target.dataset.hours;
         if (pWatt && wattInput) {
@@ -440,13 +781,13 @@ const initialCostMonth = initialCostYear / 12;
     // Copy / Share
     if (copyBtn && copyBtnText) {
       copyBtn.addEventListener('click', async () => {
-        const text = `kWhKlar Berechnung: ${wattInput.value} Watt bei ${hoursInput.value}h/Tag (${priceInput.value} ct/kWh) = ${resCostYear?.textContent} pro Jahr (${resCostMonth?.textContent}/Monat). Berechnet auf https://kwhklar.de`;
+        const text = `kWhKlar: ${wattInput.value} W, ${hoursInput.value}${curI18n.hoursShort} (${priceInput.value} ct/kWh) = ${resCostYear?.textContent} (${resCostMonth?.textContent}). https://kwhklar.de/${lang}`;
         try {
           if (navigator.clipboard) {
             await navigator.clipboard.writeText(text);
-            copyBtnText.textContent = 'Kopiert!';
+            copyBtnText.textContent = curI18n.copiedText;
             setTimeout(() => {
-              if (copyBtnText) copyBtnText.textContent = 'Ergebnis kopieren';
+              if (copyBtnText) copyBtnText.textContent = curI18n.btnCopy;
             }, 2500);
           }
         } catch (err) {

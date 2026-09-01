@@ -1,12 +1,20 @@
 ---
 import { getLangFromUrl, useTranslations, getLocalizedPath } from '../../i18n/utils';
 import { languages } from '../../i18n/languages';
+import { getLocalizedAppliance } from '../../i18n/appliances';
 
 const currentLang = getLangFromUrl(Astro.url);
 const t = useTranslations(currentLang);
 const currentYear = new Date().getFullYear();
 const homeHref = currentLang === 'de' ? '/' : `/${currentLang}`;
 const langInfo = languages[currentLang];
+
+const fridgeName = getLocalizedAppliance('kuehlschrank', currentLang)?.name || 'Kühlschrank';
+const washerName = getLocalizedAppliance('waschmaschine', currentLang)?.name || 'Waschmaschine';
+const dryerName = getLocalizedAppliance('trockner', currentLang)?.name || 'Wäschetrockner';
+const gamingPcName = getLocalizedAppliance('gaming-pc', currentLang)?.name || 'Gaming-PC';
+const tvName = getLocalizedAppliance('fernseher', currentLang)?.name || 'Fernseher';
+const acName = getLocalizedAppliance('klimaanlage', currentLang)?.name || 'Klimaanlage';
 ---
 
 <footer class="mt-auto border-t border-slate-200 dark:border-slate-800 bg-slate-900 text-slate-300">
@@ -40,11 +48,11 @@ const langInfo = languages[currentLang];
           <li><a href={getLocalizedPath('/stromkosten-rechner', currentLang)} class="hover:text-emerald-400 transition">{t('cat.cost.title') || 'Stromkostenrechner'}</a></li>
           <li><a href={getLocalizedPath('/kwh-rechner', currentLang)} class="hover:text-emerald-400 transition">{t('cat.kwh.title') || 'kWh in Euro'}</a></li>
           <li><a href={getLocalizedPath('/watt-rechner', currentLang)} class="hover:text-emerald-400 transition">{t('cat.watt.title') || 'Watt in kWh'}</a></li>
-          <li><a href={getLocalizedPath('/stromverbrauch-rechner', currentLang)} class="hover:text-emerald-400 transition">Stromverbrauch-Rechner</a></li>
-          <li><a href={getLocalizedPath('/stromkosten-pro-stunde', currentLang)} class="hover:text-emerald-400 transition">Kosten pro Stunde</a></li>
-          <li><a href={getLocalizedPath('/stromkosten-pro-tag', currentLang)} class="hover:text-emerald-400 transition">Kosten pro Tag</a></li>
-          <li><a href={getLocalizedPath('/stromkosten-pro-monat', currentLang)} class="hover:text-emerald-400 transition">Kosten pro Monat</a></li>
-          <li><a href={getLocalizedPath('/stromkosten-pro-jahr', currentLang)} class="hover:text-emerald-400 transition">Kosten pro Jahr</a></li>
+          <li><a href={getLocalizedPath('/stromverbrauch-rechner', currentLang)} class="hover:text-emerald-400 transition">{t('cat.cost.title')}</a></li>
+          <li><a href={getLocalizedPath('/stromkosten-pro-stunde', currentLang)} class="hover:text-emerald-400 transition">{currentLang === 'en' ? 'Cost per Hour' : currentLang === 'es' ? 'Coste por hora' : currentLang === 'ja' ? '1時間あたりの電気代' : currentLang === 'fr' ? 'Coût par heure' : currentLang === 'pt' ? 'Custo por hora' : currentLang === 'ko' ? '시간당 전기요금' : currentLang === 'it' ? 'Costo all\'ora' : 'Kosten pro Stunde'}</a></li>
+          <li><a href={getLocalizedPath('/stromkosten-pro-tag', currentLang)} class="hover:text-emerald-400 transition">{currentLang === 'en' ? 'Cost per Day' : currentLang === 'es' ? 'Coste por día' : currentLang === 'ja' ? '1日あたりの電気代' : currentLang === 'fr' ? 'Coût par jour' : currentLang === 'pt' ? 'Custo por dia' : currentLang === 'ko' ? '하루 전기요금' : currentLang === 'it' ? 'Costo al giorno' : 'Kosten pro Tag'}</a></li>
+          <li><a href={getLocalizedPath('/stromkosten-pro-monat', currentLang)} class="hover:text-emerald-400 transition">{currentLang === 'en' ? 'Cost per Month' : currentLang === 'es' ? 'Coste por mes' : currentLang === 'ja' ? '月額電気代' : currentLang === 'fr' ? 'Coût par mois' : currentLang === 'pt' ? 'Custo por mês' : currentLang === 'ko' ? '월간 전기요금' : currentLang === 'it' ? 'Costo al mese' : 'Kosten pro Monat'}</a></li>
+          <li><a href={getLocalizedPath('/stromkosten-pro-jahr', currentLang)} class="hover:text-emerald-400 transition">{currentLang === 'en' ? 'Cost per Year' : currentLang === 'es' ? 'Coste por año' : currentLang === 'ja' ? '年間電気代' : currentLang === 'fr' ? 'Coût par an' : currentLang === 'pt' ? 'Custo por ano' : currentLang === 'ko' ? '연간 전기요금' : currentLang === 'it' ? 'Costo all\'anno' : 'Kosten pro Jahr'}</a></li>
         </ul>
       </div>
 
@@ -53,12 +61,12 @@ const langInfo = languages[currentLang];
         <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-200">{t('footer.appliances') || 'Beliebte Geräte'}</h3>
         <ul class="mt-4 space-y-2 text-xs">
           <li><a href={getLocalizedPath('/geraete', currentLang)} class="hover:text-emerald-400 transition font-medium text-emerald-400">{t('appliances.view_all') || 'Alle 25+ Geräte'}</a></li>
-          <li><a href={getLocalizedPath('/geraete/kuehlschrank', currentLang)} class="hover:text-emerald-400 transition">Kühlschrank</a></li>
-          <li><a href={getLocalizedPath('/geraete/waschmaschine', currentLang)} class="hover:text-emerald-400 transition">Waschmaschine</a></li>
-          <li><a href={getLocalizedPath('/geraete/trockner', currentLang)} class="hover:text-emerald-400 transition">Wäschetrockner</a></li>
-          <li><a href={getLocalizedPath('/geraete/gaming-pc', currentLang)} class="hover:text-emerald-400 transition">Gaming-PC</a></li>
-          <li><a href={getLocalizedPath('/geraete/fernseher', currentLang)} class="hover:text-emerald-400 transition">Fernseher</a></li>
-          <li><a href={getLocalizedPath('/geraete/klimaanlage', currentLang)} class="hover:text-emerald-400 transition">Klimaanlage</a></li>
+          <li><a href={getLocalizedPath('/geraete/kuehlschrank', currentLang)} class="hover:text-emerald-400 transition">{fridgeName}</a></li>
+          <li><a href={getLocalizedPath('/geraete/waschmaschine', currentLang)} class="hover:text-emerald-400 transition">{washerName}</a></li>
+          <li><a href={getLocalizedPath('/geraete/trockner', currentLang)} class="hover:text-emerald-400 transition">{dryerName}</a></li>
+          <li><a href={getLocalizedPath('/geraete/gaming-pc', currentLang)} class="hover:text-emerald-400 transition">{gamingPcName}</a></li>
+          <li><a href={getLocalizedPath('/geraete/fernseher', currentLang)} class="hover:text-emerald-400 transition">{tvName}</a></li>
+          <li><a href={getLocalizedPath('/geraete/klimaanlage', currentLang)} class="hover:text-emerald-400 transition">{acName}</a></li>
         </ul>
       </div>
 
@@ -67,15 +75,13 @@ const langInfo = languages[currentLang];
         <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-200">{t('footer.household') || 'Haushalt & Wissen'}</h3>
         <ul class="mt-4 space-y-2 text-xs">
           <li><a href={getLocalizedPath('/stromverbrauch-haushalt', currentLang)} class="hover:text-emerald-400 transition">{t('cat.house.title') || 'Haushalt'}</a></li>
-          <li><a href={getLocalizedPath('/stromverbrauch-1-person', currentLang)} class="hover:text-emerald-400 transition">1 Person (Single)</a></li>
-          <li><a href={getLocalizedPath('/stromverbrauch-2-personen', currentLang)} class="hover:text-emerald-400 transition">2 Personen (Paar)</a></li>
-          <li><a href={getLocalizedPath('/stromverbrauch-4-personen', currentLang)} class="hover:text-emerald-400 transition">4 Personen (Familie)</a></li>
-          <li><a href={getLocalizedPath('/stromverbrauch-senken', currentLang)} class="hover:text-emerald-400 transition">Stromverbrauch senken</a></li>
-          <li><a href={getLocalizedPath('/strompreis', currentLang)} class="hover:text-emerald-400 transition">Strompreis Deutschland</a></li>
-          <li><a href={getLocalizedPath('/stromrechnung', currentLang)} class="hover:text-emerald-400 transition">Stromrechnung verstehen</a></li>
-          <li><a href={getLocalizedPath('/strom-sparen', currentLang)} class="hover:text-emerald-400 transition">Strom sparen Tipps</a></li>
-          <li><a href={getLocalizedPath('/standby-strom', currentLang)} class="hover:text-emerald-400 transition">Standby-Strom</a></li>
-          <li><a href={getLocalizedPath('/stromfresser', currentLang)} class="hover:text-emerald-400 transition">Stromfresser Ranking</a></li>
+          <li><a href={getLocalizedPath('/stromverbrauch-1-person', currentLang)} class="hover:text-emerald-400 transition">{currentLang === 'en' ? '1 Person (Single)' : currentLang === 'es' ? '1 Persona (Individual)' : currentLang === 'ja' ? '一人暮らし' : currentLang === 'fr' ? '1 Personne (Célibataire)' : currentLang === 'pt' ? '1 Pessoa' : currentLang === 'ko' ? '1인 가구' : currentLang === 'it' ? '1 Persona' : '1 Person (Single)'}</a></li>
+          <li><a href={getLocalizedPath('/stromverbrauch-2-personen', currentLang)} class="hover:text-emerald-400 transition">{currentLang === 'en' ? '2 Persons (Couple)' : currentLang === 'es' ? '2 Personas (Pareja)' : currentLang === 'ja' ? '2人世帯' : currentLang === 'fr' ? '2 Personnes (Couple)' : currentLang === 'pt' ? '2 Pessoas' : currentLang === 'ko' ? '2인 가구' : currentLang === 'it' ? '2 Persone' : '2 Personen (Paar)'}</a></li>
+          <li><a href={getLocalizedPath('/stromverbrauch-4-personen', currentLang)} class="hover:text-emerald-400 transition">{currentLang === 'en' ? '4 Persons (Family)' : currentLang === 'es' ? '4 Personas (Familia)' : currentLang === 'ja' ? '4人世帯' : currentLang === 'fr' ? '4 Personnes (Famille)' : currentLang === 'pt' ? '4 Pessoas' : currentLang === 'ko' ? '4인 가구' : currentLang === 'it' ? '4 Persone' : '4 Personen (Familie)'}</a></li>
+          <li><a href={getLocalizedPath('/strompreis', currentLang)} class="hover:text-emerald-400 transition">{t('nav.price')}</a></li>
+          <li><a href={getLocalizedPath('/stromrechnung', currentLang)} class="hover:text-emerald-400 transition">{t('nav.bill')}</a></li>
+          <li><a href={getLocalizedPath('/strom-sparen', currentLang)} class="hover:text-emerald-400 transition">{t('nav.saving')}</a></li>
+          <li><a href={getLocalizedPath('/standby-strom', currentLang)} class="hover:text-emerald-400 transition">{currentLang === 'en' ? 'Standby Power' : currentLang === 'es' ? 'Consumo en espera' : currentLang === 'ja' ? '待機電力' : currentLang === 'fr' ? 'Consommation de veille' : currentLang === 'pt' ? 'Consumo em standby' : currentLang === 'ko' ? '대기전력 절약' : currentLang === 'it' ? 'Consumi in standby' : 'Standby-Strom'}</a></li>
         </ul>
       </div>
 
