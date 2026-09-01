@@ -278,7 +278,7 @@ const initialCostMonth = initialCostYear / 12;
               {formatEuro(initialCostDay / (defaultHours || 1))}
             </span>
             <span id="res-kwh-hour" class="text-[10px] font-mono text-slate-400 block">
-              {(defaultWatt / 1000).toFixed(3)} kWh
+              {formatKwh(defaultWatt / 1000, 3)}
             </span>
           </div>
           <div class="p-2.5 rounded-xl bg-slate-800/40">
@@ -346,8 +346,9 @@ const initialCostMonth = initialCostYear / 12;
       return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(num);
     }
 
-    function formatGermanKwh(num) {
-      return new Intl.NumberFormat('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 2 }).format(num) + ' kWh';
+    function formatGermanKwh(num, maxDecimals = 2) {
+      const formatted = new Intl.NumberFormat('de-DE', { minimumFractionDigits: 0, maximumFractionDigits: maxDecimals }).format(num);
+      return formatted + ' kWh';
     }
 
     function recalculate() {
@@ -358,7 +359,7 @@ const initialCostMonth = initialCostYear / 12;
       const daysPerWeek = parseFloat(daysSelect ? daysSelect.value : '7') || 7;
       const baseFeeMonth = parseFloat(baseFeeInput ? baseFeeInput.value : '0') || 0;
 
-      if (wattKwPreview) wattKwPreview.textContent = (watt / 1000).toFixed(2) + ' kW';
+      if (wattKwPreview) wattKwPreview.textContent = (watt / 1000).toFixed(2).replace('.', ',') + ' kW';
       if (hoursDisplay) hoursDisplay.textContent = hours + ' h/Tag';
       if (summaryBadge) summaryBadge.textContent = watt + ' W • ' + hours + ' h/Tag';
 
@@ -377,16 +378,16 @@ const initialCostMonth = initialCostYear / 12;
       const kwhMonth = kwhYear / 12;
 
       if (resCostMonth) resCostMonth.textContent = formatGermanEuro(costMonth);
-      if (resKwhMonth) resKwhMonth.textContent = formatGermanKwh(kwhMonth) + ' / Monat';
+      if (resKwhMonth) resKwhMonth.textContent = formatGermanKwh(kwhMonth, 1) + ' / Monat';
       if (resCostYear) resCostYear.textContent = formatGermanEuro(costYear);
-      if (resKwhYear) resKwhYear.textContent = formatGermanKwh(kwhYear) + ' / Jahr';
+      if (resKwhYear) resKwhYear.textContent = formatGermanKwh(kwhYear, 0) + ' / Jahr';
 
       if (resCostHour) resCostHour.textContent = formatGermanEuro(costHour);
-      if (resKwhHour) resKwhHour.textContent = (watt / 1000).toFixed(3) + ' kWh';
+      if (resKwhHour) resKwhHour.textContent = formatGermanKwh(kwhHour, 3);
       if (resCostDay) resCostDay.textContent = formatGermanEuro(costDay);
-      if (resKwhDay) resKwhDay.textContent = formatGermanKwh(kwhDay);
+      if (resKwhDay) resKwhDay.textContent = formatGermanKwh(kwhDay, 2);
       if (resCostWeek) resCostWeek.textContent = formatGermanEuro(costWeek);
-      if (resKwhWeek) resKwhWeek.textContent = formatGermanKwh(kwhWeek);
+      if (resKwhWeek) resKwhWeek.textContent = formatGermanKwh(kwhWeek, 2);
     }
 
     // Event listeners

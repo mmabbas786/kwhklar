@@ -41,7 +41,7 @@ describe('Calculation Engine - Basic Conversions & Formulas', () => {
 });
 
 describe('Calculation Engine - Appliance Full Cost', () => {
-  it('calculates a 1000W appliance run 1h/day at 35ct/kWh', () => {
+  it('calculates a 1000W appliance run 1h/day at 35ct/kWh (Regression: 1000 W * 1 h = 1 kWh)', () => {
     const res = calculateApplianceCost({
       watt: 1000,
       hoursPerDay: 1,
@@ -50,11 +50,36 @@ describe('Calculation Engine - Appliance Full Cost', () => {
 
     expect(res.kwhPerDay).toBe(1);
     expect(res.costPerDay).toBe(0.35);
+    expect(formatKwh(res.kwhPerDay)).toBe('1 kWh');
+    expect(formatKwh(1, 3)).toBe('1 kWh');
+    expect(formatEuro(res.costPerDay)).toMatch(/0,35\s*€/);
     expect(res.kwhPerWeek).toBe(7);
     expect(res.costPerWeek).toBe(2.45);
     expect(res.kwhPerYear).toBe(365);
     expect(res.costPerYear).toBe(127.75);
     expect(res.pureConsumptionCostPerMonth).toBe(10.65);
+  });
+
+  it('verifies exact hourly kWh and cost calculations for 100W, 500W, 1000W, 2000W, 3000W', () => {
+    // 100 W * 1 h = 0.1 kWh
+    expect((100 * 1) / 1000).toBe(0.1);
+    expect(formatKwh(0.1, 3)).toBe('0,1 kWh');
+
+    // 500 W * 1 h = 0.5 kWh
+    expect((500 * 1) / 1000).toBe(0.5);
+    expect(formatKwh(0.5, 3)).toBe('0,5 kWh');
+
+    // 1000 W * 1 h = 1.0 kWh (NEVER 1000 kWh or 1.000 with thousands dot)
+    expect((1000 * 1) / 1000).toBe(1.0);
+    expect(formatKwh(1.0, 3)).toBe('1 kWh');
+
+    // 2000 W * 1 h = 2.0 kWh
+    expect((2000 * 1) / 1000).toBe(2.0);
+    expect(formatKwh(2.0, 3)).toBe('2 kWh');
+
+    // 3000 W * 1 h = 3.0 kWh
+    expect((3000 * 1) / 1000).toBe(3.0);
+    expect(formatKwh(3.0, 3)).toBe('3 kWh');
   });
 
   it('handles 0 hours and 0 watt gracefully without NaN', () => {

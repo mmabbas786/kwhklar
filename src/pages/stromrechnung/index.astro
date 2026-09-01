@@ -9,43 +9,59 @@ import { getFaqSchema } from '../../lib/structured-data';
 const faqs = [
   {
     question: "Welche Pflichtangaben müssen laut Gesetz auf einer Stromrechnung stehen?",
-    answer: "Nach § 40 des Energiewirtschaftsgesetzes (EnWG) muss jede Stromrechnung folgende Angaben transparent enthalten: Zählernummer, Anfangs- und Endzählerstand des Abrechnungszeitraums, den berechneten Verbrauch in kWh, Arbeitspreis (ct/kWh) und Grundpreis (€/Monat), alle im Jahr geleisteten Monatsabschläge, einen grafischen Vergleich zum Vorjahresverbrauch sowie den individuellen Strommix des Anbieters."
+    answer: "Nach § 40 des Energiewirtschaftsgesetzes (EnWG) muss jede deutsche Stromabrechnung folgende Angaben transparent enthalten: Name und Kontaktdaten des Lieferanten, Vertrags- und Kundennummer, Zählernummer, genauer Abrechnungszeitraum, Anfangs- und Endzählerstand mit Angabe ob abgelesen oder geschätzt, ermittelter Verbrauch in kWh, Arbeitspreis (ct/kWh), Grundpreis (€/Monat), alle im Zeitraum geleisteten Abschlagszahlungen, Rechnungsendsumme mit Ausweisung von 19 % MwSt., ein grafischer Vergleich zum Vorjahresverbrauch sowie der bundesweite Strommix."
   },
   {
-    question: "Was ist der genaue Unterschied zwischen Nachzahlung und Guthaben?",
-    answer: "Im Laufe des Jahres zahlst du monatliche Abschläge (Vorauszahlungen). In der Jahresabrechnung ermittelt der Versorger die tatsächlichen Gesamtkosten: Jahresverbrauch × Arbeitspreis + 12 × Grundpreis. Waren die gezahlten Abschläge höher als die Gesamtkosten, erhältst du ein Guthaben zurück. Waren die Gesamtkosten höher, entsteht eine Nachzahlung."
+    question: "Wie lese ich meine Stromrechnung richtig?",
+    answer: "Beginne immer auf der Übersichtsseite: Prüfe zuerst den Abrechnungszeitraum (meist 12 Monate) und den Gesamtrechnungsbetrag. Vergleiche dann die Summe deiner geleisteten monatlichen Abschläge mit den tatsächlichen Gesamtkosten. Auf den Folgeseiten findest du die Detailaufschlüsselung der Zählerstände (Anfang und Ende) sowie die getrennte Berechnung von verbrauchsabhängigem Arbeitspreis und festem Grundpreis."
   },
   {
-    question: "Wie wird der neue monatliche Abschlag nach der Jahresrechnung berechnet?",
-    answer: "Formel: (Vorjahresverbrauch in kWh × aktueller Arbeitspreis in €/kWh + 12 × monatlicher Grundpreis) ÷ 12 Monate = Neuer Monatsabschlag. Vorsicht: Versorger runden oft auf oder kalkulieren Preiserhöhungen ein. Du hast das Recht, unberechtigt überhöhte Abschläge nach unten anpassen zu lassen."
+    question: "Was ist der genaue Unterschied zwischen Arbeitspreis und Grundpreis auf der Rechnung?",
+    answer: "Der Arbeitspreis (auch Verbrauchspreis) beziffert die Kosten pro verbrauchter Kilowattstunde (z. B. 35,0 ct/kWh). Er wird mit deinem Zählerstand-Verbrauch multipliziert. Der Grundpreis ist eine feste Grundgebühr (z. B. 12,50 €/Monat = 150 €/Jahr), die unabhängig von deinem Stromverbrauch für Zählerbetrieb, Eichung, Abrechnung und Netzzugang anfällt."
   },
   {
-    question: "Was bedeutet 'Zählerstand geschätzt' auf der Stromrechnung?",
-    answer: "Wenn dem Versorger oder Netzbetreiber zum Stichtag kein abgelesener Zählerstand vorlag, darf er den Verbrauch auf Basis von Vorjahreswerten schätzen (§ 40 Abs. 4 EnWG). Da Schätzungen häufig zu hoch ausfallen, solltest du umgehend deinen echten Zählerstand nachmelden und eine korrigierte Rechnung verlangen."
+    question: "Was ist eine Nachzahlung auf der Stromrechnung und wann ist sie fällig?",
+    answer: "Eine Nachzahlung entsteht, wenn dein tatsächlicher Stromverbrauch oder gestiegene Tarifpreise höhere Gesamtkosten verursacht haben, als du durch deine monatlichen Vorauszahlungen (Abschläge) im Laufe des Jahres bezahlt hast. Die Nachzahlung ist in der Regel innerhalb von zwei Wochen nach Zugang der Rechnung fällig."
   },
   {
-    question: "Warum ist meine Stromrechnung plötzlich so hoch ausgefallen?",
-    answer: "Die drei häufigsten Ursachen: 1. Eine unbemerkte Strompreiserhöhung des Anbieters. 2. Ein geschätzter statt abgelesener Zählerstand. 3. Versteckter Mehrverbrauch durch neue Großgeräte (Klimaanlage, Heizlüfter, Gaming-PC, Homeoffice) oder defekte Kühlgerätedichtungen."
+    question: "Was passiert mit einem Guthaben auf der Jahresrechnung?",
+    answer: "Ein Guthaben entsteht, wenn du durch deine Abschläge mehr Geld eingezahlt hast, als du Strom verbraucht hast. Nach § 40c Abs. 3 EnWG ist der Energieversorger gesetzlich verpflichtet, das Guthaben unverzüglich mit dem nächsten Monatsabschlag zu verrechnen oder auf dein Bankkonto zu überweisen."
   },
   {
-    question: "Innerhalb welcher Frist muss der Versorger die Stromrechnung zustellen?",
-    answer: "Nach § 40c EnWG ist der Energieversorger gesetzlich verpflichtet, die Jahresabrechnung spätestens 6 Wochen nach Ende des Abrechnungszeitraums zu erstellen und dem Kunden zuzustellen."
+    question: "Wie wird der tatsächliche Stromverbrauch in kWh auf der Rechnung berechnet?",
+    answer: "Formel: Endzählerstand (kWh) minus Anfangszählerstand (kWh) = Stromverbrauch im Abrechnungszeitraum. Bei Einbau eines neuen Zählers während des Jahres werden die Differenzen beider Zähler separat berechnet und addiert."
   },
   {
-    question: "Was kann ich tun, wenn die Stromrechnung fehlerhaft ist?",
-    answer: "Lege schriftlich (per Einschreiben oder E-Mail) Widerspruch beim Stromanbieter ein. Benenne die konkreten Fehler (z. B. falscher Zählerstand oder falscher Arbeitspreis) und überweise den unstrittigen Betrag unter Vorbehalt. Hilft der Versorger nicht ab, kannst du die kostenlose Schlichtungsstelle Energie einschalten."
+    question: "Wie prüfe ich, ob meine Zählerstände auf der Rechnung geschätzt oder abgelesen wurden?",
+    answer: "Auf der Detailseite der Abrechnung muss neben jedem Zählerstand die Ableseart vermerkt sein (z. B. 'Kundenablesung', 'Ablesung durch Netzbetreiber' oder 'rechnerische Schätzung'). Steht dort 'Schätzung', solltest du umgehend deinen tatsächlichen Zählerstand ablesen und eine korrigierte Rechnung verlangen."
   },
   {
-    question: "Was ist der Unterschied zwischen Messstellenbetreiber und Stromanbieter?",
-    answer: "Der Messstellenbetreiber (meist das örtliche Stadtwerk bzw. der Netzbetreiber) ist für die Hardware des Stromzählers und die Messdaten zuständig. Der Stromanbieter ist dein Vertragspartner, von dem du den Strom kaufst und der dir die Rechnung stellt."
+    question: "Warum ist meine Stromrechnung plötzlich so hoch?",
+    answer: "Häufige Ursachen sind: 1. Eine unbemerkte Strompreiserhöhung des Anbieters. 2. Zu hoch geschätzte Zählerstände mangels Selbstablesung. 3. Ein neues Großgerät im Haushalt (Heizlüfter, Klimaanlage, Gaming-PC, Homeoffice). 4. Defekte Dichtungen an Kühl- und Gefriergeräten (Kompressor-Dauerlauf). 5. Mehr Personen im Haushalt oder längere Anwesenheitszeiten."
   },
   {
-    question: "Wie berechne ich die Jahresgesamtkosten meiner Stromrechnung selbst?",
-    answer: "Formel: (Jahresverbrauch in kWh × Arbeitspreis in €/kWh) + (12 × monatlicher Grundpreis in €) = Jährliche Gesamtkosten brutto (inkl. 19 % MwSt.)."
+    question: "Was kann ich tun, wenn die Stromrechnung fehlerhaft aussieht?",
+    answer: "Lege innerhalb von 4 Wochen schriftlich Widerspruch beim Stromanbieter ein. Benenne konkret die Fehler (z. B. falscher Zählerstand, falscher Arbeitspreis, nicht gutgeschriebene Abschläge). Zahle den unstrittigen Betrag fristgerecht. Reagiert der Versorger nicht binnen 4 Wochen, kannst du dich kostenfrei an die Schlichtungsstelle Energie e.V. wenden."
   },
   {
-    question: "Wann darf der Stromanbieter den Strom sperren?",
-    answer: "Eine Stromsperre ist erst zulässig, wenn der Zahlungsrückstand mindestens 100 Euro beträgt, die Sperrung mindestens 4 Wochen vorher schriftlich angedroht wurde und 3 Werktage vor der Sperrung nochmals angekündigt wurde (§ 19 StromGVV)."
+    question: "Wie berechne ich meine Jahresstromkosten vorab selbst?",
+    answer: "Formel: (Geschätzter Jahresverbrauch in kWh × Arbeitspreis in €/kWh) + (12 × monatlicher Grundpreis in €) = Jährliche Gesamtkosten brutto. Beispiel bei 3.500 kWh, 32 ct/kWh und 12 € Grundpreis: (3.500 × 0,32 €) + (12 × 12 €) = 1.120 € + 144 € = 1.264 Euro pro Jahr."
+  },
+  {
+    question: "Wie wird der monatliche Abschlag berechnet?",
+    answer: "Formel: (Erwartete Jahresgesamtkosten in Euro) ÷ Anzahl der jährlichen Abschlagsmonate (meist 11 oder 12). Bei 1.264 Euro Gesamtkosten und 11 Abschlägen beträgt der Monatsabschlag rund 115 Euro."
+  },
+  {
+    question: "Was ist der Unterschied zwischen Verbrauch und monatlichem Abschlag?",
+    answer: "Der Verbrauch ist die physikalisch in Kilowattstunden (kWh) gemessene Energie, die deine Geräte bezogen haben. Der Abschlag ist eine finanzielle Vorauszahlung in Euro, die du monatlich leistest, um die Jahresrechnung gleichmäßig über 12 Monate zu verteilen."
+  },
+  {
+    question: "Wie kann ich meine Stromrechnung aussagekräftig mit dem Vorjahr vergleichen?",
+    answer: "Vergleiche nicht nur den Euro-Endbetrag (da sich Strompreise ändern), sondern primär die verbrauchten Kilowattstunden (kWh) und die Anzahl der Abrechnungstage. Seriöse Rechnungen enthalten nach § 40 EnWG ein Balkendiagramm mit Vorjahreswerten."
+  },
+  {
+    question: "Warum stimmen Abschlag und tatsächliche Rechnung fast nie exakt überein?",
+    answer: "Weil der Stromverbrauch von unvorhersehbaren Faktoren abhängt: Wetterbedingungen (kältere Winter erfordern mehr Heizungs- und Beleuchtungsstrom), Urlaubstage, veränderte Nutzungsgewohnheiten oder Neuanschaffungen. Eine kleine Abweichung von 20 bis 80 Euro Guthaben oder Nachzahlung ist völlig normal."
   }
 ];
 
@@ -62,7 +78,7 @@ const subpages = [
 ---
 
 <BaseLayout
-  title="Stromrechnung verstehen, prüfen & berechnen | kWhKlar"
+  title="Stromrechnung verstehen, prüfen und berechnen | kWhKlar"
   description="Stromrechnung einfach erklärt: Zählerstände, Arbeitspreis, Grundpreis, Nachzahlung, Fristen nach § 40 EnWG und Schritt-für-Schritt Prüfanleitung."
   canonical="https://kwhklar.de/stromrechnung"
   jsonLd={faqSchema ? [faqSchema] : undefined}
@@ -74,7 +90,7 @@ const subpages = [
     <div class="max-w-4xl mb-8">
       <span class="badge-emerald text-xs mb-2">Verbraucher-Leitfaden</span>
       <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-        Stromrechnung verstehen, prüfen & berechnen
+        Stromrechnung verstehen, prüfen und berechnen
       </h1>
       <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
         Erhalte den vollen Durchblick bei deiner Jahresstromabrechnung: Wie Zählerstände, Arbeitspreis, monatliche Abschläge und Nachzahlungen zusammenhängen, wie du Berechnungsfehler aufdeckst und welche Rechte du als Verbraucher hast.
@@ -103,41 +119,41 @@ const subpages = [
     <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
       <article class="lg:col-span-8 space-y-10">
         
-        <!-- Section: Anatomy of a Bill -->
+        <!-- Section: Essential Items on Bill -->
         <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
           <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
-            Anatomie einer Stromrechnung: Die 4 zentralen Bausteine
+            Welche Angaben stehen auf der Stromrechnung?
           </h2>
-          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
-            Jede deutsche Stromrechnung besteht im Wesentlichen aus vier mathematischen Kernbereichen:
+          <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+            Eine deutsche Jahresstromrechnung muss nach den gesetzlichen Vorgaben von <strong>§ 40 und § 40c EnWG</strong> übersichtlich und nachvollziehbar gestaltet sein. Folgende Kernangaben müssen zwingend aufgeführt sein:
           </p>
 
           <div class="space-y-4 text-xs sm:text-sm">
             <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
-              <strong class="font-bold text-slate-900 dark:text-white block mb-1">1. Der Abrechnungszeitraum &amp; Zählerstände</strong>
-              <p class="text-slate-600 dark:text-slate-400">
-                Umfasst meist genau 365 Tage (12 Monate). Hier wird der Endzählerstand vom Anfangszählerstand subtrahiert, um die verbrauchten Kilowattstunden (kWh) zu ermitteln. Achte darauf, ob der Zählerstand als „abgelesen“ oder „geschätzt“ markiert ist.
+              <strong class="font-bold text-slate-900 dark:text-white block mb-1">1. Vertrags- und Zählerdaten</strong>
+              <p class="text-slate-600 dark:text-slate-300">
+                Kundennummer, Zählernummer (Marktlokations-ID / MaLo), Zählerstand zu Beginn und Ende des Abrechnungszeitraums sowie die Information, ob die Stände abgelesen oder rechnerisch geschätzt wurden.
               </p>
             </div>
 
             <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
-              <strong class="font-bold text-slate-900 dark:text-white block mb-1">2. Die Verbrauchskosten (Arbeitspreis &amp; Grundpreis)</strong>
-              <p class="text-slate-600 dark:text-slate-400">
-                Die kWh werden mit dem vertraglichen Arbeitspreis (z. B. 35,0 ct/kWh) multipliziert. Hinzu kommt der Grundpreis (z. B. 12 × 10,00 € = 120,00 €). Beide Posten zusammen bilden die Gesamtkosten des Jahres.
+              <strong class="font-bold text-slate-900 dark:text-white block mb-1">2. Verbrauchsabrechnung in kWh</strong>
+              <p class="text-slate-600 dark:text-slate-300">
+                Die Differenz der Zählerstände ergibt den Jahresverbrauch in Kilowattstunden (kWh). Dieser wird mit dem vertraglichen <strong>Arbeitspreis (in ct/kWh)</strong> multipliziert.
               </p>
             </div>
 
             <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
-              <strong class="font-bold text-slate-900 dark:text-white block mb-1">3. Der Abgleich mit den geleisteten Abschlägen</strong>
-              <p class="text-slate-600 dark:text-slate-400">
-                Die Summe aller im Jahresverlauf bezahlten monatlichen Abschläge (z. B. 11 × 100 € = 1.100 €) wird den Gesamtkosten gegenübergestellt. Die Differenz ergibt das <strong>Guthaben</strong> oder die <strong>Nachzahlung</strong>.
+              <strong class="font-bold text-slate-900 dark:text-white block mb-1">3. Grundpreis und Gesamtsumme</strong>
+              <p class="text-slate-600 dark:text-slate-300">
+                Der verbrauchsunabhängige <strong>Grundpreis (in €/Monat)</strong> wird für 12 Monate addiert. Aus Verbrauchskosten und Grundpreis ergibt sich der Brutto-Gesamtrechnungsbetrag (inkl. 19 % Mehrwertsteuer).
               </p>
             </div>
 
             <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
-              <strong class="font-bold text-slate-900 dark:text-white block mb-1">4. Die Abschlagsneuberechnung für das Folgejahr</strong>
-              <p class="text-slate-600 dark:text-slate-400">
-                Anhand des ermittelten Jahresverbrauchs und der aktuell gültigen Tarifpreise setzt der Anbieter die monatliche Vorauszahlung für das nächste Abrechnungsjahr fest.
+              <strong class="font-bold text-slate-900 dark:text-white block mb-1">4. Zahlungsabgleich & Abschlagsplan</strong>
+              <p class="text-slate-600 dark:text-slate-300">
+                Gegenüberstellung der bezahlten Monatsabschläge mit den tatsächlichen Jahreskosten (Ergebnis: Guthaben oder Nachzahlung) plus der neue monatliche Abschlagsplan für das Folgejahr.
               </p>
             </div>
           </div>
@@ -146,28 +162,69 @@ const subpages = [
         <!-- Section: Step-by-step Audit Checklist -->
         <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
           <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
-            5-Punkte-Checkliste: So prüfst du deine Stromrechnung
+            Stromrechnung Schritt für Schritt prüfen (8-Punkte-Plan)
           </h2>
+          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
+            Gehe bei jeder neuen Jahresabrechnung diese 8 Prüfschritte der Reihe nach durch:
+          </p>
+
           <div class="space-y-3 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
             <div class="flex gap-3 p-3.5 rounded-2xl bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-800/40">
-              <span class="font-bold text-emerald-800 dark:text-emerald-300">✓ 1.</span>
-              <span><strong>Zählernummer &amp; Zählerstände abgleichen:</strong> Stimmt die Zählernummer auf der Rechnung exakt mit deinem Zähler im Keller/Flur überein? Stimmen Anfangs- und Endstand mit deinen Ableseprotokollen überein?</span>
+              <span class="font-bold text-emerald-800 dark:text-emerald-300">1.</span>
+              <span><strong>Abrechnungszeitraum:</strong> Prüfe, ob genau 365 Tage (bzw. dein exakter Einzugs-/Wechselzeitraum) abgerechnet wurden.</span>
             </div>
             <div class="flex gap-3 p-3.5 rounded-2xl bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-800/40">
-              <span class="font-bold text-emerald-800 dark:text-emerald-300">✓ 2.</span>
-              <span><strong>Schätzungen aufdecken:</strong> Steht neben dem Zählerstand das Wort „geschätzt“ oder „rechnerisch ermittelt“? Dann weicht der Wert fast immer vom echten Verbrauch ab.</span>
+              <span class="font-bold text-emerald-800 dark:text-emerald-300">2.</span>
+              <span><strong>Anfangszählerstand:</strong> Stimmt der Anfangsstand exakt mit dem Endzählerstand deiner vorherigen Jahresrechnung überein?</span>
             </div>
             <div class="flex gap-3 p-3.5 rounded-2xl bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-800/40">
-              <span class="font-bold text-emerald-800 dark:text-emerald-300">✓ 3.</span>
-              <span><strong>Preise &amp; Preiserhöhungen kontrollieren:</strong> Wurde der vertraglich vereinbarte Arbeitspreis und Grundpreis abgerechnet? Wurden Preiserhöhungen termingerecht mit Stichtagsablesung berücksichtigt?</span>
+              <span class="font-bold text-emerald-800 dark:text-emerald-300">3.</span>
+              <span><strong>Endzählerstand:</strong> Wurde der von dir selbst abgelesene Zählerstand verwendet oder ein rechnerisch geschätzter Wert?</span>
             </div>
             <div class="flex gap-3 p-3.5 rounded-2xl bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-800/40">
-              <span class="font-bold text-emerald-800 dark:text-emerald-300">✓ 4.</span>
-              <span><strong>Abschlagszahlungen zählen:</strong> Wurden alle von deinem Bankkonto abgebuchten Abschläge (meist 11 oder 12 Raten) vollständig als Zahlungseingang gutgeschrieben?</span>
+              <span class="font-bold text-emerald-800 dark:text-emerald-300">4.</span>
+              <span><strong>Verbrauch in kWh:</strong> Ergibt Endstand minus Anfangsstand exakt die ausgewiesene Kilowattstundenzahl?</span>
             </div>
             <div class="flex gap-3 p-3.5 rounded-2xl bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-800/40">
-              <span class="font-bold text-emerald-800 dark:text-emerald-300">✓ 5.</span>
-              <span><strong>Boni &amp; Rabatte überprüfen:</strong> Wurde ein zugesicherter Neukunden- oder Sofortbonus ordnungsgemäß von der Gesamtsumme abgezogen?</span>
+              <span class="font-bold text-emerald-800 dark:text-emerald-300">5.</span>
+              <span><strong>Arbeitspreis:</strong> Stimmt der berechnete Arbeitspreis (ct/kWh) mit deiner Auftragsbestätigung bzw. Preisgarantie überein?</span>
+            </div>
+            <div class="flex gap-3 p-3.5 rounded-2xl bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-800/40">
+              <span class="font-bold text-emerald-800 dark:text-emerald-300">6.</span>
+              <span><strong>Grundpreis:</strong> Wurde die monatliche Grundgebühr für die korrekte Monatsanzahl berechnet?</span>
+            </div>
+            <div class="flex gap-3 p-3.5 rounded-2xl bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-800/40">
+              <span class="font-bold text-emerald-800 dark:text-emerald-300">7.</span>
+              <span><strong>Geleistete Abschläge:</strong> Sind alle von deinem Konto abgebuchten Monatsabschläge vollständig als Guthaben aufgeführt?</span>
+            </div>
+            <div class="flex gap-3 p-3.5 rounded-2xl bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-800/40">
+              <span class="font-bold text-emerald-800 dark:text-emerald-300">8.</span>
+              <span><strong>Nachzahlung oder Guthaben:</strong> Ergibt Gesamtkosten minus Abschlagssumme exakt den geforderten bzw. erstatteten Betrag?</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section: Why is the bill suddenly so high -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Warum ist meine Stromrechnung plötzlich so hoch?
+          </h2>
+          <div class="space-y-4 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <strong class="text-slate-900 dark:text-white font-semibold block mb-1">1. Schätzung statt Ablesung:</strong>
+              Wenn weder du noch der Ableser den Zähler abgelesen hat, schätzt der Versorger den Stand. Schätzungen sind fast immer zu Ungunsten des Kunden überhöht.
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <strong class="text-slate-900 dark:text-white font-semibold block mb-1">2. Unbemerkte Preiserhöhung:</strong>
+              Nach Ablauf der Erstvertragslaufzeit oder Preisgarantie erhöhen Anbieter häufig den Arbeitspreis um 20 bis 40 %.
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <strong class="text-slate-900 dark:text-white font-semibold block mb-1">3. Versteckte Dauerstromfresser:</strong>
+              Ein vereistes Gefrierfach oder defekte Kühlschrankdichtungen führen zum Dauerbetrieb des Kompressors (verursacht 200–300 kWh Mehrverbrauch).
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <strong class="text-slate-900 dark:text-white font-semibold block mb-1">4. Neue Verbraucher (Homeoffice, Heizlüfter, Klima):</strong>
+              Ein 2.000-W-Heizlüfter, der an kalten Tagen 3 Stunden läuft, schlägt in einer Wintersaison mit rund 120 bis 180 Euro Mehrkosten zu Buche.
             </div>
           </div>
         </section>
@@ -206,6 +263,7 @@ const subpages = [
             <li><a href="/stromrechnung-zu-hoch" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromrechnung zu hoch?</a></li>
             <li><a href="/stromrechnung-beispiel" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromrechnung Beispiel</a></li>
             <li><a href="/stromrechnung-senken" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromrechnung senken</a></li>
+            <li><a href="/stromkosten-pro-jahr" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromkosten pro Jahr</a></li>
           </ul>
         </div>
       </aside>

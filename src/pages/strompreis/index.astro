@@ -10,61 +10,90 @@ import { getFaqSchema } from '../../lib/structured-data';
 
 const faqs = [
   {
-    question: "Wie hoch ist der aktuelle Strompreis pro kWh in Deutschland?",
-    answer: "Der bundesweite Durchschnittspreis für Haushaltskunden liegt bei rund 35,0 Cent pro kWh (Stand: BDEW & Bundesnetzagentur Datenerhebung). Günstige Neukundentarife bei überregionalen Anbietern liegen bei ca. 28 bis 32 ct/kWh, während die örtliche Grundversorgung (Stadtwerke) oft zwischen 39 und 45 ct/kWh verlangt."
+    question: "Wie hoch ist der aktuelle Strompreis pro kWh in Deutschland 2026?",
+    answer: "Der bundesweite Referenz-Strompreis für private Haushaltskunden liegt aktuell bei rund 35,0 Cent pro Kilowattstunde (ct/kWh) bei einem Jahresverbrauch von 3.500 kWh (Datenbasis: Bundesnetzagentur & BDEW, Stand 2026). Neukundentarife überregionaler Anbieter sind bereits ab ca. 27 bis 31 ct/kWh verfügbar, während die örtliche Grundversorgung oft 39 bis 45 ct/kWh verlangt."
   },
   {
-    question: "Wie setzt sich der deutsche Strompreis genau zusammen?",
-    answer: "Der Strompreis besteht aus drei Hauptbestandteilen: 1. Beschaffung, Erzeugung und Vertrieb (ca. 45–48 % bzw. 15–17 ct/kWh). 2. Regulierte Netzentgelte inklusive Messstellenbetrieb (ca. 27–29 % bzw. 9–11 ct/kWh). 3. Gesetzliche Steuern, Abgaben und Umlagen (Stromsteuer, Konzessionsabgabe, KWKG-, Offshore- & §19-Umlage plus 19 % MwSt., ca. 24–28 % bzw. 8–10 ct/kWh)."
+    question: "Was kostet 1 kWh Strom im Bundesdurchschnitt?",
+    answer: "1 Kilowattstunde Strom kostet im deutschen Bundesdurchschnitt ca. 35 Cent reinem Arbeitspreis. Rechnet man den festen monatlichen Grundpreis von ca. 12,50 Euro (150 €/Jahr) bei 3.500 kWh Verbrauch anteilig hinzu, liegt der effektive Gesamtpreis bei rund 39,3 ct/kWh."
   },
   {
-    question: "Warum gibt es so große regionale Unterschiede beim Strompreis?",
-    answer: "Hauptursache sind die regional unterschiedlichen Netzentgelte der über 800 Verteilnetzbetreiber. Regionen mit starkem Ausbau erneuerbarer Energien (vor allem Nord- und Ostdeutschland) hatten historisch höhere Netzkosten, die durch die Bundesnetzagentur schrittweise bundesweit harmonisiert werden."
+    question: "Warum unterscheiden sich Strompreise zwischen verschiedenen Regionen und Bundesländern?",
+    answer: "Der Hauptgrund für regionale Preisunterschiede sind die Netzentgelte der über 800 lokalen Verteilnetzbetreiber. In ländlichen Regionen und Gebieten mit starkem Ausbau von Wind- und Solarenergie (z. B. Schleswig-Holstein, Brandenburg, Mecklenburg-Vorpommern) waren die Netzentgelte historisch höher als in Ballungsräumen, da dort umfangreiche Netzausbauten finanziert werden müssen."
   },
   {
-    question: "Was ist der Unterschied zwischen Arbeitspreis und Grundpreis?",
-    answer: "Der Arbeitspreis ist der variable Preis in Cent pro verbrauchter Kilowattstunde (ct/kWh). Der Grundpreis ist eine feste monatliche Grundgebühr (in Deutschland meist 8 bis 15 € pro Monat bzw. ca. 100 bis 180 € im Jahr) für Zähler, Messung und Netzanschluss."
+    question: "Warum ist Strom in der örtlichen Grundversorgung oft deutlich teurer als bei Sonderverträgen?",
+    answer: "Der örtliche Grundversorger (meist das städtische Stadtwerk) ist gesetzlich verpflichtet, jeden Haushalt ohne Mindestvertragslaufzeit mit einer Frist von 2 Wochen zu beliefern. Für diese hohe Flexibilität und kurzfristige Strombeschaffung an der Börse verlangen Versorger erhebliche Risikoaufschläge. Sonderverträge mit 12 oder 24 Monaten Preisgarantie sind daher 20 bis 35 % günstiger."
   },
   {
-    question: "Wie hat sich der Strompreis in den letzten 10 Jahren entwickelt?",
-    answer: "Zwischen 2014 und 2020 lag der Haushaltsstrompreis relativ stabil bei 29 bis 31 ct/kWh. Im Zuge der Energiekrise 2022 stiegen die Neukundenpreise kurzzeitig auf über 50–60 ct/kWh, bevor sie sich nach Wegfall der EEG-Umlage (Juli 2022) und Marktberuhigung wieder bei ca. 35 ct/kWh einpendelten."
+    question: "Was ist der Arbeitspreis und was ist der Grundpreis beim Stromtarif?",
+    answer: "Der Arbeitspreis (Verbrauchspreis) beziffert die Kosten pro tatsächlich verbrauchter Kilowattstunde (z. B. 32,0 ct/kWh). Der Grundpreis ist eine verbrauchsunabhängige monatliche Fixgebühr (meist 10 bis 15 €/Monat) für Bereitstellung der Zählerinfrastruktur, Eichung, Messstellenbetrieb und Netzanschluss."
   },
   {
-    question: "Was ist die EEG-Umlage und warum gibt es sie nicht mehr?",
-    answer: "Die EEG-Umlage zur Förderung erneuerbarer Energien betrug bis zu 6,75 ct/kWh. Sie wurde zum 1. Juli 2022 vom Gesetzgeber dauerhaft abgeschafft und wird seither aus dem Bundeshaushalt finanziert, um Stromkunden spürbar zu entlasten."
+    question: "Was kostet der Haushaltsstrom im Monat bei verschiedenen Haushaltsgrößen?",
+    answer: "Bei 35 ct/kWh und 12,50 € Grundpreis zahlt: 1 Person (1.500 kWh) ca. 56,25 €/Monat; 2 Personen (2.200 kWh) ca. 76,67 €/Monat; 3 Personen (3.000 kWh) ca. 100,00 €/Monat; 4 Personen (4.000 kWh) ca. 129,17 €/Monat."
   },
   {
-    question: "Lohnt sich ein dynamischer Stromtarif mit Börsenpreisen?",
-    answer: "Dynamische Tarife (wie Tibber, Rabot Energy) geben den stündlichen Börsenstrompreis (EPEX Spot) direkt weiter. Sie lohnen sich besonders für Haushalte mit steuerbaren Großverbrauchern wie Elektroauto oder Wärmepumpe, erfordern jedoch einen Smart Meter (iMSys)."
+    question: "Wie setzt sich der deutsche Strompreis pro Kilowattstunde exakt zusammen?",
+    answer: "Der Strompreis besteht aus drei Säulen: 1. Beschaffung, Vertrieb & Marge des Versorgers (ca. 44,5 % = 15,58 ct). 2. Regulierte Netzentgelte inkl. Messstellenbetrieb (ca. 27,2 % = 9,52 ct). 3. Staatlich veranlasste Steuern, Abgaben & 19 % Mehrwertsteuer (ca. 28,3 % = 9,90 ct)."
   },
   {
-    question: "Wie oft sollte man seinen Stromtarif vergleichen und wechseln?",
-    answer: "Es empfiehlt sich, mindestens einmal jährlich – insbesondere nach Erhalt der Jahresabrechnung oder bei angekündigten Preiserhöhungen – die Tarife zu vergleichen. Bei Preiserhöhungen gilt ein gesetzliches 14-tägiges Sonderkündigungsrecht."
+    question: "Wie hoch sind die Netzentgelte und wer legt sie fest?",
+    answer: "Die Netzentgelte liegen 2026 für Haushaltskunden im Schnitt bei 9,5 bis 11,5 ct/kWh. Sie werden von den jeweiligen Netzbetreibern kalkuliert und von der Bundesnetzagentur (BNetzA) sowie den Landesregulierungsbehörden genehmigt und überwacht."
   },
   {
-    question: "Wie viel Geld spart ein durchschnittlicher 4-Personen-Haushalt durch einen Wechsel?",
-    answer: "Wer aus der teuren örtlichen Grundversorgung (z. B. 42 ct/kWh) zu einem günstigen Neukundentarif mit 30 ct/kWh wechselt, spart bei 4.000 kWh Jahresverbrauch exakt 480 Euro im ersten Jahr."
+    question: "Welche staatlichen Steuern, Abgaben und Umlagen sind im Strompreis enthalten?",
+    answer: "Enthalten sind: die Stromsteuer (2,05 ct/kWh), die Konzessionsabgabe an Kommunen (ca. 1,66 ct/kWh), die KWKG-Umlage, die Offshore-Netzumlage, die §19-StromNEV-Umlage sowie 19 % Umsatzsteuer auf den gesamten Endbetrag. Die frühere EEG-Umlage wurde zum 01.07.2022 dauerhaft abgeschafft."
   },
   {
-    question: "Wie berechne ich meine tatsächlichen durchschnittlichen Gesamtkosten pro kWh?",
-    answer: "Formel: (Jahresstromrechnung in Euro ÷ Gesamter Jahresverbrauch in kWh) × 100 = Effektiver Gesamtpreis in ct/kWh. Durch die Einbeziehung des Grundpreises zahlen sparsame Haushalte pro effektiv genutzter kWh oft 38 bis 42 ct/kWh."
+    question: "Warum verändern sich die Strompreise an der Strombörse ständig?",
+    answer: "An der Strombörse (EPEX Spot / EEX) bildet sich der Großhandelspreis im Merit-Order-System durch Angebot und Nachfrage. Bei viel Wind- und Sonnenenergie sinken die Börsenpreise drastisch (teils negativ), bei Dunkelflaute bestimmen teurere Gaskraftwerke den Grenzpreis."
+  },
+  {
+    question: "Wie hat sich der Strompreis in Deutschland in den letzten 10 Jahren entwickelt?",
+    answer: "Von 2014 bis 2020 lag der Strompreis stabil bei ca. 29 bis 31 ct/kWh. 2022/2023 stieg er durch die Energiekrise auf Spitzenwerte von 45 bis 55 ct/kWh. Durch die Abschaffung der EEG-Umlage und normalisierte Gasmärkte sank der Referenzpreis 2025/2026 wieder auf ca. 35 ct/kWh."
+  },
+  {
+    question: "Was gilt aktuell als günstiger Strompreis pro kWh für Neukunden?",
+    answer: "Als günstig gilt für Neukunden 2026 ein Arbeitspreis von ca. 27 bis 31 ct/kWh bei einem fairen Grundpreis von maximal 10 bis 13 Euro pro Monat inklusive 12-monatiger Preisgarantie und monatlicher Zahlungsweise."
+  },
+  {
+    question: "Was ist der Unterschied zwischen Neu- und Bestandskundentarifen sowie Preisgarantien?",
+    answer: "Neukundentarife sind Angebote für Wechsler mit aktuellen Einkaufskonditionen der Versorger. Bestandskundentarife spiegeln oft langfristige, teurere Beschaffungsverträge wider. Eine eingeschränkte Preisgarantie schützt vor Anstiegen der Beschaffungskosten, deckt jedoch oft keine gesetzlichen Steuer- oder Umlageerhöhungen ab."
+  },
+  {
+    question: "Wie kann ich meinen effektiven Strompreis pro kWh inklusive Grundpreis selbst berechnen?",
+    answer: "Formel: Effektiver Gesamtpreis (ct/kWh) = [(Jahresverbrauch in kWh × Arbeitspreis in €) + (Monatlicher Grundpreis × 12)] ÷ Jahresverbrauch in kWh × 100. Beispiel: Bei 2.000 kWh, 32 ct/kWh und 12 € Grundpreis ergibt das 39,2 ct/kWh Gesamtkosten pro Kilowattstunde."
   }
 ];
 
 const faqSchema = getFaqSchema(faqs);
 
 const related = [
+  { title: 'Strompreis aktuell', href: '/strompreis-aktuell', description: 'Tagesaktuelle Durchschnittswerte.' },
   { title: 'Strompreis pro kWh', href: '/strompreis-pro-kwh', description: 'Kosten je Kilowattstunde im Detail.' },
   { title: 'Strompreis Zusammensetzung', href: '/strompreis-zusammensetzung', description: 'Steuern, Netzentgelte & Beschaffung.' },
   { title: 'Strompreis Entwicklung', href: '/strompreis-entwicklung', description: 'Historischer Verlauf 2018–2026.' },
   { title: 'Dynamische Stromtarife', href: '/dynamische-stromtarife', description: 'Börsenstrompreise & Smart Meter.' },
   { title: 'Strompreis Deutschland', href: '/strompreis-deutschland', description: 'Bundesländer & regionale Unterschiede.' },
+  { title: 'Stromkosten Rechner', href: '/stromkosten-rechner', description: 'Stromkosten direkt online berechnen.' },
   { title: 'Stromanbieter wechseln', href: '/stromanbieter-wechseln', description: 'Schritt-für-Schritt-Wechselanleitung.' },
+];
+
+const consumptionQuantities = [
+  { kwh: 1, label: '1 kWh (1 Stunde 1.000-W-Gerät)', pureCost: 0.35, totalCostWithBaseShare: 0.39 },
+  { kwh: 100, label: '100 kWh (z. B. sparsamer Kühlschrank / Jahr)', pureCost: 35.00, totalCostWithBaseShare: 47.50 },
+  { kwh: 500, label: '500 kWh (Homeoffice-Arbeitsplatz / Jahr)', pureCost: 175.00, totalCostWithBaseShare: 212.50 },
+  { kwh: 1000, label: '1.000 kWh (Sehr sparsamer Single-Haushalt)', pureCost: 350.00, totalCostWithBaseShare: 500.00 },
+  { kwh: 2000, label: '2.000 kWh (2-Personen-Wohnung ohne Warmwasser)', pureCost: 700.00, totalCostWithBaseShare: 850.00 },
+  { kwh: 3000, label: '3.000 kWh (3-Personen-Haushalt / kleines Haus)', pureCost: 1050.00, totalCostWithBaseShare: 1200.00 },
+  { kwh: 4000, label: '4.000 kWh (4-Personen-Familie im Einfamilienhaus)', pureCost: 1400.00, totalCostWithBaseShare: 1550.00 },
+  { kwh: 5000, label: '5.000 kWh (Großhaushalt oder mit Durchlauferhitzer)', pureCost: 1750.00, totalCostWithBaseShare: 1900.00 },
 ];
 ---
 
 <BaseLayout
-  title="Strompreis Deutschland: Aktuelle Zahlen, Zusammensetzung & Analyse | kWhKlar"
+  title="Strompreis in Deutschland: Was kostet 1 kWh Strom? | kWhKlar"
   description="Aktueller Strompreis in Deutschland (ca. 35 ct/kWh). Offizielle Zusammensetzung aus Steuern, Netzentgelten und Beschaffung sowie Preisentwicklung im Überblick."
   canonical="https://kwhklar.de/strompreis"
   jsonLd={faqSchema ? [faqSchema] : undefined}
@@ -76,10 +105,10 @@ const related = [
     <div class="max-w-4xl mb-8">
       <span class="badge-emerald text-xs mb-2">Strommarkt Deutschland</span>
       <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-        Strompreis in Deutschland: Aktuelle Daten & Analysen
+        Strompreis in Deutschland: Was kostet 1 kWh Strom?
       </h1>
       <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-        Wie viel kostet Strom in Deutschland aktuell? Erfahre alles über den bundesweiten Haushaltsstrompreis, die gesetzlichen Preisbestandteile aus Steuern, Umlagen und Netzentgelten sowie den Unterschied zwischen Grundversorgung und Neukundentarifen.
+        Erfahre alles über den aktuellen bundesweiten Haushaltsstrompreis, die genaue Zusammensetzung aus Steuern, Netzentgelten und Beschaffungskosten sowie die Unterschiede zwischen Grundversorgung und Neukundentarifen.
       </p>
     </div>
 
@@ -87,27 +116,30 @@ const related = [
     <div class="my-8 rounded-3xl border border-emerald-200 dark:border-emerald-800 bg-gradient-to-br from-emerald-600 via-teal-700 to-slate-900 p-6 sm:p-8 text-white shadow-md">
       <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
         <div>
-          <span class="text-xs font-bold uppercase tracking-wider text-emerald-200">Bundesweiter Referenzwert (BDEW &amp; BNetzA)</span>
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-200">Bundesweiter Referenzpreis 2026 (BDEW &amp; BNetzA)</span>
           <div class="mt-2 text-4xl sm:text-5xl font-black tracking-tight">
             {formatCtPerKwh(electricityPriceData.currentReferencePrice.valueCtPerKwh)}
           </div>
           <p class="mt-2 text-xs text-emerald-100 max-w-xl">
-            Neutraler Durchschnittswert für Standardkalkulationen. Fester Grundpreis im bundesweiten Schnitt: ca. 12,50 €/Monat ({formatEuro(150)}/Jahr).
+            Neutraler, gewichteter Durchschnittswert für Standardkalkulationen bei 3.500 kWh Jahresverbrauch. Fester Grundpreis im bundesweiten Schnitt: ca. 12,50 €/Monat ({formatEuro(150)}/Jahr).
           </p>
         </div>
 
         <div class="rounded-2xl bg-white/10 dark:bg-black/30 backdrop-blur-md p-4 border border-white/20 text-xs space-y-2 min-w-[260px]">
           <div class="flex justify-between">
-            <span class="text-emerald-100">Günstige Neukunden:</span>
-            <span class="font-bold text-white">ca. 28–32 ct/kWh</span>
+            <span class="text-emerald-100">Neukundentarife (Ø):</span>
+            <strong class="text-white">ca. 27–31 ct/kWh</strong>
           </div>
           <div class="flex justify-between">
-            <span class="text-emerald-100">Bundesweiter Bestandskunden-Ø:</span>
-            <span class="font-bold text-white">35,0 ct/kWh</span>
+            <span class="text-emerald-100">Grundversorgung (Ø):</span>
+            <strong class="text-white">ca. 39–45 ct/kWh</strong>
           </div>
           <div class="flex justify-between">
-            <span class="text-emerald-100">Örtliche Grundversorgung:</span>
-            <span class="font-bold text-white">ca. 39–45 ct/kWh</span>
+            <span class="text-emerald-100">Wärmepumpenstrom (Ø):</span>
+            <strong class="text-white">ca. 22–27 ct/kWh</strong>
+          </div>
+          <div class="border-t border-white/20 pt-1 text-[11px] text-emerald-200">
+            Referenzdatum: 01.01.2026 (BNetzA & BDEW)
           </div>
         </div>
       </div>
@@ -117,40 +149,112 @@ const related = [
     <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
       <article class="lg:col-span-8 space-y-10">
         
-        <!-- Section: Exact Price Breakdown Table -->
+        <!-- Section: How high is current electricity price -->
         <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
           <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
-            Zusammensetzung: Woraus besteht 1 Kilowattstunde Strom?
+            Wie hoch ist der Strompreis aktuell in Deutschland?
           </h2>
-          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
-            Der Strompreis in Deutschland besteht nicht nur aus den reinen Kosten für Energieerzeugung, sondern zu mehr als der Hälfte aus staatlich regulierten Entgelten, Steuern und Umlagen (Basis: BDEW-Strompreisanalyse bei 35,0 ct/kWh Gesamtpreis):
+          <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-4">
+            In Deutschland existiert kein einheitlicher gesetzlicher Strompreis. Was du tatsächlich pro Kilowattstunde bezahlst, hängt maßgeblich von deinem Vertragstyp und deinem Wohnort ab:
           </p>
-
-          <div class="space-y-3">
-            {electricityPriceData.priceComposition.map((item) => (
-              <div class="rounded-2xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40 p-4">
-                <div class="flex flex-wrap justify-between items-center text-xs sm:text-sm font-semibold text-slate-900 dark:text-white gap-2">
-                  <span>{item.category}</span>
-                  <span class="text-emerald-600 dark:text-emerald-400 font-bold">{item.sharePercent.toFixed(1)} % • {item.valueCtPerKwh.toFixed(2).replace('.', ',')} ct/kWh</span>
-                </div>
-                <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">{item.description}</p>
-              </div>
-            ))}
-          </div>
-
-          <div class="mt-6 rounded-2xl bg-slate-50 dark:bg-slate-800/50 p-4 border border-slate-200 dark:border-slate-700 text-xs text-slate-600 dark:text-slate-400">
-            <strong class="font-bold text-slate-900 dark:text-white block mb-1">Hinweis zur MwSt. und Umlagen:</strong>
-            Auf alle Strombestandteile (einschließlich Steuern und Netzentgelte) wird die reguläre Umsatzsteuer von 19 % erhoben. Die Umlagen nach KWKG, EnFG (§ 19 StromNEV) und Offshore-Netzumlage werden jährlich von den Übertragungsnetzbetreibern neu festgesetzt.
+          <div class="space-y-3 text-xs sm:text-sm text-slate-700 dark:text-slate-300 mb-6">
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <strong class="text-slate-900 dark:text-white font-semibold block mb-0.5">1. Bundesschnitt / Referenzpreis (ca. 35,0 ct/kWh):</strong>
+              Gewichteter Durchschnittswert aller Haushaltskundenverträge laut Bundesnetzagentur und BDEW.
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <strong class="text-slate-900 dark:text-white font-semibold block mb-0.5">2. Günstige Neukundentarife (ca. 27–31 ct/kWh):</strong>
+              Aktuelle Sonderverträge überregionaler Ökostrom- und Energieanbieter mit 12 Monaten Preisgarantie.
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <strong class="text-slate-900 dark:text-white font-semibold block mb-0.5">3. Örtliche Grundversorgung (ca. 39–45 ct/kWh):</strong>
+              Der Standardtarif des lokalen Stadtwerks bei unterlassener Tarifwahl; jederzeit mit 2 Wochen Frist kündbar, aber teuer.
+            </div>
           </div>
         </section>
 
-        <!-- Section: Historical Context Table -->
+        <!-- Section: Price Composition Breakdown -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Wie setzt sich der Strompreis zusammen? (Die 3 Säulen)
+          </h2>
+          <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+            Jede Kilowattstunde Haushaltsstrom in Deutschland setzt sich aus drei gesetzlich klar getrennten Kostenblöcken zusammen:
+          </p>
+
+          <div class="space-y-4">
+            <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="text-base font-bold text-slate-900 dark:text-white">1. Beschaffung, Erzeugung & Vertrieb</h3>
+                <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950 px-2 py-0.5 rounded-full">44,5 % (ca. 15,58 ct/kWh)</span>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Umfasst den Einkauf des Stroms an der europäischen Strombörse (EPEX Spot / EEX), die Margen des Lieferanten, Verwaltung, IT-Systeme, Risikovorsorge und Kundenservice.
+              </p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="text-base font-bold text-slate-900 dark:text-white">2. Netzentgelte & Messstellenbetrieb</h3>
+                <span class="text-xs font-bold text-teal-600 dark:text-teal-400 bg-teal-50 dark:bg-teal-950 px-2 py-0.5 rounded-full">27,2 % (ca. 9,52 ct/kWh)</span>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Staatlich regulierte Gebühren für den Betrieb, Ausbau und die Instandhaltung der Höchst-, Hoch-, Mittel- und Niederspannungsnetze sowie die Zählerbereitstellung.
+              </p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="text-base font-bold text-slate-900 dark:text-white">3. Steuern, Abgaben & gesetzliche Umlagen</h3>
+                <span class="text-xs font-bold text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-950 px-2 py-0.5 rounded-full">28,3 % (ca. 9,90 ct/kWh)</span>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Umfasst Stromsteuer (2,05 ct), Konzessionsabgabe an Gemeinden (ca. 1,66 ct), KWKG-Umlage, Offshore-Netzumlage, §19-StromNEV-Umlage und 19 % Umsatzsteuer.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section: What different electricity quantities cost -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Was kosten verschiedene Strommengen? (1 bis 5.000 kWh im Überblick)
+          </h2>
+          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
+            In der folgenden Übersicht siehst du, welche Kosten für typische Strommengen bei einem Arbeitspreis von 35,0 ct/kWh anfallen (einmal als reiner Arbeitspreis und einmal inklusive 12,50 € Monatsgrundpreis):
+          </p>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs sm:text-sm border-collapse">
+              <thead>
+                <tr class="border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400">
+                  <th class="py-3 px-3 font-semibold">Strommenge (kWh)</th>
+                  <th class="py-3 px-3 font-semibold">Typisches Szenario</th>
+                  <th class="py-3 px-3 font-semibold">Reine Verbrauchskosten</th>
+                  <th class="py-3 px-3 font-semibold">Gesamtkosten (inkl. Grundpreis)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+                {consumptionQuantities.map((item) => (
+                  <tr class="hover:bg-slate-50/70 dark:hover:bg-slate-800/30">
+                    <td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">{item.kwh} kWh</td>
+                    <td class="py-2.5 px-3 text-slate-600 dark:text-slate-400">{item.label}</td>
+                    <td class="py-2.5 px-3 font-semibold text-emerald-600 dark:text-emerald-400">{formatEuro(item.pureCost)}</td>
+                    <td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">{formatEuro(item.totalCostWithBaseShare)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Section: Historical Trends Table -->
         <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
           <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
             Historische Strompreisentwicklung in Deutschland (2018–2026)
           </h2>
           <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
-            Überblick über die durchschnittlichen Haushaltsstrompreise der vergangenen Jahre nach Daten von Bundesnetzagentur, Statistisches Bundesamt (Destatis) und BDEW:
+            Die langfristige Entwicklung des durchschnittlichen Arbeitspreises für Haushaltskunden bei 3.500 kWh Jahresverbrauch:
           </p>
 
           <div class="overflow-x-auto">
@@ -185,40 +289,35 @@ const related = [
       <aside class="lg:col-span-4 space-y-6">
         <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
           <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
-            Tarif-Kategorien im Vergleich
+            Strompreis Quick-Guide
           </h3>
-          <dl class="text-xs space-y-3">
-            <div class="border-b border-slate-800 pb-2">
-              <dt class="text-slate-400">Grundversorgung (Stadtwerke)</dt>
-              <dd class="font-bold text-white text-sm mt-0.5">39 – 45 ct/kWh</dd>
-              <span class="text-[11px] text-slate-400">Monatlich kündbar, meist am teuersten.</span>
-            </div>
-            <div class="border-b border-slate-800 pb-2">
-              <dt class="text-slate-400">Günstige Festpreistarife</dt>
-              <dd class="font-bold text-emerald-400 text-sm mt-0.5">28 – 32 ct/kWh</dd>
-              <span class="text-[11px] text-slate-400">Mit 12 Monaten Preisgarantie.</span>
-            </div>
-            <div>
-              <dt class="text-slate-400">Dynamische Börsentarife</dt>
-              <dd class="font-bold text-emerald-400 text-sm mt-0.5">15 – 35 ct/kWh</dd>
-              <span class="text-[11px] text-slate-400">Stündlich schwankend nach EPEX Spot.</span>
-            </div>
-          </dl>
+          <p class="text-xs text-slate-300 leading-relaxed mb-4">
+            Was du bei deinem Stromvertrag immer prüfen solltest:
+          </p>
+          <ul class="space-y-2 text-xs border-t border-slate-800 pt-3 text-slate-300">
+            <li>• <strong>Arbeitspreis:</strong> Ziel: unter 32 ct/kWh</li>
+            <li>• <strong>Grundpreis:</strong> Ziel: unter 13 €/Monat</li>
+            <li>• <strong>Vertragslaufzeit:</strong> Maximal 12 Monate</li>
+            <li>• <strong>Kündigungsfrist:</strong> Maximal 1 Monat</li>
+            <li>• <strong>Preisgarantie:</strong> Mindestens 12 Monate volle oder eingeschränkte Garantie</li>
+          </ul>
         </div>
 
         <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
-          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Preis-Ratgeber &amp; Rechner</h3>
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Verwandte Analysen</h3>
           <ul class="space-y-2.5 text-xs">
-            <li><a href="/strompreis-pro-kwh" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Was kostet 1 kWh Strom?</a></li>
-            <li><a href="/strompreis-zusammensetzung" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Strompreis-Zusammensetzung</a></li>
-            <li><a href="/dynamische-stromtarife" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Dynamische Tarife &amp; Smart Meter</a></li>
-            <li><a href="/stromanbieter-wechseln" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromanbieter wechseln Ratgeber</a></li>
+            <li><a href="/strompreis-aktuell" class="text-emerald-700 dark:text-emerald-400 hover:underline block">→ Strompreis aktuell (Monatswerte)</a></li>
+            <li><a href="/strompreis-pro-kwh" class="text-emerald-700 dark:text-emerald-400 hover:underline block">→ Strompreis pro kWh im Detail</a></li>
+            <li><a href="/strompreis-zusammensetzung" class="text-emerald-700 dark:text-emerald-400 hover:underline block">→ Steuern & Netzentgelte Zusammensetzung</a></li>
+            <li><a href="/strompreis-entwicklung" class="text-emerald-700 dark:text-emerald-400 hover:underline block">→ Strompreisentwicklung 2018–2026</a></li>
+            <li><a href="/dynamische-stromtarife" class="text-emerald-700 dark:text-emerald-400 hover:underline block">→ Dynamische Stromtarife (Börsenpreise)</a></li>
+            <li><a href="/stromkosten-rechner" class="text-emerald-700 dark:text-emerald-400 hover:underline block">→ Stromkosten Rechner</a></li>
           </ul>
         </div>
       </aside>
     </div>
 
     <RelatedLinks links={related} />
-    <SourceBox sourceIds={['bnetza', 'bdew', 'destatis', 'smard']} />
+    <SourceBox sourceIds={['bnetza', 'bdew', 'bmwk', 'destatis']} />
   </div>
 </BaseLayout>

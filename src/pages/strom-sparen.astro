@@ -9,51 +9,59 @@ import { getFaqSchema } from '../lib/structured-data';
 const faqs = [
   {
     question: "Wie kann ich im Haushalt extrem Strom sparen?",
-    answer: "Die wirksamsten Hebel für extreme Stromeinsparungen (bis zu 40–50 %): 1. Auf elektrische Zusatzheizungen (Heizlüfter) komplett verzichten. 2. Durchlauferhitzer auf 38–40 °C drosseln und Sparduschköpfe montieren (spart ca. 300–500 kWh pro Person). 3. Standby-Verluste mit Master-Slave-Leisten eliminieren. 4. Waschtemperatur von 60 °C auf 30 °C senken und Eco-Programme nutzen. 5. Ein 800-Watt-Balkonkraftwerk installieren (erzeugt 600–800 kWh kostenlosen Solarstrom pro Jahr)."
+    answer: "Um den Stromverbrauch maximal zu senken (realistisch 20 bis 35 % Einsparung), setze an den größten Hebeln an: 1. Elektrische Warmwasserbereitung optimieren (Sparduschkopf montieren, Duschtemperatur drosseln). 2. Auf elektrische Heizlüfter und mobile Klimageräte verzichten. 3. Waschmaschine bei 30 °C im Eco-Modus betreiben und Wäsche auf der Leine statt im Trockner trocknen. 4. Standby-Verluste durch schaltbare Steckdosenleisten eliminieren. 5. Veraltete Kühlgeräte durch A-Klasse-Modelle ersetzen oder ein Balkonkraftwerk installieren."
   },
   {
-    question: "Welches Gerät sollte man immer aus der Steckdose ziehen?",
-    answer: "Besonders Ladegeräte und Netzteile ohne angeschlossenes Endgerät, ältere Fernseher mit Schnellstart-Standby, HiFi-Verstärker, Kaffeemaschinen mit Warmhaltefunktion sowie externe PC-Monitore und Drucker sollten nach Gebrauch per schaltbarer Steckdosenleiste vom Stromnetz getrennt werden."
+    question: "Wie kann ich meine Stromkosten dauerhaft um mehrere hundert Euro im Jahr senken?",
+    answer: "Die Kombination aus Verbrauchsreduktion und Tarifoptimierung bringt den größten finanziellen Hebel. Ein Wechsel aus der teuren Grundversorgung zu einem günstigen Stromanbieter spart bei 3.500 kWh Verbrauch sofort ca. 250 bis 400 Euro jährlich. Das konsequente Ausschalten von Standby-Geräten und sparsames Waschen spart weitere 100 bis 200 Euro pro Jahr."
   },
   {
-    question: "Welche 3 Geräte sind die größten Stromfresser im Haushalt?",
-    answer: "In fast allen Haushalten sind die 3 Spitzenreiter: 1. Elektrische Warmwasserbereiter (Durchlauferhitzer und Boiler mit 600–800 kWh/Person). 2. Veraltete Kühl- und Gefrierschränke (oft 300–450 kWh/Jahr). 3. Alte Kondenstrockner (oft 350–500 kWh/Jahr)."
+    question: "Was sind die 10 größten Stromfresser im typischen Haushalt?",
+    answer: "Die 10 größten Stromfresser sind: 1. Elektrischer Durchlauferhitzer / Boiler. 2. Alter Kühlschrank & Gefriertruhe. 3. Veralteter Abluft- oder Kondenstrockner. 4. Elektrische Heizlüfter & Ölradiatoren. 5. Ungeregelte Heizungspumpen im Keller. 6. Elektroherd & Backofen bei täglicher Nutzung. 7. Gaming-PCs und Home-Server unter Dauerlast. 8. Waschmaschinenläufe bei 60°C und 90°C. 9. Geschirrspüler im Intensiv-/Kurzprogramm. 10. Dauerhafter Standby vernetzter Geräte."
   },
   {
-    question: "Welche Geräte ziehen Strom, obwohl sie ausgeschaltet sind?",
-    answer: "Viele Geräte besitzen keinen echten Netzschalter, sondern verbleiben im Standby: Fernseher, Spielekonsolen, WLAN-Router, Mikrowellen mit Uhrzeitanzeige, Soundbars, Drucker und Ladeadapter. Zusammen verbrauchen sie oft 10 bis 40 Watt dauerhaft (rund 30 bis 120 Euro pro Jahr)."
+    question: "Welches Haushaltsgerät ist der Stromfresser Nummer 1?",
+    answer: "Der Durchlauferhitzer für die Warmwasserbereitung ist der größte Einzelstromfresser im Haushalt. Er zieht während des Betriebs bis zu 18.000 bis 24.000 Watt Leistung und verursacht in einem Mehrpersonenhaushalt jährlich rund 1.500 bis 2.500 kWh Stromverbrauch (ca. 525 bis 875 Euro Kosten)."
   },
   {
-    question: "Was sind die häufigsten Ursachen für einen extrem hohen Stromverbrauch?",
-    answer: "Häufige Auslöser für ungewöhnlich hohe Verbräuche: 1. Ein vereister Gefrierschrank oder defekte Türdichtungen am Kühlschrank (Dauerlauf des Kompressors). 2. Der Einsatz von Heizlüftern oder mobilen Klimageräten. 3. Veraltete Heizungsumwälzpumpen im Keller. 4. Ungemerkte Standby-Kaskaden im Homeoffice oder Entertainment-Bereich."
+    question: "Welche Geräte ziehen Strom, obwohl sie ausgeschaltet sind (heimlicher Standby-Verbrauch)?",
+    answer: "Typische Phantom-Verbraucher sind OLED-/Smart-TVs, TV-Receiver, Soundbars, Spielekonsolen (PS5/Xbox im Ruhezustand), WLAN-Router und Repeater, Kaffeemaschinen mit Digitaluhr, PC-Monitore, Drucker und eingesteckte Netzteile ohne Endgerät. Sie verursachen pro Haushalt ca. 150 bis 400 kWh Standby-Strom im Jahr."
   },
   {
-    question: "Wie viel Geld spart ein Sparduschkopf bei elektrischem Warmwasser?",
-    answer: "Ein Sparduschkopf reduziert den Warmwasserdurchfluss von ca. 12–15 Liter/Minute auf 6–8 Liter/Minute. Bei einem Durchlauferhitzer spart eine 4-köpfige Familie dadurch jährlich rund 1.000 bis 1.500 kWh Strom (ca. 350 bis 525 Euro Ersparnis)."
+    question: "Welche Geräte sollte man bei Nichtbenutzung immer komplett vom Stromnetz trennen?",
+    answer: "Schalte vor allem Unterhaltungselektronik (Fernseher, Soundsystem, Spielkonsole), PC-Arbeitsplätze (Monitor, Drucker, Lautsprecher), Ladegeräte und Küchenkleingeräte (Kaffeemaschine, Mikrowelle, Toaster) über schaltbare Steckdosenleisten oder smarte Zwischenstecker komplett aus."
   },
   {
-    question: "Wie viel Strom spart der Wechsel auf LED-Leuchtmittel?",
-    answer: "LED-Lampen verbrauchen rund 85 bis 90 % weniger Strom als alte Glühbirnen und ca. 60 % weniger als Halogenstrahler. Der Austausch von 10 Halogenspots (je 40 W) gegen 5-W-LEDs spart bei 3 Stunden täglicher Brenndauer ca. 380 kWh bzw. rund 130 Euro im Jahr."
+    question: "Wie viel Strom und Geld kann man durch das Abschalten von Standby-Geräten pro Jahr sparen?",
+    answer: "Laut Erhebungen des Umweltbundesamts (UBA) spart ein durchschnittlicher deutscher Haushalt durch das konsequente Beseitigen von Standby-Verlusten ca. 200 bis 350 kWh Strom pro Jahr. Das entspricht einer jährlichen Ersparnis von rund 70 bis 125 Euro bei 35 ct/kWh."
   },
   {
-    question: "Lohnt sich das Abschalten des WLAN-Routers in der Nacht?",
-    answer: "Ein Router verbraucht ca. 8 bis 15 Watt (ca. 70 bis 130 kWh/Jahr = 25 bis 45 €). Die nächtliche Zeitschaltung (z. B. WLAN-Aus von 00:00 bis 06:00 Uhr) spart ca. 25 % des Routerstroms (rund 6 bis 11 Euro jährlich)."
+    question: "Wie viel Strom spart der Austausch eines alten Kühlschranks gegen ein modernes A-Klasse-Gerät?",
+    answer: "Ein 15 Jahre alter Kühlschrank verbraucht ca. 280 bis 360 kWh pro Jahr. Ein modernes Neugerät der Effizienzklasse A benötigt nur ca. 95 bis 120 kWh. Das spart jährlich ca. 180 bis 240 kWh (ca. 63 bis 84 Euro Ersparnis pro Jahr)."
   },
   {
-    question: "Warum ist Waschen bei 30 °C so viel sparsamer als bei 60 °C?",
-    answer: "Weil das Erhitzen des Wassers rund 80 % der Energie eines Waschgangs beansprucht. Ein 30-Grad-Waschgang benötigt nur ca. 0,3 bis 0,4 kWh, während 60 °C ca. 1,0 bis 1,2 kWh verbrauchen. Du sparst pro Waschgang über 65 % Strom."
+    question: "Wie kann man beim Waschen und Trocknen von Wäsche am meisten Strom sparen?",
+    answer: "Wasche standardmäßig bei 30 °C oder 40 °C im Eco-Programm statt bei 60 °C (spart rund 50–65 % Energie). Schleudere die Wäsche mit mindestens 1.200 bis 1.400 U/min, um die Restfeuchte zu minimieren. Trockne Wäsche wann immer möglich auf dem Wäscheständer an der Luft statt im Trockner (spart ca. 250–400 kWh/Jahr)."
   },
   {
-    question: "Wie viel spart ein Balkonkraftwerk pro Jahr an Stromkosten?",
-    answer: "Ein 800-Watt-Balkonkraftwerk mit zwei Modulen erzeugt jährlich in Deutschland ca. 650 bis 850 kWh Strom. Bei einer Eigenverbrauchsquote von 70 bis 80 % werden ca. 500 bis 650 kWh direkt im Haushalt genutzt. Das spart jährlich ca. 175 bis 230 Euro bei 35 ct/kWh."
+    question: "Welche einfachen Stromspartipps gibt es beim Kochen und Backen in der Küche?",
+    answer: "1. Immer mit passendem Deckel kochen (spart bis zu 60 % Energie). 2. Wasser im Wasserkocher vorkochen statt auf der Herdplatte. 3. Umluft statt Ober-/Unterhitze beim Backen nutzen (spart 15–20 % Energie durch 20 °C niedrigere Temperatur). 4. Restwärme von Backofen und Kochplatte 5 bis 10 Minuten vor Garzeitende nutzen."
   },
   {
-    question: "Welche Temperatur ist im Kühlschrank am sparsamsten?",
-    answer: "7 °C in der Mitte des Kühlraums und -18 °C im Gefrierschrank. Jedes Grad kühler erhöht den Stromverbrauch des Geräts um rund 6 %."
+    question: "Wie kann man beim Fernsehen und Gaming im Wohnzimmer Strom sparen?",
+    answer: "1. Bildschirmhelligkeit am Fernseher anpassen (Standard- statt Dynamik-Modus spart 20–30 % Strom). 2. Spielekonsolen nach dem Spielen vollständig herunterfahren statt im Standby-Ruhemodus zu belassen. 3. Bei Gaming-PCs Framerate-Limits (FPS-Cap) setzen und Undervolting nutzen, um die Leistungsaufnahme der Grafikkarte um 50–100 Watt zu senken."
   },
   {
-    question: "Wie schnell amortisiert sich ein Neukauf eines A-Klasse-Kühlschranks?",
-    answer: "Ersetzt du ein 15 Jahre altes Gerät mit 330 kWh/Jahr durch ein modernes A-Klasse-Modell mit 100 kWh/Jahr, sparst du jährlich 230 kWh (rund 80 € bei 35 ct/kWh). Ein Neugerät für 450 Euro amortisiert sich in ca. 5,5 Jahren."
+    question: "Warum ist mein Stromverbrauch plötzlich stark gestiegen (häufige Ursachen)?",
+    answer: "Häufige Ursachen sind: 1. Defekte Türdichtungen am Kühlschrank oder vereiste Gefrierfächer (Kompressor-Dauerlauf). 2. Neue Geräte wie Heizlüfter, mobile Klimaanlagen, Zweitkühlschränke oder Gaming-PCs. 3. Vermehrtes Homeoffice. 4. Ein defekter Durchlauferhitzer. 5. Ein geschätzter statt abgelesener Zählerstand auf der Abrechnung."
+  },
+  {
+    question: "Was sind die extremsten Ursachen für unerklärlich hohen Stromverbrauch im Haushalt?",
+    answer: "Die extremsten Ursachen sind elektrische Heizlüfter oder Radiatoren im Dauerbetrieb (2.000 W × 8 h = 16 kWh/Tag = 5,60 €/Tag), defekte, ungeregelte Heizungsumwälzpumpen aus den 1990er-Jahren (Dauerlauf mit 90 W = 780 kWh/Jahr), Außen-Whirlpools sowie unbemerkter Fremdstrombezug über fehlerhafte Keller- oder Garagenleitungen."
+  },
+  {
+    question: "Wie kann man den eigenen Stromverbrauch am zuverlässigsten selbst messen?",
+    answer: "Mit einem digitalen Steckdosen-Energiekostenmessgerät (ab 10 bis 15 Euro). Schließe das Messgerät nacheinander für mindestens 24 bis 72 Stunden an deine Haushaltsgeräte an, um Lastspitzen, Durchschnittsleistung und Standby-Verluste transparent aufzuzeichnen."
   }
 ];
 
@@ -70,7 +78,7 @@ const related = [
 ---
 
 <BaseLayout
-  title="Strom sparen im Haushalt: Die besten Strategien & Spartipps | kWhKlar"
+  title="Strom sparen im Haushalt: Praktische Tipps für weniger Verbrauch | kWhKlar"
   description="Effektiv Strom sparen im Haushalt: Die größten Hebel, Spartipps für Großgeräte, Standby-Vermeidung, Durchlauferhitzer und Balkonkraftwerk im Überblick."
   canonical="https://kwhklar.de/strom-sparen"
   jsonLd={faqSchema ? [faqSchema] : undefined}
@@ -82,10 +90,10 @@ const related = [
     <div class="max-w-4xl mb-8">
       <span class="badge-emerald text-xs mb-2">Spar-Zentrale</span>
       <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-        Strom sparen im Haushalt: Der strategische Leitfaden
+        Strom sparen im Haushalt: Praktische Tipps für weniger Verbrauch
       </h1>
       <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-        Mit den richtigen Maßnahmen lässt sich der Stromverbrauch eines Haushalts um 20 bis 40 % senken – ohne Komfortverlust. Erfahre hier, welche Spartipps den größten finanziellen Hebel haben, wie du heimliche Stromfresser enttarnst und wie viel Geld du jedes Jahr einsparst.
+        Mit den richtigen, gezielten Maßnahmen lässt sich der Stromverbrauch eines Haushalts realistisch um 15 bis 30 % senken – ohne spürbaren Komfortverlust. Erfahre hier, welche Spartipps in Küche, Bad, Wohnbereich und Homeoffice den größten finanziellen Hebel haben und wie du heimliche Stromschlucker enttarnst.
       </p>
     </div>
 
@@ -104,27 +112,27 @@ const related = [
         <div class="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-bold mb-4">2</div>
         <h3 class="font-bold text-slate-900 dark:text-white text-base mb-2">Standby eliminieren</h3>
         <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-          Schaltbare Steckdosenleisten für TV, Konsolen, HiFi und Büroarbeitsplätze installieren.
+          Schaltbare Steckdosenleisten für TV, HiFi, Gaming-Setup und Homeoffice-Arbeitsplatz.
         </p>
-        <span class="mt-3 block text-xs font-bold text-emerald-600 dark:text-emerald-400">Ca. 60–120 € / Jahr</span>
+        <span class="mt-3 block text-xs font-bold text-emerald-600 dark:text-emerald-400">Ca. 70–120 € / Jahr</span>
       </div>
 
       <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
         <div class="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-bold mb-4">3</div>
-        <h3 class="font-bold text-slate-900 dark:text-white text-base mb-2">Gerätetausch &amp; LED</h3>
+        <h3 class="font-bold text-slate-900 dark:text-white text-base mb-2">Effiziente Neugeräte</h3>
         <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-          Alte Kühlschränke und Halogenlampen durch hocheffiziente Neugeräte (Klasse A/B) und LEDs ersetzen.
+          Altgeräte (über 12 Jahre alt) bei Kühl- und Gefriergeräten schrittweise durch A-Klasse ersetzen.
         </p>
-        <span class="mt-3 block text-xs font-bold text-emerald-600 dark:text-emerald-400">Ca. 100–200 € / Jahr</span>
+        <span class="mt-3 block text-xs font-bold text-emerald-600 dark:text-emerald-400">Ca. 60–100 € / Jahr</span>
       </div>
 
       <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
         <div class="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-bold mb-4">4</div>
-        <h3 class="font-bold text-slate-900 dark:text-white text-base mb-2">Tarifwechsel &amp; Balkonsolar</h3>
+        <h3 class="font-bold text-slate-900 dark:text-white text-base mb-2">Tarifwechsel &amp; Solar</h3>
         <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-          Grundversorgung verlassen (28–32 ct) und mit einem 800-W-Balkonkraftwerk Eigenstrom erzeugen.
+          Wechsel aus der Grundversorgung und Installation eines 800-Watt-Balkonkraftwerks.
         </p>
-        <span class="mt-3 block text-xs font-bold text-emerald-600 dark:text-emerald-400">Ca. 300–600 € / Jahr</span>
+        <span class="mt-3 block text-xs font-bold text-emerald-600 dark:text-emerald-400">Bis zu 450 € / Jahr</span>
       </div>
     </div>
 
@@ -132,112 +140,98 @@ const related = [
     <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
       <article class="lg:col-span-8 space-y-10">
         
-        <!-- Section: Savings Potential Matrix Table -->
+        <!-- Section: Where households consume the most -->
         <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
           <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
-            Sparpotenzial-Matrix: Welche Maßnahme bringt wie viel?
+            Wo verbraucht ein Haushalt am meisten Strom?
           </h2>
-          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
-            In der folgenden Tabelle sind die wichtigsten Stromsparmaßnahmen für einen typischen 3- bis 4-Personen-Haushalt mit ihrem realen Sparpotenzial aufgelistet (Basis: 35 ct/kWh):
+          <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+            Laut statistischen Erhebungen von BDEW und Umweltbundesamt verteilt sich der Stromverbrauch eines Durchschnittshaushalts wie folgt auf die einzelnen Anwendungsbereiche:
           </p>
 
-          <div class="overflow-x-auto">
-            <table class="w-full text-left text-xs sm:text-sm border-collapse">
-              <thead>
-                <tr class="border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400">
-                  <th class="py-3 px-3 font-semibold">Stromsparmaßnahme</th>
-                  <th class="py-3 px-3 font-semibold">Einsparung (kWh/J)</th>
-                  <th class="py-3 px-3 font-semibold">Ersparnis (€/Jahr)</th>
-                  <th class="py-3 px-3 font-semibold">Investitionskosten</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
-                <tr class="bg-emerald-50/40 dark:bg-emerald-950/20">
-                  <td class="py-3 px-3 font-medium text-emerald-800 dark:text-emerald-300">800-Watt-Balkonkraftwerk installieren</td>
-                  <td class="py-3 px-3 font-bold">500 – 650 kWh</td>
-                  <td class="py-3 px-3 font-bold text-emerald-600 dark:text-emerald-400">175 – 228 €</td>
-                  <td class="py-3 px-3 text-slate-500 dark:text-slate-400">ca. 300 – 450 € (Amortisation 2–3 J.)</td>
-                </tr>
-                <tr>
-                  <td class="py-3 px-3 font-medium text-slate-900 dark:text-white">Sparduschkopf bei elektr. Warmwasser</td>
-                  <td class="py-3 px-3 font-bold">400 – 800 kWh</td>
-                  <td class="py-3 px-3 font-bold text-emerald-600 dark:text-emerald-400">140 – 280 €</td>
-                  <td class="py-3 px-3 text-slate-500 dark:text-slate-400">ca. 15 – 30 € (Amortisation &lt; 3 Mon.)</td>
-                </tr>
-                <tr class="bg-slate-50/50 dark:bg-slate-800/30">
-                  <td class="py-3 px-3 font-medium text-slate-900 dark:text-white">Standby aller Unterhaltungsgeräte stoppen</td>
-                  <td class="py-3 px-3 font-bold">150 – 300 kWh</td>
-                  <td class="py-3 px-3 font-bold text-emerald-600 dark:text-emerald-400">52 – 105 €</td>
-                  <td class="py-3 px-3 text-slate-500 dark:text-slate-400">ca. 15 – 25 € (Steckdosenleisten)</td>
-                </tr>
-                <tr>
-                  <td class="py-3 px-3 font-medium text-slate-900 dark:text-white">Waschen bei 30 °C statt 60 °C (200 Wäschen)</td>
-                  <td class="py-3 px-3 font-bold">120 – 160 kWh</td>
-                  <td class="py-3 px-3 font-bold text-emerald-600 dark:text-emerald-400">42 – 56 €</td>
-                  <td class="py-3 px-3 text-slate-500 dark:text-slate-400">0 € (reine Verhaltensänderung)</td>
-                </tr>
-                <tr class="bg-slate-50/50 dark:bg-slate-800/30">
-                  <td class="py-3 px-3 font-medium text-slate-900 dark:text-white">Austausch alter Kühlschrank (> 12 Jahre)</td>
-                  <td class="py-3 px-3 font-bold">150 – 220 kWh</td>
-                  <td class="py-3 px-3 font-bold text-emerald-600 dark:text-emerald-400">52 – 77 €</td>
-                  <td class="py-3 px-3 text-slate-500 dark:text-slate-400">ca. 350 – 500 € (Amortisation 5–6 J.)</td>
-                </tr>
-                <tr>
-                  <td class="py-3 px-3 font-medium text-slate-900 dark:text-white">Komplette Umrüstung auf LED-Lampen</td>
-                  <td class="py-3 px-3 font-bold">100 – 250 kWh</td>
-                  <td class="py-3 px-3 font-bold text-emerald-600 dark:text-emerald-400">35 – 88 €</td>
-                  <td class="py-3 px-3 text-slate-500 dark:text-slate-400">ca. 30 – 60 € (Amortisation &lt; 1 J.)</td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="space-y-3 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+            <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <span class="font-semibold text-slate-900 dark:text-white">1. Warmwasser (bei dezentraler elektr. Erwärmung)</span>
+              <span class="font-bold text-rose-600 dark:text-rose-400">ca. 25–35 % des Gesamtstroms</span>
+            </div>
+            <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <span class="font-semibold text-slate-900 dark:text-white">2. Kühlen &amp; Gefrieren</span>
+              <span class="font-bold text-amber-600 dark:text-amber-400">ca. 15–20 %</span>
+            </div>
+            <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <span class="font-semibold text-slate-900 dark:text-white">3. Kochen, Backen &amp; Geschirrspülen</span>
+              <span class="font-bold text-amber-600 dark:text-amber-400">ca. 12–16 %</span>
+            </div>
+            <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <span class="font-semibold text-slate-900 dark:text-white">4. Waschen &amp; Trocknen</span>
+              <span class="font-bold text-emerald-600 dark:text-emerald-400">ca. 12–15 %</span>
+            </div>
+            <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <span class="font-semibold text-slate-900 dark:text-white">5. Informationstechnik, TV &amp; Audio</span>
+              <span class="font-bold text-emerald-600 dark:text-emerald-400">ca. 12–15 %</span>
+            </div>
+            <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <span class="font-semibold text-slate-900 dark:text-white">6. Beleuchtung (dank LED deutlich gesunken)</span>
+              <span class="font-bold text-slate-500 dark:text-slate-400">ca. 8–10 %</span>
+            </div>
           </div>
         </section>
 
-        <!-- Section: 5-Step System -->
+        <!-- Section: Specific advice by room -->
         <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
           <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
-            Das 5-Schritte-System zur dauerhaften Stromkostensenkung
+            Die wirksamsten Stromspartipps nach Wohnbereich
           </h2>
-          <div class="space-y-4 text-xs sm:text-sm">
-            <div class="flex gap-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
-              <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-bold">1</span>
-              <div>
-                <strong class="font-bold text-slate-900 dark:text-white block mb-1">Ist-Zustand erfassen &amp; vergleichen:</strong>
-                Lies deinen Zählerstand ab und vergleiche deinen Jahresverbrauch mit den <a href="/stromverbrauch-haushalt" class="text-emerald-600 dark:text-emerald-400 underline">Haushalts-Benchmarks</a>.
-              </div>
+          
+          <div class="space-y-6 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+            <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">Beim Waschen und Trocknen Strom sparen</h3>
+              <ul class="list-disc pl-5 space-y-1.5 text-slate-600 dark:text-slate-300">
+                <li><strong>30 °C statt 60 °C:</strong> Spart bis zu 65 % Strom pro Waschgang. Moderne Waschmittel reinigen normale Alltagskleidung bereits ab 20–30 °C hygienisch rein.</li>
+                <li><strong>Eco-Programme nutzen:</strong> Trotz längerer Laufzeit spart das Eco-Programm ca. 30–40 % Strom, da das Wasser langsamer und auf niedrigere Temperatur erwärmt wird.</li>
+                <li><strong>Wäscheleine nutzen:</strong> Jeder Verzicht auf den Wäschetrockner spart rund 1,5 bis 3 kWh (ca. 0,50 bis 1,05 Euro) pro Trocknungslauf.</li>
+              </ul>
             </div>
 
-            <div class="flex gap-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
-              <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-bold">2</span>
-              <div>
-                <strong class="font-bold text-slate-900 dark:text-white block mb-1">Heimliche Stromfresser enttarnen:</strong>
-                Leihe oder kaufe ein Steckdosenmessgerät und miss nacheinander Kühlschrank, Gefriertruhe, PC-Setup und Entertainment-Geräte für je 48 Stunden durch.
-              </div>
+            <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">Beim Kochen und Backen Strom sparen</h3>
+              <ul class="list-disc pl-5 space-y-1.5 text-slate-600 dark:text-slate-300">
+                <li><strong>Topfdeckel verwenden:</strong> Kochen ohne Deckel verbraucht bis zu 3-mal mehr Energie.</li>
+                <li><strong>Wasserkocher nutzen:</strong> Wasser im Wasserkocher zum Kochen bringen und erst dann in den Topf füllen.</li>
+                <li><strong>Umluft statt Ober-/Unterhitze:</strong> Erlaubt 20 °C niedrigere Backtemperaturen und spart rund 15 bis 20 % Strom. Vorheizen ist bei modernen Backöfen nur selten nötig.</li>
+              </ul>
             </div>
 
-            <div class="flex gap-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
-              <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-bold">3</span>
-              <div>
-                <strong class="font-bold text-slate-900 dark:text-white block mb-1">Standby-Verluste kappen:</strong>
-                Rüste alle Entertainment- und PC-Arbeitsplätze mit schaltbaren Steckerleisten aus.
-              </div>
+            <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">Kühlschrank und Gefrierschrank effizient nutzen</h3>
+              <ul class="list-disc pl-5 space-y-1.5 text-slate-600 dark:text-slate-300">
+                <li><strong>Optimale Temperatur:</strong> 7 °C im Kühlschrank und -18 °C im Gefrierschrank genügen vollkommen. 1 °C kühler erhöht den Strombedarf um ca. 6 %.</li>
+                <li><strong>Regelmäßig abtauen:</strong> Eine nur 5 mm dicke Eisschicht an den Innenwänden erhöht den Stromverbrauch um rund 30 %.</li>
+                <li><strong>Keine warmen Speisen hineinstellen:</strong> Essen vor dem Kühlen immer erst auf Raumtemperatur abkühlen lassen.</li>
+              </ul>
             </div>
 
-            <div class="flex gap-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
-              <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-bold">4</span>
-              <div>
-                <strong class="font-bold text-slate-900 dark:text-white block mb-1">Eco-Programme &amp; Temperaturoptimierung:</strong>
-                Kühlschrank auf 7 °C, Waschmaschine auf 30 °C Eco, Spülmaschine auf 50 °C Eco stellen.
-              </div>
+            <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">Beim Fernsehen und Gaming Strom sparen</h3>
+              <ul class="list-disc pl-5 space-y-1.5 text-slate-600 dark:text-slate-300">
+                <li><strong>Öko-Bildmodus am TV:</strong> Dynamische Bildmodi treiben die Hintergrundbeleuchtung auf Maximum. Der Standard- oder Eco-Modus senkt den TV-Strom um 25 %.</li>
+                <li><strong>Ruhezustand bei Konsolen deaktivieren:</strong> PS5 und Xbox im echten Aus-Zustand betreiben, statt sie dauerhaft im Standby für Hintergrunddownloads zu belassen.</li>
+              </ul>
             </div>
+          </div>
+        </section>
 
-            <div class="flex gap-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
-              <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-bold">5</span>
-              <div>
-                <strong class="font-bold text-slate-900 dark:text-white block mb-1">Tarif wechseln &amp; Eigenstrom erzeugen:</strong>
-                Aus der Grundversorgung zu einem fairen Anbieter wechseln und ein Balkonkraftwerk in Betrieb nehmen.
-              </div>
-            </div>
+        <!-- Section: Measuring instead of guessing -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Stromverbrauch messen statt schätzen
+          </h2>
+          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
+            Verlasse dich bei der Suche nach Stromfressern nicht auf bloße Vermutungen. Ein einfaches <strong>Steckdosen-Energiekostenmessgerät (ca. 10–15 €)</strong> oder smarte Zwischenstecker (Smart Plugs) machen versteckte Dauerläufer in Sekundenschnelle sichtbar.
+          </p>
+          <div class="rounded-2xl bg-slate-50 dark:bg-slate-800/50 p-4 border border-slate-200 dark:border-slate-700 text-xs text-slate-700 dark:text-slate-300">
+            <strong class="font-semibold text-slate-900 dark:text-white block mb-1">Tipp für die Messung:</strong>
+            Viele Verbraucherzentralen und örtliche Stadtbibliotheken leihen hochwertige Strommessgeräte kostenlos an Bürger aus.
           </div>
         </section>
 
@@ -249,31 +243,39 @@ const related = [
       <aside class="lg:col-span-4 space-y-6">
         <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
           <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
-            Sofort-Spar-Check
+            Die 3 schnellsten Sparmaßnahmen
           </h3>
-          <ul class="text-xs space-y-2 text-slate-300">
-            <li>✓ Kühlschrank auf 7 °C einstellen (spart ca. 6 % pro Grad)</li>
-            <li>✓ Gefrierfach abtauen (spart bis zu 30 %)</li>
-            <li>✓ Eco-Modus bei Waschmaschine &amp; Spülmaschine</li>
-            <li>✓ Topfdeckel beim Kochen nutzen (spart 65 %)</li>
-            <li>✓ Standby-Leisten ausschalten (spart bis zu 100 €)</li>
+          <ul class="text-xs space-y-3 text-slate-300">
+            <li class="border-b border-slate-800 pb-2">
+              <strong class="text-white block">1. Sparduschkopf:</strong>
+              Spart bei Durchlauferhitzern sofort bis zu 150–250 € pro Person jährlich.
+            </li>
+            <li class="border-b border-slate-800 pb-2">
+              <strong class="text-white block">2. Waschtemperatur senken:</strong>
+              Von 60 °C auf 30 °C spart ca. 40–60 € im Jahr.
+            </li>
+            <li>
+              <strong class="text-white block">3. Standby-Leisten:</strong>
+              Spart ca. 50–100 € pro Haushalt jährlich.
+            </li>
           </ul>
         </div>
 
         <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
-          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Weiterführende Ratgeber</h3>
-          <ul class="space-y-2 text-xs">
-            <li><a href="/stromfresser" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Die 10 größten Stromfresser</a></li>
-            <li><a href="/standby-strom" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Standby-Strom &amp; Ruhelast</a></li>
-            <li><a href="/strom-sparen-tipps" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Detaillierte Stromspartipps</a></li>
-            <li><a href="/stromanbieter-wechseln" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromanbieter wechseln</a></li>
-            <li><a href="/balkonkraftwerk/stromkosten-sparen" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Balkonkraftwerk Stromkosten sparen</a></li>
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Verwandte Ratgeber</h3>
+          <ul class="space-y-2.5 text-xs">
+            <li><a href="/stromfresser" class="text-emerald-700 dark:text-emerald-400 hover:underline block">→ Die 10 größten Stromfresser</a></li>
+            <li><a href="/standby-strom" class="text-emerald-700 dark:text-emerald-400 hover:underline block">→ Standby-Strom vermeiden</a></li>
+            <li><a href="/strom-sparen-tipps" class="text-emerald-700 dark:text-emerald-400 hover:underline block">→ Stromspartipps für den Alltag</a></li>
+            <li><a href="/stromanbieter-wechseln" class="text-emerald-700 dark:text-emerald-400 hover:underline block">→ Stromanbieter wechseln</a></li>
+            <li><a href="/stromkosten-rechner" class="text-emerald-700 dark:text-emerald-400 hover:underline block">→ Stromkosten Rechner</a></li>
+            <li><a href="/geraete" class="text-emerald-700 dark:text-emerald-400 hover:underline block">→ 25 Haushaltsgeräte im Vergleich</a></li>
           </ul>
         </div>
       </aside>
     </div>
 
     <RelatedLinks links={related} />
-    <SourceBox sourceIds={['stromspiegel', 'uba', 'bnetza', 'bdew']} />
+    <SourceBox sourceIds={['uba', 'stromspiegel', 'bnetza', 'verbraucherzentrale']} />
   </div>
 </BaseLayout>
