@@ -57,22 +57,25 @@ const related = [
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-10">
-      <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs">
-        <span class="text-xs text-slate-500 font-medium">Wohnung (ohne Warmwasser)</span>
-        <div class="mt-2 text-2xl font-bold text-slate-900">{formatKwh(data.apartmentWithoutWarmWaterKwh, 0)}</div>
-        <span class="text-xs text-slate-400 mt-1 block">ca. 100–110 € / Monat</span>
+      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/70 p-5 shadow-xs transition-all hover:border-slate-300 dark:hover:border-slate-700">
+        <span class="text-xs text-slate-500 dark:text-slate-400 font-medium block">Wohnung (ohne Warmwasser)</span>
+        <div class="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.apartmentWithoutWarmWaterKwh, 0)}</div>
+        <span class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 block">ca. 100–110 € / Monat</span>
       </div>
 
-      <div class="rounded-2xl border border-amber-200 bg-amber-50/50 p-5 shadow-xs">
-        <span class="text-xs text-amber-800 font-medium">Wohnung (mit Warmwasser elektrisch)</span>
-        <div class="mt-2 text-2xl font-bold text-amber-950">{formatKwh(data.apartmentWithWarmWaterKwh, 0)}</div>
-        <span class="text-xs text-amber-700 mt-1 block">ca. 135–150 € / Monat</span>
+      <div class="rounded-2xl border border-emerald-500/30 dark:border-emerald-500/25 bg-emerald-50/40 dark:bg-emerald-950/20 p-5 shadow-xs transition-all hover:border-emerald-500/50">
+        <span class="text-xs text-emerald-700 dark:text-emerald-400 font-semibold flex items-center gap-1.5">
+          <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+          Wohnung (mit Warmwasser elektrisch)
+        </span>
+        <div class="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.apartmentWithWarmWaterKwh, 0)}</div>
+        <span class="text-xs text-emerald-600 dark:text-emerald-400/90 mt-1.5 block font-medium">ca. 135–150 € / Monat</span>
       </div>
 
-      <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs">
-        <span class="text-xs text-slate-500 font-medium">Einfamilienhaus</span>
-        <div class="mt-2 text-2xl font-bold text-slate-900">{formatKwh(data.houseWithoutWarmWaterKwh, 0)}</div>
-        <span class="text-xs text-slate-400 mt-1 block">ca. 130–145 € / Monat</span>
+      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/70 p-5 shadow-xs transition-all hover:border-slate-300 dark:hover:border-slate-700">
+        <span class="text-xs text-slate-500 dark:text-slate-400 font-medium block">Einfamilienhaus</span>
+        <div class="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.houseWithoutWarmWaterKwh, 0)}</div>
+        <span class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 block">ca. 130–145 € / Monat</span>
       </div>
     </div>
 
