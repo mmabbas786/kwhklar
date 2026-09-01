@@ -10,6 +10,7 @@ import { formatEuro, formatKwh, formatWatt } from '../../lib/formatters';
 import { languages, type SupportedLanguage } from '../../i18n/languages';
 import { useTranslations, getLocalizedPath } from '../../i18n/utils';
 import { getLocalizedAppliance } from '../../i18n/appliances';
+import { getLocalizedTopic } from '../../i18n/topics';
 
 export function getStaticPaths() {
   const nonDefaultLangs: SupportedLanguage[] = ['en', 'es', 'ja', 'fr', 'pt', 'ko', 'it'];
@@ -91,13 +92,14 @@ const isAppliance = slug.startsWith('geraete/');
 const applianceSlug = isAppliance ? slug.replace('geraete/', '') : null;
 const appliance = applianceSlug ? appliances[applianceSlug] : null;
 const localized = applianceSlug ? getLocalizedAppliance(applianceSlug, lang) : null;
+const localizedTopic = !isAppliance ? getLocalizedTopic(slug, lang) : null;
 
 // Determine title and descriptions
-const rawName = localized?.name || appliance?.name || slug.split('/').pop()?.replace(/-/g, ' ') || 'Calculator';
+const rawName = localized?.name || localizedTopic?.title || appliance?.name || slug.split('/').pop()?.replace(/-/g, ' ') || 'Calculator';
 const formattedTitle = rawName.charAt(0).toUpperCase() + rawName.slice(1);
-const pageDescription = localized?.shortDescription || appliance?.shortDescription || t('site.description');
-const savingTips = localized?.savingAdvice || appliance?.savingAdvice || [];
-const faqs = localized?.faq || appliance?.faq || [];
+const pageDescription = localized?.shortDescription || localizedTopic?.shortDescription || appliance?.shortDescription || t('site.description');
+const savingTips = localized?.savingAdvice || localizedTopic?.savingAdvice || appliance?.savingAdvice || [];
+const faqs = localized?.faq || localizedTopic?.faq || appliance?.faq || [];
 
 const relatedLinks = [
   { title: t('cat.cost.title') || 'Stromkostenrechner', href: '/stromkosten-rechner', description: t('cat.cost.desc') },
