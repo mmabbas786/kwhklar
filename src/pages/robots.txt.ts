@@ -15,6 +15,11 @@ Disallow: /500
 
 # Canonical Sitemap Declaration
 Sitemap: https://kwhklar.de/sitemap.xml
+
+# LLM Context & AI Agent Knowledge Manifest
+# https://llmstxt.org
+# LLMs-txt: https://kwhklar.de/llms.txt
+# LLMs-full: https://kwhklar.de/llms-full.txt
 `;
 
   return new Response(robots, {

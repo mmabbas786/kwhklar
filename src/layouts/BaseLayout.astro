@@ -40,6 +40,10 @@ const isErrorOrNoindex = metaProps.noindex || Astro.url.pathname === '/404' || A
       <link rel="alternate" hreflang={alt.lang} href={alt.href} />
     ))}
 
+    <!-- AI Agents & LLM Discovery (llms.txt standard) -->
+    <link rel="alternate" type="text/markdown" href="/llms.txt" title="LLMs.txt Context" />
+    <link rel="alternate" type="text/markdown" href="/llms-full.txt" title="Full LLMs.txt Dataset" />
+
     <!-- Theme Initializer (Strict Dark Mode Default on Opening Site) -->
     <script is:inline>
       (function() {

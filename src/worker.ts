@@ -42,8 +42,8 @@ export default {
     if (url.pathname.startsWith('/_astro/') || url.pathname.match(/\.(png|jpg|jpeg|svg|webp|ico|woff2?)$/)) {
       // Long-term immutable caching for static hashes and media
       newHeaders.set('Cache-Control', 'public, max-age=31536000, immutable');
-    } else if (url.pathname === '/sitemap.xml' || url.pathname === '/robots.txt') {
-      // Short-term caching for search engine crawlers
+    } else if (url.pathname === '/sitemap.xml' || url.pathname === '/robots.txt' || url.pathname === '/llms.txt' || url.pathname === '/llms-full.txt') {
+      // Short-term caching for search engine & AI crawlers
       newHeaders.set('Cache-Control', 'public, max-age=3600, s-maxage=3600');
     } else {
       // HTML pages: Instant revalidation with Cloudflare edge caching
