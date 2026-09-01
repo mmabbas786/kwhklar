@@ -11,6 +11,9 @@ import { formatEuro, formatKwh } from '../../lib/formatters';
 import { languages, type SupportedLanguage } from '../../i18n/languages';
 import { useTranslations, getLocalizedPath } from '../../i18n/utils';
 
+import { getHomepageFaqs } from '../../i18n/homepage-faqs';
+import { getCalculatorSchema, getFaqSchema } from '../../lib/structured-data';
+
 export function getStaticPaths() {
   const nonDefaultLangs: SupportedLanguage[] = ['en', 'es', 'ja', 'fr', 'pt', 'ko', 'it'];
   return nonDefaultLangs.map((lang) => ({
@@ -31,70 +34,22 @@ const popularAppliances = [
   appliances['fernseher'],
 ];
 
-const homeFaqs = [
-  {
-    question: lang === 'en'
-      ? 'How do you calculate electricity costs from watts and hours?'
-      : lang === 'es'
-      ? '¿Cómo se calcula el coste de electricidad a partir de vatios y horas?'
-      : lang === 'fr'
-      ? 'Comment calculer le coût de l\'électricité à partir des watts et des heures ?'
-      : lang === 'it'
-      ? 'Come si calcola il costo dell\'energia elettrica da watt e ore?'
-      : lang === 'pt'
-      ? 'Como calcular os custos de eletricidade a partir de watts e horas?'
-      : lang === 'ja'
-      ? 'ワット数と使用時間から電気代を計算するにはどうすればよいですか？'
-      : '소비전력(W)과 사용 시간으로 전기요금을 어떻게 계산하나요?',
-    answer: lang === 'en'
-      ? 'Formula: Cost (€) = (Power in Watts × Operating Hours ÷ 1,000) × Electricity Price (€/kWh). Example: A 2,000 W appliance running for 2 hours consumes (2,000 × 2 ÷ 1,000) = 4 kWh. At €0.35/kWh, this costs €1.40.'
-      : lang === 'es'
-      ? 'Fórmula: Coste (€) = (Potencia en vatios × Horas de uso ÷ 1.000) × Precio kWh. Ejemplo: Un aparato de 2.000 W durante 2 horas consume 4 kWh. A 0,35 €/kWh cuesta 1,40 €.'
-      : lang === 'fr'
-      ? 'Formule : Coût (€) = (Puissance en Watts × Heures ÷ 1 000) × Prix du kWh. Exemple : Un appareil de 2 000 W pendant 2 heures consomme 4 kWh. À 0,35 €/kWh, cela coûte 1,40 €.'
-      : lang === 'it'
-      ? 'Formula: Costo (€) = (Potenza in Watt × Ore di utilizzo ÷ 1.000) × Prezzo kWh. Esempio: Un apparecchio da 2.000 W per 2 ore consuma 4 kWh. A 0,35 €/kWh costa 1,40 €.'
-      : lang === 'pt'
-      ? 'Fórmula: Custo (€) = (Potência em Watts × Horas de uso ÷ 1.000) × Preço kWh. Exemplo: Um aparelho de 2.000 W por 2 horas consome 4 kWh. A 0,35 €/kWh custa 1,40 €.'
-      : lang === 'ja'
-      ? '計算式: 電気代 (€) = (消費電力W × 使用時間h ÷ 1,000) × 単価 (€/kWh)。例: 2,000Wの機器を2時間使用すると4kWhとなり、単価0.35€の場合1.40€となります。'
-      : '계산식: 전기요금 (€) = (소비전력W × 사용시간h ÷ 1,000) × 단가 (€/kWh). 예: 2,000W 기기를 2시간 사용 시 4kWh를 소비하며, 단가가 0.35€일 경우 1.40€입니다.',
-  },
-  {
-    question: lang === 'en'
-      ? 'What are typical standby power losses in a household?'
-      : lang === 'es'
-      ? '¿Cuáles son las pérdidas típicas de consumo en espera (standby)?'
-      : lang === 'fr'
-      ? 'Quelle est la consommation moyenne en veille dans un foyer ?'
-      : lang === 'it'
-      ? 'Quali sono le perdite tipiche di energia in standby?'
-      : lang === 'pt'
-      ? 'Quanto os aparelhos gastam em modo de espera (standby)?'
-      : lang === 'ja'
-      ? '家庭での待機電力はどれくらい発生しますか？'
-      : '가정 내 대기전력으로 인한 낭비는 어느 정도인가요?',
-    answer: lang === 'en'
-      ? 'A typical household has 20 to 40 Watts of continuous standby load from TVs, routers, chargers, and appliances, costing €60 to €120 annually. Using switchable power strips eliminates this waste.'
-      : lang === 'es'
-      ? 'Un hogar promedio tiene entre 20 y 40 W de carga constante en reposo (TV, router, cargadores), lo que supone 60 a 120 € al año. Las regletas con interruptor evitan este gasto.'
-      : lang === 'fr'
-      ? 'Un foyer moyen cumule 20 à 40 W de veille continue (TV, box internet, chargeurs), soit 60 à 120 € par an. Les multiprises à interrupteur permettent de supprimer ces pertes.'
-      : lang === 'it'
-      ? 'Una casa tipo consuma costantemente 20-40 W in standby (TV, router, alimentatori), pari a 60-120 € all\'anno. Una presa multipla con interruttore risolve il problema.'
-      : lang === 'pt'
-      ? 'Uma residência média consome 20 a 40 W constantes em modo de espera, gerando um custo anual de 60 a 120 €. Réguas com interruptor eliminam essa perda.'
-      : lang === 'ja'
-      ? '一般的な家庭ではテレビ、ルーター、充電器などにより常時20〜40Wの待機電力が発生し、年間約60〜120€のコストになります。節電タップの活用でゼロにできます。'
-      : '일반 가정에서는 TV, 공유기, 충전기 등으로 인해 상시 20~40W의 대기전력이 발생하여 연간 약 60~120€의 불필요한 비용이 청구됩니다. 절전 멀티탭으로 차단할 수 있습니다.',
-  },
-];
+const homeFaqs = getHomepageFaqs(lang);
+
+const calcSchema = getCalculatorSchema(
+  t('site.title'),
+  t('site.description'),
+  `/${lang}`
+);
+const faqSchema = getFaqSchema(homeFaqs);
+const pageSchemas = faqSchema ? [calcSchema, faqSchema] : [calcSchema];
 ---
 
 <BaseLayout
   title={t('site.title')}
   description={t('site.description')}
   canonical={`https://kwhklar.de/${lang}`}
+  jsonLd={pageSchemas}
 >
   <!-- Hero Section -->
   <section class="relative overflow-hidden bg-gradient-to-b from-emerald-50/70 via-slate-50 to-slate-50 dark:from-slate-950 dark:via-slate-900/90 dark:to-slate-950 pt-10 pb-8 sm:pt-16 sm:pb-12 border-b border-slate-200/70 dark:border-slate-800">

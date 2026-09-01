@@ -10,6 +10,9 @@ import { householdBenchmarks } from '../data/household-benchmarks';
 import { electricityPriceData } from '../data/electricity-price';
 import { formatEuro, formatKwh } from '../lib/formatters';
 
+import { getHomepageFaqs } from '../i18n/homepage-faqs';
+import { getCalculatorSchema, getFaqSchema } from '../lib/structured-data';
+
 const popularAppliances = [
   appliances['kuehlschrank'],
   appliances['waschmaschine'],
@@ -19,39 +22,22 @@ const popularAppliances = [
   appliances['fernseher'],
 ];
 
-const homeFaqs = [
-  {
-    question: 'Wie berechnet man die Stromkosten aus Watt und Stunden?',
-    answer:
-      'Die Formel lautet: Kosten (€) = (Leistung in Watt × Nutzungsdauer in Stunden ÷ 1.000) × Strompreis (€/kWh). Beispiel: Ein 2.000-Watt-Gerät, das 2 Stunden läuft, verbraucht (2.000 × 2 ÷ 1.000) = 4 kWh. Bei 35 ct/kWh kostet das 1,40 €.',
-  },
-  {
-    question: 'Was ist der Unterschied zwischen Watt (W) und Kilowattstunde (kWh)?',
-    answer:
-      'Watt (W) bzw. Kilowatt (kW = 1.000 W) ist die physikalische Leistung – also wie viel Energie ein Gerät in jedem Augenblick benötigt. Die Kilowattstunde (kWh) ist die geleistete Arbeit bzw. der tatsächliche Gesamtverbrauch über einen Zeitraum.',
-  },
-  {
-    question: 'Wie hoch ist der durchschnittliche Stromverbrauch eines Haushalts in Deutschland?',
-    answer:
-      'Laut Stromspiegel 2024/2025 verbraucht ein 1-Personen-Haushalt in der Wohnung ca. 1.300–1.500 kWh/Jahr, ein 2-Personen-Haushalt ca. 2.100–2.500 kWh/Jahr und eine 4-köpfige Familie ca. 3.000–4.000 kWh/Jahr (ohne elektrische Warmwasserbereitung).',
-  },
-  {
-    question: 'Wie viel kostet 1 kWh Strom in Deutschland aktuell?',
-    answer:
-      'Der durchschnittliche Haushaltsstrompreis in Deutschland liegt 2026 bei ca. 35 bis 37 Cent pro Kilowattstunde (Arbeitspreis für Neukunden oft bei 28–32 ct/kWh, in der Grundversorgung bei 40–44 ct/kWh).',
-  },
-  {
-    question: 'Welche Geräte verbrauchen im Haushalt am meisten Strom?',
-    answer:
-      'Zu den größten Stromverbrauchern gehören alte Kühl- und Gefriergeräte, Wäschetrockner ohne Wärmepumpe, elektrische Durchlauferhitzer, Heizlüfter sowie Hochleistungs-Gaming-PCs bei langer täglicher Nutzung.',
-  },
-];
+const homeFaqs = getHomepageFaqs('de');
+
+const calcSchema = getCalculatorSchema(
+  'Stromkostenrechner & Stromverbrauch einfach berechnen',
+  'Berechne deine Stromkosten und den Stromverbrauch für Geräte und Haushalte schnell und exakt. Mit transparenten Formeln und aktuellen Strompreisen.',
+  '/'
+);
+const faqSchema = getFaqSchema(homeFaqs);
+const pageSchemas = faqSchema ? [calcSchema, faqSchema] : [calcSchema];
 ---
 
 <BaseLayout
   title="Stromkostenrechner & Stromverbrauch einfach berechnen | kWhKlar"
   description="Berechne deine Stromkosten und den Stromverbrauch für Geräte und Haushalte schnell und exakt. Mit transparenten Formeln und aktuellen Strompreisen."
   canonical="https://kwhklar.de"
+  jsonLd={pageSchemas}
 >
   <!-- Hero Section -->
   <section class="relative overflow-hidden bg-gradient-to-b from-emerald-50/70 via-slate-50 to-slate-50 dark:from-slate-950 dark:via-slate-900/90 dark:to-slate-950 pt-10 pb-8 sm:pt-16 sm:pb-12 border-b border-slate-200/70 dark:border-slate-800">
