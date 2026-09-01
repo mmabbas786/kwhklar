@@ -4,85 +4,153 @@ import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
 import RelatedLinks from '../components/seo/RelatedLinks.astro';
 import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
+import { getFaqSchema } from '../lib/structured-data';
 
 const faqs = [
   {
-    question: 'Was kann ich tun, wenn die Stromrechnung plötzlich viel zu hoch ist?',
-    answer: '1. Zählerstand auf der Rechnung mit dem echten Zähler vergleichen (Schätzfehler ausschließen). 2. Prüfen, ob der Arbeitspreis erhöht wurde. 3. Zeitraum kontrollieren (z.B. mehr als 12 Monate). 4. Bei unplausiblem Mehrverbrauch Zwischensteckdosen nutzen, um Dauerläufer (z.B. defekte Thermostate im Kühlschrank) aufzuspüren.',
+    question: "Warum ist meine Stromrechnung plötzlich so extrem hoch?",
+    answer: "Die 5 häufigsten Ursachen: 1. Der Versorger hat den Zählerstand geschätzt statt abgelesen. 2. Eine unbemerkte Preiserhöhung des Anbieters. 3. Ein heimlicher Dauerstromfresser (defekte Kühlschrankdichtungen, vereister Gefrierschrank, defekter Durchlauferhitzer). 4. Neue Großgeräte (Gaming-PC, mobiles Klimagerät, Heizlüfter). 5. Ein zu niedrig angesetzter Vorjahresabschlag."
   },
   {
-    question: 'Darf der Stromanbieter den Zählerstand einfach schätzen?',
-    answer: 'Wenn der Zählerstand zum Ablesezeitpunkt nicht übermittelt wurde und der Ableser keinen Zugang hatte, darf der Versorger den Verbrauch auf Basis von Vorjahreswerten rechnerisch schätzen. Du hast jedoch jederzeit das Recht, den tatsächlichen Zählerstand nachzureichen und eine Korrektur der Rechnung zu verlangen.',
+    question: "Was kann ich tun, wenn ich eine hohe Nachzahlung nicht auf einmal bezahlen kann?",
+    answer: "Kontaktiere sofort den Kundenservice deines Anbieters und beantrage eine zinsfreie Ratenzahlung oder Stundung. Nach § 19 Abs. 2 StromGVV sind Grundversorger verpflichtet, bei drohender Stromsperre eine Ratenzahlungsvereinbarung (Abwendungsvereinbarung) anzubieten."
   },
+  {
+    question: "Wie finde ich heraus, ob meine Stromrechnung fehlerhaft ist?",
+    answer: "Vergleiche den Zählerstand auf der Rechnung mit deinem tatsächlichen Zähler im Keller/Flur. Prüfe, ob der vereinbarte Arbeitspreis und Grundpreis stimmen und ob alle gezahlten Abschläge vollständig abgezogen wurden."
+  },
+  {
+    question: "Kann ein defekter Stromzähler die Ursache für eine zu hohe Rechnung sein?",
+    answer: "Ein Zählerdefekt ist selten (unter 1 % der Fälle), aber möglich. Du kannst beim Messstellenbetreiber eine staatliche Befundprüfung beantragen. Zeigt der Zähler messbare Fehler außerhalb der Eichgrenzen, zahlt der Netzbetreiber die Prüfung und korrigiert die Rechnung."
+  },
+  {
+    question: "Was bedeutet 'Zählerstand geschätzt' auf einer überhöhten Rechnung?",
+    answer: "Der Versorger hat keinen echten Ablesewert erhalten und den Verbrauch rechnerisch hochgerechnet. Melde umgehend deinen echten Zählerstand nach und fordere eine Rechnungskorrektur."
+  },
+  {
+    question: "Darf der Stromanbieter bei hoher Nachzahlung sofort den Strom sperren?",
+    answer: "Nein. Eine Stromsperre ist erst ab einem Zahlungsrückstand von mindestens 100 Euro zulässig, muss 4 Wochen vorher schriftlich angedroht und 3 Werktage vorher angekündigt werden."
+  },
+  {
+    question: "Wie finde ich heraus, welches Gerät im Haus so viel Strom schluckt?",
+    answer: "Schalte alle Geräte im Haus aus und beobachte den Stromzähler. Dreht er sich weiter oder zeigt das Display mehr als 30–50 Watt an, fließt heimlicher Ruhestrom. Miss anschließend Großgeräte mit einem Steckdosen-Messgerät 48 Stunden lang durch."
+  },
+  {
+    question: "Was tun, wenn der Vermieter Strom über die Nebenkostenabrechnung zu teuer abrechnet?",
+    answer: "Verlange vom Vermieter Einsicht in die Original-Stromrechnungen des Versorgers und die Zählerstände. Der Vermieter darf nur die tatsächlich entstandenen Kosten ohne Gewinnaufschlag umlegen."
+  },
+  {
+    question: "Wie hilft die Schlichtungsstelle Energie bei Streitigkeiten?",
+    answer: "Die Schlichtungsstelle Energie e.V. vermittelt neutral und kostenlos zwischen Verbrauchern und Energieversorgern, wenn eine schriftliche Beschwerde nach 4 Wochen nicht geklärt werden konnte."
+  },
+  {
+    question: "Wie senke ich meine Kosten nach einer hohen Stromrechnung sofort?",
+    answer: "1. Wechsle sofort zu einem günstigen Stromanbieter (spart oft 300–450 €). 2. Optimiere Warmwasser und Heizlüfter. 3. Kontrolliere ab sofort monatlich deinen Zählerstand."
+  }
 ];
 
+const faqSchema = getFaqSchema(faqs);
+
 const related = [
-  { title: 'Stromrechnung prüfen', href: '/stromrechnung-pruefen', description: 'Schritt für Schritt analysieren.' },
-  { title: 'Die größten Stromfresser', href: '/stromfresser', description: 'Versteckte Großverbraucher.' },
-  { title: 'Stromrechnung senken', href: '/stromrechnung-senken', description: 'Kosten effektiv senken.' },
+  { title: 'Stromrechnung prüfen', href: '/stromrechnung-pruefen', description: 'Schritt-für-Schritt Prüfanleitung.' },
+  { title: 'Stromrechnung berechnen', href: '/stromrechnung-berechnen', description: 'Rechnung nachrechnen.' },
+  { title: 'Die größten Stromfresser', href: '/stromfresser', description: 'Großgeräte enttarnen.' },
+  { title: 'Stromanbieter wechseln', href: '/stromanbieter-wechseln', description: 'Sofort Kosten senken.' },
 ];
 ---
 
 <BaseLayout
-  title="Stromrechnung zu hoch? Ursachen, Checkliste & Sofortmaßnahmen | kWhKlar"
-  description="Hohe Stromnachzahlung erhalten? Finde die häufigsten Ursachen für zu hohe Stromrechnungen: Schätzungen, defekte Geräte, Preiserhöhungen & Zählerfehler."
+  title="Stromrechnung zu hoch? Ursachen, Prüfung & Sofortmaßnahmen | kWhKlar"
+  description="Stromrechnung unerwartet hoch oder hohe Nachzahlung? Die 5 häufigsten Fehlerquellen, Fehlersuche im Haushalt und rechtliche Schritte im Überblick."
   canonical="https://kwhklar.de/stromrechnung-zu-hoch"
+  jsonLd={faqSchema ? [faqSchema] : undefined}
   breadcrumbs={[
     { name: 'Stromrechnung', path: '/stromrechnung' },
-    { name: 'Stromrechnung zu hoch', path: '/stromrechnung-zu-hoch' },
+    { name: 'Stromrechnung zu hoch?', path: '/stromrechnung-zu-hoch' },
   ]}
 >
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
     <Breadcrumbs
       items={[
         { name: 'Stromrechnung', path: '/stromrechnung' },
-        { name: 'Stromrechnung zu hoch', path: '/stromrechnung-zu-hoch' },
+        { name: 'Stromrechnung zu hoch?', path: '/stromrechnung-zu-hoch' },
       ]}
     />
 
-    <div class="max-w-3xl mb-8">
-      <span class="badge-amber text-xs mb-2">Ursachenanalyse & Hilfe</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-        Stromrechnung zu hoch? Ursachen & Sofort-Checkliste
+    <div class="max-w-4xl mb-8">
+      <span class="badge-amber text-xs mb-2">Ursachen- &amp; Krisenhilfe</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Stromrechnung zu hoch? Ursachen &amp; Sofortmaßnahmen
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        Eine unerwartet hohe Stromnachzahlung ist oft ein Schock. In den meisten Fällen stecken typische Fehlerquellen oder unbemerkte Dauerverbraucher dahinter.
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Eine unerwartet hohe Stromrechnung oder Nachzahlung ist ein Schock – aber oft stecken simple Abrechnungsfehler, geschätzte Zählerstände oder defekte Altgeräte dahinter. So gehst du Schritt für Schritt vor.
       </p>
     </div>
 
-    <article class="prose prose-slate max-w-4xl my-8 bg-white rounded-3xl p-6 sm:p-10 border border-slate-200">
-      <h2 class="text-2xl font-bold text-slate-900">Die 5 häufigsten Gründe für hohe Stromrechnungen</h2>
+    <!-- Main Editorial Content Depth -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- Section: Top 5 Causes Breakdown -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Die 5 häufigsten Ursachen für eine zu hohe Stromabrechnung
+          </h2>
+          <div class="space-y-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <strong class="font-bold text-slate-900 dark:text-white block mb-1">1. Falscher oder geschätzter Zählerstand</strong>
+              <p>Wenn kein Ablesewert vorlag, schätzt der Versorger den Stand oft drastisch zu hoch. Ein Blick auf die Ziffern im Keller schafft sofort Klarheit.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <strong class="font-bold text-slate-900 dark:text-white block mb-1">2. Unbemerkte Strompreiserhöhung</strong>
+              <p>Der Versorger hat die Preise erhöht (z. B. von 30 auf 42 ct/kWh), ohne dass der monatliche Abschlag rechtzeitig angepasst wurde.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <strong class="font-bold text-slate-900 dark:text-white block mb-1">3. Defekte Kühl- und Gefriergeräte</strong>
+              <p>Eine poröse Türdichtung oder eine dicke Eisschicht führt dazu, dass der Kühlschrank-Kompressor im 24/7-Dauerlauf läuft (Mehrverbrauch: bis zu 500 kWh/Jahr).</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <strong class="font-bold text-slate-900 dark:text-white block mb-1">4. Heizlüfter, Radiatoren oder mobile Klimaanlagen</strong>
+              <p>Elektrische Heizgeräte (2.000 W) kosten ca. 70 Cent pro Stunde. Bei 4 Stunden täglichem Betrieb entstehen in einem Wintermonat über 80 Euro Zusatzkosten.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <strong class="font-bold text-slate-900 dark:text-white block mb-1">5. Zu gering angesetzte Monatsabschläge</strong>
+              <p>Wurden im Vorjahr zu geringe monatliche Abschläge vereinbart, entsteht am Jahresende zwangsläufig eine rechnerische Nachzahlung, obwohl der Verbrauch normal war.</p>
+            </div>
+          </div>
+        </section>
 
-      <div class="space-y-4 my-6 text-sm text-slate-700">
-        <div class="rounded-2xl bg-slate-50 p-5 border border-slate-200">
-          <strong class="text-base text-slate-900 block font-bold mb-1">1. Falscher oder geschätzter Zählerstand</strong>
-          <p>Wurde der Zählerstand nicht rechtzeitig abgelesen, schätzt der Versorger den Verbrauch. Kontrolliere sofort die Zählernummer und den abgedruckten Endstand mit deinem echten Zähler im Flur oder Keller.</p>
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Sofort-Aktionsplan
+          </h3>
+          <ol class="text-xs space-y-2 text-slate-300 list-decimal pl-4">
+            <li>Zählerstand im Keller fotografieren</li>
+            <li>Rechnung auf Schätzungen prüfen</li>
+            <li>Schriftlich Widerspruch beim Versorger einlegen</li>
+            <li>Ggf. Ratenzahlung vereinbaren</li>
+            <li>Tarifwechsel prüfen</li>
+          </ol>
         </div>
 
-        <div class="rounded-2xl bg-slate-50 p-5 border border-slate-200">
-          <strong class="text-base text-slate-900 block font-bold mb-1">2. Unbemerkte Preiserhöhung (Arbeitspreis / Grundpreis)</strong>
-          <p>Häufig ist nicht der Verbrauch in kWh gestiegen, sondern der Arbeitspreis pro kWh hat sich erhöht (z.B. nach Auslaufen einer Preisgarantie).</p>
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Verwandte Ratgeber</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/stromrechnung-pruefen" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromrechnung prüfen Checkliste</a></li>
+            <li><a href="/stromrechnung-berechnen" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromrechnung nachrechnen</a></li>
+            <li><a href="/stromanbieter-wechseln" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromanbieter wechseln</a></li>
+          </ul>
         </div>
-
-        <div class="rounded-2xl bg-slate-50 p-5 border border-slate-200">
-          <strong class="text-base text-slate-900 block font-bold mb-1">3. Defekte oder dauerhaft laufende Elektrogeräte</strong>
-          <p>Ein defektes Thermostat am Kühlschrank (Kompressor läuft 24/7 durch), ein tropfender elektrischer Boiler oder ein alter Heizlüfter im Keller können hunderte zusätzliche Kilowattstunden verursachen.</p>
-        </div>
-
-        <div class="rounded-2xl bg-slate-50 p-5 border border-slate-200">
-          <strong class="text-base text-slate-900 block font-bold mb-1">4. Verändertes Nutzungsverhalten (Homeoffice, Familienzuwachs)</strong>
-          <p>Tägliches Arbeiten von zu Hause (mehrere Monitore, PCs, Kochen zur Mittagszeit) oder neue elektronische Geräte summieren sich über das Jahr spürbar auf.</p>
-        </div>
-
-        <div class="rounded-2xl bg-slate-50 p-5 border border-slate-200">
-          <strong class="text-base text-slate-900 block font-bold mb-1">5. Zu niedrig angesetzte Monatsabschläge</strong>
-          <p>Wurden die monatlichen Abschläge vom Versorger zu niedrig eingestuft, führt das am Jahresende unweigerlich zu einer hohen Nachzahlung.</p>
-        </div>
-      </div>
-    </article>
+      </aside>
+    </div>
 
     <RelatedLinks links={related} />
     <SourceBox sourceIds={['bnetza', 'bdew']} />
-    <FaqSection items={faqs} />
   </div>
 </BaseLayout>

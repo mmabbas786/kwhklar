@@ -4,25 +4,66 @@ import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
 import RelatedLinks from '../../components/seo/RelatedLinks.astro';
 import SourceBox from '../../components/trust/SourceBox.astro';
 import FaqSection from '../../components/content/FaqSection.astro';
+import { getFaqSchema } from '../../lib/structured-data';
 
 const faqs = [
   {
-    question: 'Wie viel Strom verbraucht ein Elektroauto pro Jahr bei 15.000 km?',
-    answer: 'Bei einem realistischen Verbrauch von 18 kWh/100 km (inkl. 10 % Ladeverlusten = 19,8 kWh) verbraucht ein E-Auto bei 15.000 km Jahresfahrleistung rund 2.970 kWh Strom. Das entspricht fast dem gesamten Haushaltsstrom einer vierköpfigen Familie.',
+    question: "Wie viel Strom verbraucht ein Elektroauto pro Jahr bei 15.000 km?",
+    answer: "Bei einem realistischen Praxisverbrauch von 18 kWh/100 km (inkl. ca. 10 % Ladeverlusten = 19,8 kWh ab Zähler) benötigt ein E-Auto bei 15.000 km Jahresfahrleistung rund 2.970 kWh Strom. Das entspricht in etwa dem gesamten Haushaltsstrombedarf einer vierköpfigen Familie."
   },
+  {
+    question: "Was kostet das Laden eines E-Autos zu Hause an der Wallbox?",
+    answer: "Bei einem durchschnittlichen Haushaltsstrompreis von 30 bis 35 ct/kWh kostet das Laden zu Hause ca. 5,90 bis 6,90 Euro pro 100 km. Eine komplette Akkuladung für 60 kWh Batteriekapazität kostet ca. 18 bis 21 Euro für rund 330 km Reichweite."
+  },
+  {
+    question: "Warum ist öffentliches Schnellladen an Autobahnen so viel teurer?",
+    answer: "HPC-Schnelllader (High Power Charger mit 150 bis 350 kW Ladeleistung) erfordern enorme Investitionen in Trafostationen und Mittelspannungsanschlüsse. Betreiber verlangen daher meist 59 bis 79 ct/kWh ohne Ladekarte/Abo (entspricht ca. 12 bis 16 Euro pro 100 km)."
+  },
+  {
+    question: "Was sind Ladeverluste und wie hoch sind sie beim E-Auto?",
+    answer: "Beim Laden geht ein Teil der elektrischen Energie in Form von Wärme im On-Board-Lader, Kabeln und im Akku verloren. An einer 11-kW-Wallbox liegen die Ladeverluste bei moderaten 8 bis 10 %, während das Laden an einer 230-V-Schuko-Steckdose Verluste von bis zu 15 bis 20 % verursacht."
+  },
+  {
+    question: "Wie viel Geld spart das Laden mit eigenem PV-Solarstrom?",
+    answer: "Eigener Solarstrom vom Hausdach kostet in der Erzeugung (Gestehungskosten) nur ca. 8 bis 11 ct/kWh. Wer 60 % seines Ladebedarfs mit Solarstrom deckt, senkt seine Kraftstoffkosten auf sensationelle ca. 3,50 Euro pro 100 km."
+  },
+  {
+    question: "Lohnt sich ein dynamischer Stromtarif zum Laden des E-Autos?",
+    answer: "Ja, extrem. Da der Ladevorgang über smarte Wallboxen zeitlich frei steuerbar ist, kann das Auto gezielt in den günstigsten Nachtstunden (oft 15 bis 22 ct/kWh) geladen werden. Bei 15.000 km spart das jährlich rund 300 bis 450 Euro."
+  },
+  {
+    question: "Wie hoch sind die monatlichen Stromkosten für ein E-Auto?",
+    answer: "Bei 15.000 km Jahresfahrleistung und ausschließlicher Heimladung bei 32 ct/kWh liegen die monatlichen Stromkosten bei ca. 79 Euro."
+  },
+  {
+    question: "Gibt es steuerliche Vorteile für das Laden beim Arbeitgeber?",
+    answer: "Ja. Das kostenlose oder vergünstigte Laden eines privaten Elektrofahrzeugs an Ladesäulen des Arbeitgebers ist nach § 3 Nr. 46 EStG bis Ende 2030 komplett steuer- und sozialabgabenfrei (kein geldwerter Vorteil)."
+  },
+  {
+    question: "Was kostet die Vollladung an einer öffentlichen AC-Stadtsäule?",
+    answer: "An einer städtischen 11- oder 22-kW-AC-Ladesäule kostet Strom typischerweise 45 bis 55 ct/kWh. Eine 60-kWh-Vollladung kostet dort rund 27 bis 33 Euro."
+  },
+  {
+    question: "Ist das Fahren mit einem Elektroauto günstiger als mit Benzin oder Diesel?",
+    answer: "Ja. Bei Heimladung (ca. 6,00 €/100 km) ist das E-Auto rund 45 bis 55 % günstiger als ein vergleichbarer Benziner (7,5 l/100 km @ 1,80 €/l = 13,50 €/100 km) oder Diesel (6,0 l/100 km @ 1,65 €/l = 9,90 €/100 km)."
+  }
 ];
+
+const faqSchema = getFaqSchema(faqs);
 
 const related = [
   { title: 'Ladekosten Rechner', href: '/e-auto/ladekosten-rechner', description: 'Exakte Ladekosten berechnen.' },
   { title: 'Kosten pro 100 km', href: '/e-auto/kosten-pro-100-km', description: 'Vergleich zu Benzin & Diesel.' },
   { title: 'PV Eigenverbrauch Rechner', href: '/photovoltaik/eigenverbrauch-rechner', description: 'E-Auto mit Solarstrom laden.' },
+  { title: 'Dynamische Stromtarife', href: '/dynamische-stromtarife', description: 'Günstige Nachtstunden nutzen.' },
 ];
 ---
 
 <BaseLayout
   title="E-Auto Stromkosten: Was kostet das Fahren & Laden im Jahr? | kWhKlar"
-  description="Wie hoch sind die jährlichen Stromkosten für ein Elektroauto? Ladekosten zu Hause vs. Schnellladen, Strombedarf und Spartipps für E-Autofahrer."
+  description="Wie hoch sind die jährlichen Stromkosten für ein Elektroauto? Ladekosten zu Hause vs. Schnellladen, Ladeverluste, THG-Quote und 10 Experten-FAQs."
   canonical="https://kwhklar.de/e-auto/stromkosten"
+  jsonLd={faqSchema ? [faqSchema] : undefined}
   breadcrumbs={[
     { name: 'E-Auto', path: '/e-auto/stromkosten' },
     { name: 'Stromkosten', path: '/e-auto/stromkosten' },
@@ -36,45 +77,45 @@ const related = [
       ]}
     />
 
-    <div class="max-w-3xl mb-8">
+    <div class="max-w-4xl mb-8">
       <span class="badge-emerald text-xs mb-2">E-Mobilität Ratgeber</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
         E-Auto Stromkosten im Jahresvergleich
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        Erfahre, wie sich die Ladekosten eines Elektroautos zusammensetzen und warum das Laden an der eigenen Wallbox deutlich günstiger ist als öffentliches Schnellladen.
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Erfahre, wie sich die Stromkosten eines Elektroautos zusammensetzen, warum das Laden an der eigenen Wallbox gegenüber öffentlichen Ladesäulen hunderte Euro spart und wie Ladeverluste eingerechnet werden müssen.
       </p>
     </div>
 
     <!-- Comparison: Home vs Public vs Fast -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-10 max-w-4xl mx-auto">
-      <div class="rounded-3xl border border-emerald-200 bg-emerald-50/50 p-6 shadow-xs">
+      <div class="rounded-3xl border border-emerald-200 dark:border-emerald-800 bg-emerald-50/50 dark:bg-emerald-950/20 p-6 shadow-xs">
         <span class="badge-emerald text-xs mb-2">Am günstigsten</span>
-        <h2 class="text-lg font-bold text-slate-900">Eigene Wallbox</h2>
-        <p class="text-xs text-slate-600 mt-2">Laden zu Hause über den normalen Haushaltsstromvertrag oder dynamischen Tarif.</p>
-        <div class="mt-4 pt-3 border-t border-emerald-200 text-xs">
-          <strong class="text-emerald-900 block text-base font-bold">ca. 30–35 ct/kWh</strong>
-          <span class="text-slate-500">ca. 5,50–6,90 € pro 100 km</span>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white">Eigene Wallbox</h2>
+        <p class="text-xs text-slate-600 dark:text-slate-400 mt-2">Laden zu Hause über den normalen Haushaltsstromvertrag oder dynamischen Tarif.</p>
+        <div class="mt-4 pt-3 border-t border-emerald-200 dark:border-emerald-800 text-xs">
+          <strong class="text-emerald-900 dark:text-emerald-300 block text-base font-bold">ca. 30–35 ct/kWh</strong>
+          <span class="text-slate-500 dark:text-slate-400">ca. 5,50–6,90 € pro 100 km</span>
         </div>
       </div>
 
-      <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-xs">
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
         <span class="badge-blue text-xs mb-2">Unterwegs AC</span>
-        <h2 class="text-lg font-bold text-slate-900">Öffentliche AC-Säule</h2>
-        <p class="text-xs text-slate-600 mt-2">Laden in der Stadt an 11- oder 22-kW-Ladesäulen (Normalladepunkt).</p>
-        <div class="mt-4 pt-3 border-t border-slate-200 text-xs">
-          <strong class="text-slate-900 block text-base font-bold">ca. 45–55 ct/kWh</strong>
-          <span class="text-slate-500">ca. 8,50–10,50 € pro 100 km</span>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white">Öffentliche AC-Säule</h2>
+        <p class="text-xs text-slate-600 dark:text-slate-400 mt-2">Laden in der Stadt an 11- oder 22-kW-Ladesäulen (Normalladepunkt).</p>
+        <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-800 text-xs">
+          <strong class="text-slate-900 dark:text-white block text-base font-bold">ca. 45–55 ct/kWh</strong>
+          <span class="text-slate-500 dark:text-slate-400">ca. 8,50–10,50 € pro 100 km</span>
         </div>
       </div>
 
-      <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-xs">
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
         <span class="badge-amber text-xs mb-2">Autobahn DC</span>
-        <h2 class="text-lg font-bold text-slate-900">HPC-Schnelllader</h2>
-        <p class="text-xs text-slate-600 mt-2">Schnellladen an Autobahnraststätten mit 150 bis 350 kW Ladeleistung.</p>
-        <div class="mt-4 pt-3 border-t border-slate-200 text-xs">
-          <strong class="text-slate-900 block text-base font-bold">ca. 59–79 ct/kWh</strong>
-          <span class="text-slate-500">ca. 11,50–15,50 € pro 100 km</span>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white">HPC-Schnelllader</h2>
+        <p class="text-xs text-slate-600 dark:text-slate-400 mt-2">Schnellladen an Autobahnraststätten mit 150 bis 350 kW Ladeleistung.</p>
+        <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-800 text-xs">
+          <strong class="text-slate-900 dark:text-white block text-base font-bold">ca. 59–79 ct/kWh</strong>
+          <span class="text-slate-500 dark:text-slate-400">ca. 11,50–15,50 € pro 100 km</span>
         </div>
       </div>
     </div>
@@ -91,8 +132,37 @@ const related = [
       </a>
     </div>
 
+    <!-- Main Editorial Content Depth -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Ladeverluste einrechnen
+          </h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Rechne immer mit ca. <strong>8 bis 10 % Ladeverlusten</strong> an der Wallbox (18 kWh Bordcomputer = ca. 19,8 kWh ab Stromzähler).
+          </p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Verwandte Ratgeber</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/e-auto/ladekosten-rechner" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ E-Auto Ladekostenrechner</a></li>
+            <li><a href="/e-auto/kosten-pro-100-km" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Kostenvergleich 100 km</a></li>
+            <li><a href="/photovoltaik/eigenverbrauch-rechner" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ PV-Überschussladen</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
     <RelatedLinks links={related} />
     <SourceBox sourceIds={['bnetza', 'uba', 'bdew']} />
-    <FaqSection items={faqs} />
   </div>
 </BaseLayout>

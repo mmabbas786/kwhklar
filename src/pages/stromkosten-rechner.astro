@@ -5,86 +5,317 @@ import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
 import RelatedLinks from '../components/seo/RelatedLinks.astro';
 import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
-import { getCalculatorSchema } from '../lib/structured-data';
-import { calculatorFaqs } from '../data/calculator-faqs';
+import { getCalculatorSchema, getFaqSchema } from '../lib/structured-data';
 
-const schema = getCalculatorSchema(
-  'Stromkostenrechner',
+const faqs = [
+  {
+    question: "Wie berechnet man die Stromkosten aus Watt?",
+    answer: "Um Stromkosten aus der Wattzahl zu berechnen, teilst du die Leistung in Watt durch 1.000 (zur Umrechnung in Kilowatt kW) und multiplizierst sie mit den Betriebsstunden in Stunden (h). Das ergibt die Energie in Kilowattstunden (kWh). Multipliziere diese kWh mit deinem Arbeitspreis in €/kWh. Formel: (Watt × Stunden ÷ 1.000) × Strompreis (€/kWh)."
+  },
+  {
+    question: "Wie kann ich meine Stromkosten pro Gerät selbst berechnen?",
+    answer: "Lies die Nennleistung auf dem Typenschild des Geräts ab (z. B. 1.500 Watt). Schätze die durchschnittliche tägliche Laufzeit (z. B. 2 Stunden). Rechne: 1.500 W × 2 h ÷ 1.000 = 3,0 kWh pro Tag. Bei 35 ct/kWh kostet das Gerät täglich 3,0 kWh × 0,35 € = 1,05 € (monatlich ca. 31,50 €)."
+  },
+  {
+    question: "Was kostet ein 1.000-Watt-Gerät im Monat?",
+    answer: "Das hängt von der täglichen Laufzeit ab: Läuft ein 1.000-Watt-Gerät 1 Stunde täglich, verbraucht es 30 kWh im Monat (10,50 € bei 35 ct/kWh). Läuft es 4 Stunden täglich, sind es 120 kWh (42,00 €). Im 24/7-Dauerbetrieb summiert sich der Monatsverbrauch auf 720 kWh (252,00 €)."
+  },
+  {
+    question: "Was ist der Unterschied zwischen Arbeitspreis und Grundpreis?",
+    answer: "Der Arbeitspreis (auch Verbrauchspreis) wird in Cent pro Kilowattstunde (ct/kWh) für jede tatsächlich verbrauchte Stromeinheit berechnet. Der Grundpreis ist eine feste monatliche Grundgebühr (meist 8 bis 15 €/Monat) für Zählerbereitstellung, Netznutzung und Messstellenbetrieb, unabhängig vom Verbrauch."
+  },
+  {
+    question: "Sind 10 kWh Stromverbrauch am Tag viel für einen Haushalt?",
+    answer: "Für einen 1- oder 2-Personen-Haushalt in einer Wohnung (ca. 4 bis 7 kWh/Tag) sind 10 kWh/Tag relativ viel (entspricht 3.650 kWh/Jahr). Für ein 4-Personen-Einfamilienhaus oder einen Haushalt mit elektrischer Warmwasserbereitung oder E-Auto ist dieser Wert dagegen völlig normal."
+  },
+  {
+    question: "Was ist der größte Stromfresser im Haushalt?",
+    answer: "Im Durchschnittshaushalt sind elektrische Warmwasserbereiter (Durchlauferhitzer/Boiler), alte Kühl- und Gefriergeräte, Wäschetrockner, alte Heizlüfter sowie High-End-Gaming-PCs oder dauerhaft laufende Server die größten Stromfresser."
+  },
+  {
+    question: "Welche typischen Fehler passieren bei der Stromkostenberechnung?",
+    answer: "Häufige Fehler sind: 1. Die Spitzen-Nennleistung als Dauerlast annehmen (z. B. bei Kühlschränken oder Waschmaschinen, die getaktet arbeiten). 2. Watt mit Kilowattstunden verwechseln. 3. Den festen Grundpreis in der Gesamtkalkulation vergessen. 4. Die Standby-Zeiten unberücksichtigt lassen."
+  },
+  {
+    question: "Wie messe ich den realen Stromverbrauch getakteter Geräte am besten?",
+    answer: "Verwende ein digitales Steckdosen-Energiekostenmessgerät (ab 10 bis 15 € im Handel). Stecke es für mindestens 24 bis 72 Stunden zwischen Steckdose und Gerät, um den tatsächlichen Durchschnittsverbrauch inklusive Kompressortaktung und Standby exakt zu erfassen."
+  },
+  {
+    question: "Wie rechne ich tägliche Stromkosten auf den monatlichen Abschlag hoch?",
+    answer: "Multipliziere den täglichen Stromverbrauch aller Geräte mit 30,42 (durchschnittliche Monatstage) und deinem Arbeitspreis. Addiere anschließend den monatlichen Grundpreis deines Energieversorgers hinzu."
+  },
+  {
+    question: "Welchen Strompreis sollte ich im Rechner als Standard ansetzen?",
+    answer: "Als neutraler Standard-Referenzwert ist in Deutschland aktuell ca. 35,0 ct/kWh (0,35 €/kWh) realistisch. Neukundentarife liegen oft bei 28 bis 32 ct/kWh, während die örtliche Grundversorgung 40 bis 45 ct/kWh kosten kann."
+  },
+  {
+    question: "Wie viel Strom verbraucht ein 500-Watt-Gerät pro Stunde?",
+    answer: "Ein 500-Watt-Gerät verbraucht in einer Stunde genau 0,5 kWh Strom. Bei einem Arbeitspreis von 35 ct/kWh entspricht das Kosten von exakt 0,175 € (17,5 Cent) pro Betriebsstunde."
+  },
+  {
+    question: "Wie viel Geld lässt sich durch einen Stromanbieterwechsel sparen?",
+    answer: "Haushalte, die noch im teuren Grundversorgungstarif des lokalen Stadtwerks sind, sparen durch den Wechsel zu einem günstigen Alternativanbieter bei 3.500 kWh Jahresverbrauch oft 200 bis 400 Euro pro Jahr."
+  }
+];
+
+const calcSchema = getCalculatorSchema(
+  'Stromkostenrechner Deutschland',
   'Berechne die genauen Stromkosten beliebiger Elektrogeräte aus Watt, Betriebsstunden und aktuellem Strompreis in ct/kWh.',
   '/stromkosten-rechner'
 );
-
-const faqs = calculatorFaqs['stromkosten-rechner'] || [];
+const faqSchema = getFaqSchema(faqs);
+const pageSchemas = faqSchema ? [calcSchema, faqSchema] : [calcSchema];
 
 const related = [
-  { title: 'kWh in Euro Rechner', href: '/kwh-rechner', description: 'Rechne kWh direkt in Euro um.' },
-  { title: 'Watt in kWh Rechner', href: '/watt-rechner', description: 'Ermittle den kWh-Verbrauch aus Watt.' },
-  { title: 'Geräte Stromkosten', href: '/geraete', description: 'Übersicht für mehr als 25 Haushaltsgeräte.' },
-  { title: 'Stromkosten pro Monat', href: '/stromkosten-pro-monat', description: 'Monatskosten und Abschlag prüfen.' },
+  { title: 'Watt in kWh Rechner', href: '/watt-rechner', description: 'Leistung präzise in Energie umrechnen.' },
+  { title: 'kWh in Euro Rechner', href: '/kwh-rechner', description: 'Kilowattstunden direkt in Euro umwandeln.' },
+  { title: 'Stromkosten pro Stunde', href: '/stromkosten-pro-stunde', description: 'Stundenkosten für 100 W bis 3.000 W.' },
+  { title: 'Stromkosten pro Monat', href: '/stromkosten-pro-monat', description: 'Monatskosten und Abschläge ermitteln.' },
+  { title: 'Stromverbrauch Haushalt', href: '/stromverbrauch-haushalt', description: 'Vergleichswerte für 1 bis 5 Personen.' },
+  { title: 'Geräte-Übersicht', href: '/geraete', description: 'Verbrauch und Kosten für 25 Haushaltsgeräte.' },
 ];
 ---
 
 <BaseLayout
-  title="Stromkostenrechner: Stromkosten mit Watt & kWh berechnen | kWhKlar"
-  description="Universeller Stromkostenrechner für Deutschland. Berechne die genauen Kosten pro Stunde, Tag, Monat und Jahr aus Leistung (Watt) und Betriebsdauer."
+  title="Stromkostenrechner: Stromkosten aus Watt & kWh berechnen | kWhKlar"
+  description="Universeller Stromkostenrechner für Deutschland. Berechne präzise Stromkosten pro Stunde, Tag, Monat und Jahr aus Leistung (Watt), Betriebsdauer und Strompreis."
   canonical="https://kwhklar.de/stromkosten-rechner"
-  jsonLd={schema}
+  jsonLd={pageSchemas}
   breadcrumbs={[{ name: 'Stromkostenrechner', path: '/stromkosten-rechner' }]}
 >
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
     <Breadcrumbs items={[{ name: 'Stromkostenrechner', path: '/stromkosten-rechner' }]} />
 
-    <div class="max-w-3xl mb-6">
-      <span class="badge-emerald text-xs mb-2">Interaktives Tool</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+    <!-- Hero Section with Direct Value -->
+    <div class="max-w-4xl mb-8">
+      <span class="badge-emerald text-xs mb-2">Interaktives Online-Tool</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
         Stromkostenrechner: Stromkosten schnell & präzise berechnen
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        Mit unserem kostenlosen Stromkostenrechner ermittelst du in Sekundenschnelle, wie viel Strom ein Elektrogerät verbraucht und welche Kosten pro Stunde, Tag, Monat oder Jahr anfallen.
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Ermittle in wenigen Sekunden die Stromkosten jedes beliebigen Elektrogeräts. Gib einfach die Leistung in Watt, deine tägliche Nutzungsdauer und deinen Strompreis ein – unser Rechner liefert dir sofort die Kosten pro Stunde, Tag, Monat und Jahr.
       </p>
     </div>
 
-    <!-- The Live Calculator -->
+    <!-- Live Universal Calculator -->
     <UniversalCalculator
       defaultWatt={1000}
       defaultHours={1}
       defaultPriceCt={35.0}
       title="Stromkosten berechnen"
-      subtitle="Passe Watt, Nutzungsdauer und deinen Strompreis flexibel an:"
+      subtitle="Passe Wattzahl, Nutzungsdauer und deinen Strompreis flexibel an:"
     />
 
-    <!-- Explanatory Content -->
-    <article class="prose prose-slate max-w-4xl my-12 bg-white rounded-3xl p-6 sm:p-10 border border-slate-200">
-      <h2 class="text-2xl font-bold text-slate-900">Wie werden Stromkosten berechnet?</h2>
-      <p class="text-slate-600 leading-relaxed">
-        Die Berechnung der Stromkosten eines beliebigen Haushalts- oder Bürogeräts folgt einem einfachen dreistufigen Prinzip:
-      </p>
+    <!-- Main Editorial Content Depth -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- Section: Calculation Methodology -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            So funktioniert die Stromkostenberechnung (Formel & Einheiten)
+          </h2>
+          <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+            Stromkosten entstehen aus zwei Faktoren: der physikalischen <strong>Leistung</strong> eines Geräts (gemessen in Watt) und der <strong>Betriebsdauer</strong> (gemessen in Stunden). Energieversorger rechnen den Verbrauch in Kilowattstunden (kWh) ab. Eine Kilowattstunde entspricht 1.000 Wattstunden.
+          </p>
 
-      <div class="my-6 rounded-2xl bg-slate-50 p-5 border border-slate-200 text-sm">
-        <h3 class="font-bold text-slate-900 text-base mb-2">Die mathematische Formel:</h3>
-        <p class="font-mono text-emerald-800 bg-emerald-50 p-2.5 rounded-lg">
-          Stromkosten (€) = (Leistung in Watt × Betriebsstunden ÷ 1.000) × (Strompreis in ct/kWh ÷ 100)
-        </p>
-      </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+            <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+              <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 block mb-1">Schritt 1: Energieverbrauch</span>
+              <div class="font-mono text-sm sm:text-base font-bold text-emerald-600 dark:text-emerald-400">
+                kWh = (Watt × Stunden) ÷ 1.000
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Rechnet die Wattangabe in Kilowattstunden um.</p>
+            </div>
+            <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+              <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 block mb-1">Schritt 2: Kosten ermitteln</span>
+              <div class="font-mono text-sm sm:text-base font-bold text-emerald-600 dark:text-emerald-400">
+                Kosten (€) = kWh × Arbeitspreis (€/kWh)
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Multipliziert Verbrauch mit dem Stromtarif.</p>
+            </div>
+          </div>
 
-      <h3 class="text-xl font-bold text-slate-900 mt-6">Beispielrechnung für einen Heizlüfter (2.000 Watt):</h3>
-      <ul class="list-disc pl-5 space-y-1.5 text-slate-600 text-sm">
-        <li><strong>Leistung:</strong> 2.000 Watt (= 2 kW)</li>
-        <li><strong>Laufzeit:</strong> 3 Stunden täglich</li>
-        <li><strong>Strompreis:</strong> 35 ct/kWh (= 0,35 €)</li>
-        <li><strong>Tagesverbrauch:</strong> 2.000 W × 3 h ÷ 1.000 = <strong>6,0 kWh</strong></li>
-        <li><strong>Kosten pro Tag:</strong> 6,0 kWh × 0,35 € = <strong>2,10 €</strong></li>
-        <li><strong>Kosten pro Monat (30 Tage):</strong> 6,0 kWh × 30 × 0,35 € = <strong>63,00 €</strong></li>
-      </ul>
+          <div class="rounded-2xl bg-emerald-50/60 dark:bg-emerald-950/20 p-5 border border-emerald-200/70 dark:border-emerald-800/40 text-sm text-slate-700 dark:text-slate-300 space-y-2">
+            <strong class="font-bold text-slate-900 dark:text-white block text-base">Vollständiges Rechenbeispiel:</strong>
+            <p>
+              Ein <strong>Heizlüfter mit 2.000 Watt</strong> läuft an kalten Wintertagen <strong>3 Stunden täglich</strong> bei einem Strompreis von <strong>35 ct/kWh (0,35 €/kWh)</strong>:
+            </p>
+            <ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+              <li>Leistung in kW: 2.000 W ÷ 1.000 = <strong>2,0 kW</strong></li>
+              <li>Täglicher Stromverbrauch: 2,0 kW × 3 h = <strong>6,0 kWh pro Tag</strong></li>
+              <li>Kosten pro Tag: 6,0 kWh × 0,35 € = <strong>2,10 € pro Tag</strong></li>
+              <li>Kosten pro Monat (30 Tage): 6,0 kWh × 30 × 0,35 € = <strong>63,00 € pro Monat</strong></li>
+              <li>Kosten bei 90 Wintertagen: 6,0 kWh × 90 × 0,35 € = <strong>189,00 € pro Saison</strong></li>
+            </ul>
+          </div>
+        </section>
 
-      <h2 class="text-2xl font-bold text-slate-900 mt-8">Tipps für eine genaue Berechnung</h2>
-      <p class="text-slate-600 text-sm leading-relaxed">
-        Viele Geräte wie Kühlschränke, Waschmaschinen oder Backöfen laufen nicht dauerhaft unter Volllast, sondern takten thermostatgesteuert. Für getaktete Geräte empfiehlt sich ein digitales Zwischensteck-Strommessgerät für 10 bis 15 Euro aus dem Baumarkt.
-      </p>
-    </article>
+        <!-- Section: Overview Table of Standard Powers -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Übersicht: Stromkosten typischer Wattstufen im Vergleich
+          </h2>
+          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
+            In der folgenden Vergleichstabelle siehst du auf einen Blick, welche Stromkosten bei unterschiedlichen Wattstufen pro Stunde, Tag (bei 4h Nutzung) und Jahr anfallen (Basis: 35 ct/kWh):
+          </p>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs sm:text-sm border-collapse">
+              <thead>
+                <tr class="border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400">
+                  <th class="py-3 px-3 font-semibold">Leistung</th>
+                  <th class="py-3 px-3 font-semibold">Typisches Gerät</th>
+                  <th class="py-3 px-3 font-semibold">Kosten / Stunde</th>
+                  <th class="py-3 px-3 font-semibold">Kosten / Tag (4h)</th>
+                  <th class="py-3 px-3 font-semibold">Kosten / Jahr (4h/Tag)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+                <tr>
+                  <td class="py-3 px-3 font-bold text-slate-900 dark:text-white">10 W</td>
+                  <td class="py-3 px-3 text-slate-600 dark:text-slate-400">LED-Lampe, WLAN-Router</td>
+                  <td class="py-3 px-3">0,35 ct</td>
+                  <td class="py-3 px-3">1,40 ct</td>
+                  <td class="py-3 px-3 font-semibold">5,11 €</td>
+                </tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30">
+                  <td class="py-3 px-3 font-bold text-slate-900 dark:text-white">50 W</td>
+                  <td class="py-3 px-3 text-slate-600 dark:text-slate-400">Laptop, Standventilator</td>
+                  <td class="py-3 px-3">1,75 ct</td>
+                  <td class="py-3 px-3">7,00 ct</td>
+                  <td class="py-3 px-3 font-semibold">25,55 €</td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-3 font-bold text-slate-900 dark:text-white">100 W</td>
+                  <td class="py-3 px-3 text-slate-600 dark:text-slate-400">55" LED-Fernseher, Kühlschrank (Spitze)</td>
+                  <td class="py-3 px-3">3,50 ct</td>
+                  <td class="py-3 px-3">14,00 ct</td>
+                  <td class="py-3 px-3 font-semibold">51,10 €</td>
+                </tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30">
+                  <td class="py-3 px-3 font-bold text-slate-900 dark:text-white">400 W</td>
+                  <td class="py-3 px-3 text-slate-600 dark:text-slate-400">Gaming-PC unter Volllast</td>
+                  <td class="py-3 px-3">14,00 ct</td>
+                  <td class="py-3 px-3">56,00 ct</td>
+                  <td class="py-3 px-3 font-semibold">204,40 €</td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-3 font-bold text-slate-900 dark:text-white">1.000 W</td>
+                  <td class="py-3 px-3 text-slate-600 dark:text-slate-400">Staubsauger, Mikrowelle, Bügeleisen</td>
+                  <td class="py-3 px-3">35,00 ct</td>
+                  <td class="py-3 px-3">1,40 €</td>
+                  <td class="py-3 px-3 font-semibold">511,00 €</td>
+                </tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30">
+                  <td class="py-3 px-3 font-bold text-slate-900 dark:text-white">2.000 W</td>
+                  <td class="py-3 px-3 text-slate-600 dark:text-slate-400">Heizlüfter, Waschmaschine (Heizphase)</td>
+                  <td class="py-3 px-3">70,00 ct</td>
+                  <td class="py-3 px-3">2,80 €</td>
+                  <td class="py-3 px-3 font-semibold text-amber-700 dark:text-amber-400">1.022,00 €</td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-3 font-bold text-slate-900 dark:text-white">3.000 W</td>
+                  <td class="py-3 px-3 text-slate-600 dark:text-slate-400">Backofen, Induktions-Booster</td>
+                  <td class="py-3 px-3">1,05 €</td>
+                  <td class="py-3 px-3">4,20 €</td>
+                  <td class="py-3 px-3 font-semibold text-amber-700 dark:text-amber-400">1.533,00 €</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Section: Practical Optimization -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            4 Schritte zur gezielten Senkung deiner Stromkosten
+          </h2>
+          <div class="space-y-4 text-slate-700 dark:text-slate-300 text-sm sm:text-base">
+            <div class="flex gap-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-200 font-bold text-sm">1</span>
+              <div>
+                <strong class="font-bold text-slate-900 dark:text-white block mb-1">Versteckte Dauerläufer identifizieren:</strong>
+                Geräte wie alte Umwälzpumpen, veraltete Kühlschränke oder im Standby laufende Unterhaltungselektronik verursachen oft 30–40 % der gesamten Stromrechnung.
+              </div>
+            </div>
+            <div class="flex gap-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-200 font-bold text-sm">2</span>
+              <div>
+                <strong class="font-bold text-slate-900 dark:text-white block mb-1">Arbeitspreis prüfen und Stromanbieter wechseln:</strong>
+                Wer mehr als 36–38 ct/kWh zahlt, sollte über Vergleichsportale zu einem günstigen Neukundentarif (ca. 28–32 ct/kWh) wechseln.
+              </div>
+            </div>
+            <div class="flex gap-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-200 font-bold text-sm">3</span>
+              <div>
+                <strong class="font-bold text-slate-900 dark:text-white block mb-1">Eco-Programme bei Großgeräten nutzen:</strong>
+                Waschmaschinen und Spülmaschinen verbrauchen im Eco-Modus bis zu 40 % weniger Energie, weil das Wasser weniger stark erhitzt wird.
+              </div>
+            </div>
+            <div class="flex gap-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-200 font-bold text-sm">4</span>
+              <div>
+                <strong class="font-bold text-slate-900 dark:text-white block mb-1">Eigenen Solarstrom erzeugen:</strong>
+                Ein 800-Watt-Balkonkraftwerk erzeugt jährlich ca. 600 bis 800 kWh Strom und senkt die Stromkosten eines Haushalts dauerhaft um ca. 200 bis 280 Euro pro Jahr.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Stromkosten-Formel Quick-Check
+          </h3>
+          <p class="text-xs text-slate-300 leading-relaxed mb-4">
+            Multipliziere Watt mit den täglichen Nutzungsstunden und teile durch 1.000 für kWh.
+          </p>
+          <div class="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700 font-mono text-xs text-emerald-300 mb-4">
+            kWh = (W × h) / 1000<br/>
+            € = kWh × ct/kWh ÷ 100
+          </div>
+          <div class="space-y-2 text-xs border-t border-slate-800 pt-3">
+            <div class="flex justify-between text-slate-300">
+              <span>Referenz-Arbeitspreis:</span>
+              <strong class="text-white">35,0 ct/kWh</strong>
+            </div>
+            <div class="flex justify-between text-slate-300">
+              <span>Monatliche Grundgebühr (Ø):</span>
+              <strong class="text-white">ca. 10–12 €</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Wichtige Schnell-Rechner</h3>
+          <ul class="space-y-2.5 text-xs">
+            <li>
+              <a href="/watt-rechner" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Watt in kWh umrechnen</a>
+            </li>
+            <li>
+              <a href="/kwh-rechner" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ kWh in Euro berechnen</a>
+            </li>
+            <li>
+              <a href="/stromkosten-pro-stunde" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromkosten pro Stunde</a>
+            </li>
+            <li>
+              <a href="/stromrechnung-berechnen" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromrechnung & Abschlag berechnen</a>
+            </li>
+            <li>
+              <a href="/stromfresser" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Die 10 größten Stromfresser</a>
+            </li>
+          </ul>
+        </div>
+      </aside>
+    </div>
 
     <RelatedLinks links={related} />
-    <SourceBox sourceIds={['bnetza', 'bdew', 'stromspiegel']} />
-    <FaqSection items={faqs} />
+    <SourceBox sourceIds={['bnetza', 'bdew', 'stromspiegel', 'destatis']} />
   </div>
 </BaseLayout>

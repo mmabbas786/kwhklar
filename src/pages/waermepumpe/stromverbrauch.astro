@@ -4,29 +4,66 @@ import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
 import RelatedLinks from '../../components/seo/RelatedLinks.astro';
 import SourceBox from '../../components/trust/SourceBox.astro';
 import FaqSection from '../../components/content/FaqSection.astro';
+import { getFaqSchema } from '../../lib/structured-data';
 
 const faqs = [
   {
-    question: 'Wie viel Strom verbraucht eine Wärmepumpe im Einfamilienhaus pro Jahr?',
-    answer: 'In einem gut gedämmten Neubau (ca. 140 m²) verbraucht eine Luft-Wasser-Wärmepumpe ca. 2.000 bis 3.000 kWh Strom pro Jahr. In einem teilsanierten Altbau liegt der Stromverbrauch typischerweise bei 4.000 bis 6.500 kWh pro Jahr.',
+    question: "Wie viel Strom verbraucht eine Wärmepumpe im Einfamilienhaus pro Jahr?",
+    answer: "In einem modernen Neubau (KfW 40/55, 140 m²) benötigt eine Luft-Wasser-Wärmepumpe ca. 1.800 bis 2.500 kWh Strom pro Jahr. In einem teilsanierten Altbau liegt der Jahresstromverbrauch typischerweise bei 4.000 bis 6.000 kWh, in einem ungedämmten Altbau bei bis zu 8.500 kWh."
   },
   {
-    question: 'Wie verteilt sich der Stromverbrauch einer Wärmepumpe über das Jahr?',
-    answer: 'Rund 75 bis 80 % des gesamten Jahresstromverbrauchs einer Wärmepumpe fallen in den vier kalten Monaten November, Dezember, Januar und Februar an. In den Sommermonaten wird lediglich wenig Strom für die Warmwasserbereitung benötigt.',
+    question: "Wie wird der Stromverbrauch einer Wärmepumpe mathematisch berechnet?",
+    answer: "Formel: Stromverbrauch (kWh/Jahr) = Jährlicher Wärmebedarf (kWh) ÷ Jahresarbeitszahl (JAZ). Beispiel: Ein Haus mit 16.000 kWh Wärmebedarf und einer Wärmepumpe mit JAZ 3,5 verbraucht: 16.000 ÷ 3,5 = 4.571 kWh Strom pro Jahr."
   },
+  {
+    question: "Was ist der Unterschied zwischen COP und JAZ?",
+    answer: "Der COP (Coefficient of Performance) ist ein standardisierter Laborwert bei einem festen Betriebspunkt (z. B. A2/W35: Luft 2 °C, Vorlauf 35 °C). Die JAZ (Jahresarbeitszahl) misst die reale Effizienz über alle 365 Tage des Jahres im echten Praxisbetrieb inklusive Warmwasserbereitung und Abtauzyklen."
+  },
+  {
+    question: "Wie verteilt sich der Stromverbrauch einer Wärmepumpe über die Jahreszeiten?",
+    answer: "Rund 75 bis 80 % des Jahresstromverbrauchs fallen in den vier Kernwintermonaten November bis Februar an. Im Frühjahr und Herbst werden ca. 15 bis 20 % verbraucht. Im Sommer (Mai bis August) fallen nur ca. 5 % des Stroms für die reine Warmwasserbereitung an."
+  },
+  {
+    question: "Verbraucht eine Erdwärmepumpe weniger Strom als eine Luftwärmepumpe?",
+    answer: "Ja. Erdwärmepumpen (Sole-Wasser) erreichen typischerweise eine JAZ von 4,5 bis 5,2, während Luft-Wasser-Wärmepumpen im Schnitt eine JAZ von 3,3 bis 4,0 erzielen. Erdwärme spart dadurch rund 20 bis 30 % Strom ein, da das Erdreich auch im eisigen Winter konstant ca. 8 bis 10 °C warm bleibt."
+  },
+  {
+    question: "Welchen Einfluss hat die Vorlauftemperatur der Heizung auf den Stromverbrauch?",
+    answer: "Jedes Grad weniger Vorlauftemperatur senkt den Stromverbrauch der Wärmepumpe um ca. 2,5 bis 3 %. Eine Fußbodenheizung (35 °C Vorlauf) arbeitet deshalb ca. 25–35 % stromsparender als alte Hochtemperatur-Heizkörper (55–60 °C Vorlauf)."
+  },
+  {
+    question: "Wann springt der elektrische Heizstab (Zusatzheizung) an?",
+    answer: "Der elektrische Heizstab schaltet sich bei monoenergetischen Luftwärmepumpen erst bei extremen Außentemperaturen unterhalb des sogenannten Bivalenzpunkts (meist unter -7 °C bis -10 °C) oder bei der Legionellenschaltung des Warmwasserspeichers zu. In einer gut eingestellten Anlage macht der Heizstab weniger als 2 bis 5 % des Jahresverbrauchs aus."
+  },
+  {
+    question: "Wie viel Strom verbraucht die Warmwasserbereitung über die Wärmepumpe?",
+    answer: "Für Warmwasser benötigt eine Wärmepumpe pro Person ca. 300 bis 450 kWh Strom pro Jahr. Da Warmwasser auf 50–55 °C erwärmt werden muss, sinkt die Arbeitszahl für Warmwasser auf ca. 2,5 bis 3,0 ab."
+  },
+  {
+    question: "Wie kann man den Stromverbrauch einer Wärmepumpe im Altbau senken?",
+    answer: "1. Hydraulischen Abgleich durchführen. 2. Heizkurve so flach wie möglich einstellen. 3. Einzelne kritische Heizkörper gegen größere Niedertemperatur- oder Gebläseradiatoren tauschen. 4. Oberste Geschossdecke dämmen."
+  },
+  {
+    question: "Kann eine Photovoltaikanlage den Wärmepumpenstrom komplett decken?",
+    answer: "Nein, da der meiste Strom im Winter benötigt wird, wenn PV-Anlagen witterungsbedingt nur ca. 15 bis 20 % ihres Jahresertrags liefern. Dennoch kann eine Solaranlage ca. 20 bis 35 % des jährlichen Wärmepumpenstroms (insbesondere in der Übergangszeit und im Sommer) direkt liefern."
+  }
 ];
 
+const faqSchema = getFaqSchema(faqs);
+
 const related = [
-  { title: 'Wärmepumpe Stromrechner', href: '/waermepumpe/stromverbrauch-rechner', description: 'Exakten Strombedarf berechnen.' },
   { title: 'Wärmepumpe Stromkosten', href: '/waermepumpe/stromkosten', description: 'Heizstromtarife & Gesamtkosten.' },
-  { title: 'Balkonkraftwerk / PV', href: '/photovoltaik/eigenverbrauch-rechner', description: 'Wärmepumpe mit Solarstrom betreiben.' },
+  { title: 'Wärmepumpen-Stromrechner', href: '/waermepumpe/stromverbrauch-rechner', description: 'Exakten Strombedarf berechnen.' },
+  { title: 'PV Eigenverbrauch Rechner', href: '/photovoltaik/eigenverbrauch-rechner', description: 'Wärmepumpe mit Solarstrom betreiben.' },
+  { title: 'Dynamische Stromtarife', href: '/dynamische-stromtarife', description: 'Heizstrom flexibel einkaufen.' },
 ];
 ---
 
 <BaseLayout
   title="Wärmepumpe Stromverbrauch: Altbau vs. Neubau & Richtwerte | kWhKlar"
-  description="Wie viel Strom verbraucht eine Wärmepumpe im Jahr? Richtwerte für Altbau und Neubau, saisonale Verteilung im Winter und Einfluss der JAZ."
+  description="Wie viel Strom verbraucht eine Wärmepumpe im Jahr? Richtwerte für Altbau und Neubau, saisonale Winterverteilung, JAZ-Einfluss und 10 Experten-FAQs."
   canonical="https://kwhklar.de/waermepumpe/stromverbrauch"
+  jsonLd={faqSchema ? [faqSchema] : undefined}
   breadcrumbs={[
     { name: 'Wärmepumpe', path: '/waermepumpe/stromverbrauch' },
     { name: 'Stromverbrauch', path: '/waermepumpe/stromverbrauch' },
@@ -40,40 +77,41 @@ const related = [
       ]}
     />
 
-    <div class="max-w-3xl mb-8">
-      <span class="badge-emerald text-xs mb-2">Wärmepumpen-Wissen</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-        Wärmepumpe Stromverbrauch: Richtwerte für Altbau & Neubau
+    <div class="max-w-4xl mb-8">
+      <span class="badge-emerald text-xs mb-2">Wärmepumpen-Wissen &amp; Effizienz</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Wärmepumpe Stromverbrauch: Richtwerte für Altbau &amp; Neubau
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        Erfahre, wie viel Strom Luft-Wasser- und Erdwärmepumpen im Jahr verbrauchen, warum die Jahresarbeitszahl entscheidend ist und wie sich der Heizstrom auf die Wintermonate verteilt.
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Erfahre, wie viel Strom Luft-Wasser- und Erdwärmepumpen im Jahr tatsächlich verbrauchen, warum die Jahresarbeitszahl (JAZ) entscheidend ist und wie sich der Heizstrom auf die kalten Wintermonate verteilt.
       </p>
     </div>
 
     <!-- Comparison Table -->
-    <div class="my-8 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xs max-w-4xl mx-auto">
-      <h2 class="text-xl font-bold text-slate-900 mb-4">Stromverbrauch nach Gebäudestandard (140 m² Wohnfläche)</h2>
+    <div class="my-10 bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xs max-w-4xl mx-auto">
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Stromverbrauch nach Gebäudestandard (140 m² Wohnfläche)</h2>
       <div class="overflow-x-auto">
         <table class="w-full text-left text-xs sm:text-sm">
-          <thead class="bg-slate-50 text-slate-700 font-semibold border-b border-slate-200">
+          <thead class="bg-slate-50 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300 font-semibold border-b border-slate-200 dark:border-slate-700">
             <tr>
               <th class="p-3">Gebäudestandard</th>
               <th class="p-3">Wärmebedarf / Jahr</th>
               <th class="p-3">JAZ (Luft-Wasser)</th>
               <th class="p-3">Strombedarf / Jahr</th>
-              <th class="p-3 text-right">Stromkosten / Jahr (bei 30 ct)</th>
+              <th class="p-3 text-right">Stromkosten / Jahr (@ 30 ct)</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-slate-100 text-slate-600">
-            <tr><td class="p-3 font-semibold text-slate-900">Neubau (KfW 40/55)</td><td class="p-3">7.000 kWh</td><td class="p-3">4,0</td><td class="p-3 font-bold text-emerald-700">1.750 kWh</td><td class="p-3 text-right font-semibold text-slate-900">525,00 €</td></tr>
-            <tr><td class="p-3 font-semibold text-slate-900">Guter Bestand (ab 2002)</td><td class="p-3">12.000 kWh</td><td class="p-3">3,8</td><td class="p-3 font-bold text-emerald-700">3.158 kWh</td><td class="p-3 text-right font-semibold text-slate-900">947,40 €</td></tr>
-            <tr><td class="p-3 font-semibold text-slate-900">Teilsanierter Altbau (ab 1980)</td><td class="p-3">18.000 kWh</td><td class="p-3">3,3</td><td class="p-3 font-bold text-emerald-700">5.455 kWh</td><td class="p-3 text-right font-semibold text-slate-900">1.636,50 €</td></tr>
-            <tr><td class="p-3 font-semibold text-slate-900">Ungedämmter Altbau</td><td class="p-3">25.000 kWh</td><td class="p-3">2,8</td><td class="p-3 font-bold text-amber-700">8.929 kWh</td><td class="p-3 text-right font-semibold text-slate-900">2.678,70 €</td></tr>
+          <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-600 dark:text-slate-300">
+            <tr><td class="p-3 font-semibold text-slate-900 dark:text-white">Neubau (KfW 40/55)</td><td class="p-3">7.000 kWh</td><td class="p-3">4,0</td><td class="p-3 font-bold text-emerald-600 dark:text-emerald-400">1.750 kWh</td><td class="p-3 text-right font-semibold text-slate-900 dark:text-white">525,00 €</td></tr>
+            <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="p-3 font-semibold text-slate-900 dark:text-white">Guter Bestand (ab 2002)</td><td class="p-3">12.000 kWh</td><td class="p-3">3,8</td><td class="p-3 font-bold text-emerald-600 dark:text-emerald-400">3.158 kWh</td><td class="p-3 text-right font-semibold text-slate-900 dark:text-white">947,40 €</td></tr>
+            <tr><td class="p-3 font-semibold text-slate-900 dark:text-white">Teilsanierter Altbau (ab 1980)</td><td class="p-3">18.000 kWh</td><td class="p-3">3,3</td><td class="p-3 font-bold text-emerald-600 dark:text-emerald-400">5.455 kWh</td><td class="p-3 text-right font-semibold text-slate-900 dark:text-white">1.636,50 €</td></tr>
+            <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="p-3 font-semibold text-slate-900 dark:text-white">Ungedämmter Altbau</td><td class="p-3">25.000 kWh</td><td class="p-3">2,8</td><td class="p-3 font-bold text-amber-600 dark:text-amber-400">8.929 kWh</td><td class="p-3 text-right font-semibold text-slate-900 dark:text-white">2.678,70 €</td></tr>
           </tbody>
         </table>
       </div>
     </div>
 
+    <!-- Interactive CTA to Calculator -->
     <div class="text-center my-8">
       <a
         href="/waermepumpe/stromverbrauch-rechner"
@@ -86,8 +124,37 @@ const related = [
       </a>
     </div>
 
+    <!-- Main Editorial Content Depth -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Effizienz-Faustformel
+          </h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            1 Grad weniger Vorlauftemperatur spart rund <strong>2,5 % Strom</strong>. Eine optimierte Heizkurve spart bis zu 100 Euro pro Jahr.
+          </p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Verwandte Ratgeber</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/waermepumpe/stromkosten" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Wärmepumpe Stromkosten</a></li>
+            <li><a href="/waermepumpe/stromverbrauch-rechner" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Wärmepumpen-Rechner</a></li>
+            <li><a href="/dynamische-stromtarife" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Dynamische Heizstromtarife</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
     <RelatedLinks links={related} />
     <SourceBox sourceIds={['bnetza', 'uba', 'stromspiegel']} />
-    <FaqSection items={faqs} />
   </div>
 </BaseLayout>

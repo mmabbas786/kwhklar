@@ -5,76 +5,154 @@ import RelatedLinks from '../components/seo/RelatedLinks.astro';
 import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
 import { electricityPriceData } from '../data/electricity-price';
+import { formatEuro } from '../lib/formatters';
+import { getFaqSchema } from '../lib/structured-data';
 
 const faqs = [
   {
-    question: 'Warum stiegen die Strompreise 2022 und 2023 so stark an?',
-    answer: 'Durch den Krieg in der Ukraine und den Wegfall russischer Erdgaslieferungen stiegen die Großhandelspreise für Gas und Steinkohle an der Strombörse extrem an. Wegen des „Merit-Order-Prinzips“ bestimmten teure Gaskraftwerke oft den Börsenstrompreis.',
+    question: "Wie hat sich der Strompreis in den letzten 10 Jahren in Deutschland entwickelt?",
+    answer: "Zwischen 2014 und 2020 lag der Strompreis relativ stabil zwischen 29,1 und 31,8 ct/kWh. Im Krisenjahr 2022 explodierten die Großhandelspreise und trieben Neukundentarife auf bis zu 50–60 ct/kWh. Nach Wegfall der EEG-Umlage (Juli 2022) und Marktberuhigung sank der Durchschnittspreis wieder auf ca. 35,0 ct/kWh."
   },
+  {
+    question: "Warum ist der Strompreis 2022 so extrem angestiegen?",
+    answer: "Hauptauslöser waren die geopolitische Energiekrise und die Vervielfachung der Erdgaspreise. Durch das Merit-Order-Prinzip an der Strombörse bestimmen teure Gaskraftwerke in vielen Stunden den Grenzpreis für den gesamten Strommarkt."
+  },
+  {
+    question: "Wann wurde die EEG-Umlage abgeschafft und wie viel hat das gespart?",
+    answer: "Die EEG-Umlage wurde zum 1. Juli 2022 vom Gesetzgeber dauerhaft auf 0 Cent gesenkt. Zuvor betrug sie bis zu 6,75 ct/kWh. Bei 3.500 kWh Jahresverbrauch sparte die Abschaffung rund 236 Euro pro Jahr."
+  },
+  {
+    question: "Was war die Strompreisbremse und gilt sie noch?",
+    answer: "Die staatliche Strompreisbremse (Deckelung auf 40 ct/kWh für 80 % des Vorjahresverbrauchs) galt von Januar bis Dezember 2023. Da die Marktpreise heute wieder weit unter 40 ct/kWh liegen, ist die Bremse planmäßig ausgelaufen."
+  },
+  {
+    question: "Wie wird sich der Strompreis in den nächsten Jahren entwickeln?",
+    answer: "Experten von BDEW und Energieagenturen erwarten stabile bis leicht sinkende Erzeugungskosten durch den Ausbau erneuerbarer Energien. Dem stehen jedoch steigende Netzentgelte für den Ausbau der Stromautobahnen und Verteilnetze gegenüber."
+  },
+  {
+    question: "Wie hat sich der Grundpreis in den letzten Jahren entwickelt?",
+    answer: "Der monatliche Grundpreis ist von durchschnittlich ca. 8–10 Euro (2018) auf heute ca. 11–15 Euro pro Monat gestiegen, primär getrieben durch höhere Fixkosten der Messstellenbetreiber und Grundversorger."
+  },
+  {
+    question: "Welchen Einfluss hatte der Atomausstieg auf den Strompreis?",
+    answer: "Die endgültige Abschaltung der letzten deutschen Kernkraftwerke im April 2023 hatte laut wissenschaftlichen Analysen (z. B. Fraunhofer ISE) kaum messbare Auswirkungen auf den Strompreis, da die Erzeugung durch erneuerbare Energien und gesunkene Gaspreise überkompensiert wurde."
+  },
+  {
+    question: "Wie hoch waren die Strompreise vor 20 Jahren (2000er Jahre)?",
+    answer: "Im Jahr 2000 lag der durchschnittliche Haushaltsstrompreis in Deutschland bei rund 13,9 Cent pro Kilowattstunde – weniger als die Hälfte des heutigen Niveaus."
+  },
+  {
+    question: "Wie kann man sich vor zukünftigen Preissteigerungen schützen?",
+    answer: "1. Tarife mit 12 bis 24 Monaten Preisgarantie abschließen. 2. Ein Balkonkraftwerk oder eine Photovoltaikanlage installieren, um eigenen Strom zum Festpreis (Gestehungskosten ca. 8–12 ct/kWh) zu erzeugen."
+  },
+  {
+    question: "Wo finde ich die offiziellen historischen Strompreisdaten?",
+    answer: "Die amtlichen Zeitreihen werden halbjährlich vom Statistischen Bundesamt (Destatis) und der Bundesnetzagentur in den offiziellen Monitoringberichten veröffentlicht."
+  }
 ];
 
+const faqSchema = getFaqSchema(faqs);
+
 const related = [
-  { title: 'Strompreis Zusammensetzung', href: '/strompreis-zusammensetzung', description: 'Wie entsteht der Preis?' },
-  { title: 'Dynamische Stromtarife', href: '/dynamische-stromtarife', description: 'Börsenstrompreise nutzen.' },
-  { title: 'Strompreis Deutschland', href: '/strompreis-deutschland', description: 'Aktuelle Marktdaten.' },
+  { title: 'Strompreis Zusammensetzung', href: '/strompreis-zusammensetzung', description: 'Steuern, Abgaben & Netzentgelte.' },
+  { title: 'Strompreis Deutschland', href: '/strompreis-deutschland', description: 'Regionale Unterschiede.' },
+  { title: 'Dynamische Stromtarife', href: '/dynamische-stromtarife', description: 'Börsenpreise & Smart Meter.' },
+  { title: 'Strompreis pro kWh', href: '/strompreis-pro-kwh', description: 'Aktuelle Kilowattstundenkosten.' },
 ];
 ---
 
 <BaseLayout
-  title="Strompreis Entwicklung Deutschland: Historische Preise 2018–2026 | kWhKlar"
-  description="Wie haben sich die Strompreise in Deutschland entwickelt? Historische Daten, Ursachen der Energiekrise und aktuelle Trends im Überblick."
+  title="Strompreisentwicklung in Deutschland: Historische Preise 2018–2026 | kWhKlar"
+  description="Historische Strompreisentwicklung in Deutschland: Analyse der Jahre 2018 bis 2026, Abschaffung der EEG-Umlage, Krisenverlauf und Ausblick."
   canonical="https://kwhklar.de/strompreis-entwicklung"
+  jsonLd={faqSchema ? [faqSchema] : undefined}
   breadcrumbs={[
     { name: 'Strompreis', path: '/strompreis' },
-    { name: 'Strompreis Entwicklung', path: '/strompreis-entwicklung' },
+    { name: 'Strompreisentwicklung', path: '/strompreis-entwicklung' },
   ]}
 >
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
     <Breadcrumbs
       items={[
         { name: 'Strompreis', path: '/strompreis' },
-        { name: 'Strompreis Entwicklung', path: '/strompreis-entwicklung' },
+        { name: 'Strompreisentwicklung', path: '/strompreis-entwicklung' },
       ]}
     />
 
-    <div class="max-w-3xl mb-8">
-      <span class="badge-emerald text-xs mb-2">Historie & Analyse</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-        Strompreis-Entwicklung in Deutschland (2018–2026)
+    <div class="max-w-4xl mb-8">
+      <span class="badge-emerald text-xs mb-2">Historische Marktanalyse</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Strompreisentwicklung in Deutschland (2018–2026)
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        Verfolge die Entwicklung des durchschnittlichen Haushaltsstrompreises über die letzten Jahre nach Daten des BDEW und der Bundesnetzagentur.
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Erfahre, wie sich die Strompreise für deutsche Privathaushalte in den vergangenen Jahren verändert haben: Vom Vorkrisenniveau über die Energiekrise 2022 bis zur Abschaffung der EEG-Umlage und der heutigen Marktlage.
       </p>
     </div>
 
-    <!-- Historical Chart / Table -->
-    <div class="my-8 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xs max-w-4xl mx-auto">
-      <h2 class="text-xl font-bold text-slate-900 mb-6">Durchschnittliche Strompreise für Haushalte</h2>
-      <div class="space-y-4">
-        {electricityPriceData.historicalTrends.map((item) => {
-          const maxVal = 50;
-          const pct = Math.round((item.averagePriceCtPerKwh / maxVal) * 100);
-          return (
-            <div>
-              <div class="flex justify-between text-xs sm:text-sm font-semibold mb-1">
-                <span class="text-slate-900">{item.year}</span>
-                <span class="text-emerald-700 font-bold">{item.averagePriceCtPerKwh.toFixed(2).replace('.', ',')} ct/kWh</span>
-              </div>
-              <div class="h-3 w-full rounded-full bg-slate-100 overflow-hidden">
-                <div
-                  class="h-full bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full"
-                  style={`width: ${pct}%`}
-                ></div>
-              </div>
-              <span class="text-[11px] text-slate-500 mt-1 block">{item.note}</span>
-            </div>
-          );
-        })}
-      </div>
+    <!-- Main Editorial Content Depth -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- Section: Historical Trends Table -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Historische Preisübersicht: 2018 bis 2026
+          </h2>
+          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
+            Durchschnittliche Arbeitspreise für Haushaltskunden und die jährlichen Stromkosten einer Musterfamilie mit 3.500 kWh Jahresverbrauch (Datenbasis: BDEW, Bundesnetzagentur, Destatis):
+          </p>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs sm:text-sm border-collapse">
+              <thead>
+                <tr class="border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400">
+                  <th class="py-2.5 px-3 font-semibold">Jahr</th>
+                  <th class="py-2.5 px-3 font-semibold">Ø Arbeitspreis</th>
+                  <th class="py-2.5 px-3 font-semibold">Jahreskosten (3.500 kWh)</th>
+                  <th class="py-2.5 px-3 font-semibold">Wirtschaftlicher Hintergrund</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+                {electricityPriceData.historicalTrends.map((h) => (
+                  <tr class="hover:bg-slate-50/70 dark:hover:bg-slate-800/30">
+                    <td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">{h.year}</td>
+                    <td class="py-2.5 px-3 font-semibold text-emerald-600 dark:text-emerald-400">{h.averagePriceCtPerKwh.toFixed(1).replace('.', ',')} ct/kWh</td>
+                    <td class="py-2.5 px-3 font-medium">{formatEuro((h.averagePriceCtPerKwh * 3500) / 100)}</td>
+                    <td class="py-2.5 px-3 text-xs text-slate-500 dark:text-slate-400">{h.note}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Meilenstein EEG-Wegfall
+          </h3>
+          <p class="text-xs text-slate-300 leading-relaxed mb-3">
+            Am <strong>1. Juli 2022</strong> wurde die EEG-Umlage dauerhaft auf 0 ct gesenkt. Das spart deutschen Haushalten seither jährlich über 200 Euro Stromkosten.
+          </p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Verwandte Ratgeber</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/strompreis-zusammensetzung" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Strompreis Zusammensetzung</a></li>
+            <li><a href="/strompreis-deutschland" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Regionale Unterschiede</a></li>
+            <li><a href="/dynamische-stromtarife" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Dynamische Tarife</a></li>
+          </ul>
+        </div>
+      </aside>
     </div>
 
     <RelatedLinks links={related} />
     <SourceBox sourceIds={['bnetza', 'bdew', 'destatis']} />
-    <FaqSection items={faqs} />
   </div>
 </BaseLayout>

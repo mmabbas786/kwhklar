@@ -4,63 +4,105 @@ import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
 import RelatedLinks from '../components/seo/RelatedLinks.astro';
 import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
-import { householdBenchmarks } from '../data/household-benchmarks';
-import { formatKwh } from '../lib/formatters';
-import { getCalculatorSchema } from '../lib/structured-data';
-
-const schema = getCalculatorSchema(
-  'Stromverbrauch Haushalt Rechner',
-  'Berechne und vergleiche den Stromverbrauch deines Haushalts nach Personenzahl und Wohnform.',
-  '/stromverbrauch-haushalt'
-);
+import { getCalculatorSchema, getFaqSchema } from '../lib/structured-data';
 
 const faqs = [
   {
-    question: 'Welchen Einfluss hat die elektrische Warmwasserbereitung?',
-    answer: 'Wird das Dusch- und Spülwasser über elektrische Durchlauferhitzer oder Boiler erwärmt, erhöht sich der jährliche Stromverbrauch pro Person um ca. 500 bis 800 kWh (ca. 175 bis 280 € Mehrkosten pro Person und Jahr).',
+    question: "Wie hoch ist der normale Stromverbrauch in einem Einfamilienhaus?",
+    answer: "In einem durchschnittlichen Einfamilienhaus liegt der Stromverbrauch bei ca. 3.000 bis 4.000 kWh pro Jahr (ohne Wärmepumpe und E-Auto). Bei 2 Personen sind es ca. 2.800–3.200 kWh, bei 4 Personen ca. 3.800–4.400 kWh pro Jahr. Kommt eine Wärmepumpe hinzu, erhöht sich der Verbrauch um 3.000 bis 5.000 kWh jährlich."
   },
   {
-    question: 'Warum verbraucht ein Einfamilienhaus mehr Strom als eine Wohnung?',
-    answer: 'Im Einfamilienhaus kommen zusätzliche Stromverbraucher wie Heizungspumpen, Außenbeleuchtung, Gartenbewässerung, Garagentorantriebe und oft größere Wohnflächen hinzu.',
+    question: "Wie viele kWh Strom braucht ein Einfamilienhaus pro Tag?",
+    answer: "Ein Einfamilienhaus ohne Wärmepumpe verbraucht im Schnitt ca. 8 bis 12 kWh Strom pro Tag (rund 2,80 bis 4,20 € täglich bei 35 ct/kWh). Im Winter bei Beleuchtung und Heizungspumpen liegt der Tagesverbrauch oft bei 12–15 kWh, im Sommer bei 6–8 kWh."
   },
+  {
+    question: "Wie hoch ist der durchschnittliche Grundverbrauch (Grundlast) an Strom?",
+    answer: "Die Grundlast (Ruhestrom für Kühlschrank, Router, Standby-Geräte, Heizungspumpen) liegt in einer Wohnung typischerweise bei 60 bis 120 Watt (ca. 1,5 bis 3 kWh pro Tag). In einem Einfamilienhaus liegt die Grundlast bei 120 bis 250 Watt (ca. 3 bis 6 kWh pro Tag bzw. rund 1.000 bis 2.000 kWh im Jahr)."
+  },
+  {
+    question: "Was verbraucht ein 2-Personen-Haushalt im Durchschnitt?",
+    answer: "In einer Wohnung mit zentraler Warmwasserbereitung verbrauchen 2 Personen ca. 2.000 bis 2.200 kWh pro Jahr (ca. 700 bis 770 € bei 35 ct/kWh). Im Einfamilienhaus sind es ca. 3.000 kWh, und mit elektrischem Durchlauferhitzer ca. 3.000 bis 3.600 kWh."
+  },
+  {
+    question: "Sind 4.000 kWh Strom im Jahr viel für 2 Personen?",
+    answer: "Ja, 4.000 kWh für 2 Personen liegen ca. 30 bis 80 % über dem Bundesdurchschnitt. Ein so hoher Verbrauch deutet meist auf elektrische Warmwasserbereitung, veraltete Haushaltsgeräte, intensive Homeoffice-Nutzung mit mehreren PCs oder versteckte Dauerstromfresser (wie alte Heizlüfter oder defekte Kühldichtungen) hin."
+  },
+  {
+    question: "Sind 3.000 kWh Strom im Jahr viel?",
+    answer: "Für eine Einzelperson ist das sehr viel (mehr als das Doppelte des Schnitts). Für 2 Personen im Einfamilienhaus oder eine 3- bis 4-köpfige Familie in einer Mietwohnung ist ein Jahresverbrauch von 3.000 kWh ein völlig normaler, durchschnittlicher Wert."
+  },
+  {
+    question: "Sind 1.000 kWh Strom im Jahr viel?",
+    answer: "Nein, 1.000 kWh im Jahr ist ein ausgesprochen sparsamer Verbrauch. Für einen Single-Haushalt in einer kleinen Wohnung ohne elektrische Warmwasserbereitung entspricht dies vorbildlicher Effizienz (Kosten ca. 350 €/Jahr bei 35 ct/kWh)."
+  },
+  {
+    question: "Wie viel Strom verbraucht man für eine 70-m²-Wohnung?",
+    answer: "Für eine 70-m²-Wohnung mit 2 Personen liegt der typische Verbrauch bei ca. 2.100 kWh pro Jahr (ohne elektrisches Warmwasser) bzw. ca. 2.800–3.000 kWh (mit elektrischem Warmwasser). Die Quadratmeterzahl beeinflusst primär den Beleuchtungs- und Heizstrom, während die Personenzahl den Haushaltsstrom bestimmt."
+  },
+  {
+    question: "Welchen Einfluss hat die elektrische Warmwasserbereitung (Durchlauferhitzer)?",
+    answer: "Wird Dusch- und Spülwasser über Durchlauferhitzer oder Boiler elektrisch erwärmt, erhöht sich der Jahresverbrauch um ca. 500 bis 800 kWh pro Person. Für einen 4-Personen-Haushalt bedeutet dies rund 2.000 bis 3.000 kWh Mehrverbrauch (ca. 700 bis 1.050 € Mehrkosten pro Jahr)."
+  },
+  {
+    question: "Warum verbraucht ein Einfamilienhaus deutlich mehr Strom als eine Wohnung?",
+    answer: "Im Einfamilienhaus fallen zusätzliche Verbraucher an: eigene Heizungspumpen, Außenbeleuchtung, Garagentor, Gartenpumpe, Klingelanlagen und größere Grundflächen. Zudem gibt es keine gemeinsamen Wände, was den Kühl- und Heizbedarf indirekt beeinflusst."
+  },
+  {
+    question: "Wie hoch ist der tägliche Stromverbrauch einer 4-köpfigen Familie?",
+    answer: "Eine 4-köpfige Familie verbraucht durchschnittlich ca. 10 bis 14 kWh Strom pro Tag (ca. 3.500 bis 5.000 kWh im Jahr). Das entspricht täglichen Stromkosten von ca. 3,50 bis 4,90 € bei 35 ct/kWh."
+  },
+  {
+    question: "Warum ist mein Stromverbrauch plötzlich so stark gestiegen?",
+    answer: "Häufige Ursachen für plötzliche Verbrauchssprünge: 1. Defekte Kühlschrankdichtungen oder vereiste Gefrierfächer (Kompressor-Dauerlauf). 2. Ein neu angeschafftes Gerät (Gaming-PC, mobiles Klimagerät, Heizlüfter, Whirlpool). 3. Vermehrte Homeoffice-Tage. 4. Ein defekter Durchlauferhitzer oder klemmende Thermostate. 5. Ein fehlerhafter oder geschätzter Zählerstand auf der Abrechnung."
+  }
 ];
+
+const calcSchema = getCalculatorSchema(
+  'Stromverbrauch Haushalt Rechner & Benchmarks',
+  'Berechne und vergleiche den Stromverbrauch deines Haushalts nach Personenzahl, Wohnform und Warmwasserbereitung.',
+  '/stromverbrauch-haushalt'
+);
+const faqSchema = getFaqSchema(faqs);
+const pageSchemas = faqSchema ? [calcSchema, faqSchema] : [calcSchema];
 
 const related = [
   { title: '1-Personen-Haushalt', href: '/stromverbrauch-1-person', description: 'Richtwerte für Singles.' },
   { title: '2-Personen-Haushalt', href: '/stromverbrauch-2-personen', description: 'Richtwerte für Paare.' },
+  { title: '3-Personen-Haushalt', href: '/stromverbrauch-3-personen', description: 'Verbrauch für 3 Personen.' },
   { title: '4-Personen-Haushalt', href: '/stromverbrauch-4-personen', description: 'Richtwerte für Familien.' },
-  { title: 'Durchschnittlicher Stromverbrauch', href: '/durchschnittlicher-stromverbrauch', description: 'Bundesweiter Gesamtvergleich.' },
+  { title: 'Stromverbrauch Einfamilienhaus', href: '/stromverbrauch-einfamilienhaus', description: 'Einfamilienhaus-Spezifika.' },
+  { title: 'Stromverbrauch Wohnung', href: '/stromverbrauch-wohnung', description: 'Mietwohnungs-Vergleich.' },
 ];
 ---
 
 <BaseLayout
-  title="Stromverbrauch im Haushalt berechnen & vergleichen | kWhKlar"
-  description="Wie viel Strom verbraucht ein typischer deutscher Haushalt? Berechne deinen Haushaltsstromverbrauch nach Personenzahl, Wohnfläche und Warmwasser."
+  title="Stromverbrauch im Haushalt: Richtwerte & Rechner | kWhKlar"
+  description="Wie viel Strom verbraucht ein Haushalt in Deutschland? Offizielle Vergleichswerte für 1 bis 5 Personen in Wohnung und Einfamilienhaus mit Rechner."
   canonical="https://kwhklar.de/stromverbrauch-haushalt"
-  jsonLd={schema}
+  jsonLd={pageSchemas}
   breadcrumbs={[{ name: 'Stromverbrauch Haushalt', path: '/stromverbrauch-haushalt' }]}
 >
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
     <Breadcrumbs items={[{ name: 'Stromverbrauch Haushalt', path: '/stromverbrauch-haushalt' }]} />
 
-    <div class="max-w-3xl mb-6">
-      <span class="badge-emerald text-xs mb-2">Haushaltsrechner</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-        Stromverbrauch im Haushalt: Rechner & Vergleichswerte
+    <div class="max-w-4xl mb-8">
+      <span class="badge-emerald text-xs mb-2">Bundesweiter Haushaltsvergleich</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Stromverbrauch im Haushalt: Rechner & Richtwerte
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        Vergleiche deinen jährlichen Stromverbrauch direkt mit den offiziellen Richtwerten des Stromspiegels für Deutschland.
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Wie viel Strom ist normal? Vergleiche deinen jährlichen Haushaltsstromverbrauch direkt mit den aktuellen statistischen Richtwerten des Bundes (Stromspiegel / co2online, BDEW und Destatis). Wähle Haushaltsgröße, Wohnform und Warmwasserart aus, um deine Kosten einzuordnen.
       </p>
     </div>
 
     <!-- Interactive Household Benchmark Selector -->
-    <div class="my-8 rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-md max-w-4xl mx-auto">
-      <h2 class="text-xl font-bold text-slate-900 mb-6">Haushaltsdaten auswählen:</h2>
+    <div class="my-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-md max-w-4xl mx-auto">
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-6">Haushaltsdaten auswählen:</h2>
 
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
         <div>
-          <label for="hh-persons" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">Personen im Haushalt</label>
-          <select id="hh-persons" class="w-full rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm font-bold text-slate-900">
+          <label for="hh-persons" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">Personen im Haushalt</label>
+          <select id="hh-persons" class="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 p-3 text-sm font-bold text-slate-900 dark:text-white">
             <option value="1">1 Person (Single)</option>
             <option value="2">2 Personen (Paar)</option>
             <option value="3">3 Personen</option>
@@ -70,130 +112,283 @@ const related = [
         </div>
 
         <div>
-          <label for="hh-type" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">Gebäudetyp</label>
-          <select id="hh-type" class="w-full rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm font-bold text-slate-900">
+          <label for="hh-type" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">Gebäudetyp</label>
+          <select id="hh-type" class="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 p-3 text-sm font-bold text-slate-900 dark:text-white">
             <option value="apartment" selected>Wohnung (Mehrfamilienhaus)</option>
             <option value="house">Einfamilienhaus</option>
           </select>
         </div>
 
         <div>
-          <label for="hh-water" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">Warmwasserbereitung</label>
-          <select id="hh-water" class="w-full rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm font-bold text-slate-900">
-            <option value="no" selected>Zentral (Gas / Fernwärme)</option>
+          <label for="hh-water" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">Warmwasserbereitung</label>
+          <select id="hh-water" class="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 p-3 text-sm font-bold text-slate-900 dark:text-white">
+            <option value="no" selected>Zentral (Gas / Fernwärme / Öl)</option>
             <option value="yes">Elektrisch (Durchlauferhitzer / Boiler)</option>
           </select>
         </div>
       </div>
 
       <!-- Result Comparison Card -->
-      <div class="rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 p-6 text-white">
+      <div class="rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 p-6 text-white shadow-inner">
         <div class="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-slate-700">
-          <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">Typischer Richtwert (Stromspiegel)</span>
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">Typischer Richtwert (Stromspiegel Benchmark)</span>
           <span class="text-xs text-slate-300" id="hh-summary-label">4 Personen • Wohnung • Zentrales Warmwasser</span>
         </div>
 
         <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div>
-            <span class="text-xs text-slate-400 block">Empfohlener Richtwert</span>
+            <span class="text-xs text-slate-400 block">Empfohlener Richtwert (Jahresverbrauch)</span>
             <div class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mt-1" id="hh-kwh-val">
               3.000 kWh / Jahr
             </div>
-            <span class="text-xs text-slate-400 mt-1 block">Entspricht ca. 250 kWh pro Monat</span>
+            <span class="text-xs text-slate-400 mt-1 block" id="hh-kwh-day">ca. 8,2 kWh pro Tag</span>
           </div>
 
           <div>
-            <span class="text-xs text-emerald-300 block">Geschätzte Jahresstromkosten (bei 35 ct/kWh)</span>
+            <span class="text-xs text-slate-400 block">Geschätzte Stromkosten (@ 35 ct/kWh)</span>
             <div class="text-3xl sm:text-4xl font-extrabold text-emerald-400 tracking-tight mt-1" id="hh-cost-val">
-              1.200,00 € / Jahr
+              1.050,00 € / Jahr
             </div>
-            <span class="text-xs text-emerald-200/80 mt-1 block" id="hh-monthly-val">ca. 100,00 € / Monat (zzgl. Grundgebühr)</span>
+            <span class="text-xs text-slate-300 mt-1 block" id="hh-cost-month">ca. 87,50 € / Monat (zzgl. Grundpreis)</span>
           </div>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-slate-700/60 flex items-center justify-between text-xs text-slate-400">
+          <span>Skala nach Bundesdurchschnitt:</span>
+          <span class="text-emerald-300 font-semibold" id="hh-rating">Normaler Durchschnittsverbrauch</span>
         </div>
       </div>
     </div>
 
-    <!-- Detail Table -->
-    <div class="my-10 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200">
-      <h2 class="text-xl font-bold text-slate-900 mb-4">Vergleichstabelle für alle Haushaltsgrößen</h2>
-      <div class="overflow-x-auto">
-        <table class="w-full text-left text-xs sm:text-sm">
-          <thead class="bg-slate-50 text-slate-700 font-semibold border-b border-slate-200">
-            <tr>
-              <th class="p-3">Haushalt</th>
-              <th class="p-3">Wohnung (ohne Warmwasser)</th>
-              <th class="p-3">Wohnung (mit Warmwasser)</th>
-              <th class="p-3">Einfamilienhaus (ohne Warmwasser)</th>
-              <th class="p-3 text-right">Einfamilienhaus (mit Warmwasser)</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-slate-100 text-slate-600">
-            {Object.values(householdBenchmarks).map((b) => (
-              <tr>
-                <td class="p-3 font-semibold text-slate-900">{b.label}</td>
-                <td class="p-3 font-medium text-emerald-700">{formatKwh(b.apartmentWithoutWarmWaterKwh, 0)}</td>
-                <td class="p-3 text-amber-700">{formatKwh(b.apartmentWithWarmWaterKwh, 0)}</td>
-                <td class="p-3">{formatKwh(b.houseWithoutWarmWaterKwh, 0)}</td>
-                <td class="p-3 text-right font-semibold text-slate-900">{formatKwh(b.houseWithWarmWaterKwh, 0)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+    <!-- Editorial Deep-Dive Content -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- Section: Big Benchmark Matrix Table -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Übersichtstabelle: Stromverbrauch in Deutschland nach Haushaltsgröße
+          </h2>
+          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
+            Die nachfolgende Tabelle zeigt die offiziellen Durchschnittswerte nach Haushaltsgröße (Personenzahl), aufgeteilt nach Wohnform (Wohnung im Mehrfamilienhaus vs. Einfamilienhaus) sowie der Art der Warmwasserbereitung (Basis: Stromspiegel &amp; BDEW, Stromkosten bei 35 ct/kWh):
+          </p>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs sm:text-sm border-collapse">
+              <thead>
+                <tr class="border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400">
+                  <th class="py-3 px-3 font-semibold">Haushalt</th>
+                  <th class="py-3 px-3 font-semibold">Wohnung (ohne WW)</th>
+                  <th class="py-3 px-3 font-semibold">Wohnung (mit WW)</th>
+                  <th class="py-3 px-3 font-semibold">Haus (ohne WW)</th>
+                  <th class="py-3 px-3 font-semibold">Haus (mit WW)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+                <tr>
+                  <td class="py-3 px-3 font-bold text-slate-900 dark:text-white">
+                    <a href="/stromverbrauch-1-person" class="text-emerald-700 dark:text-emerald-400 hover:underline">1 Person (Single)</a>
+                  </td>
+                  <td class="py-3 px-3 font-semibold">1.300 kWh <span class="text-[11px] text-slate-400 block font-normal">(455 €/J)</span></td>
+                  <td class="py-3 px-3 font-semibold text-emerald-700 dark:text-emerald-400">1.800 kWh <span class="text-[11px] text-slate-400 block font-normal">(630 €/J)</span></td>
+                  <td class="py-3 px-3 font-semibold">2.000 kWh <span class="text-[11px] text-slate-400 block font-normal">(700 €/J)</span></td>
+                  <td class="py-3 px-3 font-semibold text-amber-700 dark:text-amber-400">2.600 kWh <span class="text-[11px] text-slate-400 block font-normal">(910 €/J)</span></td>
+                </tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30">
+                  <td class="py-3 px-3 font-bold text-slate-900 dark:text-white">
+                    <a href="/stromverbrauch-2-personen" class="text-emerald-700 dark:text-emerald-400 hover:underline">2 Personen (Paar)</a>
+                  </td>
+                  <td class="py-3 px-3 font-semibold">2.100 kWh <span class="text-[11px] text-slate-400 block font-normal">(735 €/J)</span></td>
+                  <td class="py-3 px-3 font-semibold text-emerald-700 dark:text-emerald-400">2.900 kWh <span class="text-[11px] text-slate-400 block font-normal">(1.015 €/J)</span></td>
+                  <td class="py-3 px-3 font-semibold">3.000 kWh <span class="text-[11px] text-slate-400 block font-normal">(1.050 €/J)</span></td>
+                  <td class="py-3 px-3 font-semibold text-amber-700 dark:text-amber-400">3.800 kWh <span class="text-[11px] text-slate-400 block font-normal">(1.330 €/J)</span></td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-3 font-bold text-slate-900 dark:text-white">
+                    <a href="/stromverbrauch-3-personen" class="text-emerald-700 dark:text-emerald-400 hover:underline">3 Personen</a>
+                  </td>
+                  <td class="py-3 px-3 font-semibold">2.600 kWh <span class="text-[11px] text-slate-400 block font-normal">(910 €/J)</span></td>
+                  <td class="py-3 px-3 font-semibold text-emerald-700 dark:text-emerald-400">3.700 kWh <span class="text-[11px] text-slate-400 block font-normal">(1.295 €/J)</span></td>
+                  <td class="py-3 px-3 font-semibold">3.600 kWh <span class="text-[11px] text-slate-400 block font-normal">(1.260 €/J)</span></td>
+                  <td class="py-3 px-3 font-semibold text-amber-700 dark:text-amber-400">4.700 kWh <span class="text-[11px] text-slate-400 block font-normal">(1.645 €/J)</span></td>
+                </tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30">
+                  <td class="py-3 px-3 font-bold text-slate-900 dark:text-white">
+                    <a href="/stromverbrauch-4-personen" class="text-emerald-700 dark:text-emerald-400 hover:underline">4 Personen (Familie)</a>
+                  </td>
+                  <td class="py-3 px-3 font-semibold">3.000 kWh <span class="text-[11px] text-slate-400 block font-normal">(1.050 €/J)</span></td>
+                  <td class="py-3 px-3 font-semibold text-emerald-700 dark:text-emerald-400">4.400 kWh <span class="text-[11px] text-slate-400 block font-normal">(1.540 €/J)</span></td>
+                  <td class="py-3 px-3 font-semibold">4.000 kWh <span class="text-[11px] text-slate-400 block font-normal">(1.400 €/J)</span></td>
+                  <td class="py-3 px-3 font-semibold text-amber-700 dark:text-amber-400">5.400 kWh <span class="text-[11px] text-slate-400 block font-normal">(1.890 €/J)</span></td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-3 font-bold text-slate-900 dark:text-white">
+                    <a href="/stromverbrauch-5-personen" class="text-emerald-700 dark:text-emerald-400 hover:underline">5+ Personen</a>
+                  </td>
+                  <td class="py-3 px-3 font-semibold">3.600 kWh <span class="text-[11px] text-slate-400 block font-normal">(1.260 €/J)</span></td>
+                  <td class="py-3 px-3 font-semibold text-emerald-700 dark:text-emerald-400">5.200 kWh <span class="text-[11px] text-slate-400 block font-normal">(1.820 €/J)</span></td>
+                  <td class="py-3 px-3 font-semibold">4.800 kWh <span class="text-[11px] text-slate-400 block font-normal">(1.680 €/J)</span></td>
+                  <td class="py-3 px-3 font-semibold text-amber-700 dark:text-amber-400">6.400 kWh <span class="text-[11px] text-slate-400 block font-normal">(2.240 €/J)</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="mt-4 text-xs text-slate-400 dark:text-slate-500">
+            * WW = Elektrische Warmwasserbereitung (Durchlauferhitzer / Boiler). Berechnet bei 35,0 ct/kWh ohne monatliche Zählergebühr.
+          </p>
+        </section>
+
+        <!-- Section: Breakdown of Energy Consumers in German Households -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Wohin fließt der Strom im deutschen Haushalt?
+          </h2>
+          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
+            Nach Erhebungen des Bundesverbands der Energie- und Wasserwirtschaft (BDEW) und der Energieagenturen verteilt sich der Haushaltsstrom typischerweise auf folgende Hauptkategorien:
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <div class="flex justify-between items-center mb-1">
+                <strong class="font-bold text-slate-900 dark:text-white">Information &amp; Unterhaltung</strong>
+                <span class="font-bold text-emerald-600 dark:text-emerald-400">ca. 27 %</span>
+              </div>
+              <p class="text-slate-600 dark:text-slate-400 text-xs">TV, HiFi, Gaming-PCs, Laptops, Router, Smartphones und Standby-Geräte.</p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <div class="flex justify-between items-center mb-1">
+                <strong class="font-bold text-slate-900 dark:text-white">Kühlen &amp; Gefrieren</strong>
+                <span class="font-bold text-emerald-600 dark:text-emerald-400">ca. 17 %</span>
+              </div>
+              <p class="text-slate-600 dark:text-slate-400 text-xs">Kühlschränke, Gefriertruhen und Kühl-Gefrierkombinationen im 24/7-Betrieb.</p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <div class="flex justify-between items-center mb-1">
+                <strong class="font-bold text-slate-900 dark:text-white">Waschen &amp; Trocknen</strong>
+                <span class="font-bold text-emerald-600 dark:text-emerald-400">ca. 14 %</span>
+              </div>
+              <p class="text-slate-600 dark:text-slate-400 text-xs">Waschmaschinen, Wärmepumpen- und Kondenstrockner, Bügeleisen.</p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <div class="flex justify-between items-center mb-1">
+                <strong class="font-bold text-slate-900 dark:text-white">Kochen &amp; Spülen</strong>
+                <span class="font-bold text-emerald-600 dark:text-emerald-400">ca. 14 %</span>
+              </div>
+              <p class="text-slate-600 dark:text-slate-400 text-xs">Elektroherd, Induktionskochfeld, Backofen, Geschirrspüler, Kaffeemaschine.</p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <div class="flex justify-between items-center mb-1">
+                <strong class="font-bold text-slate-900 dark:text-white">Beleuchtung</strong>
+                <span class="font-bold text-emerald-600 dark:text-emerald-400">ca. 10 %</span>
+              </div>
+              <p class="text-slate-600 dark:text-slate-400 text-xs">Wohnraumleuchten, Deckenfluter, Außenbeleuchtung (stark reduzierbar durch LEDs).</p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <div class="flex justify-between items-center mb-1">
+                <strong class="font-bold text-slate-900 dark:text-white">Sonstiges &amp; Grundlast</strong>
+                <span class="font-bold text-emerald-600 dark:text-emerald-400">ca. 18 %</span>
+              </div>
+              <p class="text-slate-600 dark:text-slate-400 text-xs">Heizungspumpen, Lüftungsanlagen, Kleingeräte und Werkzeuge.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Haushalt Faustformel
+          </h3>
+          <p class="text-xs text-slate-300 leading-relaxed mb-4">
+            Bundesweite Faustformel zur schnellen Schätzung des Jahresstromverbrauchs in einer Wohnung ohne elektrische Warmwasserbereitung:
+          </p>
+          <div class="p-3.5 rounded-xl bg-slate-800 border border-slate-700 font-mono text-xs text-emerald-300 mb-4">
+            kWh/Jahr = (Personen × 500) + (qm × 10) + (Großgeräte × 200)
+          </div>
+          <div class="text-xs text-slate-400">
+            Bei elektrischer Warmwasserbereitung zusätzlich <strong>+ 600 kWh pro Person</strong> addieren.
+          </div>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Haushaltsgrößen im Detail</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/stromverbrauch-1-person" class="text-emerald-700 dark:text-emerald-400 hover:underline">→ 1 Person (Single)</a></li>
+            <li><a href="/stromverbrauch-2-personen" class="text-emerald-700 dark:text-emerald-400 hover:underline">→ 2 Personen (Paar)</a></li>
+            <li><a href="/stromverbrauch-3-personen" class="text-emerald-700 dark:text-emerald-400 hover:underline">→ 3 Personen (Kleinfamilie/WG)</a></li>
+            <li><a href="/stromverbrauch-4-personen" class="text-emerald-700 dark:text-emerald-400 hover:underline">→ 4 Personen (Familie)</a></li>
+            <li><a href="/stromverbrauch-5-personen" class="text-emerald-700 dark:text-emerald-400 hover:underline">→ 5+ Personen (Großhaushalt)</a></li>
+            <li><a href="/stromverbrauch-einfamilienhaus" class="text-emerald-700 dark:text-emerald-400 hover:underline">→ Einfamilienhaus-Spezial</a></li>
+          </ul>
+        </div>
+      </aside>
     </div>
 
     <RelatedLinks links={related} />
-    <SourceBox sourceIds={['stromspiegel', 'bdew', 'destatis']} />
-    <FaqSection items={faqs} />
+    <SourceBox sourceIds={['stromspiegel', 'bdew', 'destatis', 'uba']} />
   </div>
 </BaseLayout>
 
 <script>
-  function initHouseholdCalculator() {
-    const personsSelect = document.getElementById('hh-persons') as HTMLSelectElement | null;
-    const typeSelect = document.getElementById('hh-type') as HTMLSelectElement | null;
-    const waterSelect = document.getElementById('hh-water') as HTMLSelectElement | null;
+  import { householdBenchmarks } from '../data/household-benchmarks';
 
-    const summaryLabel = document.getElementById('hh-summary-label');
-    const kwhVal = document.getElementById('hh-kwh-val');
-    const costVal = document.getElementById('hh-cost-val');
-    const monthlyVal = document.getElementById('hh-monthly-val');
+  const selectPersons = document.getElementById('hh-persons') as HTMLSelectElement | null;
+  const selectType = document.getElementById('hh-type') as HTMLSelectElement | null;
+  const selectWater = document.getElementById('hh-water') as HTMLSelectElement | null;
 
-    if (!personsSelect || !typeSelect || !waterSelect) return;
+  const kwhVal = document.getElementById('hh-kwh-val');
+  const kwhDay = document.getElementById('hh-kwh-day');
+  const costVal = document.getElementById('hh-cost-val');
+  const costMonth = document.getElementById('hh-cost-month');
+  const summaryLabel = document.getElementById('hh-summary-label');
+  const ratingLabel = document.getElementById('hh-rating');
 
-    const data: Record<string, { aptNo: number; aptYes: number; houseNo: number; houseYes: number }> = {
-      '1': { aptNo: 1300, aptYes: 1800, houseNo: 2000, houseYes: 2600 },
-      '2': { aptNo: 2100, aptYes: 2900, houseNo: 3000, houseYes: 3800 },
-      '3': { aptNo: 2600, aptYes: 3700, houseNo: 3600, houseYes: 4700 },
-      '4': { aptNo: 3000, aptYes: 4300, houseNo: 4000, houseYes: 5300 },
-      '5': { aptNo: 3600, aptYes: 5200, houseNo: 4800, houseYes: 6300 },
-    };
+  function update() {
+    if (!selectPersons || !selectType || !selectWater || !kwhVal || !costVal || !summaryLabel) return;
 
-    function update() {
-      const p = personsSelect?.value || '4';
-      const isHouse = typeSelect?.value === 'house';
-      const isWaterElectric = waterSelect?.value === 'yes';
+    const persons = parseInt(selectPersons.value, 10) as 1 | 2 | 3 | 4 | 5;
+    const isHouse = selectType.value === 'house';
+    const isWaterElec = selectWater.value === 'yes';
 
-      const bm = data[p] || data['4'];
-      let kwh = isHouse ? (isWaterElectric ? bm.houseYes : bm.houseNo) : (isWaterElectric ? bm.aptYes : bm.aptNo);
-      let cost = kwh * 0.35;
-      let monthly = cost / 12;
+    const data = householdBenchmarks[persons] || householdBenchmarks[4];
+    let kwh = 3000;
 
-      if (summaryLabel) {
-        summaryLabel.textContent = `${p} Person${p !== '1' ? 'en' : ''} • ${isHouse ? 'Einfamilienhaus' : 'Wohnung'} • ${isWaterElectric ? 'Elektrisches Warmwasser' : 'Zentrales Warmwasser'}`;
-      }
-      if (kwhVal) kwhVal.textContent = `${kwh.toLocaleString('de-DE')} kWh / Jahr`;
-      if (costVal) costVal.textContent = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(cost) + ' / Jahr';
-      if (monthlyVal) monthlyVal.textContent = `ca. ${new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(monthly)} / Monat (zzgl. Grundgebühr)`;
+    if (!isHouse && !isWaterElec) kwh = data.apartmentWithoutWarmWaterKwh;
+    else if (!isHouse && isWaterElec) kwh = data.apartmentWithWarmWaterKwh;
+    else if (isHouse && !isWaterElec) kwh = data.houseWithoutWarmWaterKwh;
+    else if (isHouse && isWaterElec) kwh = data.houseWithWarmWaterKwh;
+
+    const dailyKwh = (kwh / 365).toFixed(1);
+    const annualCost = (kwh * 0.35).toFixed(2);
+    const monthlyCost = (kwh * 0.35 / 12).toFixed(2);
+
+    kwhVal.textContent = `${kwh.toLocaleString('de-DE')} kWh / Jahr`;
+    if (kwhDay) kwhDay.textContent = `ca. ${dailyKwh.replace('.', ',')} kWh pro Tag`;
+    costVal.textContent = `${annualCost.replace('.', ',')} € / Jahr`;
+    if (costMonth) costMonth.textContent = `ca. ${monthlyCost.replace('.', ',')} € / Monat (zzgl. Grundpreis)`;
+
+    const pText = persons === 1 ? '1 Person' : `${persons} Personen`;
+    const tText = isHouse ? 'Einfamilienhaus' : 'Wohnung';
+    const wText = isWaterElec ? 'Elektrisches Warmwasser' : 'Zentrales Warmwasser';
+    summaryLabel.textContent = `${pText} • ${tText} • ${wText}`;
+
+    if (ratingLabel) {
+      if (kwh < 2000) ratingLabel.textContent = 'Sehr sparsamer Verbrauch';
+      else if (kwh <= 4000) ratingLabel.textContent = 'Normaler Durchschnittsverbrauch';
+      else ratingLabel.textContent = 'Erhöhter Strombedarf (Prüfung empfohlen)';
     }
-
-    personsSelect.addEventListener('change', update);
-    typeSelect.addEventListener('change', update);
-    waterSelect.addEventListener('change', update);
-
-    update();
   }
 
-  document.addEventListener('DOMContentLoaded', initHouseholdCalculator);
-  initHouseholdCalculator();
+  selectPersons?.addEventListener('change', update);
+  selectType?.addEventListener('change', update);
+  selectWater?.addEventListener('change', update);
 </script>

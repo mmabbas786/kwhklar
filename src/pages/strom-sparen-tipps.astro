@@ -4,27 +4,68 @@ import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
 import RelatedLinks from '../components/seo/RelatedLinks.astro';
 import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
+import { getFaqSchema } from '../lib/structured-data';
 
 const faqs = [
   {
-    question: 'Welche Stromspartipps bringen am meisten Ersparnis?',
-    answer: 'Die größten Hebel im Alltag: 1. Sparduschkopf bei elektrischer Warmwasserbereitung (bis zu 200 €/Jahr), 2. Wäsche bei 30 °C waschen (ca. 40 €/Jahr), 3. Standby-Abschaltung (ca. 70–100 €/Jahr) und 4. Austausch alter Kühlgeräte (bis zu 80 €/Jahr).',
+    question: "Welche Stromspartipps bringen die größte finanzielle Ersparnis?",
+    answer: "Die 4 größten Hebel: 1. Sparduschkopf bei elektrischer Warmwasserbereitung (bis zu 250 €/Jahr). 2. Konsequentes Waschen bei 30 °C im Eco-Modus (ca. 40–60 €/Jahr). 3. Standby-Abschaltung per Steckerleiste an TV und PC (ca. 50–100 €/Jahr). 4. Verzicht auf elektrische Heizlüfter im Winter (oft über 100 €/Monat Ersparnis)."
   },
+  {
+    question: "Warum spart ein Topfdeckel beim Kochen bis zu 65 % Strom?",
+    answer: "Ohne Deckel entweicht die erzeugte Wärme durch verdampfendes Wasser ungehindert nach oben. Mit aufgelegtem Deckel bleibt die Hitze im Topf, das Wasser kocht doppelt so schnell und du kannst die Herdplatte sofort auf niedrige Stufe zurückdrehen."
+  },
+  {
+    question: "Welche Kühlschranktemperatur ist ideal?",
+    answer: "7 °C auf der mittleren Ebene des Kühlschranks und -18 °C im Gefrierschrank. Jedes Grad kälter erhöht den Stromverbrauch des Geräts um ca. 6 % – ohne die Haltbarkeit von Lebensmitteln messbar zu verbessern."
+  },
+  {
+    question: "Warum ist das Eco-Programm bei Spül- und Waschmaschinen sparsamer trotz längerer Laufzeit?",
+    answer: "Weil das Erwärmen des Wassers ca. 80 % der Energie eines Durchlaufs benötigt. Das Eco-Programm erwärmt das Wasser langsamer und auf eine niedrigere Temperatur und verlängert dafür die Einweichzeit. Da der Motor für die Trommel/Spritzarme extrem wenig Strom zieht, sinkt der Gesamtenergiebedarf drastisch."
+  },
+  {
+    question: "Wie viel Strom spart der Austausch von Halogenlampen gegen LEDs?",
+    answer: "LEDs verbrauchen ca. 85 bis 90 % weniger Strom als alte Glühlampen und ca. 60 % weniger als Halogenspots. Tauscht du in der Wohnung 10 Halogenspots (je 40 Watt) gegen 5-Watt-LEDs, sparst du bei 3 Stunden täglicher Brenndauer rund 380 kWh (ca. 133 Euro) pro Jahr."
+  },
+  {
+    question: "Wie viel Strom spart das Reduzieren der Monitor-Helligkeit?",
+    answer: "Das Dimmen eines Monitors oder Fernsehers von 100 % Helligkeit auf 60–70 % senkt die Leistungsaufnahme des Displays um rund 20 bis 30 % (bei 8 Stunden Homeoffice täglich ca. 25–40 kWh/Jahr)."
+  },
+  {
+    question: "Lohnt sich die Anschaffung eines Wasserkochers zum Vorkochen von Nudelwasser?",
+    answer: "Ja. Ein Wasserkocher erhitzt Wasser mit einem Wirkungsgrad von ca. 85 %, während ein Ceran- oder Massekochfeld nur ca. 50–60 % erreicht. Das Vorkochen im Wasserkocher spart ca. 30 bis 40 % Energie und spart wertvolle Zeit."
+  },
+  {
+    question: "Warum sollte man zum Streamen die TV-App statt einer Konsole nutzen?",
+    answer: "Ein Smart TV verbraucht beim Videostreaming über die integrierte App (z. B. Netflix, YouTube) ca. 60 bis 90 Watt. Wird über eine PS5 oder Xbox Series X gestreamt, schluckt die Konsole zusätzlich 70 bis 90 Watt nur für die Videowiedergabe."
+  },
+  {
+    question: "Wie viel spart eine hohe Schleuderdrehzahl der Waschmaschine beim anschließenden Trocknen?",
+    answer: "Schleuderst du die Wäsche mit 1.400 oder 1.600 U/min statt mit 800 U/min, sinkt die Restfeuchte von 70 % auf unter 50 %. Der Wäschetrockner benötigt dadurch ca. 30 % weniger Zeit und Strom (Ersparnis ca. 40 bis 60 kWh/Jahr)."
+  },
+  {
+    question: "Was bringt das Ausnutzen der Restwärme bei Backofen und Herd?",
+    answer: "Schaltest du Herdplatten und Backofen 5 bis 10 Minuten vor Ende der Garzeit ab, reicht die gespeicherte Wärme der Kochzone bzw. des Ofenraums vollkommen aus, um das Essen fertigzugaren (spart ca. 10 bis 15 % der Koch-Energie)."
+  }
 ];
 
+const faqSchema = getFaqSchema(faqs);
+
 const related = [
-  { title: 'Die größten Stromfresser', href: '/stromfresser', description: 'Top Verbraucher aufdecken.' },
+  { title: 'Die größten Stromfresser', href: '/stromfresser', description: 'Top 10 Verbraucher enttarnen.' },
   { title: 'Standby-Strom vermeiden', href: '/standby-strom', description: 'Leerlaufkosten senken.' },
-  { title: 'Stromanbieter wechseln', href: '/stromanbieter-wechseln', description: 'Tarife optimieren.' },
+  { title: 'Stromanbieter wechseln', href: '/stromanbieter-wechseln', description: 'Günstigeren Tarif finden.' },
+  { title: 'Stromverbrauch senken', href: '/stromverbrauch-senken', description: 'Systematischer Spar-Leitfaden.' },
 ];
 ---
 
 <BaseLayout
-  title="Strom sparen: Die 15 besten Stromspartipps für den Haushalt | kWhKlar"
-  description="Konkrete Stromspartipps für Küche, Bad, Wohnzimmer und Homeoffice. Einfach umsetzbar, messbare Ersparnis und ohne Komfortverlust."
+  title="Strom sparen: Die 15 besten Stromspartipps für den Alltag | kWhKlar"
+  description="Konkrete Stromspartipps für Küche, Bad, Wohnzimmer und Homeoffice. Einfach umsetzbar, messbare Ersparnis (bis zu 400 €/Jahr) und ohne Komfortverlust."
   canonical="https://kwhklar.de/strom-sparen-tipps"
+  jsonLd={faqSchema ? [faqSchema] : undefined}
   breadcrumbs={[
-    { name: 'Sparen', path: '/strom-sparen' },
+    { name: 'Strom sparen', path: '/strom-sparen' },
     { name: 'Strom sparen Tipps', path: '/strom-sparen-tipps' },
   ]}
 >
@@ -36,63 +77,92 @@ const related = [
       ]}
     />
 
-    <div class="max-w-3xl mb-8">
-      <span class="badge-emerald text-xs mb-2">Tipps & Praxis</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+    <div class="max-w-4xl mb-8">
+      <span class="badge-emerald text-xs mb-2">Praxis-Tipps &amp; Alltag</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
         Die 15 besten Stromspartipps für den Alltag
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        Praktische, sofort anwendbare Empfehlungen nach Räumen sortiert, mit denen du deinen Stromverbrauch ohne teure Neuanschaffungen reduzierst.
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Praktische, sofort umsetzbare Empfehlungen nach Räumen sortiert: So senkst du deinen Stromverbrauch in Küche, Bad, Wohnzimmer und Büro um bis zu 400 Euro pro Jahr – ohne teure Neuanschaffungen.
       </p>
     </div>
 
     <!-- Category Tips Grid -->
     <div class="my-10 space-y-8 max-w-4xl mx-auto">
       <!-- Küche -->
-      <div class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xs">
-        <h2 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
-          <span>🍳</span> In der Küche
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-xs">
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+          <span>🍳</span> In der Küche (Kochen &amp; Kühlen)
         </h2>
-        <ul class="space-y-3 text-xs sm:text-sm text-slate-600">
-          <li class="flex gap-2"><strong>1. Deckel auf den Topf:</strong> Spart bis zu 65 % Energie beim Kochen.</li>
-          <li class="flex gap-2"><strong>2. Wasserkocher statt Herd:</strong> Nudelwasser immer im Wasserkocher vorkochen.</li>
-          <li class="flex gap-2"><strong>3. Kühlschrank auf 7 °C einstellen:</strong> Reicht hygienisch vollkommen aus (Gefrierteil: -18 °C).</li>
-          <li class="flex gap-2"><strong>4. Regelmäßig abtauen:</strong> Eisschichten im Tiefkühler kosten bis zu 30 % mehr Strom.</li>
-          <li class="flex gap-2"><strong>5. Backofen-Restwärme nutzen:</strong> Ofen 5–10 Minuten vor Ende der Garzeit abschalten.</li>
+        <ul class="space-y-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+          <li class="flex gap-2"><strong>1. Deckel auf den Topf:</strong> Spart bis zu 65 % Energie beim Kochen und beschleunigt den Kochvorgang.</li>
+          <li class="flex gap-2"><strong>2. Wasserkocher statt Herd:</strong> Nudel- und Teewasser stets im Wasserkocher vorkochen (deutlich höherer Wirkungsgrad).</li>
+          <li class="flex gap-2"><strong>3. Kühlschrank auf 7 °C einstellen:</strong> Reicht hygienisch vollkommen aus (Gefrierfach auf -18 °C). Jedes Grad kälter kostet ca. 6 % mehr Strom.</li>
+          <li class="flex gap-2"><strong>4. Gefrierfach regelmäßig abtauen:</strong> Eisschichten ab 5 mm Dicke treiben den Stromverbrauch um bis zu 30 % in die Höhe.</li>
+          <li class="flex gap-2"><strong>5. Backofen-Restwärme nutzen:</strong> Backofen 5–10 Minuten vor Ende der Garzeit abschalten und auf Vorheizen verzichten.</li>
         </ul>
       </div>
 
       <!-- Bad & Waschen -->
-      <div class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xs">
-        <h2 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
-          <span>🧺</span> Bad & Waschen
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-xs">
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+          <span>🧺</span> Bad &amp; Waschen
         </h2>
-        <ul class="space-y-3 text-xs sm:text-sm text-slate-600">
-          <li class="flex gap-2"><strong>6. 30 °C statt 60 °C waschen:</strong> Spart fast die Hälfte des Stroms pro Waschgang.</li>
-          <li class="flex gap-2"><strong>7. Sparduschkopf einbauen:</strong> Halbiert den Warmwasser- und Strombedarf beim Duschen.</li>
-          <li class="flex gap-2"><strong>8. Schleuderzahl auf 1.400 U/min:</strong> Verkürzt die Laufzeit des Wäschetrockners erheblich.</li>
-          <li class="flex gap-2"><strong>9. Wäscheleine im Sommer nutzen:</strong> 0 Cent Stromkosten für frische Wäsche.</li>
+        <ul class="space-y-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+          <li class="flex gap-2"><strong>6. 30 °C statt 60 °C waschen:</strong> Moderne Waschmittel reinigen bei 30 °C hygienisch sauber und sparen über 60 % Strom.</li>
+          <li class="flex gap-2"><strong>7. Sparduschkopf einbauen:</strong> Halbiert den Warmwasser- und Strombedarf beim Duschen (spart bis zu 250 € bei Durchlauferhitzern).</li>
+          <li class="flex gap-2"><strong>8. Schleuderzahl auf 1.400 U/min:</strong> Entzieht der Wäsche mehr Wasser und verkürzt die Laufzeit des Trockners spürbar.</li>
+          <li class="flex gap-2"><strong>9. Wäscheständer im Sommer nutzen:</strong> Frische Luft trocknet Wäsche völlig kostenlos und schont Textilfasern.</li>
         </ul>
       </div>
 
       <!-- Wohnzimmer & Büro -->
-      <div class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xs">
-        <h2 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
-          <span>🖥️</span> Wohnzimmer & Büro
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+          <span>🖥️</span> Wohnzimmer &amp; Büro
         </h2>
-        <ul class="space-y-3 text-xs sm:text-sm text-slate-600">
-          <li class="flex gap-2"><strong>10. Schaltbare Steckerleisten:</strong> TV- und PC-Setups bei Nichtnutzung komplett vom Netz trennen.</li>
-          <li class="flex gap-2"><strong>11. Bildschirm-Helligkeit optimieren:</strong> TV und Monitore auf 50–60 % Helligkeit stellen.</li>
-          <li class="flex gap-2"><strong>12. Streaming per TV-App:</strong> Streaming-Apps im Smart TV nutzen statt stromhungriger Spielekonsolen (spart 60–70 W).</li>
+        <ul class="space-y-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+          <li class="flex gap-2"><strong>10. Schaltbare Steckerleisten:</strong> TV-, Audio- und PC-Setups bei Nichtnutzung komplett vom Netz trennen.</li>
+          <li class="flex gap-2"><strong>11. Display-Helligkeit drosseln:</strong> Fernseher und Monitore auf 60–70 % Helligkeit stellen (spart 20–30 % Display-Strom).</li>
+          <li class="flex gap-2"><strong>12. Streaming per TV-App:</strong> Streaming-Apps direkt im Smart TV nutzen statt stromhungriger Konsolen (spart ca. 70 W).</li>
           <li class="flex gap-2"><strong>13. Laptop statt Desktop:</strong> Notebooks benötigen bis zu 80 % weniger Strom als große Tower-PCs.</li>
-          <li class="flex gap-2"><strong>14. LED-Beleuchtung:</strong> Glüh- und Halogenlampen durch hochwertige LEDs ersetzen.</li>
-          <li class="flex gap-2"><strong>15. Heizlüfter vermeiden:</strong> Elektrische Heizlüfter nur im Notfall und zeitlich eng begrenzt betreiben.</li>
+          <li class="flex gap-2"><strong>14. LED-Beleuchtung überall:</strong> Glüh- und Halogenlampen restlos durch hochwertige LEDs ersetzen.</li>
+          <li class="flex gap-2"><strong>15. Heizlüfter vermeiden:</strong> Elektrische Heizlüfter nur im äußersten Notfall betreiben (2 kW = 70 Cent/h).</li>
         </ul>
       </div>
     </div>
 
+    <!-- Main Editorial Content Depth -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Sofort-Ersparnis
+          </h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Reine Verhaltensanpassungen senken die jährliche Stromrechnung im Schnitt um <strong>150 bis 300 Euro</strong> – ab dem allerersten Tag.
+          </p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Verwandte Ratgeber</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/stromfresser" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Die 10 größten Stromfresser</a></li>
+            <li><a href="/standby-strom" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Standby-Strom beseitigen</a></li>
+            <li><a href="/stromverbrauch-senken" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromverbrauch senken</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
     <RelatedLinks links={related} />
     <SourceBox sourceIds={['uba', 'stromspiegel']} />
-    <FaqSection items={faqs} />
   </div>
 </BaseLayout>

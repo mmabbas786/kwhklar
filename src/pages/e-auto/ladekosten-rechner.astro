@@ -6,13 +6,7 @@ import SourceBox from '../../components/trust/SourceBox.astro';
 import FaqSection from '../../components/content/FaqSection.astro';
 import { calculateElectricCar } from '../../lib/calculators';
 import { formatEuro, formatKwh } from '../../lib/formatters';
-import { getCalculatorSchema } from '../../lib/structured-data';
-
-const schema = getCalculatorSchema(
-  'E-Auto Ladekosten Rechner',
-  'Berechne die Ladekosten und Stromkosten für dein Elektroauto pro 100 km, pro Ladung und pro Jahr inklusive Ladeverlusten.',
-  '/e-auto/ladekosten-rechner'
-);
+import { getCalculatorSchema, getFaqSchema } from '../../lib/structured-data';
 
 const defaultRes = calculateElectricCar({
   kwhPer100Km: 18.0,
@@ -23,27 +17,68 @@ const defaultRes = calculateElectricCar({
 
 const faqs = [
   {
-    question: 'Wie hoch sind die Ladeverluste beim Elektroauto?',
-    answer: 'Beim Laden an der heimischen 11-kW-Wallbox entstehen typischerweise ca. 6 bis 10 % Ladeverluste (Wärmeentwicklung in Ladeelektronik und Kabeln). Beim langsamen Laden an der 230V-Haushaltssteckdose (Schuko) können die Verluste 12 bis 20 % betragen.',
+    question: "Wie berechnet der Rechner die Ladekosten pro 100 km exakt?",
+    answer: "Formel: (Verbrauch lt. Bordcomputer in kWh/100 km × [1 + Ladeverlust in % / 100]) × Strompreis in €/kWh = Kosten in € pro 100 km. Beispiel: 18 kWh × 1,10 × 0,35 € = 6,93 € / 100 km."
   },
   {
-    question: 'Was kostet das Laden eines E-Autos für 100 km zu Hause?',
-    answer: 'Bei einem Durchschnittsverbrauch von 18 kWh/100 km (zzgl. 10 % Ladeverluste = 19,8 kWh ab Zähler) und einem Strompreis von 35 ct/kWh kostet das Fahren von 100 km ca. 6,93 Euro.',
+    question: "Warum müssen Ladeverluste im Rechner berücksichtigt werden?",
+    answer: "Weil dein Stromzähler auch die Energie misst, die in Bordladegerät, Kühlkreislauf des Akkus und Ladekabeln als Wärme verloren geht. Wer Ladeverluste (typisch 8–10 % an der Wallbox) ignoriert, unterschätzt seine tatsächliche Stromrechnung."
   },
+  {
+    question: "Was kostet eine komplette Akkuladung für 40, 60 oder 80 kWh Batteriekapazität?",
+    answer: "Bei 32 ct/kWh an der heimischen Wallbox (inkl. 10 % Verlust) kostet eine 0-auf-100-%-Ladung: 40 kWh Akku = ca. 14,08 € | 60 kWh Akku = ca. 21,12 € | 80 kWh Akku = ca. 28,16 €."
+  },
+  {
+    question: "Wie viel Ladeverlust entsteht an einer Schuko-Steckdose im Vergleich zur 11-kW-Wallbox?",
+    answer: "Beim extrem langsamen Laden an der 230-V-Haushaltssteckdose (2,3 kW) bleiben Steuergeräte des Autos über 20 bis 30 Stunden dauerhaft aktiv, was Ladeverluste von 15 bis 20 % verursacht. An einer 11-kW-Wallbox ist der Akku in 4 bis 6 Stunden voll, die Verluste sinken auf ca. 6 bis 9 %."
+  },
+  {
+    question: "Wie viel Strom benötigt ein E-Auto für 10.000, 15.000 und 20.000 km im Jahr?",
+    answer: "Bei 18 kWh/100 km (+ 10 % Verlust = 19,8 kWh/100 km) beträgt der Strombedarf: 10.000 km = 1.980 kWh | 15.000 km = 2.970 kWh | 20.000 km = 3.960 kWh pro Jahr."
+  },
+  {
+    question: "Was kostet das Laden an einer 150-kW-Schnellladesäule (HPC)?",
+    answer: "Bei einem DC-Schnellladepreis von z. B. 65 ct/kWh kostet eine 50-kWh-Nachladung (entspricht ca. 250 km Autobahnreichweite) rund 32,50 Euro."
+  },
+  {
+    question: "Wie kann man mit einer Photovoltaikanlage die Ladekosten auf unter 2 Euro / 100 km senken?",
+    answer: "Mit einer solaroptimierten Wallbox (PV-Überschussladen) fließt nur dann Strom in den Akku, wenn die Solaranlage mehr produziert als der Haushalt verbraucht. Bei PV-Strom-Gestehungskosten von ca. 10 ct/kWh kostet die 100-km-Fahrt nur rund 1,98 Euro."
+  },
+  {
+    question: "Lohnt sich die Anschaffung einer 11-kW- oder 22-kW-Wallbox für zu Hause?",
+    answer: "Eine 11-kW-Wallbox ist der Standard für Privathaushalte: Sie ist meldepflichtig (aber nicht genehmigungspflichtig durch den Netzbetreiber), lädt ein normales E-Auto in 4 bis 6 Stunden voll und schont das Hausnetz optimal."
+  },
+  {
+    question: "Welchen Einfluss hat der Reifendruck und die Zuladung auf die Ladekosten?",
+    answer: "Ein um 0,5 bar zu niedriger Reifendruck erhöht den Rollwiderstand und damit den Stromverbrauch um ca. 3 bis 5 %. Eine optimale Bereifung spart aufs Jahr gerechnet rund 30 bis 50 Euro Ladekosten."
+  },
+  {
+    question: "Kann ich das Laden mit einem dynamischen Stromtarif automatisieren?",
+    answer: "Ja. Smarte Wallboxen (z. B. go-e, cFos, Easee, Wallbox Pulsar) können über Schnittstellen mit Anbietern dynamischer Tarife verbunden werden und starten den Ladevorgang vollautomatisch in den billigsten Nachtstunden."
+  }
 ];
+
+const calcSchema = getCalculatorSchema(
+  'E-Auto Ladekosten & Stromkosten Rechner',
+  'Berechne die Ladekosten und Stromkosten für dein Elektroauto pro 100 km, pro Ladung und pro Jahr inklusive Ladeverlusten.',
+  '/e-auto/ladekosten-rechner'
+);
+const faqSchema = getFaqSchema(faqs);
+const pageSchemas = faqSchema ? [calcSchema, faqSchema] : [calcSchema];
 
 const related = [
   { title: 'E-Auto Stromkosten', href: '/e-auto/stromkosten', description: 'Kosten im Jahresvergleich.' },
   { title: 'Kosten pro 100 km', href: '/e-auto/kosten-pro-100-km', description: 'Vergleich zu Benzin & Diesel.' },
   { title: 'Dynamische Stromtarife', href: '/dynamische-stromtarife', description: 'Nachts günstig laden.' },
+  { title: 'PV Eigenverbrauch Rechner', href: '/photovoltaik/eigenverbrauch-rechner', description: 'Solarstrom-Eigenverbrauch.' },
 ];
 ---
 
 <BaseLayout
   title="E-Auto Ladekosten Rechner: Stromkosten pro 100 km & Jahr | kWhKlar"
-  description="Berechne die Ladekosten deines Elektroautos: Stromkosten pro 100 km, monatliche Ladekosten und Jahreskosten inklusive Ladeverlusten."
+  description="Berechne die Ladekosten deines Elektroautos: Stromkosten pro 100 km, monatliche Ladekosten und Jahreskosten inklusive Ladeverlusten mit Online-Rechner."
   canonical="https://kwhklar.de/e-auto/ladekosten-rechner"
-  jsonLd={schema}
+  jsonLd={pageSchemas}
   breadcrumbs={[
     { name: 'E-Auto', path: '/e-auto/stromkosten' },
     { name: 'Ladekosten Rechner', path: '/e-auto/ladekosten-rechner' },
@@ -57,25 +92,25 @@ const related = [
       ]}
     />
 
-    <div class="max-w-3xl mb-8">
+    <div class="max-w-4xl mb-8">
       <span class="badge-emerald text-xs mb-2">Elektromobilität Rechner</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-        E-Auto Ladekosten & Stromkosten berechnen
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        E-Auto Ladekosten &amp; Stromkosten berechnen
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        Ermittle deine echten Ladekosten an der heimischen Wallbox oder an öffentlichen Ladesäulen inklusive Ladeverlusten.
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Ermittle deine echten Ladekosten an der heimischen Wallbox oder an öffentlichen Ladesäulen inklusive Ladeverlusten pro 100 km, pro Monat und pro Jahr.
       </p>
     </div>
 
     <!-- Interactive EV Calculator -->
-    <div class="my-8 rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-md max-w-4xl mx-auto">
+    <div class="my-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-md max-w-4xl mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div class="space-y-4">
-          <h2 class="text-lg font-bold text-slate-900">Eckdaten deines E-Autos</h2>
+          <h2 class="text-lg font-bold text-slate-900 dark:text-white">Eckdaten deines E-Autos</h2>
 
           <div>
-            <label for="ev-consumption" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
-              Verbrauch (kWh / 100 km laut Bordcomputer)
+            <label for="ev-consumption" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
+              Verbrauch (kWh / 100 km lt. Bordcomputer)
             </label>
             <input
               type="number"
@@ -84,13 +119,13 @@ const related = [
               min="10"
               max="35"
               step="0.5"
-              class="w-full rounded-xl border border-slate-200 p-3 text-base font-bold text-slate-900"
+              class="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 p-3 text-base font-bold text-slate-900 dark:text-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
             />
-            <span class="text-[11px] text-slate-500 mt-1 block">Kleinwagen: 14–16 kWh • Mittelklasse: 17–20 kWh • SUV: 21–26 kWh</span>
+            <span class="text-[11px] text-slate-500 dark:text-slate-400 mt-1 block">Kleinwagen: 14–16 kWh • Mittelklasse: 17–20 kWh • SUV: 21–26 kWh</span>
           </div>
 
           <div>
-            <label for="ev-km" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+            <label for="ev-km" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
               Jährliche Fahrleistung (Kilometer)
             </label>
             <input
@@ -99,108 +134,133 @@ const related = [
               value="15000"
               min="1000"
               step="1000"
-              class="w-full rounded-xl border border-slate-200 p-3 text-base font-bold text-slate-900"
+              class="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 p-3 text-base font-bold text-slate-900 dark:text-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
             />
           </div>
 
-          <div>
-            <label for="ev-price" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
-              Strompreis (ct/kWh)
-            </label>
-            <input
-              type="number"
-              id="ev-price"
-              value="35.0"
-              min="10"
-              step="0.5"
-              class="w-full rounded-xl border border-slate-200 p-3 text-base font-bold text-slate-900"
-            />
-            <span class="text-[11px] text-slate-500 mt-1 block">Haushaltsstrom: ca. 35 ct • Schnelllader (HPC): oft 55–79 ct/kWh</span>
-          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label for="ev-price" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
+                Strompreis (ct/kWh)
+              </label>
+              <input
+                type="number"
+                id="ev-price"
+                value="35.0"
+                min="5"
+                step="0.5"
+                class="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 p-3 text-base font-bold text-slate-900 dark:text-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+              />
+            </div>
 
-          <div>
-            <label for="ev-loss" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
-              Geschätzte Ladeverluste (%)
-            </label>
-            <input
-              type="number"
-              id="ev-loss"
-              value="10"
-              min="0"
-              max="30"
-              step="1"
-              class="w-full rounded-xl border border-slate-200 p-3 text-base font-bold text-slate-900"
-            />
+            <div>
+              <label for="ev-losses" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
+                Ladeverlust (%)
+              </label>
+              <input
+                type="number"
+                id="ev-losses"
+                value="10"
+                min="0"
+                max="25"
+                step="1"
+                class="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 p-3 text-base font-bold text-slate-900 dark:text-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+              />
+            </div>
           </div>
         </div>
 
-        <div class="rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 p-6 text-white space-y-5">
+        <!-- EV Calculator Results Display -->
+        <div class="rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-800 p-6 text-white space-y-4 shadow-md">
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-100 block">Berechnete Ladekosten</span>
           <div>
-            <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">Kosten pro 100 km</span>
-            <div class="text-3xl sm:text-4xl font-extrabold text-emerald-400 tracking-tight mt-1" id="ev-res-cost-100">
-              {formatEuro(defaultRes.costPer100Km)}
-            </div>
-            <span class="text-xs text-slate-400 mt-1 block" id="ev-res-eff-kwh">
-              ca. {defaultRes.effectiveKwhPer100Km} kWh ab Zähler pro 100 km
-            </span>
+            <span class="text-xs text-emerald-200 block">Kosten pro 100 km (inkl. Verlust)</span>
+            <span class="text-3xl font-black text-white" id="ev-res-100km">{formatEuro(defaultRes.costPer100Km)}</span>
           </div>
-
-          <div class="pt-4 border-t border-slate-700">
-            <span class="text-xs font-bold uppercase tracking-wider text-white">Jährliche Ladekosten</span>
-            <div class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mt-1" id="ev-res-cost-year">
-              {formatEuro(defaultRes.annualCostEuro)}
-            </div>
-            <span class="text-xs text-slate-400 mt-1 block" id="ev-res-month">
-              ca. {formatEuro(defaultRes.monthlyCostEuro)} / Monat ({formatKwh(defaultRes.annualKwh, 0)} Strom / Jahr)
-            </span>
+          <div class="border-t border-emerald-500/40 pt-3">
+            <span class="text-xs text-emerald-200 block">Jährlicher Strombedarf</span>
+            <span class="text-2xl font-extrabold text-emerald-100" id="ev-res-kwh">{formatKwh(defaultRes.annualKwh)}</span>
+          </div>
+          <div class="border-t border-emerald-500/40 pt-3">
+            <span class="text-xs text-emerald-200 block">Jährliche Ladekosten</span>
+            <span class="text-2xl font-bold text-white" id="ev-res-year">{formatEuro(defaultRes.annualCostEuro)}</span>
+          </div>
+          <div class="border-t border-emerald-500/40 pt-3 text-xs text-emerald-100">
+            Monatliche Ladekosten: <strong class="text-white" id="ev-res-month">{formatEuro(defaultRes.monthlyCostEuro)}</strong>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Main Editorial Content Depth -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Formel Ladekosten
+          </h3>
+          <p class="font-mono text-xs text-slate-300 leading-relaxed">
+            Kosten / 100 km = (Verbrauch × 1,1) × Preis (€/kWh)<br/><br/>
+            Jahreskosten = (Gesamt-km ÷ 100) × Kosten/100km
+          </p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Verwandte Rechner</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/e-auto/kosten-pro-100-km" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Kostenvergleich zu Verbrennern</a></li>
+            <li><a href="/e-auto/stromkosten" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ E-Auto Stromkosten Jahresanalyse</a></li>
+            <li><a href="/photovoltaik/eigenverbrauch-rechner" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ PV-Eigenverbrauch Rechner</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
     <RelatedLinks links={related} />
     <SourceBox sourceIds={['bnetza', 'uba', 'bdew']} />
-    <FaqSection items={faqs} />
   </div>
 </BaseLayout>
 
 <script>
-  function initEvCalc() {
-    const consIn = document.getElementById('ev-consumption') as HTMLInputElement | null;
-    const kmIn = document.getElementById('ev-km') as HTMLInputElement | null;
-    const priceIn = document.getElementById('ev-price') as HTMLInputElement | null;
-    const lossIn = document.getElementById('ev-loss') as HTMLInputElement | null;
+  const inConsumption = document.getElementById('ev-consumption') as HTMLInputElement | null;
+  const inKm = document.getElementById('ev-km') as HTMLInputElement | null;
+  const inPrice = document.getElementById('ev-price') as HTMLInputElement | null;
+  const inLosses = document.getElementById('ev-losses') as HTMLInputElement | null;
 
-    const res100 = document.getElementById('ev-res-cost-100');
-    const resEff = document.getElementById('ev-res-eff-kwh');
-    const resYear = document.getElementById('ev-res-cost-year');
-    const resMonth = document.getElementById('ev-res-month');
+  const res100Km = document.getElementById('ev-res-100km');
+  const resKwh = document.getElementById('ev-res-kwh');
+  const resYear = document.getElementById('ev-res-year');
+  const resMonth = document.getElementById('ev-res-month');
 
-    if (!consIn || !kmIn || !priceIn || !lossIn || !res100 || !resYear) return;
+  function calculate() {
+    if (!inConsumption || !inKm || !inPrice || !inLosses || !res100Km || !resKwh || !resYear || !resMonth) return;
 
-    function update() {
-      const cons = Math.max(0, parseFloat(consIn?.value || '0') || 0);
-      const km = Math.max(0, parseFloat(kmIn?.value || '0') || 0);
-      const priceCt = Math.max(0, parseFloat(priceIn?.value || '0') || 0);
-      const loss = Math.max(0, parseFloat(lossIn?.value || '0') || 0);
+    const consumption = parseFloat(inConsumption.value) || 0;
+    const km = parseFloat(inKm.value) || 0;
+    const priceCt = parseFloat(inPrice.value) || 0;
+    const losses = parseFloat(inLosses.value) || 0;
 
-      const effKwh100 = cons * (1 + loss / 100);
-      const cost100 = effKwh100 * (priceCt / 100);
-      const annualKwh = (km / 100) * effKwh100;
-      const annualCost = annualKwh * (priceCt / 100);
+    const realKwhPer100Km = consumption * (1 + losses / 100);
+    const costPer100Km = (realKwhPer100Km * priceCt) / 100;
+    const totalKwh = (km / 100) * realKwhPer100Km;
+    const totalCostYear = (totalKwh * priceCt) / 100;
+    const totalCostMonth = totalCostYear / 12;
 
-      const fmt = (v: number) => new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(v);
-
-      if (res100) res100.textContent = fmt(cost100);
-      if (resEff) resEff.textContent = `ca. ${effKwh100.toFixed(2).replace('.', ',')} kWh ab Zähler pro 100 km`;
-      if (resYear) resYear.textContent = fmt(annualCost);
-      if (resMonth) resMonth.textContent = `ca. ${fmt(annualCost / 12)} / Monat (${Math.round(annualKwh).toLocaleString('de-DE')} kWh Strom / Jahr)`;
-    }
-
-    [consIn, kmIn, priceIn, lossIn].forEach((el) => el.addEventListener('input', update));
-    update();
+    res100Km.textContent = costPer100Km.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+    resKwh.textContent = Math.round(totalKwh).toLocaleString('de-DE') + ' kWh';
+    resYear.textContent = totalCostYear.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+    resMonth.textContent = totalCostMonth.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
   }
 
-  document.addEventListener('DOMContentLoaded', initEvCalc);
-  initEvCalc();
+  inConsumption?.addEventListener('input', calculate);
+  inKm?.addEventListener('input', calculate);
+  inPrice?.addEventListener('input', calculate);
+  inLosses?.addEventListener('input', calculate);
 </script>

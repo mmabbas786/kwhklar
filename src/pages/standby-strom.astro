@@ -5,73 +5,164 @@ import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
 import RelatedLinks from '../components/seo/RelatedLinks.astro';
 import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
+import { getCalculatorSchema, getFaqSchema } from '../lib/structured-data';
 
 const faqs = [
   {
-    question: 'Wie viel Strom und Geld kostet Standby pro Jahr im Durchschnitt?',
-    answer: 'Laut Umweltbundesamt verursacht der unnötige Bereitschafts- und Schein-Aus-Betrieb in einem durchschnittlichen deutschen Haushalt ca. 200 bis 400 kWh Stromverbrauch pro Jahr. Das entspricht rund 70 bis 140 Euro vermeidbaren Stromkosten jährlich.',
+    question: "Wie viel Strom verbraucht der Standby-Betrieb in einem durchschnittlichen Haushalt?",
+    answer: "In einem typischen deutschen Haushalt summiert sich der Standby- und Leerlaufverbrauch aller Geräte (Router, TV, Soundbar, Konsolen, Ladegeräte, Kaffeemaschine, PC-Monitore) auf ca. 150 bis 400 kWh pro Jahr. Bei 35 ct/kWh verursacht das jährliche Kosten von ca. 50 bis 140 Euro völlig nutzlos."
   },
   {
-    question: 'Welche Geräte verbrauchen im Standby am meisten?',
-    answer: 'Spitzenreiter sind ältere TV-Receiver, Spielekonsolen im „Schnellstart“-Modus (oft 10–15 Watt dauerhaft), Soundsysteme mit permanent aktivem Bluetooth/WLAN, ältere Kaffeevollautomaten und Netzteile ohne Eco-Design.',
+    question: "Welche Geräte ziehen Strom, obwohl sie ausgeschaltet sind?",
+    answer: "Geräte mit externem Netzteil oder 'Soft-Off'-Schalter: Fernseher im Schnellstart-Modus, Spielekonsolen im Ruhemodus (oft 10–15 W!), HiFi-Receiver, PC-Bildschirme, Multifunktionsdrucker, Mikrowellen mit Digitaluhr und eingesteckte Ladekabel ohne Smartphone."
   },
+  {
+    question: "Welches Gerät sollte man immer aus der Steckdose ziehen?",
+    answer: "Besonders Ladegeräte und Steckernetzteile ohne angeschlossenes Endgerät, selten genutzte Zweit-Fernseher im Gästezimmer, Spielekonsolen, Kaffeemaschinen und ältere Desktop-PCs sollten nach Benutzung per schaltbarer Steckerleiste vom Netz getrennt werden."
+  },
+  {
+    question: "Wie viel Watt verbraucht ein WLAN-Router dauerhaft?",
+    answer: "Ein moderner WLAN-Router (wie die AVM Fritz!Box) zieht im Dauerbetrieb rund um die Uhr ca. 8 bis 15 Watt. Das entspricht ca. 70 bis 130 kWh im Jahr (ca. 25 bis 45 Euro jährliche Stromkosten)."
+  },
+  {
+    question: "Lohnt sich die Anschaffung schaltbarer Steckdosenleisten?",
+    answer: "Absolut. Eine Dreifach- oder Sechsfach-Steckdosenleiste mit beleuchtetem Kippschalter kostet 3 bis 6 Euro. Spart sie an einer TV- oder PC-Anlage 20 Watt Dauer-Standby (175 kWh = 61 €/Jahr), hat sie sich bereits nach 4 bis 6 Wochen vollständig bezahlt gemacht."
+  },
+  {
+    question: "Was ist der Unterschied zwischen echtem Standby und Scheinaus (Phantomlast)?",
+    answer: "Im echten Standby wartet das Gerät aktiv auf ein Signal (z. B. Infrarot der Fernbedienung oder Netzwerk-Weckruf). Beim 'Scheinaus' ist der Geräteschalter sekundärseitig verbaut – das interne Netzteil liegt weiterhin unter Spannung und zieht permanent 1 bis 5 Watt aus der Steckdose."
+  },
+  {
+    question: "Was regelt die EU-Ökodesign-Richtlinie für den Standby-Verbrauch?",
+    answer: "Seit der EU-Verordnung für Standby-Verluste dürfen vernetzte Neugeräte im einfachen Bereitschaftszustand maximal 0,5 Watt und vernetzte Geräte im Netzwerk-Standby maximal 2 bis 8 Watt ziehen. Viele ältere Geräte im Bestand überschreiten diese Grenzwerte jedoch deutlich."
+  },
+  {
+    question: "Wie viel Strom zieht eine PlayStation 5 oder Xbox Series X im Ruhemodus?",
+    answer: "Im aktiven Ruhemodus (Download im Hintergrund, USB-Laden) verbraucht eine PS5 oder Xbox Series X ca. 3 bis 13 Watt. Läuft der Ruhemodus 24/7 durch, summiert sich dies auf ca. 26 bis 114 kWh/Jahr (ca. 9 bis 40 Euro Kosten)."
+  },
+  {
+    question: "Wie enttarne ich heimliche Standby-Verbraucher zu Hause?",
+    answer: "Mit einem Steckdosen-Energiekostenmessgerät. Schließe das Gerät an und schalte das Endgerät über die Fernbedienung oder den Hauptschalter aus. Zeigt das Messgerät mehr als 0,0 Watt an, liegt ein Standby-Verlust vor."
+  },
+  {
+    question: "Lohnt sich das nächtliche Abschalten des WLAN-Routers?",
+    answer: "Ja. Die automatische WLAN-Zeitschaltung vieler Router (z. B. WLAN-Aus von 00:00 bis 06:00 Uhr) spart ca. 2 bis 3 Watt pro Stunde und senkt zudem die elektromagnetische Strahlung im Schlafbereich."
+  }
 ];
 
+const calcSchema = getCalculatorSchema(
+  'Standby Strom Rechner',
+  'Berechne die jährlichen Kosten deiner Standby-Verluste für TV, Router, PC und Haushaltsgeräte.',
+  '/standby-strom'
+);
+const faqSchema = getFaqSchema(faqs);
+const pageSchemas = faqSchema ? [calcSchema, faqSchema] : [calcSchema];
+
 const related = [
-  { title: 'Die größten Stromfresser', href: '/stromfresser', description: 'Großgeräte im Check.' },
+  { title: 'Die größten Stromfresser', href: '/stromfresser', description: 'Top Stromverbraucher im Haus.' },
+  { title: 'Stromverbrauch senken', href: '/stromverbrauch-senken', description: 'Systematischer Spar-Fahrplan.' },
   { title: 'Strom sparen Tipps', href: '/strom-sparen-tipps', description: 'Praktische Alltagstipps.' },
-  { title: 'Watt in kWh Rechner', href: '/watt-rechner', description: 'Standby-Watt umrechnen.' },
+  { title: 'Stromkostenrechner', href: '/stromkosten-rechner', description: 'Kosten aus Watt berechnen.' },
 ];
 ---
 
 <BaseLayout
-  title="Standby Strom berechnen & vermeiden: Kosten der Dauerläufer | kWhKlar"
-  description="Wie viel kostet Standby-Strom im Jahr? Berechne die Leerlaufkosten für Fernseher, Konsolen & Router. Tipps zur Vermeidung von Standby-Verlusten."
+  title="Standby-Strom berechnen & vermeiden: Kosten der Phantomlast | kWhKlar"
+  description="Wie viel Strom zieht Standby? Typische Standby-Verbräuche von TV, Router, PC & Konsolen, Jahreskosten (50–140 €) und Steckerleisten-Spartipps."
   canonical="https://kwhklar.de/standby-strom"
+  jsonLd={pageSchemas}
   breadcrumbs={[
-    { name: 'Sparen', path: '/strom-sparen' },
-    { name: 'Standby Strom', path: '/standby-strom' },
+    { name: 'Strom sparen', path: '/strom-sparen' },
+    { name: 'Standby-Strom', path: '/standby-strom' },
   ]}
 >
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
     <Breadcrumbs
       items={[
         { name: 'Strom sparen', path: '/strom-sparen' },
-        { name: 'Standby Strom', path: '/standby-strom' },
+        { name: 'Standby-Strom & Phantomlast', path: '/standby-strom' },
       ]}
     />
 
-    <div class="max-w-3xl mb-8">
-      <span class="badge-amber text-xs mb-2">Leerlaufverluste</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-        Standby-Strom berechnen & vermeiden
+    <div class="max-w-4xl mb-8">
+      <span class="badge-amber text-xs mb-2">Phantom-Verluste stoppen</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Standby-Strom berechnen &amp; dauerhaft vermeiden
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        Geräte im Bereitschaftsmodus ziehen oft unbemerkt 24 Stunden am Tag Strom. Finde heraus, was dich die heimlichen Dauerläufer kosten und wie du sie abschaltest.
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Viele Elektrogeräte fressen auch dann Strom, wenn sie scheinbar ausgeschaltet sind. Erfahre, welche Geräte die größten Standby-Sünder sind, wie viele hundert Kilowattstunden du sparst und wie du die Phantomlast sofort stoppst.
       </p>
     </div>
 
-    <!-- 1 Watt Rule Card -->
-    <div class="my-8 rounded-3xl border border-emerald-500/30 dark:border-emerald-500/25 bg-emerald-50/40 dark:bg-emerald-950/20 p-6 sm:p-8 max-w-4xl mx-auto shadow-xs">
-      <div class="flex items-center gap-2 mb-2">
-        <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-bold text-xs">💡</span>
-        <h2 class="text-xl font-bold text-slate-900 dark:text-white">Die 1-Watt-Dauerstrom-Faustformel:</h2>
-      </div>
-      <p class="text-sm sm:text-base leading-relaxed text-slate-700 dark:text-slate-300">
-        Jedes <strong class="text-emerald-600 dark:text-emerald-400">1 Watt Dauerleistung</strong> (24h an 365 Tagen) verbraucht rund <strong>8,76 kWh</strong> im Jahr. Bei 35 ct/kWh kostet dich jedes einzelne Watt Dauer-Standby exakt <strong class="text-emerald-600 dark:text-emerald-400">3,07 Euro pro Jahr</strong>!
-      </p>
-    </div>
-
+    <!-- Live Universal Calculator -->
     <UniversalCalculator
       defaultWatt={25}
       defaultHours={24}
       defaultPriceCt={35.0}
-      title="Standby-Kostenrechner"
-      subtitle="Gib die geschätzte Gesamt-Standbyleistung deiner Haushaltsgeräte ein (typisch 20–40 W):"
+      title="Standby-Kosten-Rechner"
+      subtitle="Ermittle die jährlichen Kosten deiner Standby-Dauerlast:"
     />
 
+    <!-- Main Content Depth -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- Section: Standby Matrix Table -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Typische Standby-Leistung und Jahreskosten ausgewählter Geräte
+          </h2>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs sm:text-sm border-collapse">
+              <thead>
+                <tr class="border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400">
+                  <th class="py-2.5 px-3 font-semibold">Gerät</th>
+                  <th class="py-2.5 px-3 font-semibold">Standby-Leistung</th>
+                  <th class="py-2.5 px-3 font-semibold">Verbrauch / Jahr (24/7)</th>
+                  <th class="py-2.5 px-3 font-semibold text-right">Kosten / Jahr (@ 35 ct)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">WLAN-Router (Fritz!Box etc.)</td><td class="py-2.5 px-3">10 W</td><td class="py-2.5 px-3">ca. 88 kWh</td><td class="py-2.5 px-3 text-right font-semibold">30,80 €</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">Spielekonsole (PS5 / Xbox Ruhemodus)</td><td class="py-2.5 px-3">8 W</td><td class="py-2.5 px-3">ca. 70 kWh</td><td class="py-2.5 px-3 text-right font-semibold">24,50 €</td></tr>
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">Fernseher mit Schnellstart</td><td class="py-2.5 px-3">6 W</td><td class="py-2.5 px-3">ca. 53 kWh</td><td class="py-2.5 px-3 text-right font-semibold">18,55 €</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">Soundbar / HiFi-Verstärker</td><td class="py-2.5 px-3">5 W</td><td class="py-2.5 px-3">ca. 44 kWh</td><td class="py-2.5 px-3 text-right font-semibold">15,40 €</td></tr>
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">PC-Monitor im Ruhezustand</td><td class="py-2.5 px-3">2 W</td><td class="py-2.5 px-3">ca. 18 kWh</td><td class="py-2.5 px-3 text-right font-semibold">6,30 €</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">Kaffeevollautomat im Standby</td><td class="py-2.5 px-3">2 W</td><td class="py-2.5 px-3">ca. 18 kWh</td><td class="py-2.5 px-3 text-right font-semibold">6,30 €</td></tr>
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">Netzteile ohne Endgerät (3 Stück)</td><td class="py-2.5 px-3">1,5 W</td><td class="py-2.5 px-3">ca. 13 kWh</td><td class="py-2.5 px-3 text-right font-semibold">4,55 €</td></tr>
+                <tr class="bg-emerald-50/40 dark:bg-emerald-950/20 font-bold"><td class="py-2.5 px-3 text-emerald-800 dark:text-emerald-300">Gesamte Standby-Kette</td><td class="py-2.5 px-3">ca. 34,5 W</td><td class="py-2.5 px-3">ca. 304 kWh</td><td class="py-2.5 px-3 text-right text-emerald-600 dark:text-emerald-400">106,40 € / Jahr</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Die 3-Euro-Lösung
+          </h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Eine einfache schaltbare Steckerleiste für 3 Euro trennt bis zu 6 Geräte komplett vom Stromnetz und spart jährlich oft <strong>30 bis 60 Euro</strong>.
+          </p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Verwandte Ratgeber</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/stromfresser" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Die 10 größten Stromfresser</a></li>
+            <li><a href="/strom-sparen-tipps" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Konkrete Stromspartipps</a></li>
+            <li><a href="/stromverbrauch-senken" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromverbrauch senken</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
     <RelatedLinks links={related} />
-    <SourceBox sourceIds={['uba', 'stromspiegel']} />
-    <FaqSection items={faqs} />
+    <SourceBox sourceIds={['bnetza', 'uba', 'stromspiegel']} />
   </div>
 </BaseLayout>

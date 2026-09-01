@@ -5,58 +5,161 @@ import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
 import RelatedLinks from '../components/seo/RelatedLinks.astro';
 import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
-import { getCalculatorSchema } from '../lib/structured-data';
-
-const schema = getCalculatorSchema(
-  'Stromkosten pro Jahr',
-  'Berechne deine gesamten jährlichen Stromkosten aus kWh-Verbrauch und Grundpreis.',
-  '/stromkosten-pro-jahr'
-);
+import { getCalculatorSchema, getFaqSchema } from '../lib/structured-data';
 
 const faqs = [
   {
-    question: 'Wie hoch sind die durchschnittlichen Jahresstromkosten in Deutschland?',
-    answer: 'Ein Single zahlt im Schnitt ca. 550 bis 700 € pro Jahr, 2 Personen ca. 900 bis 1.150 € und eine vierköpfige Familie rund 1.350 bis 1.800 € pro Jahr (bei 35 ct/kWh und ca. 150 € Grundgebühr).',
+    question: "Wie hoch sind die durchschnittlichen Stromkosten pro Jahr in Deutschland?",
+    answer: "Die jährlichen Stromkosten hängen von der Haushaltsgröße ab. Im Bundesdurchschnitt (bei 35 ct/kWh plus 150 € Grundpreis) zahlt: 1 Person ca. 600 bis 700 €/Jahr, 2 Personen ca. 880 bis 1.050 €/Jahr, eine 4-köpfige Familie ca. 1.350 bis 1.650 €/Jahr."
   },
+  {
+    question: "Was kosten 3.000 kWh Strom im Jahr?",
+    answer: "3.000 kWh Strom kosten bei einem Arbeitspreis von 35 ct/kWh genau 1.050,00 Euro reine Verbrauchskosten. Inklusive einer durchschnittlichen Grundgebühr von ca. 150 Euro liegen die Gesamt-Jahreskosten bei 1.200,00 Euro (100 Euro/Monat)."
+  },
+  {
+    question: "Was kosten 4.000 kWh Strom im Jahr?",
+    answer: "4.000 kWh kosten bei 35 ct/kWh genau 1.400,00 Euro Verbrauchskosten bzw. ca. 1.550,00 Euro Gesamtkosten inklusive Grundpreis."
+  },
+  {
+    question: "Was kosten 5.000 kWh Strom im Jahr?",
+    answer: "5.000 kWh kosten bei 35 ct/kWh genau 1.750,00 Euro reine Verbrauchskosten (ca. 1.900 Euro brutto mit Grundpreis)."
+  },
+  {
+    question: "Wie berechne ich die gesamten Stromkosten für ein Jahr?",
+    answer: "Formel: (Jahresverbrauch in kWh × Arbeitspreis in €/kWh) + (12 × monatlicher Grundpreis in €) = Jährliche Gesamtkosten. Beispiel: (3.500 × 0,35 €) + (12 × 12,50 €) = 1.225 € + 150 € = 1.375 €."
+  },
+  {
+    question: "Warum weicht meine Jahresabrechnung vom Vorjahr ab?",
+    answer: "Gründe für Abweichungen: 1. Strompreiserhöhungen oder -senkungen des Anbieters. 2. Mehr oder weniger Personen im Haushalt. 3. Anschaffung oder Stilllegung von Großgeräten. 4. Unterschiedliche Witterung bei Heizungspumpen oder Klimageräten. 5. Fehlerhafte Zählerablesungen."
+  },
+  {
+    question: "Wie viel spart ein jährlicher Stromanbieterwechsel?",
+    answer: "Wer aus der teuren Grundversorgung (z. B. 42 ct/kWh) zu einem günstigen Neukundentarif (z. B. 30 ct/kWh) wechselt, spart bei 3.500 kWh Jahresverbrauch rund 420 Euro im ersten Jahr."
+  },
+  {
+    question: "Wie viel Stromkosten verursacht ein Kühlschrank pro Jahr?",
+    answer: "Ein modernes Gerät der Effizienzklasse B oder C verursacht ca. 35 bis 49 Euro pro Jahr (100–140 kWh). Ein 15 Jahre altes Altgerät kostet jährlich ca. 105 bis 140 Euro (300–400 kWh)."
+  },
+  {
+    question: "Was kostet der Standby-Strom im ganzen Jahr?",
+    answer: "Die Summe aller Standby-Verluste in einem typischen Haushalt (150 bis 350 kWh/Jahr) verursacht jährlich rund 50 bis 125 Euro unnötige Stromkosten."
+  },
+  {
+    question: "Wie viel Geld spart ein 800-W-Balkonkraftwerk pro Jahr?",
+    answer: "Ein Balkonkraftwerk spart bei 75 % Eigenverbrauch rund 500 bis 600 kWh Netzstrom pro Jahr, was einer jährlichen Ersparnis von ca. 175 bis 210 Euro entspricht."
+  }
 ];
 
+const calcSchema = getCalculatorSchema(
+  'Stromkosten pro Jahr Rechner',
+  'Berechne deine jährlichen Gesamtkosten für Strom und vergleiche deinen Jahresverbrauch mit den Bundeswerten.',
+  '/stromkosten-pro-jahr'
+);
+const faqSchema = getFaqSchema(faqs);
+const pageSchemas = faqSchema ? [calcSchema, faqSchema] : [calcSchema];
+
 const related = [
-  { title: 'Stromkosten pro Monat', href: '/stromkosten-pro-monat', description: 'Monatskosten & Abschlag berechnen.' },
-  { title: 'Durchschnittlicher Stromverbrauch', href: '/durchschnittlicher-stromverbrauch', description: 'Offizielle Richtwerte für Deutschland.' },
-  { title: 'Stromrechnung prüfen', href: '/stromrechnung-pruefen', description: 'Jahresrechnung Schritt für Schritt prüfen.' },
+  { title: 'Stromkosten pro Monat', href: '/stromkosten-pro-monat', description: 'Monatliche Belastung & Abschlag.' },
+  { title: 'Stromrechnung berechnen', href: '/stromrechnung-berechnen', description: 'Jahresabrechnung nachrechnen.' },
+  { title: 'Stromverbrauch Haushalt', href: '/stromverbrauch-haushalt', description: 'Richtwerte für 1 bis 5 Personen.' },
+  { title: 'Strompreis Deutschland', href: '/strompreis', description: 'Preisentwicklung & Analyse.' },
 ];
 ---
 
 <BaseLayout
-  title="Stromkosten pro Jahr berechnen: Jahresstromkosten & Nachzahlung | kWhKlar"
-  description="Ermittle deine gesamten jährlichen Stromkosten auf Basis von kWh-Jahresverbrauch und Grundgebühr. Vergleiche deinen Wert mit dem Bundesdurchschnitt."
+  title="Stromkosten pro Jahr berechnen: Jahresverbrauch & Gesamtkosten | kWhKlar"
+  description="Was kostet Strom pro Jahr für 1, 2, 3 oder 4 Personen? Berechne deine gesamten Jahresstromkosten inklusive Grundpreis mit Rechner & Jahrestabelle."
   canonical="https://kwhklar.de/stromkosten-pro-jahr"
-  jsonLd={schema}
+  jsonLd={pageSchemas}
   breadcrumbs={[{ name: 'Stromkosten pro Jahr', path: '/stromkosten-pro-jahr' }]}
 >
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
     <Breadcrumbs items={[{ name: 'Stromkosten pro Jahr', path: '/stromkosten-pro-jahr' }]} />
 
-    <div class="max-w-3xl mb-6">
-      <span class="badge-emerald text-xs mb-2">Jahreskosten</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-        Stromkosten pro Jahr: Jahresabrechnung & Gesamtkosten berechnen
+    <div class="max-w-4xl mb-8">
+      <span class="badge-blue text-xs mb-2">Jahresanalyse &amp; Abrechnung</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Stromkosten pro Jahr: Jahresverbrauch &amp; Gesamtkosten
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        Berechne die gesamten Jahresstromkosten für einzelne Geräte oder deinen kompletten Jahresverbrauch in Kilowattstunden.
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Erfahre, welche jährlichen Stromkosten für deinen Haushalt normal sind, wie du deine Jahresabrechnung präzise vorberechnest und welche Einsparpotenziale du über das Jahr realisieren kannst.
       </p>
     </div>
 
+    <!-- Live Universal Calculator -->
     <UniversalCalculator
-      defaultWatt={1000}
-      defaultHours={1}
+      defaultWatt={250}
+      defaultHours={8}
       defaultPriceCt={35.0}
       title="Jahreskosten-Rechner"
-      subtitle="Ermittle die jährlichen Kosten für 365 Tage Betrieb:"
+      subtitle="Berechne die jährlichen Stromkosten für beliebige Geräte oder den gesamten Haushalt:"
     />
+
+    <!-- Main Content Depth -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- Section: Annual Benchmarks Table -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Jahresübersicht: Jahresstromkosten nach Haushaltsgröße
+          </h2>
+          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
+            In der folgenden Tabelle sind die durchschnittlichen Jahreskosten inklusive 150 € Grundpreis bei 35 ct/kWh Arbeitspreis zusammengefasst:
+          </p>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs sm:text-sm border-collapse">
+              <thead>
+                <tr class="border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400">
+                  <th class="py-3 px-3 font-semibold">Haushalt</th>
+                  <th class="py-3 px-3 font-semibold">Jahres-kWh</th>
+                  <th class="py-3 px-3 font-semibold">Verbrauchskosten</th>
+                  <th class="py-3 px-3 font-semibold text-right">Gesamtkosten / Jahr</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">1 Person (Wohnung)</td><td class="py-2.5 px-3">1.300 kWh</td><td class="py-2.5 px-3">455,00 €</td><td class="py-2.5 px-3 text-right font-bold text-emerald-600 dark:text-emerald-400">605,00 €</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">2 Personen (Wohnung)</td><td class="py-2.5 px-3">2.100 kWh</td><td class="py-2.5 px-3">735,00 €</td><td class="py-2.5 px-3 text-right font-bold text-emerald-600 dark:text-emerald-400">885,00 €</td></tr>
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">3 Personen (Wohnung)</td><td class="py-2.5 px-3">2.600 kWh</td><td class="py-2.5 px-3">910,00 €</td><td class="py-2.5 px-3 text-right font-bold text-emerald-600 dark:text-emerald-400">1.060,00 €</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">4 Personen (Wohnung)</td><td class="py-2.5 px-3">3.000 kWh</td><td class="py-2.5 px-3">1.050,00 €</td><td class="py-2.5 px-3 text-right font-bold text-emerald-600 dark:text-emerald-400">1.200,00 €</td></tr>
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">4 Personen (Einfamilienhaus)</td><td class="py-2.5 px-3">4.000 kWh</td><td class="py-2.5 px-3">1.400,00 €</td><td class="py-2.5 px-3 text-right font-bold text-emerald-600 dark:text-emerald-400">1.550,00 €</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">Haus + Durchlauferhitzer</td><td class="py-2.5 px-3">5.400 kWh</td><td class="py-2.5 px-3">1.890,00 €</td><td class="py-2.5 px-3 text-right font-bold text-amber-700 dark:text-amber-400">2.040,00 €</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Jahresformel
+          </h3>
+          <p class="text-xs text-slate-300 leading-relaxed mb-4">
+            Die Formel der offiziellen Stromabrechnung:
+          </p>
+          <div class="p-3.5 rounded-xl bg-slate-800 border border-slate-700 font-mono text-xs text-emerald-300 mb-4">
+            Jahreskosten (€) = (kWh × ct/kWh ÷ 100) + Grundpreis
+          </div>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Verwandte Ratgeber</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/stromrechnung-pruefen" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromrechnung prüfen</a></li>
+            <li><a href="/stromkosten-pro-monat" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromkosten pro Monat</a></li>
+            <li><a href="/stromverbrauch-senken" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromverbrauch senken</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
 
     <RelatedLinks links={related} />
     <SourceBox sourceIds={['bnetza', 'bdew', 'stromspiegel']} />
-    <FaqSection items={faqs} />
   </div>
 </BaseLayout>

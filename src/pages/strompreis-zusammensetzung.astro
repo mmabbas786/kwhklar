@@ -5,25 +5,66 @@ import RelatedLinks from '../components/seo/RelatedLinks.astro';
 import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
 import { electricityPriceData } from '../data/electricity-price';
+import { getFaqSchema } from '../lib/structured-data';
 
 const faqs = [
   {
-    question: 'Wie hoch ist der Steuer- und Abgabenanteil am deutschen Strompreis?',
-    answer: 'Steuern, staatlich veranlasste Abgaben und Umlagen (inkl. Mehrwertsteuer und Stromsteuer) machen ca. 28 % des gesamten Haushaltsstrompreises aus. Hinzu kommen ca. 27 % für die regulierten Netzentgelte.',
+    question: "Woraus setzt sich der deutsche Strompreis genau zusammen?",
+    answer: "Der Haushaltsstrompreis besteht aus drei Säulen: 1. Beschaffung, Erzeugung & Vertrieb (ca. 47 % bzw. 16,5 ct/kWh). 2. Netzentgelte für Leitungen & Messstellenbetrieb (ca. 28 % bzw. 9,7 ct/kWh). 3. Gesetzliche Steuern, Umlagen & Mehrwertsteuer (ca. 25 % bzw. 8,8 ct/kWh)."
   },
+  {
+    question: "Welche gesetzlichen Steuern und Umlagen fallen auf Strom an?",
+    answer: "Auf jede Kilowattstunde Strom fallen folgende gesetzliche Posten an: Stromsteuer (2,05 ct/kWh), Konzessionsabgabe an Kommunen (ca. 1,66 ct/kWh), KWKG-Umlage (ca. 0,28 ct/kWh), §19 StromNEV-Umlage (ca. 0,64 ct/kWh), Offshore-Netzumlage (ca. 0,66 ct/kWh) sowie 19 % Mehrwertsteuer auf die Gesamtsumme."
+  },
+  {
+    question: "Was sind Netzentgelte und warum sind sie so hoch?",
+    answer: "Netzentgelte sind staatlich regulierte Gebühren für die Nutzung des Stromnetzes (Freileitungen, Erdkabel, Umspannwerke, Transformatoren, Messstellen). Da der Ausbau des Stromnetzes für die Energiewende Milliarden kostet, stiegen die Netzentgelte in den letzten Jahren kontinuierlich an."
+  },
+  {
+    question: "Gibt es die EEG-Umlage noch?",
+    answer: "Nein. Die EEG-Umlage (Erneuerbare-Energien-Gesetz) zur Förderung von Wind- und Solaranlagen wurde zum 1. Juli 2022 dauerhaft auf 0 Cent gesenkt. Die Förderung wird seither vollständig aus dem staatlichen Sondervermögen 'Klima- und Transformationsfonds' finanziert."
+  },
+  {
+    question: "Wie viel Prozent des Strompreises kassiert der Staat?",
+    answer: "Zusammen mit der Stromsteuer, der Konzessionsabgabe, den staatlich verordneten Umlagen und der 19 % Mehrwertsteuer liegt der staatlich induzierte Anteil bei rund 25 bis 30 % des Endkundenpreises."
+  },
+  {
+    question: "Was ist der Beschaffungs- und Vertriebsanteil?",
+    answer: "Das ist der einzige Preisbestandteil, den der Stromanbieter selbst beeinflussen kann. Er umfasst den Einkauf des Stroms an der Energiebörse (EPEX Spot / EEX), die Risikoabsicherung, das Kundenmanagement, die Abrechnungserstellung und die Gewinnmarge des Versorgers."
+  },
+  {
+    question: "Wie wird die Mehrwertsteuer auf Strom berechnet?",
+    answer: "In Deutschland gilt der reguläre Umsatzsteuersatz von 19 %. Er wird auf die Summe aller anderen Preisbestandteile (einschließlich Stromsteuer, Netzentgelte und Umlagen) erhoben (sogenannte Steuer auf die Steuer)."
+  },
+  {
+    question: "Was ist die Konzessionsabgabe?",
+    answer: "Eine Abgabe, die Netzbetreiber an Städte und Gemeinden dafür zahlen, dass Stromleitungen unter öffentlichen Straßen und Wegen verlegt werden dürfen. Sie ist in der Konzessionsabgabenverordnung (KAV) geregelt."
+  },
+  {
+    question: "Wer kontrolliert und genehmigt die Netzentgelte?",
+    answer: "Die Bundesnetzagentur (BNetzA) sowie die Landesregulierungsbehörden überwachen die Netzentgelte der Netzbetreiber im Rahmen der sogenannten Anreizregulierung."
+  },
+  {
+    question: "Kann man die staatlichen Stromabgaben persönlich senken?",
+    answer: "Nur indirekt durch Stromeinsparung oder Eigenstromerzeugung (z. B. PV-Anlage oder Balkonkraftwerk): Auf selbst erzeugten und selbst verbrauchten Solarstrom fallen weder Netzentgelte noch Stromsteuer oder Mehrwertsteuer an."
+  }
 ];
 
+const faqSchema = getFaqSchema(faqs);
+
 const related = [
-  { title: 'Aktueller Strompreis', href: '/strompreis-aktuell', description: 'Referenzpreise im Überblick.' },
-  { title: 'Strompreis Entwicklung', href: '/strompreis-entwicklung', description: 'Historischer Verlauf.' },
-  { title: 'Stromrechnung prüfen', href: '/stromrechnung-pruefen', description: 'Preiskomponenten auf der Rechnung.' },
+  { title: 'Strompreis Deutschland', href: '/strompreis-deutschland', description: 'Regionale Unterschiede.' },
+  { title: 'Strompreis Entwicklung', href: '/strompreis-entwicklung', description: 'Historischer Preisverlauf.' },
+  { title: 'Dynamische Stromtarife', href: '/dynamische-stromtarife', description: 'Börsenstromtarife.' },
+  { title: 'Stromanbieter wechseln', href: '/stromanbieter-wechseln', description: 'Wechsel-Leitfaden.' },
 ];
 ---
 
 <BaseLayout
   title="Strompreis Zusammensetzung: Steuern, Abgaben & Netzentgelte | kWhKlar"
-  description="Woraus setzt sich der Strompreis in Deutschland zusammen? Detaillierte Aufschlüsselung von Beschaffung, Netzentgelten, Stromsteuer und Umlagen."
+  description="Woraus besteht der deutsche Strompreis? Genaue Aufteilung aus Beschaffung (47%), Netzentgelten (28%), Steuern & Umlagen (25%) im Detail erklärt."
   canonical="https://kwhklar.de/strompreis-zusammensetzung"
+  jsonLd={faqSchema ? [faqSchema] : undefined}
   breadcrumbs={[
     { name: 'Strompreis', path: '/strompreis' },
     { name: 'Strompreis Zusammensetzung', path: '/strompreis-zusammensetzung' },
@@ -37,36 +78,80 @@ const related = [
       ]}
     />
 
-    <div class="max-w-3xl mb-8">
-      <span class="badge-emerald text-xs mb-2">Preisanalyse</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-        Zusammensetzung des Strompreises in Deutschland
+    <div class="max-w-4xl mb-8">
+      <span class="badge-emerald text-xs mb-2">Preisbestandteile im Detail</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Strompreis Zusammensetzung: Woraus besteht 1 kWh Strom?
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        Wohin fließt dein Geld für jede bezahlte Kilowattstunde? Eine transparente Aufschlüsselung aller Kostenbestandteile.
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Erfahre genau, wohin jeder Cent deines Strompreises fließt: Wie viel für Energiebeschaffung, für das Stromnetz und an den Staat für Steuern, Abgaben und Umlagen gezahlt wird.
       </p>
     </div>
 
-    <!-- 3 Pillars Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-10">
-      {electricityPriceData.priceComposition.map((comp) => (
-        <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-xs flex flex-col justify-between">
-          <div>
-            <div class="text-2xl font-black text-emerald-600 tracking-tight mb-2">
-              {comp.sharePercent.toFixed(1)} %
-            </div>
-            <h2 class="font-bold text-slate-900 text-base mb-2">{comp.category}</h2>
-            <p class="text-xs text-slate-600 leading-relaxed">{comp.description}</p>
+    <!-- Main Editorial Content Depth -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- Section: Price Breakdown Table -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Die 3 Säulen des Strompreises im Detail
+          </h2>
+          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
+            Basierend auf der offiziellen Strompreisanalyse des BDEW und der Bundesnetzagentur bei einem Referenzpreis von 35,0 ct/kWh:
+          </p>
+
+          <div class="space-y-4">
+            {electricityPriceData.priceComposition.map((item) => (
+              <div class="rounded-2xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40 p-4 sm:p-5">
+                <div class="flex flex-wrap justify-between items-center text-sm sm:text-base font-bold text-slate-900 dark:text-white gap-2">
+                  <span>{item.category}</span>
+                  <span class="text-emerald-600 dark:text-emerald-400 font-extrabold">{item.sharePercent.toFixed(1)} % • {item.valueCtPerKwh.toFixed(2).replace('.', ',')} ct/kWh</span>
+                </div>
+                <p class="mt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{item.description}</p>
+              </div>
+            ))}
           </div>
-          <div class="mt-4 pt-3 border-t border-slate-100 text-xs font-semibold text-slate-700">
-            ca. {comp.valueCtPerKwh.toFixed(2).replace('.', ',')} ct/kWh
-          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Säulen im Überblick
+          </h3>
+          <ul class="text-xs space-y-3 text-slate-300">
+            <li class="border-b border-slate-800 pb-2">
+              <strong class="text-white block">Beschaffung &amp; Vertrieb (ca. 47 %):</strong>
+              Kraftwerke, Börsenhandel &amp; Anbietermarge.
+            </li>
+            <li class="border-b border-slate-800 pb-2">
+              <strong class="text-white block">Netzentgelte (ca. 28 %):</strong>
+              Regulierte Leitungsgebühren &amp; Zählerbetrieb.
+            </li>
+            <li>
+              <strong class="text-white block">Steuern &amp; Umlagen (ca. 25 %):</strong>
+              Stromsteuer, Konzession, Umlagen &amp; MwSt.
+            </li>
+          </ul>
         </div>
-      ))}
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Verwandte Ratgeber</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/strompreis-deutschland" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Strompreis nach Regionen</a></li>
+            <li><a href="/strompreis-entwicklung" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Preisentwicklung</a></li>
+            <li><a href="/dynamische-stromtarife" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Dynamische Tarife</a></li>
+          </ul>
+        </div>
+      </aside>
     </div>
 
     <RelatedLinks links={related} />
-    <SourceBox sourceIds={['bdew', 'bnetza', 'destatis']} />
-    <FaqSection items={faqs} />
+    <SourceBox sourceIds={['bnetza', 'bdew', 'destatis']} />
   </div>
 </BaseLayout>

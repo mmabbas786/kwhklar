@@ -5,58 +5,167 @@ import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
 import RelatedLinks from '../components/seo/RelatedLinks.astro';
 import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
-import { getCalculatorSchema } from '../lib/structured-data';
-
-const schema = getCalculatorSchema(
-  'Stromkosten pro Tag',
-  'Berechne die täglichen Stromkosten für Elektrogeräte und Dauerläufer im Haushalt.',
-  '/stromkosten-pro-tag'
-);
+import { getCalculatorSchema, getFaqSchema } from '../lib/structured-data';
 
 const faqs = [
   {
-    question: 'Wie viel Strom verbraucht ein Haushalt pro Tag?',
-    answer: 'Ein 1-Personen-Haushalt verbraucht ca. 3,5 bis 4 kWh pro Tag (ca. 1,20 bis 1,40 €). Ein 2-Personen-Haushalt benötigt rund 6 bis 7 kWh/Tag (ca. 2,10 bis 2,45 €) und eine 4-köpfige Familie verbraucht ca. 8,5 bis 11 kWh/Tag (ca. 3,00 bis 3,85 € zzgl. Grundpreis).',
+    question: "Sind 5 kWh Stromverbrauch am Tag viel?",
+    answer: "Nein, 5 kWh pro Tag (entspricht ca. 1.825 kWh im Jahr) ist ein sehr sparsamer bis normaler Wert für einen 1- bis 2-Personen-Haushalt in einer Mietwohnung. Bei 35 ct/kWh kostet das rund 1,75 € pro Tag."
   },
+  {
+    question: "Sind 10 kWh am Tag viel?",
+    answer: "10 kWh pro Tag (ca. 3.650 kWh im Jahr) ist der typische Bundesdurchschnitt für eine 3- bis 4-köpfige Familie in einer Wohnung oder einem Einfamilienhaus. Für einen Single-Haushalt wäre dies deutlich überhöht. Bei 35 ct/kWh entstehen tägliche Kosten von 3,50 € (ca. 105 € im Monat)."
+  },
+  {
+    question: "Sind 20 kWh am Tag viel?",
+    answer: "20 kWh pro Tag (ca. 7.300 kWh im Jahr) ist ein sehr hoher Wert. Er ist nur dann plausibel, wenn im Haus eine Wärmepumpe heizt, ein Elektroauto täglich geladen wird, ein beheizter Whirlpool läuft oder das gesamte Warmwasser für viele Personen elektrisch erzeugt wird. Die täglichen Kosten betragen ca. 7,00 € (rund 210 € monatlich)."
+  },
+  {
+    question: "Wie viel Strom verbraucht ein Haus im Ruhezustand (Grundlast)?",
+    answer: "Im Ruhezustand (Standby, Kühlschrank, Router, Heizungspumpe, Lüftung) verbraucht ein Einfamilienhaus meist zwischen 120 und 250 Watt Dauerlast. Über 24 Stunden summiert sich dies auf ca. 3,0 bis 6,0 kWh pro Tag (ca. 1,05 bis 2,10 € täglich nur für die Grundlast)."
+  },
+  {
+    question: "Wie viel Strom braucht ein Einfamilienhaus in der Nacht?",
+    answer: "Während der 8 Nachtstunden (ohne aktive Gerätenutzung) liegt der Strombedarf eines Hauses typischerweise bei 1,0 bis 2,5 kWh (ca. 35 bis 88 Cent pro Nacht), verursacht durch Kühlschränke, Standby-Geräte und Heizungssteuerung."
+  },
+  {
+    question: "Was kosten 10 Stunden Fernsehen am Tag?",
+    answer: "Ein 100-Watt-Fernseher verbraucht bei 10 Stunden Laufzeit genau 1,0 kWh Strom. Bei einem Strompreis von 35 ct/kWh kostet das 35 Cent pro Tag (ca. 10,50 € im Monat bzw. rund 128 € im Jahr)."
+  },
+  {
+    question: "Wie viele kWh braucht ein Einfamilienhaus pro Tag im Durchschnitt?",
+    answer: "Ein normales Einfamilienhaus (3–4 Personen) verbraucht ca. 10 bis 14 kWh Strom pro Tag (ca. 3.600 bis 5.000 kWh/Jahr). An kalten Wintertagen steigt der Bedarf oft auf 15–18 kWh, im Sommer sinkt er auf 7–9 kWh."
+  },
+  {
+    question: "Wie berechne ich meine täglichen Stromkosten?",
+    answer: "Formel: Täglicher Zählerstand-Zuwachs in kWh × Strompreis in €/kWh = Stromkosten pro Tag. Beispiel: 8,5 kWh × 0,35 € = 2,98 € pro Tag."
+  },
+  {
+    question: "Wie viel Strom verbraucht das Kochen und Backen pro Tag?",
+    answer: "Das Zubereiten einer warmen Mahlzeit (Herd und/oder Backofen) verbraucht im Schnitt ca. 1,5 bis 2,5 kWh pro Tag (rund 50 bis 90 Cent)."
+  },
+  {
+    question: "Wie stark schwankt der Tagesstromverbrauch zwischen Sommer und Winter?",
+    answer: "Im Winter liegt der tägliche Stromverbrauch oft 30 bis 60 % höher als im Sommer. Hauptgründe sind längere Beleuchtungszeiten, Heizungspumpen, häufigere Nutzung von Trockner und Backofen sowie mehr Aufenthalt im Haus."
+  }
 ];
 
+const calcSchema = getCalculatorSchema(
+  'Stromkosten pro Tag Rechner',
+  'Berechne die täglichen Stromkosten für Haushalt und Elektrogeräte bei aktuellem Strompreis in Deutschland.',
+  '/stromkosten-pro-tag'
+);
+const faqSchema = getFaqSchema(faqs);
+const pageSchemas = faqSchema ? [calcSchema, faqSchema] : [calcSchema];
+
 const related = [
-  { title: 'Stromkosten pro Stunde', href: '/stromkosten-pro-stunde', description: 'Kosten für 1 Stunde.' },
-  { title: 'Stromkosten pro Monat', href: '/stromkosten-pro-monat', description: 'Monatskosten & Abschlag.' },
-  { title: 'Stromkosten pro Jahr', href: '/stromkosten-pro-jahr', description: 'Jahresgesamtkosten berechnen.' },
+  { title: 'Stromkosten pro Stunde', href: '/stromkosten-pro-stunde', description: 'Stundenkosten für 10 W bis 3.000 W.' },
+  { title: 'Stromkosten pro Monat', href: '/stromkosten-pro-monat', description: 'Monatskosten und Abschläge ermitteln.' },
+  { title: 'Stromverbrauch Haushalt', href: '/stromverbrauch-haushalt', description: 'Vergleichswerte für 1 bis 5 Personen.' },
+  { title: 'Stromkostenrechner', href: '/stromkosten-rechner', description: 'Universeller Stromkostenrechner.' },
 ];
 ---
 
 <BaseLayout
   title="Stromkosten pro Tag berechnen: Tagesverbrauch & Kosten | kWhKlar"
-  description="Ermittle deine täglichen Stromkosten für Dauerläufer wie Kühlschrank, Router, Server oder den gesamten Haushalt."
+  description="Was kosten 5, 10 oder 20 kWh am Tag? Berechne deinen täglichen Stromverbrauch und die Kosten pro Tag für Haushalt, Grundlast und Einzelgeräte."
   canonical="https://kwhklar.de/stromkosten-pro-tag"
-  jsonLd={schema}
+  jsonLd={pageSchemas}
   breadcrumbs={[{ name: 'Stromkosten pro Tag', path: '/stromkosten-pro-tag' }]}
 >
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
     <Breadcrumbs items={[{ name: 'Stromkosten pro Tag', path: '/stromkosten-pro-tag' }]} />
 
-    <div class="max-w-3xl mb-6">
-      <span class="badge-emerald text-xs mb-2">Tageskosten</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-        Stromkosten pro Tag: Tageskosten für Geräte & Haushalt berechnen
+    <div class="max-w-4xl mb-8">
+      <span class="badge-blue text-xs mb-2">Tagesanalyse</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Stromkosten pro Tag: Tagesverbrauch &amp; Kosten im Check
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        Berechne die täglichen Stromkosten für 24h-Dauerläufer oder typische Alltagsgeräte nach deiner Nutzungsdauer.
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Erfahre, wie viele Kilowattstunden (kWh) am Tag normal sind, was ein Tag Strom für deinen Haushalt kostet und wie sich der tägliche Strombedarf auf Geräte, Kochen und Grundlast verteilt.
       </p>
     </div>
 
+    <!-- Live Universal Calculator -->
     <UniversalCalculator
-      defaultWatt={150}
-      defaultHours={24}
+      defaultWatt={500}
+      defaultHours={8}
       defaultPriceCt={35.0}
       title="Tageskosten-Rechner"
-      subtitle="Passe Leistung und Stunden pro Tag an, um die Kosten pro 24 Stunden zu sehen:"
+      subtitle="Berechne die Stromkosten pro Tag bei individueller Leistung und Betriebsdauer:"
     />
 
+    <!-- Main Content Depth -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- Section: Daily Benchmarks Table -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Tagesverbrauch-Benchmarks: Was kosten 1 bis 25 kWh pro Tag?
+          </h2>
+          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
+            In der folgenden Tabelle siehst du, wie sich verschiedene tägliche Strommengen auf den Monat und das Jahr auswirken (Basis: 35 ct/kWh):
+          </p>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs sm:text-sm border-collapse">
+              <thead>
+                <tr class="border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400">
+                  <th class="py-3 px-3 font-semibold">Tagesverbrauch</th>
+                  <th class="py-3 px-3 font-semibold">Kosten / Tag (@ 35 ct)</th>
+                  <th class="py-3 px-3 font-semibold">Kosten / Monat (30 T.)</th>
+                  <th class="py-3 px-3 font-semibold">Jahresverbrauch</th>
+                  <th class="py-3 px-3 font-semibold text-right">Kosten / Jahr</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">3,5 kWh</td><td class="py-2.5 px-3">1,23 €</td><td class="py-2.5 px-3">36,75 €</td><td class="py-2.5 px-3">1.278 kWh (Single)</td><td class="py-2.5 px-3 text-right font-semibold">447,13 €</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">6,0 kWh</td><td class="py-2.5 px-3">2,10 €</td><td class="py-2.5 px-3">63,00 €</td><td class="py-2.5 px-3">2.190 kWh (2 Personen)</td><td class="py-2.5 px-3 text-right font-semibold">766,50 €</td></tr>
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">10,0 kWh</td><td class="py-2.5 px-3">3,50 €</td><td class="py-2.5 px-3">105,00 €</td><td class="py-2.5 px-3">3.650 kWh (Familie)</td><td class="py-2.5 px-3 text-right font-semibold">1.277,50 €</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">15,0 kWh</td><td class="py-2.5 px-3">5,25 €</td><td class="py-2.5 px-3">157,50 €</td><td class="py-2.5 px-3">5.475 kWh (Haus mit WW)</td><td class="py-2.5 px-3 text-right font-semibold">1.916,25 €</td></tr>
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">20,0 kWh</td><td class="py-2.5 px-3">7,00 €</td><td class="py-2.5 px-3">210,00 €</td><td class="py-2.5 px-3">7.300 kWh (Haus + E-Auto)</td><td class="py-2.5 px-3 text-right font-bold text-amber-700 dark:text-amber-400">2.555,00 €</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">30,0 kWh</td><td class="py-2.5 px-3">10,50 €</td><td class="py-2.5 px-3">315,00 €</td><td class="py-2.5 px-3">10.950 kWh (Wärmepumpe Winter)</td><td class="py-2.5 px-3 text-right font-bold text-amber-700 dark:text-amber-400">3.832,50 €</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Tageskosten Faustregel
+          </h3>
+          <p class="text-xs text-slate-300 leading-relaxed mb-4">
+            Teile deinen Jahresverbrauch durch 365, um deinen durchschnittlichen Tageswert zu erhalten.
+          </p>
+          <div class="p-3.5 rounded-xl bg-slate-800 border border-slate-700 font-mono text-xs text-emerald-300 mb-4">
+            kWh/Tag = Jahres-kWh ÷ 365<br/>
+            Kosten/Tag = kWh/Tag × 0,35 €
+          </div>
+          <div class="text-xs text-slate-400">
+            Beispiel: 3.650 kWh ÷ 365 = <strong>10,0 kWh/Tag (3,50 €)</strong>
+          </div>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Verwandte Zeiträume</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/stromkosten-pro-stunde" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromkosten pro Stunde</a></li>
+            <li><a href="/stromkosten-pro-woche" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromkosten pro Woche</a></li>
+            <li><a href="/stromkosten-pro-monat" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromkosten pro Monat</a></li>
+            <li><a href="/stromkosten-pro-jahr" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromkosten pro Jahr</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
     <RelatedLinks links={related} />
-    <SourceBox sourceIds={['bnetza', 'stromspiegel']} />
-    <FaqSection items={faqs} />
+    <SourceBox sourceIds={['bnetza', 'bdew', 'stromspiegel']} />
   </div>
 </BaseLayout>

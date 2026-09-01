@@ -7,27 +7,74 @@ import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
 import { householdBenchmarks } from '../data/household-benchmarks';
 import { formatKwh } from '../lib/formatters';
+import { getCalculatorSchema, getFaqSchema } from '../lib/structured-data';
 
 const data = householdBenchmarks[5];
 
 const faqs = [
   {
-    question: 'Wie viel Strom verbraucht eine 5-köpfige Großfamilie?',
-    answer: 'Ein 5-Personen-Haushalt verbraucht ca. 3.600 bis 5.200 kWh in einer Wohnung bzw. 4.800 bis 6.300 kWh im Einfamilienhaus. Die monatlichen Kosten liegen bei 35 ct/kWh zwischen ca. 120 und 195 Euro.',
+    question: "Wie viel Strom verbraucht ein 5-Personen-Haushalt im Durchschnitt?",
+    answer: "Ein 5-Personen-Haushalt in einer Wohnung verbraucht ca. 3.600 bis 4.200 kWh pro Jahr (ohne elektrische Warmwasserbereitung). Bei Warmwasser über Durchlauferhitzer liegt der Verbrauch bei ca. 5.200 bis 6.000 kWh. In einem Einfamilienhaus liegt der typische Jahresverbrauch bei ca. 4.800 bis 6.400 kWh."
   },
+  {
+    question: "Wie hoch sind die monatlichen Stromkosten für 5 Personen?",
+    answer: "Ein 5-Personen-Haushalt zahlt monatlich durchschnittlich ca. 120 bis 140 Euro (Wohnung) bzw. ca. 160 bis 200 Euro (Einfamilienhaus / Durchlauferhitzer) inklusive Grundgebühr bei 35 ct/kWh."
+  },
+  {
+    question: "Sind 6.000 kWh Strom im Jahr für 5 Personen normal?",
+    answer: "Ja, 6.000 kWh für 5 Personen entspricht ca. 1.200 kWh pro Kopf. Bei elektrischer Warmwasserbereitung oder in einem freistehenden Einfamilienhaus ist das ein realistischer und solider Durchschnittswert."
+  },
+  {
+    question: "Wie viele kWh verbrauchen 5 Personen pro Tag?",
+    answer: "Ein 5-Personen-Haushalt verbraucht im Schnitt ca. 13 bis 18 kWh Strom pro Tag (ca. 4,50 bis 6,30 Euro täglich)."
+  },
+  {
+    question: "Wie viele Wasch- und Spülgänge fallen bei 5 Personen an?",
+    answer: "In einem 5-Personen-Haushalt laufen Waschmaschine und Geschirrspüler meist fast täglich (ca. 250 bis 350 Durchläufe pro Jahr), was zusammen ca. 400 bis 600 kWh Strom pro Jahr beansprucht."
+  },
+  {
+    question: "Wie viel Strom spart ein 5-Personen-Haushalt mit Sparduschköpfen?",
+    answer: "Bei elektrischer Warmwasserbereitung spart ein Sparduschkopf bei 5 Personen ca. 1.200 bis 2.000 kWh Strom pro Jahr (ca. 420 bis 700 Euro Ersparnis jährlich)."
+  },
+  {
+    question: "Lohnt sich eine Photovoltaik-Anlage für einen 5-Personen-Haushalt?",
+    answer: "Sehr. Aufgrund des konstant hohen Tagesstromverbrauchs kann eine PV-Anlage (z. B. 8–12 kWp mit Speicher) bis zu 60–75 % des Haushaltsstrombedarfs decken und jährlich weit über 1.000 Euro Stromkosten sparen."
+  },
+  {
+    question: "Wie hoch ist die Grundlast bei 5 Personen?",
+    answer: "Die Grundlast liegt meist zwischen 160 und 300 Watt (ca. 3,8 bis 7,2 kWh pro Tag), da oft zwei Kühlgeräte, viele Netzteile, Router, Repeater und Smart-Home-Komponenten im Einsatz sind."
+  },
+  {
+    question: "Welchen Einfluss hat das Alter der Kinder bei 5 Personen?",
+    answer: "Leben mehrere Teenager oder junge Erwachsene im Haushalt, steigen die Duschzeiten sowie der Medien- und IT-Verbrauch deutlich. Hier können leicht 500 bis 1.000 kWh zusätzlicher Strom pro Jahr anfallen."
+  },
+  {
+    question: "Wie viel Strom spart das Kochen mit Induktion bei 5 Personen?",
+    answer: "Induktionskochfelder verbrauchen rund 20 bis 30 % weniger Energie als herkömmliche Ceran- oder Massekochplatten und heizen deutlich schneller auf."
+  }
 ];
+
+const calcSchema = getCalculatorSchema(
+  'Stromverbrauch 5 Personen Rechner',
+  'Berechne den typischen Stromverbrauch und die Kosten für einen 5-Personen-Haushalt nach Wohnform und Warmwasser.',
+  '/stromverbrauch-5-personen'
+);
+const faqSchema = getFaqSchema(faqs);
+const pageSchemas = faqSchema ? [calcSchema, faqSchema] : [calcSchema];
 
 const related = [
   { title: '4-Personen-Haushalt', href: '/stromverbrauch-4-personen', description: 'Richtwerte für 4 Personen.' },
-  { title: 'Stromverbrauch Einfamilienhaus', href: '/stromverbrauch-einfamilienhaus', description: 'Verbrauch im Eigenheim.' },
-  { title: 'Balkonkraftwerk Ersparnis', href: '/balkonkraftwerk/stromkosten-sparen', description: 'Grundlast im großen Haushalt senken.' },
+  { title: 'Stromverbrauch Einfamilienhaus', href: '/stromverbrauch-einfamilienhaus', description: 'Haus-Richtwerte.' },
+  { title: 'Stromverbrauch Wohnung', href: '/stromverbrauch-wohnung', description: 'Mietwohnungs-Werte.' },
+  { title: 'Stromverbrauch senken', href: '/stromverbrauch-senken', description: 'Gezielte Spartipps.' },
 ];
 ---
 
 <BaseLayout
   title="Stromverbrauch 5 Personen: Richtwerte & Kosten für Großfamilien | kWhKlar"
-  description="Wie viel Strom verbraucht ein 5-Personen-Haushalt? Offizielle Richtwerte (3.600–5.200 kWh), Kostenvergleich und Sparmöglichkeiten für große Haushalte."
+  description="Wie viel Strom verbraucht ein 5-Personen-Haushalt? Offizielle Richtwerte (3.600–5.200 kWh), monatliche Kosten, Einfamilienhaus-Werte und Spartipps."
   canonical="https://kwhklar.de/stromverbrauch-5-personen"
+  jsonLd={pageSchemas}
   breadcrumbs={[
     { name: 'Haushalt', path: '/stromverbrauch-haushalt' },
     { name: '5 Personen', path: '/stromverbrauch-5-personen' },
@@ -37,53 +84,110 @@ const related = [
     <Breadcrumbs
       items={[
         { name: 'Haushalt', path: '/stromverbrauch-haushalt' },
-        { name: '5 Personen (Großfamilie)', path: '/stromverbrauch-5-personen' },
+        { name: '5+ Personen (Großhaushalt)', path: '/stromverbrauch-5-personen' },
       ]}
     />
 
-    <div class="max-w-3xl mb-8">
+    <div class="max-w-4xl mb-8">
       <span class="badge-emerald text-xs mb-2">Großhaushalt Benchmark</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-        Stromverbrauch für 5 Personen (Großfamilie)
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Stromverbrauch für 5 Personen: Richtwerte &amp; Kosten
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        {data.description}
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Erfahre, wie viel Strom ein 5-Personen-Haushalt (Großfamilie oder Wohngemeinschaft) im Durchschnitt verbraucht, was ein realistischer Monatsabschlag ist und mit welchen Maßnahmen sich die Stromrechnung spürbar senken lässt.
       </p>
     </div>
 
+    <!-- Key Metrics Cards -->
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-10">
-      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/70 p-5 shadow-xs transition-all hover:border-slate-300 dark:hover:border-slate-700">
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
         <span class="text-xs text-slate-500 dark:text-slate-400 font-medium block">Wohnung (ohne Warmwasser)</span>
-        <div class="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.apartmentWithoutWarmWaterKwh, 0)}</div>
-        <span class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 block">ca. 115–125 € / Monat</span>
+        <div class="mt-2 text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.apartmentWithoutWarmWaterKwh, 0)}</div>
+        <span class="text-xs text-emerald-600 dark:text-emerald-400 mt-2 block font-semibold">ca. 115–125 € / Monat (@ 35 ct)</span>
       </div>
 
-      <div class="rounded-2xl border border-emerald-500/30 dark:border-emerald-500/25 bg-emerald-50/40 dark:bg-emerald-950/20 p-5 shadow-xs transition-all hover:border-emerald-500/50">
-        <span class="text-xs text-emerald-700 dark:text-emerald-400 font-semibold flex items-center gap-1.5">
-          <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+      <div class="rounded-3xl border border-emerald-500/30 dark:border-emerald-500/25 bg-emerald-50/40 dark:bg-emerald-950/20 p-6 shadow-xs">
+        <span class="text-xs text-emerald-800 dark:text-emerald-300 font-bold flex items-center gap-1.5">
+          <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
           Wohnung (mit Warmwasser elektrisch)
         </span>
-        <div class="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.apartmentWithWarmWaterKwh, 0)}</div>
-        <span class="text-xs text-emerald-600 dark:text-emerald-400/90 mt-1.5 block font-medium">ca. 160–180 € / Monat</span>
+        <div class="mt-2 text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.apartmentWithWarmWaterKwh, 0)}</div>
+        <span class="text-xs text-emerald-700 dark:text-emerald-400 mt-2 block font-semibold">ca. 160–180 € / Monat (@ 35 ct)</span>
       </div>
 
-      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/70 p-5 shadow-xs transition-all hover:border-slate-300 dark:hover:border-slate-700">
-        <span class="text-xs text-slate-500 dark:text-slate-400 font-medium block">Einfamilienhaus</span>
-        <div class="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.houseWithoutWarmWaterKwh, 0)}</div>
-        <span class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 block">ca. 150–170 € / Monat</span>
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+        <span class="text-xs text-slate-500 dark:text-slate-400 font-medium block">Einfamilienhaus (5 Personen)</span>
+        <div class="mt-2 text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.houseWithoutWarmWaterKwh, 0)}</div>
+        <span class="text-xs text-slate-500 dark:text-slate-400 mt-2 block font-semibold">ca. 150–175 € / Monat (@ 35 ct)</span>
       </div>
     </div>
 
+    <!-- Live Universal Calculator -->
     <UniversalCalculator
-      defaultWatt={550}
+      defaultWatt={450}
       defaultHours={24}
       defaultPriceCt={35.0}
       title="5-Personen Verbrauchsrechner"
-      subtitle="Ermittle deine Stromkosten bei individuellem Verbrauch:"
+      subtitle="Ermittle die Stromkosten für euren 5-Personen-Haushalt:"
     />
 
+    <!-- Main Content Depth -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- Section: Detailed Analysis -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Stromverbrauch im Großhaushalt optimieren
+          </h2>
+          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
+            Bei 5 und mehr Personen im Haushalt ist der Pro-Kopf-Verbrauch mit rund 700 bis 900 kWh pro Person am geringsten. Aufgrund der hohen Gesamtsumme lohnen sich Effizienzmaßnahmen wie Eco-Programme, Sparduschköpfe und Balkonkraftwerke oder Solaranlagen besonders schnell.
+          </p>
+
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3">
+            Die 4 wirksamsten Spartipps für Großhaushalte:
+          </h3>
+          <div class="space-y-3 text-xs sm:text-sm">
+            {data.savingTips.map((tip, idx) => (
+              <div class="flex gap-3 p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+                <span class="font-bold text-emerald-600 dark:text-emerald-400">{idx + 1}.</span>
+                <span class="text-slate-700 dark:text-slate-300">{tip}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Großhaushalt-Profil
+          </h3>
+          <ul class="text-xs space-y-2 text-slate-300">
+            <li>• Ø Jahresverbrauch: <strong>3.600 – 5.200 kWh</strong></li>
+            <li>• Ø Tagesverbrauch: <strong>10,0 – 16,0 kWh</strong></li>
+            <li>• Ø Monatsabschlag: <strong>120 – 180 €</strong></li>
+            <li>• Pro-Kopf-Verbrauch: <strong>ca. 720 – 1.040 kWh</strong></li>
+          </ul>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Weitere Haushaltsgrößen</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/stromverbrauch-1-person" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ 1 Person (Single)</a></li>
+            <li><a href="/stromverbrauch-2-personen" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ 2 Personen (Paar)</a></li>
+            <li><a href="/stromverbrauch-3-personen" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ 3 Personen (Kleinfamilie)</a></li>
+            <li><a href="/stromverbrauch-4-personen" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ 4 Personen (Familie)</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
     <RelatedLinks links={related} />
-    <SourceBox sourceIds={['stromspiegel', 'bdew']} />
-    <FaqSection items={faqs} />
+    <SourceBox sourceIds={['stromspiegel', 'bdew', 'destatis']} />
   </div>
 </BaseLayout>

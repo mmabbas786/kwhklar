@@ -5,25 +5,72 @@ import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
 import RelatedLinks from '../components/seo/RelatedLinks.astro';
 import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
+import { getCalculatorSchema, getFaqSchema } from '../lib/structured-data';
 
 const faqs = [
   {
-    question: 'Was kostet eine Kilowattstunde (kWh) Strom aktuell?',
-    answer: 'Der Referenz-Arbeitspreis für Haushaltskunden in Deutschland liegt bei durchschnittlich ca. 35,0 Cent pro kWh. Neukundentarife bewegen sich zwischen 26 und 30 ct/kWh.',
+    question: "Was kostet 1 kWh Strom aktuell in Deutschland?",
+    answer: "Im bundesweiten Durchschnitt liegt der Strompreis für Haushaltskunden bei rund 35,0 Cent pro Kilowattstunde (ct/kWh) laut Erhebungen von BDEW und Bundesnetzagentur. Günstige Neukundentarife liegen bei ca. 28 bis 32 ct/kWh, während die örtliche Grundversorgung ca. 39 bis 45 ct/kWh verlangt."
   },
+  {
+    question: "Was ist in 1 kWh Strom alles enthalten?",
+    answer: "1 kWh Strom teilt sich in drei Säulen auf: 1. Beschaffung & Vertrieb (ca. 16,5 ct/kWh = 47 %). 2. Netzentgelte & Messstellenbetrieb (ca. 9,7 ct/kWh = 28 %). 3. Staatliche Steuern, Umlagen & 19 % MwSt. (ca. 8,8 ct/kWh = 25 %)."
+  },
+  {
+    question: "Warum gibt es Unterschiede zwischen Neukunden- und Grundversorgungspreisen?",
+    answer: "Die örtliche Grundversorgung ist gesetzlich verpflichtet, jeden Kunden ohne Vertragslaufzeit monatlich kündbar zu versorgen, was höhere Risikoaufschläge beinhaltet. Überregionale Wettbewerber kaufen Strom oft langfristig an der Strombörse ein und bieten günstigere Tarife mit 12 Monaten Mindestlaufzeit."
+  },
+  {
+    question: "Wie berechne ich die Kosten aus meinem kWh-Verbrauch?",
+    answer: "Formel: (Verbrauch in kWh × Arbeitspreis in ct/kWh ÷ 100) = Reine Verbrauchskosten in Euro. Hinzu kommt der monatliche Grundpreis (12 × Grundpreis) für die Jahresgesamtrechnung."
+  },
+  {
+    question: "Was kosten 100 kWh, 500 kWh, 1.000 kWh und 3.500 kWh?",
+    answer: "Bei einem Preis von 35 ct/kWh kosten: 100 kWh = 35,00 €; 500 kWh = 175,00 €; 1.000 kWh = 350,00 €; 3.500 kWh = 1.225,00 €."
+  },
+  {
+    question: "Was ist der Unterschied zwischen Arbeitspreis und Grundpreis?",
+    answer: "Der Arbeitspreis (ct/kWh) wird nach tatsächlichem Verbrauch berechnet. Der Grundpreis (€/Monat) ist eine feste monatliche Grundgebühr für Zählerbetrieb, Messung und Netzanbindung, die unabhängig vom Verbrauch anfällt."
+  },
+  {
+    question: "Wie hat sich der Preis pro kWh seit 2020 entwickelt?",
+    answer: "2020 lag der Preis bei ca. 31,8 ct/kWh. Im Krisenjahr 2022/2023 stiegen Neukundenpreise kurzfristig auf über 50 ct/kWh, bevor sie nach Wegfall der EEG-Umlage und Marktberuhigung wieder auf ca. 35 ct/kWh sanken."
+  },
+  {
+    question: "Wie viel spart man durch einen Wechsel von 40 auf 30 Cent pro kWh?",
+    answer: "Bei 3.500 kWh Jahresverbrauch sparst du genau 10 Cent pro kWh, was einer jährlichen Ersparnis von exakt 350,00 Euro entspricht."
+  },
+  {
+    question: "Warum zahlt man in Norddeutschland oft andere kWh-Preise als im Süden?",
+    answer: "Wegen regional unterschiedlicher Netzentgelte der Verteilnetzbetreiber. Regionen mit hohem Ausbau an Windkraft hatten historisch höhere Netzkosten, die schrittweise durch die Bundesnetzagentur bundesweit harmonisiert werden."
+  },
+  {
+    question: "Gilt für Strompreiserhöhungen ein Sonderkündigungsrecht?",
+    answer: "Ja. Wenn dein Stromversorger den Arbeitspreis oder Grundpreis erhöht, hast du ein gesetzliches 14-tägiges Sonderkündigungsrecht ab Erhalt des Ankündigungsschreibens."
+  }
 ];
 
+const calcSchema = getCalculatorSchema(
+  'Strompreis pro kWh Rechner & Analyse',
+  'Berechne deine Stromkosten basierend auf dem Preis pro kWh und vergleiche Tarife in Deutschland.',
+  '/strompreis-pro-kwh'
+);
+const faqSchema = getFaqSchema(faqs);
+const pageSchemas = faqSchema ? [calcSchema, faqSchema] : [calcSchema];
+
 const related = [
-  { title: 'Strompreis Zusammensetzung', href: '/strompreis-zusammensetzung', description: 'Steuern, Netzentgelte & Beschaffung.' },
-  { title: 'kWh in Euro Rechner', href: '/kwh-rechner', description: 'kWh direkt umrechnen.' },
-  { title: 'Strompreis Entwicklung', href: '/strompreis-entwicklung', description: 'Entwicklung der Preise.' },
+  { title: 'Strompreis Zusammensetzung', href: '/strompreis-zusammensetzung', description: 'Steuern, Abgaben & Netzentgelte.' },
+  { title: 'Strompreis Entwicklung', href: '/strompreis-entwicklung', description: 'Preise von 2018 bis 2026.' },
+  { title: 'Dynamische Stromtarife', href: '/dynamische-stromtarife', description: 'Börsenstrom & Smart Meter.' },
+  { title: 'Stromanbieter wechseln', href: '/stromanbieter-wechseln', description: 'Tarifwechsel Schritt für Schritt.' },
 ];
 ---
 
 <BaseLayout
-  title="Strompreis pro kWh: Was kostet 1 Kilowattstunde Strom? | kWhKlar"
-  description="Was kostet 1 kWh Strom in Deutschland? Aktuelle Durchschnittspreise ({formatCtPerKwh(electricityPriceData.currentReferencePrice.valueCtPerKwh)}), Neukundentarife und Umrechnung."
+  title="Strompreis pro kWh in Deutschland: Aktueller Durchschnitt & Kosten | kWhKlar"
+  description="Was kostet 1 kWh Strom in Deutschland? Aktueller Durchschnitt (ca. 35 ct), Neukunden- vs. Grundversorgungstarife, Preisbestandteile und Rechner."
   canonical="https://kwhklar.de/strompreis-pro-kwh"
+  jsonLd={pageSchemas}
   breadcrumbs={[
     { name: 'Strompreis', path: '/strompreis' },
     { name: 'Strompreis pro kWh', path: '/strompreis-pro-kwh' },
@@ -37,26 +84,83 @@ const related = [
       ]}
     />
 
-    <div class="max-w-3xl mb-8">
-      <span class="badge-emerald text-xs mb-2">Arbeitspreis</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-        Strompreis pro kWh: Was kostet eine Kilowattstunde?
+    <div class="max-w-4xl mb-8">
+      <span class="badge-emerald text-xs mb-2">Kilowattstunden-Preisradar</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Strompreis pro kWh in Deutschland
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        Der Arbeitspreis pro Kilowattstunde (ct/kWh) bestimmt maßgeblich, wie viel dich der Betrieb jedes einzelnen Elektrogeräts kostet.
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Wie viel kostet 1 Kilowattstunde (kWh) Strom aktuell in Deutschland? Erfahre alles über die aktuellen Durchschnittspreise, Tarifunterschiede zwischen Grundversorgung und Neukunden sowie die genaue Preisbildung.
       </p>
     </div>
 
+    <!-- Live Universal Calculator -->
     <UniversalCalculator
       defaultWatt={1000}
       defaultHours={1}
       defaultPriceCt={35.0}
-      title="Strompreis-Umrechner"
-      subtitle="Berechne deine Kosten mit beliebigem ct/kWh-Preis:"
+      title="kWh-Kosten-Rechner"
+      subtitle="Ermittle die Stromkosten bei deinem individuellen Preis pro kWh:"
     />
+
+    <!-- Main Content Depth -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- Section: Price Level Comparison Table -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Tarifvergleich: Was kostet 1 kWh bei verschiedenen Vertragsarten?
+          </h2>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs sm:text-sm border-collapse">
+              <thead>
+                <tr class="border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400">
+                  <th class="py-3 px-3 font-semibold">Tarifkategorie</th>
+                  <th class="py-3 px-3 font-semibold">Preis pro kWh</th>
+                  <th class="py-3 px-3 font-semibold">Jahreskosten (3.500 kWh)</th>
+                  <th class="py-3 px-3 font-semibold text-right">Kündigungsfrist</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+                <tr class="bg-emerald-50/40 dark:bg-emerald-950/20"><td class="py-2.5 px-3 font-bold text-emerald-800 dark:text-emerald-300">Günstige Neukundentarife</td><td class="py-2.5 px-3 font-bold text-emerald-600 dark:text-emerald-400">28 – 32 ct/kWh</td><td class="py-2.5 px-3 font-bold text-emerald-600 dark:text-emerald-400">ca. 980 – 1.120 €</td><td class="py-2.5 px-3 text-right">12 Monate Bindung</td></tr>
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">Bundesweiter Gesamt-Ø</td><td class="py-2.5 px-3 font-semibold">35,0 ct/kWh</td><td class="py-2.5 px-3">1.225 €</td><td class="py-2.5 px-3 text-right">Variabel</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">Örtliche Grundversorgung</td><td class="py-2.5 px-3 font-semibold text-amber-700 dark:text-amber-400">39 – 45 ct/kWh</td><td class="py-2.5 px-3 font-semibold text-amber-700 dark:text-amber-400">ca. 1.365 – 1.575 €</td><td class="py-2.5 px-3 text-right text-emerald-600">2 Wochen (flexibel)</td></tr>
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">Dynamische Börsentarife (EPEX)</td><td class="py-2.5 px-3 font-semibold">15 – 35 ct/kWh (stündlich)</td><td class="py-2.5 px-3">ca. 900 – 1.100 € (gesteuert)</td><td class="py-2.5 px-3 text-right">Monatlich kündbar</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Referenzwert 2026
+          </h3>
+          <div class="text-3xl font-extrabold text-white mb-2">35,0 ct/kWh</div>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Statistischer Durchschnittswert für deutsche Haushalte nach Erhebungen von Bundesnetzagentur und BDEW.
+          </p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Preis-Cluster Themen</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/strompreis-zusammensetzung" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Preisbestandteile im Detail</a></li>
+            <li><a href="/strompreis-entwicklung" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Historische Entwicklung</a></li>
+            <li><a href="/dynamische-stromtarife" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Dynamische Tarife</a></li>
+            <li><a href="/stromanbieter-wechseln" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Anbieter wechseln Ratgeber</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
 
     <RelatedLinks links={related} />
     <SourceBox sourceIds={['bnetza', 'bdew', 'destatis']} />
-    <FaqSection items={faqs} />
   </div>
 </BaseLayout>

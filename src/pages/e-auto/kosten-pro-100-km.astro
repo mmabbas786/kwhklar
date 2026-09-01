@@ -4,18 +4,58 @@ import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
 import RelatedLinks from '../../components/seo/RelatedLinks.astro';
 import SourceBox from '../../components/trust/SourceBox.astro';
 import FaqSection from '../../components/content/FaqSection.astro';
+import { getFaqSchema } from '../../lib/structured-data';
 
 const faqs = [
   {
-    question: 'Ist ein E-Auto auf 100 km günstiger als ein Benziner oder Diesel?',
-    answer: 'Ja, beim Laden an der heimischen Wallbox (ca. 6,50 bis 7,00 € pro 100 km bei 35 ct/kWh) ist das E-Auto deutlich günstiger als ein vergleichbarer Benziner (ca. 7 Liter × 1,75 € = 12,25 €) oder Diesel (ca. 5,5 Liter × 1,65 € = 9,08 €).',
+    question: "Was kostet ein Elektroauto auf 100 km im Vergleich zu Benzin und Diesel?",
+    answer: "Beim Laden an der heimischen Wallbox (19,8 kWh ab Zähler bei 32 ct/kWh) kostet die Fahrt rund 6,34 Euro pro 100 km. Ein vergleichbarer Benziner (7,0 l Super @ 1,75 €) kostet 12,25 Euro und ein Diesel (5,5 l @ 1,65 €) rund 9,08 Euro. Das E-Auto spart im Alltag 30 bis 50 % der reinen Energiekosten."
   },
+  {
+    question: "Was kostet 100 km Fahrt mit eigenem Solarstrom vom Dach?",
+    answer: "Mit eigenem Photovoltaikstrom (Gestehungskosten ca. 10 ct/kWh) kostet die 100-km-Strecke lediglich rund 1,98 Euro – unschlagbar günstig und emissionsfrei."
+  },
+  {
+    question: "Warum steigen die Verbrauchskosten beim E-Auto im Winter um ca. 20 bis 30 % an?",
+    answer: "Im Winter benötigt die Innenraumheizung (Wärmepumpe oder PTC-Heizelement) ca. 1,5 bis 3 kW Dauerleistung. Zudem steigt der Innenwiderstand des kalten Akkus und die Luftdichte ist höher. Der Praxisverbrauch steigt typischerweise von 16 auf ca. 20–22 kWh/100 km."
+  },
+  {
+    question: "Wie viel teurer ist das Fahren bei ausschließlicher Nutzung von Autobahn-Schnellladern?",
+    answer: "Auf der Autobahn (Tempo 130 km/h) steigt der Verbrauch auf ca. 22 kWh/100 km. An HPC-Schnellladern (65 ct/kWh) kostet die Fahrt ca. 14,30 Euro pro 100 km – das liegt auf Augenhöhe mit oder leicht über einem sparsamen Benziner."
+  },
+  {
+    question: "Welchen Einfluss hat die Fahrgeschwindigkeit auf den 100-km-Stromverbrauch?",
+    answer: "Da der Luftwiderstand quadratisch zur Geschwindigkeit ansteigt, verbraucht ein E-Auto bei Richtgeschwindigkeit 130 km/h rund 35 % mehr Strom als bei gemütlichen 100 km/h auf der Landstraße."
+  },
+  {
+    question: "Wie berechnet man die genauen Kosten pro 100 km mathematisch?",
+    answer: "Formel: (Verbrauch lt. Bordcomputer in kWh/100 km × 1,1 Ladeverlustfaktor) × Strompreis (€/kWh) = Kosten in € pro 100 km."
+  },
+  {
+    question: "Wie viel Geld spart man bei 15.000 km Jahresfahrleistung gegenüber einem Benziner?",
+    answer: "Bei 15.000 km zahlt der Benziner-Fahrer ca. 1.838 Euro für Kraftstoff. Der E-Autofahrer (Wallbox-Ladung) zahlt ca. 950 Euro für Strom – eine Nettoersparnis von fast 900 Euro pro Jahr allein beim Treibstoff."
+  },
+  {
+    question: "Was kostet 100 km Fahrt an städtischen AC-Ladesäulen?",
+    answer: "Bei 45 bis 50 ct/kWh an einer städtischen AC-Säule liegen die Kosten für 100 km bei ca. 8,90 bis 9,90 Euro (vergleichbar mit einem Diesel-Pkw)."
+  },
+  {
+    question: "Lohnt sich die Vorklimatisierung des E-Autos an der Wallbox?",
+    answer: "Ja. Wenn das Fahrzeug noch am Ladekabel vorklimatisiert (aufgeheizt oder gekühlt) wird, kommt die Energie direkt aus dem Stromnetz. Der Akku startet warm mit optimalem Wirkungsgrad und voller Reichweite."
+  },
+  {
+    question: "Welche Nebenkosten (Kfz-Steuer, Wartung) senken die Kilometerkosten zusätzlich?",
+    answer: "Elektroautos sind bis Ende 2030 von der Kfz-Steuer befreit. Da kein Motoröl, keine Zündkerzen, kein Auspuff und kaum Bremsenverschleiß (dank Rekuperation) anfallen, liegen die Wartungskosten ca. 35 % unter denen eines Verbrenners."
+  }
 ];
+
+const faqSchema = getFaqSchema(faqs);
 
 const related = [
   { title: 'Ladekosten Rechner', href: '/e-auto/ladekosten-rechner', description: 'Rechner für E-Autos.' },
   { title: 'E-Auto Stromkosten', href: '/e-auto/stromkosten', description: 'Jahresgesamtkosten.' },
   { title: 'PV Eigenverbrauch', href: '/photovoltaik/eigenverbrauch-rechner', description: 'Solarstrom für 8–10 ct/kWh nutzen.' },
+  { title: 'Dynamische Stromtarife', href: '/dynamische-stromtarife', description: 'Börsenstromtarife zum Laden.' },
 ];
 ---
 
@@ -23,6 +63,7 @@ const related = [
   title="E-Auto Kosten pro 100 km: Vergleich mit Benzin & Diesel | kWhKlar"
   description="Was kostet ein Elektroauto auf 100 km? Echte Verbrauchswerte, Stromkosten an Wallbox & Ladesäule im direkten Vergleich zu Benzin- und Dieselfahrzeugen."
   canonical="https://kwhklar.de/e-auto/kosten-pro-100-km"
+  jsonLd={faqSchema ? [faqSchema] : undefined}
   breadcrumbs={[
     { name: 'E-Auto', path: '/e-auto/stromkosten' },
     { name: 'Kosten pro 100 km', path: '/e-auto/kosten-pro-100-km' },
@@ -36,67 +77,96 @@ const related = [
       ]}
     />
 
-    <div class="max-w-3xl mb-8">
-      <span class="badge-blue text-xs mb-2">Kraftstoff- & Stromvergleich</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-        E-Auto Kosten pro 100 km im Vergleich
+    <div class="max-w-4xl mb-8">
+      <span class="badge-blue text-xs mb-2">Kraftstoff- &amp; Stromvergleich</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        E-Auto Kosten pro 100 km im Real-Vergleich
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        Was kostet die Fahrt über 100 Kilometer mit dem Elektroauto im Vergleich zu Verbrennerfahrzeugen?
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Was kostet die Fahrt über 100 Kilometer mit dem Elektroauto im Vergleich zu Benzin und Diesel? Entdecke die realen Kostenunterschiede zwischen PV-Strom, Wallbox zu Hause und Autobahn-Schnellladern.
       </p>
     </div>
 
     <!-- Comparison Matrix -->
-    <div class="my-8 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xs max-w-4xl mx-auto">
-      <h2 class="text-xl font-bold text-slate-900 mb-4">Vergleich: 100 km Fahrtkosten (Mittelklasse-Pkw)</h2>
+    <div class="my-10 bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xs max-w-4xl mx-auto">
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Vergleich: 100 km Fahrtkosten (Mittelklasse-Pkw)</h2>
       <div class="overflow-x-auto">
         <table class="w-full text-left text-xs sm:text-sm">
-          <thead class="bg-slate-50 text-slate-700 font-semibold border-b border-slate-200">
+          <thead class="bg-slate-50 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300 font-semibold border-b border-slate-200 dark:border-slate-700">
             <tr>
               <th class="p-3">Antrieb / Ladeart</th>
-              <th class="p-3">Verbrauch pro 100 km</th>
+              <th class="p-3">Verbrauch / 100 km</th>
               <th class="p-3">Energiepreis</th>
               <th class="p-3 text-right">Kosten / 100 km</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-slate-100 text-slate-600">
-            <tr class="bg-emerald-50/50">
-              <td class="p-3 font-semibold text-emerald-950">E-Auto (eigene PV-Anlage)</td>
+          <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-600 dark:text-slate-300">
+            <tr class="bg-emerald-50/50 dark:bg-emerald-950/20">
+              <td class="p-3 font-semibold text-emerald-950 dark:text-emerald-300">E-Auto (eigene PV-Anlage)</td>
               <td class="p-3">19,8 kWh (inkl. Verlust)</td>
               <td class="p-3">10 ct/kWh (Gestehungskosten)</td>
-              <td class="p-3 text-right font-bold text-emerald-700">1,98 €</td>
+              <td class="p-3 text-right font-bold text-emerald-600 dark:text-emerald-400">1,98 €</td>
             </tr>
             <tr>
-              <td class="p-3 font-semibold text-slate-900">E-Auto (Wallbox zu Hause)</td>
+              <td class="p-3 font-semibold text-slate-900 dark:text-white">E-Auto (Wallbox zu Hause)</td>
               <td class="p-3">19,8 kWh (inkl. Verlust)</td>
-              <td class="p-3">35 ct/kWh (Haushaltstarif)</td>
-              <td class="p-3 text-right font-bold text-slate-900">6,93 €</td>
+              <td class="p-3">32 ct/kWh (Haushaltstarif)</td>
+              <td class="p-3 text-right font-bold text-slate-900 dark:text-white">6,34 €</td>
             </tr>
-            <tr>
-              <td class="p-3 font-semibold text-slate-900">Diesel-Pkw</td>
+            <tr class="bg-slate-50/50 dark:bg-slate-800/30">
+              <td class="p-3 font-semibold text-slate-900 dark:text-white">Diesel-Pkw</td>
               <td class="p-3">5,5 Liter Diesel</td>
               <td class="p-3">1,65 € / Liter</td>
-              <td class="p-3 text-right font-bold text-slate-900">9,08 €</td>
+              <td class="p-3 text-right font-bold text-slate-900 dark:text-white">9,08 €</td>
             </tr>
             <tr>
-              <td class="p-3 font-semibold text-slate-900">Benzin-Pkw (E10)</td>
+              <td class="p-3 font-semibold text-slate-900 dark:text-white">Benzin-Pkw (E10)</td>
               <td class="p-3">7,0 Liter Super E10</td>
               <td class="p-3">1,75 € / Liter</td>
-              <td class="p-3 text-right font-bold text-slate-900">12,25 €</td>
+              <td class="p-3 text-right font-bold text-slate-900 dark:text-white">12,25 €</td>
             </tr>
-            <tr>
-              <td class="p-3 font-semibold text-slate-900">E-Auto (HPC-Schnelllader Autobahn)</td>
+            <tr class="bg-slate-50/50 dark:bg-slate-800/30">
+              <td class="p-3 font-semibold text-slate-900 dark:text-white">E-Auto (HPC-Schnelllader Autobahn)</td>
               <td class="p-3">22,0 kWh (Autobahntempo)</td>
               <td class="p-3">65 ct/kWh (DC-Lader)</td>
-              <td class="p-3 text-right font-bold text-amber-700">14,30 €</td>
+              <td class="p-3 text-right font-bold text-amber-600 dark:text-amber-400">14,30 €</td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
 
+    <!-- Main Editorial Content Depth -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Sparpotenzial im Jahr
+          </h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Bei 15.000 km Jahresfahrleistung sparst du mit dem E-Auto an der Wallbox rund <strong>800 bis 900 Euro</strong> gegenüber einem Benzin-Pkw.
+          </p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Verwandte Ratgeber</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/e-auto/ladekosten-rechner" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ E-Auto Ladekostenrechner</a></li>
+            <li><a href="/e-auto/stromkosten" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Jahres-Ladekosten Übersicht</a></li>
+            <li><a href="/photovoltaik/eigenverbrauch-rechner" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ PV-Eigenverbrauch</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
     <RelatedLinks links={related} />
     <SourceBox sourceIds={['bnetza', 'uba', 'destatis']} />
-    <FaqSection items={faqs} />
   </div>
 </BaseLayout>

@@ -4,27 +4,68 @@ import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
 import RelatedLinks from '../components/seo/RelatedLinks.astro';
 import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
+import { getFaqSchema } from '../lib/structured-data';
 
 const faqs = [
   {
-    question: 'Welche Maßnahmen senken den Stromverbrauch am schnellsten?',
-    answer: '1. Warmwassertemperatur an Durchlauferhitzern auf 38–40 °C begrenzen. 2. Kühlschrank auf 7 °C statt 4 °C stellen. 3. Wäsche bei 30 °C statt 60 °C waschen. 4. Standby-Geräte an schaltbare Steckerleisten hängen. Diese Maßnahmen kosten 0 € und sparen sofort ca. 100 bis 200 € im Jahr.',
+    question: "Welche Maßnahmen senken den Stromverbrauch am schnellsten und effektivsten?",
+    answer: "Die 4 schnellsten 0-Euro-Sofortmaßnahmen: 1. Warmwassertemperatur an elektrischen Durchlauferhitzern auf 38–40 °C begrenzen (spart 200–400 kWh/Person). 2. Kühlschrank auf 7 °C und Gefrierfach auf -18 °C justieren (spart ca. 30–50 kWh). 3. Wäsche konsequent bei 30 °C Eco waschen (spart ca. 100–150 kWh). 4. Standby an TV- und PC-Anlagen per Steckerleiste trennen (spart ca. 150–250 kWh). Zusammen spart das sofort 150 bis 350 Euro im ersten Jahr."
   },
+  {
+    question: "Wie viel Strom kann man durch Verhaltensänderungen realistisch einsparen?",
+    answer: "Allein durch disziplinierte Verhaltensänderungen (Eco-Programme, Topfdeckel nutzen, Licht ausschalten, Restwärme nutzen, Standby kappen) senkt ein durchschnittlicher Haushalt seinen Stromverbrauch um 15 bis 25 % (rund 400 bis 800 kWh bzw. 140 bis 280 Euro jährlich)."
+  },
+  {
+    question: "Welche kleinen Gadgets (< 50 €) sparen am meisten Strom?",
+    answer: "1. Sparduschkopf (15–25 €, spart bis zu 250 € bei elektr. Warmwasser). 2. Master-Slave- oder schaltbare Steckdosenleisten (10–20 €, sparen 40–80 € Standby). 3. LED-Leuchtmittel (20–40 €, sparen 50–100 €). 4. Steckdosen-Energiekostenmessgerät (10–15 € zum Aufspüren defekter Dauerläufer)."
+  },
+  {
+    question: "Wann lohnt sich der Austausch eines funktionierenden Altgeräts?",
+    answer: "Ein Austausch lohnt sich insbesondere bei Kühl- und Gefriergeräten sowie Wäschetrocknern, die älter als 10 bis 12 Jahre sind. Ein Neugerät der Energieeffizienzklasse A oder B spart jährlich 150 bis 300 kWh Strom und amortisiert seine Anschaffungskosten meist nach 4 bis 6 Jahren."
+  },
+  {
+    question: "Wie senke ich den Stromverbrauch beim Kochen und Backen?",
+    answer: "1. Stets den passenden Topfdeckel verwenden (spart bis zu 65 % Energie). 2. Wasser im Wasserkocher vorkochen statt auf dem Herd. 3. Backofen ohne Vorheizen nutzen und 10 Minuten vor Ende der Garzeit abschalten (Nutzung der Restwärme). 4. Umluft statt Ober-/Unterhitze wählen (ermöglicht 20 °C niedrigere Backtemperatur)."
+  },
+  {
+    question: "Wie reduziere ich den Stromverbrauch meines Homeoffice-Arbeitsplatzes?",
+    answer: "1. Laptop statt Desktop-PC nutzen (Laptops benötigen nur 20–50 W statt 100–250 W). 2. Monitor-Helligkeit auf 70 % dimmen. 3. Energiesparmodus auf 5 Minuten Inaktivität einstellen. 4. Den gesamten Arbeitsplatz nach Feierabend per Steckerleiste stromlos schalten."
+  },
+  {
+    question: "Welchen Effekt hat das regelmäßige Abtauen des Gefrierfachs?",
+    answer: "Bereits eine 5 Millimeter dicke Eisschicht an den Kühlrippen wirkt wie eine Dämmschicht und erhöht den Stromverbrauch des Gefriergeräts um rund 30 %. Regelmäßiges Abtauen (1- bis 2-mal jährlich) stellt die volle Energieeffizienz wieder her."
+  },
+  {
+    question: "Wie viel Strom spart ein 800-Watt-Balkonkraftwerk?",
+    answer: "Ein Balkonkraftwerk erzeugt ca. 650 bis 850 kWh Solarstrom pro Jahr. Werden 75 % davon direkt im Haushalt für Grundlast und Haushaltsgeräte genutzt, sinkt der Netzstrombezug um ca. 500 bis 650 kWh (rund 175 bis 230 Euro Ersparnis jährlich)."
+  },
+  {
+    question: "Wie senke ich den Stromverbrauch meiner Beleuchtung?",
+    answer: "Ersetze alle verbliebenen Halogen- und Glühlampen durch LED-Lampen mit Energieklasse A oder B. LEDs verbrauchen bei gleicher Helligkeit rund 85 bis 90 % weniger Strom und halten 15-mal länger."
+  },
+  {
+    question: "Wie kontrolliere ich den Erfolg meiner Sparmaßnahmen?",
+    answer: "Notiere dir deinen Stromzählerstand am 1. jedes Monats. Berechne den Monatsverbrauch (Zählerstand neu minus Zählerstand alt) und vergleiche die Entwicklung mit den Vormonaten oder dem Vorjahr."
+  }
 ];
 
+const faqSchema = getFaqSchema(faqs);
+
 const related = [
-  { title: 'Strom sparen Tipps', href: '/strom-sparen-tipps', description: 'Konkrete Spartipps.' },
-  { title: 'Die größten Stromfresser', href: '/stromfresser', description: 'Großgeräte im Fokus.' },
-  { title: 'Balkonkraftwerk', href: '/balkonkraftwerk/stromkosten-sparen', description: 'Eigenstrom erzeugen.' },
+  { title: 'Strom sparen im Haushalt', href: '/strom-sparen', description: 'Der strategische Gesamtleitfaden.' },
+  { title: 'Die größten Stromfresser', href: '/stromfresser', description: 'Großgeräte enttarnen & ersetzen.' },
+  { title: 'Standby-Strom vermeiden', href: '/standby-strom', description: 'Leerlaufverluste beseitigen.' },
+  { title: 'Balkonkraftwerk Rechner', href: '/balkonkraftwerk/stromkosten-sparen', description: 'Eigenstrom erzeugen & sparen.' },
 ];
 ---
 
 <BaseLayout
-  title="Stromverbrauch senken: 7 wirksame Maßnahmen für den Haushalt | kWhKlar"
-  description="Systematisch den Stromverbrauch senken: Von Sofortmaßnahmen ohne Kosten bis hin zu lohnenden Geräte-Neuanschaffungen und Steckersolar."
+  title="Stromverbrauch senken: 10 wirksame Hebel für den Haushalt | kWhKlar"
+  description="Systematisch den Stromverbrauch senken: 0-Euro-Sofortmaßnahmen, günstige Hilfsmittel, Gerätetausch und Balkonkraftwerk im Spar-Leitfaden."
   canonical="https://kwhklar.de/stromverbrauch-senken"
+  jsonLd={faqSchema ? [faqSchema] : undefined}
   breadcrumbs={[
-    { name: 'Sparen', path: '/strom-sparen' },
+    { name: 'Strom sparen', path: '/strom-sparen' },
     { name: 'Stromverbrauch senken', path: '/stromverbrauch-senken' },
   ]}
 >
@@ -36,54 +77,117 @@ const related = [
       ]}
     />
 
-    <div class="max-w-3xl mb-8">
-      <span class="badge-emerald text-xs mb-2">Effizienz-Plan</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-        Stromverbrauch dauerhaft & systematisch senken
+    <div class="max-w-4xl mb-8">
+      <span class="badge-emerald text-xs mb-2">Effizienz-Fahrplan</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Stromverbrauch dauerhaft &amp; systematisch senken
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        So reduzierst du deinen Stromverbrauch strukturiert – aufgeteilt in kostenlose Sofortmaßnahmen, Verhaltensoptimierung und lohnende Investitionen.
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        So reduzierst du deinen Stromverbrauch strukturiert und nachhaltig – aufgeteilt in kostenlose Sofortmaßnahmen, günstige Smart-Living-Gadgets und hocheffektive Großinvestitionen wie Steckersolar.
       </p>
     </div>
 
-    <article class="prose prose-slate max-w-4xl my-8 bg-white rounded-3xl p-6 sm:p-10 border border-slate-200">
-      <h2 class="text-2xl font-bold text-slate-900">3 Stufen zur Verbrauchsreduktion</h2>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-6 text-xs sm:text-sm">
-        <div class="rounded-2xl bg-emerald-50/70 p-5 border border-emerald-200">
-          <strong class="text-emerald-950 font-bold text-base block mb-2">Stufe 1: 0-Euro-Maßnahmen</strong>
-          <ul class="space-y-1.5 text-slate-700">
-            <li>• Kühlschrank auf 7 °C stellen</li>
-            <li>• Waschtemperatur auf 30 °C senken</li>
-            <li>• Spülmaschine voll beladen im Eco-Modus</li>
-            <li>• Topfdeckel beim Kochen nutzen</li>
-          </ul>
-        </div>
-
-        <div class="rounded-2xl bg-blue-50/70 p-5 border border-blue-200">
-          <strong class="text-blue-950 font-bold text-base mb-2">Stufe 2: Geringe Investition (&lt; 50 €)</strong>
-          <ul class="space-y-1.5 text-slate-700">
-            <li>• Schaltbare Steckdosenleisten</li>
-            <li>• Sparsamer Sparduschkopf</li>
-            <li>• LED-Leuchtmittel einsetzen</li>
-            <li>• Zeitschaltuhren für Router/Standby</li>
-          </ul>
-        </div>
-
-        <div class="rounded-2xl bg-purple-50/70 p-5 border border-purple-200">
-          <strong class="text-purple-950 font-bold text-base mb-2">Stufe 3: Großinvestition & Eigenstrom</strong>
-          <ul class="space-y-1.5 text-slate-700">
-            <li>• Balkonkraftwerk (Steckersolar)</li>
-            <li>• Neuer A-Klasse Kühlschrank</li>
-            <li>• Wärmepumpentrockner</li>
-            <li>• Inverter-Klimaanlage</li>
-          </ul>
-        </div>
+    <!-- 3-Tier Savings Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-10">
+      <div class="rounded-3xl bg-white dark:bg-slate-900 p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xs">
+        <span class="inline-block px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 text-xs font-bold mb-3">Stufe 1 • 0 € Kosten</span>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Sofortmaßnahmen</h2>
+        <p class="text-xs text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">Reine Verhaltensoptimierung ohne jegliche Investition:</p>
+        <ul class="space-y-2 text-xs text-slate-700 dark:text-slate-300">
+          <li>✓ Kühlschrank auf 7 °C justieren</li>
+          <li>✓ Waschmaschine auf 30 °C Eco stellen</li>
+          <li>✓ Gefrierfach regelmäßig abtauen</li>
+          <li>✓ Topfdeckel &amp; Restwärme nutzen</li>
+        </ul>
+        <span class="mt-4 block font-bold text-emerald-600 dark:text-emerald-400 text-xs">Ersparnis: 100 – 200 € / Jahr</span>
       </div>
-    </article>
+
+      <div class="rounded-3xl bg-white dark:bg-slate-900 p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xs">
+        <span class="inline-block px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300 text-xs font-bold mb-3">Stufe 2 • &lt; 50 € Budget</span>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Smarte Helfer</h2>
+        <p class="text-xs text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">Kleine Hilfsmittel mit extrem schneller Amortisation:</p>
+        <ul class="space-y-2 text-xs text-slate-700 dark:text-slate-300">
+          <li>✓ Sparduschkopf montieren</li>
+          <li>✓ Schaltbare Steckdosenleisten</li>
+          <li>✓ Alle Leuchtmittel auf LED umrüsten</li>
+          <li>✓ Steckdosen-Verbrauchsmesser</li>
+        </ul>
+        <span class="mt-4 block font-bold text-emerald-600 dark:text-emerald-400 text-xs">Ersparnis: 150 – 350 € / Jahr</span>
+      </div>
+
+      <div class="rounded-3xl bg-white dark:bg-slate-900 p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xs">
+        <span class="inline-block px-3 py-1 rounded-full bg-purple-100 dark:bg-purple-950 text-purple-800 dark:text-purple-300 text-xs font-bold mb-3">Stufe 3 • Investitionen</span>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Eigenstrom &amp; Tausch</h2>
+        <p class="text-xs text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">Gerätetausch und Solarenergie für maximale Wirkung:</p>
+        <ul class="space-y-2 text-xs text-slate-700 dark:text-slate-300">
+          <li>✓ 800-W-Balkonkraftwerk installieren</li>
+          <li>✓ A-Klasse Kühlgerät anschaffen</li>
+          <li>✓ Wärmepumpentrockner nutzen</li>
+          <li>✓ Hocheffiziente Heizungspumpe</li>
+        </ul>
+        <span class="mt-4 block font-bold text-emerald-600 dark:text-emerald-400 text-xs">Ersparnis: 300 – 600 € / Jahr</span>
+      </div>
+    </div>
+
+    <!-- Editorial Deep-Dive Content -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- Section: Measures Matrix Table -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Übersicht: Alle Sparmaßnahmen nach Einsparpotenzial &amp; Amortisation
+          </h2>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs sm:text-sm border-collapse">
+              <thead>
+                <tr class="border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400">
+                  <th class="py-2.5 px-3 font-semibold">Maßnahme</th>
+                  <th class="py-2.5 px-3 font-semibold">Einsparung (kWh/J)</th>
+                  <th class="py-2.5 px-3 font-semibold">Ersparnis (€/J @ 35 ct)</th>
+                  <th class="py-2.5 px-3 font-semibold text-right">Amortisation</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+                <tr class="bg-emerald-50/40 dark:bg-emerald-950/20"><td class="py-2.5 px-3 font-bold text-emerald-800 dark:text-emerald-300">Balkonkraftwerk (800 W)</td><td class="py-2.5 px-3 font-bold">500 – 650 kWh</td><td class="py-2.5 px-3 font-bold text-emerald-600 dark:text-emerald-400">175 – 228 €</td><td class="py-2.5 px-3 text-right">ca. 2 – 3 Jahre</td></tr>
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">Sparduschkopf (bei Durchlauferhitzer)</td><td class="py-2.5 px-3 font-bold">400 – 800 kWh</td><td class="py-2.5 px-3 font-bold text-emerald-600 dark:text-emerald-400">140 – 280 €</td><td class="py-2.5 px-3 text-right font-semibold text-emerald-600">&lt; 2 Monate</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">Heizungspumpentausch (Einfamilienhaus)</td><td class="py-2.5 px-3 font-bold">300 – 450 kWh</td><td class="py-2.5 px-3 font-bold text-emerald-600 dark:text-emerald-400">105 – 158 €</td><td class="py-2.5 px-3 text-right">ca. 2 – 3 Jahre</td></tr>
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">Standby-Abschaltung (Steckerleisten)</td><td class="py-2.5 px-3 font-bold">150 – 300 kWh</td><td class="py-2.5 px-3 font-bold text-emerald-600 dark:text-emerald-400">52 – 105 €</td><td class="py-2.5 px-3 text-right font-semibold text-emerald-600">&lt; 3 Monate</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">Waschen bei 30 °C statt 60 °C</td><td class="py-2.5 px-3 font-bold">120 – 160 kWh</td><td class="py-2.5 px-3 font-bold text-emerald-600 dark:text-emerald-400">42 – 56 €</td><td class="py-2.5 px-3 text-right font-bold text-emerald-600">Sofort (0 €)</td></tr>
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">Kühlschrank auf 7 °C justieren</td><td class="py-2.5 px-3 font-bold">40 – 70 kWh</td><td class="py-2.5 px-3 font-bold text-emerald-600 dark:text-emerald-400">14 – 25 €</td><td class="py-2.5 px-3 text-right font-bold text-emerald-600">Sofort (0 €)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Sparerfolg messen
+          </h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Führe ein monatliches Zähler-Tagebuch: Notiere am 1. jedes Monats deinen Zählerstand. Bei wirksamen Maßnahmen siehst du bereits nach 30 Tagen den gesunkenen Verbrauch im Vergleich zum Vorjahresmonat.
+          </p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Passende Ratgeber</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/strom-sparen-tipps" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Konkrete Stromspartipps</a></li>
+            <li><a href="/stromfresser" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Die 10 größten Stromfresser</a></li>
+            <li><a href="/standby-strom" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Standby-Verluste stoppen</a></li>
+            <li><a href="/stromanbieter-wechseln" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromanbieter wechseln</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
 
     <RelatedLinks links={related} />
-    <SourceBox sourceIds={['stromspiegel', 'uba']} />
-    <FaqSection items={faqs} />
+    <SourceBox sourceIds={['stromspiegel', 'uba', 'bnetza']} />
   </div>
 </BaseLayout>

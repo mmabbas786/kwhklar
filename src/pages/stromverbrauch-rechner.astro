@@ -5,53 +5,88 @@ import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
 import RelatedLinks from '../components/seo/RelatedLinks.astro';
 import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
-import { getCalculatorSchema } from '../lib/structured-data';
-
-const schema = getCalculatorSchema(
-  'Stromverbrauch berechnen',
-  'Berechne den genauen Stromverbrauch in Kilowattstunden (kWh) für einzelne Elektrogeräte oder deinen gesamten Haushalt.',
-  '/stromverbrauch-rechner'
-);
+import { getCalculatorSchema, getFaqSchema } from '../lib/structured-data';
 
 const faqs = [
   {
-    question: 'Was ist der Unterschied zwischen Watt und Kilowattstunden (kWh)?',
-    answer: 'Watt (W) gibt die momentane Leistung oder den Stromhunger eines Geräts in einem bestimmten Augenblick an. Die Kilowattstunde (kWh) misst hingegen die über Zeit verbrauchte Energiemenge: 1.000 Watt Leistung über 1 Stunde Betrieb ergeben genau 1 kWh.',
+    question: "Wie berechne ich den Stromverbrauch eines Geräts genau?",
+    answer: "Formel: (Leistungsaufnahme in Watt × tägliche Nutzungsstunden × Nutzungstage im Jahr) ÷ 1.000 = Jahresverbrauch in Kilowattstunden (kWh). Beispiel für einen 100-Watt-Fernseher bei 4 Stunden täglich: (100 W × 4 h × 365 Tage) ÷ 1.000 = 146 kWh pro Jahr."
   },
   {
-    question: 'Wie viel kWh Stromverbrauch pro Jahr sind normal?',
-    answer: 'Für einen Single-Haushalt in einer Mietwohnung ohne elektrische Warmwasserbereitung gelten 1.300 bis 1.500 kWh/Jahr als normal, für 2 Personen ca. 2.100 bis 2.500 kWh und für eine 4-köpfige Familie rund 3.000 bis 4.000 kWh.',
+    question: "Wie messe ich den Stromverbrauch von getakteten Geräten (z. B. Kühlschrank)?",
+    answer: "Getaktete Geräte laufen nicht mit konstanter Leistung, sondern schalten ihren Kompressor thermostatgesteuert ein und aus. Um den echten Verbrauch zu ermitteln, steckst du ein digitales Steckdosen-Energiekostenmessgerät für mindestens 24 bis 72 Stunden dazwischen. Das Gerät summiert die tatsächlichen kWh exakt auf."
   },
+  {
+    question: "Was ist der Unterschied zwischen Nennleistung und Wirkleistung?",
+    answer: "Die Nennleistung auf dem Typenschild (z. B. 2.200 Watt bei einer Waschmaschine) bezeichnet die maximale Spitzenaufnahme (wenn der Heizstab aktiv heizt). Die Wirkleistung ist die tatsächlich in Wärme oder mechanische Arbeit umgesetzte Leistung im jeweiligen Betriebszeitpunkt."
+  },
+  {
+    question: "Wie viel Stromverbrauch pro Jahr ist für einen Haushalt normal?",
+    answer: "Für 1 Person in einer Wohnung sind 1.300 bis 1.500 kWh normal, für 2 Personen 2.000 bis 2.200 kWh und für 4 Personen 3.000 bis 4.000 kWh (jeweils bei zentraler Warmwasserbereitung). Bei elektrischer Warmwasserbereitung erhöht sich der Bedarf um ca. 600 kWh pro Person."
+  },
+  {
+    question: "Wie rechne ich den Stromverbrauch in Stromkosten um?",
+    answer: "Formel: Verbrauch in kWh × Arbeitspreis in €/kWh = Stromkosten. Beispiel: 146 kWh × 0,35 € = 51,10 Euro."
+  },
+  {
+    question: "Welche Geräte im Haushalt haben den höchsten Stromverbrauch?",
+    answer: "Elektrische Durchlauferhitzer (bis 24 kW Leistung), alte Kühl- und Gefriergeräte, Wäschetrockner, Heizlüfter, mobile Klimageräte und High-End-Gaming-PCs."
+  },
+  {
+    question: "Wie finde ich heraus, wie viel Watt mein Gerät verbraucht?",
+    answer: "1. Auf dem silbernen Typenschild (auf der Rück- oder Unterseite des Geräts). 2. Im technischen Datenblatt der Bedienungsanleitung. 3. Durch direkte Messung mit einem Zwischenstecker-Strommessgerät."
+  },
+  {
+    question: "Was bedeutet die Angabe kWh/100 Zyklen auf dem EU-Energielabel?",
+    answer: "Bei Waschmaschinen, Geschirrspülern und Waschtrocknern gibt das EU-Label den Stromverbrauch für exakt 100 Standard-Eco-Durchläufe an. Ein Wert von 50 kWh/100 Zyklen bedeutet 0,50 kWh pro Spülgang."
+  },
+  {
+    question: "Wie viel Strom verbraucht ein 60-Watt-Gerät in 24 Stunden?",
+    answer: "Formel: (60 W × 24 h) ÷ 1.000 = 1,44 kWh pro Tag (ca. 50 Cent bei 35 ct/kWh)."
+  },
+  {
+    question: "Wie viel Strom verbraucht der Standby-Modus durchschnittlich?",
+    answer: "Ein typisches Standby-Gerät verbraucht zwischen 0,5 und 5 Watt. In einem Haushalt mit 15 solchen Geräten summiert sich dies auf ca. 150 bis 300 kWh pro Jahr (rund 50 bis 105 Euro Kosten)."
+  }
 ];
+
+const calcSchema = getCalculatorSchema(
+  'Stromverbrauch Rechner',
+  'Berechne den genauen Stromverbrauch in Kilowattstunden (kWh) für einzelne Elektrogeräte oder deinen gesamten Haushalt.',
+  '/stromverbrauch-rechner'
+);
+const faqSchema = getFaqSchema(faqs);
+const pageSchemas = faqSchema ? [calcSchema, faqSchema] : [calcSchema];
 
 const related = [
   { title: 'Stromkostenrechner', href: '/stromkosten-rechner', description: 'Stromkosten in Euro berechnen.' },
-  { title: 'kWh Rechner', href: '/kwh-rechner', description: 'Kilowattstunden direkt umrechnen.' },
+  { title: 'Watt in kWh Rechner', href: '/watt-rechner', description: 'Leistung präzise umrechnen.' },
   { title: 'Haushaltsstrom-Vergleich', href: '/stromverbrauch-haushalt', description: 'Verbrauch nach Haushaltsgröße vergleichen.' },
   { title: 'Die größten Stromfresser', href: '/stromfresser', description: 'Versteckte Großverbraucher aufspüren.' },
 ];
 ---
 
 <BaseLayout
-  title="Stromverbrauch berechnen: Stromverbrauchsrechner für Geräte & Haushalt | kWhKlar"
-  description="Berechne deinen Stromverbrauch in Kilowattstunden (kWh) für einzelne Elektrogeräte oder den gesamten Haushalt. Inklusive Vergleich mit Richtwerten."
+  title="Stromverbrauch berechnen: Interaktiver Verbrauchsrechner für Geräte | kWhKlar"
+  description="Berechne den Stromverbrauch in Kilowattstunden (kWh) und Kosten für jedes Elektrogerät. Mit Formelanleitung, Gerätetabelle und Messanleitung."
   canonical="https://kwhklar.de/stromverbrauch-rechner"
-  jsonLd={schema}
+  jsonLd={pageSchemas}
   breadcrumbs={[{ name: 'Stromverbrauch berechnen', path: '/stromverbrauch-rechner' }]}
 >
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
     <Breadcrumbs items={[{ name: 'Stromverbrauch berechnen', path: '/stromverbrauch-rechner' }]} />
 
-    <div class="max-w-3xl mb-6">
+    <div class="max-w-4xl mb-8">
       <span class="badge-emerald text-xs mb-2">Verbrauchsrechner</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-        Stromverbrauch berechnen: Dein interaktiver Stromverbrauchsrechner
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Stromverbrauch berechnen: Dein interaktiver Verbrauchsrechner
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        Ermittle den Stromverbrauch (kWh) deiner Geräte nach Leistungsaufnahme und Nutzungsdauer.
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Ermittle den präzisen Stromverbrauch in Kilowattstunden (kWh) für jedes elektrische Gerät nach Wattzahl und Nutzungsdauer. Erfahre, mit welchen Formeln gerechnet wird und wie du getaktete Geräte zu Hause exakt nachmisst.
       </p>
     </div>
 
+    <!-- Live Universal Calculator -->
     <UniversalCalculator
       defaultWatt={500}
       defaultHours={3}
@@ -60,46 +95,87 @@ const related = [
       subtitle="Ermittle die verbrauchten Kilowattstunden (kWh) und die daraus resultierenden Kosten:"
     />
 
-    <article class="prose prose-slate max-w-4xl my-12 bg-white rounded-3xl p-6 sm:p-10 border border-slate-200">
-      <h2 class="text-2xl font-bold text-slate-900">So berechnest du den Stromverbrauch in kWh</h2>
-      <p class="text-slate-600 leading-relaxed">
-        Der Stromverbrauch eines Geräts hängt ausschließlich von zwei Faktoren ab:
-      </p>
-      <ol class="list-decimal pl-5 space-y-2 text-slate-600 text-sm">
-        <li><strong>Der Leistungsaufnahme in Watt (W):</strong> Wie viel elektrische Leistung zieht das Gerät aus der Steckdose?</li>
-        <li><strong>Der Nutzungsdauer in Stunden (h):</strong> Wie viele Stunden am Tag oder im Jahr ist das Gerät eingeschaltet?</li>
-      </ol>
+    <!-- Main Content Depth -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- Section: Calculation Guide & Formulas -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            So berechnest du den Stromverbrauch in kWh
+          </h2>
+          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
+            Der Stromverbrauch eines Geräts hängt ausschließlich von zwei Faktoren ab:
+          </p>
 
-      <div class="my-6 rounded-2xl bg-emerald-50 p-5 border border-emerald-200 text-sm">
-        <h3 class="font-bold text-emerald-950 text-base mb-1">Die Grundformel:</h3>
-        <p class="font-mono text-emerald-900 font-semibold text-base">
-          Verbrauch (kWh) = Leistung (Watt) × Zeit (Stunden) ÷ 1.000
-        </p>
-      </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm">
+              <strong class="text-slate-900 dark:text-white block font-bold mb-1">1. Leistungsaufnahme in Watt (W)</strong>
+              <p class="text-slate-600 dark:text-slate-400">Wie viel elektrische Leistung das Gerät im laufenden Betrieb aus der Steckdose bezieht.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm">
+              <strong class="text-slate-900 dark:text-white block font-bold mb-1">2. Nutzungsdauer in Stunden (h)</strong>
+              <p class="text-slate-600 dark:text-slate-400">Wie viele Stunden pro Tag oder im ganzen Jahr das Gerät aktiv eingeschaltet ist.</p>
+            </div>
+          </div>
 
-      <h3 class="text-xl font-bold text-slate-900 mt-6">Typischer Stromverbrauch im Haushalt:</h3>
-      <div class="overflow-x-auto my-4">
-        <table class="min-w-full text-xs sm:text-sm text-left border border-slate-200">
-          <thead class="bg-slate-50 text-slate-700 font-semibold border-b border-slate-200">
-            <tr>
-              <th class="p-3">Gerät</th>
-              <th class="p-3">Typische Leistung</th>
-              <th class="p-3">Nutzung</th>
-              <th class="p-3">Verbrauch / Jahr</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-slate-200 text-slate-600">
-            <tr><td class="p-3 font-medium">Kühlschrank (A-Klasse)</td><td class="p-3">80 W</td><td class="p-3">24h getaktet</td><td class="p-3 font-semibold text-slate-900">ca. 110–140 kWh</td></tr>
-            <tr><td class="p-3 font-medium">Waschmaschine (40°C)</td><td class="p-3">2.000 W</td><td class="p-3">200 Waschgänge</td><td class="p-3 font-semibold text-slate-900">ca. 120–160 kWh</td></tr>
-            <tr><td class="p-3 font-medium">Gaming-PC</td><td class="p-3">400 W</td><td class="p-3">3h / Tag</td><td class="p-3 font-semibold text-slate-900">ca. 438 kWh</td></tr>
-            <tr><td class="p-3 font-medium">Fernseher (55 Zoll)</td><td class="p-3">100 W</td><td class="p-3">4h / Tag</td><td class="p-3 font-semibold text-slate-900">ca. 146 kWh</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </article>
+          <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 font-mono text-sm sm:text-base font-bold text-emerald-600 dark:text-emerald-400 mb-6">
+            Verbrauch (kWh) = Leistung (Watt) × Zeit (Stunden) ÷ 1.000
+          </div>
+
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">
+            Typischer Jahresstromverbrauch ausgewählter Haushaltsgeräte
+          </h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs sm:text-sm border-collapse">
+              <thead>
+                <tr class="border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400">
+                  <th class="py-2.5 px-3 font-semibold">Gerät</th>
+                  <th class="py-2.5 px-3 font-semibold">Leistung (Ø)</th>
+                  <th class="py-2.5 px-3 font-semibold">Nutzung</th>
+                  <th class="py-2.5 px-3 font-semibold text-right">Jahresverbrauch (kWh)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white"><a href="/geraete/kuehlschrank" class="text-emerald-600 dark:text-emerald-400 hover:underline">Kühlschrank (Klasse B/C)</a></td><td class="py-2.5 px-3">90 W</td><td class="py-2.5 px-3">24h getaktet</td><td class="py-2.5 px-3 text-right font-semibold">ca. 140 kWh</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white"><a href="/geraete/waschmaschine" class="text-emerald-600 dark:text-emerald-400 hover:underline">Waschmaschine (40°C Eco)</a></td><td class="py-2.5 px-3">2.000 W Spitze</td><td class="py-2.5 px-3">200 Waschgänge</td><td class="py-2.5 px-3 text-right font-semibold">ca. 130 kWh</td></tr>
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white"><a href="/geraete/gaming-pc" class="text-emerald-600 dark:text-emerald-400 hover:underline">Gaming-PC</a></td><td class="py-2.5 px-3">400 W</td><td class="py-2.5 px-3">3h / Tag</td><td class="py-2.5 px-3 text-right font-semibold">ca. 438 kWh</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white"><a href="/geraete/fernseher" class="text-emerald-600 dark:text-emerald-400 hover:underline">55-Zoll-LED-Fernseher</a></td><td class="py-2.5 px-3">100 W</td><td class="py-2.5 px-3">4h / Tag</td><td class="py-2.5 px-3 text-right font-semibold">ca. 146 kWh</td></tr>
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white"><a href="/geraete/geschirrspueler" class="text-emerald-600 dark:text-emerald-400 hover:underline">Geschirrspüler</a></td><td class="py-2.5 px-3">2.000 W Spitze</td><td class="py-2.5 px-3">220 Spülgänge</td><td class="py-2.5 px-3 text-right font-semibold">ca. 185 kWh</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white"><a href="/geraete/trockner" class="text-emerald-600 dark:text-emerald-400 hover:underline">Wärmepumpentrockner</a></td><td class="py-2.5 px-3">800 W</td><td class="py-2.5 px-3">160 Trocknungen</td><td class="py-2.5 px-3 text-right font-semibold">ca. 195 kWh</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Stromverbrauch Mess-Tipp
+          </h3>
+          <p class="text-xs text-slate-300 leading-relaxed mb-4">
+            Besorge dir ein Steckdosen-Messgerät (ab 10 € im Baumarkt). Miss jedes Gerät 48 Stunden lang, um auch Zyklen und Standby-Ströme vollständig zu erfassen.
+          </p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Rechner im Überblick</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/stromkosten-rechner" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromkostenrechner</a></li>
+            <li><a href="/watt-rechner" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Watt in kWh umrechnen</a></li>
+            <li><a href="/kwh-rechner" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ kWh in Euro umrechnen</a></li>
+            <li><a href="/stromverbrauch-haushalt" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Haushaltsstrom vergleichen</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
 
     <RelatedLinks links={related} />
-    <SourceBox sourceIds={['stromspiegel', 'bdew', 'uba']} />
-    <FaqSection items={faqs} />
+    <SourceBox sourceIds={['bnetza', 'bdew', 'stromspiegel']} />
   </div>
 </BaseLayout>

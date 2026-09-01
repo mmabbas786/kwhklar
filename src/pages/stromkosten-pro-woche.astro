@@ -4,51 +4,164 @@ import UniversalCalculator from '../components/calculator/UniversalCalculator.as
 import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
 import RelatedLinks from '../components/seo/RelatedLinks.astro';
 import SourceBox from '../components/trust/SourceBox.astro';
-import { getCalculatorSchema } from '../lib/structured-data';
+import FaqSection from '../components/content/FaqSection.astro';
+import { getCalculatorSchema, getFaqSchema } from '../lib/structured-data';
 
-const schema = getCalculatorSchema(
-  'Stromkosten pro Woche',
-  'Berechne die wöchentlichen Stromkosten für Geräte und Arbeitsplätze mit flexiblen Nutzungstagen.',
+const faqs = [
+  {
+    question: "Wie viel Strom verbraucht ein Haushalt in einer Woche?",
+    answer: "Ein 1-Personen-Haushalt verbraucht ca. 25 bis 30 kWh pro Woche (rund 9 bis 11 Euro). Ein 2-Personen-Haushalt verbraucht ca. 40 bis 50 kWh pro Woche (14 bis 18 Euro). Eine 4-köpfige Familie verbraucht ca. 60 bis 80 kWh pro Woche (ca. 21 bis 28 Euro bei 35 ct/kWh)."
+  },
+  {
+    question: "Was kosten 50 kWh Strom pro Woche?",
+    answer: "50 kWh pro Woche (ca. 2.600 kWh im Jahr) kosten bei einem Strompreis von 35 ct/kWh genau 17,50 Euro pro Woche (ca. 75,80 Euro im Monat bzw. 910 Euro im Jahr)."
+  },
+  {
+    question: "Was kostet 100 kWh Strom pro Woche?",
+    answer: "100 kWh pro Woche (entspricht 5.200 kWh/Jahr) kosten bei 35 ct/kWh genau 35,00 Euro wöchentlich (ca. 151,60 Euro im Monat bzw. 1.820 Euro im Jahr)."
+  },
+  {
+    question: "Wie berechne ich meine wöchentlichen Stromkosten?",
+    answer: "Formel: Wöchentlicher Verbrauch in kWh × Strompreis in €/kWh = Stromkosten pro Woche. Beispiel: 65 kWh × 0,35 € = 22,75 Euro pro Woche."
+  },
+  {
+    question: "Warum lohnt sich das wöchentliche Zählerablesen?",
+    answer: "Durch wöchentliches Ablesen (z. B. jeden Sonntagabend) erkennst du Verbrauchsspitzen sofort. Läuft ein Gerät unbemerkt durch oder ist ein Thermostat defekt, siehst du das nach 7 Tagen statt erst nach 12 Monaten auf der bösen Jahresrechnung."
+  },
+  {
+    question: "Wie viel Strom verbraucht ein Homeoffice pro 5-Tage-Arbeitswoche?",
+    answer: "Ein Homeoffice-Arbeitsplatz (Laptop/PC, 2 Bildschirme, Licht, Router) verbraucht ca. 1,0 kWh pro 8-Stunden-Tag. In einer 5-Tage-Woche sind das rund 5,0 kWh bzw. ca. 1,75 Euro Stromkosten."
+  },
+  {
+    question: "Wie viel Strom verbraucht das Waschen pro Woche bei einer 4-köpfigen Familie?",
+    answer: "Bei ca. 4 bis 5 Waschgängen pro Woche (Eco-Modus, ca. 0,6 kWh/Waschgang) verbraucht die Waschmaschine ca. 2,5 bis 3,0 kWh wöchentlich (ca. 0,90 bis 1,05 Euro)."
+  },
+  {
+    question: "Wie viel Strom kostet ein Urlaub (Abwesenheitswoche)?",
+    answer: "Während einer Urlaubswoche fällt nur der Grundlaststrom an (Kühlschrank, Router, Standby). Bei 80 bis 120 Watt Grundlast verbraucht die Wohnung ca. 13 bis 20 kWh in der Woche (ca. 4,50 bis 7,00 Euro)."
+  },
+  {
+    question: "Wie rechne ich den Wochenverbrauch auf das gesamte Jahr hoch?",
+    answer: "Multipliziere den Wochenwert mit 52: Jahres-kWh = Wochen-kWh × 52. Beispiel: 60 kWh/Woche × 52 = 3.120 kWh im Jahr."
+  },
+  {
+    question: "Wie hoch ist der wöchentliche Stromverbrauch einer Wärmepumpe im Winter?",
+    answer: "In einer kalten Winterwoche kann eine Wärmepumpe im Einfamilienhaus zwischen 150 und 250 kWh Strom verbrauchen (ca. 50 bis 85 Euro pro Woche). In den Übergangsmonaten sinkt der Bedarf auf 40 bis 80 kWh/Woche."
+  }
+];
+
+const calcSchema = getCalculatorSchema(
+  'Stromkosten pro Woche Rechner',
+  'Berechne die wöchentlichen Stromkosten für Haushalt und Elektrogeräte bei aktuellem Strompreis in Deutschland.',
   '/stromkosten-pro-woche'
 );
+const faqSchema = getFaqSchema(faqs);
+const pageSchemas = faqSchema ? [calcSchema, faqSchema] : [calcSchema];
 
 const related = [
-  { title: 'Stromkosten pro Tag', href: '/stromkosten-pro-tag', description: 'Tägliche Kosten.' },
-  { title: 'Stromkosten pro Monat', href: '/stromkosten-pro-monat', description: 'Monatliche Kosten.' },
-  { title: 'Stromkostenrechner', href: '/stromkosten-rechner', description: 'Gesamtstromkostenrechner.' },
+  { title: 'Stromkosten pro Tag', href: '/stromkosten-pro-tag', description: 'Tagesverbrauch & Kosten.' },
+  { title: 'Stromkosten pro Monat', href: '/stromkosten-pro-monat', description: 'Monatskosten & Abschlagsplanung.' },
+  { title: 'Stromkosten pro Jahr', href: '/stromkosten-pro-jahr', description: 'Jahresgesamtkosten berechnen.' },
+  { title: 'Stromverbrauch Haushalt', href: '/stromverbrauch-haushalt', description: 'Haushalts-Vergleichswerte.' },
 ];
 ---
 
 <BaseLayout
-  title="Stromkosten pro Woche berechnen | kWhKlar"
-  description="Berechne deine wöchentlichen Stromkosten für Arbeitsplatz, Gaming-Setups oder Haushaltsgeräte mit flexiblen Nutzungstagen."
+  title="Stromkosten pro Woche berechnen: Wochenverbrauch & Kosten | kWhKlar"
+  description="Was kosten 30, 50 oder 100 kWh pro Woche? Berechne deine wöchentlichen Stromkosten für Haushalt, Homeoffice und Einzelgeräte mit Rechner & Tabelle."
   canonical="https://kwhklar.de/stromkosten-pro-woche"
-  jsonLd={schema}
+  jsonLd={pageSchemas}
   breadcrumbs={[{ name: 'Stromkosten pro Woche', path: '/stromkosten-pro-woche' }]}
 >
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
     <Breadcrumbs items={[{ name: 'Stromkosten pro Woche', path: '/stromkosten-pro-woche' }]} />
 
-    <div class="max-w-3xl mb-6">
-      <span class="badge-blue text-xs mb-2">Wochenkosten</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-        Stromkosten pro Woche berechnen
+    <div class="max-w-4xl mb-8">
+      <span class="badge-blue text-xs mb-2">Wochenanalyse</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Stromkosten pro Woche: Wochenverbrauch &amp; Kosten
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        Ideal für Arbeitsplatz- und Homeoffice-Setups mit 5 Werktagen oder Wochenend-Aktivitäten.
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Erfahre, wie viele Kilowattstunden (kWh) pro Woche für deine Haushaltsgröße typisch sind, wie du mit wöchentlichen Zählerkontrollen Stromfresser aufspürst und was eine Woche Strom kostet.
       </p>
     </div>
 
+    <!-- Live Universal Calculator -->
     <UniversalCalculator
-      defaultWatt={150}
-      defaultHours={8}
+      defaultWatt={400}
+      defaultHours={5}
       defaultPriceCt={35.0}
-      defaultDaysPerWeek={5}
       title="Wochenkosten-Rechner"
-      subtitle="Berechne die wöchentlichen Stromkosten auf Basis von Watt und Nutzungstagen:"
+      subtitle="Berechne den wöchentlichen Stromverbrauch und die Kosten bei individueller Nutzungsdauer:"
     />
 
+    <!-- Main Content Depth -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- Section: Weekly Benchmarks Table -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Wochenverbrauch-Übersicht: Typische Haushalte im Vergleich
+          </h2>
+          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
+            So verteilen sich wöchentlicher Stromverbrauch und wöchentliche Kosten auf unterschiedliche Haushaltsgrößen (Berechnung bei 35 ct/kWh ohne monatlichen Grundpreis):
+          </p>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs sm:text-sm border-collapse">
+              <thead>
+                <tr class="border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400">
+                  <th class="py-3 px-3 font-semibold">Haushaltstyp</th>
+                  <th class="py-3 px-3 font-semibold">Wochenverbrauch (kWh)</th>
+                  <th class="py-3 px-3 font-semibold">Kosten / Woche (@ 35 ct)</th>
+                  <th class="py-3 px-3 font-semibold text-right">Kosten / Monat</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">1 Person (Single)</td><td class="py-2.5 px-3">25 – 30 kWh</td><td class="py-2.5 px-3 font-semibold">8,75 – 10,50 €</td><td class="py-2.5 px-3 text-right font-semibold">37,90 – 45,50 €</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">2 Personen (Paar)</td><td class="py-2.5 px-3">40 – 50 kWh</td><td class="py-2.5 px-3 font-semibold">14,00 – 17,50 €</td><td class="py-2.5 px-3 text-right font-semibold">60,70 – 75,80 €</td></tr>
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">3 Personen</td><td class="py-2.5 px-3">50 – 65 kWh</td><td class="py-2.5 px-3 font-semibold">17,50 – 22,75 €</td><td class="py-2.5 px-3 text-right font-semibold">75,80 – 98,60 €</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">4 Personen (Familie)</td><td class="py-2.5 px-3">60 – 80 kWh</td><td class="py-2.5 px-3 font-semibold">21,00 – 28,00 €</td><td class="py-2.5 px-3 text-right font-semibold">91,00 – 121,30 €</td></tr>
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">Einfamilienhaus + Durchlauferhitzer</td><td class="py-2.5 px-3">90 – 115 kWh</td><td class="py-2.5 px-3 font-semibold text-amber-700 dark:text-amber-400">31,50 – 40,25 €</td><td class="py-2.5 px-3 text-right font-bold text-amber-700 dark:text-amber-400">136,50 – 174,40 €</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Tipp: Der Sonntags-Zähler-Check
+          </h3>
+          <p class="text-xs text-slate-300 leading-relaxed mb-3">
+            Notiere dir jeden Sonntagabend den Zählerstand. Verbraucht dein Haushalt plötzlich 20 kWh mehr als in der Vorwoche, überprüfe sofort:
+          </p>
+          <ul class="text-xs space-y-1.5 text-slate-300">
+            <li>• Vereistes Gefrierfach</li>
+            <li>• Ungewollt laufende Heizlüfter</li>
+            <li>• Häufige Heißwäschen</li>
+          </ul>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Weitere Zeiträume</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/stromkosten-pro-stunde" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromkosten pro Stunde</a></li>
+            <li><a href="/stromkosten-pro-tag" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromkosten pro Tag</a></li>
+            <li><a href="/stromkosten-pro-monat" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromkosten pro Monat</a></li>
+            <li><a href="/stromkosten-pro-jahr" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromkosten pro Jahr</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
     <RelatedLinks links={related} />
-    <SourceBox sourceIds={['bnetza', 'bdew']} />
+    <SourceBox sourceIds={['bnetza', 'bdew', 'stromspiegel']} />
   </div>
 </BaseLayout>

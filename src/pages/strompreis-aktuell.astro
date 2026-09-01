@@ -5,25 +5,74 @@ import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
 import RelatedLinks from '../components/seo/RelatedLinks.astro';
 import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
+import { electricityPriceData } from '../data/electricity-price';
+import { formatCtPerKwh, formatEuro } from '../lib/formatters';
+import { getCalculatorSchema, getFaqSchema } from '../lib/structured-data';
 
 const faqs = [
   {
-    question: 'Wie oft ändern sich die Strompreise für Verbraucher?',
-    answer: 'Bei Festpreisverträgen bleibt der Preis für die vereinbarte Laufzeit (meist 12 oder 24 Monate) fixiert. Bei Grundversorgungstarifen oder Preisanpassungen informieren die Versorger mindestens 6 Wochen im Voraus über Tarifänderungen.',
+    question: "Wie hoch ist der aktuelle Strompreis in Deutschland im Durchschnitt?",
+    answer: "Laut aktuellem Monitoringbericht von Bundesnetzagentur und BDEW liegt der durchschnittliche Strompreis für Bestandskunden privater Haushalte bei ca. 35,0 Cent pro Kilowattstunde (inkl. aller Steuern und Umlagen). Günstige Neukundenangebote sind derzeit ab ca. 28 bis 32 ct/kWh verfügbar."
   },
+  {
+    question: "Warum sind Neukundentarife derzeit deutlich günstiger als die Grundversorgung?",
+    answer: "Überregionale Anbieter sichern sich Strommengen an den Großhandels-Terminmärkten (EEX) zu den wieder gesunkenen Marktpreisen. Die örtliche Grundversorgung hat hingegen ein gesetzliches Versorgungsrisiko und muss teurere kurzfristige Ausgleichsenergie vorhalten."
+  },
+  {
+    question: "Wird der Strompreis in naher Zukunft wieder steigen?",
+    answer: "Die Großhandelspreise für Stromerzeugung haben sich stabilisiert. Allerdings stehen in den kommenden Jahren steigende Netzentgelte für den Netzausbau und die Digitalisierung (Smart Meter) bevor, die durch bundesweite Ausgleichsmechanismen abgefedert werden sollen."
+  },
+  {
+    question: "Wie oft dürfen Stromanbieter die Preise anpassen?",
+    answer: "Bei Verträgen mit Preisgarantie darf der Preis während der Garantiezeit (meist 12 oder 24 Monate) gar nicht erhöht werden (ausgenommen eventuell gesetzliche Steueränderungen). Außerhalb von Garantien müssen Preiserhöhungen mindestens 6 Wochen (in der Grundversorgung 4 Wochen) im Voraus schriftlich angekündigt werden."
+  },
+  {
+    question: "Was kostet Strom aktuell für einen 2-Personen-Haushalt pro Monat?",
+    answer: "Bei einem Jahresverbrauch von 2.100 kWh und einem Preis von 35 ct/kWh liegen die reinen Verbrauchskosten bei ca. 61,25 € monatlich. Zusammen mit ca. 12,50 € Grundgebühr beträgt der Monatsabschlag rund 74,00 €."
+  },
+  {
+    question: "Was kostet Strom aktuell für eine 4-köpfige Familie?",
+    answer: "Eine 4-köpfige Familie mit 4.000 kWh Jahresverbrauch zahlt bei 35 ct/kWh ca. 116,70 € Verbrauchskosten plus 12,50 € Grundpreis = rund 129,00 € Monatsabschlag."
+  },
+  {
+    question: "Welchen Anteil haben Steuern und staatliche Abgaben am aktuellen Strompreis?",
+    answer: "Staatliche Steuern (Stromsteuer, Konzessionsabgabe, KWKG-, Offshore- & §19-Umlage) sowie die 19 % Mehrwertsteuer machen derzeit zusammen ca. 24 bis 28 % des Endkundenpreises aus (ca. 8,5 bis 10 ct/kWh)."
+  },
+  {
+    question: "Lohnt sich jetzt ein Wechsel mit langer Preisgarantie?",
+    answer: "Ja, Tarife mit 12-monatiger eingeschränkter Preisgarantie bieten bei aktuellen Neukundenpreisen von 28–32 ct/kWh Planungssicherheit vor eventuellen Schwankungen der Großhandelspreise."
+  },
+  {
+    question: "Wie finde ich heraus, wie viel ich aktuell pro kWh zahle?",
+    answer: "Schaue auf deine letzte Jahresabrechnung oder die Vertragsbestätigung deines Anbieters. Dort findest du den 'Arbeitspreis' (in ct/kWh) sowie den monatlichen 'Grundpreis' (in €/Monat)."
+  },
+  {
+    question: "Welche Auswirkung hat der Anteil erneuerbarer Energien auf den aktuellen Preis?",
+    answer: "Der Anteil erneuerbarer Energien (Wind, Solar, Biomasse) an der deutschen Stromerzeugung liegt bei über 55 %. An sehr sonnigen oder windigen Tagen drücken diese die Börsenstrompreise (Merit-Order-Effekt) oft auf nahe 0 Cent."
+  }
 ];
 
+const calcSchema = getCalculatorSchema(
+  'Aktueller Strompreis Rechner',
+  'Berechne deine Stromkosten mit dem aktuellen deutschen Strompreis im Jahr 2026.',
+  '/strompreis-aktuell'
+);
+const faqSchema = getFaqSchema(faqs);
+const pageSchemas = faqSchema ? [calcSchema, faqSchema] : [calcSchema];
+
 const related = [
-  { title: 'Strompreis Deutschland', href: '/strompreis-deutschland', description: 'Regionale Unterschiede.' },
-  { title: 'Strompreis Zusammensetzung', href: '/strompreis-zusammensetzung', description: 'Steuern & Abgaben.' },
+  { title: 'Strompreis Deutschland', href: '/strompreis-deutschland', description: 'Bundesländer & regionale Unterschiede.' },
+  { title: 'Strompreis Zusammensetzung', href: '/strompreis-zusammensetzung', description: 'Steuern, Umlagen & Netzentgelte.' },
   { title: 'Dynamische Stromtarife', href: '/dynamische-stromtarife', description: 'Börsenstrompreise nutzen.' },
+  { title: 'Stromanbieter wechseln', href: '/stromanbieter-wechseln', description: 'Tarifwechsel Schritt für Schritt.' },
 ];
 ---
 
 <BaseLayout
-  title="Aktueller Strompreis 2026: Was kostet Strom heute? | kWhKlar"
-  description="Aktueller Strompreis in Deutschland im Jahr 2026: Durchschnittliche Arbeitspreise ({formatCtPerKwh(electricityPriceData.currentReferencePrice.valueCtPerKwh)}), Neukundentarife & Marktlage."
+  title="Aktueller Strompreis in Deutschland: Was kostet Strom heute? | kWhKlar"
+  description="Aktueller Strompreis in Deutschland: Durchschnittliche Arbeitspreise (ca. 35 ct/kWh), Neukundentarife (28–32 ct), Marktlage und Rechner."
   canonical="https://kwhklar.de/strompreis-aktuell"
+  jsonLd={pageSchemas}
   breadcrumbs={[
     { name: 'Strompreis', path: '/strompreis' },
     { name: 'Aktueller Strompreis', path: '/strompreis-aktuell' },
@@ -37,16 +86,47 @@ const related = [
       ]}
     />
 
-    <div class="max-w-3xl mb-8">
-      <span class="badge-emerald text-xs mb-2">Marktbericht 2026</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+    <div class="max-w-4xl mb-8">
+      <span class="badge-emerald text-xs mb-2">Strommarkt-Radar</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
         Aktueller Strompreis in Deutschland
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        Aktuelle Preisdaten der Bundesnetzagentur und des BDEW für private Verbraucher und Haushalte.
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Wie viel kostet Strom in Deutschland aktuell? Erfahre alles über die aktuellen Strompreise für Haushaltskunden, die Unterschiede zwischen Neukundentarifen und Grundversorgung sowie Markttrends.
       </p>
     </div>
 
+    <!-- Current Price Live Hero Card -->
+    <div class="my-8 rounded-3xl border border-emerald-200 dark:border-emerald-800 bg-gradient-to-br from-emerald-600 via-teal-700 to-slate-900 p-6 sm:p-8 text-white shadow-md">
+      <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-200">Bundesweiter Referenzpreis (BDEW &amp; BNetzA)</span>
+          <div class="mt-2 text-4xl sm:text-5xl font-black tracking-tight">
+            {formatCtPerKwh(electricityPriceData.currentReferencePrice.valueCtPerKwh)}
+          </div>
+          <p class="mt-2 text-xs text-emerald-100 max-w-xl">
+            Neutraler Durchschnittswert für deutsche Privathaushalte. Durchschnittlicher monatlicher Grundpreis: ca. 12,50 € ({formatEuro(150)}/Jahr).
+          </p>
+        </div>
+
+        <div class="rounded-2xl bg-white/10 dark:bg-black/30 backdrop-blur-md p-4 border border-white/20 text-xs space-y-2 min-w-[260px]">
+          <div class="flex justify-between">
+            <span class="text-emerald-100">Günstige Neukunden:</span>
+            <span class="font-bold text-white">ca. 28–32 ct/kWh</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-emerald-100">Bundesweiter Durchschnitt:</span>
+            <span class="font-bold text-white">35,0 ct/kWh</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-emerald-100">Örtliche Grundversorgung:</span>
+            <span class="font-bold text-white">ca. 39–45 ct/kWh</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Universal Calculator -->
     <UniversalCalculator
       defaultWatt={1000}
       defaultHours={1}
@@ -55,8 +135,66 @@ const related = [
       subtitle="Teste Berechnungen mit aktuellen Tarifpreisen:"
     />
 
+    <!-- Main Content Depth -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- Section: Annual Cost Breakdown by Consumption -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Was kostet Strom aktuell bei verschiedenen Jahresverbräuchen?
+          </h2>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs sm:text-sm border-collapse">
+              <thead>
+                <tr class="border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400">
+                  <th class="py-3 px-3 font-semibold">Jahresverbrauch</th>
+                  <th class="py-3 px-3 font-semibold">Typischer Haushalt</th>
+                  <th class="py-3 px-3 font-semibold">Kosten / Jahr (30 ct/kWh)</th>
+                  <th class="py-3 px-3 font-semibold text-right">Kosten / Jahr (35 ct/kWh)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">1.500 kWh</td><td class="py-2.5 px-3 text-slate-500">1 Person (Single)</td><td class="py-2.5 px-3 text-emerald-600 font-semibold">600,00 €</td><td class="py-2.5 px-3 text-right font-semibold">675,00 €</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">2.500 kWh</td><td class="py-2.5 px-3 text-slate-500">2 Personen (Paar)</td><td class="py-2.5 px-3 text-emerald-600 font-semibold">900,00 €</td><td class="py-2.5 px-3 text-right font-semibold">1.025,00 €</td></tr>
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">3.500 kWh</td><td class="py-2.5 px-3 text-slate-500">3–4 Personen (Familie)</td><td class="py-2.5 px-3 text-emerald-600 font-semibold">1.200,00 €</td><td class="py-2.5 px-3 text-right font-semibold">1.375,00 €</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">5.000 kWh</td><td class="py-2.5 px-3 text-slate-500">Einfamilienhaus / WW</td><td class="py-2.5 px-3 text-emerald-600 font-semibold">1.650,00 €</td><td class="py-2.5 px-3 text-right font-bold text-amber-700 dark:text-amber-400">1.900,00 €</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="mt-4 text-xs text-slate-400 dark:text-slate-500">* Gesamtkosten inklusive 150 € Grundpreis pro Jahr.</p>
+        </section>
+
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Aktuelle Preis-Fakten
+          </h3>
+          <ul class="text-xs space-y-2.5 text-slate-300">
+            <li>• Günstige Tarife ab: <strong>ca. 28 ct/kWh</strong></li>
+            <li>• Grundversorgung bei: <strong>ca. 42 ct/kWh</strong></li>
+            <li>• Sparpotenzial: <strong>bis zu 450 € / Jahr</strong></li>
+            <li>• EEG-Umlage: <strong>dauerhaft 0 ct</strong></li>
+          </ul>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Verwandte Ratgeber</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/strompreis-deutschland" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Strompreis nach Bundesländern</a></li>
+            <li><a href="/strompreis-zusammensetzung" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Strompreis Zusammensetzung</a></li>
+            <li><a href="/stromanbieter-wechseln" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromanbieter wechseln</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
     <RelatedLinks links={related} />
     <SourceBox sourceIds={['bnetza', 'bdew', 'smard']} />
-    <FaqSection items={faqs} />
   </div>
 </BaseLayout>

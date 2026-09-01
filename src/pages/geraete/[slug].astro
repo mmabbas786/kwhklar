@@ -42,6 +42,14 @@ const relatedCalcLinks = appliance.relatedCalculators.map((path) => ({
   href: path,
   description: 'Berechne Stromkosten flexibel nach deinen eigenen Werten.',
 }));
+
+// Comparison table metrics
+const efficientKwh = Math.round(appliance.typicalAnnualKwh * 0.7);
+const efficientCost = +(efficientKwh * 0.35).toFixed(2);
+const typicalKwh = appliance.typicalAnnualKwh;
+const typicalCost = appliance.annualCostEuro;
+const oldKwh = Math.round(appliance.typicalAnnualKwh * 1.6);
+const oldCost = +(oldKwh * 0.35).toFixed(2);
 ---
 
 <BaseLayout
@@ -78,9 +86,9 @@ const relatedCalcLinks = appliance.relatedCalculators.map((path) => ({
       </h1>
 
       <!-- Direct Answer Box -->
-      <div class="mt-5 rounded-2xl bg-emerald-50/80 border border-emerald-200/80 p-5 text-slate-800 leading-relaxed shadow-2xs">
-        <strong class="font-bold text-emerald-950 block text-base mb-1">Direkte Antwort auf einen Blick:</strong>
-        <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+      <div class="mt-5 rounded-2xl bg-emerald-50/80 dark:bg-emerald-950/30 border border-emerald-200/80 dark:border-emerald-800/60 p-5 text-slate-800 dark:text-slate-200 leading-relaxed shadow-2xs">
+        <strong class="font-bold text-emerald-950 dark:text-emerald-300 block text-base mb-1">Direkte Antwort auf einen Blick:</strong>
+        <p class="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
           {appliance.shortDescription}
         </p>
       </div>
@@ -92,7 +100,7 @@ const relatedCalcLinks = appliance.relatedCalculators.map((path) => ({
       defaultHours={appliance.calculationDefaults.hoursPerDay}
       defaultPriceCt={35.0}
       title={`${appliance.name} Rechner`}
-      subtitle={`Voreingestellt mit den typischen Werten für ${appliance.name}. Du kannst alle Parameter anpassen:`}
+      subtitle={`Voreingestellt mit den typischen Werten für ${appliance.name}. Du kannst Leistung, Nutzungsdauer und Strompreis individuell anpassen:`}
       applianceName={appliance.name}
       showPresets={false}
     />
@@ -100,47 +108,136 @@ const relatedCalcLinks = appliance.relatedCalculators.map((path) => ({
     <!-- Editorial Deep-Dive Content -->
     <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
       <article class="lg:col-span-8 space-y-8">
-        <!-- Section: Consumption Range & Nuances -->
-        <section class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xs">
-          <h2 class="text-2xl font-bold text-slate-900 tracking-tight mb-4">
-            Typischer Stromverbrauch & Leistungsaufnahme
+        
+        <!-- Section: Formula & Worked Example -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Formel: So berechnest du die Stromkosten für {appliance.name}
           </h2>
-          <p class="text-sm text-slate-600 leading-relaxed mb-4">
-            Die elektrische Leistung von <strong>{appliance.name}</strong> liegt typischerweise zwischen <strong>{formatWatt(appliance.wattageMin)}</strong> und <strong>{formatWatt(appliance.wattageMax)}</strong>. Der reale Stromverbrauch hängt stark vom Nutzungsverhalten und der Bauart ab:
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+            Die Berechnung der Stromkosten für <strong>{appliance.name}</strong> erfolgt in zwei einfachen Schritten: Zuerst wird die elektrische Leistung (Watt) mit der Nutzungsdauer multipliziert, um den Energieverbrauch in Kilowattstunden (kWh) zu erhalten. Anschließend wird das Ergebnis mit dem Arbeitspreis deines Stromtarifs multipliziert.
           </p>
 
-          <div class="rounded-xl bg-slate-50 p-4 border border-slate-200 text-xs text-slate-700 mb-6">
-            <strong class="font-semibold text-slate-900 block mb-1">Betriebsweise & Taktung:</strong>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-5">
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+              <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 block mb-1">1. Energieverbrauch (kWh)</span>
+              <code class="text-sm sm:text-base font-bold text-emerald-600 dark:text-emerald-400">
+                kWh = (Watt × Stunden) ÷ 1.000
+              </code>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+              <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 block mb-1">2. Stromkosten (€)</span>
+              <code class="text-sm sm:text-base font-bold text-emerald-600 dark:text-emerald-400">
+                Kosten = kWh × Strompreis (€/kWh)
+              </code>
+            </div>
+          </div>
+
+          <div class="rounded-2xl bg-slate-50 dark:bg-slate-800/40 p-4 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm text-slate-700 dark:text-slate-300 space-y-2">
+            <strong class="font-semibold text-slate-900 dark:text-white block">Konkretes Rechenbeispiel für {appliance.name}:</strong>
+            <p>
+              Gehen wir von einer typischen Leistungsaufnahme von <strong>{formatWatt(appliance.typicalWattage)}</strong>, einer täglichen Nutzungsdauer und einem Standard-Referenzstrompreis von <strong>0,35 €/kWh (35 ct/kWh)</strong> aus:
+            </p>
+            <ul class="list-disc pl-5 space-y-1 text-slate-600 dark:text-slate-400">
+              <li>Verbrauch pro Stunde: {appliance.typicalWattage} W × 1 h ÷ 1.000 = <strong>{+(appliance.typicalWattage / 1000).toFixed(3)} kWh</strong></li>
+              <li>Kosten pro Betriebsstunde: {+(appliance.typicalWattage / 1000).toFixed(3)} kWh × 0,35 € = <strong>{formatEuro((appliance.typicalWattage / 1000) * 0.35)}</strong> (ca. {+((appliance.typicalWattage / 1000) * 35).toFixed(1)} Cent)</li>
+              <li>Jahresverbrauch ({appliance.usageContext}): ca. <strong>{formatKwh(appliance.typicalAnnualKwh, 0)}</strong></li>
+              <li>Jährliche Gesamtstromkosten: {formatKwh(appliance.typicalAnnualKwh, 0)} × 0,35 € = <strong>{formatEuro(appliance.annualCostEuro)}</strong></li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Section: Consumption Range & Nuances -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Typischer Stromverbrauch & Leistungsaufnahme
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+            Die elektrische Nennleistung von <strong>{appliance.name}</strong> liegt je nach Modell typischerweise zwischen <strong>{formatWatt(appliance.wattageMin)}</strong> und <strong>{formatWatt(appliance.wattageMax)}</strong>. Der tatsächliche Stromverbrauch unterscheidet sich jedoch oft deutlich von der reinen Nennleistung auf dem Typenschild:
+          </p>
+
+          <div class="rounded-2xl bg-amber-50/70 dark:bg-amber-950/30 p-4 border border-amber-200/80 dark:border-amber-800/60 text-xs sm:text-sm text-amber-950 dark:text-amber-200 mb-6">
+            <strong class="font-bold block mb-1">Betriebsweise, Taktung & Reallast:</strong>
             {appliance.dutyCycleExplanation}
           </div>
 
-          <h3 class="text-base font-bold text-slate-900 mb-2">Faktoren, die den Stromverbrauch beeinflussen:</h3>
-          <ul class="list-disc pl-5 space-y-1.5 text-xs sm:text-sm text-slate-600">
+          <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">Faktoren, die den Stromverbrauch beeinflussen:</h3>
+          <ul class="list-disc pl-5 space-y-1.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
             {appliance.factors.map((f) => (
               <li>{f}</li>
             ))}
           </ul>
         </section>
 
-        <!-- Section: Measurement Advice -->
-        <section class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xs">
-          <h2 class="text-2xl font-bold text-slate-900 tracking-tight mb-3">
-            So misst du den echten Verbrauch deines {appliance.name}
+        <!-- Section: Comparison Table (Effizienzklassen / Generationen) -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Vergleich: Was verbraucht {appliance.name} nach Effizienzklasse?
           </h2>
-          <p class="text-sm text-slate-600 leading-relaxed">
-            {appliance.measurementTips}
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+            Die folgende Übersicht vergleicht ein modernes, hocheffizientes Neugerät mit dem aktuellen Durchschnitt und einem älteren Altgerät im Haushalt (Basis: 35 ct/kWh):
+          </p>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs sm:text-sm border-collapse">
+              <thead>
+                <tr class="border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400">
+                  <th class="py-3 px-3 font-semibold">Geräte-Kategorie</th>
+                  <th class="py-3 px-3 font-semibold">Jahresverbrauch (kWh)</th>
+                  <th class="py-3 px-3 font-semibold">Monatskosten (€)</th>
+                  <th class="py-3 px-3 font-semibold">Jahreskosten (€)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+                <tr class="bg-emerald-50/40 dark:bg-emerald-950/20">
+                  <td class="py-3 px-3 font-medium text-emerald-800 dark:text-emerald-300">Hocheffizientes Neugerät (Klasse A/B)</td>
+                  <td class="py-3 px-3 font-bold">{formatKwh(efficientKwh, 0)}</td>
+                  <td class="py-3 px-3">{formatEuro(efficientCost / 12)}</td>
+                  <td class="py-3 px-3 font-bold text-emerald-600 dark:text-emerald-400">{formatEuro(efficientCost)}</td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-3 font-medium text-slate-900 dark:text-white">Durchschnittliches Standardgerät</td>
+                  <td class="py-3 px-3 font-bold">{formatKwh(typicalKwh, 0)}</td>
+                  <td class="py-3 px-3">{formatEuro(typicalCost / 12)}</td>
+                  <td class="py-3 px-3 font-bold text-slate-900 dark:text-white">{formatEuro(typicalCost)}</td>
+                </tr>
+                <tr class="bg-slate-50/60 dark:bg-slate-800/30">
+                  <td class="py-3 px-3 font-medium text-slate-600 dark:text-slate-400">Älteres Modell (&gt; 10 Jahre)</td>
+                  <td class="py-3 px-3 font-bold text-amber-700 dark:text-amber-400">{formatKwh(oldKwh, 0)}</td>
+                  <td class="py-3 px-3">{formatEuro(oldCost / 12)}</td>
+                  <td class="py-3 px-3 font-bold text-amber-700 dark:text-amber-400">{formatEuro(oldCost)}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-slate-400 dark:text-slate-500 mt-3">
+            * Berechnungsbasis: 35,0 ct/kWh Arbeitspreis ohne Grundgebühr. Reale Werte hängen von individueller Nutzungsfrequenz ab.
           </p>
         </section>
 
+        <!-- Section: Measurement Advice -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-3">
+            So misst du den echten Verbrauch deines {appliance.name}
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+            {appliance.measurementTips}
+          </p>
+          <div class="rounded-xl bg-slate-50 dark:bg-slate-800/50 p-4 border border-slate-200 dark:border-slate-700 text-xs text-slate-700 dark:text-slate-300">
+            <strong class="font-semibold text-slate-900 dark:text-white block mb-1">Praxistipp für die Strommessung:</strong>
+            Ein digitales Energiekostenmessgerät für die Steckdose (bereits ab ca. 10–15 € erhältlich) zeigt dir nicht nur die aktuelle Wattzahl in Echtzeit, sondern summiert auch die verbrauchten Kilowattstunden über Tage oder Wochen auf.
+          </div>
+        </section>
+
         <!-- Section: Practical Savings Advice -->
-        <section class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xs">
-          <h2 class="text-2xl font-bold text-slate-900 tracking-tight mb-4">
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
             Stromspartipps für {appliance.name}
           </h2>
           <div class="space-y-3">
             {appliance.savingAdvice.map((tip, idx) => (
-              <div class="flex gap-3 rounded-xl bg-emerald-50/50 border border-emerald-100 p-3.5 text-xs sm:text-sm text-slate-700">
-                <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-200 text-emerald-900 font-bold text-xs">
+              <div class="flex gap-3 rounded-2xl bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-800/40 p-4 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+                <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-200 dark:bg-emerald-800 text-emerald-900 dark:text-emerald-100 font-bold text-xs">
                   {idx + 1}
                 </span>
                 <span>{tip}</span>
@@ -157,7 +254,7 @@ const relatedCalcLinks = appliance.relatedCalculators.map((path) => ({
 
       <!-- Sidebar: Quick Facts & Related -->
       <aside class="lg:col-span-4 space-y-6">
-        <div class="rounded-3xl border border-slate-200 bg-slate-900 p-6 text-white shadow-md">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
           <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-4">
             Steckbrief: {appliance.name}
           </h3>
@@ -175,26 +272,34 @@ const relatedCalcLinks = appliance.relatedCalculators.map((path) => ({
               <dd class="font-semibold text-white">{formatKwh(appliance.typicalAnnualKwh, 0)}</dd>
             </div>
             <div class="pt-2 flex justify-between">
-              <dt class="text-slate-400">Jahreskosten (Ø)</dt>
+              <dt class="text-slate-400">Jahreskosten (Ø @ 35 ct)</dt>
               <dd class="font-bold text-emerald-400">{formatEuro(appliance.annualCostEuro)}</dd>
+            </div>
+            <div class="pt-2 flex justify-between">
+              <dt class="text-slate-400">Monatskosten (Ø)</dt>
+              <dd class="font-semibold text-white">{formatEuro(appliance.annualCostEuro / 12)}</dd>
+            </div>
+            <div class="pt-2 flex justify-between">
+              <dt class="text-slate-400">Nutzungsannahme</dt>
+              <dd class="font-medium text-slate-300 text-right max-w-[160px]">{appliance.usageContext}</dd>
             </div>
           </dl>
         </div>
 
         {relatedApplianceObjects.length > 0 && (
-          <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-xs">
-            <h3 class="font-bold text-slate-900 text-sm mb-4">Ähnliche Geräte</h3>
+          <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+            <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Ähnliche Geräte</h3>
             <div class="space-y-3">
               {relatedApplianceObjects.map((rel) => (
                 <a
                   href={`/geraete/${rel.slug}`}
-                  class="flex items-center justify-between rounded-xl border border-slate-100 p-3 hover:bg-emerald-50/50 hover:border-emerald-300 transition group"
+                  class="flex items-center justify-between rounded-xl border border-slate-100 dark:border-slate-800 p-3 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/20 hover:border-emerald-300 dark:hover:border-emerald-800 transition group"
                 >
                   <div class="flex items-center gap-2">
                     <span class="text-lg">{rel.icon}</span>
-                    <span class="text-xs font-semibold text-slate-800 group-hover:text-emerald-700">{rel.name}</span>
+                    <span class="text-xs font-semibold text-slate-800 dark:text-slate-200 group-hover:text-emerald-700 dark:group-hover:text-emerald-400">{rel.name}</span>
                   </div>
-                  <span class="text-[11px] font-medium text-slate-500">{formatEuro(rel.annualCostEuro)}/J.</span>
+                  <span class="text-[11px] font-medium text-slate-500 dark:text-slate-400">{formatEuro(rel.annualCostEuro)}/J.</span>
                 </a>
               ))}
             </div>

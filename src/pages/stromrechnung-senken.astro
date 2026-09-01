@@ -4,25 +4,66 @@ import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
 import RelatedLinks from '../components/seo/RelatedLinks.astro';
 import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
+import { getFaqSchema } from '../lib/structured-data';
 
 const faqs = [
   {
-    question: 'Wie kann ich meinen monatlichen Stromabschlag sofort senken?',
-    answer: 'Du kannst bei deinem Energieversorger (meist direkt im Online-Kundenportal) eine Anpassung des Abschlags beantragen, wenn du deinen Verbrauch durch Stromsparmaßnahmen nachweislich gesenkt hast. Zudem sparst du durch einen Anbieterwechsel oft mehrere hundert Euro jährlich.',
+    question: "Wie kann ich meine Stromrechnung am schnellsten senken?",
+    answer: "Die beiden schnellsten Hebel: 1. Stromanbieter wechseln (spart bei 3.500 kWh oft 300 bis 450 € im ersten Jahr). 2. Warmwassertemperatur an elektrischen Durchlauferhitzern drosseln und Sparduschköpfe nutzen (spart 150 bis 350 € pro Jahr)."
   },
+  {
+    question: "Wie reduziere ich meinen monatlichen Abschlag?",
+    answer: "Wenn du deinen Stromverbrauch nachweislich gesenkt hast (z. B. durch sparsamere Geräte oder Auszug von Personen), kannst du im Kundenportal des Anbieters oder telefonisch eine Abschlagsreduzierung nach § 41b EnWG verlangen."
+  },
+  {
+    question: "Wie viel Geld spart das Abschalten von Standby-Geräten auf der Jahresrechnung?",
+    answer: "Durch den konsequenten Einsatz schaltbarer Steckdosenleisten an TV-Anlage, Computerarbeitsplatz und Ladeadaptern sparst du ca. 150 bis 300 kWh Strom pro Jahr (ca. 50 bis 105 Euro auf der Jahresrechnung)."
+  },
+  {
+    question: "Wie viel spart ein Balkonkraftwerk auf der Stromrechnung?",
+    answer: "Ein 800-Watt-Balkonkraftwerk senkt deinen Netzstrombezug um ca. 500 bis 650 kWh pro Jahr, was deine jährliche Stromrechnung um ca. 175 bis 228 Euro reduziert."
+  },
+  {
+    question: "Lohnt sich der Tausch alter Haushaltsgeräte zur Rechnungsreduktion?",
+    answer: "Ja. Ein 15 Jahre alter Kühlschrank schluckt ca. 300–400 kWh/Jahr (105–140 €), während ein modernes Gerät der Energieklasse A oder B nur ca. 100–120 kWh (35–42 €) benötigt. Das spart jährlich bis zu 100 Euro."
+  },
+  {
+    question: "Wie viel spart das Waschen bei 30 °C statt 60 °C?",
+    answer: "Bei 200 Wäschen pro Jahr spart das Waschen bei 30 °C im Eco-Programm ca. 120 bis 160 kWh Strom (ca. 42 bis 56 Euro auf der Stromrechnung)."
+  },
+  {
+    question: "Wie senke ich die Beleuchtungskosten auf der Stromrechnung?",
+    answer: "Ersetze alle verbliebenen Halogenlampen durch sparsame LED-Lampen. Das spart pro ausgetauschter 40-Watt-Halogenlampe ca. 12 bis 15 Euro Stromkosten pro Jahr."
+  },
+  {
+    question: "Was spart ein Spülmaschinen-Eco-Programm gegenüber Handspülen?",
+    answer: "Das Spülen im Eco-Programm verbraucht rund 50 % weniger Energie und 60 % weniger Wasser als das Spülen von Hand unter warmem Leitungswasser (Ersparnis ca. 40 bis 80 Euro im Jahr)."
+  },
+  {
+    question: "Wie vermeide ich Nachzahlungen bei der nächsten Jahresabrechnung?",
+    answer: "Setze den monatlichen Abschlag realistisch an (z. B. auf Basis deines durchschnittlichen Jahresbedarfs) und kontrolliere vierteljährlich deinen Zählerstand."
+  },
+  {
+    question: "Kann der Vermieter mir Energiesparmaßnahmen verbieten?",
+    answer: "Nein. Verhaltensänderungen, der Einsatz von Sparduschköpfen, LED-Leuchtmitteln, schaltbaren Steckerleisten und seit der Gesetzesreform auch von Balkonkraftwerken sind dein gutes Recht als Mieter."
+  }
 ];
 
+const faqSchema = getFaqSchema(faqs);
+
 const related = [
-  { title: 'Strom sparen Tipps', href: '/strom-sparen-tipps', description: 'Konkrete Maßnahmen im Alltag.' },
-  { title: 'Stromanbieter wechseln', href: '/stromanbieter-wechseln', description: 'Tarif wechseln & sparen.' },
-  { title: 'Stromfresser finden', href: '/stromfresser', description: 'Alte Geräte austauschen.' },
+  { title: 'Stromrechnung prüfen', href: '/stromrechnung-pruefen', description: 'Rechnung auf Fehler kontrollieren.' },
+  { title: 'Stromanbieter wechseln', href: '/stromanbieter-wechseln', description: 'Günstigeren Tarif finden.' },
+  { title: 'Die größten Stromfresser', href: '/stromfresser', description: 'Großgeräte enttarnen.' },
+  { title: 'Standby-Strom vermeiden', href: '/standby-strom', description: 'Leerlaufverluste beseitigen.' },
 ];
 ---
 
 <BaseLayout
-  title="Stromrechnung senken: Die effektivsten Hebel für Haushalte | kWhKlar"
-  description="Stromrechnung und monatlichen Abschlag senken: Tarifwechsel, Austausch von Stromfressern, Standby-Vermeidung und praktische Sofortmaßnahmen."
+  title="Stromrechnung senken: Die 8 wirksamsten Hebel | kWhKlar"
+  description="Stromrechnung und monatlichen Abschlag nachhaltig senken: Tarifwechsel, Warmwasser-Optimierung, Standby-Kappung und Steckersolar im Leitfaden."
   canonical="https://kwhklar.de/stromrechnung-senken"
+  jsonLd={faqSchema ? [faqSchema] : undefined}
   breadcrumbs={[
     { name: 'Stromrechnung', path: '/stromrechnung' },
     { name: 'Stromrechnung senken', path: '/stromrechnung-senken' },
@@ -36,41 +77,96 @@ const related = [
       ]}
     />
 
-    <div class="max-w-3xl mb-8">
-      <span class="badge-emerald text-xs mb-2">Sparstrategie</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-        Stromrechnung & monatlichen Abschlag senken
+    <div class="max-w-4xl mb-8">
+      <span class="badge-emerald text-xs mb-2">Spar-Leitfaden</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Stromrechnung senken: Die wirksamsten Hebel
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        Mit den beiden Hebeln <strong>Verbrauchsreduktion</strong> und <strong>Tarifoptimierung</strong> kannst du deine Stromkosten oft um 200 bis 600 Euro pro Jahr senken.
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Erfahre, mit welchen Maßnahmen du deine nächste Stromrechnung und deinen monatlichen Abschlag um mehrere hundert Euro senken kannst – ohne auf Komfort zu verzichten.
       </p>
     </div>
 
-    <!-- 2 Levers Card -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-10 max-w-4xl mx-auto">
-      <div class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xs">
-        <div class="text-xs font-bold uppercase tracking-wider text-emerald-700 mb-2">Hebel 1</div>
-        <h2 class="text-xl font-bold text-slate-900 mb-3">Tarif & Anbieter optimieren</h2>
-        <ul class="space-y-2 text-xs sm:text-sm text-slate-600">
-          <li>• Aus der teuren Grundversorgung in einen günstigen Sondervertrag wechseln (spart 10–15 ct/kWh).</li>
-          <li>• Tarife mit kurzer Laufzeit (12 Monate) und Preisgarantie wählen.</li>
-          <li>• Regelmäßig vergleichen und Kündigungsfristen im Kalender notieren.</li>
-        </ul>
-      </div>
+    <!-- Main Editorial Content Depth -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- Section: Savings Potential Table -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Die 5 größten Hebel zur Senkung deiner Stromrechnung
+          </h2>
+          <div class="space-y-4 text-xs sm:text-sm">
+            <div class="p-4 rounded-2xl bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-800 flex justify-between items-center">
+              <div>
+                <strong class="text-slate-900 dark:text-white block text-sm">1. Stromanbieter wechseln (Grundversorgung verlassen)</strong>
+                <span class="text-slate-600 dark:text-slate-400 text-xs">Wechsel von 42 ct/kWh auf 30 ct/kWh bei 3.500 kWh Jahresverbrauch.</span>
+              </div>
+              <span class="font-extrabold text-emerald-600 dark:text-emerald-400 text-base shrink-0 ml-4">bis zu 420 € / Jahr</span>
+            </div>
 
-      <div class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xs">
-        <div class="text-xs font-bold uppercase tracking-wider text-emerald-700 mb-2">Hebel 2</div>
-        <h2 class="text-xl font-bold text-slate-900 mb-3">Verbrauch dauerhaft senken</h2>
-        <ul class="space-y-2 text-xs sm:text-sm text-slate-600">
-          <li>• Standby-Verluste durch schaltbare Steckdosenleisten eliminieren (spart ca. 50–100 €/Jahr).</li>
-          <li>• Alte Kühlschränke und Gefriertruhen (> 10 Jahre) erneuern.</li>
-          <li>• Waschmaschine bei 30 °C und Spülmaschine im Eco-Modus betreiben.</li>
-        </ul>
-      </div>
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 flex justify-between items-center">
+              <div>
+                <strong class="text-slate-900 dark:text-white block text-sm">2. Balkonkraftwerk (800 Watt) installieren</strong>
+                <span class="text-slate-600 dark:text-slate-400 text-xs">Erzeugt 650–850 kWh Solarstrom direkt für deinen Haushalt.</span>
+              </div>
+              <span class="font-extrabold text-emerald-600 dark:text-emerald-400 text-base shrink-0 ml-4">175 – 230 € / Jahr</span>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 flex justify-between items-center">
+              <div>
+                <strong class="text-slate-900 dark:text-white block text-sm">3. Sparduschkopf bei elektrischer Warmwasserbereitung</strong>
+                <span class="text-slate-600 dark:text-slate-400 text-xs">Reduziert den Warmwasser-Strombedarf um bis zu 40 %.</span>
+              </div>
+              <span class="font-extrabold text-emerald-600 dark:text-emerald-400 text-base shrink-0 ml-4">140 – 280 € / Jahr</span>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 flex justify-between items-center">
+              <div>
+                <strong class="text-slate-900 dark:text-white block text-sm">4. Standby-Verluste mit Steckerleisten eliminieren</strong>
+                <span class="text-slate-600 dark:text-slate-400 text-xs">Kappt Dauerstrom von TV, Audio, Konsolen und Homeoffice.</span>
+              </div>
+              <span class="font-extrabold text-emerald-600 dark:text-emerald-400 text-base shrink-0 ml-4">50 – 105 € / Jahr</span>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 flex justify-between items-center">
+              <div>
+                <strong class="text-slate-900 dark:text-white block text-sm">5. Waschen bei 30 °C Eco &amp; Geschirrspüler Eco</strong>
+                <span class="text-slate-600 dark:text-slate-400 text-xs">Reine Verhaltensänderung ohne jegliche Komforteinbußen.</span>
+              </div>
+              <span class="font-extrabold text-emerald-600 dark:text-emerald-400 text-base shrink-0 ml-4">60 – 100 € / Jahr</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Gesamtes Sparpotenzial
+          </h3>
+          <div class="text-3xl font-extrabold text-white mb-2">bis zu 800 € / Jahr</div>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Ein durchschnittlicher 4-Personen-Haushalt kann durch Kombination aller Hebel seine Stromkosten fast halbieren.
+          </p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Verwandte Ratgeber</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/stromanbieter-wechseln" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromanbieter wechseln</a></li>
+            <li><a href="/stromfresser" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Die 10 größten Stromfresser</a></li>
+            <li><a href="/standby-strom" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Standby-Strom beseitigen</a></li>
+          </ul>
+        </div>
+      </aside>
     </div>
 
     <RelatedLinks links={related} />
-    <SourceBox sourceIds={['bnetza', 'stromspiegel']} />
-    <FaqSection items={faqs} />
+    <SourceBox sourceIds={['bnetza', 'stromspiegel', 'uba']} />
   </div>
 </BaseLayout>

@@ -7,28 +7,74 @@ import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
 import { householdBenchmarks } from '../data/household-benchmarks';
 import { formatKwh } from '../lib/formatters';
+import { getCalculatorSchema, getFaqSchema } from '../lib/structured-data';
 
 const data = householdBenchmarks[2];
 
 const faqs = [
   {
-    question: 'Wie hoch sind die durchschnittlichen Stromkosten für 2 Personen?',
-    answer: 'Ein 2-Personen-Haushalt mit einem Verbrauch von 2.100 bis 2.500 kWh zahlt bei 35 ct/kWh rund 75 bis 90 Euro pro Monat (ca. 900 bis 1.100 Euro im Jahr inkl. Grundgebühr).',
+    question: "Was verbraucht ein 2-Personen-Haushalt im Durchschnitt pro Jahr?",
+    answer: "Ein 2-Personen-Haushalt in einer Mietwohnung verbraucht im Schnitt ca. 2.000 bis 2.200 kWh pro Jahr (ohne elektrische Warmwasserbereitung). Bei Warmwasser über einen Durchlauferhitzer liegt der Jahresverbrauch bei ca. 2.800 bis 3.200 kWh. Im Einfamilienhaus sind es rund 3.000 kWh (bzw. 3.800 kWh mit elektr. WW)."
   },
+  {
+    question: "Was verbraucht ein 2-Personen-Haushalt im Monat an Strom?",
+    answer: "Im Monat verbrauchen 2 Personen ca. 165 bis 185 kWh Strom. Das entspricht monatlichen Stromkosten von ca. 70 bis 85 Euro (inklusive Grundgebühr bei 35 ct/kWh Arbeitspreis). Bei elektrischer Warmwasserbereitung liegt der Monatsabschlag bei ca. 95 bis 115 Euro."
+  },
+  {
+    question: "Sind 4.000 kWh viel für 2 Personen?",
+    answer: "Ja, 4.000 kWh ist für 2 Personen fast das Doppelte des Bundesdurchschnitts (ca. 80 bis 90 % über normal). Ein so hoher Verbrauch entsteht meist durch Dauerbetrieb von Heizlüftern oder Klimageräten, alte Gefriertruhen mit defekten Dichtungen oder mehrere täglich genutzte Gaming-/Workstation-PCs."
+  },
+  {
+    question: "Sind 3.000 kWh für 2 Personen viel?",
+    answer: "In einer Wohnung mit zentraler Warmwasserbereitung sind 3.000 kWh leicht überdurchschnittlich. In einem Einfamilienhaus oder bei Warmwasser über Durchlauferhitzer sind 3.000 kWh für 2 Personen jedoch ein völlig normaler, solider Wert."
+  },
+  {
+    question: "Was verbraucht ein Einfamilienhaus mit 2 Personen an Strom?",
+    answer: "Ein 2-Personen-Einfamilienhaus verbraucht ohne Wärmepumpe ca. 2.800 bis 3.200 kWh pro Jahr (ca. 1.000 bis 1.120 € bei 35 ct/kWh). Kommt eine Wärmepumpe hinzu, steigt der Gesamtstromverbrauch auf ca. 6.000 bis 7.500 kWh jährlich."
+  },
+  {
+    question: "Wie viele kWh verbrauchen 2 Personen pro Tag?",
+    answer: "Ein Paar in einer Wohnung verbraucht im Schnitt ca. 5,5 bis 6,5 kWh Strom pro Tag (ca. 1,90 bis 2,30 Euro täglich)."
+  },
+  {
+    question: "Wie verteilt sich der Stromverbrauch bei 2 Personen?",
+    answer: "Typische Verteilung: Kühlen & Gefrieren (ca. 18 %), Kochen & Spülen (ca. 15 %), Waschen & Trocknen (ca. 14 %), TV & Entertainment (ca. 22 %), Beleuchtung (ca. 9 %) und Grundlast/Standby (ca. 22 %)."
+  },
+  {
+    question: "Wie viel Strom spart ein 2-Personen-Haushalt durch einen A-Klasse-Kühlschrank?",
+    answer: "Der Austausch eines 15 Jahre alten Kühlschranks (ca. 300 kWh/J) gegen ein Neugerät der Effizienzklasse A oder B (ca. 100 kWh/J) spart jährlich ca. 200 kWh Strom bzw. rund 70 Euro Stromkosten."
+  },
+  {
+    question: "Lohnt sich ein Geschirrspüler für 2 Personen aus Strom- und Wassersicht?",
+    answer: "Ja. Ein moderner Geschirrspüler im Eco-Programm (ca. 0,65 kWh und 9 Liter Wasser) verbraucht deutlich weniger Energie und Wasser als das tägliche Spülen von Hand unter fließendem Warmwasser."
+  },
+  {
+    question: "Wie viel Strom spart ein Paar mit einem Balkonkraftwerk?",
+    answer: "Ein 800-Watt-Balkonkraftwerk spart bei 2 Personen im Schnitt ca. 500 bis 650 kWh Netzbezug pro Jahr, was einer Kostenersparnis von ca. 175 bis 228 Euro jährlich entspricht."
+  }
 ];
 
+const calcSchema = getCalculatorSchema(
+  'Stromverbrauch 2 Personen (Paar) Rechner',
+  'Berechne den typischen Stromverbrauch und die Kosten für einen 2-Personen-Haushalt nach Wohnform und Warmwasser.',
+  '/stromverbrauch-2-personen'
+);
+const faqSchema = getFaqSchema(faqs);
+const pageSchemas = faqSchema ? [calcSchema, faqSchema] : [calcSchema];
+
 const related = [
-  { title: '1-Personen-Haushalt', href: '/stromverbrauch-1-person', description: 'Vergleich zu Singles.' },
-  { title: '3-Personen-Haushalt', href: '/stromverbrauch-3-personen', description: 'Richtwerte für 3 Personen.' },
-  { title: 'Durchschnittlicher Stromverbrauch', href: '/durchschnittlicher-stromverbrauch', description: 'Bundesweiter Durchschnitt.' },
-  { title: 'Stromfresser finden', href: '/stromfresser', description: 'Großverbraucher eliminieren.' },
+  { title: '1-Personen-Haushalt', href: '/stromverbrauch-1-person', description: 'Richtwerte für Singles.' },
+  { title: '3-Personen-Haushalt', href: '/stromverbrauch-3-personen', description: 'Verbrauch für 3 Personen.' },
+  { title: 'Stromverbrauch Wohnung', href: '/stromverbrauch-wohnung', description: 'Vergleich für Mietwohnungen.' },
+  { title: 'Stromverbrauch Einfamilienhaus', href: '/stromverbrauch-einfamilienhaus', description: 'Einfamilienhaus-Werte.' },
 ];
 ---
 
 <BaseLayout
-  title="Stromverbrauch 2 Personen: Durchschnitt & Kosten für Paare | kWhKlar"
-  description="Wie viel Strom verbraucht ein 2-Personen-Haushalt? Richtwerte (2.100–2.900 kWh), monatliche Kosten und Sparpotenziale für Paare & WGs."
+  title="Stromverbrauch 2 Personen: Richtwerte & Kosten für Paare | kWhKlar"
+  description="Wie viel Strom verbraucht ein 2-Personen-Haushalt? Offizielle Richtwerte (2.100–2.900 kWh), monatliche Kosten, Vergleich Haus vs. Wohnung und Spartipps."
   canonical="https://kwhklar.de/stromverbrauch-2-personen"
+  jsonLd={pageSchemas}
   breadcrumbs={[
     { name: 'Haushalt', path: '/stromverbrauch-haushalt' },
     { name: '2 Personen', path: '/stromverbrauch-2-personen' },
@@ -38,63 +84,110 @@ const related = [
     <Breadcrumbs
       items={[
         { name: 'Haushalt', path: '/stromverbrauch-haushalt' },
-        { name: '2 Personen (Paar)', path: '/stromverbrauch-2-personen' },
+        { name: '2 Personen (Paar/WG)', path: '/stromverbrauch-2-personen' },
       ]}
     />
 
-    <div class="max-w-3xl mb-8">
+    <div class="max-w-4xl mb-8">
       <span class="badge-emerald text-xs mb-2">2-Personen-Haushalt Benchmark</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-        Stromverbrauch für 2 Personen (Paar / 2er-WG)
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Stromverbrauch für 2 Personen: Richtwerte &amp; Kosten
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        {data.description}
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Erfahre, wie viel Strom ein 2-Personen-Haushalt in Deutschland im Schnitt verbraucht, was ein realistischer Monatsabschlag ist und wie du durch clevere Gerätenutzung hunderte Euro sparst.
       </p>
     </div>
 
     <!-- Key Metrics Cards -->
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-10">
-      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/70 p-5 shadow-xs transition-all hover:border-slate-300 dark:hover:border-slate-700">
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
         <span class="text-xs text-slate-500 dark:text-slate-400 font-medium block">Wohnung (ohne Warmwasser)</span>
-        <div class="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.apartmentWithoutWarmWaterKwh, 0)}</div>
-        <span class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 block">ca. 70–80 € / Monat</span>
+        <div class="mt-2 text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.apartmentWithoutWarmWaterKwh, 0)}</div>
+        <span class="text-xs text-emerald-600 dark:text-emerald-400 mt-2 block font-semibold">ca. 70–80 € / Monat (@ 35 ct)</span>
       </div>
 
-      <div class="rounded-2xl border border-emerald-500/30 dark:border-emerald-500/25 bg-emerald-50/40 dark:bg-emerald-950/20 p-5 shadow-xs transition-all hover:border-emerald-500/50">
-        <span class="text-xs text-emerald-700 dark:text-emerald-400 font-semibold flex items-center gap-1.5">
-          <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+      <div class="rounded-3xl border border-emerald-500/30 dark:border-emerald-500/25 bg-emerald-50/40 dark:bg-emerald-950/20 p-6 shadow-xs">
+        <span class="text-xs text-emerald-800 dark:text-emerald-300 font-bold flex items-center gap-1.5">
+          <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
           Wohnung (mit Warmwasser elektrisch)
         </span>
-        <div class="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.apartmentWithWarmWaterKwh, 0)}</div>
-        <span class="text-xs text-emerald-600 dark:text-emerald-400/90 mt-1.5 block font-medium">ca. 95–110 € / Monat</span>
+        <div class="mt-2 text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.apartmentWithWarmWaterKwh, 0)}</div>
+        <span class="text-xs text-emerald-700 dark:text-emerald-400 mt-2 block font-semibold">ca. 95–110 € / Monat (@ 35 ct)</span>
       </div>
 
-      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/70 p-5 shadow-xs transition-all hover:border-slate-300 dark:hover:border-slate-700">
-        <span class="text-xs text-slate-500 dark:text-slate-400 font-medium block">Einfamilienhaus</span>
-        <div class="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.houseWithoutWarmWaterKwh, 0)}</div>
-        <span class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 block">ca. 95–105 € / Monat</span>
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+        <span class="text-xs text-slate-500 dark:text-slate-400 font-medium block">Einfamilienhaus (2 Personen)</span>
+        <div class="mt-2 text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.houseWithoutWarmWaterKwh, 0)}</div>
+        <span class="text-xs text-slate-500 dark:text-slate-400 mt-2 block font-semibold">ca. 100–115 € / Monat (@ 35 ct)</span>
       </div>
     </div>
 
+    <!-- Live Universal Calculator -->
     <UniversalCalculator
-      defaultWatt={250}
+      defaultWatt={240}
       defaultHours={24}
       defaultPriceCt={35.0}
       title="2-Personen Verbrauchsrechner"
-      subtitle="Ermittle deine Stromkosten bei individuellem Verbrauch:"
+      subtitle="Ermittle eure gemeinsamen Stromkosten bei individuellem Verbrauch:"
     />
 
-    <article class="prose prose-slate max-w-4xl my-12 bg-white rounded-3xl p-6 sm:p-10 border border-slate-200">
-      <h2 class="text-2xl font-bold text-slate-900">Spartipps für den 2-Personen-Haushalt:</h2>
-      <ul class="list-disc pl-5 space-y-2 text-slate-600 text-sm">
-        {data.savingTips.map((tip) => (
-          <li>{tip}</li>
-        ))}
-      </ul>
-    </article>
+    <!-- Main Content Depth -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- Section: Detailed Analysis -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Stromverbrauch im 2-Personen-Haushalt richtig einordnen
+          </h2>
+          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
+            In einem 2-Personen-Haushalt profitiert ihr bereits deutlich vom „Skaleneffekt“: Ein gemeinsamer Kühlschrank, der selbe WLAN-Router und die Beleuchtung im Wohnzimmer verbrauchen für zwei Personen kaum mehr Strom als für eine Einzelperson. Deshalb steigt der Stromverbrauch beim Zusammenziehen von zwei Singles meist nur um 40 bis 60 % anstatt sich zu verdoppeln.
+          </p>
+
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3">
+            Die 4 wirksamsten Spartipps für Paare:
+          </h3>
+          <div class="space-y-3 text-xs sm:text-sm">
+            {data.savingTips.map((tip, idx) => (
+              <div class="flex gap-3 p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+                <span class="font-bold text-emerald-600 dark:text-emerald-400">{idx + 1}.</span>
+                <span class="text-slate-700 dark:text-slate-300">{tip}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Paar-Profil im Überblick
+          </h3>
+          <ul class="text-xs space-y-2 text-slate-300">
+            <li>• Ø Jahresverbrauch: <strong>2.100 – 2.900 kWh</strong></li>
+            <li>• Ø Tagesverbrauch: <strong>5,5 – 8,0 kWh</strong></li>
+            <li>• Ø Monatsabschlag: <strong>70 – 110 €</strong></li>
+            <li>• Pro-Kopf-Verbrauch: <strong>ca. 1.050 – 1.450 kWh</strong></li>
+          </ul>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Weitere Haushaltsgrößen</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/stromverbrauch-1-person" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ 1 Person (Single)</a></li>
+            <li><a href="/stromverbrauch-3-personen" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ 3 Personen (Kleinfamilie)</a></li>
+            <li><a href="/stromverbrauch-4-personen" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ 4 Personen (Familie)</a></li>
+            <li><a href="/stromverbrauch-5-personen" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ 5+ Personen (Großhaushalt)</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
 
     <RelatedLinks links={related} />
     <SourceBox sourceIds={['stromspiegel', 'bdew', 'destatis']} />
-    <FaqSection items={faqs} />
   </div>
 </BaseLayout>

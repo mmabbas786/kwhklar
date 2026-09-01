@@ -7,27 +7,74 @@ import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
 import { householdBenchmarks } from '../data/household-benchmarks';
 import { formatKwh } from '../lib/formatters';
+import { getCalculatorSchema, getFaqSchema } from '../lib/structured-data';
 
 const data = householdBenchmarks[3];
 
 const faqs = [
   {
-    question: 'Was kostet der Strom für 3 Personen im Monat?',
-    answer: 'Ein 3-Personen-Haushalt mit einem Verbrauch von 2.600 bis 3.500 kWh zahlt bei 35 ct/kWh ca. 90 bis 115 Euro monatlich (ca. 1.050 bis 1.350 € im Jahr).',
+    question: "Was verbraucht ein 3-Personen-Haushalt im Durchschnitt pro Jahr?",
+    answer: "Ein 3-Personen-Haushalt (z. B. Eltern mit 1 Kind oder 3er-WG) in einer Wohnung verbraucht im Schnitt ca. 2.600 bis 2.900 kWh pro Jahr (ohne elektrische Warmwasserbereitung). Bei Warmwasser über Durchlauferhitzer liegt der Verbrauch bei ca. 3.600 bis 4.000 kWh. Im Einfamilienhaus sind es rund 3.600 bis 4.700 kWh."
   },
+  {
+    question: "Wie viel Stromkosten fallen für 3 Personen im Monat an?",
+    answer: "Die monatlichen Stromkosten für 3 Personen liegen bei ca. 85 bis 105 Euro (ohne elektr. WW) bzw. ca. 120 bis 145 Euro (mit elektr. WW), inklusive Grundpreis bei einem Arbeitspreis von 35 ct/kWh."
+  },
+  {
+    question: "Sind 3.500 kWh Strom im Jahr viel für 3 Personen?",
+    answer: "Nein, 3.500 kWh ist für 3 Personen ein völlig normaler, solider Wert – insbesondere wenn ein Kind im Haushalt lebt (häufigere Waschgänge, Kochen) oder im Einfamilienhaus gewohnt wird."
+  },
+  {
+    question: "Wie viele kWh verbraucht ein 3-Personen-Haushalt pro Tag?",
+    answer: "Im Schnitt verbrauchen 3 Personen ca. 7,0 bis 10,0 kWh Strom pro Tag (ca. 2,45 bis 3,50 Euro täglich)."
+  },
+  {
+    question: "Wie viel Strom verbraucht eine Waschmaschine bei 3 Personen?",
+    answer: "Bei 3 bis 4 Waschgängen pro Woche (ca. 180 Wäschen/Jahr) verbraucht eine moderne Waschmaschine im 30/40°C-Eco-Modus ca. 90 bis 120 kWh Strom (ca. 30 bis 42 Euro im Jahr)."
+  },
+  {
+    question: "Wie viel Strom spart ein 3-Personen-Haushalt durch einen Sparduschkopf?",
+    answer: "Wird das Warmwasser elektrisch erzeugt, spart ein Sparduschkopf bei 3 Personen rund 750 bis 1.100 kWh Strom pro Jahr ein (ca. 260 bis 385 Euro Ersparnis)."
+  },
+  {
+    question: "Welchen Unterschied macht das Alter des Kindes beim Stromverbrauch?",
+    answer: "Kleinkinder erhöhen vor allem den Wasch- und Trocknerbedarf. Jugendliche und Teenager erhöhen den Stromverbrauch zusätzlich durch längere Duschzeiten, eigene TVs, Spielekonsolen, PCs und Ladegeräte oft um 300 bis 600 kWh pro Jahr."
+  },
+  {
+    question: "Lohnt sich ein Wärmepumpentrockner für 3 Personen?",
+    answer: "Ja. Ein Wärmepumpentrockner verbraucht pro Trocknung ca. 1,2 kWh (ca. 42 Cent), während ein alter Kondenstrockner ca. 3,5 bis 4,0 kWh zieht (ca. 1,25 bis 1,40 Euro). Bei 150 Trocknungen im Jahr spart das rund 150 Euro jährlich."
+  },
+  {
+    question: "Wie viel Grundlast hat ein 3-Personen-Haushalt?",
+    answer: "In einer Wohnung liegt die Grundlast bei ca. 80 bis 140 Watt (ca. 2 bis 3,4 kWh pro Tag), im Einfamilienhaus bei 140 bis 220 Watt (ca. 3,4 bis 5,3 kWh pro Tag)."
+  },
+  {
+    question: "Wie viel Strom erzeugt ein Balkonkraftwerk für 3 Personen?",
+    answer: "Ein 800-Watt-Balkonkraftwerk erzeugt jährlich ca. 700 bis 850 kWh. In einem 3-Personen-Haushalt mit tagsüber anwesenden Personen können ca. 80 % davon direkt selbst verbraucht werden (ca. 200 bis 240 Euro Ersparnis)."
+  }
 ];
 
+const calcSchema = getCalculatorSchema(
+  'Stromverbrauch 3 Personen Rechner',
+  'Berechne den typischen Stromverbrauch und die Kosten für einen 3-Personen-Haushalt nach Wohnform und Warmwasser.',
+  '/stromverbrauch-3-personen'
+);
+const faqSchema = getFaqSchema(faqs);
+const pageSchemas = faqSchema ? [calcSchema, faqSchema] : [calcSchema];
+
 const related = [
-  { title: '2-Personen-Haushalt', href: '/stromverbrauch-2-personen', description: 'Richtwerte für 2 Personen.' },
-  { title: '4-Personen-Haushalt', href: '/stromverbrauch-4-personen', description: 'Richtwerte für 4 Personen.' },
-  { title: 'Stromrechnung prüfen', href: '/stromrechnung-pruefen', description: 'Abrechnung kontrollieren.' },
+  { title: '2-Personen-Haushalt', href: '/stromverbrauch-2-personen', description: 'Richtwerte für Paare.' },
+  { title: '4-Personen-Haushalt', href: '/stromverbrauch-4-personen', description: 'Richtwerte für Familien.' },
+  { title: 'Stromverbrauch Wohnung', href: '/stromverbrauch-wohnung', description: 'Vergleich Mietwohnungen.' },
+  { title: 'Stromverbrauch Einfamilienhaus', href: '/stromverbrauch-einfamilienhaus', description: 'Einfamilienhaus-Werte.' },
 ];
 ---
 
 <BaseLayout
-  title="Stromverbrauch 3 Personen: Durchschnitt & Kosten | kWhKlar"
-  description="Wie viel Strom verbraucht ein 3-Personen-Haushalt? Offizielle Richtwerte (2.600–3.700 kWh), Kosten und Einsparpotenziale für kleine Familien & WGs."
+  title="Stromverbrauch 3 Personen: Richtwerte & Kosten | kWhKlar"
+  description="Wie viel Strom verbraucht ein 3-Personen-Haushalt? Offizielle Richtwerte (2.600–3.700 kWh), monatliche Kosten, Vergleich Haus vs. Wohnung und Spartipps."
   canonical="https://kwhklar.de/stromverbrauch-3-personen"
+  jsonLd={pageSchemas}
   breadcrumbs={[
     { name: 'Haushalt', path: '/stromverbrauch-haushalt' },
     { name: '3 Personen', path: '/stromverbrauch-3-personen' },
@@ -37,54 +84,110 @@ const related = [
     <Breadcrumbs
       items={[
         { name: 'Haushalt', path: '/stromverbrauch-haushalt' },
-        { name: '3 Personen', path: '/stromverbrauch-3-personen' },
+        { name: '3 Personen (Kleinfamilie/WG)', path: '/stromverbrauch-3-personen' },
       ]}
     />
 
-    <div class="max-w-3xl mb-8">
-      <span class="badge-emerald text-xs mb-2">3-Personen Benchmark</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-        Stromverbrauch für 3 Personen (Kleine Familie / WG)
+    <div class="max-w-4xl mb-8">
+      <span class="badge-emerald text-xs mb-2">3-Personen-Haushalt Benchmark</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Stromverbrauch für 3 Personen: Richtwerte &amp; Kosten
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        {data.description}
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Erfahre, wie viel Strom ein 3-Personen-Haushalt (Familie mit einem Kind oder 3er-WG) im Durchschnitt verbraucht, was ein realistischer Monatsabschlag ist und wo die größten Einsparpotenziale liegen.
       </p>
     </div>
 
-    <!-- Benchmark cards -->
+    <!-- Key Metrics Cards -->
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-10">
-      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/70 p-5 shadow-xs transition-all hover:border-slate-300 dark:hover:border-slate-700">
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
         <span class="text-xs text-slate-500 dark:text-slate-400 font-medium block">Wohnung (ohne Warmwasser)</span>
-        <div class="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.apartmentWithoutWarmWaterKwh, 0)}</div>
-        <span class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 block">ca. 85–95 € / Monat</span>
+        <div class="mt-2 text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.apartmentWithoutWarmWaterKwh, 0)}</div>
+        <span class="text-xs text-emerald-600 dark:text-emerald-400 mt-2 block font-semibold">ca. 85–95 € / Monat (@ 35 ct)</span>
       </div>
 
-      <div class="rounded-2xl border border-emerald-500/30 dark:border-emerald-500/25 bg-emerald-50/40 dark:bg-emerald-950/20 p-5 shadow-xs transition-all hover:border-emerald-500/50">
-        <span class="text-xs text-emerald-700 dark:text-emerald-400 font-semibold flex items-center gap-1.5">
-          <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+      <div class="rounded-3xl border border-emerald-500/30 dark:border-emerald-500/25 bg-emerald-50/40 dark:bg-emerald-950/20 p-6 shadow-xs">
+        <span class="text-xs text-emerald-800 dark:text-emerald-300 font-bold flex items-center gap-1.5">
+          <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
           Wohnung (mit Warmwasser elektrisch)
         </span>
-        <div class="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.apartmentWithWarmWaterKwh, 0)}</div>
-        <span class="text-xs text-emerald-600 dark:text-emerald-400/90 mt-1.5 block font-medium">ca. 120–135 € / Monat</span>
+        <div class="mt-2 text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.apartmentWithWarmWaterKwh, 0)}</div>
+        <span class="text-xs text-emerald-700 dark:text-emerald-400 mt-2 block font-semibold">ca. 120–135 € / Monat (@ 35 ct)</span>
       </div>
 
-      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/70 p-5 shadow-xs transition-all hover:border-slate-300 dark:hover:border-slate-700">
-        <span class="text-xs text-slate-500 dark:text-slate-400 font-medium block">Einfamilienhaus</span>
-        <div class="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.houseWithoutWarmWaterKwh, 0)}</div>
-        <span class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 block">ca. 115–130 € / Monat</span>
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+        <span class="text-xs text-slate-500 dark:text-slate-400 font-medium block">Einfamilienhaus (3 Personen)</span>
+        <div class="mt-2 text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.houseWithoutWarmWaterKwh, 0)}</div>
+        <span class="text-xs text-slate-500 dark:text-slate-400 mt-2 block font-semibold">ca. 115–130 € / Monat (@ 35 ct)</span>
       </div>
     </div>
 
+    <!-- Live Universal Calculator -->
     <UniversalCalculator
-      defaultWatt={350}
+      defaultWatt={300}
       defaultHours={24}
       defaultPriceCt={35.0}
       title="3-Personen Verbrauchsrechner"
-      subtitle="Ermittle deine Stromkosten bei individuellem Verbrauch:"
+      subtitle="Ermittle die Stromkosten für euren 3-Personen-Haushalt:"
     />
 
+    <!-- Main Content Depth -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- Section: Detailed Analysis -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Stromverbrauch im 3-Personen-Haushalt einordnen
+          </h2>
+          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
+            In einem 3-Personen-Haushalt fällt der Pro-Kopf-Verbrauch auf ca. 850 bis 1.200 kWh pro Person und Jahr. Große Verbrauchstreiber sind hier vor allem tägliches Kochen, häufigere Wasch- und Spülgänge sowie die Warmwassernutzung im Bad.
+          </p>
+
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3">
+            Die 4 wichtigsten Spartipps für 3 Personen:
+          </h3>
+          <div class="space-y-3 text-xs sm:text-sm">
+            {data.savingTips.map((tip, idx) => (
+              <div class="flex gap-3 p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+                <span class="font-bold text-emerald-600 dark:text-emerald-400">{idx + 1}.</span>
+                <span class="text-slate-700 dark:text-slate-300">{tip}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            3-Personen-Profil
+          </h3>
+          <ul class="text-xs space-y-2 text-slate-300">
+            <li>• Ø Jahresverbrauch: <strong>2.600 – 3.700 kWh</strong></li>
+            <li>• Ø Tagesverbrauch: <strong>7,0 – 10,0 kWh</strong></li>
+            <li>• Ø Monatsabschlag: <strong>85 – 130 €</strong></li>
+            <li>• Pro-Kopf-Verbrauch: <strong>ca. 870 – 1.230 kWh</strong></li>
+          </ul>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Weitere Haushaltsgrößen</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/stromverbrauch-1-person" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ 1 Person (Single)</a></li>
+            <li><a href="/stromverbrauch-2-personen" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ 2 Personen (Paar)</a></li>
+            <li><a href="/stromverbrauch-4-personen" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ 4 Personen (Familie)</a></li>
+            <li><a href="/stromverbrauch-5-personen" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ 5+ Personen (Großhaushalt)</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
     <RelatedLinks links={related} />
-    <SourceBox sourceIds={['stromspiegel', 'bdew']} />
-    <FaqSection items={faqs} />
+    <SourceBox sourceIds={['stromspiegel', 'bdew', 'destatis']} />
   </div>
 </BaseLayout>

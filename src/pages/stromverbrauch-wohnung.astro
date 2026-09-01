@@ -5,31 +5,75 @@ import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
 import RelatedLinks from '../components/seo/RelatedLinks.astro';
 import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
-import { householdBenchmarks } from '../data/household-benchmarks';
-import { formatKwh } from '../lib/formatters';
+import { getCalculatorSchema, getFaqSchema } from '../lib/structured-data';
 
 const faqs = [
   {
-    question: 'Wie hoch ist der durchschnittliche Stromverbrauch in einer Wohnung?',
-    answer: 'In einer Mietwohnung im Mehrfamilienhaus liegt der durchschnittliche Stromverbrauch bei ca. 1.300 kWh (1 Person), 2.100 kWh (2 Personen) und 3.000 kWh (4 Personen) pro Jahr, sofern das Warmwasser zentral erzeugt wird.',
+    question: "Wie viel Strom verbraucht eine Wohnung im Durchschnitt pro Jahr?",
+    answer: "In einer Mietwohnung im Mehrfamilienhaus liegt der Stromverbrauch im Schnitt bei: ca. 1.300 bis 1.500 kWh für 1 Person, ca. 2.000 bis 2.200 kWh für 2 Personen, ca. 2.600 bis 3.000 kWh für 3 Personen und ca. 3.000 bis 3.500 kWh für 4 Personen (bei zentraler Warmwasserbereitung)."
   },
+  {
+    question: "Wie viel Strom verbraucht man für eine 50-m²-Wohnung?",
+    answer: "Eine 50-m²-Wohnung (typischerweise von 1 bis 2 Personen bewohnt) verbraucht ca. 1.400 bis 2.000 kWh Strom pro Jahr (ohne Durchlauferhitzer) bzw. ca. 2.000 bis 2.800 kWh (mit Durchlauferhitzer)."
+  },
+  {
+    question: "Wie viel Strom verbraucht man für eine 70-m²-Wohnung?",
+    answer: "Eine 70-m²-Wohnung (meist 2 bis 3 Personen) verbraucht im Schnitt ca. 2.100 bis 2.700 kWh Strom pro Jahr (ca. 735 bis 945 Euro bei 35 ct/kWh)."
+  },
+  {
+    question: "Wie viel Strom verbraucht man für eine 100-m²-Wohnung?",
+    answer: "Eine 100-m²-Wohnung (meist 3 bis 4 Personen) verbraucht ca. 2.800 bis 3.500 kWh Strom pro Jahr (ohne elektr. WW) bzw. ca. 4.000 bis 4.800 kWh (mit elektr. WW)."
+  },
+  {
+    question: "Beeinflusst die Wohnungsgröße (qm) den Stromverbrauch stark?",
+    answer: "Nur geringfügig. Die Quadratmeterzahl beeinflusst vor allem den Beleuchtungsstrom. Der mit Abstand größte Teil des Stromverbrauchs (über 85 %) hängt von der Personenzahl, den Haushaltsgeräten und der Art der Warmwasserbereitung ab."
+  },
+  {
+    question: "Warum verbraucht eine Wohnung weniger Strom als ein Einfamilienhaus?",
+    answer: "In einer Mietwohnung entfallen typische Haus-Stromverbraucher wie eigene Heizungsumwälzpumpen, Garagentore, Gartenbewässerung und Außenbeleuchtung (diese laufen über den Allgemeinstrom der Hausverwaltung)."
+  },
+  {
+    question: "Darf man in einer Mietwohnung ein Balkonkraftwerk anbringen?",
+    answer: "Ja. Nach der Reform des Miet- und Wohnungseigentumsrechts (Solargesetzpaket) haben Mieter einen gesetzlichen Anspruch auf die Genehmigung eines Balkonkraftwerks durch den Vermieter."
+  },
+  {
+    question: "Wie viel Strom verbraucht ein Durchlauferhitzer im Badezimmer einer Wohnung?",
+    answer: "Ein elektrischer Durchlauferhitzer verbraucht pro Person ca. 500 bis 800 kWh Strom im Jahr. Bei 2 Personen sind das ca. 1.000 bis 1.600 kWh zusätzliche Stromkosten (rund 350 bis 560 Euro)."
+  },
+  {
+    question: "Wie hoch ist die Grundlast in einer typischen Wohnung?",
+    answer: "Die Grundlast (Kühlschrank, Router, Standby) liegt in einer Wohnung bei ca. 50 bis 100 Watt (ca. 1,2 bis 2,4 kWh pro Tag)."
+  },
+  {
+    question: "Wie viel Geld spart ein Mieter durch den Stromanbieterwechsel?",
+    answer: "Wer in der Wohnung noch in der örtlichen Grundversorgung ist (ca. 42 ct/kWh), spart bei einem Wechsel zu einem 30-Cent-Tarif bei 2.500 kWh Jahresverbrauch exakt 300 Euro pro Jahr."
+  }
 ];
 
+const calcSchema = getCalculatorSchema(
+  'Stromverbrauch Wohnung Rechner & Vergleich',
+  'Berechne den typischen Stromverbrauch für Wohnungen von 40 m² bis 120 m² nach Personenzahl und Warmwasser.',
+  '/stromverbrauch-wohnung'
+);
+const faqSchema = getFaqSchema(faqs);
+const pageSchemas = faqSchema ? [calcSchema, faqSchema] : [calcSchema];
+
 const related = [
-  { title: 'Stromverbrauch Einfamilienhaus', href: '/stromverbrauch-einfamilienhaus', description: 'Vergleich mit dem Eigenheim.' },
-  { title: '1-Personen-Haushalt', href: '/stromverbrauch-1-person', description: 'Wohnung Single.' },
-  { title: '2-Personen-Haushalt', href: '/stromverbrauch-2-personen', description: 'Wohnung Paar.' },
-  { title: 'Stromrechnung senken', href: '/stromrechnung-senken', description: 'Tipps für Mieter.' },
+  { title: 'Stromverbrauch Einfamilienhaus', href: '/stromverbrauch-einfamilienhaus', description: 'Haus-Richtwerte im Vergleich.' },
+  { title: 'Stromverbrauch 1 Person', href: '/stromverbrauch-1-person', description: 'Richtwerte für Single-Wohnungen.' },
+  { title: 'Stromverbrauch 2 Personen', href: '/stromverbrauch-2-personen', description: 'Richtwerte für Paar-Wohnungen.' },
+  { title: 'Stromrechnung prüfen', href: '/stromrechnung-pruefen', description: 'Wohnungs-Stromabrechnung prüfen.' },
 ];
 ---
 
 <BaseLayout
   title="Stromverbrauch Wohnung: Durchschnitt nach m² & Personen | kWhKlar"
-  description="Wie viel Strom verbraucht eine Mietwohnung? Offizielle Richtwerte für 1–5 Personen im Mehrfamilienhaus mit & ohne elektrische Warmwasserbereitung."
+  description="Wie viel Strom verbraucht eine Wohnung? Vergleichswerte für 50 m², 70 m², 80 m² & 100 m², Einfluss von Durchlauferhitzern und Spartipps für Mieter."
   canonical="https://kwhklar.de/stromverbrauch-wohnung"
+  jsonLd={pageSchemas}
   breadcrumbs={[
     { name: 'Haushalt', path: '/stromverbrauch-haushalt' },
-    { name: 'Stromverbrauch Wohnung', path: '/stromverbrauch-wohnung' },
+    { name: 'Wohnung', path: '/stromverbrauch-wohnung' },
   ]}
 >
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
@@ -40,53 +84,89 @@ const related = [
       ]}
     />
 
-    <div class="max-w-3xl mb-8">
-      <span class="badge-blue text-xs mb-2">Wohnungs-Benchmark</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-        Stromverbrauch in der Wohnung (Mehrfamilienhaus)
+    <div class="max-w-4xl mb-8">
+      <span class="badge-emerald text-xs mb-2">Mietwohnungs-Benchmark</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Stromverbrauch in der Wohnung: Richtwerte nach m² &amp; Personen
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        Wohnungen in Mehrfamilienhäusern verbrauchen im Schnitt rund 20 bis 35 % weniger Strom als freistehende Einfamilienhäuser, da viele Nebenverbraucher (z.B. Heizungspumpen, Außenlicht, Garagen) über den Allgemeinstrom abgerechnet werden.
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Erfahre, wie viel Strom für eine Mietwohnung im Mehrfamilienhaus normal ist, welchen Einfluss Wohnfläche (50–100 m²) und elektrische Durchlauferhitzer haben und wie du als Mieter effektiv Strom sparst.
       </p>
     </div>
 
-    <!-- Overview Table -->
-    <div class="my-8 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xs">
-      <h2 class="text-xl font-bold text-slate-900 mb-4">Wohnungs-Richtwerte im Überblick (Stromspiegel)</h2>
-      <div class="overflow-x-auto">
-        <table class="w-full text-left text-xs sm:text-sm">
-          <thead class="bg-slate-50 text-slate-700 font-semibold border-b border-slate-200">
-            <tr>
-              <th class="p-3">Haushaltsgröße</th>
-              <th class="p-3">Ohne Warmwasser (Zentral)</th>
-              <th class="p-3">Mit Warmwasser (Elektrisch)</th>
-              <th class="p-3 text-right">Monatskosten ca. (bei 35 ct)</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-slate-100 text-slate-600">
-            {Object.values(householdBenchmarks).map((b) => (
-              <tr>
-                <td class="p-3 font-semibold text-slate-900">{b.label}</td>
-                <td class="p-3 text-emerald-700 font-medium">{formatKwh(b.apartmentWithoutWarmWaterKwh, 0)}/Jahr</td>
-                <td class="p-3 text-amber-700 font-medium">{formatKwh(b.apartmentWithWarmWaterKwh, 0)}/Jahr</td>
-                <td class="p-3 text-right font-bold text-slate-900">{Math.round((b.apartmentWithoutWarmWaterKwh * 0.35) / 12 + 12.5)} €/Monat</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-
+    <!-- Live Universal Calculator -->
     <UniversalCalculator
-      defaultWatt={300}
+      defaultWatt={250}
       defaultHours={24}
       defaultPriceCt={35.0}
-      title="Wohnungs-Stromkostenrechner"
-      subtitle="Ermittle deine Stromkosten bei individuellem Wohnungsverbrauch:"
+      title="Wohnungs-Stromrechner"
+      subtitle="Ermittle die jährlichen Stromkosten für deine Mietwohnung:"
     />
 
+    <!-- Main Content Depth -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- Section: Apartment Size Matrix Table -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Stromverbrauch nach Wohnungsgröße und Personenzahl
+          </h2>
+          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
+            In der folgenden Tabelle siehst du die offiziellen Orientierungswerte für Mietwohnungen (Basis: Stromspiegel / BDEW bei 35 ct/kWh):
+          </p>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs sm:text-sm border-collapse">
+              <thead>
+                <tr class="border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400">
+                  <th class="py-3 px-3 font-semibold">Wohnungsgröße</th>
+                  <th class="py-3 px-3 font-semibold">Typische Belegung</th>
+                  <th class="py-3 px-3 font-semibold">Zentrales WW (kWh/J)</th>
+                  <th class="py-3 px-3 font-semibold">Elektrisches WW (kWh/J)</th>
+                  <th class="py-3 px-3 font-semibold text-right">Kosten / Monat (@ 35 ct)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">ca. 40–50 m²</td><td class="py-2.5 px-3">1 Person</td><td class="py-2.5 px-3 font-semibold">1.300 kWh</td><td class="py-2.5 px-3 font-semibold text-amber-700 dark:text-amber-400">1.800 kWh</td><td class="py-2.5 px-3 text-right font-semibold">ca. 45 – 60 €</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">ca. 60–75 m²</td><td class="py-2.5 px-3">2 Personen</td><td class="py-2.5 px-3 font-semibold">2.100 kWh</td><td class="py-2.5 px-3 font-semibold text-amber-700 dark:text-amber-400">2.900 kWh</td><td class="py-2.5 px-3 text-right font-semibold">ca. 70 – 95 €</td></tr>
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">ca. 80–90 m²</td><td class="py-2.5 px-3">3 Personen</td><td class="py-2.5 px-3 font-semibold">2.600 kWh</td><td class="py-2.5 px-3 font-semibold text-amber-700 dark:text-amber-400">3.700 kWh</td><td class="py-2.5 px-3 text-right font-semibold">ca. 85 – 120 €</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">ca. 100–120 m²</td><td class="py-2.5 px-3">4 Personen</td><td class="py-2.5 px-3 font-semibold">3.000 kWh</td><td class="py-2.5 px-3 font-semibold text-amber-700 dark:text-amber-400">4.400 kWh</td><td class="py-2.5 px-3 text-right font-semibold">ca. 100 – 140 €</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Wohnungs-Faustformel
+          </h3>
+          <p class="text-xs text-slate-300 leading-relaxed mb-4">
+            Der Stromverbrauch einer Wohnung ohne elektrische Warmwasserbereitung lässt sich präzise schätzen:
+          </p>
+          <div class="p-3.5 rounded-xl bg-slate-800 border border-slate-700 font-mono text-xs text-emerald-300 mb-4">
+            kWh/J = (Personen × 500) + (qm × 9) + (Großgeräte × 200)
+          </div>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Verwandte Benchmarks</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/stromverbrauch-einfamilienhaus" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Einfamilienhaus-Vergleich</a></li>
+            <li><a href="/stromverbrauch-2-personen" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ 2 Personen (Paar)</a></li>
+            <li><a href="/stromverbrauch-haushalt" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Haushaltsübersicht</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
     <RelatedLinks links={related} />
-    <SourceBox sourceIds={['stromspiegel', 'destatis']} />
-    <FaqSection items={faqs} />
+    <SourceBox sourceIds={['stromspiegel', 'bdew', 'destatis']} />
   </div>
 </BaseLayout>

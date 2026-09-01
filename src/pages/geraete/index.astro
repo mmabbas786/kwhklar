@@ -3,7 +3,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
 import ApplianceCard from '../../components/cards/ApplianceCard.astro';
 import SourceBox from '../../components/trust/SourceBox.astro';
+import FaqSection from '../../components/content/FaqSection.astro';
 import { appliances } from '../../data/appliances';
+import { formatEuro, formatKwh, formatWatt } from '../../lib/formatters';
+import { getFaqSchema } from '../../lib/structured-data';
 
 const applianceList = Object.values(appliances);
 
@@ -19,35 +22,109 @@ const categorizedAppliances = categories.map((cat) => ({
   category: cat,
   items: applianceList.filter((a) => a.category === cat),
 }));
+
+const faqs = [
+  {
+    question: "Was ist der Unterschied zwischen Nennleistung (Watt) und realem Stromverbrauch?",
+    answer: "Die Nennleistung auf dem Typenschild (z. B. 2.000 Watt bei einer Waschmaschine oder 90 Watt beim Kühlschrank) beschreibt die maximale Leistungsaufnahme unter Volllast. Der reale Verbrauch hängt jedoch von der Einschaltdauer und internen Taktung ab: Ein Kühlschrankkompressor läuft nur 20–30 Minuten pro Stunde, und der Heizstab einer Waschmaschine heizt nur die ersten 20 Minuten des Waschgangs."
+  },
+  {
+    question: "Welche Haushaltsgeräte verbrauchen am meisten Strom?",
+    answer: "Zu den größten Stromverbrauchern im Haushalt zählen elektrische Warmwasserbereiter (Durchlauferhitzer bis zu 800 kWh/Person), alte Kühl- und Gefrierkombinationen (300–400 kWh/Jahr), Wäschetrockner (200–500 kWh/Jahr), Heizlüfter sowie High-End-Gaming-PCs und Outdoor-Whirlpools."
+  },
+  {
+    question: "Wie wird der Stromverbrauch pro Zyklus (z. B. Waschgang) berechnet?",
+    answer: "Bei zyklusbasierten Geräten wie Waschmaschinen, Trocknern oder Spülmaschinen wird der Stromverbrauch für einen kompletten Programmdurchlauf in kWh gemessen (z. B. 0,6 kWh pro 40°C-Eco-Waschgang). Multipliziert mit dem Strompreis (z. B. 35 ct/kWh) ergibt das die Kosten pro Durchlauf: 0,6 × 0,35 € = 0,21 €."
+  },
+  {
+    question: "Wie messe ich den tatsächlichen Stromverbrauch meiner Geräte zu Hause?",
+    answer: "Mit einem digitalen Steckdosen-Energiekostenmessgerät für 10 bis 15 Euro. Es wird zwischen Steckdose und Gerätestecker gesteckt und summiert die verbrauchten Kilowattstunden über einen repräsentativen Zeitraum (z. B. 24 bis 72 Stunden) zuverlässig auf."
+  },
+  {
+    question: "Was bedeuten die neuen EU-Effizienzklassen A bis G?",
+    answer: "Seit März 2021 gilt das neue EU-Energielabel ohne Plusklassen (A+++, A++ etc.). Die Skala reicht streng von A (extrem sparsam) bis G (sehr ineffizient). Ein Neugerät der Klasse A oder B spart gegenüber Altgeräten oft 30 bis 50 % Strom."
+  },
+  {
+    question: "Wie viel Strom verbrauchen Geräte im Standby-Modus?",
+    answer: "Ein typischer deutscher Haushalt hat 10 bis 20 Geräte im Dauer-Standby (Fernseher, Router, Kaffeemaschine, HiFi, Konsolen). Das verursacht zusammen ca. 150 bis 400 kWh Standby-Strom pro Jahr und kostet 50 bis 140 Euro völlig unnötig."
+  },
+  {
+    question: "Lohnt sich der vorzeitige Austausch funktionierender Altgeräte?",
+    answer: "Bei Kühl- und Gefriergeräten sowie Wäschetrocknern, die älter als 10–12 Jahre sind, lohnt sich der Neukauf meist in 4 bis 6 Jahren, da ein Neugerät oft 150 bis 300 kWh Strom pro Jahr einspart (rund 50 bis 105 € jährlich)."
+  },
+  {
+    question: "Warum ist das Eco-Programm bei Spül- und Waschmaschinen sparsamer trotz längerer Laufzeit?",
+    answer: "Weil das Erwärmen von Wasser ca. 80 % der Gesamtenergie benötigt. Das Eco-Programm erwärmt das Wasser auf eine niedrigere Temperatur und kompensiert dies durch längere Einweich- und Waschzeiten. Da der Motor für die Trommeldrehung extrem wenig Strom braucht, sinkt der Gesamtenergiebedarf drastisch."
+  },
+  {
+    question: "Wie viel Strom verbraucht ein normales Homeoffice-Setup pro Tag?",
+    answer: "Ein typisches Homeoffice-Setup (Laptop oder Office-PC, zwei 27-Zoll-Monitore, Lampe und Router) zieht ca. 100 bis 140 Watt. Bei 8 Stunden Arbeitszeit entspricht das rund 0,8 bis 1,1 kWh bzw. ca. 28 bis 38 Cent pro Arbeitstag."
+  },
+  {
+    question: "Wie berechne ich die jährlichen Gesamtkosten eines Haushaltsgeräts?",
+    answer: "Formel: (Jahresverbrauch in kWh × Arbeitspreis in €/kWh) = Jährliche Stromkosten. Beispiel: 140 kWh/Jahr × 0,35 €/kWh = 49,00 € pro Jahr."
+  }
+];
+
+const faqSchema = getFaqSchema(faqs);
 ---
 
 <BaseLayout
-  title="Stromverbrauch von Haushaltsgeräten: Übersicht & Rechner | kWhKlar"
-  description="Übersicht über den Stromverbrauch von mehr als 25 Haushalts- und Elektrogeräten: Kühlschrank, Waschmaschine, Gaming-PC, Fernseher und mehr."
+  title="Stromverbrauch von Haushaltsgeräten: 25 Geräte im Vergleich | kWhKlar"
+  description="Große Übersicht über Stromverbrauch und Stromkosten von 25 Haushalts- und Elektrogeräten: Kühlschrank, Waschmaschine, TV, PC, Wärmepumpe und mehr inklusive Rechner."
   canonical="https://kwhklar.de/geraete"
+  jsonLd={faqSchema ? [faqSchema] : undefined}
   breadcrumbs={[{ name: 'Geräte Übersicht', path: '/geraete' }]}
 >
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
     <Breadcrumbs items={[{ name: 'Geräte Übersicht', path: '/geraete' }]} />
 
-    <div class="max-w-3xl mb-10">
-      <span class="badge-emerald text-xs mb-2">Geräte-Verzeichnis</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+    <!-- Hero Section -->
+    <div class="max-w-4xl mb-8">
+      <span class="badge-emerald text-xs mb-2">Großes Geräte-Verzeichnis</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
         Stromverbrauch von Haushaltsgeräten im Überblick
       </h1>
-      <p class="mt-3 text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-        Erfahre genau, wie viel Leistung (Watt) typische Geräte aufnehmen, wie viele Kilowattstunden sie pro Jahr verbrauchen und mit welchen Stromkosten du rechnen musst.
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Erfahre genau, wie viel Leistung (Watt) typische Haushaltsgeräte ziehen, wie viele Kilowattstunden (kWh) sie im Alltag verbrauchen und mit welchen jährlichen Stromkosten du rechnen musst. Vergleiche 25 wichtige Elektrogeräte und berechne deine Kosten mit individuellen Werten.
       </p>
     </div>
 
-    <!-- Category Sections -->
+    <!-- Educational Guide: Rated Power vs Duty Cycle -->
+    <div class="my-10 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+        Wichtig: Nennleistung vs. tatsächlicher Stromverbrauch
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-slate-600 dark:text-slate-300">
+        <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+          <strong class="font-bold text-slate-900 dark:text-white block mb-2">1. Dauerläufer (z. B. Server, Router)</strong>
+          <p>
+            Geräte mit konstanter Leistungsaufnahme. Hier gilt die einfache Formel: <code class="text-xs bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 px-1 py-0.5 rounded">W × h ÷ 1.000 = kWh</code>. Ein 25-W-Router verbraucht rund um die Uhr genau 219 kWh im Jahr.
+          </p>
+        </div>
+        <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+          <strong class="font-bold text-slate-900 dark:text-white block mb-2">2. Getaktete Geräte (z. B. Kühlschrank)</strong>
+          <p>
+            Kühlgeräte schalten ihren Kompressor thermostatgesteuert nur ca. 15 bis 25 Minuten pro Stunde ein. Die reale Durchschnittsleistung liegt daher weit unter der Nennleistung des Typenschilds.
+          </p>
+        </div>
+        <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+          <strong class="font-bold text-slate-900 dark:text-white block mb-2">3. Zyklus-Geräte (z. B. Waschmaschine)</strong>
+          <p>
+            Bei Wasch- und Spülmaschinen zieht der Heizstab in den ersten 20 Minuten bis zu 2.000 Watt. Der Rest des Waschgangs benötigt nur ca. 150 Watt. Berechnet wird hier der Verbrauch pro Zyklus.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category Sections with Cards -->
     <div class="space-y-12">
       {categorizedAppliances.map(({ category, items }) => (
         <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 p-6 sm:p-8">
           <div class="mb-6 flex items-center justify-between">
             <div>
               <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">{category}</h2>
-              <span class="text-xs text-slate-500 dark:text-slate-400">{items.length} Geräte erfasst</span>
+              <span class="text-xs text-slate-500 dark:text-slate-400">{items.length} Geräte mit Detailrechner &amp; Spartipps</span>
             </div>
           </div>
 
@@ -60,6 +137,54 @@ const categorizedAppliances = categories.map((cat) => ({
       ))}
     </div>
 
-    <SourceBox sourceIds={['bnetza', 'uba', 'stromspiegel']} />
+    <!-- Overview Benchmark Table across all 25 devices -->
+    <div class="my-14 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+        Große Vergleichstabelle: Alle 25 Haushaltsgeräte im Stromkosten-Check
+      </h2>
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+        Typische Leistung, durchschnittlicher Jahresverbrauch und jährliche Stromkosten bei einem Referenzpreis von 35,0 ct/kWh:
+      </p>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs sm:text-sm border-collapse">
+          <thead>
+            <tr class="border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400">
+              <th class="py-3 px-3 font-semibold">Gerät</th>
+              <th class="py-3 px-3 font-semibold">Kategorie</th>
+              <th class="py-3 px-3 font-semibold">Leistung (Ø)</th>
+              <th class="py-3 px-3 font-semibold">Jahresverbrauch (Ø)</th>
+              <th class="py-3 px-3 font-semibold text-right">Jahreskosten (@ 35 ct)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+            {applianceList.map((app) => (
+              <tr class="hover:bg-slate-50/70 dark:hover:bg-slate-800/30 transition">
+                <td class="py-2.5 px-3 font-medium">
+                  <a href={`/geraete/${app.slug}`} class="text-emerald-700 dark:text-emerald-400 hover:underline flex items-center gap-1.5">
+                    <span>{app.icon}</span>
+                    <span>{app.name}</span>
+                  </a>
+                </td>
+                <td class="py-2.5 px-3 text-slate-500 dark:text-slate-400">{app.category}</td>
+                <td class="py-2.5 px-3">{formatWatt(app.typicalWattage)}</td>
+                <td class="py-2.5 px-3 font-semibold">{formatKwh(app.typicalAnnualKwh, 0)}</td>
+                <td class="py-2.5 px-3 text-right font-bold text-emerald-600 dark:text-emerald-400">{formatEuro(app.annualCostEuro)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-4 text-xs text-slate-400 dark:text-slate-500">
+        * Berechnungsgrundlage: 35 ct/kWh Arbeitspreis. Klicke auf ein Gerät, um den interaktiven Einzelrechner zu öffnen.
+      </p>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="my-12">
+      <FaqSection items={faqs} />
+    </div>
+
+    <SourceBox sourceIds={['bnetza', 'uba', 'stromspiegel', 'bdew']} />
   </div>
 </BaseLayout>

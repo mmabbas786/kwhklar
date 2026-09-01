@@ -5,81 +5,209 @@ import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
 import RelatedLinks from '../components/seo/RelatedLinks.astro';
 import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
-import { getCalculatorSchema } from '../lib/structured-data';
-import { calculatorFaqs } from '../data/calculator-faqs';
+import { getCalculatorSchema, getFaqSchema } from '../lib/structured-data';
 
-const schema = getCalculatorSchema(
-  'Watt Rechner',
-  'Rechne Watt in kWh und Stromkosten um. Finde heraus, wie viel 100 Watt, 500 Watt oder 2.000 Watt an Strom kosten.',
+const faqs = [
+  {
+    question: "Was ist der Unterschied zwischen Watt und Kilowattstunden (kWh)?",
+    answer: "Watt (W) bzw. Kilowatt (kW) misst die momentane elektrische Leistung (wie schnell Energie fließt, vergleichbar mit der Geschwindigkeit eines Autos in km/h). Die Kilowattstunde (kWh) misst hingegen die über eine bestimmte Zeit verbrauchte Energiemenge (vergleichbar mit der zurückgelegten Strecke in km). 1.000 Watt Leistung über 1 Stunde ergeben genau 1 kWh Energie."
+  },
+  {
+    question: "Sind Watt und kWh das Gleiche?",
+    answer: "Nein. Watt (W) ist eine Leistungseinheit (Momentanwert), während Kilowattstunde (kWh) eine Energie- bzw. Arbeitseinheit ist. Leistung multipliziert mit Zeit ergibt Energie: Leistung (kW) × Zeit (h) = Energie (kWh)."
+  },
+  {
+    question: "Wann sagt man kW und wann kWh?",
+    answer: "Man sagt 'kW' (Kilowatt) bei Leistungsangaben von Geräten, Motoren oder Solaranlagen (z. B. 'Die Wärmepumpe hat 5 kW Leistung' oder 'Das Balkonkraftwerk leistet 0,8 kW'). Man sagt 'kWh' (Kilowattstunden), wenn es um verbrauchte oder erzeugte Strommengen geht (z. B. 'Ich habe 3.000 kWh Strom im Jahr verbraucht')."
+  },
+  {
+    question: "Wie viel ist 800 Watt in kWh?",
+    answer: "800 Watt entsprechen 0,8 Kilowatt (kW). Bei einer Betriebsdauer von 1 Stunde entstehen exakt 0,8 kWh. Bei 2 Stunden sind es 1,6 kWh, bei 5 Stunden 4,0 kWh. Formel: 800 W × Betriebsstunden ÷ 1.000 = kWh."
+  },
+  {
+    question: "Wie viel ist 2000 W in kWh?",
+    answer: "2.000 Watt entsprechen 2,0 kW. Läuft ein 2.000-W-Gerät (wie ein Heizlüfter) 1 Stunde lang, verbraucht es genau 2,0 kWh Strom (Kosten bei 35 ct/kWh: 0,70 €). Bei 3 Stunden Laufzeit entstehen 6,0 kWh (2,10 €)."
+  },
+  {
+    question: "Wie viel ist 400 Watt in kWh?",
+    answer: "400 Watt entsprechen 0,4 kW. In 1 Stunde verbraucht das Gerät 0,4 kWh (ca. 14 Cent bei 35 ct/kWh). In 10 Stunden verbraucht es 4,0 kWh (1,40 €)."
+  },
+  {
+    question: "Wie viel ist 600 Watt in kWh?",
+    answer: "600 Watt entsprechen 0,6 kW. In 1 Betriebsstunde werden 0,6 kWh verbraucht (ca. 21 Cent bei 35 ct/kWh)."
+  },
+  {
+    question: "2500 Watt sind wie viel kWh?",
+    answer: "2.500 Watt sind 2,5 kW. In 1 Stunde verbraucht das Gerät 2,5 kWh Strom (ca. 87,5 Cent bei 35 ct/kWh)."
+  },
+  {
+    question: "Wie viel kWh sind 3000 Watt?",
+    answer: "3.000 Watt sind 3,0 kW. In 1 Stunde Betrieb entstehen genau 3,0 kWh Strom (ca. 1,05 € bei 35 ct/kWh)."
+  },
+  {
+    question: "Wie rechne ich kWh zurück in Watt?",
+    answer: "Um aus dem kWh-Verbrauch die durchschnittliche Leistung in Watt zu ermitteln, teilst du die kWh durch die Betriebsstunden und multiplizierst mit 1.000: Watt = (kWh ÷ Stunden) × 1.000. Beispiel: Verbraucht ein Gerät in 4 Stunden 2 kWh, beträgt die Leistung (2 ÷ 4) × 1.000 = 500 Watt."
+  },
+  {
+    question: "Was ist der Unterschied zwischen Watt und Wattstunden (Wh)?",
+    answer: "Watt (W) ist die Leistung. Wattstunden (Wh) ist die Energie: 1 Wh ist die Energie, die ein 1-Watt-Gerät in einer Stunde verbraucht. 1.000 Wh entsprechen genau 1 kWh."
+  },
+  {
+    question: "Wie viel ist 100 Ah in Wh?",
+    answer: "Um Amperestunden (Ah) in Wattstunden (Wh) umzurechnen, multiplizierst du die Ah mit der Batteriespannung (Volt): Wh = Ah × V. Bei einer 12-V-Batterie sind 100 Ah × 12 V = 1.200 Wh (1,2 kWh). Bei einer 24-V-Batterie sind es 2.400 Wh (2,4 kWh)."
+  },
+  {
+    question: "Was bedeutet 2048 Wh (z. B. bei Powerstations oder Solarspeichern)?",
+    answer: "2.048 Wh entsprechen genau 2,048 kWh Speicherkapazität. Ein solcher Akku kann beispielsweise ein 100-Watt-Gerät (wie einen Fernseher) rechnerisch ca. 20 Stunden lang oder einen 500-Watt-Kühlschrank ca. 4 Stunden lang autark mit Strom versorgen."
+  }
+];
+
+const calcSchema = getCalculatorSchema(
+  'Watt Rechner & Watt in kWh Umrechner',
+  'Rechne Watt in kWh und Stromkosten um. Finde heraus, wie viel 100 W, 400 W, 800 W, 1000 W oder 2000 W an Strom kosten.',
   '/watt-rechner'
 );
-
-const faqs = calculatorFaqs['watt-rechner'] || [];
+const faqSchema = getFaqSchema(faqs);
+const pageSchemas = faqSchema ? [calcSchema, faqSchema] : [calcSchema];
 
 const related = [
+  { title: 'kWh in Euro Rechner', href: '/kwh-rechner', description: 'Rechne kWh direkt in Euro um.' },
   { title: 'Stromkosten pro Stunde', href: '/stromkosten-pro-stunde', description: 'Stundenkosten für beliebige Wattstärken.' },
-  { title: 'kWh in Euro Rechner', href: '/kwh-rechner', description: 'kWh direkt in Euro umrechnen.' },
   { title: 'Stromkostenrechner', href: '/stromkosten-rechner', description: 'Universeller Stromkostenrechner.' },
+  { title: 'Geräte-Stromverbrauch', href: '/geraete', description: 'Verbrauch von 25 Haushaltsgeräten.' },
 ];
 ---
 
 <BaseLayout
-  title="Watt Rechner: Watt in kWh & Stromkosten umrechnen | kWhKlar"
-  description="Ermittle aus der Watt-Angabe deines Geräts den Stromverbrauch in kWh und die laufenden Stromkosten pro Stunde, Tag oder Jahr."
+  title="Watt Rechner: Watt in kWh & Stromkosten präzise umrechnen | kWhKlar"
+  description="Watt in kWh & Euro umrechnen: Formeln, Umrechnungstabelle von 10 W bis 3.000 W, Kosten pro Stunde/Tag/Jahr und Antworten auf alle Einheitenfragen."
   canonical="https://kwhklar.de/watt-rechner"
-  jsonLd={schema}
+  jsonLd={pageSchemas}
   breadcrumbs={[{ name: 'Watt Rechner', path: '/watt-rechner' }]}
 >
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
     <Breadcrumbs items={[{ name: 'Watt Rechner', path: '/watt-rechner' }]} />
 
-    <div class="max-w-3xl mb-6">
-      <span class="badge-amber text-xs mb-2">Watt & Leistung</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-        Watt Rechner: Watt in Kilowattstunden & Euro berechnen
+    <div class="max-w-4xl mb-8">
+      <span class="badge-amber text-xs mb-2">Physik &amp; Umrechnung</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Watt Rechner: Watt in Kilowattstunden &amp; Euro umrechnen
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        Rechne jede elektrische Leistung (in Watt) direkt in verbrauchte Kilowattstunden (kWh) und die anfallenden Stromkosten um.
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Rechne jede beliebige elektrische Leistung (Watt) direkt in Energieverbrauch (kWh) und die anfallenden Stromkosten um. Erfahre den genauen Unterschied zwischen Watt, Kilowatt, Wattstunden und Kilowattstunden mit interaktivem Rechner.
       </p>
     </div>
 
+    <!-- Live Universal Calculator -->
     <UniversalCalculator
       defaultWatt={100}
       defaultHours={8}
       defaultPriceCt={35.0}
       title="Watt in kWh & Kosten umrechnen"
-      subtitle="Gib die Wattzahl deines Geräts ein:"
+      subtitle="Gib die Wattzahl deines Geräts und die tägliche Nutzungsdauer ein:"
     />
 
-    <!-- Comparison Table for Wattage -->
-    <div class="my-10 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200">
-      <h2 class="text-xl font-bold text-slate-900 mb-4">Übersicht: Typische Watt-Leistungen und ihre Stromkosten</h2>
-      <div class="overflow-x-auto">
-        <table class="w-full text-left text-xs sm:text-sm">
-          <thead class="bg-slate-50 text-slate-700 font-semibold border-b border-slate-200">
-            <tr>
-              <th class="p-3">Leistung (Watt)</th>
-              <th class="p-3">Typisches Gerät</th>
-              <th class="p-3">Kosten pro 1h</th>
-              <th class="p-3">Kosten pro Tag (8h)</th>
-              <th class="p-3 text-right">Kosten pro Jahr (8h/Tag)</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-slate-100 text-slate-600">
-            <tr><td class="p-3 font-bold text-slate-900">10 W</td><td class="p-3">LED-Lampe / Router</td><td class="p-3">0,35 ct</td><td class="p-3">2,8 ct</td><td class="p-3 text-right font-semibold">10,22 €</td></tr>
-            <tr><td class="p-3 font-bold text-slate-900">50 W</td><td class="p-3">Laptop / Ventilator</td><td class="p-3">1,75 ct</td><td class="p-3">14,0 ct</td><td class="p-3 text-right font-semibold">51,10 €</td></tr>
-            <tr><td class="p-3 font-bold text-slate-900">100 W</td><td class="p-3">Fernseher / Monitor</td><td class="p-3">3,50 ct</td><td class="p-3">28,0 ct</td><td class="p-3 text-right font-semibold">102,20 €</td></tr>
-            <tr><td class="p-3 font-bold text-slate-900">400 W</td><td class="p-3">Gaming-PC</td><td class="p-3">14,00 ct</td><td class="p-3">1,12 €</td><td class="p-3 text-right font-semibold">408,80 €</td></tr>
-            <tr><td class="p-3 font-bold text-slate-900">1.000 W</td><td class="p-3">Klimagerät / Staubsauger</td><td class="p-3">35,00 ct</td><td class="p-3">2,80 €</td><td class="p-3 text-right font-semibold">1.022,00 €</td></tr>
-            <tr><td class="p-3 font-bold text-slate-900">2.000 W</td><td class="p-3">Heizlüfter / Waschmaschine</td><td class="p-3">70,00 ct</td><td class="p-3">5,60 €</td><td class="p-3 text-right font-semibold">2.044,00 €</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="mt-3 text-xs text-slate-500">* Berechnet bei 35 ct/kWh Arbeitspreis.</p>
+    <!-- Main Content Depth -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- Section: Formulas & Differences -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Die mathematischen Formeln zur Umrechnung
+          </h2>
+          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
+            Die Umrechnung zwischen Leistung (Watt/Kilowatt) und Energie (Wattstunden/Kilowattstunden) folgt festen physikalischen Gesetzmäßigkeiten:
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+              <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 block mb-1">Watt in Kilowatt (kW)</span>
+              <code class="text-sm font-bold text-emerald-600 dark:text-emerald-400">kW = Watt ÷ 1.000</code>
+              <p class="text-xs text-slate-500 mt-1">Beispiel: 2.000 W ÷ 1.000 = 2,0 kW</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+              <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 block mb-1">Watt in Kilowattstunden (kWh)</span>
+              <code class="text-sm font-bold text-emerald-600 dark:text-emerald-400">kWh = (Watt × Stunden) ÷ 1.000</code>
+              <p class="text-xs text-slate-500 mt-1">Beispiel: (800 W × 2 h) ÷ 1.000 = 1,6 kWh</p>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+            <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 block mb-1">Akku-Kapazität: Amperestunden in Wattstunden (Wh)</span>
+            <code class="text-sm font-bold text-emerald-600 dark:text-emerald-400">Wh = Ah × Volt (V)</code>
+            <p class="text-xs text-slate-500 mt-1">Beispiel: 100 Ah Autobatterie × 12 V = 1.200 Wh = 1,2 kWh</p>
+          </div>
+        </section>
+
+        <!-- Section: Big Comparison Table for Popular Wattages -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Große Umrechnungstabelle: 10 W bis 3.000 W im Detail
+          </h2>
+          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
+            In der folgenden Tabelle findest du die exakten Verbrauchs- und Kostenwerte für die am häufigsten gesuchten Wattstufen (Kostenbasis: 35 ct/kWh):
+          </p>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs sm:text-sm border-collapse">
+              <thead>
+                <tr class="border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400">
+                  <th class="py-3 px-3 font-semibold">Leistung</th>
+                  <th class="py-3 px-3 font-semibold">In kW</th>
+                  <th class="py-3 px-3 font-semibold">kWh in 1h</th>
+                  <th class="py-3 px-3 font-semibold">Kosten / 1h</th>
+                  <th class="py-3 px-3 font-semibold">Kosten / Tag (4h)</th>
+                  <th class="py-3 px-3 font-semibold text-right">Kosten / Jahr (4h/T)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">10 W</td><td class="py-2.5 px-3">0,01 kW</td><td class="py-2.5 px-3">0,010 kWh</td><td class="py-2.5 px-3">0,35 ct</td><td class="py-2.5 px-3">1,40 ct</td><td class="py-2.5 px-3 text-right font-semibold">5,11 €</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">50 W</td><td class="py-2.5 px-3">0,05 kW</td><td class="py-2.5 px-3">0,050 kWh</td><td class="py-2.5 px-3">1,75 ct</td><td class="py-2.5 px-3">7,00 ct</td><td class="py-2.5 px-3 text-right font-semibold">25,55 €</td></tr>
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">100 W</td><td class="py-2.5 px-3">0,10 kW</td><td class="py-2.5 px-3">0,100 kWh</td><td class="py-2.5 px-3">3,50 ct</td><td class="py-2.5 px-3">14,00 ct</td><td class="py-2.5 px-3 text-right font-semibold">51,10 €</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">400 W</td><td class="py-2.5 px-3">0,40 kW</td><td class="py-2.5 px-3">0,400 kWh</td><td class="py-2.5 px-3">14,00 ct</td><td class="py-2.5 px-3">56,00 ct</td><td class="py-2.5 px-3 text-right font-semibold">204,40 €</td></tr>
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">600 W</td><td class="py-2.5 px-3">0,60 kW</td><td class="py-2.5 px-3">0,600 kWh</td><td class="py-2.5 px-3">21,00 ct</td><td class="py-2.5 px-3">84,00 ct</td><td class="py-2.5 px-3 text-right font-semibold">306,60 €</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">800 W</td><td class="py-2.5 px-3">0,80 kW</td><td class="py-2.5 px-3">0,800 kWh</td><td class="py-2.5 px-3">28,00 ct</td><td class="py-2.5 px-3">1,12 €</td><td class="py-2.5 px-3 text-right font-semibold">408,80 €</td></tr>
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">1.000 W</td><td class="py-2.5 px-3">1,00 kW</td><td class="py-2.5 px-3">1,000 kWh</td><td class="py-2.5 px-3">35,00 ct</td><td class="py-2.5 px-3">1,40 €</td><td class="py-2.5 px-3 text-right font-semibold">511,00 €</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">2.000 W</td><td class="py-2.5 px-3">2,00 kW</td><td class="py-2.5 px-3">2,000 kWh</td><td class="py-2.5 px-3">70,00 ct</td><td class="py-2.5 px-3">2,80 €</td><td class="py-2.5 px-3 text-right font-semibold text-amber-700 dark:text-amber-400">1.022,00 €</td></tr>
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">2.500 W</td><td class="py-2.5 px-3">2,50 kW</td><td class="py-2.5 px-3">2,500 kWh</td><td class="py-2.5 px-3">87,50 ct</td><td class="py-2.5 px-3">3,50 €</td><td class="py-2.5 px-3 text-right font-semibold text-amber-700 dark:text-amber-400">1.277,50 €</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">3.000 W</td><td class="py-2.5 px-3">3,00 kW</td><td class="py-2.5 px-3">3,000 kWh</td><td class="py-2.5 px-3">1,05 €</td><td class="py-2.5 px-3">4,20 €</td><td class="py-2.5 px-3 text-right font-semibold text-amber-700 dark:text-amber-400">1.533,00 €</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Einheiten auf einen Blick
+          </h3>
+          <ul class="text-xs space-y-2.5 text-slate-300">
+            <li><strong class="text-white">1 kW</strong> = 1.000 Watt (Leistung)</li>
+            <li><strong class="text-white">1 kWh</strong> = 1.000 Wattstunden (Energie)</li>
+            <li><strong class="text-white">1 MW</strong> = 1.000 kW = 1.000.000 W</li>
+            <li><strong class="text-white">1 Wh</strong> = 1 W Leistung über 1 Stunde</li>
+            <li><strong class="text-white">1 Ah @ 12V</strong> = 12 Wattstunden (Wh)</li>
+          </ul>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Verwandte Rechner</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/kwh-rechner" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ kWh in Euro Rechner</a></li>
+            <li><a href="/stromkosten-pro-stunde" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromkosten pro Stunde</a></li>
+            <li><a href="/stromkosten-rechner" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Allgemeiner Stromkostenrechner</a></li>
+          </ul>
+        </div>
+      </aside>
     </div>
 
     <RelatedLinks links={related} />
     <SourceBox sourceIds={['bnetza', 'bdew', 'uba']} />
-    <FaqSection items={faqs} />
   </div>
 </BaseLayout>

@@ -5,62 +5,164 @@ import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
 import RelatedLinks from '../components/seo/RelatedLinks.astro';
 import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
-import { getCalculatorSchema } from '../lib/structured-data';
-
-const schema = getCalculatorSchema(
-  'Stromkosten pro Monat',
-  'Berechne deine monatlichen Stromkosten inklusive Arbeitspreis und Grundpreis zur Überprüfung deines Abschlags.',
-  '/stromkosten-pro-monat'
-);
+import { getCalculatorSchema, getFaqSchema } from '../lib/structured-data';
 
 const faqs = [
   {
-    question: 'Wie setzt sich der monatliche Stromabschlag zusammen?',
-    answer: 'Der monatliche Abschlag errechnet sich aus dem geschätzten Jahresverbrauch multipliziert mit dem Arbeitspreis plus dem jährlichen Grundpreis – geteilt durch 12 Monate.',
+    question: "Wie viel Stromkosten fallen für 1 Person pro Monat an?",
+    answer: "Ein Single in einer Wohnung zahlt durchschnittlich ca. 45 bis 60 Euro pro Monat an Strom (ca. 110 bis 130 kWh Verbrauch zzgl. 10 bis 15 Euro monatlicher Grundpreis). Bei elektrischer Warmwasserbereitung erhöht sich der Monatsabschlag auf ca. 65 bis 80 Euro."
   },
   {
-    question: 'Was sind typische monatliche Stromkosten für einen Haushalt?',
-    answer: 'Ein Single zahlt im Schnitt ca. 45 bis 60 € im Monat, ein 2-Personen-Haushalt ca. 75 bis 95 € und eine 4-köpfige Familie rund 110 bis 150 € pro Monat.',
+    question: "Wie viel Stromkosten fallen für 2 Personen pro Monat an?",
+    answer: "Ein 2-Personen-Haushalt zahlt im Schnitt ca. 70 bis 90 Euro Stromkosten pro Monat (bei ca. 175 kWh Monatsverbrauch plus Grundpreis). Mit elektrischem Durchlauferhitzer liegen die monatlichen Kosten bei ca. 95 bis 120 Euro."
   },
+  {
+    question: "Was kostet Strom für eine 4-köpfige Familie im Monat?",
+    answer: "Eine 4-köpfige Familie hat durchschnittliche monatliche Stromkosten von ca. 110 bis 145 Euro (ca. 270 bis 350 kWh pro Monat zzgl. Grundpreis). Im Einfamilienhaus mit Warmwasserbereitung können es 160 bis 190 Euro monatlich sein."
+  },
+  {
+    question: "Was ist ein normaler monatlicher Abschlag?",
+    answer: "Der monatliche Abschlag ist eine Abschlagszahlung (Vorauszahlung) an den Energieversorger. Für 1 Person sind 45–60 €, für 2 Personen 70–90 € und für 4 Personen 110–140 € völlig normal."
+  },
+  {
+    question: "Wie berechnet der Stromanbieter den monatlichen Abschlag?",
+    answer: "Formel: (Erwarteter Jahresverbrauch in kWh × Arbeitspreis in €/kWh + 12 × monatlicher Grundpreis) ÷ 12 Monate = Monatlicher Abschlag. Beispiel: (3.000 kWh × 0,35 € + 12 × 12,50 €) ÷ 12 = (1.050 € + 150 €) ÷ 12 = 100,00 € pro Monat."
+  },
+  {
+    question: "Kann ich einen zu hohen monatlichen Abschlag senken lassen?",
+    answer: "Ja. Wenn dein tatsächlicher Verbrauch gesunken ist (z. B. durch Auszug eines Mitbewohners oder neue Sparmaßnahmen) oder der Versorger den Abschlag unbegründet erhöht hat, kannst du im Kundenportal oder telefonisch eine Abschlagsreduzierung verlangen (§ 41b Abs. 3 EnWG)."
+  },
+  {
+    question: "Warum bucht der Anbieter manchmal nur 11 statt 12 Abschläge ab?",
+    answer: "Viele Energieversorger berechnen im Monat der Jahresabrechnung (meist der 12. Monat) keinen regulären Abschlag, sondern verrechnen den letzten Betrag direkt mit der Jahresabrechnung (Nachzahlung oder Guthaben)."
+  },
+  {
+    question: "Wie viel Grundgebühr (Grundpreis) fällt pro Monat durchschnittlich an?",
+    answer: "In Deutschland liegt der feste monatliche Grundpreis je nach Versorger und Netzgebiet meist zwischen 8,00 und 16,00 Euro pro Monat (ca. 96 bis 192 Euro pro Jahr)."
+  },
+  {
+    question: "Wie viel Strom verbraucht ein Homeoffice pro Monat?",
+    answer: "Bei 20 Arbeitstagen im Monat verbraucht ein voller Homeoffice-Arbeitsplatz ca. 20 bis 25 kWh Strom. Das entspricht monatlichen Zusatzkosten von rund 7,00 bis 8,75 Euro."
+  },
+  {
+    question: "Wie viel Strom verbraucht eine Kühl-Gefrierkombination im Monat?",
+    answer: "Ein modernes sparsames Gerät (Klasse B/C) verbraucht ca. 10 bis 14 kWh pro Monat (ca. 3,50 bis 4,90 Euro). Ein 15 Jahre altes Altgerät verbraucht hingegen oft 25 bis 35 kWh pro Monat (ca. 8,75 bis 12,25 Euro)."
+  }
 ];
 
+const calcSchema = getCalculatorSchema(
+  'Stromkosten pro Monat Rechner & Abschlagsermittlung',
+  'Berechne deine monatlichen Stromkosten und deinen idealen Monatsabschlag bei aktuellem Strompreis.',
+  '/stromkosten-pro-monat'
+);
+const faqSchema = getFaqSchema(faqs);
+const pageSchemas = faqSchema ? [calcSchema, faqSchema] : [calcSchema];
+
 const related = [
-  { title: 'Stromkosten pro Jahr', href: '/stromkosten-pro-jahr', description: 'Jahresabrechnung simulieren.' },
-  { title: 'Stromrechnung berechnen', href: '/stromrechnung-berechnen', description: 'Prüfe deinen monatlichen Abschlag.' },
-  { title: 'Haushaltsstrom-Rechner', href: '/stromverbrauch-haushalt', description: 'Verbrauch nach Personenzahl.' },
+  { title: 'Stromkosten pro Jahr', href: '/stromkosten-pro-jahr', description: 'Jahresgesamtkosten & Jahresabrechnung.' },
+  { title: 'Stromkosten pro Tag', href: '/stromkosten-pro-tag', description: 'Tagesverbrauch & Kosten.' },
+  { title: 'Stromrechnung berechnen', href: '/stromrechnung-berechnen', description: 'Rechne deine Abrechnung nach.' },
+  { title: 'Stromverbrauch Haushalt', href: '/stromverbrauch-haushalt', description: 'Richtwerte für alle Haushaltsgrößen.' },
 ];
 ---
 
 <BaseLayout
-  title="Stromkosten pro Monat berechnen: Monatlichen Abschlag ermitteln | kWhKlar"
-  description="Berechne deine realistischen Monatskosten für Strom inklusive Arbeitspreis und Grundpreis. Ideal zur Überprüfung deines monatlichen Abschlags."
+  title="Stromkosten pro Monat berechnen: Monatsabschlag & Kosten | kWhKlar"
+  description="Was kostet Strom im Monat für 1, 2 oder 4 Personen? Berechne deine monatlichen Stromkosten, Grundpreis und den passenden Monatsabschlag mit Rechner."
   canonical="https://kwhklar.de/stromkosten-pro-monat"
-  jsonLd={schema}
+  jsonLd={pageSchemas}
   breadcrumbs={[{ name: 'Stromkosten pro Monat', path: '/stromkosten-pro-monat' }]}
 >
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
     <Breadcrumbs items={[{ name: 'Stromkosten pro Monat', path: '/stromkosten-pro-monat' }]} />
 
-    <div class="max-w-3xl mb-6">
-      <span class="badge-emerald text-xs mb-2">Monatskosten & Abschlag</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-        Stromkosten pro Monat: Monatliche Stromkosten & Abschlag berechnen
+    <div class="max-w-4xl mb-8">
+      <span class="badge-blue text-xs mb-2">Monatsanalyse &amp; Abschlag</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Stromkosten pro Monat: Monatsabschlag &amp; Kosten im Check
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        Berechne die genauen Monatskosten für deine Geräte oder überprüfe, ob dein monatlicher Stromabschlag zu deinem realen Verbrauch passt.
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Erfahre, welche monatlichen Stromkosten für deine Haushaltsgröße normal sind, wie sich dein monatlicher Abschlag aus Arbeitspreis und Grundpreis zusammensetzt und wie du Nachzahlungen vermeidest.
       </p>
     </div>
 
+    <!-- Live Universal Calculator -->
     <UniversalCalculator
-      defaultWatt={400}
-      defaultHours={4}
+      defaultWatt={350}
+      defaultHours={8}
       defaultPriceCt={35.0}
       title="Monatskosten-Rechner"
-      subtitle="Ermittle die monatlichen Kosten (inkl. optionalem Grundpreis unter den erweiterten Optionen):"
+      subtitle="Berechne deine monatlichen Stromkosten bei individueller Leistung und täglicher Nutzungsdauer:"
     />
 
+    <!-- Main Content Depth -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- Section: Monthly Benchmarks Table -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Monatsübersicht: Typische Haushaltsabschläge im Vergleich
+          </h2>
+          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
+            Die nachfolgende Tabelle zeigt den typischen Monatsverbrauch, die reinen Verbrauchskosten sowie den Gesamt-Monatsabschlag inklusive eines durchschnittlichen Grundpreises von 12,50 €/Monat (bei 35 ct/kWh Arbeitspreis):
+          </p>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs sm:text-sm border-collapse">
+              <thead>
+                <tr class="border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400">
+                  <th class="py-3 px-3 font-semibold">Haushaltstyp</th>
+                  <th class="py-3 px-3 font-semibold">Monatsverbrauch</th>
+                  <th class="py-3 px-3 font-semibold">Verbrauchskosten</th>
+                  <th class="py-3 px-3 font-semibold text-right">Empfohlener Abschlag</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">1 Person (Wohnung)</td><td class="py-2.5 px-3">ca. 110 kWh</td><td class="py-2.5 px-3">38,50 €</td><td class="py-2.5 px-3 text-right font-bold text-emerald-600 dark:text-emerald-400">ca. 51,00 € / Mon.</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">2 Personen (Wohnung)</td><td class="py-2.5 px-3">ca. 175 kWh</td><td class="py-2.5 px-3">61,25 €</td><td class="py-2.5 px-3 text-right font-bold text-emerald-600 dark:text-emerald-400">ca. 74,00 € / Mon.</td></tr>
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">3 Personen (Wohnung)</td><td class="py-2.5 px-3">ca. 220 kWh</td><td class="py-2.5 px-3">77,00 €</td><td class="py-2.5 px-3 text-right font-bold text-emerald-600 dark:text-emerald-400">ca. 90,00 € / Mon.</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">4 Personen (Wohnung)</td><td class="py-2.5 px-3">ca. 260 kWh</td><td class="py-2.5 px-3">91,00 €</td><td class="py-2.5 px-3 text-right font-bold text-emerald-600 dark:text-emerald-400">ca. 104,00 € / Mon.</td></tr>
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">4 Personen (Einfamilienhaus)</td><td class="py-2.5 px-3">ca. 330 kWh</td><td class="py-2.5 px-3">115,50 €</td><td class="py-2.5 px-3 text-right font-bold text-emerald-600 dark:text-emerald-400">ca. 128,00 € / Mon.</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">Haus mit Durchlauferhitzer</td><td class="py-2.5 px-3">ca. 450 kWh</td><td class="py-2.5 px-3">157,50 €</td><td class="py-2.5 px-3 text-right font-bold text-amber-700 dark:text-amber-400">ca. 170,00 € / Mon.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Monatsabschlag Formel
+          </h3>
+          <p class="text-xs text-slate-300 leading-relaxed mb-4">
+            So berechnest du deinen fairen monatlichen Abschlag:
+          </p>
+          <div class="p-3.5 rounded-xl bg-slate-800 border border-slate-700 font-mono text-xs text-emerald-300 mb-4">
+            Abschlag = (kWh/Jahr × Preis + 12 × Grundpreis) ÷ 12
+          </div>
+          <div class="text-xs text-slate-400">
+            Beispiel: (2.500 × 0,35 + 150) ÷ 12 = <strong>85,42 € / Monat</strong>
+          </div>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Verwandte Ratgeber</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/stromrechnung-berechnen" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromrechnung berechnen</a></li>
+            <li><a href="/stromkosten-pro-jahr" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromkosten pro Jahr</a></li>
+            <li><a href="/stromverbrauch-haushalt" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromverbrauch im Haushalt</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
     <RelatedLinks links={related} />
-    <SourceBox sourceIds={['bnetza', 'bdew', 'destatis']} />
-    <FaqSection items={faqs} />
+    <SourceBox sourceIds={['bnetza', 'bdew', 'stromspiegel']} />
   </div>
 </BaseLayout>

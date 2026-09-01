@@ -5,28 +5,75 @@ import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
 import RelatedLinks from '../components/seo/RelatedLinks.astro';
 import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
+import { getCalculatorSchema, getFaqSchema } from '../lib/structured-data';
 
 const faqs = [
   {
-    question: 'Wie hoch ist der durchschnittliche Stromverbrauch pro Kopf in Deutschland?',
-    answer: 'Der durchschnittliche Pro-Kopf-Stromverbrauch liegt bei ca. 1.300 bis 1.500 kWh für Alleinlebende, sinkt aber bei 2 Personen auf ca. 1.050 bis 1.250 kWh und in einer 4-köpfigen Familie auf rund 750 bis 1.000 kWh pro Person und Jahr.',
+    question: "Wie viel kWh Strom verbraucht eine Person im Jahr im Durchschnitt?",
+    answer: "Im bundesweiten Durchschnitt verbraucht eine Einzelperson ca. 1.300 bis 1.500 kWh pro Jahr (im Single-Haushalt). In Mehrpersonenhaushalten sinkt der Pro-Kopf-Verbrauch deutlich: In einem 2-Personen-Haushalt sind es ca. 1.050 kWh/Person, in einer 4-köpfigen Familie nur noch ca. 750 bis 850 kWh/Person."
   },
+  {
+    question: "Warum sinkt der Pro-Kopf-Verbrauch bei größeren Haushalten?",
+    answer: "Weil geteilte Grundlast-Geräte (Kühlschrank, Gefriertruhe, WLAN-Router, Deckenbeleuchtung im Wohnzimmer) unabhängig von der Personenzahl fast dieselbe Energie benötigen. Je mehr Personen im Haushalt leben, desto effizienter wird die gemeinsame Infrastruktur genutzt."
+  },
+  {
+    question: "Wie viel Strom verbraucht eine Person pro Tag?",
+    answer: "Ein Single verbraucht im Schnitt ca. 3,5 bis 4,2 kWh pro Tag. In einer Familie liegt der rechnerische Pro-Kopf-Verbrauch bei nur ca. 2,0 bis 2,5 kWh pro Tag."
+  },
+  {
+    question: "Wie viel Strom kostet eine Person im Monat?",
+    answer: "Im Single-Haushalt liegen die Stromkosten bei ca. 45 bis 60 Euro pro Monat. In einer 4-köpfigen Familie belaufen sich die anteiligen Kosten auf nur ca. 25 bis 35 Euro pro Person und Monat."
+  },
+  {
+    question: "Welchen Einfluss hat elektrische Warmwasserbereitung auf den Pro-Kopf-Verbrauch?",
+    answer: "Wird Dusch- und Spülwasser über elektrische Durchlauferhitzer oder Boiler erwärmt, erhöht sich der Stromverbrauch um ca. 500 bis 800 kWh pro Person und Jahr (ca. 175 bis 280 Euro Mehrkosten pro Kopf)."
+  },
+  {
+    question: "Wie hoch ist der durchschnittliche Stromverbrauch pro Kopf in Deutschland insgesamt?",
+    answer: "Teilt man den gesamten Haushaltsstromverbrauch Deutschlands durch alle 84 Millionen Einwohner, ergibt sich ein bundesweiter Durchschnitt von rund 1.500 kWh pro Kopf und Jahr."
+  },
+  {
+    question: "Wie viel Strom verbraucht eine Person für Beleuchtung im Jahr?",
+    answer: "Mit sparsamen LED-Leuchtmitteln verbraucht eine Person für Beleuchtung ca. 40 bis 80 kWh Strom pro Jahr (ca. 14 bis 28 Euro)."
+  },
+  {
+    question: "Wie viel Strom verbraucht eine Person fürs Kochen?",
+    answer: "Das tägliche Kochen und Backen auf Herd und Ofen benötigt im Schnitt ca. 150 bis 250 kWh Strom pro Person im Jahr (ca. 52 bis 88 Euro)."
+  },
+  {
+    question: "Wie viel Strom verbraucht eine Person fürs Waschen?",
+    answer: "Bei ca. 2 Waschgängen pro Woche im 30/40°C-Eco-Modus verbraucht das Waschen ca. 50 bis 70 kWh pro Person und Jahr (ca. 17 bis 25 Euro)."
+  },
+  {
+    question: "Wie viel Strom verbraucht eine Person im Homeoffice?",
+    answer: "Arbeitet eine Person Vollzeit im Homeoffice (Laptop, 2 Bildschirme, Lampe, Kaffee, Router), steigt ihr jährlicher Stromverbrauch um ca. 200 bis 300 kWh (rund 70 bis 105 Euro)."
+  }
 ];
 
+const calcSchema = getCalculatorSchema(
+  'Stromverbrauch pro Person Rechner',
+  'Berechne den spezifischen Stromverbrauch und die Kosten pro Kopf nach Haushaltsgröße und Wohnform.',
+  '/stromverbrauch-pro-person'
+);
+const faqSchema = getFaqSchema(faqs);
+const pageSchemas = faqSchema ? [calcSchema, faqSchema] : [calcSchema];
+
 const related = [
-  { title: 'Durchschnittlicher Stromverbrauch', href: '/durchschnittlicher-stromverbrauch', description: 'Gesamtübersicht.' },
-  { title: '1 Person (Single)', href: '/stromverbrauch-1-person', description: 'Single-Haushalt.' },
-  { title: '4 Personen (Familie)', href: '/stromverbrauch-4-personen', description: 'Familien-Haushalt.' },
+  { title: '1-Personen-Haushalt', href: '/stromverbrauch-1-person', description: 'Richtwerte für Singles.' },
+  { title: '2-Personen-Haushalt', href: '/stromverbrauch-2-personen', description: 'Richtwerte für Paare.' },
+  { title: '4-Personen-Haushalt', href: '/stromverbrauch-4-personen', description: 'Richtwerte für Familien.' },
+  { title: 'Stromverbrauch Haushalt', href: '/stromverbrauch-haushalt', description: 'Gesamtvergleich nach Haushalt.' },
 ];
 ---
 
 <BaseLayout
-  title="Stromverbrauch pro Person: Durchschnitt & Kosten pro Kopf | kWhKlar"
-  description="Wie viel Strom verbraucht eine Person im Jahr? Pro-Kopf-Vergleichswerte für 1 bis 5 Personen mit & ohne Warmwasserbereitung."
+  title="Stromverbrauch pro Person: Richtwerte & Kosten pro Kopf | kWhKlar"
+  description="Wie viel kWh Strom verbraucht eine Person im Jahr? Pro-Kopf-Durchschnitt nach Haushaltsgröße (750–1.500 kWh/Kopf), Warmwasser-Einfluss und Spartipps."
   canonical="https://kwhklar.de/stromverbrauch-pro-person"
+  jsonLd={pageSchemas}
   breadcrumbs={[
     { name: 'Haushalt', path: '/stromverbrauch-haushalt' },
-    { name: 'Stromverbrauch pro Person', path: '/stromverbrauch-pro-person' },
+    { name: 'Pro Person', path: '/stromverbrauch-pro-person' },
   ]}
 >
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
@@ -37,50 +84,87 @@ const related = [
       ]}
     />
 
-    <div class="max-w-3xl mb-8">
-      <span class="badge-emerald text-xs mb-2">Pro-Kopf-Vergleich</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-        Stromverbrauch pro Person im Haushalt
+    <div class="max-w-4xl mb-8">
+      <span class="badge-emerald text-xs mb-2">Pro-Kopf-Analyse</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Stromverbrauch pro Person: Richtwerte &amp; Kosten pro Kopf
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        Erfahre, wie sich der durchschnittliche Pro-Kopf-Stromverbrauch je nach Haushaltsgröße und Wohnsituation entwickelt.
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Erfahre, wie sich der Stromverbrauch pro Person je nach Haushaltsgröße verändert, warum größere Haushalte pro Kopf deutlich sparsamer sind und mit welchen monatlichen Kosten pro Person zu rechnen ist.
       </p>
     </div>
 
-    <!-- Per Capita Table -->
-    <div class="my-8 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xs">
-      <h2 class="text-xl font-bold text-slate-900 mb-4">Pro-Kopf-Stromverbrauch nach Haushaltsgröße</h2>
-      <div class="overflow-x-auto">
-        <table class="w-full text-left text-xs sm:text-sm">
-          <thead class="bg-slate-50 text-slate-700 font-semibold border-b border-slate-200">
-            <tr>
-              <th class="p-3">Haushalt</th>
-              <th class="p-3">Gesamtverbrauch (Ø)</th>
-              <th class="p-3">Verbrauch pro Person (Ø)</th>
-              <th class="p-3 text-right">Kosten pro Person / Jahr (bei 35 ct)</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-slate-100 text-slate-600">
-            <tr><td class="p-3 font-semibold text-slate-900">1 Person</td><td class="p-3">1.400 kWh</td><td class="p-3 font-bold text-emerald-700">1.400 kWh</td><td class="p-3 text-right font-medium text-slate-900">490,00 €</td></tr>
-            <tr><td class="p-3 font-semibold text-slate-900">2 Personen</td><td class="p-3">2.400 kWh</td><td class="p-3 font-bold text-emerald-700">1.200 kWh</td><td class="p-3 text-right font-medium text-slate-900">420,00 €</td></tr>
-            <tr><td class="p-3 font-semibold text-slate-900">3 Personen</td><td class="p-3">3.000 kWh</td><td class="p-3 font-bold text-emerald-700">1.000 kWh</td><td class="p-3 text-right font-medium text-slate-900">350,00 €</td></tr>
-            <tr><td class="p-3 font-semibold text-slate-900">4 Personen</td><td class="p-3">3.600 kWh</td><td class="p-3 font-bold text-emerald-700">900 kWh</td><td class="p-3 text-right font-medium text-slate-900">315,00 €</td></tr>
-            <tr><td class="p-3 font-semibold text-slate-900">5 Personen</td><td class="p-3">4.400 kWh</td><td class="p-3 font-bold text-emerald-700">880 kWh</td><td class="p-3 text-right font-medium text-slate-900">308,00 €</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
+    <!-- Live Universal Calculator -->
     <UniversalCalculator
       defaultWatt={200}
-      defaultHours={24}
+      defaultHours={12}
       defaultPriceCt={35.0}
-      title="Pro-Kopf-Rechner"
-      subtitle="Ermittle deine Stromkosten bei individuellem Pro-Kopf-Verbrauch:"
+      title="Pro-Kopf Verbrauchsrechner"
+      subtitle="Ermittle den Pro-Kopf-Stromverbrauch für deinen Haushalt:"
     />
 
+    <!-- Main Content Depth -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- Section: Per Capita Table -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Pro-Kopf-Stromverbrauch nach Haushaltsgröße im Vergleich
+          </h2>
+          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
+            Die nachfolgende Tabelle zeigt eindrucksvoll den degressiven Verlauf des Pro-Kopf-Stromverbrauchs in Wohnungen (ohne bzw. mit elektrischer Warmwasserbereitung bei 35 ct/kWh):
+          </p>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs sm:text-sm border-collapse">
+              <thead>
+                <tr class="border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400">
+                  <th class="py-3 px-3 font-semibold">Haushaltsgröße</th>
+                  <th class="py-3 px-3 font-semibold">Gesamtverbrauch (Wohnung)</th>
+                  <th class="py-3 px-3 font-semibold text-emerald-700 dark:text-emerald-400">Pro-Kopf-Verbrauch (ohne WW)</th>
+                  <th class="py-3 px-3 font-semibold text-right">Kosten / Kopf (@ 35 ct)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">1 Person (Single)</td><td class="py-2.5 px-3">1.300 kWh</td><td class="py-2.5 px-3 font-bold text-emerald-600 dark:text-emerald-400">1.300 kWh / Person</td><td class="py-2.5 px-3 text-right font-semibold">455,00 € / Jahr</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">2 Personen (Paar)</td><td class="py-2.5 px-3">2.100 kWh</td><td class="py-2.5 px-3 font-bold text-emerald-600 dark:text-emerald-400">1.050 kWh / Person</td><td class="py-2.5 px-3 text-right font-semibold">367,50 € / Jahr</td></tr>
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">3 Personen</td><td class="py-2.5 px-3">2.600 kWh</td><td class="py-2.5 px-3 font-bold text-emerald-600 dark:text-emerald-400">867 kWh / Person</td><td class="py-2.5 px-3 text-right font-semibold">303,45 € / Jahr</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">4 Personen (Familie)</td><td class="py-2.5 px-3">3.000 kWh</td><td class="py-2.5 px-3 font-bold text-emerald-600 dark:text-emerald-400">750 kWh / Person</td><td class="py-2.5 px-3 text-right font-semibold">262,50 € / Jahr</td></tr>
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">5 Personen (Großhaushalt)</td><td class="py-2.5 px-3">3.600 kWh</td><td class="py-2.5 px-3 font-bold text-emerald-600 dark:text-emerald-400">720 kWh / Person</td><td class="py-2.5 px-3 text-right font-semibold">252,00 € / Jahr</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Faustregel Pro Kopf
+          </h3>
+          <p class="text-xs text-slate-300 leading-relaxed mb-4">
+            Im Schnitt rechnet man für jede weitere Person im Haushalt mit ca. <strong>500 bis 600 kWh</strong> zusätzlichem Strombedarf im Jahr (ohne Durchlauferhitzer).
+          </p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Haushaltsgrößen</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/stromverbrauch-1-person" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ 1 Person (Single)</a></li>
+            <li><a href="/stromverbrauch-2-personen" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ 2 Personen (Paar)</a></li>
+            <li><a href="/stromverbrauch-4-personen" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ 4 Personen (Familie)</a></li>
+            <li><a href="/durchschnittlicher-stromverbrauch" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Bundesweiter Durchschnitt</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
     <RelatedLinks links={related} />
-    <SourceBox sourceIds={['stromspiegel', 'destatis']} />
-    <FaqSection items={faqs} />
+    <SourceBox sourceIds={['stromspiegel', 'bdew', 'destatis']} />
   </div>
 </BaseLayout>

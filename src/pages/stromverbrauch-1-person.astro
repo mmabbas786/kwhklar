@@ -7,22 +7,63 @@ import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
 import { householdBenchmarks } from '../data/household-benchmarks';
 import { formatKwh } from '../lib/formatters';
+import { getCalculatorSchema, getFaqSchema } from '../lib/structured-data';
 
 const data = householdBenchmarks[1];
 
 const faqs = [
   {
-    question: 'Wie hoch sind die monatlichen Stromkosten für eine Person?',
-    answer: 'Ein Single zahlt bei einem Verbrauch von 1.300 bis 1.500 kWh und 35 ct/kWh Arbeitspreis ca. 45 bis 55 Euro monatlich (inklusive Grundgebühr).',
+    question: "Wie viel Strom verbraucht 1 Person im Durchschnitt pro Jahr?",
+    answer: "Ein Single in einer Mietwohnung verbraucht im bundesweiten Durchschnitt ca. 1.300 bis 1.500 kWh pro Jahr (ohne elektrische Warmwasserbereitung). Bei Warmwasser über einen elektrischen Durchlauferhitzer liegt der Jahresverbrauch bei ca. 1.800 bis 2.200 kWh."
   },
   {
-    question: 'Warum verbrauchen manche Singles über 2.000 kWh?',
-    answer: 'Häufige Gründe sind elektrische Warmwasserbereitung (Durchlauferhitzer / Boiler im Bad), intensives Homeoffice mit mehreren Monitoren, Gaming-PCs oder alte, ineffiziente Kühlgeräte.',
+    question: "Wie hoch sind die monatlichen Stromkosten für eine Person?",
+    answer: "Ein 1-Personen-Haushalt zahlt monatlich durchschnittlich ca. 45 bis 55 Euro (ohne elektr. WW) bzw. ca. 65 bis 80 Euro (mit elektr. WW), inklusive des festen monatlichen Grundpreises."
   },
+  {
+    question: "Sind 1.500 kWh für 1 Person viel?",
+    answer: "Nein, 1.500 kWh ist für einen Single in einer Wohnung ein typischer Normalwert, insbesondere bei teilweisem Homeoffice oder der Nutzung von Geschirrspüler und Waschmaschine in der eigenen Wohnung."
+  },
+  {
+    question: "Sind 2.000 kWh für eine Person viel?",
+    answer: "Ohne elektrische Warmwasserbereitung sind 2.000 kWh für eine Einzelperson recht viel (ca. 40 % über dem Bundesdurchschnitt). Häufige Ursachen sind ältere Kühlgeräte, 24/7 laufende Server/PCs oder regelmäßige Heißwäschen."
+  },
+  {
+    question: "Wie viele kWh verbraucht ein Single pro Tag?",
+    answer: "Ein Single verbraucht im Schnitt ca. 3,5 bis 4,2 kWh Strom pro Tag (bei zentralem Warmwasser) bzw. ca. 5,0 bis 6,0 kWh pro Tag (mit Durchlauferhitzer)."
+  },
+  {
+    question: "Warum verbraucht ein Single pro Kopf mehr Strom als eine 4-köpfige Familie?",
+    answer: "Weil der Single die gesamte Haushalts-Grundlast (Kühlschrank, WLAN-Router, Beleuchtung, Fernseher, Waschmaschine) alleine trägt. In einer Familie teilen sich bis zu 4 Personen denselben Kühlschrank und Router."
+  },
+  {
+    question: "Wie viel Strom spart ein Single durch das Abschalten von Standby?",
+    answer: "Ein Single kann durch schaltbare Steckdosenleisten an TV, Audio und PC-Arbeitsplatz jährlich rund 100 bis 180 kWh Strom einsparen (ca. 35 bis 63 Euro pro Jahr)."
+  },
+  {
+    question: "Lohnt sich eine eigene Waschmaschine für einen Single-Haushalt?",
+    answer: "Bei 1 bis 2 Waschgängen pro Woche (ca. 80–100 Wäschen/Jahr) verbraucht eine moderne Waschmaschine nur ca. 50 bis 60 kWh Strom (ca. 18–21 Euro) im Jahr. Wichtig ist, die Maschine stets voll zu beladen und bei 30 °C Eco zu waschen."
+  },
+  {
+    question: "Welchen Einfluss hat Homeoffice auf den Stromverbrauch einer Person?",
+    answer: "Volles Homeoffice (5 Tage pro Woche mit PC/Laptop, zwei Monitoren, Licht und Kaffeekochen) erhöht den Stromverbrauch eines Singles um ca. 200 bis 300 kWh pro Jahr (ca. 70 bis 105 Euro Mehrkosten)."
+  },
+  {
+    question: "Lohnt sich ein Balkonkraftwerk für einen Single in einer Mietwohnung?",
+    answer: "Ja, sehr. Ein 400- oder 800-Watt-Balkonkraftwerk kann bei guter Südausrichtung 300 bis 500 kWh der Grundlast eines Singles tagsüber direkt decken und spart jährlich rund 100 bis 175 Euro Stromkosten."
+  }
 ];
 
+const calcSchema = getCalculatorSchema(
+  'Stromverbrauch 1 Person (Single) Rechner',
+  'Berechne den typischen Stromverbrauch und die Kosten für einen 1-Personen-Haushalt (Single) nach Wohnform und Warmwasser.',
+  '/stromverbrauch-1-person'
+);
+const faqSchema = getFaqSchema(faqs);
+const pageSchemas = faqSchema ? [calcSchema, faqSchema] : [calcSchema];
+
 const related = [
-  { title: '2-Personen-Haushalt', href: '/stromverbrauch-2-personen', description: 'Richtwerte für Paare.' },
+  { title: '2-Personen-Haushalt', href: '/stromverbrauch-2-personen', description: 'Richtwerte für Paare & WGs.' },
   { title: 'Stromverbrauch Wohnung', href: '/stromverbrauch-wohnung', description: 'Vergleichswerte für Mietwohnungen.' },
   { title: 'Stromverbrauch pro Person', href: '/stromverbrauch-pro-person', description: 'Pro-Kopf-Durchschnitt in Deutschland.' },
   { title: 'Stromrechnung senken', href: '/stromrechnung-senken', description: 'Sofort-Maßnahmen für Singles.' },
@@ -30,9 +71,10 @@ const related = [
 ---
 
 <BaseLayout
-  title="Stromverbrauch 1 Person: Durchschnitt & Kosten für Singles | kWhKlar"
+  title="Stromverbrauch 1 Person: Richtwerte & Kosten für Singles | kWhKlar"
   description="Wie viel Strom verbraucht ein 1-Personen-Haushalt? Offizielle Richtwerte (1.300–1.800 kWh), monatliche Kosten und Spartipps für Singles."
   canonical="https://kwhklar.de/stromverbrauch-1-person"
+  jsonLd={pageSchemas}
   breadcrumbs={[
     { name: 'Haushalt', path: '/stromverbrauch-haushalt' },
     { name: '1 Person', path: '/stromverbrauch-1-person' },
@@ -46,40 +88,41 @@ const related = [
       ]}
     />
 
-    <div class="max-w-3xl mb-8">
+    <div class="max-w-4xl mb-8">
       <span class="badge-emerald text-xs mb-2">Single-Haushalt Benchmark</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
         Stromverbrauch für 1 Person (Single-Haushalt)
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        {data.description}
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Wie viele Kilowattstunden Strom verbraucht ein Single im Jahr und was kostet das monatlich? Vergleiche deinen Stromverbrauch mit den offiziellen Richtwerten des Bundes (Stromspiegel / BDEW) für Wohnung, Haus und Durchlauferhitzer.
       </p>
     </div>
 
     <!-- Key Metrics Cards -->
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-10">
-      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/70 p-5 shadow-xs transition-all hover:border-slate-300 dark:hover:border-slate-700">
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
         <span class="text-xs text-slate-500 dark:text-slate-400 font-medium block">Mietwohnung (ohne Warmwasser)</span>
-        <div class="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.apartmentWithoutWarmWaterKwh, 0)}</div>
-        <span class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 block">ca. 38–45 € / Monat</span>
+        <div class="mt-2 text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.apartmentWithoutWarmWaterKwh, 0)}</div>
+        <span class="text-xs text-emerald-600 dark:text-emerald-400 mt-2 block font-semibold">ca. 45–52 € / Monat (@ 35 ct)</span>
       </div>
 
-      <div class="rounded-2xl border border-emerald-500/30 dark:border-emerald-500/25 bg-emerald-50/40 dark:bg-emerald-950/20 p-5 shadow-xs transition-all hover:border-emerald-500/50">
-        <span class="text-xs text-emerald-700 dark:text-emerald-400 font-semibold flex items-center gap-1.5">
-          <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+      <div class="rounded-3xl border border-emerald-500/30 dark:border-emerald-500/25 bg-emerald-50/40 dark:bg-emerald-950/20 p-6 shadow-xs">
+        <span class="text-xs text-emerald-800 dark:text-emerald-300 font-bold flex items-center gap-1.5">
+          <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
           Wohnung (mit Warmwasser elektrisch)
         </span>
-        <div class="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.apartmentWithWarmWaterKwh, 0)}</div>
-        <span class="text-xs text-emerald-600 dark:text-emerald-400/90 mt-1.5 block font-medium">ca. 55–65 € / Monat</span>
+        <div class="mt-2 text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.apartmentWithWarmWaterKwh, 0)}</div>
+        <span class="text-xs text-emerald-700 dark:text-emerald-400 mt-2 block font-semibold">ca. 65–75 € / Monat (@ 35 ct)</span>
       </div>
 
-      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/70 p-5 shadow-xs transition-all hover:border-slate-300 dark:hover:border-slate-700">
-        <span class="text-xs text-slate-500 dark:text-slate-400 font-medium block">Einfamilienhaus</span>
-        <div class="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.houseWithoutWarmWaterKwh, 0)}</div>
-        <span class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 block">ca. 60–70 € / Monat</span>
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+        <span class="text-xs text-slate-500 dark:text-slate-400 font-medium block">Einfamilienhaus (Single)</span>
+        <div class="mt-2 text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.houseWithoutWarmWaterKwh, 0)}</div>
+        <span class="text-xs text-slate-500 dark:text-slate-400 mt-2 block font-semibold">ca. 70–80 € / Monat (@ 35 ct)</span>
       </div>
     </div>
 
+    <!-- Live Universal Calculator -->
     <UniversalCalculator
       defaultWatt={150}
       defaultHours={24}
@@ -88,23 +131,63 @@ const related = [
       subtitle="Ermittle deine Stromkosten bei individuellem Verbrauch:"
     />
 
-    <!-- Editorial Context -->
-    <article class="prose prose-slate max-w-4xl my-12 bg-white rounded-3xl p-6 sm:p-10 border border-slate-200">
-      <h2 class="text-2xl font-bold text-slate-900">Warum verbraucht ein Single pro Kopf mehr als eine Familie?</h2>
-      <p class="text-slate-600 leading-relaxed">
-        Im Single-Haushalt tragen Sie alle „Grundlast-Verbraucher“ allein: Kühlschrank, WLAN-Router, Beleuchtung, Waschmaschine und Fernseher laufen auch bei einer Person regelmäßig. In Mehrpersonenhaushalten verteilen sich diese Grundgeräte auf mehrere Köpfe.
-      </p>
+    <!-- Main Content Depth -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- Section: Editorial Explanation -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Warum verbraucht ein Single pro Kopf mehr Strom als eine Familie?
+          </h2>
+          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
+            Im Single-Haushalt trägst du die gesamte Haushalts-Grundlast ganz allein: Kühlschrank, WLAN-Router, Beleuchtung, Fernseher und Waschmaschine laufen auch bei einer Person regelmäßig. In Mehrpersonenhaushalten verteilen sich diese festen Grundgeräte auf mehrere Köpfe, wodurch der Pro-Kopf-Verbrauch bei einer 4-köpfigen Familie oft auf unter 800 kWh pro Person sinkt, während ein Single bei 1.300 bis 1.800 kWh liegt.
+          </p>
 
-      <h3 class="text-xl font-bold text-slate-900 mt-6">Konkrete Spartipps für Singles:</h3>
-      <ul class="list-disc pl-5 space-y-2 text-slate-600 text-sm">
-        {data.savingTips.map((tip) => (
-          <li>{tip}</li>
-        ))}
-      </ul>
-    </article>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3">
+            Die 4 wirksamsten Spartipps für Alleinlebende:
+          </h3>
+          <div class="space-y-3 text-xs sm:text-sm">
+            {data.savingTips.map((tip, idx) => (
+              <div class="flex gap-3 p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+                <span class="font-bold text-emerald-600 dark:text-emerald-400">{idx + 1}.</span>
+                <span class="text-slate-700 dark:text-slate-300">{tip}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Single-Profil im Überblick
+          </h3>
+          <ul class="text-xs space-y-2 text-slate-300">
+            <li>• Ø Jahresverbrauch: <strong>1.300 – 1.800 kWh</strong></li>
+            <li>• Ø Tagesverbrauch: <strong>3,5 – 5,0 kWh</strong></li>
+            <li>• Ø Monatsabschlag: <strong>45 – 70 €</strong></li>
+            <li>• Größter Hebel: <strong>Warmwasser &amp; Standby</strong></li>
+          </ul>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Weitere Haushaltsgrößen</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/stromverbrauch-2-personen" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ 2 Personen (Paar/WG)</a></li>
+            <li><a href="/stromverbrauch-3-personen" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ 3 Personen (Kleinfamilie)</a></li>
+            <li><a href="/stromverbrauch-4-personen" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ 4 Personen (Familie)</a></li>
+            <li><a href="/stromverbrauch-5-personen" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ 5+ Personen (Großhaushalt)</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
 
     <RelatedLinks links={related} />
     <SourceBox sourceIds={['stromspiegel', 'bdew', 'destatis']} />
-    <FaqSection items={faqs} />
   </div>
 </BaseLayout>

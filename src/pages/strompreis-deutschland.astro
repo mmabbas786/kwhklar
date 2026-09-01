@@ -5,25 +5,72 @@ import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
 import RelatedLinks from '../components/seo/RelatedLinks.astro';
 import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
+import { getCalculatorSchema, getFaqSchema } from '../lib/structured-data';
 
 const faqs = [
   {
-    question: 'Wo ist Strom in Deutschland am teuersten und wo am günstigsten?',
-    answer: 'Tendenziell waren die Netzentgelte in ländlichen Regionen Nord- und Ostdeutschlands (mit starkem Erneuerbaren-Ausbau) höher, während Ballungsräume im Süden oft etwas günstigere Netzkosten aufwiesen. Die Bundesnetzagentur führt schrittweise Reformen zur bundesweiten Harmonisierung der Netzkosten durch.',
+    question: "Warum ist der Strompreis in den Bundesländern unterschiedlich hoch?",
+    answer: "Hauptursache für die regionalen Preisunterschiede in Deutschland sind die Netzentgelte der über 800 regionalen Verteilnetzbetreiber. Diese Gebühren für Leitungsausbau, Transformatoren und Instandhaltung variieren je nach Region und Netzdichte erheblich."
   },
+  {
+    question: "In welchen Bundesländern ist Strom am teuersten?",
+    answer: "Historisch waren Schleswig-Holstein, Mecklenburg-Vorpommern und Brandenburg wegen des massiven Ausbaus von Windkraftanlagen und den dafür nötigen Netzausbauten am teuersten (oft 2–4 ct/kWh über Bundesdurchschnitt)."
+  },
+  {
+    question: "In welchen Bundesländern ist Strom am günstigsten?",
+    answer: "Dicht besiedelte Stadtstaaten (wie Bremen und Berlin) sowie Bundesländer mit hoher Industriedichte (z. B. Teile von Bayern und Nordrhein-Westfalen) verzeichnen tendenziell etwas niedrigere Netzentgelte."
+  },
+  {
+    question: "Was tut die Bundesnetzagentur gegen ungleiche Netzentgelte (§ 19 StromNEV Reform)?",
+    answer: "Die Bundesnetzagentur hat eine bundesweite Wälzung der Netzkosten beschlossen: Regionen mit hohem Ausbau an erneuerbaren Energien werden finanziell entlastet, indem die Mehrkosten bundesweit solidarisch verteilt werden."
+  },
+  {
+    question: "Wie groß ist die Preisspanne zwischen dem günstigsten und teuersten Wohnort?",
+    answer: "Zwischen günstigen Großstädten und ländlichen Regionen mit hohem Netzausbau kann der Arbeitspreis pro kWh um 3 bis 6 Cent variieren. Bei 3.500 kWh Jahresverbrauch macht das einen Unterschied von 100 bis über 200 Euro pro Jahr aus."
+  },
+  {
+    question: "Kann ich meinen Stromnetzbetreiber frei wählen?",
+    answer: "Nein. Der örtliche Verteilnetzbetreiber (VNB) ist ein natürliches Monopol und an deinen Wohnort gebunden. Deinen Stromanbieter (Lieferanten) kannst du jedoch vollkommen frei wählen."
+  },
+  {
+    question: "Welchen Einfluss hat die Konzessionsabgabe auf den regionalen Strompreis?",
+    answer: "Die Konzessionsabgabe an Städte und Gemeinden für die Nutzung öffentlicher Wege beträgt je nach Einwohnerzahl der Kommune zwischen 1,32 und 2,39 ct/kWh."
+  },
+  {
+    question: "Lohnt sich ein Anbieterwechsel auch in teuren Netzregionen?",
+    answer: "Gerade in Regionen mit hohen Netzgebühren ist das Einsparpotenzial durch einen Wechsel aus der örtlichen Grundversorgung zu einem günstigen Wettbewerber mit 300 bis 500 Euro pro Jahr besonders hoch."
+  },
+  {
+    question: "Gibt es bundesweit einheitliche Stromsteuern und Umlagen?",
+    answer: "Ja. Die Stromsteuer (2,05 ct/kWh), die KWKG-Umlage, die Offshore-Netzumlage und die 19 % Mehrwertsteuer sind bundesweit für alle Haushaltskunden gesetzlich identisch."
+  },
+  {
+    question: "Wie erfahre ich meinen örtlichen Netzbetreiber?",
+    answer: "Der Name deines Verteilnetzbetreibers und dein 11-stelliger Zählpunktcode (MaLo-ID) stehen auf deiner letzten Stromabrechnung."
+  }
 ];
 
+const calcSchema = getCalculatorSchema(
+  'Strompreis Deutschland Rechner',
+  'Berechne deine Stromkosten nach bundesweiten Durchschnittswerten und regionalen Tarifen.',
+  '/strompreis-deutschland'
+);
+const faqSchema = getFaqSchema(faqs);
+const pageSchemas = faqSchema ? [calcSchema, faqSchema] : [calcSchema];
+
 const related = [
-  { title: 'Strompreis Zusammensetzung', href: '/strompreis-zusammensetzung', description: 'Kostenbausteine.' },
-  { title: 'Strompreise Entwicklung', href: '/strompreis-entwicklung', description: 'Verlauf seit 2018.' },
-  { title: 'Stromanbieter wechseln', href: '/stromanbieter-wechseln', description: 'Tarif wechseln & sparen.' },
+  { title: 'Strompreis Zusammensetzung', href: '/strompreis-zusammensetzung', description: 'Netzentgelte & Steuern.' },
+  { title: 'Strompreis Entwicklung', href: '/strompreis-entwicklung', description: 'Historischer Preisverlauf.' },
+  { title: 'Stromanbieter wechseln', href: '/stromanbieter-wechseln', description: 'Günstigeren Tarif finden.' },
+  { title: 'Strompreis pro kWh', href: '/strompreis-pro-kwh', description: 'Kosten je Kilowattstunde.' },
 ];
 ---
 
 <BaseLayout
-  title="Strompreis Deutschland: Regionale Unterschiede & Tarife | kWhKlar"
-  description="Strompreise in Deutschland im Vergleich. Alles zu regionalen Netzentgelten, Grundversorgungstarifen und Neukundenangeboten."
+  title="Strompreis in Deutschland: Bundesländer-Vergleich & Netzentgelte | kWhKlar"
+  description="Warum unterscheidet sich der Strompreis in den Bundesländern? Regionale Netzentgelte, Bundesnetzagentur-Reform, Preisspannen und Rechner."
   canonical="https://kwhklar.de/strompreis-deutschland"
+  jsonLd={pageSchemas}
   breadcrumbs={[
     { name: 'Strompreis', path: '/strompreis' },
     { name: 'Strompreis Deutschland', path: '/strompreis-deutschland' },
@@ -33,30 +80,82 @@ const related = [
     <Breadcrumbs
       items={[
         { name: 'Strompreis', path: '/strompreis' },
-        { name: 'Strompreis Deutschland', path: '/strompreis-deutschland' },
+        { name: 'Strompreis in Deutschland', path: '/strompreis-deutschland' },
       ]}
     />
 
-    <div class="max-w-3xl mb-8">
-      <span class="badge-emerald text-xs mb-2">Bundesweiter Überblick</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-        Strompreise in Deutschland
+    <div class="max-w-4xl mb-8">
+      <span class="badge-emerald text-xs mb-2">Regionaler Stromvergleich</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Strompreis in Deutschland: Regionale Unterschiede &amp; Netzentgelte
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        Erfahre, wie der deutsche Strommarkt funktioniert und warum sich die Stromtarife je nach Postleitzahl und Netzgebiet unterscheiden.
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Warum zahlen Verbraucher in Norddeutschland andere Strompreise als im Süden oder Westen? Erfahre alles über regionale Netzentgelte, die Reformen der Bundesnetzagentur und Preisunterschiede zwischen Stadt und Land.
       </p>
     </div>
 
+    <!-- Live Universal Calculator -->
     <UniversalCalculator
       defaultWatt={1000}
       defaultHours={1}
       defaultPriceCt={35.0}
-      title="Strompreis-Rechner"
-      subtitle="Berechne die Kosten nach deinem regionalen Tarif:"
+      title="Strompreisrechner Deutschland"
+      subtitle="Berechne deine Stromkosten mit deinem regionalen Strompreis:"
     />
+
+    <!-- Main Content Depth -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- Section: Regional Drivers Breakdown -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Die Haupttreiber regionaler Strompreisunterschiede
+          </h2>
+          <div class="space-y-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <strong class="font-bold text-slate-900 dark:text-white block mb-1">1. Regionale Netzentgelte (25–32 % des Endpreises)</strong>
+              <p>Über 800 Verteilnetzbetreiber kalkulieren ihre Netzentgelte anhand der lokalen Netzkosten. In Regionen mit viel Windkraftausbau mussten Netze stark erweitert werden, was zu höheren lokalen Netzkosten führte.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <strong class="font-bold text-slate-900 dark:text-white block mb-1">2. Konzessionsabgabe der Kommunen (4–7 % des Endpreises)</strong>
+              <p>Städte und Gemeinden erheben Wegerechtsabgaben: In Großstädten liegt die Abgabe meist bei 1,99 bis 2,39 ct/kWh, in kleineren Gemeinden bei ca. 1,32 bis 1,59 ct/kWh.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <strong class="font-bold text-slate-900 dark:text-white block mb-1">3. Wettbewerbsintensität und Vertriebskosten</strong>
+              <p>In Ballungsräumen buhlen mehr überregionale Stromanbieter um Neukunden, was die Margen und Neukundenpreise im Wettbewerb drückt.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Bundesweiter Durchschnitt
+          </h3>
+          <div class="text-3xl font-extrabold text-white mb-2">35,0 ct/kWh</div>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Statistischer Referenzwert über alle 16 Bundesländer laut BDEW und Bundesnetzagentur.
+          </p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Verwandte Analysen</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/strompreis-zusammensetzung" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Strompreis Zusammensetzung</a></li>
+            <li><a href="/strompreis-entwicklung" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Preisentwicklung 2018–2026</a></li>
+            <li><a href="/stromanbieter-wechseln" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromanbieter wechseln</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
 
     <RelatedLinks links={related} />
     <SourceBox sourceIds={['bnetza', 'bdew', 'destatis']} />
-    <FaqSection items={faqs} />
   </div>
 </BaseLayout>

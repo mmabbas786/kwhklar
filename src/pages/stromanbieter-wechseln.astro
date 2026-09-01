@@ -4,35 +4,68 @@ import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
 import RelatedLinks from '../components/seo/RelatedLinks.astro';
 import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
+import { getFaqSchema } from '../lib/structured-data';
 
 const faqs = [
   {
-    question: 'Kann beim Stromanbieterwechsel der Strom ausfallen?',
-    answer: 'Nein, eine Unterbrechung der Stromversorgung ist gesetzlich ausgeschlossen (§ 36 EnWG). Der örtliche Grundversorger ist gesetzlich verpflichtet, die unterbrechungsfreie Belieferung jederzeit sicherzustellen.',
+    question: "Kann beim Stromanbieterwechsel der Strom ausfallen?",
+    answer: "Nein, eine Unterbrechung der Stromversorgung ist in Deutschland gesetzlich absolut ausgeschlossen (§ 36 EnWG). Der örtliche Grundversorger ist verpflichtet, die lückenlose Belieferung (notfalls über die gesetzliche Ersatzversorgung nach § 38 EnWG) jederzeit sicherzustellen."
   },
   {
-    question: 'Welche Kündigungsfristen gelten für Stromverträge?',
-    answer: 'In der Grundversorgung gilt eine gesetzliche Kündigungsfrist von nur 2 Wochen. Bei Sonderverträgen (nach dem Gesetz für faire Verbraucherverträge) gilt nach Ablauf der Erstvertragslaufzeit (max. 24 Monate) eine monatliche Kündigungsfrist.',
+    question: "Welche Kündigungsfristen gelten für Stromverträge?",
+    answer: "In der Grundversorgung gilt eine gesetzliche Kündigungsfrist von nur 2 Wochen (§ 20 StromGVV). Bei Sonderverträgen gilt nach Ablauf der Erstvertragslaufzeit (max. 24 Monate) dank des Gesetzes für faire Verbraucherverträge eine monatliche Kündigungsfrist mit maximal 1 Monat Vorlauf."
   },
   {
-    question: 'Auf welche Kriterien sollte man bei einem neuen Stromvertrag achten?',
-    answer: '1. Vertragslaufzeit von maximal 12 Monaten. 2. Eingeschränkte oder volle Preisgarantie für die gesamte Mindestlaufzeit. 3. Kurze Kündigungsfrist (max. 1 Monat). 4. Keine Vorkasse oder Kaution. 5. Seriöse Kundenbewertungen.',
+    question: "Wie funktioniert das Sonderkündigungsrecht bei einer Strompreiserhöhung?",
+    answer: "Kündigt dein Stromversorger eine Preiserhöhung an (selbst bei minimalen Erhöhungen oder Änderungen von Umlagen), hast du nach § 41 Abs. 5 EnWG ein Sonderkündigungsrecht. Du kannst den Vertrag bis zum Tag vor dem Wirksamwerden der neuen Preise fristlos kündigen."
   },
+  {
+    question: "Sollte ich bei einer Preiserhöhung selbst kündigen oder den neuen Anbieter kündigen lassen?",
+    answer: "Bei einer kurzfristigen Sonderkündigung wegen Preiserhöhung solltest du aus Sicherheitsgründen selbst schriftlich per E-Mail oder Einschreiben kündigen, um Fristüberschreitungen durch den Wechselprozess zu vermeiden."
+  },
+  {
+    question: "Auf welche 5 Kriterien sollte man beim neuen Stromtarif achten?",
+    answer: "1. Maximale Erstvertragslaufzeit von 12 Monaten. 2. Eingeschränkte oder volle Preisgarantie über die gesamte Mindestlaufzeit. 3. Monatliche Kündbarkeit nach Ablauf des ersten Jahres. 4. Niemals Vorkasse oder Kaution wählen. 5. Boni kritisch prüfen: Vergleiche Tarife primär nach dem reinen Arbeitspreis (ct/kWh) ohne Einmalboni."
+  },
+  {
+    question: "Wie viel Geld spart ein Wechsel aus der Grundversorgung?",
+    answer: "Wer aus der teuren örtlichen Grundversorgung (z. B. 42 ct/kWh) zu einem günstigen Neukundentarif mit 30 ct/kWh wechselt, spart bei einem 4-Personen-Haushalt (4.000 kWh/Jahr) exakt 480 Euro im ersten Jahr."
+  },
+  {
+    question: "Was geschieht, wenn ein neuer Stromanbieter pleitegeht?",
+    answer: "Geht ein Anbieter insolvent, fällst du automatisch und nahtlos in die gesetzliche Ersatzversorgung deines örtlichen Grundversorgers (§ 38 EnWG). Dein Licht bleibt ohne eine Sekunde Unterbrechung an."
+  },
+  {
+    question: "Welche Daten benötige ich für den Stromanbieterwechsel?",
+    answer: "Du benötigst lediglich: 1. Deine Postleitzahl. 2. Deinen geschätzten Jahresverbrauch in kWh. 3. Deine Zählernummer (steht auf dem Zähler oder der letzten Rechnung). 4. Den Namen deines bisherigen Versorgers und deine Kundennummer."
+  },
+  {
+    question: "Wie lange dauert der Wechselprozess zu einem neuen Anbieter?",
+    answer: "In der Regel dauert der gesamte Wechselprozess zwischen 10 Werktagen und 3 Wochen, abhängig von den Kündigungsfristen deines bisherigen Vertrags."
+  },
+  {
+    question: "Muss der Stromzähler beim Anbieterwechsel ausgetauscht werden?",
+    answer: "Nein. Der Stromzähler und die Leitungen gehören dem örtlichen Netzbetreiber und bleiben unverändert bestehen. Der Wechsel erfolgt rein kaufmännisch auf Datenebene."
+  }
 ];
 
+const faqSchema = getFaqSchema(faqs);
+
 const related = [
-  { title: 'Strompreis Deutschland', href: '/strompreis', description: 'Aktuelle Tarifsituation.' },
-  { title: 'Stromrechnung prüfen', href: '/stromrechnung-pruefen', description: 'Abrechnung kontrollieren.' },
-  { title: 'Strom sparen Tipps', href: '/strom-sparen-tipps', description: 'Verbrauch im Haushalt senken.' },
+  { title: 'Strompreis Deutschland', href: '/strompreis', description: 'Aktuelle Tarifsituation & Durchschnittspreise.' },
+  { title: 'Stromrechnung prüfen', href: '/stromrechnung-pruefen', description: 'Rechnung auf Fehler kontrollieren.' },
+  { title: 'Stromrechnung senken', href: '/stromrechnung-senken', description: 'Verbrauch und Abschlag reduzieren.' },
+  { title: 'Dynamische Stromtarife', href: '/dynamische-stromtarife', description: 'Börsenstrompreise & Smart Meter.' },
 ];
 ---
 
 <BaseLayout
   title="Stromanbieter wechseln: Anleitung, Kündigungsfristen & Spartipps | kWhKlar"
-  description="Stromanbieter sicher wechseln: Schritt-für-Schritt Anleitung, Kündigungsfristen, Sonderkündigungsrecht bei Preiserhöhung und Tarifkriterien."
+  description="Stromanbieter sicher wechseln: Schritt-für-Schritt Anleitung, Kündigungsfristen, Sonderkündigungsrecht bei Preiserhöhung und 5-Punkte-Tarifcheck."
   canonical="https://kwhklar.de/stromanbieter-wechseln"
+  jsonLd={faqSchema ? [faqSchema] : undefined}
   breadcrumbs={[
-    { name: 'Sparen', path: '/strom-sparen' },
+    { name: 'Strom sparen', path: '/strom-sparen' },
     { name: 'Stromanbieter wechseln', path: '/stromanbieter-wechseln' },
   ]}
 >
@@ -44,53 +77,90 @@ const related = [
       ]}
     />
 
-    <div class="max-w-3xl mb-8">
-      <span class="badge-emerald text-xs mb-2">Verbraucher-Rechte & Wechsel</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+    <div class="max-w-4xl mb-8">
+      <span class="badge-emerald text-xs mb-2">Verbraucherrechte &amp; Tarifwechsel</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
         Stromanbieter wechseln: Der neutrale Leitfaden
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        Wer noch im teuren Grundversorgungstarif steckt oder eine Preiserhöhung erhalten hat, kann durch einen Anbieterwechsel oft mehrere hundert Euro pro Jahr sparen.
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Wer noch im teuren Grundversorgungstarif feststeckt oder eine Preiserhöhung erhalten hat, kann durch einen Anbieterwechsel oft 300 bis 500 Euro pro Jahr sparen. Erfahre alles über gesetzliche Kündigungsfristen, Wechselsicherheit und Boni-Fallen.
       </p>
     </div>
 
-    <!-- 4 Steps to Switch -->
-    <article class="prose prose-slate max-w-4xl my-8 bg-white rounded-3xl p-6 sm:p-10 border border-slate-200">
-      <h2 class="text-2xl font-bold text-slate-900">In 4 Schritten zum günstigeren Stromvertrag</h2>
-      
-      <div class="space-y-4 my-6 text-xs sm:text-sm">
-        <div class="rounded-2xl bg-slate-50 p-5 border border-slate-200">
-          <strong class="text-slate-900 block font-bold text-base mb-1">1. Vorjahresverbrauch & Zählernummer bereitlegen</strong>
-          <p class="text-slate-600">Entnimm deiner letzten Jahresstromrechnung deinen Jahresverbrauch in kWh sowie deine Zählernummer und Postleitzahl.</p>
+    <!-- 4 Steps to Switch Cards -->
+    <div class="my-10 max-w-4xl mx-auto space-y-4">
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-xs">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-bold text-sm">1</span>
+          <h2 class="text-lg font-bold text-slate-900 dark:text-white">Jahresverbrauch &amp; Zählernummer bereitlegen</h2>
         </div>
-
-        <div class="rounded-2xl bg-slate-50 p-5 border border-slate-200">
-          <strong class="text-slate-900 block font-bold text-base mb-1">2. Tarife nach verbraucherfreundlichen Kriterien filtern</strong>
-          <p class="text-slate-600">Wähle Tarife mit max. 12 Monaten Erstlaufzeit, 12 Monaten Preisgarantie und monatlicher Kündbarkeit nach der Erstlaufzeit. Verzichte auf Verträge mit Vorkasse oder Kautionszahlungen.</p>
-        </div>
-
-        <div class="rounded-2xl bg-slate-50 p-5 border border-slate-200">
-          <strong class="text-slate-900 block font-bold text-base mb-1">3. Neuen Vertrag online abschließen</strong>
-          <p class="text-slate-600">Der neue Stromanbieter übernimmt in der Regel die Kündigung beim alten Versorger für dich automatisch.</p>
-        </div>
-
-        <div class="rounded-2xl bg-slate-50 p-5 border border-slate-200">
-          <strong class="text-slate-900 block font-bold text-base mb-1">4. Zählerstand zum Wechseldatum ablesen</strong>
-          <p class="text-slate-600">Lies am Tag des Lieferantenwechsels deinen Zählerstand ab und übermittle ihn sowohl an den Netzbetreiber als auch an den alten und neuen Anbieter.</p>
-        </div>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-11">
+          Entnimm deiner letzten Stromrechnung deinen Jahresverbrauch in kWh sowie deine Zählernummer, Kundennummer und deine Postleitzahl.
+        </p>
       </div>
 
-      <div class="rounded-2xl bg-emerald-50/40 dark:bg-emerald-950/20 p-5 border border-emerald-500/30 dark:border-emerald-500/25 text-xs sm:text-sm text-slate-800 dark:text-slate-200 mt-6 shadow-xs">
-        <strong class="font-bold text-emerald-700 dark:text-emerald-400 block mb-1 flex items-center gap-1.5">
-          <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-          Sonderkündigungsrecht bei Preiserhöhung:
-        </strong>
-        Kündigt dein aktueller Stromanbieter eine Preiserhöhung an, hast du ein gesetzliches Sonderkündigungsrecht bis zum Tag vor Inkrafttreten der Erhöhung.
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-xs">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-bold text-sm">2</span>
+          <h2 class="text-lg font-bold text-slate-900 dark:text-white">Tarife nach Verbraucherschutz-Kriterien filtern</h2>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-11">
+          Wähle Tarife mit max. 12 Monaten Erstlaufzeit, 12 Monaten Preisgarantie und monatlicher Kündbarkeit nach der Erstlaufzeit. Verzichte auf Verträge mit Vorkasse oder Kaution.
+        </p>
       </div>
-    </article>
+
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-xs">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-bold text-sm">3</span>
+          <h2 class="text-lg font-bold text-slate-900 dark:text-white">Neuen Vertrag online abschließen</h2>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-11">
+          Der neue Anbieter übernimmt die Kündigung beim alten Versorger automatisch für dich. Nur bei kurzfristigen Sonderkündigungen wegen Preiserhöhung solltest du selbst kündigen.
+        </p>
+      </div>
+
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-xs">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-bold text-sm">4</span>
+          <h2 class="text-lg font-bold text-slate-900 dark:text-white">Zählerstand zum Wechseldatum ablesen</h2>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-11">
+          Lies am Stichtag deinen Zählerstand ab und übermittle ihn an den Netzbetreiber und den alten sowie neuen Anbieter zur exakten Schlussabrechnung.
+        </p>
+      </div>
+    </div>
+
+    <!-- Main Editorial Content Depth -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Versorgungssicherheit § 36 EnWG
+          </h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Ein Stromausfall beim Anbieterwechsel ist gesetzlich unmöglich. Der örtliche Grundversorger springt im Zweifelsfall sofort und unterbrechungsfrei ein.
+          </p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Verwandte Ratgeber</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/strompreis" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Aktuelle Strompreise in Deutschland</a></li>
+            <li><a href="/stromrechnung-pruefen" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromrechnung prüfen Checkliste</a></li>
+            <li><a href="/stromrechnung-senken" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromrechnung senken</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
 
     <RelatedLinks links={related} />
     <SourceBox sourceIds={['bnetza', 'bdew']} />
-    <FaqSection items={faqs} />
   </div>
 </BaseLayout>

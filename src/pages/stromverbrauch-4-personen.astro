@@ -7,32 +7,74 @@ import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
 import { householdBenchmarks } from '../data/household-benchmarks';
 import { formatKwh } from '../lib/formatters';
+import { getCalculatorSchema, getFaqSchema } from '../lib/structured-data';
 
 const data = householdBenchmarks[4];
 
 const faqs = [
   {
-    question: 'Wie hoch sind die jährlichen Stromkosten einer 4-köpfigen Familie?',
-    answer: 'Eine 4-köpfige Familie zahlt bei einem typischen Jahresverbrauch von 3.000 bis 4.000 kWh rund 1.200 bis 1.550 Euro pro Jahr (ca. 100 bis 130 € monatlich) bei einem Arbeitspreis von 35 ct/kWh.',
+    question: "Wie viel Strom verbraucht eine 4-köpfige Familie im Durchschnitt pro Jahr?",
+    answer: "Eine 4-köpfige Familie in einer Wohnung verbraucht ca. 3.000 bis 3.500 kWh pro Jahr (ohne elektrische Warmwasserbereitung). Bei Warmwasser über einen elektrischen Durchlauferhitzer liegt der Verbrauch bei ca. 4.400 bis 5.000 kWh. In einem Einfamilienhaus liegt der typische Jahresverbrauch bei ca. 4.000 bis 5.400 kWh."
   },
   {
-    question: 'Was treibt den Stromverbrauch in einer Familie am stärksten an?',
-    answer: 'Hauptverbraucher sind tägliche Waschmaschinen- und Trocknerladungen, ständiges Kochen/Backen, mehrere PCs/Konsolen/Fernseher sowie Durchlauferhitzer bei elektrischer Warmwasserbereitung.',
+    question: "Wie hoch sind die monatlichen Stromkosten für eine 4-köpfige Familie?",
+    answer: "Eine Familie mit 4 Personen zahlt monatlich ca. 100 bis 120 Euro (Wohnung, zentrales Warmwasser) bzw. ca. 140 bis 175 Euro (Einfamilienhaus / Durchlauferhitzer) inklusive Grundpreis bei 35 ct/kWh."
   },
+  {
+    question: "Wie hoch ist der durchschnittliche Stromverbrauch pro Tag in einem Einfamilienhaus mit 4 Personen?",
+    answer: "In einem 4-Personen-Einfamilienhaus liegt der Stromverbrauch im Schnitt bei 11 bis 15 kWh pro Tag (ca. 3,85 bis 5,25 Euro täglich). Im Winter liegt der Tagesbedarf oft bei 14–18 kWh, im Sommer bei 8–10 kWh."
+  },
+  {
+    question: "Sind 4.000 kWh für 4 Personen viel?",
+    answer: "Nein. 4.000 kWh pro Jahr (entspricht genau 1.000 kWh pro Kopf) ist für eine 4-köpfige Familie im Einfamilienhaus oder in einer Wohnung mit teilweiser Warmwasserbereitung ein völlig normaler Durchschnittswert."
+  },
+  {
+    question: "Wie viel Strom verbrauchen Waschmaschine und Trockner in einer Familie?",
+    answer: "Bei 5 bis 6 Wäschen pro Woche verbraucht die Waschmaschine ca. 150 bis 200 kWh/Jahr. Ein Wärmepumptrockner benötigt ca. 200 kWh/Jahr (zusammen ca. 120–140 Euro). Ein alter Kondenstrockner kann allein bis zu 500 kWh/Jahr (175 Euro) schlucken."
+  },
+  {
+    question: "Welchen Einfluss hat die elektrische Warmwasserbereitung bei 4 Personen?",
+    answer: "Durchlauferhitzer oder Elektro-Boiler für 4 Personen erhöhen den Strombedarf um ca. 1.800 bis 2.400 kWh pro Jahr. Das verursacht zusätzliche Stromkosten von ca. 630 bis 840 Euro jährlich."
+  },
+  {
+    question: "Wie viel Strom spart ein Sparduschkopf bei einer 4-köpfigen Familie?",
+    answer: "Bei elektrischer Warmwasserbereitung spart ein Sparduschkopf bei 4 Personen jährlich rund 1.000 bis 1.500 kWh Strom (ca. 350 bis 525 Euro jährliche Ersparnis)."
+  },
+  {
+    question: "Wie viel Strom erzeugt ein Balkonkraftwerk für eine 4-köpfige Familie?",
+    answer: "Ein 800-Watt-Balkonkraftwerk erzeugt ca. 750 bis 850 kWh/Jahr. Durch den hohen Tagesverbrauch einer Familie (Kochen, Waschen, Homeoffice) werden oft über 85 % direkt selbst genutzt (Ersparnis ca. 220 bis 250 Euro/Jahr)."
+  },
+  {
+    question: "Wie hoch ist die Grundlast in einem 4-Personen-Haushalt?",
+    answer: "Die Grundlast liegt in der Wohnung bei 90 bis 150 Watt (ca. 2,2 bis 3,6 kWh/Tag) und im Einfamilienhaus bei 150 bis 260 Watt (ca. 3,6 bis 6,2 kWh/Tag)."
+  },
+  {
+    question: "Lohnt sich ein Tarifwechsel für eine 4-köpfige Familie?",
+    answer: "Sehr. Bei 4.000 kWh Jahresverbrauch spart der Wechsel von einem teuren Grundversorgertarif (42 ct/kWh) zu einem günstigen Anbieter (30 ct/kWh) exakt 480 Euro im ersten Jahr."
+  }
 ];
 
+const calcSchema = getCalculatorSchema(
+  'Stromverbrauch 4 Personen (Familie) Rechner',
+  'Berechne den typischen Stromverbrauch und die Kosten für eine 4-köpfige Familie nach Wohnform und Warmwasser.',
+  '/stromverbrauch-4-personen'
+);
+const faqSchema = getFaqSchema(faqs);
+const pageSchemas = faqSchema ? [calcSchema, faqSchema] : [calcSchema];
+
 const related = [
-  { title: 'Stromverbrauch 3 Personen', href: '/stromverbrauch-3-personen', description: 'Richtwerte für 3 Personen.' },
-  { title: 'Stromverbrauch Einfamilienhaus', href: '/stromverbrauch-einfamilienhaus', description: 'Verbrauch im Eigenheim.' },
-  { title: 'Die größten Stromfresser', href: '/stromfresser', description: 'Großverbraucher im Haushalt reduzieren.' },
-  { title: 'Stromrechnung senken', href: '/stromrechnung-senken', description: 'Effektive Spartipps.' },
+  { title: '3-Personen-Haushalt', href: '/stromverbrauch-3-personen', description: 'Werte für 3 Personen.' },
+  { title: '5-Personen-Haushalt', href: '/stromverbrauch-5-personen', description: 'Werte für Großfamilien.' },
+  { title: 'Stromverbrauch Einfamilienhaus', href: '/stromverbrauch-einfamilienhaus', description: 'Haus-Richtwerte.' },
+  { title: 'Stromrechnung prüfen', href: '/stromrechnung-pruefen', description: 'Familienabrechnung prüfen.' },
 ];
 ---
 
 <BaseLayout
-  title="Stromverbrauch 4 Personen: Durchschnitt & Kosten für Familien | kWhKlar"
-  description="Wie viel Strom verbraucht eine 4-köpfige Familie? Richtwerte (3.000–4.300 kWh), Kostenvergleich und die besten Stromspartipps."
+  title="Stromverbrauch 4 Personen: Richtwerte & Kosten für Familien | kWhKlar"
+  description="Wie viel Strom verbraucht eine 4-köpfige Familie? Offizielle Richtwerte (3.000–4.400 kWh), monatliche Kosten, Einfamilienhaus-Vergleich und Spartipps."
   canonical="https://kwhklar.de/stromverbrauch-4-personen"
+  jsonLd={pageSchemas}
   breadcrumbs={[
     { name: 'Haushalt', path: '/stromverbrauch-haushalt' },
     { name: '4 Personen', path: '/stromverbrauch-4-personen' },
@@ -46,58 +88,106 @@ const related = [
       ]}
     />
 
-    <div class="max-w-3xl mb-8">
+    <div class="max-w-4xl mb-8">
       <span class="badge-emerald text-xs mb-2">Familien-Benchmark</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-        Stromverbrauch für 4 Personen (Familie)
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Stromverbrauch für 4 Personen: Richtwerte &amp; Kosten
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        {data.description}
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Erfahre, wie viele Kilowattstunden eine 4-köpfige Familie im Durchschnitt pro Jahr und Tag verbraucht, was ein realistischer Monatsabschlag ist und mit welchen Maßnahmen sich die Stromrechnung spürbar senken lässt.
       </p>
     </div>
 
+    <!-- Key Metrics Cards -->
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-10">
-      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/70 p-5 shadow-xs transition-all hover:border-slate-300 dark:hover:border-slate-700">
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
         <span class="text-xs text-slate-500 dark:text-slate-400 font-medium block">Wohnung (ohne Warmwasser)</span>
-        <div class="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.apartmentWithoutWarmWaterKwh, 0)}</div>
-        <span class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 block">ca. 100–110 € / Monat</span>
+        <div class="mt-2 text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.apartmentWithoutWarmWaterKwh, 0)}</div>
+        <span class="text-xs text-emerald-600 dark:text-emerald-400 mt-2 block font-semibold">ca. 100–110 € / Monat (@ 35 ct)</span>
       </div>
 
-      <div class="rounded-2xl border border-emerald-500/30 dark:border-emerald-500/25 bg-emerald-50/40 dark:bg-emerald-950/20 p-5 shadow-xs transition-all hover:border-emerald-500/50">
-        <span class="text-xs text-emerald-700 dark:text-emerald-400 font-semibold flex items-center gap-1.5">
-          <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+      <div class="rounded-3xl border border-emerald-500/30 dark:border-emerald-500/25 bg-emerald-50/40 dark:bg-emerald-950/20 p-6 shadow-xs">
+        <span class="text-xs text-emerald-800 dark:text-emerald-300 font-bold flex items-center gap-1.5">
+          <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
           Wohnung (mit Warmwasser elektrisch)
         </span>
-        <div class="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.apartmentWithWarmWaterKwh, 0)}</div>
-        <span class="text-xs text-emerald-600 dark:text-emerald-400/90 mt-1.5 block font-medium">ca. 135–150 € / Monat</span>
+        <div class="mt-2 text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.apartmentWithWarmWaterKwh, 0)}</div>
+        <span class="text-xs text-emerald-700 dark:text-emerald-400 mt-2 block font-semibold">ca. 140–160 € / Monat (@ 35 ct)</span>
       </div>
 
-      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/70 p-5 shadow-xs transition-all hover:border-slate-300 dark:hover:border-slate-700">
-        <span class="text-xs text-slate-500 dark:text-slate-400 font-medium block">Einfamilienhaus</span>
-        <div class="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.houseWithoutWarmWaterKwh, 0)}</div>
-        <span class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 block">ca. 130–145 € / Monat</span>
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+        <span class="text-xs text-slate-500 dark:text-slate-400 font-medium block">Einfamilienhaus (4 Personen)</span>
+        <div class="mt-2 text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">{formatKwh(data.houseWithoutWarmWaterKwh, 0)}</div>
+        <span class="text-xs text-slate-500 dark:text-slate-400 mt-2 block font-semibold">ca. 130–150 € / Monat (@ 35 ct)</span>
       </div>
     </div>
 
+    <!-- Live Universal Calculator -->
     <UniversalCalculator
-      defaultWatt={450}
+      defaultWatt={350}
       defaultHours={24}
       defaultPriceCt={35.0}
-      title="Familien Verbrauchsrechner"
-      subtitle="Ermittle deine Stromkosten bei individuellem Verbrauch:"
+      title="4-Personen Verbrauchsrechner"
+      subtitle="Ermittle die Stromkosten für eure Familie:"
     />
 
-    <article class="prose prose-slate max-w-4xl my-12 bg-white rounded-3xl p-6 sm:p-10 border border-slate-200">
-      <h2 class="text-2xl font-bold text-slate-900">Spartipps für die 4-köpfige Familie:</h2>
-      <ul class="list-disc pl-5 space-y-2 text-slate-600 text-sm">
-        {data.savingTips.map((tip) => (
-          <li>{tip}</li>
-        ))}
-      </ul>
-    </article>
+    <!-- Main Content Depth -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- Section: Detailed Analysis -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Stromverbrauch im 4-Personen-Haushalt verstehen
+          </h2>
+          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
+            Bei einer 4-köpfigen Familie sinkt der spezifische Pro-Kopf-Verbrauch auf ca. 750 bis 1.000 kWh pro Person. Allerdings fallen Haushaltsgeräte wie Waschmaschine, Trockner und Geschirrspüler mit fast täglichen Durchläufen stark ins Gewicht.
+          </p>
+
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3">
+            Die 4 wirksamsten Spartipps für Familien:
+          </h3>
+          <div class="space-y-3 text-xs sm:text-sm">
+            {data.savingTips.map((tip, idx) => (
+              <div class="flex gap-3 p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+                <span class="font-bold text-emerald-600 dark:text-emerald-400">{idx + 1}.</span>
+                <span class="text-slate-700 dark:text-slate-300">{tip}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Familien-Profil
+          </h3>
+          <ul class="text-xs space-y-2 text-slate-300">
+            <li>• Ø Jahresverbrauch: <strong>3.000 – 4.400 kWh</strong></li>
+            <li>• Ø Tagesverbrauch: <strong>8,2 – 12,0 kWh</strong></li>
+            <li>• Ø Monatsabschlag: <strong>100 – 150 €</strong></li>
+            <li>• Pro-Kopf-Verbrauch: <strong>ca. 750 – 1.100 kWh</strong></li>
+          </ul>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Weitere Haushaltsgrößen</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/stromverbrauch-1-person" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ 1 Person (Single)</a></li>
+            <li><a href="/stromverbrauch-2-personen" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ 2 Personen (Paar)</a></li>
+            <li><a href="/stromverbrauch-3-personen" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ 3 Personen (Kleinfamilie)</a></li>
+            <li><a href="/stromverbrauch-5-personen" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ 5+ Personen (Großhaushalt)</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
 
     <RelatedLinks links={related} />
     <SourceBox sourceIds={['stromspiegel', 'bdew', 'destatis']} />
-    <FaqSection items={faqs} />
   </div>
 </BaseLayout>

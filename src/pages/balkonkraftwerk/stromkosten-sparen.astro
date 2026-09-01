@@ -6,13 +6,7 @@ import SourceBox from '../../components/trust/SourceBox.astro';
 import FaqSection from '../../components/content/FaqSection.astro';
 import { calculateBalconySolar } from '../../lib/calculators';
 import { formatEuro, formatKwh } from '../../lib/formatters';
-import { getCalculatorSchema } from '../../lib/structured-data';
-
-const schema = getCalculatorSchema(
-  'Balkonkraftwerk Ersparnis Rechner',
-  'Berechne den jährlichen Solarertrag, die Stromkosteneinsparung und die Amortisationszeit eines 800W-Balkonkraftwerks.',
-  '/balkonkraftwerk/stromkosten-sparen'
-);
+import { getCalculatorSchema, getFaqSchema } from '../../lib/structured-data';
 
 const defaultRes = calculateBalconySolar({
   systemPeakWatt: 800,
@@ -24,27 +18,68 @@ const defaultRes = calculateBalconySolar({
 
 const faqs = [
   {
-    question: 'Wie viel Strom erzeugt ein 800-Watt-Balkonkraftwerk im Jahr?',
-    answer: 'Bei optimaler Südausrichtung und unverschatteter Montage erzeugt ein 800W-Balkonkraftwerk in Deutschland ca. 700 bis 850 kWh Solarstrom pro Jahr. Bei Ost- oder Westausrichtung sind es rund 550 bis 700 kWh.',
+    question: "Wie viel Strom erzeugt ein 800-Watt-Balkonkraftwerk im Jahr?",
+    answer: "Ein steckerfertiges 800-Watt-Balkonkraftwerk (z. B. 2 Solarmodule mit zusammen 850–900 Wp Modulleistung und 800-Watt-Wechselrichter) erzeugt in Deutschland je nach Ausrichtung ca. 650 bis 850 kWh Solarstrom pro Jahr (Südausrichtung ca. 750–850 kWh, Ost/West ca. 600–700 kWh)."
   },
   {
-    question: 'Wie viel Geld spart ein Balkonkraftwerk pro Jahr?',
-    answer: 'Wer ca. 70 % des erzeugten Stroms direkt im Haushalt für Grundlast (Kühlschrank, Router, Standby) selbst verbraucht, spart bei 750 kWh Ertrag und 35 ct/kWh Strompreis rund 184 Euro Stromkosten pro Jahr. Ein 450-Euro-Set amortisiert sich somit in etwa 2,5 Jahren.',
+    question: "Wie viel Geld spart ein Balkonkraftwerk pro Jahr?",
+    answer: "Wer ca. 70 % des erzeugten Stroms direkt für Grundlast (Kühlschrank, WLAN-Router, Standby, Homeoffice) selbst verbraucht, spart bei 750 kWh Ertrag und einem Strompreis von 35 ct/kWh rund 184 Euro pro Jahr. Ein Komplettset für 350 bis 450 Euro amortisiert sich in nur 2 bis 3 Jahren."
   },
+  {
+    question: "Was hat das Solarpaket 1 der Bundesregierung für Balkonkraftwerke geändert?",
+    answer: "Das Solarpaket I hat massive Erleichterungen gebracht: 1. Erhöhung der Wechselrichter-Einspeisegrenze von 600 auf 800 Watt (bei bis zu 2.000 Wp Modulleistung). 2. Vollständiger Wegfall der Anmeldung beim Netzbetreiber (nur noch einfache Registrierung im Marktstammdatenregister). 3. Offizielle Duldung des herkömmlichen Schuko-Steckers. 4. Übergangsweise Duldung alter rückwärtsdrehender Ferraris-Zähler bis zum Zählertausch."
+  },
+  {
+    question: "Darf der Vermieter oder die Eigentümergemeinschaft (WEG) ein Balkonkraftwerk verbieten?",
+    answer: "Nein. Durch die Aufnahme von Steckersolargeräten in den Katalog privilegierter Maßnahmen im Wohnungseigentumsgesetz (§ 20 WEG) und BGB (§ 554 BGB) haben Mieter und Wohnungseigentümer einen Rechtsanspruch auf die Genehmigung. Ein Verbot ist nur noch in extremen Ausnahmefällen (z. B. Denkmalschutz) zulässig."
+  },
+  {
+    question: "Reicht ein normaler Schutzkontakt-Stecker (Schuko) für die Steckdose aus?",
+    answer: "Ja. Nach den VDE-Normen und den gesetzlichen Vorgaben des Solarpakets I ist der Betrieb über eine normale Schuko-Steckdose vollkommen legal und sicher, da moderne Mikro-Wechselrichter bei Trennung vom Netz in Millisekunden abschalten (NA-Schutz)."
+  },
+  {
+    question: "Was passiert mit überschüssigem Strom, den ich nicht sofort verbrauche?",
+    answer: "Überschüssiger Strom fließt automatisch ins öffentliche Stromnetz. Bei einfachen Balkonkraftwerken wird dieser meist unentgeltlich eingespeist, es sei denn, du installierst einen kleinen Balkon-Batteriespeicher (z. B. 1 bis 2 kWh)."
+  },
+  {
+    question: "Lohnt sich ein Batteriespeicher für das Balkonkraftwerk?",
+    answer: "Ein Balkonkraftwerk-Speicher (1–2 kWh Kapazität, ca. 400–800 Euro) erhöht die Eigenverbrauchsquote von 60–70 % auf 85–95 %. Er amortisiert sich bei aktuellen Speicherpreisen nach ca. 5 bis 7 Jahren."
+  },
+  {
+    question: "Muss ich das Balkonkraftwerk beim Finanzamt anmelden?",
+    answer: "Nein. Balkonkraftwerke sind von der Einkommensteuer und Gewerbesteuer befreit und der Kauf ist dank 0 % Mehrwertsteuer steuerfrei. Es ist keinerlei steuerliche Meldung erforderlich."
+  },
+  {
+    question: "Wie registriere ich mein Balkonkraftwerk im Marktstammdatenregister (MaStR)?",
+    answer: "Die Registrierung ist kostenlos und dauert im Online-Portal der Bundesnetzagentur (www.marktstammdatenregister.de) nur ca. 5 bis 10 Minuten. Es müssen lediglich Standort, Zählernummer, Modulleistung und Wechselrichterleistung eingetragen werden."
+  },
+  {
+    question: "Funktioniert ein Balkonkraftwerk auch bei bewölktem Himmel oder im Winter?",
+    answer: "Ja, aber mit reduzierter Leistung: Bei diffusem Licht an bewölkten Tagen erzeugen moderne bifaziale N-Type-TOPCon-Module immer noch ca. 10 bis 25 % ihrer Nennleistung (ca. 80 bis 200 Watt), was zur Deckung der Grundlast oft bereits ausreicht."
+  }
 ];
+
+const calcSchema = getCalculatorSchema(
+  'Balkonkraftwerk Ersparnis & Ertragsrechner (800W)',
+  'Berechne den jährlichen Solarertrag, die Stromkosteneinsparung und die Amortisationszeit eines 800W-Balkonkraftwerks.',
+  '/balkonkraftwerk/stromkosten-sparen'
+);
+const faqSchema = getFaqSchema(faqs);
+const pageSchemas = faqSchema ? [calcSchema, faqSchema] : [calcSchema];
 
 const related = [
   { title: 'PV Eigenverbrauch Rechner', href: '/photovoltaik/eigenverbrauch-rechner', description: 'Große Solaranlagen berechnen.' },
   { title: 'Standby-Strom vermeiden', href: '/standby-strom', description: 'Grundlast im Haushalt analysieren.' },
   { title: 'Strom sparen Tipps', href: '/strom-sparen-tipps', description: 'Weitere Sparpotenziale.' },
+  { title: 'Stromkosten pro Monat', href: '/stromkosten-pro-monat', description: 'Monatsabschlag reduzieren.' },
 ];
 ---
 
 <BaseLayout
   title="Balkonkraftwerk: Ertrag, Stromkosten sparen & Rechner (800W) | kWhKlar"
-  description="Wie viel Strom und Geld spart ein 800-Watt-Balkonkraftwerk? Interaktiver Ersparnisrechner, Ertragsprognose und Amortisationszeit für Mieter & Eigentümer."
+  description="Wie viel Strom und Geld spart ein 800-Watt-Balkonkraftwerk? Interaktiver Ersparnisrechner, Ertragsprognose, Solarpaket 1 und 10 Experten-FAQs."
   canonical="https://kwhklar.de/balkonkraftwerk/stromkosten-sparen"
-  jsonLd={schema}
+  jsonLd={pageSchemas}
   breadcrumbs={[
     { name: 'Solar', path: '/balkonkraftwerk/stromkosten-sparen' },
     { name: 'Balkonkraftwerk Ersparnis', path: '/balkonkraftwerk/stromkosten-sparen' },
@@ -58,24 +93,24 @@ const related = [
       ]}
     />
 
-    <div class="max-w-3xl mb-8">
+    <div class="max-w-4xl mb-8">
       <span class="badge-emerald text-xs mb-2">Steckersolar 800 W</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
         Balkonkraftwerk: Stromkosten sparen mit 800 Watt
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        Erzeuge deinen eigenen Solarstrom auf dem Balkon oder der Terrasse. Berechne den Jahresertrag, die jährliche Ersparnis und die Amortisationszeit deines Stecker-Solargeräts.
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Erzeuge deinen eigenen Solarstrom auf dem Balkon, Gartenhaus oder der Terrasse. Berechne den Jahresertrag, die jährliche Ersparnis und die Amortisationszeit deines Stecker-Solargeräts nach den Regeln des Solarpakets I.
       </p>
     </div>
 
     <!-- Interactive Balcony Solar Calculator -->
-    <div class="my-8 rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-md max-w-4xl mx-auto">
+    <div class="my-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-md max-w-4xl mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div class="space-y-4">
-          <h2 class="text-lg font-bold text-slate-900">Eckdaten deines Balkonkraftwerks</h2>
+          <h2 class="text-lg font-bold text-slate-900 dark:text-white">Eckdaten deines Balkonkraftwerks</h2>
 
           <div>
-            <label for="pv-yield" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+            <label for="pv-yield" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
               Erwarteter Jahresertrag (kWh)
             </label>
             <input
@@ -85,13 +120,13 @@ const related = [
               min="200"
               max="1200"
               step="50"
-              class="w-full rounded-xl border border-slate-200 p-3 text-base font-bold text-slate-900"
+              class="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 p-3 text-base font-bold text-slate-900 dark:text-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
             />
-            <span class="text-[11px] text-slate-500 mt-1 block">800W Süd: ca. 750–850 kWh • Ost/West: ca. 600–700 kWh</span>
+            <span class="text-[11px] text-slate-500 dark:text-slate-400 mt-1 block">800W Süd: ca. 750–850 kWh • Ost/West: ca. 600–700 kWh</span>
           </div>
 
           <div>
-            <label for="pv-self" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+            <label for="pv-self" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
               Eigenverbrauchsquote (%)
             </label>
             <input
@@ -101,107 +136,131 @@ const related = [
               min="20"
               max="100"
               step="5"
-              class="w-full rounded-xl border border-slate-200 p-3 text-base font-bold text-slate-900"
+              class="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 p-3 text-base font-bold text-slate-900 dark:text-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
             />
-            <span class="text-[11px] text-slate-500 mt-1 block">Ohne Speicher typisch 60–80 % (mit Batteriespeicher 85–95 %)</span>
+            <span class="text-[11px] text-slate-500 dark:text-slate-400 mt-1 block">Ohne Speicher: 60–75 % • Mit Speicher: 85–95 %</span>
           </div>
 
-          <div>
-            <label for="pv-price" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
-              Dein Strompreis (ct/kWh)
-            </label>
-            <input
-              type="number"
-              id="pv-price"
-              value="35.0"
-              min="10"
-              step="0.5"
-              class="w-full rounded-xl border border-slate-200 p-3 text-base font-bold text-slate-900"
-            />
-          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label for="pv-price" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
+                Strompreis (ct/kWh)
+              </label>
+              <input
+                type="number"
+                id="pv-price"
+                value="35.0"
+                min="10"
+                step="0.5"
+                class="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 p-3 text-base font-bold text-slate-900 dark:text-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+              />
+            </div>
 
-          <div>
-            <label for="pv-cost" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
-              Anschaffungskosten Komplettset (€)
-            </label>
-            <input
-              type="number"
-              id="pv-cost"
-              value="450"
-              min="100"
-              step="50"
-              class="w-full rounded-xl border border-slate-200 p-3 text-base font-bold text-slate-900"
-            />
+            <div>
+              <label for="pv-cost" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
+                Kaufpreis Komplettset (€)
+              </label>
+              <input
+                type="number"
+                id="pv-cost"
+                value="450"
+                min="100"
+                step="50"
+                class="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 p-3 text-base font-bold text-slate-900 dark:text-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+              />
+            </div>
           </div>
         </div>
 
-        <div class="rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 p-6 text-white space-y-5">
+        <!-- Balcony Solar Results Display -->
+        <div class="rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-800 p-6 text-white space-y-4 shadow-md">
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-100 block">Berechnete Einsparung</span>
           <div>
-            <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">Jährliche Stromersparnis</span>
-            <div class="text-3xl sm:text-4xl font-extrabold text-emerald-400 tracking-tight mt-1" id="pv-res-savings">
-              {formatEuro(defaultRes.annualSavingsEuro)} / Jahr
-            </div>
-            <span class="text-xs text-slate-300 mt-1 block" id="pv-res-kwh">
-              ca. {formatKwh(defaultRes.selfConsumedKwh, 0)} selbst genutzter Ökostrom
-            </span>
+            <span class="text-xs text-emerald-200 block">Jährliche Stromersparnis</span>
+            <span class="text-3xl font-black text-white" id="pv-res-year">{formatEuro(defaultRes.annualSavingsEuro)}</span>
           </div>
-
-          <div class="pt-4 border-t border-slate-700">
-            <span class="text-xs font-bold uppercase tracking-wider text-white">Amortisationszeit</span>
-            <div class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mt-1" id="pv-res-payback">
-              ca. {defaultRes.paybackYears} Jahre
-            </div>
-            <span class="text-xs text-emerald-200/80 mt-1 block" id="pv-res-10y">
-              10-Jahres-Ersparnis: ca. {formatEuro(defaultRes.tenYearSavingsEuro)}
-            </span>
+          <div class="border-t border-emerald-500/40 pt-3">
+            <span class="text-xs text-emerald-200 block">Selbst genutzter Solarstrom</span>
+            <span class="text-2xl font-extrabold text-emerald-100" id="pv-res-kwh">{formatKwh(defaultRes.selfConsumedKwh)}</span>
+          </div>
+          <div class="border-t border-emerald-500/40 pt-3">
+            <span class="text-xs text-emerald-200 block">Amortisationszeit</span>
+            <span class="text-2xl font-bold text-white" id="pv-res-amort">{defaultRes.paybackYears !== null ? `${defaultRes.paybackYears.toFixed(1).replace('.', ',')} Jahre` : '–'}</span>
+          </div>
+          <div class="border-t border-emerald-500/40 pt-3 text-xs text-emerald-100">
+            Gesamtersparnis in 15 Jahren: <strong class="text-white" id="pv-res-15y">{formatEuro(defaultRes.annualSavingsEuro * 15 - 450)}</strong>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Main Editorial Content Depth -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Recht auf Steckersolar
+          </h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Seit 2024 gilt Steckersolar als <strong>privilegierte Maßnahme</strong> im WEG/BGB. Vermieter dürfen die Installation nicht grundlos untersagen.
+          </p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Verwandte Ratgeber</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/photovoltaik/eigenverbrauch-rechner" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Große PV-Dachanlagen berechnen</a></li>
+            <li><a href="/standby-strom" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Grundlast &amp; Standby-Strom</a></li>
+            <li><a href="/stromrechnung-senken" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromrechnung senken</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
     <RelatedLinks links={related} />
-    <SourceBox sourceIds={['bnetza', 'uba']} />
-    <FaqSection items={faqs} />
+    <SourceBox sourceIds={['bnetza', 'uba', 'destatis']} />
   </div>
 </BaseLayout>
 
 <script>
-  function initBalconyCalc() {
-    const yieldIn = document.getElementById('pv-yield') as HTMLInputElement | null;
-    const selfIn = document.getElementById('pv-self') as HTMLInputElement | null;
-    const priceIn = document.getElementById('pv-price') as HTMLInputElement | null;
-    const costIn = document.getElementById('pv-cost') as HTMLInputElement | null;
+  const inYield = document.getElementById('pv-yield') as HTMLInputElement | null;
+  const inSelf = document.getElementById('pv-self') as HTMLInputElement | null;
+  const inPrice = document.getElementById('pv-price') as HTMLInputElement | null;
+  const inCost = document.getElementById('pv-cost') as HTMLInputElement | null;
 
-    const resSavings = document.getElementById('pv-res-savings');
-    const resKwh = document.getElementById('pv-res-kwh');
-    const resPayback = document.getElementById('pv-res-payback');
-    const res10y = document.getElementById('pv-res-10y');
+  const resYear = document.getElementById('pv-res-year');
+  const resKwh = document.getElementById('pv-res-kwh');
+  const resAmort = document.getElementById('pv-res-amort');
+  const res15y = document.getElementById('pv-res-15y');
 
-    if (!yieldIn || !selfIn || !priceIn || !costIn || !resSavings || !resPayback) return;
+  function calculate() {
+    if (!inYield || !inSelf || !inPrice || !inCost || !resYear || !resKwh || !resAmort || !res15y) return;
 
-    function update() {
-      const y = Math.max(0, parseFloat(yieldIn?.value || '0') || 0);
-      const s = Math.min(100, Math.max(0, parseFloat(selfIn?.value || '0') || 0));
-      const p = Math.max(0, parseFloat(priceIn?.value || '0') || 0);
-      const c = Math.max(0, parseFloat(costIn?.value || '0') || 0);
+    const yieldKwh = parseFloat(inYield.value) || 0;
+    const selfPercent = parseFloat(inSelf.value) || 0;
+    const priceCt = parseFloat(inPrice.value) || 0;
+    const costEuro = parseFloat(inCost.value) || 0;
 
-      const selfKwh = y * (s / 100);
-      const annualSavings = selfKwh * (p / 100);
-      const tenYear = annualSavings * 10;
-      const payback = annualSavings > 0 && c > 0 ? (c / annualSavings).toFixed(1).replace('.', ',') : '–';
+    const selfKwh = (yieldKwh * selfPercent) / 100;
+    const savedEuroYear = (selfKwh * priceCt) / 100;
+    const paybackYears = savedEuroYear > 0 ? (costEuro / savedEuroYear) : 0;
+    const net15Years = Math.max(0, (savedEuroYear * 15) - costEuro);
 
-      const fmt = (v: number) => new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(v);
-
-      if (resSavings) resSavings.textContent = `${fmt(annualSavings)} / Jahr`;
-      if (resKwh) resKwh.textContent = `ca. ${Math.round(selfKwh).toLocaleString('de-DE')} kWh selbst genutzter Ökostrom`;
-      if (resPayback) resPayback.textContent = `ca. ${payback} Jahre`;
-      if (res10y) res10y.textContent = `10-Jahres-Ersparnis: ca. ${fmt(tenYear)}`;
-    }
-
-    [yieldIn, selfIn, priceIn, costIn].forEach((el) => el.addEventListener('input', update));
-    update();
+    resYear.textContent = savedEuroYear.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+    resKwh.textContent = `${Math.round(selfKwh).toLocaleString('de-DE')} kWh (${selfPercent} %)`;
+    resAmort.textContent = paybackYears > 0 ? `${paybackYears.toFixed(1).replace('.', ',')} Jahre` : '–';
+    res15y.textContent = net15Years.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
   }
 
-  document.addEventListener('DOMContentLoaded', initBalconyCalc);
-  initBalconyCalc();
+  inYield?.addEventListener('input', calculate);
+  inSelf?.addEventListener('input', calculate);
+  inPrice?.addEventListener('input', calculate);
+  inCost?.addEventListener('input', calculate);
 </script>

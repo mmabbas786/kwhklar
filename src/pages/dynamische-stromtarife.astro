@@ -4,33 +4,66 @@ import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
 import RelatedLinks from '../components/seo/RelatedLinks.astro';
 import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
+import { getFaqSchema } from '../lib/structured-data';
 
 const faqs = [
   {
-    question: 'Was ist ein dynamischer Stromtarif?',
-    answer: 'Bei einem dynamischen Tarif wird der Arbeitspreis stündlich an die aktuellen Großhandelspreise der Strombörse (EPEX SPOT Day-Ahead) angepasst. Bei viel Wind- und Sonnenenergie sinkt der Preis drastisch (teilweise sogar in den negativen Bereich), während er in den Abendstunden steigen kann.',
+    question: "Was ist ein dynamischer Stromtarif und wie funktioniert er?",
+    answer: "Bei einem dynamischen Stromtarif zahlst du keinen festen Einheitspreis pro Kilowattstunde, sondern der Arbeitspreis ändert sich stündlich nach den realen Großhandelspreisen der europäischen Strombörse (EPEX SPOT Day-Ahead). Bei viel Wind- und Sonnenstrom sinkt der Preis stark (teilweise unter 15 ct/kWh), während er bei hoher Nachfrage am Abend steigen kann."
   },
   {
-    question: 'Welche Hardware benötige ich für dynamische Stromtarife?',
-    answer: 'Voraussetzung ist ein intelligentes Messsystem (Smart Meter / iMSys) oder ein digitaler Stromzähler mit Smart-Meter-Gateway / Ausleseadapter, der den Verbrauch stundengenau erfassen und an den Lieferanten übermitteln kann.',
+    question: "Welche Voraussetzungen (Hardware) sind für einen dynamischen Tarif nötig?",
+    answer: "Voraussetzung ist ein intelligentes Messsystem (Smart Meter / iMSys) mit Smart-Meter-Gateway oder eine moderne Messeinrichtung (mME) mit digitalem Auslese-Adapter (wie dem Tibber Pulse). Der Zähler muss deinen Stromverbrauch viertelstündlich erfassen und übermitteln können."
   },
   {
-    question: 'Für wen lohnt sich ein dynamischer Tarif am meisten?',
-    answer: 'Besonders rentabel sind dynamische Tarife für Besitzer von Elektroautos (zeitgesteuertes Laden bei günstigen Börsenpreisen), Wärmepumpen mit Pufferspeicher oder großen Batteriespeichern.',
+    question: "Für wen lohnt sich ein dynamischer Stromtarif am meisten?",
+    answer: "Besonders profitabel sind dynamische Tarife für Haushalte mit flexiblen Großverbrauchern: 1. Besitzer von Elektroautos (zeitgesteuertes Laden nachts oder mittags). 2. Hausbesitzer mit Wärmepumpe und großem Pufferspeicher. 3. Besitzer von Hausspeichern (netzorientiertes Laden zu Niedrigpreiszeiten)."
   },
+  {
+    question: "Sind Stromanbieter verpflichtet, dynamische Tarife anzubieten?",
+    answer: "Ja. Nach § 41a des Energiewirtschaftsgesetzes (EnWG) ist seit 2025 jeder Stromlieferant gesetzlich verpflichtet, seinen Kunden mindestens einen dynamischen Stromtarif anzubieten, sofern beim Kunden ein Smart Meter installiert ist."
+  },
+  {
+    question: "Was passiert bei negativen Strompreisen an der Börse?",
+    answer: "Bei extrem viel Wind- und Sonnenstrom können die reinen Börsenpreise negativ werden. Verbraucher zahlen in diesen Stunden meist nur noch die festen Netzentgelte, Steuern und Umlagen (z. B. 12 bis 15 ct/kWh statt 35 ct/kWh)."
+  },
+  {
+    question: "Welche Risiken gibt es bei dynamischen Tarifen?",
+    answer: "Bei sogenannten 'Dunkelflauten' im Winter (kein Wind, keine Sonne und hohe Heiznachfrage) steigen die Börsenpreise vorübergehend an. Wer in diesen Spitzenzeiten unvermeidbar viel Strom verbraucht, zahlt kurzzeitig höhere kWh-Preise als im klassischen Festpreistarif."
+  },
+  {
+    question: "Wie viel Geld kann man mit einem dynamischen Tarif sparen?",
+    answer: "Ein E-Auto-Besitzer mit 15.000 km Jahresfahrleistung (ca. 3.000 kWh Ladebedarf), der gezielt in Niedrigpreisphasen (z. B. 20 ct statt 35 ct) lädt, spart jährlich rund 450 Euro allein bei den Ladekosten."
+  },
+  {
+    question: "Wann erfahre ich die Strompreise für den nächsten Tag?",
+    answer: "Die Großhandelspreise für den Folgetag werden täglich ab ca. 13:00 Uhr an der Strombörse EPEX SPOT fixiert. Über die App des Anbieters (z. B. Tibber, Rabot Energy) siehst du ab 13:00 Uhr die stundengenauen Preise für alle 24 Stunden des nächsten Tages."
+  },
+  {
+    question: "Was bedeutet § 14a EnWG für steuerbare Verbrauchseinrichtungen?",
+    answer: "Seit Januar 2024 müssen neue Wallboxen und Wärmepumpen netzdienlich steuerbar sein. Im Gegenzug erhalten Betreiber stark reduzierte Netzentgelte (Modul 1: pauschale Gutschrift von 110 bis 190 €/Jahr oder Modul 2: 60 % Rabatt auf den Arbeitspreis der Netzentgelte)."
+  },
+  {
+    question: "Lohnt sich ein dynamischer Tarif für eine normale Mietwohnung ohne E-Auto?",
+    answer: "In einer klassischen Mietwohnung ohne steuerbare Großverbraucher ist das Einsparpotenzial mit ca. 20 bis 40 Euro pro Jahr eher gering, da typische Haushaltsverbraucher (Kühlschrank, TV, Licht) nur schwer in günstige Nachtstunden verschoben werden können."
+  }
 ];
+
+const faqSchema = getFaqSchema(faqs);
 
 const related = [
   { title: 'E-Auto Ladekosten', href: '/e-auto/stromkosten', description: 'Günstig laden mit dynamischen Tarifen.' },
   { title: 'Wärmepumpe Stromkosten', href: '/waermepumpe/stromkosten', description: 'Heizstrom optimieren.' },
-  { title: 'Strompreis Deutschland', href: '/strompreis', description: 'Tarifmodelle im Überblick.' },
+  { title: 'Strompreis Zusammensetzung', href: '/strompreis-zusammensetzung', description: 'Börsenanteil & Abgaben.' },
+  { title: 'Stromanbieter wechseln', href: '/stromanbieter-wechseln', description: 'Wechsel-Leitfaden.' },
 ];
 ---
 
 <BaseLayout
-  title="Dynamische Stromtarife: Funktionsweise, Smart Meter & Nutzen | kWhKlar"
-  description="Wie funktionieren dynamische Stromtarife? Voraussetzungen, Vor- & Nachteile, Börsenstrompreise (EPEX SPOT) und Einsparpotenziale für Haushalte."
+  title="Dynamische Stromtarife: Funktionsweise, Smart Meter & Einsparpotenzial | kWhKlar"
+  description="Wie funktionieren dynamische Stromtarife? Voraussetzungen, Vor- & Nachteile, Börsenstrompreise (EPEX SPOT), § 14a EnWG und Einsparpotenziale."
   canonical="https://kwhklar.de/dynamische-stromtarife"
+  jsonLd={faqSchema ? [faqSchema] : undefined}
   breadcrumbs={[
     { name: 'Strompreis', path: '/strompreis' },
     { name: 'Dynamische Stromtarife', path: '/dynamische-stromtarife' },
@@ -44,50 +77,93 @@ const related = [
       ]}
     />
 
-    <div class="max-w-3xl mb-8">
-      <span class="badge-blue text-xs mb-2">Moderne Tarifmodelle</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-        Dynamische Stromtarife & Börsenstrompreise
+    <div class="max-w-4xl mb-8">
+      <span class="badge-blue text-xs mb-2">Moderne Tarifarchitektur</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Dynamische Stromtarife: Börsenpreise &amp; Smart Meter
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        Verstehe, wie zeitvariable und dynamische Stromtarife funktionieren und wie du mit flexiblen Verbrauchern wie E-Auto oder Wärmepumpe von günstigen Börsenstrompreisen profitierst.
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Erfahre, wie stündlich variable Stromtarife funktionieren, welche Hardware (Smart Meter) nötig ist und wie Besitzer von Elektroautos, Wärmepumpen und Heimspeichern hunderte Euro pro Jahr sparen.
       </p>
     </div>
 
-    <!-- Info Article -->
-    <article class="prose prose-slate max-w-4xl my-8 bg-white rounded-3xl p-6 sm:p-10 border border-slate-200">
-      <h2 class="text-2xl font-bold text-slate-900">Wie funktioniert ein dynamischer Tarif?</h2>
-      <p class="text-slate-600 leading-relaxed text-sm">
-        Klassische Stromtarife bieten einen festen Arbeitspreis über 12 bis 24 Monate. Dynamische Tarife geben hingegen die stündlichen Preisschwankungen der europäischen Strombörse EPEX SPOT direkt an dich weiter.
-      </p>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
-        <div class="rounded-2xl bg-emerald-50/40 dark:bg-emerald-950/20 p-5 border border-emerald-500/30 dark:border-emerald-500/25">
-          <h3 class="font-bold text-slate-900 dark:text-white text-base mb-2 flex items-center gap-1.5">
-            <span class="text-emerald-500">✓</span> Vorteile
-          </h3>
-          <ul class="list-disc pl-4 space-y-1.5 text-xs text-slate-700 dark:text-slate-300">
-            <li>Günstiger Strom bei viel Wind & Sonne (teilweise unter 15 ct/kWh inkl. Abgaben).</li>
-            <li>Enormes Sparpotenzial bei flexiblen Großverbrauchern (E-Auto, Wärmepumpe, Batteriespeicher).</li>
-            <li>Volle Transparenz über stündliche Großhandelspreise am Vortag ab 13:00 Uhr.</li>
-          </ul>
-        </div>
-
-        <div class="rounded-2xl bg-slate-50 dark:bg-slate-900/60 p-5 border border-slate-200 dark:border-slate-800">
-          <h3 class="font-bold text-slate-900 dark:text-white text-base mb-2 flex items-center gap-1.5">
-            <span class="text-slate-400">ℹ</span> Herausforderungen & Risiken
-          </h3>
-          <ul class="list-disc pl-4 space-y-1.5 text-xs text-slate-700 dark:text-slate-300">
-            <li>Smart Meter (intelligentes Messsystem) zwingend erforderlich.</li>
-            <li>Höhere Preise in den Spitzenzeiten am frühen Abend (17:00–20:00 Uhr) oder bei „Dunkelflauten“.</li>
-            <li>Erfordert Bereitschaft zur automatisierten oder bewussten Lastverschiebung.</li>
-          </ul>
-        </div>
+    <!-- Comparison: Fixed vs Dynamic -->
+    <div class="my-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-xs">
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Klassischer Festpreistarif</h2>
+        <p class="text-xs text-slate-600 dark:text-slate-400 mb-4">Konstanter Arbeitspreis rund um die Uhr:</p>
+        <ul class="space-y-2 text-xs text-slate-700 dark:text-slate-300">
+          <li>• Fester Preis (z. B. 32 ct/kWh) für 12 bis 24 Monate</li>
+          <li>• Keine Hardwareanforderungen (alter Drehstromzähler reicht)</li>
+          <li>• Kein Risiko bei Marktturbulenzen oder Dunkelflauten</li>
+          <li>• Kein Profitieren von sonnigen/windigen Niedrigpreisstunden</li>
+        </ul>
       </div>
-    </article>
+
+      <div class="rounded-3xl border border-emerald-500/40 dark:border-emerald-500/30 bg-emerald-50/40 dark:bg-emerald-950/20 p-6 sm:p-8 shadow-xs">
+        <h2 class="text-xl font-bold text-emerald-950 dark:text-emerald-300 mb-2">Dynamischer Börsentarif</h2>
+        <p class="text-xs text-emerald-800 dark:text-emerald-400 mb-4">Stündlich wechselnde Börsenpreise (EPEX SPOT):</p>
+        <ul class="space-y-2 text-xs text-slate-800 dark:text-slate-200">
+          <li>• Stündlicher Tarif (oft 15 bis 25 ct/kWh bei viel Wind &amp; Sonne)</li>
+          <li>• Erfordert Smart Meter (iMSys) oder Auslese-Gateway</li>
+          <li>• Maximales Sparpotenzial für E-Autos &amp; Wärmepumpen</li>
+          <li>• Gesetzlicher Anspruch seit 2025 (§ 41a EnWG)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Main Editorial Depth Content -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- Section: Use Cases -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Die 3 profitabelsten Anwendungsfälle für dynamische Tarife
+          </h2>
+          <div class="space-y-4 text-xs sm:text-sm">
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <strong class="font-bold text-slate-900 dark:text-white block mb-1">🚗 1. Elektroauto zeitgesteuert laden</strong>
+              <p class="text-slate-600 dark:text-slate-400">Das Laden des E-Autos lässt sich per App automatisch in die günstigsten Nachtstunden (z. B. 02:00–05:00 Uhr) oder sonnige Mittagsstunden verschieben. Sparpotenzial: 300 bis 500 Euro pro Jahr.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <strong class="font-bold text-slate-900 dark:text-white block mb-1">♨️ 2. Wärmepumpen mit Pufferspeicher überheizen</strong>
+              <p class="text-slate-600 dark:text-slate-400">Bei sehr günstigen Strompreisen heizt die Wärmepumpe den Warmwasserspeicher auf 55 °C auf und überbrückt so teure Abendstunden ohne Netzbezug. Sparpotenzial: 150 bis 300 Euro pro Jahr.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+              <strong class="font-bold text-slate-900 dark:text-white block mb-1">🔋 3. Heimspeicher netzorientiert beladen</strong>
+              <p class="text-slate-600 dark:text-slate-400">Im Winter (wenig Solarertrag) kann der Batteriespeicher nachts bei 18 ct/kWh aus dem Netz geladen werden, um den Haushalt am teuren Morgen (35 ct/kWh) zu versorgen.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Gesetzliche Pflicht § 41a EnWG
+          </h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Seit <strong>Januar 2025</strong> muss jeder Energieversorger in Deutschland dynamische Tarife im Portfolio führen. Verbraucher mit Smart Meter können diesen Tarif jederzeit wählen.
+          </p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Passende Rechner</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/e-auto/ladekosten-rechner" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ E-Auto Ladekostenrechner</a></li>
+            <li><a href="/waermepumpe/stromverbrauch-rechner" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Wärmepumpen-Rechner</a></li>
+            <li><a href="/strompreis" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Strompreis-Portal</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
 
     <RelatedLinks links={related} />
     <SourceBox sourceIds={['bnetza', 'smard']} />
-    <FaqSection items={faqs} />
   </div>
 </BaseLayout>

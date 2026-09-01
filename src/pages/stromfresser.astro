@@ -1,39 +1,78 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import UniversalCalculator from '../components/calculator/UniversalCalculator.astro';
 import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
 import RelatedLinks from '../components/seo/RelatedLinks.astro';
 import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
+import { getCalculatorSchema, getFaqSchema } from '../lib/structured-data';
 
 const faqs = [
   {
-    question: 'Welches ist der größte Stromfresser in einem durchschnittlichen Haushalt?',
-    answer: 'In Haushalten mit elektrischer Warmwasserbereitung ist der elektrische Durchlauferhitzer / Boiler mit 500 bis 800 kWh pro Person der größte Einzelverbraucher. Ohne elektrisches Warmwasser sind es meist alte Kühlschränke (> 12 Jahre), Kondenstrockner, Gaming-PCs im Dauerbetrieb oder Heizlüfter.',
+    question: "Was ist der größte Stromfresser im Haushalt?",
+    answer: "Der mit Abstand größte Stromfresser im Haushalt ist die elektrische Warmwasserbereitung über Durchlauferhitzer oder Boiler. Sie schluckt pro Person ca. 500 bis 800 kWh Strom im Jahr (ca. 175 bis 280 Euro pro Kopf). Bei einer 4-köpfigen Familie sind das bis zu 3.000 kWh Strom allein für heißes Wasser."
   },
+  {
+    question: "Welche 3 Geräte sind die größten Stromfresser?",
+    answer: "Die Top 3 Großverbraucher in fast allen deutschen Haushalten: 1. Elektrische Durchlauferhitzer / Boiler (600–800 kWh/Person). 2. Veraltete Kühl- und Gefriergeräte (300–450 kWh/Jahr). 3. Alte Kondenstrockner (350–500 kWh/Jahr)."
+  },
+  {
+    question: "Welche versteckten Stromfresser lauern im Einfamilienhaus?",
+    answer: "Im Haus lauern oft unbemerkt: 1. Alte, ungeregelte Heizungsumwälzpumpen im Keller (bis zu 500 kWh/Jahr). 2. Elektrische Fußboden-Zusatzheizungen im Bad (bis zu 800 kWh/Jahr). 3. Beheizte Whirlpools oder Pool-Umwälzpumpen im Garten (1.000 bis 3.000 kWh/Jahr)."
+  },
+  {
+    question: "Wie viel Strom frisst ein alter Kühlschrank im Vergleich zu einem Neugerät?",
+    answer: "Ein 15 Jahre alter Kühlschrank verbraucht ca. 300 bis 400 kWh Strom pro Jahr (ca. 105 bis 140 Euro). Ein modernes Neugerät der Energieeffizienzklasse A oder B verbraucht lediglich 90 bis 130 kWh (ca. 31 bis 45 Euro). Du sparst jährlich bis zu 100 Euro."
+  },
+  {
+    question: "Wie viel Strom verbraucht ein Gaming-PC im Jahr?",
+    answer: "Ein moderner Gaming-PC mit starker Grafikkarte und Monitor zieht unter Last ca. 350 bis 500 Watt. Bei 4 Stunden täglicher Spielzeit summiert sich dies auf ca. 510 bis 730 kWh pro Jahr (ca. 180 bis 255 Euro Stromkosten)."
+  },
+  {
+    question: "Warum sind elektrische Heizlüfter so gefährliche Kostenfallen?",
+    answer: "Ein handelsüblicher 2.000-Watt-Heizlüfter verbraucht in nur einer Stunde 2 kWh Strom (ca. 70 Cent). Läuft er im Winter 5 Stunden täglich als Zusatzheizung, verursacht er monatlich über 100 Euro reine Stromkosten."
+  },
+  {
+    question: "Wie enttarne ich heimliche Stromfresser in meinen vier Wänden?",
+    answer: "Besorge dir ein digitales Steckdosen-Messgerät (ab 10 Euro). Stecke es nacheinander für jeweils 48 Stunden zwischen Steckdose und Gerät (Kühlschrank, Gefriertruhe, TV-Anlage, PC). Zeigt das Gerät unerwartet hohe Kilowattstunden an, hast du den Stromfresser gefunden."
+  },
+  {
+    question: "Wie viel Strom verbraucht eine mobile Klimaanlage (Monoblock)?",
+    answer: "Ein mobiles Monoblock-Klimagerät mit 1.200 Watt Leistung verbraucht bei 6 Stunden täglichem Betrieb im Sommer ca. 7,2 kWh pro Tag (rund 2,50 Euro täglich bzw. 150 Euro in zwei heißen Sommermonaten)."
+  },
+  {
+    question: "Verbrauchen Halogenlampen wirklich so viel mehr Strom als LEDs?",
+    answer: "Ja. Halogenlampen wandeln rund 90 % der Energie in ungenutzte Wärme um. Ein Deckenfluter mit 300-Watt-Halogenstab kostet bei 3 Stunden täglicher Nutzung ca. 115 Euro Strom im Jahr. Eine moderne 30-Watt-LED bietet dieselbe Helligkeit für nur 11,50 Euro im Jahr."
+  },
+  {
+    question: "Welchen Einfluss haben defekte Türdichtungen am Gefrierschrank?",
+    answer: "Durch undichte Gummis strömt permanent feucht-warme Raumluft ein. Das Gerät vereist extrem schnell und der Kompressor schaltet kaum noch ab. Der Stromverbrauch kann sich dadurch mehr als verdoppeln."
+  }
 ];
 
-const stromfresserList = [
-  { rank: 1, name: 'Elektrischer Durchlauferhitzer / Boiler', kwh: '600–1.200 kWh/Person', cost: '210–420 €/Jahr', reason: 'Hohe Heizleistung von 18 bis 24 kW bei jedem Duschgang.' },
-  { rank: 2, name: 'Alter Kühlschrank / Gefriertruhe (> 10 Jahre)', kwh: '300–500 kWh', cost: '105–175 €/Jahr', reason: 'Verschlissene Dichtungen, veraltete Kompressoren und Vereisung.' },
-  { rank: 3, name: 'Heizlüfter / Radiator', kwh: '400–800 kWh', cost: '140–280 €/Jahr', reason: 'Direkte Strom-zu-Wärme-Umwandlung bei 2.000 Watt Leistungsaufnahme.' },
-  { rank: 4, name: 'Kondenstrockner (alte Bauart)', kwh: '400–550 kWh', cost: '140–190 €/Jahr', reason: 'Keine Wärmerückgewinnung im Gegensatz zu Wärmepumpentrocknern.' },
-  { rank: 5, name: 'Gaming-PC & High-End-Workstation', kwh: '400–700 kWh', cost: '140–245 €/Jahr', reason: 'Hohe Last von 400–600 Watt bei täglichem Gaming über mehrere Stunden.' },
-  { rank: 6, name: 'Outdoor-Whirlpool / Poolpumpe', kwh: '700–3.000 kWh', cost: '245–1.050 €/Jahr', reason: 'Dauerhaftes Umwälzen und elektrisches Nachheizen großer Wassermengen.' },
-];
+const calcSchema = getCalculatorSchema(
+  'Stromfresser Rechner',
+  'Berechne den Stromverbrauch und die Kosten der größten Stromfresser in deinem Haushalt.',
+  '/stromfresser'
+);
+const faqSchema = getFaqSchema(faqs);
+const pageSchemas = faqSchema ? [calcSchema, faqSchema] : [calcSchema];
 
 const related = [
-  { title: 'Standby-Strom', href: '/standby-strom', description: 'Versteckter Dauerstrom.' },
-  { title: 'Strom sparen Tipps', href: '/strom-sparen-tipps', description: 'Praxistipps für jedes Zimmer.' },
-  { title: 'Geräte Stromkosten', href: '/geraete', description: '25+ Geräte im Detail.' },
+  { title: 'Strom sparen Tipps', href: '/strom-sparen-tipps', description: 'Konkrete Spartipps für alle Räume.' },
+  { title: 'Standby-Strom vermeiden', href: '/standby-strom', description: 'Leerlaufverluste beseitigen.' },
+  { title: 'Geräte Übersicht', href: '/geraete', description: 'Alle 25 Geräte im Stromkosten-Check.' },
+  { title: 'Stromverbrauch senken', href: '/stromverbrauch-senken', description: 'Systematischer Sparplan.' },
 ];
 ---
 
 <BaseLayout
-  title="Stromfresser im Haushalt: Die Top 10 Verbraucher & Einsparpotenziale | kWhKlar"
-  description="Welche Geräte verbrauchen am meisten Strom? Die größten Stromfresser im Haushalt im Ranking: Kosten, Ursachen und Austausch-Tipps."
+  title="Die größten Stromfresser im Haushalt: Top 10 Verbraucher | kWhKlar"
+  description="Was sind die größten Stromfresser im Haus? Top 10 Stromverbraucher im Ranking, typische kWh-Werte, Kosten und Sofort-Maßnahmen zum Gegensteuern."
   canonical="https://kwhklar.de/stromfresser"
+  jsonLd={pageSchemas}
   breadcrumbs={[
-    { name: 'Sparen', path: '/strom-sparen' },
+    { name: 'Strom sparen', path: '/strom-sparen' },
     { name: 'Stromfresser', path: '/stromfresser' },
   ]}
 >
@@ -45,42 +84,87 @@ const related = [
       ]}
     />
 
-    <div class="max-w-3xl mb-8">
-      <span class="badge-amber text-xs mb-2">Verbrauchsanalyse</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-        Die größten Stromfresser im Haushalt
+    <div class="max-w-4xl mb-8">
+      <span class="badge-amber text-xs mb-2">Stromfresser-Entlarvung</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Die 10 größten Stromfresser im Haushalt
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        Wer seine Stromrechnung effektiv senken will, muss die echten Großverbraucher kennen. Hier ist das Ranking der energieintensivsten Haushaltsgeräte in Deutschland.
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Erfahre, welche Geräte in deinem Zuhause die meiste Energie schlucken, warum alte Kühlgeräte und Durchlauferhitzer echte Kostenfallen sind und wie du Stromfresser mit einfachen Mitteln unschädlich machst.
       </p>
     </div>
 
-    <!-- Ranking Table -->
-    <div class="my-8 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xs max-w-4xl mx-auto">
-      <h2 class="text-xl font-bold text-slate-900 mb-6">Ranking der Top Stromverbraucher</h2>
-      <div class="space-y-4">
-        {stromfresserList.map((item) => (
-          <div class="rounded-2xl border border-slate-100 bg-slate-50/60 p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div class="flex items-start gap-3.5">
-              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-black text-sm border border-emerald-500/20">
-                #{item.rank}
-              </span>
-              <div>
-                <h3 class="font-bold text-slate-900 dark:text-white text-base">{item.name}</h3>
-                <p class="text-xs text-slate-600 dark:text-slate-400 mt-0.5">{item.reason}</p>
-                <span class="text-xs text-slate-500 dark:text-slate-400 mt-1 block">Verbrauch: <strong class="text-slate-900 dark:text-slate-200">{item.kwh}</strong></span>
-              </div>
-            </div>
-            <div class="text-right sm:shrink-0">
-              <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-200 border border-slate-200 dark:border-slate-700">{item.cost}</span>
-            </div>
+    <!-- Live Universal Calculator -->
+    <UniversalCalculator
+      defaultWatt={2000}
+      defaultHours={3}
+      defaultPriceCt={35.0}
+      title="Stromfresser-Rechner"
+      subtitle="Berechne die Stromkosten für deine leistungsintensivsten Geräte:"
+    />
+
+    <!-- Main Content Depth -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- Section: Top 10 Stromfresser Ranking Table -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Das große Stromfresser-Ranking
+          </h2>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs sm:text-sm border-collapse">
+              <thead>
+                <tr class="border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400">
+                  <th class="py-2.5 px-3 font-semibold">Rang &amp; Gerät</th>
+                  <th class="py-2.5 px-3 font-semibold">Leistung (Watt)</th>
+                  <th class="py-2.5 px-3 font-semibold">Typischer Jahres-kWh</th>
+                  <th class="py-2.5 px-3 font-semibold text-right">Stromkosten / Jahr (@ 35 ct)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+                <tr class="bg-amber-50/40 dark:bg-amber-950/20"><td class="py-2.5 px-3 font-bold text-amber-900 dark:text-amber-300">1. Elektr. Warmwasser (4 Personen)</td><td class="py-2.5 px-3">18.000 – 24.000 W</td><td class="py-2.5 px-3 font-bold">2.000 – 3.000 kWh</td><td class="py-2.5 px-3 text-right font-extrabold text-amber-700 dark:text-amber-400">700 – 1.050 €</td></tr>
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">2. Heizlüfter &amp; Radiatoren (Winter)</td><td class="py-2.5 px-3">2.000 W</td><td class="py-2.5 px-3 font-semibold">600 – 1.200 kWh</td><td class="py-2.5 px-3 text-right font-bold text-amber-700 dark:text-amber-400">210 – 420 €</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">3. Ungeregelte alte Heizungspumpe</td><td class="py-2.5 px-3">80 W Dauerlauf</td><td class="py-2.5 px-3 font-semibold">400 – 550 kWh</td><td class="py-2.5 px-3 text-right font-semibold">140 – 192 €</td></tr>
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">4. Alter Kondenstrockner</td><td class="py-2.5 px-3">2.500 W</td><td class="py-2.5 px-3 font-semibold">350 – 500 kWh</td><td class="py-2.5 px-3 text-right font-semibold">122 – 175 €</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">5. Veralteter Kühlschrank (&gt; 12 Jahre)</td><td class="py-2.5 px-3">120 W getaktet</td><td class="py-2.5 px-3 font-semibold">300 – 420 kWh</td><td class="py-2.5 px-3 text-right font-semibold">105 – 147 €</td></tr>
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">6. High-End Gaming-PC mit Monitor</td><td class="py-2.5 px-3">450 W</td><td class="py-2.5 px-3 font-semibold">400 – 600 kWh</td><td class="py-2.5 px-3 text-right font-semibold">140 – 210 €</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">7. Mobile Monoblock-Klimaanlage</td><td class="py-2.5 px-3">1.200 W</td><td class="py-2.5 px-3 font-semibold">250 – 450 kWh</td><td class="py-2.5 px-3 text-right font-semibold">88 – 158 €</td></tr>
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">8. Halogen-Deckenfluter (300 W)</td><td class="py-2.5 px-3">300 W</td><td class="py-2.5 px-3 font-semibold">250 – 350 kWh</td><td class="py-2.5 px-3 text-right font-semibold">88 – 122 €</td></tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-800/30"><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">9. Standby-Verluste im Haushalt</td><td class="py-2.5 px-3">35 W Dauerlast</td><td class="py-2.5 px-3 font-semibold">250 – 350 kWh</td><td class="py-2.5 px-3 text-right font-semibold">88 – 122 €</td></tr>
+                <tr><td class="py-2.5 px-3 font-bold text-slate-900 dark:text-white">10. Alter Elektroherd / Backofen</td><td class="py-2.5 px-3">3.000 W</td><td class="py-2.5 px-3 font-semibold">200 – 300 kWh</td><td class="py-2.5 px-3 text-right font-semibold">70 – 105 €</td></tr>
+              </tbody>
+            </table>
           </div>
-        ))}
-      </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Die 10-Euro-Investition
+          </h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Ein Steckdosen-Messgerät zeigt dir centgenau, ob dein Kühlschrank oder dein PC-Setup zum teuren Stromfresser geworden ist.
+          </p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Verwandte Ratgeber</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/geraete" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Alle 25 Geräte im Überblick</a></li>
+            <li><a href="/standby-strom" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Standby-Strom beseitigen</a></li>
+            <li><a href="/strom-sparen-tipps" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Konkrete Stromspartipps</a></li>
+          </ul>
+        </div>
+      </aside>
     </div>
 
     <RelatedLinks links={related} />
     <SourceBox sourceIds={['stromspiegel', 'uba', 'bnetza']} />
-    <FaqSection items={faqs} />
   </div>
 </BaseLayout>

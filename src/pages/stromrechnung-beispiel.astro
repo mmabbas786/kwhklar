@@ -4,25 +4,66 @@ import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
 import RelatedLinks from '../components/seo/RelatedLinks.astro';
 import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
+import { getFaqSchema } from '../lib/structured-data';
 
 const faqs = [
   {
-    question: 'Welche Bestandteile hat eine typische Jahresstromrechnung?',
-    answer: 'Eine Stromrechnung besteht aus: 1. Abrechnungszeitraum & Kundendaten, 2. Verbrauchsermittlung (Anfangsstand, Endstand, Differenz in kWh), 3. Kostenberechnung (kWh × Arbeitspreis + Grundpreis), 4. Abzug der gezahlten Abschläge und 5. Rechnungsbetrag (Guthaben oder Nachzahlung).',
+    question: "Welche Pflichtbestandteile gehören zu einer rechtsgültigen Stromrechnung?",
+    answer: "Nach § 40 EnWG muss jede Stromrechnung folgende Punkte enthalten: 1. Abrechnungszeitraum (genaue Daten). 2. Zählernummer und Zählerstände zu Beginn und Ende. 3. Ermittelter Verbrauch in kWh. 4. Vertraglicher Arbeits- und Grundpreis. 5. Vollständige Liste der geleisteten Monatsabschläge. 6. Rechnungsbetrag mit Ausweisung von Guthaben oder Nachzahlung. 7. Neuer monatlicher Abschlagsbetrag. 8. Grafischer Vergleich zum Vorjahresverbrauch."
   },
+  {
+    question: "Wie berechnet sich der Rechnungsbetrag (Nachzahlung oder Guthaben)?",
+    answer: "Formel: (Jahresverbrauch × Arbeitspreis) + (12 × Grundpreis) = Gesamtkosten. Davon wird die Summe aller gezahlten Abschläge abgezogen: Gesamtkosten minus geleistete Abschläge = Nachzahlung (wenn positiv) oder Guthaben (wenn negativ)."
+  },
+  {
+    question: "Was bedeutet 'Rechnerisch ermittelt' bei den Zählerständen im Beispiel?",
+    answer: "Wenn kein abgelesener Zählerstand vorlag oder ein unterjähriger Preiswechsel stattfand, teilt der Versorger den Verbrauch rechnerisch auf Basis von Standardlastprofilen (SLP) auf. Wurde der Endstand nur geschätzt, solltest du den echten Stand nachmelden."
+  },
+  {
+    question: "Wie wird der neue Abschlagsbetrag im Beispiel ermittelt?",
+    answer: "Formel: Erwartete Jahresgesamtkosten ÷ 12 Monate = Neuer Monatsabschlag. Im Musterbeispiel: 1.200,00 € ÷ 12 = 100,00 Euro pro Monat."
+  },
+  {
+    question: "Warum buchen manche Versorger nur 11 Abschläge ab?",
+    answer: "Einige Versorger buchen im 12. Abrechnungsmonat keinen Abschlag ab, sondern verrechnen diesen direkt mit der Jahresabrechnung. In diesem Fall wurden 11 Abschläge bezahlt und der 12. Teil fließt in die Nachzahlung bzw. mindert das Guthaben."
+  },
+  {
+    question: "Wo finde ich meine Zählernummer und Marktlokations-ID (MaLo-ID)?",
+    answer: "Die Zählernummer (oft 8–14 Ziffern) und die 11-stellige Marktlokations-ID stehen im oberen Drittel der Stromabrechnung bei den Vertragsstammdaten."
+  },
+  {
+    question: "Wie wird die Mehrwertsteuer auf der Rechnung ausgewiesen?",
+    answer: "Die Stromrechnung weist die Nettobeträge und den 19 % Umsatzsteuerbetrag separat aus. Als Privatkunde zahlst du immer den ausgewiesenen Bruttogesamtbetrag."
+  },
+  {
+    question: "Was tun, wenn ein versprochener Neukundenbonus auf der Rechnung fehlt?",
+    answer: "Prüfe die Bonusbedingungen in deinen Vertragsunterlagen. Fehlt der Bonus unberechtigt, lege schriftlich Widerspruch ein und fordere eine korrigierte Abrechnung mit Bonusgutschrift."
+  },
+  {
+    question: "Innerhalb welcher Frist muss ein Guthaben ausgezahlt werden?",
+    answer: "Laut § 40c Abs. 3 EnWG muss ein Guthaben unverzüglich, spätestens jedoch mit dem nächsten fälligen Abschlag verrechnet oder auf dein Bankkonto überwiesen werden."
+  },
+  {
+    question: "Was bedeutet die Angabe des Strommixes auf der Rückseite?",
+    answer: "Nach § 42 EnWG ist jeder Versorger verpflichtet, die Herkunft seines Stroms (Anteil an erneuerbaren Energien, Kohle, Erdgas, Kernenergie) und die damit verbundenen CO₂-Emissionen transparent darzustellen."
+  }
 ];
 
+const faqSchema = getFaqSchema(faqs);
+
 const related = [
-  { title: 'Stromrechnung prüfen', href: '/stromrechnung-pruefen', description: 'Rechnung kontrollieren.' },
-  { title: 'Stromrechnung berechnen', href: '/stromrechnung-berechnen', description: 'Online-Rechner nutzen.' },
-  { title: 'Strompreis Zusammensetzung', href: '/strompreis-zusammensetzung', description: 'Preisbestandteile.' },
+  { title: 'Stromrechnung prüfen', href: '/stromrechnung-pruefen', description: 'Rechnung auf 5 typische Fehler kontrollieren.' },
+  { title: 'Stromrechnung berechnen', href: '/stromrechnung-berechnen', description: 'Rechne deinen Rechnungsbetrag selbst nach.' },
+  { title: 'Stromrechnung zu hoch?', href: '/stromrechnung-zu-hoch', description: 'Ursachen für Nachzahlungen finden.' },
+  { title: 'Stromrechnung senken', href: '/stromrechnung-senken', description: 'Abschlag und Kosten reduzieren.' },
 ];
 ---
 
 <BaseLayout
-  title="Stromrechnung Beispiel: Musterrechnung einfach erklärt | kWhKlar"
-  description="Muster-Stromrechnung verständlich erklärt. Lerne alle Posten kennen: Zählerstände, Abrechnungszeitraum, kWh, Arbeitspreis und Abschläge."
+  title="Stromrechnung Beispiel: Musterrechnung verständlich erklärt | kWhKlar"
+  description="Muster-Stromrechnung verständlich erklärt: Zählerstände, Arbeitspreis, Grundpreis, Abschläge, Nachzahlung und Guthaben an einem Rechenbeispiel."
   canonical="https://kwhklar.de/stromrechnung-beispiel"
+  jsonLd={faqSchema ? [faqSchema] : undefined}
   breadcrumbs={[
     { name: 'Stromrechnung', path: '/stromrechnung' },
     { name: 'Musterrechnung Beispiel', path: '/stromrechnung-beispiel' },
@@ -36,86 +77,152 @@ const related = [
       ]}
     />
 
-    <div class="max-w-3xl mb-8">
+    <div class="max-w-4xl mb-8">
       <span class="badge-blue text-xs mb-2">Musterabrechnung</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-        Stromrechnung Beispiel & Musterrechnung
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Stromrechnung Beispiel &amp; Musterrechnung
       </h1>
-      <p class="mt-3 text-base text-slate-600 leading-relaxed">
-        So ist eine deutsche Jahresstromrechnung aufgebaut: Alle Fachbegriffe, Posten und Berechnungen Schritt für Schritt an einem anschaulichen Rechenbeispiel erklärt.
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        So ist eine deutsche Jahresstromrechnung aufgebaut: Alle Fachbegriffe, Posten und mathematischen Zusammenhänge Schritt für Schritt an einer echten Musterrechnung für 3.000 kWh Jahresverbrauch erklärt.
       </p>
     </div>
 
     <!-- Visual Sample Bill Card -->
-    <div class="my-8 rounded-3xl border border-slate-200 bg-white p-6 sm:p-10 shadow-sm max-w-4xl mx-auto space-y-6">
-      <div class="flex justify-between items-start border-b border-slate-200 pb-6">
+    <div class="my-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-sm max-w-4xl mx-auto space-y-6">
+      <div class="flex flex-wrap justify-between items-start border-b border-slate-200 dark:border-slate-800 pb-6 gap-4">
         <div>
-          <span class="text-xs font-semibold text-emerald-700 uppercase tracking-wider">Muster-Energieversorger GmbH</span>
-          <h2 class="text-xl font-bold text-slate-900 mt-1">Jahresabrechnung Strom 2025/2026</h2>
-          <p class="text-xs text-slate-500 mt-0.5">Abrechnungszeitraum: 01.01.2025 – 31.12.2025 (365 Tage)</p>
+          <span class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Muster-Energieversorger GmbH</span>
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white mt-1">Jahresabrechnung Strom 2025/2026</h2>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Abrechnungszeitraum: 01.01.2025 – 31.12.2025 (365 Tage)</p>
         </div>
-        <div class="text-right text-xs text-slate-500">
+        <div class="text-right text-xs text-slate-500 dark:text-slate-400">
           <span>Zählernummer: 1EMH0012345678</span><br />
-          <span>Kundennummer: 987654321</span>
+          <span>Kundennummer: 987654321</span><br />
+          <span>Marktlokation (MaLo): 41012345678</span>
         </div>
       </div>
 
       <!-- Section 1: Meter reading -->
-      <div class="rounded-2xl bg-slate-50 p-5 border border-slate-200 text-xs">
-        <h3 class="font-bold text-slate-900 text-sm mb-3">1. Zählerstand & Verbrauch</h3>
-        <div class="grid grid-cols-3 gap-4 text-center">
-          <div>
-            <span class="text-slate-500 block">Zählerstand alt (01.01.)</span>
-            <span class="font-bold text-slate-800 text-sm">24.500 kWh</span>
+      <div class="rounded-2xl bg-slate-50 dark:bg-slate-800/50 p-5 border border-slate-200 dark:border-slate-700 text-xs">
+        <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-3">1. Zählerstand &amp; Verbrauch</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+          <div class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700">
+            <span class="text-slate-500 dark:text-slate-400 block text-[11px]">Zählerstand alt (01.01.2025)</span>
+            <span class="font-bold text-slate-800 dark:text-slate-200 text-sm">24.500 kWh</span>
+            <span class="text-[10px] text-emerald-600 block">abgelesen</span>
           </div>
-          <div>
-            <span class="text-slate-500 block">Zählerstand neu (31.12.)</span>
-            <span class="font-bold text-slate-800 text-sm">27.500 kWh</span>
+          <div class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700">
+            <span class="text-slate-500 dark:text-slate-400 block text-[11px]">Zählerstand neu (31.12.2025)</span>
+            <span class="font-bold text-slate-800 dark:text-slate-200 text-sm">27.500 kWh</span>
+            <span class="text-[10px] text-emerald-600 block">abgelesen</span>
           </div>
-          <div>
-            <span class="text-slate-500 block">Abrechnungsverbrauch</span>
-            <span class="font-bold text-emerald-700 text-base">3.000 kWh</span>
+          <div class="p-3 bg-emerald-50 dark:bg-emerald-950/30 rounded-xl border border-emerald-200 dark:border-emerald-800">
+            <span class="text-slate-500 dark:text-slate-400 block text-[11px]">Abrechnungsverbrauch</span>
+            <span class="font-extrabold text-emerald-700 dark:text-emerald-300 text-base">3.000 kWh</span>
+            <span class="text-[10px] text-slate-500 block">Differenz</span>
           </div>
         </div>
       </div>
 
       <!-- Section 2: Financial Calculation -->
-      <div class="rounded-2xl bg-slate-50 p-5 border border-slate-200 text-xs space-y-3">
-        <h3 class="font-bold text-slate-900 text-sm mb-2">2. Kostenaufstellung</h3>
-        <div class="flex justify-between py-1 border-b border-slate-200/60">
+      <div class="rounded-2xl bg-slate-50 dark:bg-slate-800/50 p-5 border border-slate-200 dark:border-slate-700 text-xs space-y-3">
+        <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-2">2. Kostenaufstellung</h3>
+        <div class="flex justify-between py-1.5 border-b border-slate-200 dark:border-slate-700">
           <span>Arbeitspreis: 3.000 kWh × 35,00 ct/kWh</span>
-          <span class="font-semibold text-slate-900">1.050,00 €</span>
+          <span class="font-semibold text-slate-900 dark:text-white">1.050,00 €</span>
         </div>
-        <div class="flex justify-between py-1 border-b border-slate-200/60">
+        <div class="flex justify-between py-1.5 border-b border-slate-200 dark:border-slate-700">
           <span>Grundpreis: 12 Monate × 12,50 €/Monat</span>
-          <span class="font-semibold text-slate-900">150,00 €</span>
+          <span class="font-semibold text-slate-900 dark:text-white">150,00 €</span>
         </div>
-        <div class="flex justify-between py-1 font-bold text-slate-900 text-sm">
+        <div class="flex justify-between py-2 font-bold text-slate-900 dark:text-white text-sm">
           <span>Gesamtkosten Strom (inkl. 19 % MwSt.):</span>
-          <span class="text-slate-900">1.200,00 €</span>
+          <span class="text-emerald-600 dark:text-emerald-400">1.200,00 €</span>
         </div>
       </div>
 
       <!-- Section 3: Reconciliation -->
-      <div class="rounded-2xl bg-slate-900 p-6 text-white text-xs space-y-3">
-        <h3 class="font-bold text-emerald-400 text-sm mb-2">3. Verrechnung der Abschläge & Ergebnis</h3>
+      <div class="rounded-2xl bg-slate-900 p-6 text-white text-xs space-y-3 shadow-inner">
+        <h3 class="font-bold text-emerald-400 text-sm mb-2">3. Rechnungsabgleich &amp; Abrechnungsergebnis</h3>
         <div class="flex justify-between py-1 border-b border-slate-800">
-          <span class="text-slate-300">Gesamte Jahreskosten:</span>
-          <span class="font-semibold text-white">1.200,00 €</span>
+          <span>Ihre Gesamtkosten:</span>
+          <span>1.200,00 €</span>
         </div>
         <div class="flex justify-between py-1 border-b border-slate-800">
-          <span class="text-slate-300">Geleistete Zahlungen (11 × 115,00 € Abschlag):</span>
-          <span class="font-semibold text-white">- 1.265,00 €</span>
+          <span>Ihre geleisteten Abschläge (11 × 100,00 €):</span>
+          <span>- 1.100,00 €</span>
         </div>
-        <div class="flex justify-between items-center pt-2">
-          <span class="font-bold text-base text-emerald-300">Dein Abrechnungsguthaben (Rückzahlung):</span>
-          <span class="text-2xl font-black text-emerald-400">+ 65,00 €</span>
+        <div class="flex justify-between py-2 text-base font-extrabold text-amber-400 border-t border-slate-700">
+          <span>Ihre Nachzahlung:</span>
+          <span>100,00 €</span>
         </div>
+        <p class="text-[11px] text-slate-400 pt-1">
+          Der Betrag von 100,00 € wird zum 15.02.2026 von Ihrem Bankkonto eingezogen. Ihr neuer monatlicher Abschlag beträgt ab März 2026: <strong>100,00 €</strong>.
+        </p>
       </div>
+    </div>
+
+    <!-- Main Editorial Content Depth -->
+    <div class="my-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <article class="lg:col-span-8 space-y-10">
+        
+        <!-- Section: Key Terms Guide -->
+        <section class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-xs">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+            Die wichtigsten Begriffe der Stromabrechnung
+          </h2>
+          <dl class="space-y-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+            <div>
+              <dt class="font-bold text-slate-900 dark:text-white">Arbeitspreis (Verbrauchspreis):</dt>
+              <dd>Der Preis für jede tatsächlich verbrauchte Kilowattstunde Strom in Cent pro kWh (ct/kWh).</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-slate-900 dark:text-white">Grundpreis (Basispreis):</dt>
+              <dd>Die feste Monats- oder Jahresgebühr für den Zähler und den Netzanschluss, unabhängig davon, wie viel Strom du verbrauchst.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-slate-900 dark:text-white">Monatlicher Abschlag:</dt>
+              <dd>Deine monatliche Anzahlung auf die voraussichtlichen Jahreskosten. Am Ende des Jahres wird centgenau abgerechnet.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-slate-900 dark:text-white">Zählerstand abgelesen vs. geschätzt:</dt>
+              <dd>Ein abgelesener Stand stammt von dir oder dem Ableser. Ein geschätzter Stand ist nur eine Hochrechnung des Anbieters, die häufig ungenau ist.</dd>
+            </div>
+          </dl>
+        </section>
+
+        <!-- FAQ Section -->
+        <FaqSection items={faqs} />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 p-6 text-white shadow-md">
+          <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider mb-3">
+            Rechnungs-Checkliste
+          </h3>
+          <ul class="text-xs space-y-2 text-slate-300">
+            <li>✓ Zählernummer abgleichen</li>
+            <li>✓ Zählerstände kontrollieren</li>
+            <li>✓ Ableseart prüfen (nicht geschätzt)</li>
+            <li>✓ Alle gezahlten Abschläge zählen</li>
+            <li>✓ Boni &amp; Rabatte überprüfen</li>
+          </ul>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-4">Rechnungs-Cluster</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/stromrechnung-pruefen" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromrechnung prüfen</a></li>
+            <li><a href="/stromrechnung-berechnen" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromrechnung berechnen</a></li>
+            <li><a href="/stromrechnung-zu-hoch" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromrechnung zu hoch?</a></li>
+            <li><a href="/stromrechnung-senken" class="text-emerald-700 dark:text-emerald-400 hover:underline font-medium block">→ Stromrechnung senken</a></li>
+          </ul>
+        </div>
+      </aside>
     </div>
 
     <RelatedLinks links={related} />
     <SourceBox sourceIds={['bnetza', 'bdew']} />
-    <FaqSection items={faqs} />
   </div>
 </BaseLayout>
