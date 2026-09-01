@@ -4,11 +4,12 @@ import UniversalCalculator from '../../components/calculator/UniversalCalculator
 import ApplianceCard from '../../components/cards/ApplianceCard.astro';
 import SourceBox from '../../components/trust/SourceBox.astro';
 import FaqSection from '../../components/content/FaqSection.astro';
+import ApplianceIcon from '../../components/icons/ApplianceIcon.astro';
 import { appliances } from '../../data/appliances';
 import { householdBenchmarks } from '../../data/household-benchmarks';
 import { formatEuro, formatKwh } from '../../lib/formatters';
 import { languages, type SupportedLanguage } from '../../i18n/languages';
-import { useTranslations } from '../../i18n/utils';
+import { useTranslations, getLocalizedPath } from '../../i18n/utils';
 
 export function getStaticPaths() {
   const nonDefaultLangs: SupportedLanguage[] = ['en', 'es', 'ja', 'fr', 'pt', 'ko', 'it'];
@@ -59,6 +60,34 @@ const homeFaqs = [
       ? '計算式: 電気代 (€) = (消費電力W × 使用時間h ÷ 1,000) × 単価 (€/kWh)。例: 2,000Wの機器を2時間使用すると4kWhとなり、単価0.35€の場合1.40€となります。'
       : '계산식: 전기요금 (€) = (소비전력W × 사용시간h ÷ 1,000) × 단가 (€/kWh). 예: 2,000W 기기를 2시간 사용 시 4kWh를 소비하며, 단가가 0.35€일 경우 1.40€입니다.',
   },
+  {
+    question: lang === 'en'
+      ? 'What are typical standby power losses in a household?'
+      : lang === 'es'
+      ? '¿Cuáles son las pérdidas típicas de consumo en espera (standby)?'
+      : lang === 'fr'
+      ? 'Quelle est la consommation moyenne en veille dans un foyer ?'
+      : lang === 'it'
+      ? 'Quali sono le perdite tipiche di energia in standby?'
+      : lang === 'pt'
+      ? 'Quanto os aparelhos gastam em modo de espera (standby)?'
+      : lang === 'ja'
+      ? '家庭での待機電力はどれくらい発生しますか？'
+      : '가정 내 대기전력으로 인한 낭비는 어느 정도인가요?',
+    answer: lang === 'en'
+      ? 'A typical household has 20 to 40 Watts of continuous standby load from TVs, routers, chargers, and appliances, costing €60 to €120 annually. Using switchable power strips eliminates this waste.'
+      : lang === 'es'
+      ? 'Un hogar promedio tiene entre 20 y 40 W de carga constante en reposo (TV, router, cargadores), lo que supone 60 a 120 € al año. Las regletas con interruptor evitan este gasto.'
+      : lang === 'fr'
+      ? 'Un foyer moyen cumule 20 à 40 W de veille continue (TV, box internet, chargeurs), soit 60 à 120 € par an. Les multiprises à interrupteur permettent de supprimer ces pertes.'
+      : lang === 'it'
+      ? 'Una casa tipo consuma costantemente 20-40 W in standby (TV, router, alimentatori), pari a 60-120 € all\'anno. Una presa multipla con interruttore risolve il problema.'
+      : lang === 'pt'
+      ? 'Uma residência média consome 20 a 40 W constantes em modo de espera, gerando um custo anual de 60 a 120 €. Réguas com interruptor eliminam essa perda.'
+      : lang === 'ja'
+      ? '一般的な家庭ではテレビ、ルーター、充電器などにより常時20〜40Wの待機電力が発生し、年間約60〜120€のコストになります。節電タップの活用でゼロにできます。'
+      : '일반 가정에서는 TV, 공유기, 충전기 등으로 인해 상시 20~40W의 대기전력이 발생하여 연간 약 60~120€의 불필요한 비용이 청구됩니다. 절전 멀티탭으로 차단할 수 있습니다.',
+  },
 ];
 ---
 
@@ -106,56 +135,68 @@ const homeFaqs = [
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        <a href={`/${lang}/stromkosten-rechner`} class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between dark:bg-slate-800/80 dark:border-slate-700">
+        <!-- Card 1: Cost -->
+        <a href={getLocalizedPath('/stromkosten-rechner', lang)} class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between dark:bg-slate-800/80 dark:border-slate-700 transition group">
           <div>
-            <div class="h-10 w-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-400 flex items-center justify-center font-bold text-lg mb-4">
-              €
+            <div class="h-11 w-11 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-400 flex items-center justify-center mb-4 border border-emerald-500/20 group-hover:bg-emerald-500 group-hover:text-white transition-all">
+              <ApplianceIcon name="calculator" class="h-6 w-6" />
             </div>
-            <h3 class="font-bold text-slate-900 dark:text-white text-base">Stromkostenrechner</h3>
-            <p class="mt-2 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              Watt, Stunden & Strompreis exakt berechnen.
+            <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition">{t('cat.cost.title')}</h3>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              {t('cat.cost.desc')}
             </p>
           </div>
-          <span class="mt-4 text-xs font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">→</span>
+          <span class="mt-5 text-xs font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 group-hover:text-emerald-700 dark:group-hover:text-emerald-300">
+            {t('cat.cost.cta')}
+          </span>
         </a>
 
-        <a href={`/${lang}/kwh-rechner`} class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between dark:bg-slate-800/80 dark:border-slate-700">
+        <!-- Card 2: kWh -->
+        <a href={getLocalizedPath('/kwh-rechner', lang)} class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between dark:bg-slate-800/80 dark:border-slate-700 transition group">
           <div>
-            <div class="h-10 w-10 rounded-xl bg-blue-100 dark:bg-blue-950/80 text-blue-700 dark:text-blue-400 flex items-center justify-center font-bold text-lg mb-4">
-              kWh
+            <div class="h-11 w-11 rounded-xl bg-blue-100 dark:bg-blue-950/80 text-blue-700 dark:text-blue-400 flex items-center justify-center mb-4 border border-blue-500/20 group-hover:bg-blue-500 group-hover:text-white transition-all">
+              <ApplianceIcon name="kwh" class="h-6 w-6" />
             </div>
-            <h3 class="font-bold text-slate-900 dark:text-white text-base">kWh in Euro</h3>
-            <p class="mt-2 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              Kilowattstunden direkt umrechnen.
+            <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">{t('cat.kwh.title')}</h3>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              {t('cat.kwh.desc')}
             </p>
           </div>
-          <span class="mt-4 text-xs font-semibold text-blue-600 dark:text-blue-400 flex items-center gap-1">→</span>
+          <span class="mt-5 text-xs font-semibold text-blue-600 dark:text-blue-400 flex items-center gap-1.5 group-hover:text-blue-700 dark:group-hover:text-blue-300">
+            {t('cat.kwh.cta')}
+          </span>
         </a>
 
-        <a href={`/${lang}/watt-rechner`} class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between dark:bg-slate-800/80 dark:border-slate-700">
+        <!-- Card 3: Watt -->
+        <a href={getLocalizedPath('/watt-rechner', lang)} class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between dark:bg-slate-800/80 dark:border-slate-700 transition group">
           <div>
-            <div class="h-10 w-10 rounded-xl bg-amber-100 dark:bg-amber-950/80 text-amber-700 dark:text-amber-400 flex items-center justify-center font-bold text-lg mb-4">
-              W
+            <div class="h-11 w-11 rounded-xl bg-amber-100 dark:bg-amber-950/80 text-amber-700 dark:text-amber-400 flex items-center justify-center mb-4 border border-amber-500/20 group-hover:bg-amber-500 group-hover:text-white transition-all">
+              <ApplianceIcon name="watt" class="h-6 w-6" />
             </div>
-            <h3 class="font-bold text-slate-900 dark:text-white text-base">Watt in kWh</h3>
-            <p class="mt-2 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              Leistung von Watt in Kilowattstunden umrechnen.
+            <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-amber-600 dark:group-hover:text-amber-400 transition">{t('cat.watt.title')}</h3>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              {t('cat.watt.desc')}
             </p>
           </div>
-          <span class="mt-4 text-xs font-semibold text-amber-600 dark:text-amber-400 flex items-center gap-1">→</span>
+          <span class="mt-5 text-xs font-semibold text-amber-600 dark:text-amber-400 flex items-center gap-1.5 group-hover:text-amber-700 dark:group-hover:text-amber-300">
+            {t('cat.watt.cta')}
+          </span>
         </a>
 
-        <a href={`/${lang}/stromverbrauch-haushalt`} class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between dark:bg-slate-800/80 dark:border-slate-700">
+        <!-- Card 4: Household -->
+        <a href={getLocalizedPath('/stromverbrauch-haushalt', lang)} class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between dark:bg-slate-800/80 dark:border-slate-700 transition group">
           <div>
-            <div class="h-10 w-10 rounded-xl bg-purple-100 dark:bg-purple-950/80 text-purple-700 dark:text-purple-400 flex items-center justify-center font-bold text-lg mb-4">
-              🏠
+            <div class="h-11 w-11 rounded-xl bg-purple-100 dark:bg-purple-950/80 text-purple-700 dark:text-purple-400 flex items-center justify-center mb-4 border border-purple-500/20 group-hover:bg-purple-500 group-hover:text-white transition-all">
+              <ApplianceIcon name="household" class="h-6 w-6" />
             </div>
-            <h3 class="font-bold text-slate-900 dark:text-white text-base">Haushalt</h3>
-            <p class="mt-2 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              Vergleiche deinen Jahresverbrauch für 1 bis 5+ Personen.
+            <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-purple-600 dark:group-hover:text-purple-400 transition">{t('cat.house.title')}</h3>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              {t('cat.house.desc')}
             </p>
           </div>
-          <span class="mt-4 text-xs font-semibold text-purple-600 dark:text-purple-400 flex items-center gap-1">→</span>
+          <span class="mt-5 text-xs font-semibold text-purple-600 dark:text-purple-400 flex items-center gap-1.5 group-hover:text-purple-700 dark:group-hover:text-purple-300">
+            {t('cat.house.cta')}
+          </span>
         </a>
       </div>
     </div>
@@ -166,7 +207,7 @@ const homeFaqs = [
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
         <div>
-          <span class="text-xs font-semibold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">Verbrauch im Detail</span>
+          <span class="text-xs font-semibold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">2026</span>
           <h2 class="mt-1 text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
             {t('appliances.heading')}
           </h2>
@@ -175,8 +216,8 @@ const homeFaqs = [
           </p>
         </div>
         <a
-          href={`/${lang}/geraete`}
-          class="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-2 text-xs font-semibold text-slate-800 dark:text-slate-200 shadow-2xs hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-emerald-400 transition"
+          href={getLocalizedPath('/geraete', lang)}
+          class="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-2.5 text-xs font-semibold text-slate-800 dark:text-slate-200 shadow-2xs hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-emerald-400 transition"
         >
           {t('appliances.view_all')}
         </a>
@@ -184,7 +225,7 @@ const homeFaqs = [
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {popularAppliances.map((appliance) => (
-          <ApplianceCard appliance={appliance} />
+          <ApplianceCard appliance={appliance} lang={lang} />
         ))}
       </div>
     </div>
@@ -194,7 +235,7 @@ const homeFaqs = [
   <section class="py-14 bg-white dark:bg-slate-900 border-b border-slate-200/70 dark:border-slate-800">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-10">
-        <span class="text-xs font-semibold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">Richtwerte 2026</span>
+        <span class="text-xs font-semibold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">2026</span>
         <h2 class="mt-1 text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
           {t('benchmarks.heading')}
         </h2>
@@ -207,23 +248,23 @@ const homeFaqs = [
         <table class="w-full text-left text-xs sm:text-sm">
           <thead class="bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold border-b border-slate-200 dark:border-slate-800">
             <tr>
-              <th class="p-4">Haushaltsgröße</th>
-              <th class="p-4">Wohnung (ohne Warmwasser)</th>
-              <th class="p-4">Wohnung (mit Warmwasser)</th>
-              <th class="p-4">Einfamilienhaus</th>
-              <th class="p-4 text-right">Monatliche Kosten (ca.)</th>
+              <th class="p-4">{t('table.size')}</th>
+              <th class="p-4">{t('table.apt_no_water')}</th>
+              <th class="p-4">{t('table.apt_water')}</th>
+              <th class="p-4">{t('table.house')}</th>
+              <th class="p-4 text-right">{t('table.cost_month')}</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-600 dark:text-slate-400">
+          <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-600 dark:text-slate-300">
             {Object.values(householdBenchmarks).map((bm) => (
               <tr class="hover:bg-slate-50/60 dark:hover:bg-slate-800/50 transition">
                 <td class="p-4 font-semibold text-slate-900 dark:text-white">
                   {bm.label}
                 </td>
-                <td class="p-4">{formatKwh(bm.apartmentWithoutWarmWaterKwh, 0)}/Jahr</td>
-                <td class="p-4 text-amber-700 dark:text-amber-400 font-medium">{formatKwh(bm.apartmentWithWarmWaterKwh, 0)}/Jahr</td>
-                <td class="p-4">{formatKwh(bm.houseWithoutWarmWaterKwh, 0)}/Jahr</td>
-                <td class="p-4 text-right font-bold text-slate-900 dark:text-white">{formatEuro(bm.typicalMonthlyCostEuro)}/Monat</td>
+                <td class="p-4">{formatKwh(bm.apartmentWithoutWarmWaterKwh, 0)}{t('table.per_year')}</td>
+                <td class="p-4 text-emerald-600 dark:text-emerald-400 font-semibold">{formatKwh(bm.apartmentWithWarmWaterKwh, 0)}{t('table.per_year')}</td>
+                <td class="p-4">{formatKwh(bm.houseWithoutWarmWaterKwh, 0)}{t('table.per_year')}</td>
+                <td class="p-4 text-right font-bold text-slate-900 dark:text-white">{formatEuro(bm.typicalMonthlyCostEuro)}{t('table.per_month')}</td>
               </tr>
             ))}
           </tbody>
@@ -236,12 +277,12 @@ const homeFaqs = [
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
     <SourceBox
       sourceIds={['bnetza', 'bdew', 'destatis', 'stromspiegel']}
-      note="Berechnungen basieren auf transparenten, nachvollziehbaren Formeln und offiziellen statistischen Erhebungen."
+      lang={lang}
     />
   </div>
 
   <!-- FAQ Section -->
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-12">
-    <FaqSection items={homeFaqs} />
+    <FaqSection items={homeFaqs} lang={lang} />
   </div>
 </BaseLayout>

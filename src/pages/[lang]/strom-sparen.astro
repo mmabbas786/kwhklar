@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SourceBox from '../../components/trust/SourceBox.astro';
-import { type SupportedLanguage } from '../../i18n/languages';
+import { languages, type SupportedLanguage } from '../../i18n/languages';
 import { useTranslations } from '../../i18n/utils';
 
 export function getStaticPaths() {
@@ -13,41 +13,83 @@ export function getStaticPaths() {
 
 const { lang } = Astro.params as { lang: SupportedLanguage };
 const t = useTranslations(lang);
+const langInfo = languages[lang];
 ---
 
 <BaseLayout
-  title={`Strom sparen: Effektive Tipps & Einsparpotenziale | kWhKlar`}
-  description="Die besten Tipps zum Stromsparen im Haushalt mit konkreten Euro-Ersparnissen."
+  title={`${t('nav.saving')} — ${t('site.title')}`}
+  description={t('site.description')}
   canonical={`https://kwhklar.de/${lang}/strom-sparen`}
 >
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
     <div class="max-w-3xl mx-auto text-center mb-10">
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-        Strom sparen im Haushalt
+      <div class="inline-flex items-center gap-2 rounded-full bg-emerald-100/90 dark:bg-emerald-950/80 px-3.5 py-1 text-xs font-semibold text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 shadow-2xs mb-3">
+        <span>{langInfo.flag} {langInfo.nativeName}</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        {t('nav.saving')}
       </h1>
-      <p class="mt-2 text-base text-slate-600 dark:text-slate-400">
-        Konkrete Tipps und Maßnahmen mit verifizierten Einsparpotenzialen.
+      <p class="mt-2 text-base text-slate-600 dark:text-slate-300">
+        {lang === 'en' ? 'Practical and verified tips to cut your electricity bill by up to 30%.' :
+         lang === 'es' ? 'Consejos prácticos y verificados para reducir tu factura de luz hasta un 30%.' :
+         lang === 'ja' ? '電気代を最大30％削減できる、効果的な省エネ節電テクニック。' :
+         lang === 'fr' ? 'Conseils pratiques pour réduire votre facture d\'électricité jusqu\'à 30%.' :
+         lang === 'pt' ? 'Dicas práticas para reduzir sua conta de energia elétrica em até 30%.' :
+         lang === 'ko' ? '전기요금을 최대 30%까지 절약할 수 있는 실용적인 절전 가이드.' :
+         'Consigli pratici per ridurre la tua bolletta elettrica fino al 30%.'}
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 space-y-2">
-        <span class="text-2xl">🔌</span>
-        <h2 class="text-base font-bold text-slate-900 dark:text-white">Standby-Strom vermeiden</h2>
-        <p class="text-xs text-slate-600 dark:text-slate-400">Schaltbare Steckdosenleisten sparen bis zu 100 € pro Jahr an unnötigen Ruheverlusten.</p>
+      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 p-6 space-y-2.5 shadow-xs">
+        <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 font-bold">🔌</span>
+        <h2 class="text-base font-bold text-slate-900 dark:text-white">
+          {lang === 'en' ? 'Eliminate Standby Waste' :
+           lang === 'es' ? 'Evitar el consumo en espera' :
+           lang === 'ja' ? '待機電力を完全カット' :
+           lang === 'fr' ? 'Supprimer la consommation de veille' :
+           lang === 'pt' ? 'Eliminar o consumo em modo de espera' :
+           lang === 'ko' ? '대기전력 완벽 차단' :
+           'Eliminare lo spreco in standby'}
+        </h2>
+        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+          {lang === 'en' ? 'Switchable power strips prevent continuous draw from TVs, routers, and game consoles, saving up to €100 annually.' :
+           lang === 'es' ? 'Las regletas con interruptor evitan el consumo constante de televisores, routers y consolas, ahorrando hasta 100 € al año.' :
+           lang === 'ja' ? '節電タップでテレビやゲーム機の待機電力を遮断し、年間最大100€を節約。' :
+           lang === 'fr' ? 'Les multiprises avec interrupteur coupent la consommation fantôme des TV et consoles, économisant jusqu\'à 100 € par an.' :
+           lang === 'pt' ? 'Réguas com interruptor evitam o consumo fantasma de TVs e videogames, economizando até 100 € por ano.' :
+           lang === 'ko' ? '절전 멀티탭으로 TV, 셋톱박스, 콘솔의 대기전력을 차단하여 연간 최대 100€ 절약.' :
+           'Le ciabatte con interruttore evitano il consumo continuo di TV e console, risparmiando fino a 100 € all\'anno.'}
+        </p>
       </div>
 
-      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 space-y-2">
-        <span class="text-2xl">❄️</span>
-        <h2 class="text-base font-bold text-slate-900 dark:text-white">Kühlgeräte optimal einstellen</h2>
-        <p class="text-xs text-slate-600 dark:text-slate-400">7 °C im Kühlschrank und -18 °C im Gefrierschrank reichen völlig aus und sparen Strom.</p>
+      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 p-6 space-y-2.5 shadow-xs">
+        <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 font-bold">❄️</span>
+        <h2 class="text-base font-bold text-slate-900 dark:text-white">
+          {lang === 'en' ? 'Optimize Fridge Temperature' :
+           lang === 'es' ? 'Ajustar la temperatura del frigorífico' :
+           lang === 'ja' ? '冷蔵庫の温度設定を最適化' :
+           lang === 'fr' ? 'Optimiser la température du réfrigérateur' :
+           lang === 'pt' ? 'Otimizar a temperatura da geladeira' :
+           lang === 'ko' ? '냉장고 적정 온도 설정' :
+           'Ottimizzare la temperatura del frigo'}
+        </h2>
+        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+          {lang === 'en' ? 'Setting the fridge to 7 °C (45 °F) and freezer to -18 °C (0 °F) is optimal. Every degree colder adds approx. 6% to electricity costs.' :
+           lang === 'es' ? 'Mantener 7 °C en la nevera y -18 °C en el congelador es suficiente. Cada grado menos aumenta un 6% el consumo.' :
+           lang === 'ja' ? '冷蔵室は7℃、冷凍室は-18℃が最適。設定温度を1℃下げるごとに約6％余分な電力を消費します。' :
+           lang === 'fr' ? '7 °C dans le réfrigérateur et -18 °C au congélateur suffisent. Chaque degré de moins augmente la consommation de 6 %.' :
+           lang === 'pt' ? '7 °C no refrigerador e -18 °C no freezer são ideais. Cada grau a menos consome cerca de 6% mais energia.' :
+           lang === 'ko' ? '냉장실 7℃, 냉동실 -18℃가 적정 기준입니다. 온도를 1℃ 낮출 때마다 전력 소비가 약 6% 증가합니다.' :
+           '7 °C nel frigo e -18 °C nel congelatore sono ottimali. Ogni grado in meno aumenta i consumi del 6%.'}
+        </p>
       </div>
     </div>
 
     <div class="mt-10 max-w-4xl mx-auto">
       <SourceBox
         sourceIds={['stromspiegel', 'destatis']}
-        note="Empfehlungen und Einsparwerte basieren auf Studien der Stromspiegel-Initiative."
+        lang={lang}
       />
     </div>
   </div>

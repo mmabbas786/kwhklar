@@ -4,6 +4,7 @@ import UniversalCalculator from '../components/calculator/UniversalCalculator.as
 import ApplianceCard from '../components/cards/ApplianceCard.astro';
 import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
+import ApplianceIcon from '../components/icons/ApplianceIcon.astro';
 import { appliances } from '../data/appliances';
 import { householdBenchmarks } from '../data/household-benchmarks';
 import { electricityPriceData } from '../data/electricity-price';
@@ -20,20 +21,29 @@ const popularAppliances = [
 
 const homeFaqs = [
   {
-    question: 'Wie berechnet man Stromkosten aus Watt und Stunden?',
-    answer: 'Formel: Stromkosten (€) = (Leistung in Watt × Nutzungsdauer in Stunden ÷ 1.000) × Strompreis in €/kWh. Beispiel: Ein 2.000-Watt-Gerät verbraucht in 2 Stunden: (2.000 × 2 ÷ 1.000) = 4 kWh. Bei 35 ct/kWh kostet das 1,40 Euro.',
+    question: 'Wie berechnet man die Stromkosten aus Watt und Stunden?',
+    answer:
+      'Die Formel lautet: Kosten (€) = (Leistung in Watt × Nutzungsdauer in Stunden ÷ 1.000) × Strompreis (€/kWh). Beispiel: Ein 2.000-Watt-Gerät, das 2 Stunden läuft, verbraucht (2.000 × 2 ÷ 1.000) = 4 kWh. Bei 35 ct/kWh kostet das 1,40 €.',
+  },
+  {
+    question: 'Was ist der Unterschied zwischen Watt (W) und Kilowattstunde (kWh)?',
+    answer:
+      'Watt (W) bzw. Kilowatt (kW = 1.000 W) ist die physikalische Leistung – also wie viel Energie ein Gerät in jedem Augenblick benötigt. Die Kilowattstunde (kWh) ist die geleistete Arbeit bzw. der tatsächliche Gesamtverbrauch über einen Zeitraum.',
+  },
+  {
+    question: 'Wie hoch ist der durchschnittliche Stromverbrauch eines Haushalts in Deutschland?',
+    answer:
+      'Laut Stromspiegel 2024/2025 verbraucht ein 1-Personen-Haushalt in der Wohnung ca. 1.300–1.500 kWh/Jahr, ein 2-Personen-Haushalt ca. 2.100–2.500 kWh/Jahr und eine 4-köpfige Familie ca. 3.000–4.000 kWh/Jahr (ohne elektrische Warmwasserbereitung).',
   },
   {
     question: 'Wie viel kostet 1 kWh Strom in Deutschland aktuell?',
-    answer: 'Im bundesweiten Durchschnitt liegt der Strompreis für Haushaltskunden bei ca. 35 Cent pro Kilowattstunde (ct/kWh). Je nach Region, Netzentgelten und Anbieter variieren Neuverträge zwischen 28 und 38 ct/kWh.',
+    answer:
+      'Der durchschnittliche Haushaltsstrompreis in Deutschland liegt 2026 bei ca. 35 bis 37 Cent pro Kilowattstunde (Arbeitspreis für Neukunden oft bei 28–32 ct/kWh, in der Grundversorgung bei 40–44 ct/kWh).',
   },
   {
-    question: 'Was sind die größten Stromfresser im Haushalt?',
-    answer: 'Zu den größten Stromverbrauchern zählen alte Kühl- und Gefrierschränke, elektrische Warmwasserbereiter (Durchlauferhitzer), Kondenstrockner, Heizlüfter, dauerhaft genutzte Gaming-PCs sowie Standby-Verluste älterer Unterhaltungselektronik.',
-  },
-  {
-    question: 'Wie viel Strom verbraucht ein 4-Personen-Haushalt im Durchschnitt?',
-    answer: 'Eine 4-köpfige Familie verbraucht in einer Wohnung durchschnittlich ca. 3.000 kWh pro Jahr (ohne elektrische Warmwasserbereitung) bzw. rund 4.000 bis 5.300 kWh im Einfamilienhaus mit elektrischer Warmwasserbereitung.',
+    question: 'Welche Geräte verbrauchen im Haushalt am meisten Strom?',
+    answer:
+      'Zu den größten Stromverbrauchern gehören alte Kühl- und Gefriergeräte, Wäschetrockner ohne Wärmepumpe, elektrische Durchlauferhitzer, Heizlüfter sowie Hochleistungs-Gaming-PCs bei langer täglicher Nutzung.',
   },
 ];
 ---
@@ -48,9 +58,7 @@ const homeFaqs = [
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto space-y-4 mb-8">
         <div class="inline-flex items-center gap-2 rounded-full bg-emerald-100/90 dark:bg-emerald-950/80 px-3.5 py-1 text-xs font-semibold text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 shadow-2xs">
-          <span>⚡ Unabhängig & Transparent</span>
-          <span class="text-emerald-500">•</span>
-          <span>Aktuelle Richtwerte 2026</span>
+          <span>⚡ Unabhängig & Transparent • Aktuelle Richtwerte 2026</span>
         </div>
         <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-5xl lg:text-6xl">
           Stromkosten & Energieverbrauch <span class="text-emerald-600 dark:text-emerald-400">einfach berechnen</span>
@@ -84,56 +92,56 @@ const homeFaqs = [
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        <a href="/stromkosten-rechner" class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between dark:bg-slate-800/80 dark:border-slate-700">
+        <a href="/stromkosten-rechner" class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between dark:bg-slate-800/80 dark:border-slate-700 transition group">
           <div>
-            <div class="h-10 w-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-400 flex items-center justify-center font-bold text-lg mb-4">
-              €
+            <div class="h-11 w-11 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-400 flex items-center justify-center mb-4 border border-emerald-500/20 group-hover:bg-emerald-500 group-hover:text-white transition-all">
+              <ApplianceIcon name="calculator" class="h-6 w-6" />
             </div>
-            <h3 class="font-bold text-slate-900 dark:text-white text-base">Stromkostenrechner</h3>
-            <p class="mt-2 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition">Stromkostenrechner</h3>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
               Berechne die Gesamtkosten aus Watt, Nutzungsdauer und Strompreis für jedes Elektrogerät.
             </p>
           </div>
-          <span class="mt-4 text-xs font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">Zum Rechner →</span>
+          <span class="mt-5 text-xs font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 group-hover:text-emerald-700 dark:group-hover:text-emerald-300">Zum Rechner →</span>
         </a>
 
-        <a href="/kwh-rechner" class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between dark:bg-slate-800/80 dark:border-slate-700">
+        <a href="/kwh-rechner" class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between dark:bg-slate-800/80 dark:border-slate-700 transition group">
           <div>
-            <div class="h-10 w-10 rounded-xl bg-blue-100 dark:bg-blue-950/80 text-blue-700 dark:text-blue-400 flex items-center justify-center font-bold text-lg mb-4">
-              kWh
+            <div class="h-11 w-11 rounded-xl bg-blue-100 dark:bg-blue-950/80 text-blue-700 dark:text-blue-400 flex items-center justify-center mb-4 border border-blue-500/20 group-hover:bg-blue-500 group-hover:text-white transition-all">
+              <ApplianceIcon name="kwh" class="h-6 w-6" />
             </div>
-            <h3 class="font-bold text-slate-900 dark:text-white text-base">kWh in Euro Rechner</h3>
-            <p class="mt-2 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">kWh in Euro Rechner</h3>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
               Kilowattstunden direkt in Euro umrechnen oder Kosten für 100, 500, 1.000 kWh ermitteln.
             </p>
           </div>
-          <span class="mt-4 text-xs font-semibold text-blue-600 dark:text-blue-400 flex items-center gap-1">Zum Rechner →</span>
+          <span class="mt-5 text-xs font-semibold text-blue-600 dark:text-blue-400 flex items-center gap-1.5 group-hover:text-blue-700 dark:group-hover:text-blue-300">Zum Rechner →</span>
         </a>
 
-        <a href="/watt-rechner" class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between dark:bg-slate-800/80 dark:border-slate-700">
+        <a href="/watt-rechner" class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between dark:bg-slate-800/80 dark:border-slate-700 transition group">
           <div>
-            <div class="h-10 w-10 rounded-xl bg-amber-100 dark:bg-amber-950/80 text-amber-700 dark:text-amber-400 flex items-center justify-center font-bold text-lg mb-4">
-              W
+            <div class="h-11 w-11 rounded-xl bg-amber-100 dark:bg-amber-950/80 text-amber-700 dark:text-amber-400 flex items-center justify-center mb-4 border border-amber-500/20 group-hover:bg-amber-500 group-hover:text-white transition-all">
+              <ApplianceIcon name="watt" class="h-6 w-6" />
             </div>
-            <h3 class="font-bold text-slate-900 dark:text-white text-base">Watt in kWh Rechner</h3>
-            <p class="mt-2 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-amber-600 dark:group-hover:text-amber-400 transition">Watt in kWh Rechner</h3>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
               Leistung von Watt in Kilowattstunden und laufende Betriebskosten umrechnen.
             </p>
           </div>
-          <span class="mt-4 text-xs font-semibold text-amber-600 dark:text-amber-400 flex items-center gap-1">Zum Rechner →</span>
+          <span class="mt-5 text-xs font-semibold text-amber-600 dark:text-amber-400 flex items-center gap-1.5 group-hover:text-amber-700 dark:group-hover:text-amber-300">Zum Rechner →</span>
         </a>
 
-        <a href="/stromverbrauch-haushalt" class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between dark:bg-slate-800/80 dark:border-slate-700">
+        <a href="/stromverbrauch-haushalt" class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between dark:bg-slate-800/80 dark:border-slate-700 transition group">
           <div>
-            <div class="h-10 w-10 rounded-xl bg-purple-100 dark:bg-purple-950/80 text-purple-700 dark:text-purple-400 flex items-center justify-center font-bold text-lg mb-4">
-              🏠
+            <div class="h-11 w-11 rounded-xl bg-purple-100 dark:bg-purple-950/80 text-purple-700 dark:text-purple-400 flex items-center justify-center mb-4 border border-purple-500/20 group-hover:bg-purple-500 group-hover:text-white transition-all">
+              <ApplianceIcon name="household" class="h-6 w-6" />
             </div>
-            <h3 class="font-bold text-slate-900 dark:text-white text-base">Haushaltsstrom-Rechner</h3>
-            <p class="mt-2 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-purple-600 dark:group-hover:text-purple-400 transition">Haushaltsstrom-Rechner</h3>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
               Vergleiche deinen Jahresverbrauch mit typischen 1- bis 5-Personen-Haushalten in Deutschland.
             </p>
           </div>
-          <span class="mt-4 text-xs font-semibold text-purple-600 dark:text-purple-400 flex items-center gap-1">Zum Rechner →</span>
+          <span class="mt-5 text-xs font-semibold text-purple-600 dark:text-purple-400 flex items-center gap-1.5 group-hover:text-purple-700 dark:group-hover:text-purple-300">Zum Rechner →</span>
         </a>
       </div>
     </div>

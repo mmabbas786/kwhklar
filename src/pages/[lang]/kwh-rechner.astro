@@ -18,17 +18,20 @@ const langInfo = languages[lang];
 ---
 
 <BaseLayout
-  title={`kWh Rechner & Umrechnung in Euro | kWhKlar`}
-  description={t('site.description')}
+  title={`${t('cat.kwh.title')} — ${t('site.title')}`}
+  description={t('cat.kwh.desc')}
   canonical={`https://kwhklar.de/${lang}/kwh-rechner`}
 >
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
     <div class="max-w-3xl mx-auto text-center mb-8">
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-        kWh Rechner & Umrechnung
+      <div class="inline-flex items-center gap-2 rounded-full bg-blue-100/90 dark:bg-blue-950/80 px-3.5 py-1 text-xs font-semibold text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800/60 shadow-2xs mb-3">
+        <span>{langInfo.flag} {langInfo.nativeName}</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        {t('cat.kwh.title')}
       </h1>
-      <p class="mt-2 text-base text-slate-600 dark:text-slate-400">
-        Kilowattstunden in Euro und Betriebskosten präzise berechnen.
+      <p class="mt-2 text-base text-slate-600 dark:text-slate-300">
+        {t('cat.kwh.desc')}
       </p>
     </div>
 
@@ -36,14 +39,14 @@ const langInfo = languages[lang];
       defaultWatt={1000}
       defaultHours={1}
       defaultPriceCt={langInfo.defaultPricePerKwh * 100}
-      title="kWh Rechner"
-      subtitle="Rechne Watt, Stunden und kWh in Gesamtkosten um:"
+      title={t('cat.kwh.title')}
+      subtitle={t('calc.subtitle')}
     />
 
     <div class="mt-12 max-w-4xl mx-auto">
       <SourceBox
         sourceIds={['bnetza', 'destatis']}
-        note="Berechnungen basieren auf standardisierten physikalischen Einheiten (1 kWh = 1.000 Wattstunden)."
+        lang={lang}
       />
     </div>
   </div>

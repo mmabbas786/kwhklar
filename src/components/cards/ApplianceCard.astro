@@ -1,49 +1,62 @@
 ---
 import type { Appliance } from '../../data/appliances';
 import { formatEuro, formatWatt } from '../../lib/formatters';
+import type { SupportedLanguage } from '../../i18n/languages';
+import { getLocalizedAppliance } from '../../i18n/appliances';
+import { useTranslations } from '../../i18n/utils';
+import ApplianceIcon from '../icons/ApplianceIcon.astro';
 
 interface Props {
   appliance: Appliance;
+  lang?: SupportedLanguage;
 }
 
-const { appliance } = Astro.props;
+const { appliance, lang = 'de' } = Astro.props;
+const t = useTranslations(lang);
+const localized = getLocalizedAppliance(appliance.slug, lang);
+
+const displayName = localized?.name || appliance.name;
+const displayCategory = localized?.category || appliance.category;
+const displayDesc = localized?.shortDescription || appliance.shortDescription;
+
+const href = lang === 'de' ? `/geraete/${appliance.slug}` : `/${lang}/geraete/${appliance.slug}`;
 ---
 
 <a
-  href={`/geraete/${appliance.slug}`}
-  class="group flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-5 shadow-xs transition-all hover:border-emerald-400 hover:shadow-md hover:-translate-y-0.5"
+  href={href}
+  class="group flex flex-col justify-between rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 p-5 shadow-xs transition-all hover:border-emerald-400 dark:hover:border-emerald-500 hover:shadow-md hover:-translate-y-0.5"
 >
   <div>
     <div class="flex items-start justify-between gap-2">
-      <div class="flex items-center gap-2.5">
-        <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-xl group-hover:bg-emerald-50 transition">
-          {appliance.icon}
+      <div class="flex items-center gap-3">
+        <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 group-hover:bg-emerald-500 group-hover:text-white transition-all">
+          <ApplianceIcon name={appliance.slug} class="h-6 w-6" />
         </span>
         <div>
-          <h3 class="font-bold text-slate-900 group-hover:text-emerald-700 transition">
-            {appliance.name}
+          <h3 class="font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition text-base">
+            {displayName}
           </h3>
-          <span class="text-[11px] font-medium text-slate-500">
-            {appliance.category}
+          <span class="text-[11px] font-medium text-slate-500 dark:text-slate-400">
+            {displayCategory}
           </span>
         </div>
       </div>
-      <span class="badge-emerald text-[11px]">
-        {formatEuro(appliance.annualCostEuro)}/Jahr
+      <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-500/20">
+        {formatEuro(appliance.annualCostEuro)}{t('card.per_year') || '/Jahr'}
       </span>
     </div>
 
-    <p class="mt-3 text-xs text-slate-600 line-clamp-2 leading-relaxed">
-      {appliance.shortDescription}
+    <p class="mt-3.5 text-xs text-slate-600 dark:text-slate-300 line-clamp-2 leading-relaxed">
+      {displayDesc}
     </p>
   </div>
 
-  <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-    <span>Leistung: <strong class="text-slate-700">{formatWatt(appliance.typicalWattage)}</strong></span>
-    <span class="font-semibold text-emerald-600 group-hover:text-emerald-700 flex items-center gap-0.5">
-      Rechner
-      <svg class="h-3 w-3 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+  <div class="mt-4 pt-3.5 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+    <span>{t('card.power') || 'Leistung'}: <strong class="text-slate-800 dark:text-slate-200">{formatWatt(appliance.typicalWattage)}</strong></span>
+    <span class="font-semibold text-emerald-600 dark:text-emerald-400 group-hover:text-emerald-700 dark:group-hover:text-emerald-300 flex items-center gap-1">
+      {t('card.calculator') || 'Rechner'}
+      <svg class="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
       </svg>
     </span>
   </div>
