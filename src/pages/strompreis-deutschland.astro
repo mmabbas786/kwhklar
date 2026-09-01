@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import UniversalCalculator from '../components/calculator/UniversalCalculator.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import RelatedLinks from '../components/seo/RelatedLinks.astro';
+import SourceBox from '../components/trust/SourceBox.astro';
+import FaqSection from '../components/content/FaqSection.astro';
+
+const faqs = [
+  {
+    question: 'Wo ist Strom in Deutschland am teuersten und wo am günstigsten?',
+    answer: 'Tendenziell waren die Netzentgelte in ländlichen Regionen Nord- und Ostdeutschlands (mit starkem Erneuerbaren-Ausbau) höher, während Ballungsräume im Süden oft etwas günstigere Netzkosten aufwiesen. Die Bundesnetzagentur führt schrittweise Reformen zur bundesweiten Harmonisierung der Netzkosten durch.',
+  },
+];
+
+const related = [
+  { title: 'Strompreis Zusammensetzung', href: '/strompreis-zusammensetzung', description: 'Kostenbausteine.' },
+  { title: 'Strompreise Entwicklung', href: '/strompreis-entwicklung', description: 'Verlauf seit 2018.' },
+  { title: 'Stromanbieter wechseln', href: '/stromanbieter-wechseln', description: 'Tarif wechseln & sparen.' },
+];
+---
+
+<BaseLayout
+  title="Strompreis Deutschland: Regionale Unterschiede & Tarife | kWhKlar"
+  description="Strompreise in Deutschland im Vergleich. Alles zu regionalen Netzentgelten, Grundversorgungstarifen und Neukundenangeboten."
+  canonical="https://kwhklar.de/strompreis-deutschland"
+  breadcrumbs={[
+    { name: 'Strompreis', path: '/strompreis' },
+    { name: 'Strompreis Deutschland', path: '/strompreis-deutschland' },
+  ]}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs
+      items={[
+        { name: 'Strompreis', path: '/strompreis' },
+        { name: 'Strompreis Deutschland', path: '/strompreis-deutschland' },
+      ]}
+    />
+
+    <div class="max-w-3xl mb-8">
+      <span class="badge-emerald text-xs mb-2">Bundesweiter Überblick</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+        Strompreise in Deutschland
+      </h1>
+      <p class="mt-3 text-base text-slate-600 leading-relaxed">
+        Erfahre, wie der deutsche Strommarkt funktioniert und warum sich die Stromtarife je nach Postleitzahl und Netzgebiet unterscheiden.
+      </p>
+    </div>
+
+    <UniversalCalculator
+      defaultWatt={1000}
+      defaultHours={1}
+      defaultPriceCt={35.0}
+      title="Strompreis-Rechner"
+      subtitle="Berechne die Kosten nach deinem regionalen Tarif:"
+    />
+
+    <RelatedLinks links={related} />
+    <SourceBox sourceIds={['bnetza', 'bdew', 'destatis']} />
+    <FaqSection items={faqs} />
+  </div>
+</BaseLayout>

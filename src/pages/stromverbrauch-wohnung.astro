@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import UniversalCalculator from '../components/calculator/UniversalCalculator.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import RelatedLinks from '../components/seo/RelatedLinks.astro';
+import SourceBox from '../components/trust/SourceBox.astro';
+import FaqSection from '../components/content/FaqSection.astro';
+import { householdBenchmarks } from '../data/household-benchmarks';
+import { formatKwh } from '../lib/formatters';
+
+const faqs = [
+  {
+    question: 'Wie hoch ist der durchschnittliche Stromverbrauch in einer Wohnung?',
+    answer: 'In einer Mietwohnung im Mehrfamilienhaus liegt der durchschnittliche Stromverbrauch bei ca. 1.300 kWh (1 Person), 2.100 kWh (2 Personen) und 3.000 kWh (4 Personen) pro Jahr, sofern das Warmwasser zentral erzeugt wird.',
+  },
+];
+
+const related = [
+  { title: 'Stromverbrauch Einfamilienhaus', href: '/stromverbrauch-einfamilienhaus', description: 'Vergleich mit dem Eigenheim.' },
+  { title: '1-Personen-Haushalt', href: '/stromverbrauch-1-person', description: 'Wohnung Single.' },
+  { title: '2-Personen-Haushalt', href: '/stromverbrauch-2-personen', description: 'Wohnung Paar.' },
+  { title: 'Stromrechnung senken', href: '/stromrechnung-senken', description: 'Tipps für Mieter.' },
+];
+---
+
+<BaseLayout
+  title="Stromverbrauch Wohnung: Durchschnitt nach m² & Personen | kWhKlar"
+  description="Wie viel Strom verbraucht eine Mietwohnung? Offizielle Richtwerte für 1–5 Personen im Mehrfamilienhaus mit & ohne elektrische Warmwasserbereitung."
+  canonical="https://kwhklar.de/stromverbrauch-wohnung"
+  breadcrumbs={[
+    { name: 'Haushalt', path: '/stromverbrauch-haushalt' },
+    { name: 'Stromverbrauch Wohnung', path: '/stromverbrauch-wohnung' },
+  ]}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs
+      items={[
+        { name: 'Haushalt', path: '/stromverbrauch-haushalt' },
+        { name: 'Stromverbrauch Wohnung', path: '/stromverbrauch-wohnung' },
+      ]}
+    />
+
+    <div class="max-w-3xl mb-8">
+      <span class="badge-blue text-xs mb-2">Wohnungs-Benchmark</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+        Stromverbrauch in der Wohnung (Mehrfamilienhaus)
+      </h1>
+      <p class="mt-3 text-base text-slate-600 leading-relaxed">
+        Wohnungen in Mehrfamilienhäusern verbrauchen im Schnitt rund 20 bis 35 % weniger Strom als freistehende Einfamilienhäuser, da viele Nebenverbraucher (z.B. Heizungspumpen, Außenlicht, Garagen) über den Allgemeinstrom abgerechnet werden.
+      </p>
+    </div>
+
+    <!-- Overview Table -->
+    <div class="my-8 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xs">
+      <h2 class="text-xl font-bold text-slate-900 mb-4">Wohnungs-Richtwerte im Überblick (Stromspiegel)</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs sm:text-sm">
+          <thead class="bg-slate-50 text-slate-700 font-semibold border-b border-slate-200">
+            <tr>
+              <th class="p-3">Haushaltsgröße</th>
+              <th class="p-3">Ohne Warmwasser (Zentral)</th>
+              <th class="p-3">Mit Warmwasser (Elektrisch)</th>
+              <th class="p-3 text-right">Monatskosten ca. (bei 35 ct)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 text-slate-600">
+            {Object.values(householdBenchmarks).map((b) => (
+              <tr>
+                <td class="p-3 font-semibold text-slate-900">{b.label}</td>
+                <td class="p-3 text-emerald-700 font-medium">{formatKwh(b.apartmentWithoutWarmWaterKwh, 0)}/Jahr</td>
+                <td class="p-3 text-amber-700 font-medium">{formatKwh(b.apartmentWithWarmWaterKwh, 0)}/Jahr</td>
+                <td class="p-3 text-right font-bold text-slate-900">{Math.round((b.apartmentWithoutWarmWaterKwh * 0.35) / 12 + 12.5)} €/Monat</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <UniversalCalculator
+      defaultWatt={300}
+      defaultHours={24}
+      defaultPriceCt={35.0}
+      title="Wohnungs-Stromkostenrechner"
+      subtitle="Ermittle deine Stromkosten bei individuellem Wohnungsverbrauch:"
+    />
+
+    <RelatedLinks links={related} />
+    <SourceBox sourceIds={['stromspiegel', 'destatis']} />
+    <FaqSection items={faqs} />
+  </div>
+</BaseLayout>

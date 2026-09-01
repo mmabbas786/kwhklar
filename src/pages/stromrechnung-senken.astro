@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import RelatedLinks from '../components/seo/RelatedLinks.astro';
+import SourceBox from '../components/trust/SourceBox.astro';
+import FaqSection from '../components/content/FaqSection.astro';
+
+const faqs = [
+  {
+    question: 'Wie kann ich meinen monatlichen Stromabschlag sofort senken?',
+    answer: 'Du kannst bei deinem Energieversorger (meist direkt im Online-Kundenportal) eine Anpassung des Abschlags beantragen, wenn du deinen Verbrauch durch Stromsparmaßnahmen nachweislich gesenkt hast. Zudem sparst du durch einen Anbieterwechsel oft mehrere hundert Euro jährlich.',
+  },
+];
+
+const related = [
+  { title: 'Strom sparen Tipps', href: '/strom-sparen-tipps', description: 'Konkrete Maßnahmen im Alltag.' },
+  { title: 'Stromanbieter wechseln', href: '/stromanbieter-wechseln', description: 'Tarif wechseln & sparen.' },
+  { title: 'Stromfresser finden', href: '/stromfresser', description: 'Alte Geräte austauschen.' },
+];
+---
+
+<BaseLayout
+  title="Stromrechnung senken: Die effektivsten Hebel für Haushalte | kWhKlar"
+  description="Stromrechnung und monatlichen Abschlag senken: Tarifwechsel, Austausch von Stromfressern, Standby-Vermeidung und praktische Sofortmaßnahmen."
+  canonical="https://kwhklar.de/stromrechnung-senken"
+  breadcrumbs={[
+    { name: 'Stromrechnung', path: '/stromrechnung' },
+    { name: 'Stromrechnung senken', path: '/stromrechnung-senken' },
+  ]}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs
+      items={[
+        { name: 'Stromrechnung', path: '/stromrechnung' },
+        { name: 'Stromrechnung senken', path: '/stromrechnung-senken' },
+      ]}
+    />
+
+    <div class="max-w-3xl mb-8">
+      <span class="badge-emerald text-xs mb-2">Sparstrategie</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+        Stromrechnung & monatlichen Abschlag senken
+      </h1>
+      <p class="mt-3 text-base text-slate-600 leading-relaxed">
+        Mit den beiden Hebeln <strong>Verbrauchsreduktion</strong> und <strong>Tarifoptimierung</strong> kannst du deine Stromkosten oft um 200 bis 600 Euro pro Jahr senken.
+      </p>
+    </div>
+
+    <!-- 2 Levers Card -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-10 max-w-4xl mx-auto">
+      <div class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xs">
+        <div class="text-xs font-bold uppercase tracking-wider text-emerald-700 mb-2">Hebel 1</div>
+        <h2 class="text-xl font-bold text-slate-900 mb-3">Tarif & Anbieter optimieren</h2>
+        <ul class="space-y-2 text-xs sm:text-sm text-slate-600">
+          <li>• Aus der teuren Grundversorgung in einen günstigen Sondervertrag wechseln (spart 10–15 ct/kWh).</li>
+          <li>• Tarife mit kurzer Laufzeit (12 Monate) und Preisgarantie wählen.</li>
+          <li>• Regelmäßig vergleichen und Kündigungsfristen im Kalender notieren.</li>
+        </ul>
+      </div>
+
+      <div class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xs">
+        <div class="text-xs font-bold uppercase tracking-wider text-emerald-700 mb-2">Hebel 2</div>
+        <h2 class="text-xl font-bold text-slate-900 mb-3">Verbrauch dauerhaft senken</h2>
+        <ul class="space-y-2 text-xs sm:text-sm text-slate-600">
+          <li>• Standby-Verluste durch schaltbare Steckdosenleisten eliminieren (spart ca. 50–100 €/Jahr).</li>
+          <li>• Alte Kühlschränke und Gefriertruhen (> 10 Jahre) erneuern.</li>
+          <li>• Waschmaschine bei 30 °C und Spülmaschine im Eco-Modus betreiben.</li>
+        </ul>
+      </div>
+    </div>
+
+    <RelatedLinks links={related} />
+    <SourceBox sourceIds={['bnetza', 'stromspiegel']} />
+    <FaqSection items={faqs} />
+  </div>
+</BaseLayout>

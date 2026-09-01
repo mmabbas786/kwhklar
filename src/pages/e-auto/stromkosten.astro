@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import RelatedLinks from '../../components/seo/RelatedLinks.astro';
+import SourceBox from '../../components/trust/SourceBox.astro';
+import FaqSection from '../../components/content/FaqSection.astro';
+
+const faqs = [
+  {
+    question: 'Wie viel Strom verbraucht ein Elektroauto pro Jahr bei 15.000 km?',
+    answer: 'Bei einem realistischen Verbrauch von 18 kWh/100 km (inkl. 10 % Ladeverlusten = 19,8 kWh) verbraucht ein E-Auto bei 15.000 km Jahresfahrleistung rund 2.970 kWh Strom. Das entspricht fast dem gesamten Haushaltsstrom einer vierköpfigen Familie.',
+  },
+];
+
+const related = [
+  { title: 'Ladekosten Rechner', href: '/e-auto/ladekosten-rechner', description: 'Exakte Ladekosten berechnen.' },
+  { title: 'Kosten pro 100 km', href: '/e-auto/kosten-pro-100-km', description: 'Vergleich zu Benzin & Diesel.' },
+  { title: 'PV Eigenverbrauch Rechner', href: '/photovoltaik/eigenverbrauch-rechner', description: 'E-Auto mit Solarstrom laden.' },
+];
+---
+
+<BaseLayout
+  title="E-Auto Stromkosten: Was kostet das Fahren & Laden im Jahr? | kWhKlar"
+  description="Wie hoch sind die jährlichen Stromkosten für ein Elektroauto? Ladekosten zu Hause vs. Schnellladen, Strombedarf und Spartipps für E-Autofahrer."
+  canonical="https://kwhklar.de/e-auto/stromkosten"
+  breadcrumbs={[
+    { name: 'E-Auto', path: '/e-auto/stromkosten' },
+    { name: 'Stromkosten', path: '/e-auto/stromkosten' },
+  ]}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs
+      items={[
+        { name: 'E-Auto', path: '/e-auto/stromkosten' },
+        { name: 'Stromkosten Übersicht', path: '/e-auto/stromkosten' },
+      ]}
+    />
+
+    <div class="max-w-3xl mb-8">
+      <span class="badge-emerald text-xs mb-2">E-Mobilität Ratgeber</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+        E-Auto Stromkosten im Jahresvergleich
+      </h1>
+      <p class="mt-3 text-base text-slate-600 leading-relaxed">
+        Erfahre, wie sich die Ladekosten eines Elektroautos zusammensetzen und warum das Laden an der eigenen Wallbox deutlich günstiger ist als öffentliches Schnellladen.
+      </p>
+    </div>
+
+    <!-- Comparison: Home vs Public vs Fast -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-10 max-w-4xl mx-auto">
+      <div class="rounded-3xl border border-emerald-200 bg-emerald-50/50 p-6 shadow-xs">
+        <span class="badge-emerald text-xs mb-2">Am günstigsten</span>
+        <h2 class="text-lg font-bold text-slate-900">Eigene Wallbox</h2>
+        <p class="text-xs text-slate-600 mt-2">Laden zu Hause über den normalen Haushaltsstromvertrag oder dynamischen Tarif.</p>
+        <div class="mt-4 pt-3 border-t border-emerald-200 text-xs">
+          <strong class="text-emerald-900 block text-base font-bold">ca. 30–35 ct/kWh</strong>
+          <span class="text-slate-500">ca. 5,50–6,90 € pro 100 km</span>
+        </div>
+      </div>
+
+      <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-xs">
+        <span class="badge-blue text-xs mb-2">Unterwegs AC</span>
+        <h2 class="text-lg font-bold text-slate-900">Öffentliche AC-Säule</h2>
+        <p class="text-xs text-slate-600 mt-2">Laden in der Stadt an 11- oder 22-kW-Ladesäulen (Normalladepunkt).</p>
+        <div class="mt-4 pt-3 border-t border-slate-200 text-xs">
+          <strong class="text-slate-900 block text-base font-bold">ca. 45–55 ct/kWh</strong>
+          <span class="text-slate-500">ca. 8,50–10,50 € pro 100 km</span>
+        </div>
+      </div>
+
+      <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-xs">
+        <span class="badge-amber text-xs mb-2">Autobahn DC</span>
+        <h2 class="text-lg font-bold text-slate-900">HPC-Schnelllader</h2>
+        <p class="text-xs text-slate-600 mt-2">Schnellladen an Autobahnraststätten mit 150 bis 350 kW Ladeleistung.</p>
+        <div class="mt-4 pt-3 border-t border-slate-200 text-xs">
+          <strong class="text-slate-900 block text-base font-bold">ca. 59–79 ct/kWh</strong>
+          <span class="text-slate-500">ca. 11,50–15,50 € pro 100 km</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center my-8">
+      <a
+        href="/e-auto/ladekosten-rechner"
+        class="inline-flex items-center gap-2 rounded-2xl bg-emerald-600 px-6 py-3.5 text-sm font-bold text-white shadow-md hover:bg-emerald-700 transition"
+      >
+        <span>Jetzt eigene Ladekosten berechnen</span>
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+    </div>
+
+    <RelatedLinks links={related} />
+    <SourceBox sourceIds={['bnetza', 'uba', 'bdew']} />
+    <FaqSection items={faqs} />
+  </div>
+</BaseLayout>

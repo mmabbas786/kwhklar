@@ -1,0 +1,189 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import RelatedLinks from '../../components/seo/RelatedLinks.astro';
+import SourceBox from '../../components/trust/SourceBox.astro';
+import FaqSection from '../../components/content/FaqSection.astro';
+import { calculateHeatPump } from '../../lib/calculators';
+import { formatEuro, formatKwh } from '../../lib/formatters';
+import { getCalculatorSchema } from '../../lib/structured-data';
+
+const schema = getCalculatorSchema(
+  'Wärmepumpe Stromverbrauch Rechner',
+  'Berechne den jährlichen Stromverbrauch und die Heizstromkosten einer Wärmepumpe aus Heizwärmebedarf und Jahresarbeitszahl (JAZ).',
+  '/waermepumpe/stromverbrauch-rechner'
+);
+
+const defaultRes = calculateHeatPump({
+  annualHeatingDemandKwh: 15000,
+  jaz: 3.8,
+  electricityPriceCtPerKwh: 30.0,
+});
+
+const faqs = [
+  {
+    question: 'Wie berechnet man den Stromverbrauch einer Wärmepumpe?',
+    answer: 'Formel: Stromverbrauch (kWh) = Jahres-Heizwärmebedarf (kWh) ÷ Jahresarbeitszahl (JAZ). Bei 15.000 kWh Wärmebedarf und einer JAZ von 3,8 benötigt die Wärmepumpe ca. 3.947 kWh Strom pro Jahr.',
+  },
+  {
+    question: 'Was ist die Jahresarbeitszahl (JAZ)?',
+    answer: 'Die JAZ gibt das Verhältnis der über ein ganzes Jahr abgegebenen Nutzwärme zum dafür benötigten Antriebsstrom an. Eine JAZ von 4,0 bedeutet: Aus 1 kWh Strom erzeugt die Wärmepumpe 4 kWh Wärmeenergie.',
+  },
+];
+
+const related = [
+  { title: 'Wärmepumpe Stromverbrauch', href: '/waermepumpe/stromverbrauch', description: 'Richtwerte nach Gebäudestandard.' },
+  { title: 'Wärmepumpe Stromkosten', href: '/waermepumpe/stromkosten', description: 'Heizstromtarife & Kosten.' },
+  { title: 'E-Auto Ladekosten Rechner', href: '/e-auto/ladekosten-rechner', description: 'Ladekosten berechnen.' },
+];
+---
+
+<BaseLayout
+  title="Wärmepumpe Stromverbrauch Rechner: JAZ & Kosten berechnen | kWhKlar"
+  description="Berechne den jährlichen Stromverbrauch (kWh) und die Heizkosten deiner Wärmepumpe aus Heizwärmebedarf (kWh), JAZ und Heizstrompreis."
+  canonical="https://kwhklar.de/waermepumpe/stromverbrauch-rechner"
+  jsonLd={schema}
+  breadcrumbs={[
+    { name: 'Wärmepumpe', path: '/waermepumpe/stromverbrauch' },
+    { name: 'Stromverbrauch Rechner', path: '/waermepumpe/stromverbrauch-rechner' },
+  ]}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs
+      items={[
+        { name: 'Wärmepumpe', path: '/waermepumpe/stromverbrauch' },
+        { name: 'Stromverbrauch Rechner', path: '/waermepumpe/stromverbrauch-rechner' },
+      ]}
+    />
+
+    <div class="max-w-3xl mb-8">
+      <span class="badge-emerald text-xs mb-2">Wärmepumpen-Rechner</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+        Wärmepumpe Stromverbrauch & Heizkosten berechnen
+      </h1>
+      <p class="mt-3 text-base text-slate-600 leading-relaxed">
+        Ermittle den realen Strombedarf deiner Luft-Wasser- oder Sole-Wasser-Wärmepumpe auf Basis des Gebäude-Wärmebedarfs und der Jahresarbeitszahl (JAZ).
+      </p>
+    </div>
+
+    <!-- Interactive Heat Pump Calculator -->
+    <div class="my-8 rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-md max-w-4xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div class="space-y-4">
+          <h2 class="text-lg font-bold text-slate-900">Eckdaten deiner Wärmepumpe</h2>
+
+          <div>
+            <label for="hp-demand" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+              Jahres-Heizwärmebedarf (kWh thermisch)
+            </label>
+            <input
+              type="number"
+              id="hp-demand"
+              value="15000"
+              min="1000"
+              step="500"
+              class="w-full rounded-xl border border-slate-200 p-3 text-base font-bold text-slate-900"
+            />
+            <span class="text-[11px] text-slate-500 mt-1 block">Tipp: Entspricht ca. dem bisherigen Gasverbrauch in kWh bzw. Heizöl in Litern × 10.</span>
+          </div>
+
+          <div>
+            <label for="hp-jaz" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+              Jahresarbeitszahl (JAZ)
+            </label>
+            <input
+              type="number"
+              id="hp-jaz"
+              value="3.8"
+              min="1.5"
+              max="6.0"
+              step="0.1"
+              class="w-full rounded-xl border border-slate-200 p-3 text-base font-bold text-slate-900"
+            />
+            <span class="text-[11px] text-slate-500 mt-1 block">Luft-Wasser: typisch 3,2–4,0 • Sole-Wasser (Erdwärme): 4,0–5,0</span>
+          </div>
+
+          <div>
+            <label for="hp-price" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+              Strompreis (ct/kWh)
+            </label>
+            <input
+              type="number"
+              id="hp-price"
+              value="30.0"
+              min="10"
+              step="0.5"
+              class="w-full rounded-xl border border-slate-200 p-3 text-base font-bold text-slate-900"
+            />
+            <span class="text-[11px] text-slate-500 mt-1 block">Spezielle Wärmepumpen-Heizstromtarife liegen oft bei 26–30 ct/kWh.</span>
+          </div>
+        </div>
+
+        <div class="rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 p-6 text-white space-y-5">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">Jährlicher Strombedarf</span>
+            <div class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mt-1" id="hp-res-kwh">
+              {formatKwh(defaultRes.annualElectricityKwh, 0)}
+            </div>
+            <span class="text-xs text-slate-400 mt-1 block" id="hp-res-kwh-month">
+              ca. {formatKwh(defaultRes.monthlyElectricityKwh, 0)} / Monat (saisonal im Winter konzentriert)
+            </span>
+          </div>
+
+          <div class="pt-4 border-t border-slate-700">
+            <span class="text-xs font-bold uppercase tracking-wider text-emerald-300">Jährliche Heizstromkosten</span>
+            <div class="text-3xl sm:text-4xl font-extrabold text-emerald-400 tracking-tight mt-1" id="hp-res-cost">
+              {formatEuro(defaultRes.annualCostEuro)}
+            </div>
+            <span class="text-xs text-emerald-200/80 mt-1 block" id="hp-res-cost-month">
+              ca. {formatEuro(defaultRes.monthlyCostEuro)} / Monat
+            </span>
+          </div>
+
+          <div class="pt-2 text-[11px] text-slate-400">
+            Formel: <code class="text-emerald-300 font-mono">Strom = Wärmebedarf ÷ JAZ</code>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <RelatedLinks links={related} />
+    <SourceBox sourceIds={['bnetza', 'uba', 'bdew']} />
+    <FaqSection items={faqs} />
+  </div>
+</BaseLayout>
+
+<script>
+  function initHpCalc() {
+    const demandIn = document.getElementById('hp-demand') as HTMLInputElement | null;
+    const jazIn = document.getElementById('hp-jaz') as HTMLInputElement | null;
+    const priceIn = document.getElementById('hp-price') as HTMLInputElement | null;
+
+    const resKwh = document.getElementById('hp-res-kwh');
+    const resKwhMonth = document.getElementById('hp-res-kwh-month');
+    const resCost = document.getElementById('hp-res-cost');
+    const resCostMonth = document.getElementById('hp-res-cost-month');
+
+    if (!demandIn || !jazIn || !priceIn || !resKwh || !resCost) return;
+
+    function update() {
+      const demand = Math.max(0, parseFloat(demandIn?.value || '0') || 0);
+      const jaz = Math.max(0.5, parseFloat(jazIn?.value || '1') || 3.8);
+      const priceCt = Math.max(0, parseFloat(priceIn?.value || '0') || 0);
+
+      const kwhYear = demand / jaz;
+      const costYear = kwhYear * (priceCt / 100);
+
+      if (resKwh) resKwh.textContent = `${Math.round(kwhYear).toLocaleString('de-DE')} kWh`;
+      if (resKwhMonth) resKwhMonth.textContent = `ca. ${Math.round(kwhYear / 12).toLocaleString('de-DE')} kWh / Monat (saisonal im Winter)`;
+      if (resCost) resCost.textContent = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(costYear);
+      if (resCostMonth) resCostMonth.textContent = `ca. ${new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(costYear / 12)} / Monat`;
+    }
+
+    [demandIn, jazIn, priceIn].forEach((el) => el.addEventListener('input', update));
+    update();
+  }
+
+  document.addEventListener('DOMContentLoaded', initHpCalc);
+  initHpCalc();
+</script>

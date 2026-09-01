@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { type SupportedLanguage } from '../../i18n/languages';
+import { useTranslations } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  const nonDefaultLangs: SupportedLanguage[] = ['en', 'es', 'ja', 'fr', 'pt', 'ko', 'it'];
+  return nonDefaultLangs.map((lang) => ({
+    params: { lang },
+  }));
+}
+
+const { lang } = Astro.params as { lang: SupportedLanguage };
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  title={`${t('footer.contact')} | kWhKlar`}
+  description="Kontaktiere das Team von kWhKlar für Feedback, Presseanfragen und Kooperationen."
+  canonical={`https://kwhklar.de/${lang}/kontakt`}
+>
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl font-bold text-slate-900 dark:text-white tracking-tight sm:text-4xl">
+      {t('footer.contact')}
+    </h1>
+    <p class="mt-4 text-sm text-slate-600 dark:text-slate-400">
+      Hast du Fragen, Anregungen oder Feedback zu unseren Rechnern? Wir freuen uns über deine Nachricht.
+    </p>
+    <div class="mt-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 space-y-4">
+      <div>
+        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">E-Mail Kontakt</span>
+        <p class="mt-1 font-semibold text-emerald-600 dark:text-emerald-400">kontakt@kwhklar.de</p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

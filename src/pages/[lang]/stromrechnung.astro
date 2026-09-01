@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SourceBox from '../../components/trust/SourceBox.astro';
+import { type SupportedLanguage } from '../../i18n/languages';
+import { useTranslations } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  const nonDefaultLangs: SupportedLanguage[] = ['en', 'es', 'ja', 'fr', 'pt', 'ko', 'it'];
+  return nonDefaultLangs.map((lang) => ({
+    params: { lang },
+  }));
+}
+
+const { lang } = Astro.params as { lang: SupportedLanguage };
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  title={`Stromrechnung verstehen & prüfen | kWhKlar`}
+  description="Lerne, wie du deine Stromabrechnung liest, Abschläge prüfst und Fehler erkennst."
+  canonical={`https://kwhklar.de/${lang}/stromrechnung`}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+    <div class="max-w-3xl mx-auto text-center mb-10">
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Stromrechnung verstehen & prüfen
+      </h1>
+      <p class="mt-2 text-base text-slate-600 dark:text-slate-400">
+        Bestandteile, Nachzahlungen und Abrechnungsprüfung verständlich erklärt.
+      </p>
+    </div>
+
+    <div class="max-w-3xl mx-auto space-y-6 text-sm text-slate-600 dark:text-slate-400">
+      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 space-y-3">
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white">1. Arbeitspreis vs. Grundpreis</h2>
+        <p>Der Arbeitspreis wird für jede bezogene Kilowattstunde abgerechnet. Der Grundpreis ist ein fixer monatlicher Betrag für den Netzanschluss und Zähler.</p>
+      </div>
+
+      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 space-y-3">
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white">2. Zählerstand & Abrechnungszeitraum</h2>
+        <p>Überprüfe stets den Anfangs- und Endzählerstand mit deinem tatsächlichen Stromzähler im Keller oder der Wohnung.</p>
+      </div>
+    </div>
+
+    <div class="mt-10 max-w-3xl mx-auto">
+      <SourceBox
+        sourceIds={['bnetza', 'stromspiegel']}
+        note="Richtlinien und Verbraucherschutzinformationen gemäß EnWG und Bundesnetzagentur."
+      />
+    </div>
+  </div>
+</BaseLayout>

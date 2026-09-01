@@ -1,0 +1,141 @@
+---
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import { buildMetadata, type MetadataProps } from '../lib/seo';
+import { getOrganizationSchema, getWebSiteSchema } from '../lib/structured-data';
+import { getLangFromUrl, getAlternateHreflangLinks } from '../i18n/utils';
+import '../styles/global.css';
+
+interface Props extends MetadataProps {
+  jsonLd?: Record<string, any> | Record<string, any>[];
+  breadcrumbs?: { name: string; path: string }[];
+}
+
+const { jsonLd, breadcrumbs, ...metaProps } = Astro.props;
+const currentLang = getLangFromUrl(Astro.url);
+const alternateLinks = getAlternateHreflangLinks(Astro.url);
+const metadata = buildMetadata(metaProps);
+
+const ga4Id = import.meta.env.PUBLIC_GA4_ID;
+const adsenseId = import.meta.env.PUBLIC_ADSENSE_CLIENT_ID;
+
+const baseSchema = [getOrganizationSchema(), getWebSiteSchema()];
+const combinedSchema = jsonLd
+  ? Array.isArray(jsonLd)
+    ? [...baseSchema, ...jsonLd]
+    : [...baseSchema, jsonLd]
+  : baseSchema;
+const isErrorOrNoindex = metaProps.noindex || Astro.url.pathname === '/404' || Astro.url.pathname === '/500';
+---
+
+<!doctype html>
+<html lang={currentLang} class="dark h-full antialiased">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Hreflang Multi-Language Tags for Global SEO (Indexable Pages Only) -->
+    {!isErrorOrNoindex && alternateLinks.map((alt) => (
+      <link rel="alternate" hreflang={alt.lang} href={alt.href} />
+    ))}
+
+    <!-- Theme Initializer (Strict Dark Mode Default on Opening Site) -->
+    <script is:inline>
+      (function() {
+        try {
+          // Always defaults to dark mode when user opens the site
+          var sessionTheme = sessionStorage.getItem('theme');
+          if (sessionTheme === 'light') {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.classList.add('light');
+          } else {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+          }
+        } catch (e) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+
+    <!-- Favicons & App Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <!-- Primary Meta Tags -->
+    <title>{metadata.title}</title>
+    <meta name="title" content={metadata.title} />
+    <meta name="description" content={metadata.description} />
+    <link rel="canonical" href={metadata.canonical} />
+
+    {metadata.noindex ? (
+      <meta name="robots" content="noindex, nofollow" />
+    ) : (
+      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    )}
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={metadata.ogType} />
+    <meta property="og:url" content={metadata.canonical} />
+    <meta property="og:title" content={metadata.title} />
+    <meta property="og:description" content={metadata.description} />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:site_name" content="kWhKlar" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={metadata.canonical} />
+    <meta property="twitter:title" content={metadata.title} />
+    <meta property="twitter:description" content={metadata.description} />
+
+    <!-- Structured Data (JSON-LD) -->
+    {combinedSchema.map((schema) => (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
+
+    <!-- Optional Privacy-First Analytics (only loaded if real ID is configured) -->
+    {ga4Id && (
+      <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`}></script>
+      <script is:inline define:vars={{ ga4Id }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', ga4Id, { anonymize_ip: true });
+      </script>
+    )}
+
+    <!-- Optional AdSense Script (only loaded if real client ID is configured) -->
+    {adsenseId && (
+      <script
+        is:inline
+        async
+        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseId}`}
+        crossorigin="anonymous"
+      ></script>
+    )}
+  </head>
+  <body class="flex min-h-screen flex-col bg-slate-50 font-sans text-slate-900">
+    <Header />
+    <main id="main-content" class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

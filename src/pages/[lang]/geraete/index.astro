@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ApplianceCard from '../../../components/cards/ApplianceCard.astro';
+import { appliances } from '../../../data/appliances';
+import { type SupportedLanguage } from '../../../i18n/languages';
+import { useTranslations } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  const nonDefaultLangs: SupportedLanguage[] = ['en', 'es', 'ja', 'fr', 'pt', 'ko', 'it'];
+  return nonDefaultLangs.map((lang) => ({
+    params: { lang },
+  }));
+}
+
+const { lang } = Astro.params as { lang: SupportedLanguage };
+const t = useTranslations(lang);
+const applianceList = Object.values(appliances);
+---
+
+<BaseLayout
+  title={`${t('appliances.heading')} (25+ Geräte) | kWhKlar`}
+  description={t('appliances.subheading')}
+  canonical={`https://kwhklar.de/${lang}/geraete`}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+    <div class="max-w-3xl mx-auto text-center mb-10">
+      <span class="text-xs font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Übersicht</span>
+      <h1 class="mt-1 text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        {t('appliances.heading')}
+      </h1>
+      <p class="mt-2 text-base text-slate-600 dark:text-slate-400">
+        {t('appliances.subheading')}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {applianceList.map((appliance) => (
+        <ApplianceCard appliance={appliance} />
+      ))}
+    </div>
+  </div>
+</BaseLayout>

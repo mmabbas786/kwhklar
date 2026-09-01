@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+
+const contactEmail = import.meta.env.PUBLIC_CONTACT_EMAIL || '[KONTAKT-E-MAIL-ADRESSE_DES_BETREIBERS]';
+---
+
+<BaseLayout
+  title="Datenschutzerklärung | kWhKlar"
+  description="Datenschutzerklärung für kWhKlar.de. Informationen zur Datenverarbeitung, client-seitigen Rechnern und Ihren Rechten nach DSGVO."
+  canonical="https://kwhklar.de/datenschutz"
+  breadcrumbs={[{ name: 'Datenschutz', path: '/datenschutz' }]}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs items={[{ name: 'Datenschutz', path: '/datenschutz' }]} />
+
+    <div class="max-w-3xl mb-8">
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+        Datenschutzerklärung
+      </h1>
+      <p class="mt-2 text-sm text-slate-500">Stand: Januar 2026</p>
+    </div>
+
+    <article class="prose prose-slate max-w-4xl bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 space-y-6 text-sm text-slate-700">
+      <div>
+        <h2 class="text-lg font-bold text-slate-900">1. Datenschutz auf einen Blick</h2>
+        <h3 class="text-sm font-semibold text-slate-800 mt-2">Allgemeine Hinweise</h3>
+        <p class="text-xs leading-relaxed text-slate-600">
+          Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.
+        </p>
+
+        <h3 class="text-sm font-semibold text-slate-800 mt-3">Lokale Berechnung ohne Datenspeicherung</h3>
+        <p class="text-xs leading-relaxed text-slate-600">
+          <strong>Wichtig für Nutzer unserer Rechner:</strong> Alle auf kWhKlar.de eingegebenen Daten (wie Watt-Zahlen, Betriebsstunden, Zählerstände oder Strompreise) werden <strong>ausschließlich lokal in Ihrem Webbrowser</strong> verarbeitet. Es findet zu keinem Zeitpunkt eine Übertragung Ihrer Berechnungsdaten an unsere Server oder an Dritte statt.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-bold text-slate-900">2. Verantwortliche Stelle</h2>
+        <p class="text-xs leading-relaxed text-slate-600">
+          Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:
+        </p>
+        <div class="mt-2 p-4 rounded-xl bg-slate-50 border border-slate-200 font-mono text-xs space-y-1">
+          <p>[VOLLSTÄNDIGER_NAME_ODER_FIRMA_DES_BETREIBERS]</p>
+          <p>[STRASSE_UND_HAUSNUMMER]</p>
+          <p>[POSTLEITZAHL_UND_ORT]</p>
+          <p>E-Mail: {contactEmail}</p>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-bold text-slate-900">3. Datenerfassung auf dieser Website</h2>
+        <h3 class="text-sm font-semibold text-slate-800 mt-2">Server-Log-Dateien</h3>
+        <p class="text-xs leading-relaxed text-slate-600">
+          Der Provider der Seiten erhebt und speichert automatisch Informationen in sogenannten Server-Log-Dateien, die Ihr Browser automatisch an uns übermittelt. Dies sind:
+        </p>
+        <ul class="list-disc pl-5 text-xs text-slate-600 space-y-1 mt-1">
+          <li>Browsertyp und Browserversion</li>
+          <li>Verwendetes Betriebssystem</li>
+          <li>Referrer URL (die zuvor besuchte Seite)</li>
+          <li>Hostname des zugreifenden Rechners</li>
+          <li>Uhrzeit der Serveranfrage</li>
+          <li>IP-Adresse (in anonymisierter Form)</li>
+        </ul>
+        <p class="text-xs text-slate-600 mt-2">
+          Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. Grundlage für die Datenverarbeitung ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der technisch fehlerfreien Bereitstellung der Website).
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-bold text-slate-900">4. Ihre Rechte</h2>
+        <p class="text-xs leading-relaxed text-slate-600">
+          Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten (Art. 15 DSGVO). Sie haben außerdem ein Recht auf Berichtigung (Art. 16 DSGVO), Löschung (Art. 17 DSGVO) oder Einschränkung der Verarbeitung dieser Daten (Art. 18 DSGVO) sowie das Recht auf Datenübertragbarkeit (Art. 20 DSGVO). Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit unter der oben angegebenen Adresse an uns wenden.
+        </p>
+      </div>
+    </article>
+  </div>
+</BaseLayout>

@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import RelatedLinks from '../components/seo/RelatedLinks.astro';
+import SourceBox from '../components/trust/SourceBox.astro';
+import FaqSection from '../components/content/FaqSection.astro';
+
+const faqs = [
+  {
+    question: 'Welche Frist gilt für den Widerspruch gegen eine fehlerhafte Stromrechnung?',
+    answer: 'Du kannst einer fehlerhaften Stromrechnung in der Regel innerhalb von 3 Jahren nach Ende des Rechnungsjahres widersprechen (§ 195 BGB). Es empfiehlt sich jedoch, sofort nach Erhalt schriftlich beim Anbieter Widerspruch einzulegen und eine korrigierte Abrechnung einzufordern.',
+  },
+];
+
+const related = [
+  { title: 'Stromrechnung berechnen', href: '/stromrechnung-berechnen', description: 'Rechnung nachrechnen.' },
+  { title: 'Stromrechnung zu hoch?', href: '/stromrechnung-zu-hoch', description: 'Ursachen finden.' },
+  { title: 'Musterrechnung Beispiel', href: '/stromrechnung-beispiel', description: 'Beispielrechnung ansehen.' },
+];
+---
+
+<BaseLayout
+  title="Stromrechnung prüfen: Schritt-für-Schritt Prüfanleitung | kWhKlar"
+  description="Stromrechnung prüfen in 5 einfachen Schritten: Zählerstände, Preise, Abrechnungszeitraum und Abschlagsverrechnung auf Fehler kontrollieren."
+  canonical="https://kwhklar.de/stromrechnung-pruefen"
+  breadcrumbs={[
+    { name: 'Stromrechnung', path: '/stromrechnung' },
+    { name: 'Stromrechnung prüfen', path: '/stromrechnung-pruefen' },
+  ]}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs
+      items={[
+        { name: 'Stromrechnung', path: '/stromrechnung' },
+        { name: 'Stromrechnung prüfen', path: '/stromrechnung-pruefen' },
+      ]}
+    />
+
+    <div class="max-w-3xl mb-8">
+      <span class="badge-emerald text-xs mb-2">Verbraucher-Leitfaden</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+        Stromrechnung prüfen: Checkliste in 5 Schritten
+      </h1>
+      <p class="mt-3 text-base text-slate-600 leading-relaxed">
+        Jede vierte Stromabrechnung in Deutschland enthält Unstimmigkeiten oder Schätzfehler. Mit dieser einfachen Checkliste prüfst du deine Rechnung in wenigen Minuten.
+      </p>
+    </div>
+
+    <!-- 5 Steps Checklist -->
+    <div class="my-8 max-w-4xl mx-auto space-y-4">
+      <div class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xs">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-100 text-emerald-800 font-bold text-sm">1</span>
+          <h2 class="text-lg font-bold text-slate-900">Zählernummer & Zählerstände abgleichen</h2>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed pl-11">
+          Stimmt die Zählernummer auf der Rechnung mit deinem Zähler überein? Stimmt der abgedruckte Zählerstand mit deinen eigenen Ablesewerten überein oder ist der Wert als „geschätzt“ markiert?
+        </p>
+      </div>
+
+      <div class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xs">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-100 text-emerald-800 font-bold text-sm">2</span>
+          <h2 class="text-lg font-bold text-slate-900">Abrechnungszeitraum kontrollieren</h2>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed pl-11">
+          Umfasst die Abrechnung exakt 12 Monate (ca. 365 Tage) oder einen abweichenden Zeitraum? Bei kürzeren oder längeren Zeiträumen müssen Grundpreis und Abschläge anteilig berechnet werden.
+        </p>
+      </div>
+
+      <div class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xs">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-100 text-emerald-800 font-bold text-sm">3</span>
+          <h2 class="text-lg font-bold text-slate-900">Preise mit Vertragsunterlagen vergleichen</h2>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed pl-11">
+          Stimmen der Arbeitspreis (ct/kWh) und der monatliche Grundpreis mit deiner Vertragsbestätigung bzw. dem letzten Preisanpassungsschreiben überein?
+        </p>
+      </div>
+
+      <div class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xs">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-100 text-emerald-800 font-bold text-sm">4</span>
+          <h2 class="text-lg font-bold text-slate-900">Tatsächlich gezahlte Abschläge prüfen</h2>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed pl-11">
+          Hat der Versorger alle im Abrechnungsjahr per Lastschrift oder Überweisung gezahlten Monatsabschläge vollständig und korrekt gutgeschrieben?
+        </p>
+      </div>
+
+      <div class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xs">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-100 text-emerald-800 font-bold text-sm">5</span>
+          <h2 class="text-lg font-bold text-slate-900">Neuen Abschlagsbetrag kontrollieren</h2>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed pl-11">
+          Setzt der Versorger den neuen Abschlag für das nächste Jahr realistisch an? Ein zu hoher Abschlag bindet unnötig Liquidität, ein zu niedriger führt zur nächsten Nachzahlung.
+        </p>
+      </div>
+    </div>
+
+    <RelatedLinks links={related} />
+    <SourceBox sourceIds={['bnetza', 'bdew']} />
+    <FaqSection items={faqs} />
+  </div>
+</BaseLayout>

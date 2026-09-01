@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import UniversalCalculator from '../components/calculator/UniversalCalculator.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import RelatedLinks from '../components/seo/RelatedLinks.astro';
+import SourceBox from '../components/trust/SourceBox.astro';
+import FaqSection from '../components/content/FaqSection.astro';
+import { getCalculatorSchema } from '../lib/structured-data';
+
+const schema = getCalculatorSchema(
+  'Stromverbrauch berechnen',
+  'Berechne den genauen Stromverbrauch in Kilowattstunden (kWh) für einzelne Elektrogeräte oder deinen gesamten Haushalt.',
+  '/stromverbrauch-rechner'
+);
+
+const faqs = [
+  {
+    question: 'Was ist der Unterschied zwischen Watt und Kilowattstunden (kWh)?',
+    answer: 'Watt (W) gibt die momentane Leistung oder den Stromhunger eines Geräts in einem bestimmten Augenblick an. Die Kilowattstunde (kWh) misst hingegen die über Zeit verbrauchte Energiemenge: 1.000 Watt Leistung über 1 Stunde Betrieb ergeben genau 1 kWh.',
+  },
+  {
+    question: 'Wie viel kWh Stromverbrauch pro Jahr sind normal?',
+    answer: 'Für einen Single-Haushalt in einer Mietwohnung ohne elektrische Warmwasserbereitung gelten 1.300 bis 1.500 kWh/Jahr als normal, für 2 Personen ca. 2.100 bis 2.500 kWh und für eine 4-köpfige Familie rund 3.000 bis 4.000 kWh.',
+  },
+];
+
+const related = [
+  { title: 'Stromkostenrechner', href: '/stromkosten-rechner', description: 'Stromkosten in Euro berechnen.' },
+  { title: 'kWh Rechner', href: '/kwh-rechner', description: 'Kilowattstunden direkt umrechnen.' },
+  { title: 'Haushaltsstrom-Vergleich', href: '/stromverbrauch-haushalt', description: 'Verbrauch nach Haushaltsgröße vergleichen.' },
+  { title: 'Die größten Stromfresser', href: '/stromfresser', description: 'Versteckte Großverbraucher aufspüren.' },
+];
+---
+
+<BaseLayout
+  title="Stromverbrauch berechnen: Stromverbrauchsrechner für Geräte & Haushalt | kWhKlar"
+  description="Berechne deinen Stromverbrauch in Kilowattstunden (kWh) für einzelne Elektrogeräte oder den gesamten Haushalt. Inklusive Vergleich mit Richtwerten."
+  canonical="https://kwhklar.de/stromverbrauch-rechner"
+  jsonLd={schema}
+  breadcrumbs={[{ name: 'Stromverbrauch berechnen', path: '/stromverbrauch-rechner' }]}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs items={[{ name: 'Stromverbrauch berechnen', path: '/stromverbrauch-rechner' }]} />
+
+    <div class="max-w-3xl mb-6">
+      <span class="badge-emerald text-xs mb-2">Verbrauchsrechner</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+        Stromverbrauch berechnen: Dein interaktiver Stromverbrauchsrechner
+      </h1>
+      <p class="mt-3 text-base text-slate-600 leading-relaxed">
+        Ermittle den Stromverbrauch (kWh) deiner Geräte nach Leistungsaufnahme und Nutzungsdauer.
+      </p>
+    </div>
+
+    <UniversalCalculator
+      defaultWatt={500}
+      defaultHours={3}
+      defaultPriceCt={35.0}
+      title="Stromverbrauchsrechner"
+      subtitle="Ermittle die verbrauchten Kilowattstunden (kWh) und die daraus resultierenden Kosten:"
+    />
+
+    <article class="prose prose-slate max-w-4xl my-12 bg-white rounded-3xl p-6 sm:p-10 border border-slate-200">
+      <h2 class="text-2xl font-bold text-slate-900">So berechnest du den Stromverbrauch in kWh</h2>
+      <p class="text-slate-600 leading-relaxed">
+        Der Stromverbrauch eines Geräts hängt ausschließlich von zwei Faktoren ab:
+      </p>
+      <ol class="list-decimal pl-5 space-y-2 text-slate-600 text-sm">
+        <li><strong>Der Leistungsaufnahme in Watt (W):</strong> Wie viel elektrische Leistung zieht das Gerät aus der Steckdose?</li>
+        <li><strong>Der Nutzungsdauer in Stunden (h):</strong> Wie viele Stunden am Tag oder im Jahr ist das Gerät eingeschaltet?</li>
+      </ol>
+
+      <div class="my-6 rounded-2xl bg-emerald-50 p-5 border border-emerald-200 text-sm">
+        <h3 class="font-bold text-emerald-950 text-base mb-1">Die Grundformel:</h3>
+        <p class="font-mono text-emerald-900 font-semibold text-base">
+          Verbrauch (kWh) = Leistung (Watt) × Zeit (Stunden) ÷ 1.000
+        </p>
+      </div>
+
+      <h3 class="text-xl font-bold text-slate-900 mt-6">Typischer Stromverbrauch im Haushalt:</h3>
+      <div class="overflow-x-auto my-4">
+        <table class="min-w-full text-xs sm:text-sm text-left border border-slate-200">
+          <thead class="bg-slate-50 text-slate-700 font-semibold border-b border-slate-200">
+            <tr>
+              <th class="p-3">Gerät</th>
+              <th class="p-3">Typische Leistung</th>
+              <th class="p-3">Nutzung</th>
+              <th class="p-3">Verbrauch / Jahr</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 text-slate-600">
+            <tr><td class="p-3 font-medium">Kühlschrank (A-Klasse)</td><td class="p-3">80 W</td><td class="p-3">24h getaktet</td><td class="p-3 font-semibold text-slate-900">ca. 110–140 kWh</td></tr>
+            <tr><td class="p-3 font-medium">Waschmaschine (40°C)</td><td class="p-3">2.000 W</td><td class="p-3">200 Waschgänge</td><td class="p-3 font-semibold text-slate-900">ca. 120–160 kWh</td></tr>
+            <tr><td class="p-3 font-medium">Gaming-PC</td><td class="p-3">400 W</td><td class="p-3">3h / Tag</td><td class="p-3 font-semibold text-slate-900">ca. 438 kWh</td></tr>
+            <tr><td class="p-3 font-medium">Fernseher (55 Zoll)</td><td class="p-3">100 W</td><td class="p-3">4h / Tag</td><td class="p-3 font-semibold text-slate-900">ca. 146 kWh</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <RelatedLinks links={related} />
+    <SourceBox sourceIds={['stromspiegel', 'bdew', 'uba']} />
+    <FaqSection items={faqs} />
+  </div>
+</BaseLayout>

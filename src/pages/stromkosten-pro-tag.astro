@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import UniversalCalculator from '../components/calculator/UniversalCalculator.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import RelatedLinks from '../components/seo/RelatedLinks.astro';
+import SourceBox from '../components/trust/SourceBox.astro';
+import FaqSection from '../components/content/FaqSection.astro';
+import { getCalculatorSchema } from '../lib/structured-data';
+
+const schema = getCalculatorSchema(
+  'Stromkosten pro Tag',
+  'Berechne die täglichen Stromkosten für Elektrogeräte und Dauerläufer im Haushalt.',
+  '/stromkosten-pro-tag'
+);
+
+const faqs = [
+  {
+    question: 'Wie viel Strom verbraucht ein Haushalt pro Tag?',
+    answer: 'Ein 1-Personen-Haushalt verbraucht ca. 3,5 bis 4 kWh pro Tag (ca. 1,20 bis 1,40 €). Ein 2-Personen-Haushalt benötigt rund 6 bis 7 kWh/Tag (ca. 2,10 bis 2,45 €) und eine 4-köpfige Familie verbraucht ca. 8,5 bis 11 kWh/Tag (ca. 3,00 bis 3,85 € zzgl. Grundpreis).',
+  },
+];
+
+const related = [
+  { title: 'Stromkosten pro Stunde', href: '/stromkosten-pro-stunde', description: 'Kosten für 1 Stunde.' },
+  { title: 'Stromkosten pro Monat', href: '/stromkosten-pro-monat', description: 'Monatskosten & Abschlag.' },
+  { title: 'Stromkosten pro Jahr', href: '/stromkosten-pro-jahr', description: 'Jahresgesamtkosten berechnen.' },
+];
+---
+
+<BaseLayout
+  title="Stromkosten pro Tag berechnen: Tagesverbrauch & Kosten | kWhKlar"
+  description="Ermittle deine täglichen Stromkosten für Dauerläufer wie Kühlschrank, Router, Server oder den gesamten Haushalt."
+  canonical="https://kwhklar.de/stromkosten-pro-tag"
+  jsonLd={schema}
+  breadcrumbs={[{ name: 'Stromkosten pro Tag', path: '/stromkosten-pro-tag' }]}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs items={[{ name: 'Stromkosten pro Tag', path: '/stromkosten-pro-tag' }]} />
+
+    <div class="max-w-3xl mb-6">
+      <span class="badge-emerald text-xs mb-2">Tageskosten</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+        Stromkosten pro Tag: Tageskosten für Geräte & Haushalt berechnen
+      </h1>
+      <p class="mt-3 text-base text-slate-600 leading-relaxed">
+        Berechne die täglichen Stromkosten für 24h-Dauerläufer oder typische Alltagsgeräte nach deiner Nutzungsdauer.
+      </p>
+    </div>
+
+    <UniversalCalculator
+      defaultWatt={150}
+      defaultHours={24}
+      defaultPriceCt={35.0}
+      title="Tageskosten-Rechner"
+      subtitle="Passe Leistung und Stunden pro Tag an, um die Kosten pro 24 Stunden zu sehen:"
+    />
+
+    <RelatedLinks links={related} />
+    <SourceBox sourceIds={['bnetza', 'stromspiegel']} />
+    <FaqSection items={faqs} />
+  </div>
+</BaseLayout>

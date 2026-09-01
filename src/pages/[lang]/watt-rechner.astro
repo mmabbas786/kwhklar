@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import UniversalCalculator from '../../components/calculator/UniversalCalculator.astro';
+import SourceBox from '../../components/trust/SourceBox.astro';
+import { languages, type SupportedLanguage } from '../../i18n/languages';
+import { useTranslations } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  const nonDefaultLangs: SupportedLanguage[] = ['en', 'es', 'ja', 'fr', 'pt', 'ko', 'it'];
+  return nonDefaultLangs.map((lang) => ({
+    params: { lang },
+  }));
+}
+
+const { lang } = Astro.params as { lang: SupportedLanguage };
+const t = useTranslations(lang);
+const langInfo = languages[lang];
+---
+
+<BaseLayout
+  title={`Watt in kWh Rechner & Umrechnung | kWhKlar`}
+  description="Rechne Watt in Kilowattstunden (kWh) und laufende Stromkosten sekundenschnell um."
+  canonical={`https://kwhklar.de/${lang}/watt-rechner`}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+    <div class="max-w-3xl mx-auto text-center mb-8">
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Watt in kWh Rechner
+      </h1>
+      <p class="mt-2 text-base text-slate-600 dark:text-slate-400">
+        Leistung in Watt schnell in Energieverbrauch (kWh) und Kosten umrechnen.
+      </p>
+    </div>
+
+    <UniversalCalculator
+      defaultWatt={1000}
+      defaultHours={1}
+      defaultPriceCt={langInfo.defaultPricePerKwh * 100}
+      title="Watt in kWh Rechner"
+      subtitle="Rechne Watt in Kilowattstunden (kWh) und Kosten um:"
+    />
+
+    <div class="mt-12 max-w-4xl mx-auto">
+      <SourceBox
+        sourceIds={['bnetza', 'destatis']}
+        note="Berechnungsformel: kWh = (Watt × Stunden) ÷ 1.000."
+      />
+    </div>
+  </div>
+</BaseLayout>

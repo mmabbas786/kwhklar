@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SourceBox from '../../components/trust/SourceBox.astro';
+import { type SupportedLanguage } from '../../i18n/languages';
+import { useTranslations } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  const nonDefaultLangs: SupportedLanguage[] = ['en', 'es', 'ja', 'fr', 'pt', 'ko', 'it'];
+  return nonDefaultLangs.map((lang) => ({
+    params: { lang },
+  }));
+}
+
+const { lang } = Astro.params as { lang: SupportedLanguage };
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  title={`${t('footer.sources')} | kWhKlar`}
+  description="Transparente Offenlegung unserer Formeln, Berechnungsmodelle und Datenquellen."
+  canonical={`https://kwhklar.de/${lang}/quellen-methodik`}
+>
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl font-bold text-slate-900 dark:text-white tracking-tight sm:text-4xl">
+      {t('footer.sources')}
+    </h1>
+    <p class="mt-4 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+      Alle mathematischen Modelle basieren auf physikalischen Grundformeln (1 kWh = 1.000 Wh). Verbrauchswerte und Durchschnittspreise stammen aus offiziellen statistischen Publikationen.
+    </p>
+    <div class="mt-8">
+      <SourceBox
+        sourceIds={['bnetza', 'bdew', 'destatis', 'stromspiegel']}
+        note="Regelmäßig aktualisierte Datenbasis gemäß Bundesnetzagentur und Statistischem Bundesamt."
+      />
+    </div>
+  </div>
+</BaseLayout>

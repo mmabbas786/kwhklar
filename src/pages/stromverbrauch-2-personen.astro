@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import UniversalCalculator from '../components/calculator/UniversalCalculator.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import RelatedLinks from '../components/seo/RelatedLinks.astro';
+import SourceBox from '../components/trust/SourceBox.astro';
+import FaqSection from '../components/content/FaqSection.astro';
+import { householdBenchmarks } from '../data/household-benchmarks';
+import { formatKwh } from '../lib/formatters';
+
+const data = householdBenchmarks[2];
+
+const faqs = [
+  {
+    question: 'Wie hoch sind die durchschnittlichen Stromkosten für 2 Personen?',
+    answer: 'Ein 2-Personen-Haushalt mit einem Verbrauch von 2.100 bis 2.500 kWh zahlt bei 35 ct/kWh rund 75 bis 90 Euro pro Monat (ca. 900 bis 1.100 Euro im Jahr inkl. Grundgebühr).',
+  },
+];
+
+const related = [
+  { title: '1-Personen-Haushalt', href: '/stromverbrauch-1-person', description: 'Vergleich zu Singles.' },
+  { title: '3-Personen-Haushalt', href: '/stromverbrauch-3-personen', description: 'Richtwerte für 3 Personen.' },
+  { title: 'Durchschnittlicher Stromverbrauch', href: '/durchschnittlicher-stromverbrauch', description: 'Bundesweiter Durchschnitt.' },
+  { title: 'Stromfresser finden', href: '/stromfresser', description: 'Großverbraucher eliminieren.' },
+];
+---
+
+<BaseLayout
+  title="Stromverbrauch 2 Personen: Durchschnitt & Kosten für Paare | kWhKlar"
+  description="Wie viel Strom verbraucht ein 2-Personen-Haushalt? Richtwerte (2.100–2.900 kWh), monatliche Kosten und Sparpotenziale für Paare & WGs."
+  canonical="https://kwhklar.de/stromverbrauch-2-personen"
+  breadcrumbs={[
+    { name: 'Haushalt', path: '/stromverbrauch-haushalt' },
+    { name: '2 Personen', path: '/stromverbrauch-2-personen' },
+  ]}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs
+      items={[
+        { name: 'Haushalt', path: '/stromverbrauch-haushalt' },
+        { name: '2 Personen (Paar)', path: '/stromverbrauch-2-personen' },
+      ]}
+    />
+
+    <div class="max-w-3xl mb-8">
+      <span class="badge-emerald text-xs mb-2">2-Personen-Haushalt Benchmark</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+        Stromverbrauch für 2 Personen (Paar / 2er-WG)
+      </h1>
+      <p class="mt-3 text-base text-slate-600 leading-relaxed">
+        {data.description}
+      </p>
+    </div>
+
+    <!-- Key Metrics Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-10">
+      <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs">
+        <span class="text-xs text-slate-500 font-medium">Wohnung (ohne Warmwasser)</span>
+        <div class="mt-2 text-2xl font-bold text-slate-900">{formatKwh(data.apartmentWithoutWarmWaterKwh, 0)}</div>
+        <span class="text-xs text-slate-400 mt-1 block">ca. 70–80 € / Monat</span>
+      </div>
+
+      <div class="rounded-2xl border border-amber-200 bg-amber-50/50 p-5 shadow-xs">
+        <span class="text-xs text-amber-800 font-medium">Wohnung (mit Warmwasser elektrisch)</span>
+        <div class="mt-2 text-2xl font-bold text-amber-950">{formatKwh(data.apartmentWithWarmWaterKwh, 0)}</div>
+        <span class="text-xs text-amber-700 mt-1 block">ca. 95–110 € / Monat</span>
+      </div>
+
+      <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs">
+        <span class="text-xs text-slate-500 font-medium">Einfamilienhaus</span>
+        <div class="mt-2 text-2xl font-bold text-slate-900">{formatKwh(data.houseWithoutWarmWaterKwh, 0)}</div>
+        <span class="text-xs text-slate-400 mt-1 block">ca. 95–105 € / Monat</span>
+      </div>
+    </div>
+
+    <UniversalCalculator
+      defaultWatt={250}
+      defaultHours={24}
+      defaultPriceCt={35.0}
+      title="2-Personen Verbrauchsrechner"
+      subtitle="Ermittle deine Stromkosten bei individuellem Verbrauch:"
+    />
+
+    <article class="prose prose-slate max-w-4xl my-12 bg-white rounded-3xl p-6 sm:p-10 border border-slate-200">
+      <h2 class="text-2xl font-bold text-slate-900">Spartipps für den 2-Personen-Haushalt:</h2>
+      <ul class="list-disc pl-5 space-y-2 text-slate-600 text-sm">
+        {data.savingTips.map((tip) => (
+          <li>{tip}</li>
+        ))}
+      </ul>
+    </article>
+
+    <RelatedLinks links={related} />
+    <SourceBox sourceIds={['stromspiegel', 'bdew', 'destatis']} />
+    <FaqSection items={faqs} />
+  </div>
+</BaseLayout>

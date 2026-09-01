@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import UniversalCalculator from '../components/calculator/UniversalCalculator.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import RelatedLinks from '../components/seo/RelatedLinks.astro';
+import SourceBox from '../components/trust/SourceBox.astro';
+import FaqSection from '../components/content/FaqSection.astro';
+import { getCalculatorSchema } from '../lib/structured-data';
+
+const schema = getCalculatorSchema(
+  'Watt Rechner',
+  'Rechne Watt in kWh und Stromkosten um. Finde heraus, wie viel 100 Watt, 500 Watt oder 2.000 Watt an Strom kosten.',
+  '/watt-rechner'
+);
+
+const faqs = [
+  {
+    question: 'Wie rechnet man Watt in Kilowattstunden (kWh) um?',
+    answer: 'Teile die Watt-Zahl durch 1.000 (um Kilowatt zu erhalten) und multipliziere das Ergebnis mit den Betriebsstunden. Beispiel: 500 Watt für 2 Stunden = (500 ÷ 1.000) × 2 = 1,0 kWh.',
+  },
+  {
+    question: 'Was kosten 100 Watt Strom pro Stunde, Tag und Jahr?',
+    answer: 'Bei einem Strompreis von 35 ct/kWh kostet ein 100-Watt-Gerät: 3,5 Cent pro Stunde, 84 Cent pro Tag (bei 24h Dauerbetrieb) und 306,60 Euro pro Jahr.',
+  },
+  {
+    question: 'Was kosten 1.000 Watt (1 kW) an Strom?',
+    answer: '1.000 Watt verbrauchen in 1 Stunde genau 1 kWh. Bei 35 ct/kWh kostet eine Stunde genau 35 Cent.',
+  },
+];
+
+const related = [
+  { title: 'Stromkosten pro Stunde', href: '/stromkosten-pro-stunde', description: 'Stundenkosten für beliebige Wattstärken.' },
+  { title: 'kWh in Euro Rechner', href: '/kwh-rechner', description: 'kWh direkt in Euro umrechnen.' },
+  { title: 'Stromkostenrechner', href: '/stromkosten-rechner', description: 'Universeller Stromkostenrechner.' },
+];
+---
+
+<BaseLayout
+  title="Watt Rechner: Watt in kWh & Stromkosten umrechnen | kWhKlar"
+  description="Ermittle aus der Watt-Angabe deines Geräts den Stromverbrauch in kWh und die laufenden Stromkosten pro Stunde, Tag oder Jahr."
+  canonical="https://kwhklar.de/watt-rechner"
+  jsonLd={schema}
+  breadcrumbs={[{ name: 'Watt Rechner', path: '/watt-rechner' }]}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs items={[{ name: 'Watt Rechner', path: '/watt-rechner' }]} />
+
+    <div class="max-w-3xl mb-6">
+      <span class="badge-amber text-xs mb-2">Watt & Leistung</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+        Watt Rechner: Watt in Kilowattstunden & Euro berechnen
+      </h1>
+      <p class="mt-3 text-base text-slate-600 leading-relaxed">
+        Rechne jede elektrische Leistung (in Watt) direkt in verbrauchte Kilowattstunden (kWh) und die anfallenden Stromkosten um.
+      </p>
+    </div>
+
+    <UniversalCalculator
+      defaultWatt={100}
+      defaultHours={8}
+      defaultPriceCt={35.0}
+      title="Watt in kWh & Kosten umrechnen"
+      subtitle="Gib die Wattzahl deines Geräts ein:"
+    />
+
+    <!-- Comparison Table for Wattage -->
+    <div class="my-10 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200">
+      <h2 class="text-xl font-bold text-slate-900 mb-4">Übersicht: Typische Watt-Leistungen und ihre Stromkosten</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs sm:text-sm">
+          <thead class="bg-slate-50 text-slate-700 font-semibold border-b border-slate-200">
+            <tr>
+              <th class="p-3">Leistung (Watt)</th>
+              <th class="p-3">Typisches Gerät</th>
+              <th class="p-3">Kosten pro 1h</th>
+              <th class="p-3">Kosten pro Tag (8h)</th>
+              <th class="p-3 text-right">Kosten pro Jahr (8h/Tag)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 text-slate-600">
+            <tr><td class="p-3 font-bold text-slate-900">10 W</td><td class="p-3">LED-Lampe / Router</td><td class="p-3">0,35 ct</td><td class="p-3">2,8 ct</td><td class="p-3 text-right font-semibold">10,22 €</td></tr>
+            <tr><td class="p-3 font-bold text-slate-900">50 W</td><td class="p-3">Laptop / Ventilator</td><td class="p-3">1,75 ct</td><td class="p-3">14,0 ct</td><td class="p-3 text-right font-semibold">51,10 €</td></tr>
+            <tr><td class="p-3 font-bold text-slate-900">100 W</td><td class="p-3">Fernseher / Monitor</td><td class="p-3">3,50 ct</td><td class="p-3">28,0 ct</td><td class="p-3 text-right font-semibold">102,20 €</td></tr>
+            <tr><td class="p-3 font-bold text-slate-900">400 W</td><td class="p-3">Gaming-PC</td><td class="p-3">14,00 ct</td><td class="p-3">1,12 €</td><td class="p-3 text-right font-semibold">408,80 €</td></tr>
+            <tr><td class="p-3 font-bold text-slate-900">1.000 W</td><td class="p-3">Klimagerät / Staubsauger</td><td class="p-3">35,00 ct</td><td class="p-3">2,80 €</td><td class="p-3 text-right font-semibold">1.022,00 €</td></tr>
+            <tr><td class="p-3 font-bold text-slate-900">2.000 W</td><td class="p-3">Heizlüfter / Waschmaschine</td><td class="p-3">70,00 ct</td><td class="p-3">5,60 €</td><td class="p-3 text-right font-semibold">2.044,00 €</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-3 text-xs text-slate-500">* Berechnet bei 35 ct/kWh Arbeitspreis.</p>
+    </div>
+
+    <RelatedLinks links={related} />
+    <SourceBox sourceIds={['bnetza', 'bdew', 'uba']} />
+    <FaqSection items={faqs} />
+  </div>
+</BaseLayout>

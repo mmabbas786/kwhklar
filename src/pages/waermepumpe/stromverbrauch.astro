@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import RelatedLinks from '../../components/seo/RelatedLinks.astro';
+import SourceBox from '../../components/trust/SourceBox.astro';
+import FaqSection from '../../components/content/FaqSection.astro';
+
+const faqs = [
+  {
+    question: 'Wie viel Strom verbraucht eine Wärmepumpe im Einfamilienhaus pro Jahr?',
+    answer: 'In einem gut gedämmten Neubau (ca. 140 m²) verbraucht eine Luft-Wasser-Wärmepumpe ca. 2.000 bis 3.000 kWh Strom pro Jahr. In einem teilsanierten Altbau liegt der Stromverbrauch typischerweise bei 4.000 bis 6.500 kWh pro Jahr.',
+  },
+  {
+    question: 'Wie verteilt sich der Stromverbrauch einer Wärmepumpe über das Jahr?',
+    answer: 'Rund 75 bis 80 % des gesamten Jahresstromverbrauchs einer Wärmepumpe fallen in den vier kalten Monaten November, Dezember, Januar und Februar an. In den Sommermonaten wird lediglich wenig Strom für die Warmwasserbereitung benötigt.',
+  },
+];
+
+const related = [
+  { title: 'Wärmepumpe Stromrechner', href: '/waermepumpe/stromverbrauch-rechner', description: 'Exakten Strombedarf berechnen.' },
+  { title: 'Wärmepumpe Stromkosten', href: '/waermepumpe/stromkosten', description: 'Heizstromtarife & Gesamtkosten.' },
+  { title: 'Balkonkraftwerk / PV', href: '/photovoltaik/eigenverbrauch-rechner', description: 'Wärmepumpe mit Solarstrom betreiben.' },
+];
+---
+
+<BaseLayout
+  title="Wärmepumpe Stromverbrauch: Altbau vs. Neubau & Richtwerte | kWhKlar"
+  description="Wie viel Strom verbraucht eine Wärmepumpe im Jahr? Richtwerte für Altbau und Neubau, saisonale Verteilung im Winter und Einfluss der JAZ."
+  canonical="https://kwhklar.de/waermepumpe/stromverbrauch"
+  breadcrumbs={[
+    { name: 'Wärmepumpe', path: '/waermepumpe/stromverbrauch' },
+    { name: 'Stromverbrauch', path: '/waermepumpe/stromverbrauch' },
+  ]}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs
+      items={[
+        { name: 'Wärmepumpe', path: '/waermepumpe/stromverbrauch' },
+        { name: 'Stromverbrauch Übersicht', path: '/waermepumpe/stromverbrauch' },
+      ]}
+    />
+
+    <div class="max-w-3xl mb-8">
+      <span class="badge-emerald text-xs mb-2">Wärmepumpen-Wissen</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+        Wärmepumpe Stromverbrauch: Richtwerte für Altbau & Neubau
+      </h1>
+      <p class="mt-3 text-base text-slate-600 leading-relaxed">
+        Erfahre, wie viel Strom Luft-Wasser- und Erdwärmepumpen im Jahr verbrauchen, warum die Jahresarbeitszahl entscheidend ist und wie sich der Heizstrom auf die Wintermonate verteilt.
+      </p>
+    </div>
+
+    <!-- Comparison Table -->
+    <div class="my-8 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xs max-w-4xl mx-auto">
+      <h2 class="text-xl font-bold text-slate-900 mb-4">Stromverbrauch nach Gebäudestandard (140 m² Wohnfläche)</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs sm:text-sm">
+          <thead class="bg-slate-50 text-slate-700 font-semibold border-b border-slate-200">
+            <tr>
+              <th class="p-3">Gebäudestandard</th>
+              <th class="p-3">Wärmebedarf / Jahr</th>
+              <th class="p-3">JAZ (Luft-Wasser)</th>
+              <th class="p-3">Strombedarf / Jahr</th>
+              <th class="p-3 text-right">Stromkosten / Jahr (bei 30 ct)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 text-slate-600">
+            <tr><td class="p-3 font-semibold text-slate-900">Neubau (KfW 40/55)</td><td class="p-3">7.000 kWh</td><td class="p-3">4,0</td><td class="p-3 font-bold text-emerald-700">1.750 kWh</td><td class="p-3 text-right font-semibold text-slate-900">525,00 €</td></tr>
+            <tr><td class="p-3 font-semibold text-slate-900">Guter Bestand (ab 2002)</td><td class="p-3">12.000 kWh</td><td class="p-3">3,8</td><td class="p-3 font-bold text-emerald-700">3.158 kWh</td><td class="p-3 text-right font-semibold text-slate-900">947,40 €</td></tr>
+            <tr><td class="p-3 font-semibold text-slate-900">Teilsanierter Altbau (ab 1980)</td><td class="p-3">18.000 kWh</td><td class="p-3">3,3</td><td class="p-3 font-bold text-emerald-700">5.455 kWh</td><td class="p-3 text-right font-semibold text-slate-900">1.636,50 €</td></tr>
+            <tr><td class="p-3 font-semibold text-slate-900">Ungedämmter Altbau</td><td class="p-3">25.000 kWh</td><td class="p-3">2,8</td><td class="p-3 font-bold text-amber-700">8.929 kWh</td><td class="p-3 text-right font-semibold text-slate-900">2.678,70 €</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="text-center my-8">
+      <a
+        href="/waermepumpe/stromverbrauch-rechner"
+        class="inline-flex items-center gap-2 rounded-2xl bg-emerald-600 px-6 py-3.5 text-sm font-bold text-white shadow-md hover:bg-emerald-700 transition"
+      >
+        <span>Eigenen Wärmepumpen-Stromverbrauch berechnen</span>
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+    </div>
+
+    <RelatedLinks links={related} />
+    <SourceBox sourceIds={['bnetza', 'uba', 'stromspiegel']} />
+    <FaqSection items={faqs} />
+  </div>
+</BaseLayout>

@@ -1,0 +1,247 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import UniversalCalculator from '../../components/calculator/UniversalCalculator.astro';
+import ApplianceCard from '../../components/cards/ApplianceCard.astro';
+import SourceBox from '../../components/trust/SourceBox.astro';
+import FaqSection from '../../components/content/FaqSection.astro';
+import { appliances } from '../../data/appliances';
+import { householdBenchmarks } from '../../data/household-benchmarks';
+import { formatEuro, formatKwh } from '../../lib/formatters';
+import { languages, type SupportedLanguage } from '../../i18n/languages';
+import { useTranslations } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  const nonDefaultLangs: SupportedLanguage[] = ['en', 'es', 'ja', 'fr', 'pt', 'ko', 'it'];
+  return nonDefaultLangs.map((lang) => ({
+    params: { lang },
+  }));
+}
+
+const { lang } = Astro.params as { lang: SupportedLanguage };
+const t = useTranslations(lang);
+const langInfo = languages[lang];
+
+const popularAppliances = [
+  appliances['kuehlschrank'],
+  appliances['waschmaschine'],
+  appliances['trockner'],
+  appliances['geschirrspueler'],
+  appliances['gaming-pc'],
+  appliances['fernseher'],
+];
+
+const homeFaqs = [
+  {
+    question: lang === 'en'
+      ? 'How do you calculate electricity costs from watts and hours?'
+      : lang === 'es'
+      ? '¿Cómo se calcula el coste de electricidad a partir de vatios y horas?'
+      : lang === 'fr'
+      ? 'Comment calculer le coût de l\'électricité à partir des watts et des heures ?'
+      : lang === 'it'
+      ? 'Come si calcola il costo dell\'energia elettrica da watt e ore?'
+      : lang === 'pt'
+      ? 'Como calcular os custos de eletricidade a partir de watts e horas?'
+      : lang === 'ja'
+      ? 'ワット数と使用時間から電気代を計算するにはどうすればよいですか？'
+      : '소비전력(W)과 사용 시간으로 전기요금을 어떻게 계산하나요?',
+    answer: lang === 'en'
+      ? 'Formula: Cost (€) = (Power in Watts × Operating Hours ÷ 1,000) × Electricity Price (€/kWh). Example: A 2,000 W appliance running for 2 hours consumes (2,000 × 2 ÷ 1,000) = 4 kWh. At €0.35/kWh, this costs €1.40.'
+      : lang === 'es'
+      ? 'Fórmula: Coste (€) = (Potencia en vatios × Horas de uso ÷ 1.000) × Precio kWh. Ejemplo: Un aparato de 2.000 W durante 2 horas consume 4 kWh. A 0,35 €/kWh cuesta 1,40 €.'
+      : lang === 'fr'
+      ? 'Formule : Coût (€) = (Puissance en Watts × Heures ÷ 1 000) × Prix du kWh. Exemple : Un appareil de 2 000 W pendant 2 heures consomme 4 kWh. À 0,35 €/kWh, cela coûte 1,40 €.'
+      : lang === 'it'
+      ? 'Formula: Costo (€) = (Potenza in Watt × Ore di utilizzo ÷ 1.000) × Prezzo kWh. Esempio: Un apparecchio da 2.000 W per 2 ore consuma 4 kWh. A 0,35 €/kWh costa 1,40 €.'
+      : lang === 'pt'
+      ? 'Fórmula: Custo (€) = (Potência em Watts × Horas de uso ÷ 1.000) × Preço kWh. Exemplo: Um aparelho de 2.000 W por 2 horas consome 4 kWh. A 0,35 €/kWh custa 1,40 €.'
+      : lang === 'ja'
+      ? '計算式: 電気代 (€) = (消費電力W × 使用時間h ÷ 1,000) × 単価 (€/kWh)。例: 2,000Wの機器を2時間使用すると4kWhとなり、単価0.35€の場合1.40€となります。'
+      : '계산식: 전기요금 (€) = (소비전력W × 사용시간h ÷ 1,000) × 단가 (€/kWh). 예: 2,000W 기기를 2시간 사용 시 4kWh를 소비하며, 단가가 0.35€일 경우 1.40€입니다.',
+  },
+];
+---
+
+<BaseLayout
+  title={t('site.title')}
+  description={t('site.description')}
+  canonical={`https://kwhklar.de/${lang}`}
+>
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden bg-gradient-to-b from-emerald-50/70 via-slate-50 to-slate-50 dark:from-slate-950 dark:via-slate-900/90 dark:to-slate-950 pt-10 pb-8 sm:pt-16 sm:pb-12 border-b border-slate-200/70 dark:border-slate-800">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-8">
+        <div class="inline-flex items-center gap-2 rounded-full bg-emerald-100/90 dark:bg-emerald-950/80 px-3.5 py-1 text-xs font-semibold text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 shadow-2xs">
+          <span>{t('hero.badge')}</span>
+        </div>
+        <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-5xl lg:text-6xl">
+          {t('hero.title')} <span class="text-emerald-600 dark:text-emerald-400">{t('hero.title_highlight')}</span>
+        </h1>
+        <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto">
+          {t('hero.subtitle')}
+        </p>
+      </div>
+
+      <!-- Hero Calculator Island -->
+      <UniversalCalculator
+        defaultWatt={1000}
+        defaultHours={1}
+        defaultPriceCt={langInfo.defaultPricePerKwh * 100}
+        title={t('calc.title')}
+        subtitle={t('calc.subtitle')}
+      />
+    </div>
+  </section>
+
+  <!-- Popular Calculation Categories -->
+  <section class="py-14 bg-white dark:bg-slate-900 border-b border-slate-200/70 dark:border-slate-800">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight sm:text-3xl">
+          {t('categories.heading')}
+        </h2>
+        <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">
+          {t('categories.subheading')}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <a href={`/${lang}/stromkosten-rechner`} class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between dark:bg-slate-800/80 dark:border-slate-700">
+          <div>
+            <div class="h-10 w-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-400 flex items-center justify-center font-bold text-lg mb-4">
+              €
+            </div>
+            <h3 class="font-bold text-slate-900 dark:text-white text-base">Stromkostenrechner</h3>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Watt, Stunden & Strompreis exakt berechnen.
+            </p>
+          </div>
+          <span class="mt-4 text-xs font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">→</span>
+        </a>
+
+        <a href={`/${lang}/kwh-rechner`} class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between dark:bg-slate-800/80 dark:border-slate-700">
+          <div>
+            <div class="h-10 w-10 rounded-xl bg-blue-100 dark:bg-blue-950/80 text-blue-700 dark:text-blue-400 flex items-center justify-center font-bold text-lg mb-4">
+              kWh
+            </div>
+            <h3 class="font-bold text-slate-900 dark:text-white text-base">kWh in Euro</h3>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Kilowattstunden direkt umrechnen.
+            </p>
+          </div>
+          <span class="mt-4 text-xs font-semibold text-blue-600 dark:text-blue-400 flex items-center gap-1">→</span>
+        </a>
+
+        <a href={`/${lang}/watt-rechner`} class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between dark:bg-slate-800/80 dark:border-slate-700">
+          <div>
+            <div class="h-10 w-10 rounded-xl bg-amber-100 dark:bg-amber-950/80 text-amber-700 dark:text-amber-400 flex items-center justify-center font-bold text-lg mb-4">
+              W
+            </div>
+            <h3 class="font-bold text-slate-900 dark:text-white text-base">Watt in kWh</h3>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Leistung von Watt in Kilowattstunden umrechnen.
+            </p>
+          </div>
+          <span class="mt-4 text-xs font-semibold text-amber-600 dark:text-amber-400 flex items-center gap-1">→</span>
+        </a>
+
+        <a href={`/${lang}/stromverbrauch-haushalt`} class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between dark:bg-slate-800/80 dark:border-slate-700">
+          <div>
+            <div class="h-10 w-10 rounded-xl bg-purple-100 dark:bg-purple-950/80 text-purple-700 dark:text-purple-400 flex items-center justify-center font-bold text-lg mb-4">
+              🏠
+            </div>
+            <h3 class="font-bold text-slate-900 dark:text-white text-base">Haushalt</h3>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Vergleiche deinen Jahresverbrauch für 1 bis 5+ Personen.
+            </p>
+          </div>
+          <span class="mt-4 text-xs font-semibold text-purple-600 dark:text-purple-400 flex items-center gap-1">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Appliances Section -->
+  <section class="py-14 bg-slate-50 dark:bg-slate-950 border-b border-slate-200/70 dark:border-slate-800">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">Verbrauch im Detail</span>
+          <h2 class="mt-1 text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
+            {t('appliances.heading')}
+          </h2>
+          <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">
+            {t('appliances.subheading')}
+          </p>
+        </div>
+        <a
+          href={`/${lang}/geraete`}
+          class="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-2 text-xs font-semibold text-slate-800 dark:text-slate-200 shadow-2xs hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-emerald-400 transition"
+        >
+          {t('appliances.view_all')}
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {popularAppliances.map((appliance) => (
+          <ApplianceCard appliance={appliance} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Household Benchmarks Section -->
+  <section class="py-14 bg-white dark:bg-slate-900 border-b border-slate-200/70 dark:border-slate-800">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <span class="text-xs font-semibold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">Richtwerte 2026</span>
+        <h2 class="mt-1 text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
+          {t('benchmarks.heading')}
+        </h2>
+        <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">
+          {t('benchmarks.subheading')}
+        </p>
+      </div>
+
+      <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 shadow-2xs">
+        <table class="w-full text-left text-xs sm:text-sm">
+          <thead class="bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold border-b border-slate-200 dark:border-slate-800">
+            <tr>
+              <th class="p-4">Haushaltsgröße</th>
+              <th class="p-4">Wohnung (ohne Warmwasser)</th>
+              <th class="p-4">Wohnung (mit Warmwasser)</th>
+              <th class="p-4">Einfamilienhaus</th>
+              <th class="p-4 text-right">Monatliche Kosten (ca.)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-600 dark:text-slate-400">
+            {Object.values(householdBenchmarks).map((bm) => (
+              <tr class="hover:bg-slate-50/60 dark:hover:bg-slate-800/50 transition">
+                <td class="p-4 font-semibold text-slate-900 dark:text-white">
+                  {bm.label}
+                </td>
+                <td class="p-4">{formatKwh(bm.apartmentWithoutWarmWaterKwh, 0)}/Jahr</td>
+                <td class="p-4 text-amber-700 dark:text-amber-400 font-medium">{formatKwh(bm.apartmentWithWarmWaterKwh, 0)}/Jahr</td>
+                <td class="p-4">{formatKwh(bm.houseWithoutWarmWaterKwh, 0)}/Jahr</td>
+                <td class="p-4 text-right font-bold text-slate-900 dark:text-white">{formatEuro(bm.typicalMonthlyCostEuro)}/Monat</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sources & Methodology Box -->
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
+    <SourceBox
+      sourceIds={['bnetza', 'bdew', 'destatis', 'stromspiegel']}
+      note="Berechnungen basieren auf transparenten, nachvollziehbaren Formeln und offiziellen statistischen Erhebungen."
+    />
+  </div>
+
+  <!-- FAQ Section -->
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-12">
+    <FaqSection items={homeFaqs} />
+  </div>
+</BaseLayout>

@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import UniversalCalculator from '../components/calculator/UniversalCalculator.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import RelatedLinks from '../components/seo/RelatedLinks.astro';
+import SourceBox from '../components/trust/SourceBox.astro';
+import FaqSection from '../components/content/FaqSection.astro';
+
+const faqs = [
+  {
+    question: 'Wie viel Strom und Geld kostet Standby pro Jahr im Durchschnitt?',
+    answer: 'Laut Umweltbundesamt verursacht der unnötige Bereitschafts- und Schein-Aus-Betrieb in einem durchschnittlichen deutschen Haushalt ca. 200 bis 400 kWh Stromverbrauch pro Jahr. Das entspricht rund 70 bis 140 Euro vermeidbaren Stromkosten jährlich.',
+  },
+  {
+    question: 'Welche Geräte verbrauchen im Standby am meisten?',
+    answer: 'Spitzenreiter sind ältere TV-Receiver, Spielekonsolen im „Schnellstart“-Modus (oft 10–15 Watt dauerhaft), Soundsysteme mit permanent aktivem Bluetooth/WLAN, ältere Kaffeevollautomaten und Netzteile ohne Eco-Design.',
+  },
+];
+
+const related = [
+  { title: 'Die größten Stromfresser', href: '/stromfresser', description: 'Großgeräte im Check.' },
+  { title: 'Strom sparen Tipps', href: '/strom-sparen-tipps', description: 'Praktische Alltagstipps.' },
+  { title: 'Watt in kWh Rechner', href: '/watt-rechner', description: 'Standby-Watt umrechnen.' },
+];
+---
+
+<BaseLayout
+  title="Standby Strom berechnen & vermeiden: Kosten der Dauerläufer | kWhKlar"
+  description="Wie viel kostet Standby-Strom im Jahr? Berechne die Leerlaufkosten für Fernseher, Konsolen & Router. Tipps zur Vermeidung von Standby-Verlusten."
+  canonical="https://kwhklar.de/standby-strom"
+  breadcrumbs={[
+    { name: 'Sparen', path: '/strom-sparen' },
+    { name: 'Standby Strom', path: '/standby-strom' },
+  ]}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs
+      items={[
+        { name: 'Strom sparen', path: '/strom-sparen' },
+        { name: 'Standby Strom', path: '/standby-strom' },
+      ]}
+    />
+
+    <div class="max-w-3xl mb-8">
+      <span class="badge-amber text-xs mb-2">Leerlaufverluste</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+        Standby-Strom berechnen & vermeiden
+      </h1>
+      <p class="mt-3 text-base text-slate-600 leading-relaxed">
+        Geräte im Bereitschaftsmodus ziehen oft unbemerkt 24 Stunden am Tag Strom. Finde heraus, was dich die heimlichen Dauerläufer kosten und wie du sie abschaltest.
+      </p>
+    </div>
+
+    <!-- 1 Watt Rule Card -->
+    <div class="my-8 rounded-3xl border border-amber-200 bg-amber-50/70 p-6 sm:p-8 text-amber-950 max-w-4xl mx-auto shadow-2xs">
+      <h2 class="text-xl font-bold mb-2">Die 1-Watt-Dauerstrom-Faustformel:</h2>
+      <p class="text-sm leading-relaxed text-amber-900">
+        Jedes <strong>1 Watt Dauerleistung</strong> (24h an 365 Tagen) verbraucht rund <strong>8,76 kWh</strong> im Jahr. Bei 35 ct/kWh kostet dich jedes einzelne Watt Dauer-Standby exakt <strong>3,07 Euro pro Jahr</strong>!
+      </p>
+    </div>
+
+    <UniversalCalculator
+      defaultWatt={25}
+      defaultHours={24}
+      defaultPriceCt={35.0}
+      title="Standby-Kostenrechner"
+      subtitle="Gib die geschätzte Gesamt-Standbyleistung deiner Haushaltsgeräte ein (typisch 20–40 W):"
+    />
+
+    <RelatedLinks links={related} />
+    <SourceBox sourceIds={['uba', 'stromspiegel']} />
+    <FaqSection items={faqs} />
+  </div>
+</BaseLayout>

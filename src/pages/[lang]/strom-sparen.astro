@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SourceBox from '../../components/trust/SourceBox.astro';
+import { type SupportedLanguage } from '../../i18n/languages';
+import { useTranslations } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  const nonDefaultLangs: SupportedLanguage[] = ['en', 'es', 'ja', 'fr', 'pt', 'ko', 'it'];
+  return nonDefaultLangs.map((lang) => ({
+    params: { lang },
+  }));
+}
+
+const { lang } = Astro.params as { lang: SupportedLanguage };
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  title={`Strom sparen: Effektive Tipps & Einsparpotenziale | kWhKlar`}
+  description="Die besten Tipps zum Stromsparen im Haushalt mit konkreten Euro-Ersparnissen."
+  canonical={`https://kwhklar.de/${lang}/strom-sparen`}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+    <div class="max-w-3xl mx-auto text-center mb-10">
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Strom sparen im Haushalt
+      </h1>
+      <p class="mt-2 text-base text-slate-600 dark:text-slate-400">
+        Konkrete Tipps und Maßnahmen mit verifizierten Einsparpotenzialen.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 space-y-2">
+        <span class="text-2xl">🔌</span>
+        <h2 class="text-base font-bold text-slate-900 dark:text-white">Standby-Strom vermeiden</h2>
+        <p class="text-xs text-slate-600 dark:text-slate-400">Schaltbare Steckdosenleisten sparen bis zu 100 € pro Jahr an unnötigen Ruheverlusten.</p>
+      </div>
+
+      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 space-y-2">
+        <span class="text-2xl">❄️</span>
+        <h2 class="text-base font-bold text-slate-900 dark:text-white">Kühlgeräte optimal einstellen</h2>
+        <p class="text-xs text-slate-600 dark:text-slate-400">7 °C im Kühlschrank und -18 °C im Gefrierschrank reichen völlig aus und sparen Strom.</p>
+      </div>
+    </div>
+
+    <div class="mt-10 max-w-4xl mx-auto">
+      <SourceBox
+        sourceIds={['stromspiegel', 'destatis']}
+        note="Empfehlungen und Einsparwerte basieren auf Studien der Stromspiegel-Initiative."
+      />
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+
+const contactEmail = import.meta.env.PUBLIC_CONTACT_EMAIL || '[KONTAKT-E-MAIL-ADRESSE_DES_BETREIBERS]';
+---
+
+<BaseLayout
+  title="Kontakt: Anfragen, Feedback & Support | kWhKlar"
+  description="Kontaktiere das Team von kWhKlar.de bei Fragen zu Rechnern, Methoden oder Kooperationen."
+  canonical="https://kwhklar.de/kontakt"
+  breadcrumbs={[{ name: 'Kontakt', path: '/kontakt' }]}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs items={[{ name: 'Kontakt', path: '/kontakt' }]} />
+
+    <div class="max-w-3xl mb-8">
+      <span class="badge-emerald text-xs mb-2">Hilfe & Feedback</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+        Kontakt zu kWhKlar
+      </h1>
+      <p class="mt-3 text-base text-slate-600 leading-relaxed">
+        Hast du Anregungen, Feedback zu unseren Rechnern oder Fragen zu den Datenquellen? Wir freuen uns über deine Nachricht.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-8 max-w-4xl">
+      <div class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xs">
+        <h2 class="text-xl font-bold text-slate-900 mb-4">Direkter Kontakt per E-Mail</h2>
+        <p class="text-sm text-slate-600 leading-relaxed mb-4">
+          Für redaktionelle Hinweise, Feedback zu Berechnungen oder allgemeine Anfragen wende dich bitte an:
+        </p>
+        <div class="rounded-xl bg-slate-50 p-4 border border-slate-200 text-sm font-semibold text-emerald-800 break-all font-mono">
+          {contactEmail}
+        </div>
+        <p class="text-xs text-slate-500 mt-4 leading-relaxed">
+          Hinweis: kWhKlar.de bietet keine individuelle Rechts-, Steuer- oder Energieberatung im Einzelfall an.
+        </p>
+      </div>
+
+      <div class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xs">
+        <h2 class="text-xl font-bold text-slate-900 mb-4">Häufige Anliegen</h2>
+        <ul class="space-y-3 text-xs sm:text-sm text-slate-600">
+          <li class="flex gap-2">
+            <span class="text-emerald-600 font-bold">•</span>
+            <span><strong>Fehler melden:</strong> Hast du einen Tippfehler oder eine veraltete Angabe entdeckt? Schick uns gerne einen Hinweis.</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="text-emerald-600 font-bold">•</span>
+            <span><strong>Rechner-Vorschläge:</strong> Fehlt dir ein bestimmtes Gerät oder eine spezielle Formel? Wir erweitern die Plattform stetig.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

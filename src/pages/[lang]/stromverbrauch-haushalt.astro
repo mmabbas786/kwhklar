@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { householdBenchmarks } from '../../data/household-benchmarks';
+import { formatEuro, formatKwh } from '../../lib/formatters';
+import { type SupportedLanguage } from '../../i18n/languages';
+import { useTranslations } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  const nonDefaultLangs: SupportedLanguage[] = ['en', 'es', 'ja', 'fr', 'pt', 'ko', 'it'];
+  return nonDefaultLangs.map((lang) => ({
+    params: { lang },
+  }));
+}
+
+const { lang } = Astro.params as { lang: SupportedLanguage };
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  title={`${t('benchmarks.heading')} | kWhKlar`}
+  description={t('benchmarks.subheading')}
+  canonical={`https://kwhklar.de/${lang}/stromverbrauch-haushalt`}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+    <div class="max-w-3xl mx-auto text-center mb-10">
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        {t('benchmarks.heading')}
+      </h1>
+      <p class="mt-2 text-base text-slate-600 dark:text-slate-400">
+        {t('benchmarks.subheading')}
+      </p>
+    </div>
+
+    <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 shadow-2xs">
+      <table class="w-full text-left text-xs sm:text-sm">
+        <thead class="bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold border-b border-slate-200 dark:border-slate-800">
+          <tr>
+            <th class="p-4">Haushaltsgröße</th>
+            <th class="p-4">Wohnung (ohne Warmwasser)</th>
+            <th class="p-4">Wohnung (mit Warmwasser)</th>
+            <th class="p-4">Einfamilienhaus</th>
+            <th class="p-4 text-right">Monatliche Kosten (ca.)</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-600 dark:text-slate-400">
+          {Object.values(householdBenchmarks).map((bm) => (
+            <tr class="hover:bg-slate-50/60 dark:hover:bg-slate-800/50 transition">
+              <td class="p-4 font-semibold text-slate-900 dark:text-white">
+                {bm.label}
+              </td>
+              <td class="p-4">{formatKwh(bm.apartmentWithoutWarmWaterKwh, 0)}/Jahr</td>
+              <td class="p-4 text-amber-700 dark:text-amber-400 font-medium">{formatKwh(bm.apartmentWithWarmWaterKwh, 0)}/Jahr</td>
+              <td class="p-4">{formatKwh(bm.houseWithoutWarmWaterKwh, 0)}/Jahr</td>
+              <td class="p-4 text-right font-bold text-slate-900 dark:text-white">{formatEuro(bm.typicalMonthlyCostEuro)}/Monat</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</BaseLayout>

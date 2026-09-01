@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { type SupportedLanguage } from '../../i18n/languages';
+import { useTranslations } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  const nonDefaultLangs: SupportedLanguage[] = ['en', 'es', 'ja', 'fr', 'pt', 'ko', 'it'];
+  return nonDefaultLangs.map((lang) => ({
+    params: { lang },
+  }));
+}
+
+const { lang } = Astro.params as { lang: SupportedLanguage };
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  title={`${t('footer.imprint')} | kWhKlar`}
+  description="Impressum und rechtliche Angaben gemäß § 5 DDG für kWhKlar.de."
+  canonical={`https://kwhklar.de/${lang}/impressum`}
+  noindex={true}
+>
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl font-bold text-slate-900 dark:text-white tracking-tight sm:text-4xl">
+      {t('footer.imprint')}
+    </h1>
+    <div class="mt-6 space-y-4 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+      <h2 class="text-base font-bold text-slate-900 dark:text-white">Angaben gemäß § 5 DDG</h2>
+      <p>kWhKlar.de — Unabhängiges Informationsportal für Energieberechnungen</p>
+      <p>E-Mail: kontakt@kwhklar.de</p>
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import UniversalCalculator from '../components/calculator/UniversalCalculator.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import RelatedLinks from '../components/seo/RelatedLinks.astro';
+import SourceBox from '../components/trust/SourceBox.astro';
+import FaqSection from '../components/content/FaqSection.astro';
+
+const faqs = [
+  {
+    question: 'Wie oft ändern sich die Strompreise für Verbraucher?',
+    answer: 'Bei Festpreisverträgen bleibt der Preis für die vereinbarte Laufzeit (meist 12 oder 24 Monate) fixiert. Bei Grundversorgungstarifen oder Preisanpassungen informieren die Versorger mindestens 6 Wochen im Voraus über Tarifänderungen.',
+  },
+];
+
+const related = [
+  { title: 'Strompreis Deutschland', href: '/strompreis-deutschland', description: 'Regionale Unterschiede.' },
+  { title: 'Strompreis Zusammensetzung', href: '/strompreis-zusammensetzung', description: 'Steuern & Abgaben.' },
+  { title: 'Dynamische Stromtarife', href: '/dynamische-stromtarife', description: 'Börsenstrompreise nutzen.' },
+];
+---
+
+<BaseLayout
+  title="Aktueller Strompreis 2026: Was kostet Strom heute? | kWhKlar"
+  description="Aktueller Strompreis in Deutschland im Jahr 2026: Durchschnittliche Arbeitspreise ({formatCtPerKwh(electricityPriceData.currentReferencePrice.valueCtPerKwh)}), Neukundentarife & Marktlage."
+  canonical="https://kwhklar.de/strompreis-aktuell"
+  breadcrumbs={[
+    { name: 'Strompreis', path: '/strompreis' },
+    { name: 'Aktueller Strompreis', path: '/strompreis-aktuell' },
+  ]}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs
+      items={[
+        { name: 'Strompreis', path: '/strompreis' },
+        { name: 'Aktueller Strompreis', path: '/strompreis-aktuell' },
+      ]}
+    />
+
+    <div class="max-w-3xl mb-8">
+      <span class="badge-emerald text-xs mb-2">Marktbericht 2026</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+        Aktueller Strompreis in Deutschland
+      </h1>
+      <p class="mt-3 text-base text-slate-600 leading-relaxed">
+        Aktuelle Preisdaten der Bundesnetzagentur und des BDEW für private Verbraucher und Haushalte.
+      </p>
+    </div>
+
+    <UniversalCalculator
+      defaultWatt={1000}
+      defaultHours={1}
+      defaultPriceCt={35.0}
+      title="Strompreisrechner"
+      subtitle="Teste Berechnungen mit aktuellen Tarifpreisen:"
+    />
+
+    <RelatedLinks links={related} />
+    <SourceBox sourceIds={['bnetza', 'bdew', 'smard']} />
+    <FaqSection items={faqs} />
+  </div>
+</BaseLayout>

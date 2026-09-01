@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import RelatedLinks from '../components/seo/RelatedLinks.astro';
+import SourceBox from '../components/trust/SourceBox.astro';
+import FaqSection from '../components/content/FaqSection.astro';
+
+const faqs = [
+  {
+    question: 'Welche Stromspartipps bringen am meisten Ersparnis?',
+    answer: 'Die größten Hebel im Alltag: 1. Sparduschkopf bei elektrischer Warmwasserbereitung (bis zu 200 €/Jahr), 2. Wäsche bei 30 °C waschen (ca. 40 €/Jahr), 3. Standby-Abschaltung (ca. 70–100 €/Jahr) und 4. Austausch alter Kühlgeräte (bis zu 80 €/Jahr).',
+  },
+];
+
+const related = [
+  { title: 'Die größten Stromfresser', href: '/stromfresser', description: 'Top Verbraucher aufdecken.' },
+  { title: 'Standby-Strom vermeiden', href: '/standby-strom', description: 'Leerlaufkosten senken.' },
+  { title: 'Stromanbieter wechseln', href: '/stromanbieter-wechseln', description: 'Tarife optimieren.' },
+];
+---
+
+<BaseLayout
+  title="Strom sparen: Die 15 besten Stromspartipps für den Haushalt | kWhKlar"
+  description="Konkrete Stromspartipps für Küche, Bad, Wohnzimmer und Homeoffice. Einfach umsetzbar, messbare Ersparnis und ohne Komfortverlust."
+  canonical="https://kwhklar.de/strom-sparen-tipps"
+  breadcrumbs={[
+    { name: 'Sparen', path: '/strom-sparen' },
+    { name: 'Strom sparen Tipps', path: '/strom-sparen-tipps' },
+  ]}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs
+      items={[
+        { name: 'Strom sparen', path: '/strom-sparen' },
+        { name: 'Strom sparen Tipps', path: '/strom-sparen-tipps' },
+      ]}
+    />
+
+    <div class="max-w-3xl mb-8">
+      <span class="badge-emerald text-xs mb-2">Tipps & Praxis</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+        Die 15 besten Stromspartipps für den Alltag
+      </h1>
+      <p class="mt-3 text-base text-slate-600 leading-relaxed">
+        Praktische, sofort anwendbare Empfehlungen nach Räumen sortiert, mit denen du deinen Stromverbrauch ohne teure Neuanschaffungen reduzierst.
+      </p>
+    </div>
+
+    <!-- Category Tips Grid -->
+    <div class="my-10 space-y-8 max-w-4xl mx-auto">
+      <!-- Küche -->
+      <div class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xs">
+        <h2 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+          <span>🍳</span> In der Küche
+        </h2>
+        <ul class="space-y-3 text-xs sm:text-sm text-slate-600">
+          <li class="flex gap-2"><strong>1. Deckel auf den Topf:</strong> Spart bis zu 65 % Energie beim Kochen.</li>
+          <li class="flex gap-2"><strong>2. Wasserkocher statt Herd:</strong> Nudelwasser immer im Wasserkocher vorkochen.</li>
+          <li class="flex gap-2"><strong>3. Kühlschrank auf 7 °C einstellen:</strong> Reicht hygienisch vollkommen aus (Gefrierteil: -18 °C).</li>
+          <li class="flex gap-2"><strong>4. Regelmäßig abtauen:</strong> Eisschichten im Tiefkühler kosten bis zu 30 % mehr Strom.</li>
+          <li class="flex gap-2"><strong>5. Backofen-Restwärme nutzen:</strong> Ofen 5–10 Minuten vor Ende der Garzeit abschalten.</li>
+        </ul>
+      </div>
+
+      <!-- Bad & Waschen -->
+      <div class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xs">
+        <h2 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+          <span>🧺</span> Bad & Waschen
+        </h2>
+        <ul class="space-y-3 text-xs sm:text-sm text-slate-600">
+          <li class="flex gap-2"><strong>6. 30 °C statt 60 °C waschen:</strong> Spart fast die Hälfte des Stroms pro Waschgang.</li>
+          <li class="flex gap-2"><strong>7. Sparduschkopf einbauen:</strong> Halbiert den Warmwasser- und Strombedarf beim Duschen.</li>
+          <li class="flex gap-2"><strong>8. Schleuderzahl auf 1.400 U/min:</strong> Verkürzt die Laufzeit des Wäschetrockners erheblich.</li>
+          <li class="flex gap-2"><strong>9. Wäscheleine im Sommer nutzen:</strong> 0 Cent Stromkosten für frische Wäsche.</li>
+        </ul>
+      </div>
+
+      <!-- Wohnzimmer & Büro -->
+      <div class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xs">
+        <h2 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+          <span>🖥️</span> Wohnzimmer & Büro
+        </h2>
+        <ul class="space-y-3 text-xs sm:text-sm text-slate-600">
+          <li class="flex gap-2"><strong>10. Schaltbare Steckerleisten:</strong> TV- und PC-Setups bei Nichtnutzung komplett vom Netz trennen.</li>
+          <li class="flex gap-2"><strong>11. Bildschirm-Helligkeit optimieren:</strong> TV und Monitore auf 50–60 % Helligkeit stellen.</li>
+          <li class="flex gap-2"><strong>12. Streaming per TV-App:</strong> Streaming-Apps im Smart TV nutzen statt stromhungriger Spielekonsolen (spart 60–70 W).</li>
+          <li class="flex gap-2"><strong>13. Laptop statt Desktop:</strong> Notebooks benötigen bis zu 80 % weniger Strom als große Tower-PCs.</li>
+          <li class="flex gap-2"><strong>14. LED-Beleuchtung:</strong> Glüh- und Halogenlampen durch hochwertige LEDs ersetzen.</li>
+          <li class="flex gap-2"><strong>15. Heizlüfter vermeiden:</strong> Elektrische Heizlüfter nur im Notfall und zeitlich eng begrenzt betreiben.</li>
+        </ul>
+      </div>
+    </div>
+
+    <RelatedLinks links={related} />
+    <SourceBox sourceIds={['uba', 'stromspiegel']} />
+    <FaqSection items={faqs} />
+  </div>
+</BaseLayout>

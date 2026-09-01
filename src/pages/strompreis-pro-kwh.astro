@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import UniversalCalculator from '../components/calculator/UniversalCalculator.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import RelatedLinks from '../components/seo/RelatedLinks.astro';
+import SourceBox from '../components/trust/SourceBox.astro';
+import FaqSection from '../components/content/FaqSection.astro';
+
+const faqs = [
+  {
+    question: 'Was kostet eine Kilowattstunde (kWh) Strom aktuell?',
+    answer: 'Der Referenz-Arbeitspreis für Haushaltskunden in Deutschland liegt bei durchschnittlich ca. 35,0 Cent pro kWh. Neukundentarife bewegen sich zwischen 26 und 30 ct/kWh.',
+  },
+];
+
+const related = [
+  { title: 'Strompreis Zusammensetzung', href: '/strompreis-zusammensetzung', description: 'Steuern, Netzentgelte & Beschaffung.' },
+  { title: 'kWh in Euro Rechner', href: '/kwh-rechner', description: 'kWh direkt umrechnen.' },
+  { title: 'Strompreis Entwicklung', href: '/strompreis-entwicklung', description: 'Entwicklung der Preise.' },
+];
+---
+
+<BaseLayout
+  title="Strompreis pro kWh: Was kostet 1 Kilowattstunde Strom? | kWhKlar"
+  description="Was kostet 1 kWh Strom in Deutschland? Aktuelle Durchschnittspreise ({formatCtPerKwh(electricityPriceData.currentReferencePrice.valueCtPerKwh)}), Neukundentarife und Umrechnung."
+  canonical="https://kwhklar.de/strompreis-pro-kwh"
+  breadcrumbs={[
+    { name: 'Strompreis', path: '/strompreis' },
+    { name: 'Strompreis pro kWh', path: '/strompreis-pro-kwh' },
+  ]}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs
+      items={[
+        { name: 'Strompreis', path: '/strompreis' },
+        { name: 'Strompreis pro kWh', path: '/strompreis-pro-kwh' },
+      ]}
+    />
+
+    <div class="max-w-3xl mb-8">
+      <span class="badge-emerald text-xs mb-2">Arbeitspreis</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+        Strompreis pro kWh: Was kostet eine Kilowattstunde?
+      </h1>
+      <p class="mt-3 text-base text-slate-600 leading-relaxed">
+        Der Arbeitspreis pro Kilowattstunde (ct/kWh) bestimmt maßgeblich, wie viel dich der Betrieb jedes einzelnen Elektrogeräts kostet.
+      </p>
+    </div>
+
+    <UniversalCalculator
+      defaultWatt={1000}
+      defaultHours={1}
+      defaultPriceCt={35.0}
+      title="Strompreis-Umrechner"
+      subtitle="Berechne deine Kosten mit beliebigem ct/kWh-Preis:"
+    />
+
+    <RelatedLinks links={related} />
+    <SourceBox sourceIds={['bnetza', 'bdew', 'destatis']} />
+    <FaqSection items={faqs} />
+  </div>
+</BaseLayout>

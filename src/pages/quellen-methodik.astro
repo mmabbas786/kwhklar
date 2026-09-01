@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import RelatedLinks from '../components/seo/RelatedLinks.astro';
+import { sources } from '../data/sources';
+
+const sourceList = Object.values(sources);
+
+const related = [
+  { title: 'Stromkostenrechner', href: '/stromkosten-rechner', description: 'Formeln live anwenden.' },
+  { title: 'Strompreis Deutschland', href: '/strompreis', description: 'Aktuelle Marktdaten.' },
+  { title: 'Über uns', href: '/ueber-uns', description: 'Unser Transparenzversprechen.' },
+];
+---
+
+<BaseLayout
+  title="Quellen & Methodik: Datenbasis, Formeln & Standards | kWhKlar"
+  description="Vollständige Offenlegung aller Datenquellen (Bundesnetzagentur, Destatis, BDEW, Stromspiegel), Berechnungsformeln und wissenschaftlicher Methodik auf kWhKlar."
+  canonical="https://kwhklar.de/quellen-methodik"
+  breadcrumbs={[{ name: 'Quellen & Methodik', path: '/quellen-methodik' }]}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs items={[{ name: 'Quellen & Methodik', path: '/quellen-methodik' }]} />
+
+    <div class="max-w-3xl mb-8">
+      <span class="badge-emerald text-xs mb-2">Wissenschaftliche Transparenz</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+        Quellen, Methodik & Berechnungsgrundlagen
+      </h1>
+      <p class="mt-3 text-base text-slate-600 leading-relaxed">
+        Auf kWhKlar.de legen wir alle mathematischen Formeln, Umrechnungskonventionen und behördlichen Datenquellen lückenlos offen.
+      </p>
+    </div>
+
+    <!-- Methodology Explanations -->
+    <article class="prose prose-slate max-w-4xl my-8 bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 space-y-8">
+      <div>
+        <h2 class="text-2xl font-bold text-slate-900">1. Mathematische Berechnungsformeln & Konventionen</h2>
+        <p class="text-slate-600 text-sm leading-relaxed">
+          Um konsistente, reproduzierbare und vergleichbare Werte zu liefern, nutzen alle Rechner auf kWhKlar dieselbe einheitliche Berechnungslogik:
+        </p>
+
+        <div class="my-4 space-y-3 not-prose">
+          <div class="rounded-xl bg-slate-50 p-4 border border-slate-200 text-xs">
+            <strong class="text-slate-900 block font-semibold mb-1">Energieverbrauch (kWh):</strong>
+            <code class="text-emerald-800 font-mono font-bold bg-emerald-50 px-2 py-1 rounded">kWh = (Leistung in Watt × Betriebsstunden pro Tag) ÷ 1.000</code>
+          </div>
+
+          <div class="rounded-xl bg-slate-50 p-4 border border-slate-200 text-xs">
+            <strong class="text-slate-900 block font-semibold mb-1">Reine Verbrauchskosten (€):</strong>
+            <code class="text-emerald-800 font-mono font-bold bg-emerald-50 px-2 py-1 rounded">Kosten (€) = kWh × (Arbeitspreis in ct/kWh ÷ 100)</code>
+          </div>
+
+          <div class="rounded-xl bg-slate-50 p-4 border border-slate-200 text-xs">
+            <strong class="text-slate-900 block font-semibold mb-1">Zeitkonventionen (Monat & Jahr):</strong>
+            <p class="text-slate-600 text-[11px] mt-1">
+              • <strong>1 Tag</strong> = gewählte Betriebsstunden (0 bis 24 Stunden)<br />
+              • <strong>1 Woche</strong> = 7 Tage (bzw. gewählte Wochentage bei Bürobetrieb)<br />
+              • <strong>1 Jahr</strong> = exakt 365 Tage (bzw. 52,14 Wochen)<br />
+              • <strong>1 Monat</strong> = 1 Jahreswert geteilt durch 12 Monate (= durchschnittlich 30,4167 Tage)
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-bold text-slate-900">2. Ermittlung der Strompreise & Standardwerte</h2>
+        <p class="text-slate-600 text-sm leading-relaxed">
+          Als Standard-Referenzwert ist in unseren Rechnern ein bundesweiter Arbeitspreis von <strong>35,0 ct/kWh</strong> und ein Grundpreis von <strong>12,50 €/Monat (150 €/Jahr)</strong> hinterlegt. Dies entspricht dem gewichteten Mittelwert der offiziellen Marktberichte von <strong>Bundesnetzagentur (BNetzA)</strong> und <strong>BDEW</strong>. Alle Eingabefelder sind editierbar, damit Nutzer ihre individuellen Vertragskonditionen exakt berechnen können.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-bold text-slate-900">3. Haushalts- & Geräte-Verbrauchswerte</h2>
+        <p class="text-slate-600 text-sm leading-relaxed">
+          Vergleichswerte für Haushaltsgrößen basieren auf den empirischen Erhebungen des <strong>Stromspiegels für Deutschland</strong> (co2online / BMWK) über zehntausende reale Haushaltsdaten. Die Watt- und kWh-Angaben der Haushaltsgeräte basieren auf standardisierten Messungen der EU-Ökodesign-Richtlinie sowie Veröffentlichungen des <strong>Umweltbundesamtes (UBA)</strong>.
+        </p>
+      </div>
+
+      <!-- Full Source Registry -->
+      <div>
+        <h2 class="text-2xl font-bold text-slate-900 mb-4">4. Vollständiges Quellenverzeichnis</h2>
+        <div class="space-y-4 not-prose">
+          {sourceList.map((source) => (
+            <div class="rounded-2xl border border-slate-200 bg-slate-50/70 p-5">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <h3 class="font-bold text-slate-900 text-base">{source.name}</h3>
+                <span class="text-xs text-slate-500">Stand: {source.accessedAt}</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">{source.relevance}</p>
+              <div class="mt-3 pt-2 border-t border-slate-200 flex items-center justify-between text-xs">
+                <span class="text-slate-500 font-medium">Herausgeber: {source.publisher}</span>
+                <a
+                  href={source.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="font-semibold text-emerald-700 hover:text-emerald-800 hover:underline"
+                >
+                  Primärquelle aufrufen →
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </article>
+
+    <RelatedLinks links={related} />
+  </div>
+</BaseLayout>

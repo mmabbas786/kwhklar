@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Serverfehler (500) | kWhKlar"
+  description="Ein vorübergehendes technisches Problem ist aufgetreten."
+  canonical="https://kwhklar.de/500"
+  noindex={true}
+>
+  <div class="mx-auto max-w-3xl px-4 py-20 text-center sm:px-6 lg:px-8">
+    <div class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-rose-100 text-rose-800 text-2xl font-black mb-6">
+      500
+    </div>
+    <h1 class="text-3xl font-extrabold text-slate-900 sm:text-4xl tracking-tight">
+      Vorübergehender Fehler
+    </h1>
+    <p class="mt-3 text-base text-slate-600 leading-relaxed max-w-lg mx-auto">
+      Es ist ein technisches Problem aufgetreten. Bitte lade die Seite neu oder kehre zur Startseite zurück.
+    </p>
+
+    <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+      <a
+        href="/"
+        class="rounded-xl bg-emerald-600 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700 transition"
+      >
+        Zur Startseite
+      </a>
+      <a
+        href="/stromkosten-rechner"
+        class="rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-700 shadow-2xs hover:bg-slate-50 transition"
+      >
+        Zum Stromkostenrechner
+      </a>
+    </div>
+  </div>
+</BaseLayout>

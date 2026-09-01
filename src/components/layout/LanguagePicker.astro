@@ -1,0 +1,94 @@
+---
+import { languages, type SupportedLanguage } from '../../i18n/languages';
+import { getLangFromUrl, getLocalizedPath } from '../../i18n/utils';
+
+const currentLang = getLangFromUrl(Astro.url);
+const currentPath = Astro.url.pathname;
+const currentLangInfo = languages[currentLang];
+---
+
+<div class="relative inline-block text-left" id="language-picker-container">
+  <!-- Trigger Button -->
+  <button
+    type="button"
+    id="lang-menu-btn"
+    class="inline-flex h-8 items-center gap-1.5 rounded-full border border-slate-300 bg-slate-100/90 dark:border-slate-700/80 dark:bg-slate-800/90 px-2.5 text-xs font-semibold text-slate-800 dark:text-slate-200 shadow-2xs transition hover:bg-slate-200 dark:hover:bg-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 cursor-pointer"
+    aria-expanded="false"
+    aria-haspopup="true"
+    aria-label="Sprache auswählen / Select language"
+    title="Sprache auswählen"
+  >
+    <span class="text-sm select-none">{currentLangInfo.flag}</span>
+    <span class="uppercase tracking-wider text-[11px] font-bold">{currentLang}</span>
+    <svg class="h-3 w-3 text-slate-500 dark:text-slate-400 transition-transform duration-200" id="lang-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    </svg>
+  </button>
+
+  <!-- Dropdown Menu -->
+  <div
+    id="lang-dropdown"
+    class="hidden absolute right-0 z-50 mt-2 w-44 origin-top-right rounded-2xl border border-slate-200 dark:border-slate-700 bg-white/95 dark:bg-slate-900/95 p-1.5 shadow-xl backdrop-blur-md focus:outline-none"
+    role="menu"
+    aria-orientation="vertical"
+    tabindex="-1"
+  >
+    <div class="py-1">
+      {Object.values(languages).map((lang) => {
+        const isError = currentPath.includes('404') || currentPath.includes('500');
+        const targetHref = isError
+          ? (lang.code === 'de' ? '/' : `/${lang.code}`)
+          : getLocalizedPath(currentPath, lang.code as SupportedLanguage);
+        const isActive = lang.code === currentLang;
+        return (
+          <a
+            href={targetHref}
+            class={`flex items-center justify-between rounded-xl px-3 py-2 text-xs font-medium transition ${
+              isActive
+                ? 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 font-semibold'
+                : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800'
+            }`}
+            role="menuitem"
+          >
+            <span class="flex items-center gap-2">
+              <span class="text-sm">{lang.flag}</span>
+              <span>{lang.nativeName}</span>
+            </span>
+            {isActive && <span class="text-emerald-600 dark:text-emerald-400 text-xs">✓</span>}
+          </a>
+        );
+      })}
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function initLanguagePicker() {
+    document.addEventListener('click', function(e) {
+      var container = document.getElementById('language-picker-container');
+      var btn = document.getElementById('lang-menu-btn');
+      var menu = document.getElementById('lang-dropdown');
+      var chevron = document.getElementById('lang-chevron');
+
+      if (!container || !btn || !menu) return;
+
+      var isClickInside = container.contains(e.target);
+      var isBtnClick = btn.contains(e.target);
+
+      if (isBtnClick) {
+        var isExpanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!isExpanded));
+        menu.classList.toggle('hidden');
+        if (chevron) {
+          chevron.classList.toggle('rotate-180');
+        }
+      } else if (!isClickInside) {
+        menu.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+        if (chevron) {
+          chevron.classList.remove('rotate-180');
+        }
+      }
+    });
+  })();
+</script>

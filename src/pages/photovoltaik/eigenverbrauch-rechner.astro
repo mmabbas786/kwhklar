@@ -1,0 +1,181 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import RelatedLinks from '../../components/seo/RelatedLinks.astro';
+import SourceBox from '../../components/trust/SourceBox.astro';
+import FaqSection from '../../components/content/FaqSection.astro';
+import { getCalculatorSchema } from '../../lib/structured-data';
+
+const schema = getCalculatorSchema(
+  'Photovoltaik Eigenverbrauch Rechner',
+  'Berechne den Eigenverbrauchsanteil, die Einspeisevergütung und die Stromkostenersparnis deiner Dachanlage mit und ohne Batteriespeicher.',
+  '/photovoltaik/eigenverbrauch-rechner'
+);
+
+const faqs = [
+  {
+    question: 'Wie hoch ist der Eigenverbrauchsanteil mit und ohne Batteriespeicher?',
+    answer: 'Ohne Batteriespeicher verbraucht ein typischer Haushalt ca. 25 bis 35 % des erzeugten Solarstroms selbst (der Rest wird ins Netz eingespeist). Mit einem passend dimensionierten Batteriespeicher (5 bis 10 kWh) steigt der Eigenverbrauchsanteil auf 65 bis 80 %.',
+  },
+  {
+    question: 'Warum ist hoher PV-Eigenverbrauch wirtschaftlicher als Einspeisung?',
+    answer: 'Für jede selbst verbrauchte Kilowattstunde sparst du den vollen Netzstrompreis (ca. 35 ct/kWh), während die gesetzliche Einspeisevergütung (EEG) für Überschussstrom bei rund 7 bis 8 ct/kWh liegt. Jede selbst verbrauchte kWh ist daher ca. 27 Cent wertvoller.',
+  },
+];
+
+const related = [
+  { title: 'Balkonkraftwerk Ersparnis', href: '/balkonkraftwerk/stromkosten-sparen', description: 'Steckersolar für Balkon & Terrasse.' },
+  { title: 'Wärmepumpe Stromkosten', href: '/waermepumpe/stromkosten', description: 'Heizstrom mit PV kombinieren.' },
+  { title: 'E-Auto Ladekosten', href: '/e-auto/ladekosten-rechner', description: 'Solarstrom tanken.' },
+];
+---
+
+<BaseLayout
+  title="Photovoltaik Eigenverbrauch Rechner: Solarstrom & Ersparnis berechnen | kWhKlar"
+  description="Berechne Eigenverbrauchsquote, Ersparnis durch Solarstrom und Einspeisevergütung für deine PV-Anlage mit und ohne Stromspeicher."
+  canonical="https://kwhklar.de/photovoltaik/eigenverbrauch-rechner"
+  jsonLd={schema}
+  breadcrumbs={[
+    { name: 'Solar', path: '/balkonkraftwerk/stromkosten-sparen' },
+    { name: 'PV Eigenverbrauch Rechner', path: '/photovoltaik/eigenverbrauch-rechner' },
+  ]}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs
+      items={[
+        { name: 'Solar & Photovoltaik', path: '/balkonkraftwerk/stromkosten-sparen' },
+        { name: 'PV Eigenverbrauch Rechner', path: '/photovoltaik/eigenverbrauch-rechner' },
+      ]}
+    />
+
+    <div class="max-w-3xl mb-8">
+      <span class="badge-emerald text-xs mb-2">Photovoltaik & Speicher</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+        PV Eigenverbrauch & Solar-Ersparnis berechnen
+      </h1>
+      <p class="mt-3 text-base text-slate-600 leading-relaxed">
+        Finde heraus, wie viel Netzstrom du durch deine Dachanlage einsparst und welche Gesamterträge aus Eigenverbrauch und EEG-Einspeisevergütung entstehen.
+      </p>
+    </div>
+
+    <!-- PV Rooftop Calculator -->
+    <div class="my-8 rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-md max-w-4xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div class="space-y-4">
+          <h2 class="text-lg font-bold text-slate-900">Eckdaten deiner PV-Anlage</h2>
+
+          <div>
+            <label for="rooftop-kwp" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+              Anlagengröße (kWp)
+            </label>
+            <input
+              type="number"
+              id="rooftop-kwp"
+              value="10.0"
+              min="1"
+              max="50"
+              step="0.5"
+              class="w-full rounded-xl border border-slate-200 p-3 text-base font-bold text-slate-900"
+            />
+            <span class="text-[11px] text-slate-500 mt-1 block">Typisches Einfamilienhaus: 8 bis 15 kWp (~8.000–15.000 kWh/Jahr)</span>
+          </div>
+
+          <div>
+            <label for="rooftop-battery" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+              Batteriespeicher vorhanden?
+            </label>
+            <select id="rooftop-battery" class="w-full rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm font-bold text-slate-900">
+              <option value="yes" selected>Ja, mit Batteriespeicher (~70 % Eigenverbrauch)</option>
+              <option value="no">Nein, ohne Speicher (~30 % Eigenverbrauch)</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="rooftop-price" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+              Aktueller Netzstrompreis (ct/kWh)
+            </label>
+            <input
+              type="number"
+              id="rooftop-price"
+              value="35.0"
+              min="10"
+              step="0.5"
+              class="w-full rounded-xl border border-slate-200 p-3 text-base font-bold text-slate-900"
+            />
+          </div>
+        </div>
+
+        <div class="rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 p-6 text-white space-y-5">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">Jährlicher Gesamtertrag</span>
+            <div class="text-3xl sm:text-4xl font-extrabold text-emerald-400 tracking-tight mt-1" id="pv-roof-total-savings">
+              2.695,00 € / Jahr
+            </div>
+            <span class="text-xs text-slate-300 mt-1 block" id="pv-roof-kwh-gen">
+              10.000 kWh Jahreserzeugung (ca. 7.000 kWh Eigenverbrauch)
+            </span>
+          </div>
+
+          <div class="pt-4 border-t border-slate-700 text-xs text-slate-300 space-y-1.5">
+            <div class="flex justify-between">
+              <span>Ersparnis vermiedener Netzbezug:</span>
+              <strong class="text-white" id="pv-roof-avoided">2.450,00 €</strong>
+            </div>
+            <div class="flex justify-between">
+              <span>EEG-Einspeisevergütung (~8 ct):</span>
+              <strong class="text-white" id="pv-roof-feedin">245,00 €</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <RelatedLinks links={related} />
+    <SourceBox sourceIds={['bnetza', 'uba']} />
+    <FaqSection items={faqs} />
+  </div>
+</BaseLayout>
+
+<script>
+  function initRoofCalc() {
+    const kwpIn = document.getElementById('rooftop-kwp') as HTMLInputElement | null;
+    const batteryIn = document.getElementById('rooftop-battery') as HTMLSelectElement | null;
+    const priceIn = document.getElementById('rooftop-price') as HTMLInputElement | null;
+
+    const resTotal = document.getElementById('pv-roof-total-savings');
+    const resGen = document.getElementById('pv-roof-kwh-gen');
+    const resAvoided = document.getElementById('pv-roof-avoided');
+    const resFeedin = document.getElementById('pv-roof-feedin');
+
+    if (!kwpIn || !batteryIn || !priceIn || !resTotal) return;
+
+    function update() {
+      const kwp = Math.max(0, parseFloat(kwpIn?.value || '0') || 0);
+      const isBat = batteryIn?.value === 'yes';
+      const priceCt = Math.max(0, parseFloat(priceIn?.value || '0') || 0);
+
+      const annualYield = kwp * 1000; // ~1.000 kWh / kWp in Germany
+      const selfRate = isBat ? 0.7 : 0.3;
+      const selfKwh = annualYield * selfRate;
+      const feedinKwh = annualYield * (1 - selfRate);
+
+      const avoidedCost = selfKwh * (priceCt / 100);
+      const feedinReward = feedinKwh * 0.081; // ~8.1 ct/kWh EEG
+      const totalAnnualValue = avoidedCost + feedinReward;
+
+      const fmt = (v: number) => new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(v);
+
+      if (resTotal) resTotal.textContent = `${fmt(totalAnnualValue)} / Jahr`;
+      if (resGen) resGen.textContent = `${annualYield.toLocaleString('de-DE')} kWh Jahreserzeugung (ca. ${Math.round(selfKwh).toLocaleString('de-DE')} kWh Eigenverbrauch)`;
+      if (resAvoided) resAvoided.textContent = fmt(avoidedCost);
+      if (resFeedin) resFeedin.textContent = fmt(feedinReward);
+    }
+
+    [kwpIn, priceIn].forEach((el) => el?.addEventListener('input', update));
+    batteryIn.addEventListener('change', update);
+    update();
+  }
+
+  document.addEventListener('DOMContentLoaded', initRoofCalc);
+  initRoofCalc();
+</script>

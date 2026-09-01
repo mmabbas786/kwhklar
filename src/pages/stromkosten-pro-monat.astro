@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import UniversalCalculator from '../components/calculator/UniversalCalculator.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import RelatedLinks from '../components/seo/RelatedLinks.astro';
+import SourceBox from '../components/trust/SourceBox.astro';
+import FaqSection from '../components/content/FaqSection.astro';
+import { getCalculatorSchema } from '../lib/structured-data';
+
+const schema = getCalculatorSchema(
+  'Stromkosten pro Monat',
+  'Berechne deine monatlichen Stromkosten inklusive Arbeitspreis und Grundpreis zur Überprüfung deines Abschlags.',
+  '/stromkosten-pro-monat'
+);
+
+const faqs = [
+  {
+    question: 'Wie setzt sich der monatliche Stromabschlag zusammen?',
+    answer: 'Der monatliche Abschlag errechnet sich aus dem geschätzten Jahresverbrauch multipliziert mit dem Arbeitspreis plus dem jährlichen Grundpreis – geteilt durch 12 Monate.',
+  },
+  {
+    question: 'Was sind typische monatliche Stromkosten für einen Haushalt?',
+    answer: 'Ein Single zahlt im Schnitt ca. 45 bis 60 € im Monat, ein 2-Personen-Haushalt ca. 75 bis 95 € und eine 4-köpfige Familie rund 110 bis 150 € pro Monat.',
+  },
+];
+
+const related = [
+  { title: 'Stromkosten pro Jahr', href: '/stromkosten-pro-jahr', description: 'Jahresabrechnung simulieren.' },
+  { title: 'Stromrechnung berechnen', href: '/stromrechnung-berechnen', description: 'Prüfe deinen monatlichen Abschlag.' },
+  { title: 'Haushaltsstrom-Rechner', href: '/stromverbrauch-haushalt', description: 'Verbrauch nach Personenzahl.' },
+];
+---
+
+<BaseLayout
+  title="Stromkosten pro Monat berechnen: Monatlichen Abschlag ermitteln | kWhKlar"
+  description="Berechne deine realistischen Monatskosten für Strom inklusive Arbeitspreis und Grundpreis. Ideal zur Überprüfung deines monatlichen Abschlags."
+  canonical="https://kwhklar.de/stromkosten-pro-monat"
+  jsonLd={schema}
+  breadcrumbs={[{ name: 'Stromkosten pro Monat', path: '/stromkosten-pro-monat' }]}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs items={[{ name: 'Stromkosten pro Monat', path: '/stromkosten-pro-monat' }]} />
+
+    <div class="max-w-3xl mb-6">
+      <span class="badge-emerald text-xs mb-2">Monatskosten & Abschlag</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+        Stromkosten pro Monat: Monatliche Stromkosten & Abschlag berechnen
+      </h1>
+      <p class="mt-3 text-base text-slate-600 leading-relaxed">
+        Berechne die genauen Monatskosten für deine Geräte oder überprüfe, ob dein monatlicher Stromabschlag zu deinem realen Verbrauch passt.
+      </p>
+    </div>
+
+    <UniversalCalculator
+      defaultWatt={400}
+      defaultHours={4}
+      defaultPriceCt={35.0}
+      title="Monatskosten-Rechner"
+      subtitle="Ermittle die monatlichen Kosten (inkl. optionalem Grundpreis unter den erweiterten Optionen):"
+    />
+
+    <RelatedLinks links={related} />
+    <SourceBox sourceIds={['bnetza', 'bdew', 'destatis']} />
+    <FaqSection items={faqs} />
+  </div>
+</BaseLayout>

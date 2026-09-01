@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+
+const contactEmail = import.meta.env.PUBLIC_CONTACT_EMAIL || '[KONTAKT-E-MAIL-ADRESSE_DES_BETREIBERS]';
+---
+
+<BaseLayout
+  title="Impressum | kWhKlar"
+  description="Impressum und Anbieterkennzeichnung gemäß § 5 DDG für kWhKlar.de."
+  canonical="https://kwhklar.de/impressum"
+  breadcrumbs={[{ name: 'Impressum', path: '/impressum' }]}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs items={[{ name: 'Impressum', path: '/impressum' }]} />
+
+    <div class="max-w-3xl mb-8">
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+        Impressum
+      </h1>
+      <p class="mt-2 text-sm text-slate-500">Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG)</p>
+    </div>
+
+    <article class="prose prose-slate max-w-4xl bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 space-y-6 text-sm text-slate-700">
+      <div>
+        <h2 class="text-lg font-bold text-slate-900">Dienstanbieter</h2>
+        <div class="mt-2 p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1 font-mono text-xs">
+          <p><strong>Betreiber / Name:</strong> [VOLLSTÄNDIGER_NAME_ODER_FIRMA_DES_WEBSITE-BETREIBERS]</p>
+          <p><strong>Anschrift:</strong> [STRASSE_UND_HAUSNUMMER]</p>
+          <p><strong>PLZ / Ort:</strong> [POSTLEITZAHL_UND_ORT]</p>
+          <p><strong>Land:</strong> Deutschland</p>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-bold text-slate-900">Kontakt</h2>
+        <div class="mt-2 p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1 font-mono text-xs">
+          <p><strong>E-Mail:</strong> {contactEmail}</p>
+          <p><strong>Telefon:</strong> [TELEFONNUMMER_DES_BETREIBERS]</p>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-bold text-slate-900">Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+        <div class="mt-2 p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1 font-mono text-xs">
+          <p>[VERANTWORTLICHE_PERSON_FÜR_REDAKTIONELLEN_INHALT]</p>
+          <p>[ANSCHRIFT_DER_VERANTWORTLICHEN_PERSON]</p>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-bold text-slate-900">Haftung für Inhalte und Berechnungen</h2>
+        <p class="text-xs leading-relaxed text-slate-600">
+          Als Diensteanbieter sind wir gemäß § 7 Abs.1 DDG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Die auf dieser Website bereitgestellten Rechner, Formeln und Richtwerte dienen der unverbindlichen Orientierung und Information. Trotz sorgfältiger Recherche und regelmäßiger Aktualisierung kann keine Gewähr für die Richtigkeit, Vollständigkeit und Aktualität der bereitgestellten Daten und Ergebnisse übernommen werden. Verbindliche Abrechnungswerte sind den Rechnungen und Vertragsunterlagen des jeweiligen Energieversorgers zu entnehmen.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-bold text-slate-900">Haftung für Links</h2>
+        <p class="text-xs leading-relaxed text-slate-600">
+          Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-bold text-slate-900">Urheberrecht</h2>
+        <p class="text-xs leading-relaxed text-slate-600">
+          Die durch die Seitenbetreiber erstellten Inhalte, Rechnerprogramme und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
+        </p>
+      </div>
+    </article>
+  </div>
+</BaseLayout>

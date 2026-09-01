@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import UniversalCalculator from '../../components/calculator/UniversalCalculator.astro';
+import SourceBox from '../../components/trust/SourceBox.astro';
+import { languages, type SupportedLanguage } from '../../i18n/languages';
+import { useTranslations } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  const nonDefaultLangs: SupportedLanguage[] = ['en', 'es', 'ja', 'fr', 'pt', 'ko', 'it'];
+  return nonDefaultLangs.map((lang) => ({
+    params: { lang },
+  }));
+}
+
+const { lang } = Astro.params as { lang: SupportedLanguage };
+const t = useTranslations(lang);
+const langInfo = languages[lang];
+---
+
+<BaseLayout
+  title={`${t('calc.title')} | kWhKlar`}
+  description={t('site.description')}
+  canonical={`https://kwhklar.de/${lang}/stromkosten-rechner`}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+    <div class="max-w-3xl mx-auto text-center mb-8">
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        {t('calc.title')}
+      </h1>
+      <p class="mt-2 text-base text-slate-600 dark:text-slate-400">
+        {t('calc.subtitle')}
+      </p>
+    </div>
+
+    <UniversalCalculator
+      defaultWatt={1000}
+      defaultHours={1}
+      defaultPriceCt={langInfo.defaultPricePerKwh * 100}
+      title={t('calc.title')}
+      subtitle={t('calc.subtitle')}
+    />
+
+    <div class="mt-12 max-w-4xl mx-auto">
+      <SourceBox
+        sourceIds={['bnetza', 'destatis', 'stromspiegel']}
+        note="Exakte mathematische Berechnungen basierend auf verifizierten Formeln und Erhebungen."
+      />
+    </div>
+  </div>
+</BaseLayout>

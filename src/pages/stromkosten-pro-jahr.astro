@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import UniversalCalculator from '../components/calculator/UniversalCalculator.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import RelatedLinks from '../components/seo/RelatedLinks.astro';
+import SourceBox from '../components/trust/SourceBox.astro';
+import FaqSection from '../components/content/FaqSection.astro';
+import { getCalculatorSchema } from '../lib/structured-data';
+
+const schema = getCalculatorSchema(
+  'Stromkosten pro Jahr',
+  'Berechne deine gesamten jährlichen Stromkosten aus kWh-Verbrauch und Grundpreis.',
+  '/stromkosten-pro-jahr'
+);
+
+const faqs = [
+  {
+    question: 'Wie hoch sind die durchschnittlichen Jahresstromkosten in Deutschland?',
+    answer: 'Ein Single zahlt im Schnitt ca. 550 bis 700 € pro Jahr, 2 Personen ca. 900 bis 1.150 € und eine vierköpfige Familie rund 1.350 bis 1.800 € pro Jahr (bei 35 ct/kWh und ca. 150 € Grundgebühr).',
+  },
+];
+
+const related = [
+  { title: 'Stromkosten pro Monat', href: '/stromkosten-pro-monat', description: 'Monatskosten & Abschlag berechnen.' },
+  { title: 'Durchschnittlicher Stromverbrauch', href: '/durchschnittlicher-stromverbrauch', description: 'Offizielle Richtwerte für Deutschland.' },
+  { title: 'Stromrechnung prüfen', href: '/stromrechnung-pruefen', description: 'Jahresrechnung Schritt für Schritt prüfen.' },
+];
+---
+
+<BaseLayout
+  title="Stromkosten pro Jahr berechnen: Jahresstromkosten & Nachzahlung | kWhKlar"
+  description="Ermittle deine gesamten jährlichen Stromkosten auf Basis von kWh-Jahresverbrauch und Grundgebühr. Vergleiche deinen Wert mit dem Bundesdurchschnitt."
+  canonical="https://kwhklar.de/stromkosten-pro-jahr"
+  jsonLd={schema}
+  breadcrumbs={[{ name: 'Stromkosten pro Jahr', path: '/stromkosten-pro-jahr' }]}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs items={[{ name: 'Stromkosten pro Jahr', path: '/stromkosten-pro-jahr' }]} />
+
+    <div class="max-w-3xl mb-6">
+      <span class="badge-emerald text-xs mb-2">Jahreskosten</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+        Stromkosten pro Jahr: Jahresabrechnung & Gesamtkosten berechnen
+      </h1>
+      <p class="mt-3 text-base text-slate-600 leading-relaxed">
+        Berechne die gesamten Jahresstromkosten für einzelne Geräte oder deinen kompletten Jahresverbrauch in Kilowattstunden.
+      </p>
+    </div>
+
+    <UniversalCalculator
+      defaultWatt={1000}
+      defaultHours={1}
+      defaultPriceCt={35.0}
+      title="Jahreskosten-Rechner"
+      subtitle="Ermittle die jährlichen Kosten für 365 Tage Betrieb:"
+    />
+
+    <RelatedLinks links={related} />
+    <SourceBox sourceIds={['bnetza', 'bdew', 'stromspiegel']} />
+    <FaqSection items={faqs} />
+  </div>
+</BaseLayout>
