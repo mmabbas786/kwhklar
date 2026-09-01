@@ -1,6 +1,7 @@
 ---
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
+import { ClientRouter } from 'astro:transitions';
 import { buildMetadata, type MetadataProps } from '../lib/seo';
 import { getOrganizationSchema, getWebSiteSchema } from '../lib/structured-data';
 import { getLangFromUrl, getAlternateHreflangLinks } from '../i18n/utils';
@@ -34,6 +35,8 @@ const isErrorOrNoindex = metaProps.noindex || Astro.url.pathname === '/404' || A
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
+
+    <ClientRouter />
 
     <!-- Hreflang Multi-Language Tags for Global SEO (Indexable Pages Only) -->
     {!isErrorOrNoindex && alternateLinks.map((alt) => (

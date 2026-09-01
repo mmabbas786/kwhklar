@@ -521,14 +521,46 @@ export const appliances: Record<string, Appliance> = {
     factors: ['Grafikkarte (GPU) & Prozessor (CPU)', 'Monitor-Auflösung & Detailstufe', 'FPS-Begrenzer aktiv', 'RGB-Beleuchtung & Lüfter'],
     faq: [
       {
-        question: 'Was kostet ein Gaming PC pro Stunde an Strom?',
-        answer: 'Bei 400 Watt Systemlast und 35 ct/kWh kostet eine Stunde Gaming ca. 14 Cent.',
+            "question": "Wie viel Strom verbraucht ein Gaming-PC (High-End) im Durchschnitt pro Jahr?",
+            "answer": "Ein moderner Gaming-PC (High-End) verbraucht im Schnitt ca. 490 kWh Strom pro Jahr. Bei 35 ct/kWh entspricht das jährlichen Stromkosten von etwa 171,50 Euro."
       },
       {
-        question: 'Was kostet ein Gaming PC im Monat?',
-        answer: 'Bei 4 Stunden täglichem Spielen entstehen monatliche Stromkosten von ca. 15 bis 25 Euro.',
+            "question": "Was kostet 1 Stunde Betrieb von Gaming-PC (High-End)?",
+            "answer": "Bei einer durchschnittlichen Leistung von ca. 450 Watt kostet eine Stunde Laufzeit rund 0,158 € (ca. 15,8 Cent)."
       },
-    ],
+      {
+            "question": "Wie hoch sind die monatlichen Stromkosten für Gaming-PC (High-End)?",
+            "answer": "Die monatlichen Stromkosten für Gaming-PC (High-End) liegen bei durchschnittlicher Nutzung bei ca. 14,29 € pro Monat."
+      },
+      {
+            "question": "Wie viel Watt Leistung hat ein typischer Gaming-PC (High-End)?",
+            "answer": "Die typische Anschlussleistung liegt bei ca. 450 Watt. Je nach Betriebszustand und Modell kann die Leistungsaufnahme zwischen 315 W und 675 W schwanken."
+      },
+      {
+            "question": "Was kostet ein einzelner Nutzungsvorgang von Gaming-PC (High-End)?",
+            "answer": "Ein typischer Einsatz von Gaming-PC (High-End) verursacht Stromkosten von ca. 0,47 € / Session (3h)."
+      },
+      {
+            "question": "Wie kann man den Stromverbrauch von Gaming-PC (High-End) sofort um 15–25 % senken?",
+            "answer": "Wähle stets Eco-Programme, vermeide unnötige Volllastzeiten, halte Dichtungen und Filter sauber und schalte das Gerät nach Gebrauch komplett aus."
+      },
+      {
+            "question": "Verbraucht Gaming-PC (High-End) auch Strom im Standby-Modus?",
+            "answer": "Ja, moderne Geräte mit Digitalanzeigen oder Smart-Home-Funktionen ziehen im Standby ca. 0,5 bis 3 Watt (rund 1,50 bis 9,00 € pro Jahr)."
+      },
+      {
+            "question": "Lohnt sich der Neukauf eines energieeffizienten Gaming-PC (High-End)?",
+            "answer": "Wenn dein Altgerät älter als 10–12 Jahre ist, spart ein Neugerät der Energieeffizienzklasse A bis C oft 30 bis 50 % Strom, wodurch sich die Anschaffung in 4–6 Jahren amortisiert."
+      },
+      {
+            "question": "Wie berechne ich den Stromverbrauch von Gaming-PC (High-End) exakt selbst?",
+            "answer": "Formel: (Leistung in Watt × Betriebsstunden ÷ 1.000) × Strompreis in €/kWh. Beispiel: 450 W × 1 h ÷ 1.000 × 0,35 € = 0,158 €."
+      },
+      {
+            "question": "Welches ist das sparsamste Programm oder die beste Einstellung für Gaming-PC (High-End)?",
+            "answer": "Nutze immer das zertifizierte Eco-Programm bzw. die empfohlene Standardtemperatur, da diese bei optimaler Laufzeit am wenigsten Energie pro Durchlauf verbrauchen."
+      }
+],
     sourceIds: ['uba', 'bnetza'],
     relatedDevices: ['pc', 'monitor', 'ps5', 'xbox', 'laptop'],
     relatedCalculators: ['/stromkosten-rechner', '/stromkosten-pro-stunde', '/watt-rechner'],
@@ -1175,10 +1207,46 @@ export const appliances: Record<string, Appliance> = {
     factors: ['Druckbett-Temperatur (PLA 60 °C vs. ABS/PETG 80–100 °C)', 'Gehäuse / Einhausung vorhanden', 'Druckgeschwindigkeit'],
     faq: [
       {
-        question: 'Wie viel Strom kostet ein 10-Stunden-3D-Druck?',
-        answer: 'Bei durchschnittlich 130 Watt Leistungsaufnahme verbraucht ein 10-stündiger Druck ca. 1,3 kWh und kostet bei 35 ct/kWh etwa 45 Cent.',
+            "question": "Wie viel Strom verbraucht ein 3D-Drucker (FDM) im Durchschnitt pro Jahr?",
+            "answer": "Ein moderner 3D-Drucker (FDM) verbraucht im Schnitt ca. 120 kWh Strom pro Jahr. Bei 35 ct/kWh entspricht das jährlichen Stromkosten von etwa 42,00 Euro."
       },
-    ],
+      {
+            "question": "Was kostet 1 Stunde Betrieb von 3D-Drucker (FDM)?",
+            "answer": "Bei einer durchschnittlichen Leistung von ca. 150 Watt kostet eine Stunde Laufzeit rund 0,052 € (ca. 5,3 Cent)."
+      },
+      {
+            "question": "Wie hoch sind die monatlichen Stromkosten für 3D-Drucker (FDM)?",
+            "answer": "Die monatlichen Stromkosten für 3D-Drucker (FDM) liegen bei durchschnittlicher Nutzung bei ca. 3,50 € pro Monat."
+      },
+      {
+            "question": "Wie viel Watt Leistung hat ein typischer 3D-Drucker (FDM)?",
+            "answer": "Die typische Anschlussleistung liegt bei ca. 150 Watt. Je nach Betriebszustand und Modell kann die Leistungsaufnahme zwischen 105 W und 225 W schwanken."
+      },
+      {
+            "question": "Was kostet ein einzelner Nutzungsvorgang von 3D-Drucker (FDM)?",
+            "answer": "Ein typischer Einsatz von 3D-Drucker (FDM) verursacht Stromkosten von ca. 0,42 € / Druck (8h)."
+      },
+      {
+            "question": "Wie kann man den Stromverbrauch von 3D-Drucker (FDM) sofort um 15–25 % senken?",
+            "answer": "Wähle stets Eco-Programme, vermeide unnötige Volllastzeiten, halte Dichtungen und Filter sauber und schalte das Gerät nach Gebrauch komplett aus."
+      },
+      {
+            "question": "Verbraucht 3D-Drucker (FDM) auch Strom im Standby-Modus?",
+            "answer": "Ja, moderne Geräte mit Digitalanzeigen oder Smart-Home-Funktionen ziehen im Standby ca. 0,5 bis 3 Watt (rund 1,50 bis 9,00 € pro Jahr)."
+      },
+      {
+            "question": "Lohnt sich der Neukauf eines energieeffizienten 3D-Drucker (FDM)?",
+            "answer": "Wenn dein Altgerät älter als 10–12 Jahre ist, spart ein Neugerät der Energieeffizienzklasse A bis C oft 30 bis 50 % Strom, wodurch sich die Anschaffung in 4–6 Jahren amortisiert."
+      },
+      {
+            "question": "Wie berechne ich den Stromverbrauch von 3D-Drucker (FDM) exakt selbst?",
+            "answer": "Formel: (Leistung in Watt × Betriebsstunden ÷ 1.000) × Strompreis in €/kWh. Beispiel: 150 W × 1 h ÷ 1.000 × 0,35 € = 0,052 €."
+      },
+      {
+            "question": "Welches ist das sparsamste Programm oder die beste Einstellung für 3D-Drucker (FDM)?",
+            "answer": "Nutze immer das zertifizierte Eco-Programm bzw. die empfohlene Standardtemperatur, da diese bei optimaler Laufzeit am wenigsten Energie pro Durchlauf verbrauchen."
+      }
+],
     sourceIds: ['uba'],
     relatedDevices: ['gaming-pc', 'pc', 'server'],
     relatedCalculators: ['/stromkosten-rechner', '/watt-rechner'],

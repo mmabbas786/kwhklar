@@ -12,6 +12,7 @@ import { languages, type SupportedLanguage } from '../../i18n/languages';
 import { useTranslations, getLocalizedPath } from '../../i18n/utils';
 
 import { getHomepageFaqs } from '../../i18n/homepage-faqs';
+import { getGuideTranslations } from '../../i18n/guide-sections';
 import { getCalculatorSchema, getFaqSchema } from '../../lib/structured-data';
 
 export function getStaticPaths() {
@@ -24,6 +25,7 @@ export function getStaticPaths() {
 const { lang } = Astro.params as { lang: SupportedLanguage };
 const t = useTranslations(lang);
 const langInfo = languages[lang];
+const guide = getGuideTranslations(lang);
 
 const popularAppliances = [
   appliances['kuehlschrank'],
@@ -215,7 +217,9 @@ const pageSchemas = faqSchema ? [calcSchema, faqSchema] : [calcSchema];
             {Object.values(householdBenchmarks).map((bm) => (
               <tr class="hover:bg-slate-50/60 dark:hover:bg-slate-800/50 transition">
                 <td class="p-4 font-semibold text-slate-900 dark:text-white">
-                  {bm.label}
+                  <a href={getLocalizedPath(`/stromverbrauch-${bm.persons}-person${bm.persons > 1 ? 'en' : ''}`, lang)} class="text-emerald-700 dark:text-emerald-400 hover:underline">
+                    {t(('benchmarks.row_' + bm.persons) as any) || bm.label}
+                  </a>
                 </td>
                 <td class="p-4">{formatKwh(bm.apartmentWithoutWarmWaterKwh, 0)}{t('table.per_year')}</td>
                 <td class="p-4 text-emerald-600 dark:text-emerald-400 font-semibold">{formatKwh(bm.apartmentWithWarmWaterKwh, 0)}{t('table.per_year')}</td>
@@ -225,6 +229,82 @@ const pageSchemas = faqSchema ? [calcSchema, faqSchema] : [calcSchema];
             ))}
           </tbody>
         </table>
+      </div>
+
+      <div class="mt-4 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500 dark:text-slate-400">
+        <span>{t('benchmarks.note') || '* Berechnet mit 35 ct/kWh Arbeitspreis + 12,50 € monatlichem Grundpreis.'}</span>
+        <a href={getLocalizedPath('/durchschnittlicher-stromverbrauch', lang)} class="text-emerald-700 dark:text-emerald-400 font-semibold hover:underline">
+          {t('benchmarks.view_details') || 'Ausführlichen Durchschnittsverbrauch ansehen →'}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Electricity Price Reference & Formula Guide -->
+  <section class="py-14 bg-slate-50 dark:bg-slate-950 border-b border-slate-200/70 dark:border-slate-800">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-6 space-y-4">
+          <span class="badge-emerald text-xs">{guide.badge}</span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
+            {guide.title}
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+            {guide.description}
+          </p>
+          <div class="space-y-3 pt-2">
+            {guide.compositionItems.map((comp) => (
+              <div class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-3.5 shadow-2xs">
+                <div class="flex items-center justify-between text-xs font-semibold text-slate-900 dark:text-white">
+                  <span>{comp.category}</span>
+                  <span class="text-emerald-700 dark:text-emerald-400">{comp.sharePercent.toFixed(1)} % ({comp.valueCtPerKwh.toFixed(2).replace('.', ',')} ct)</span>
+                </div>
+                <p class="mt-1 text-[11px] text-slate-500 dark:text-slate-400">{comp.description}</p>
+              </div>
+            ))}
+          </div>
+          <div class="pt-2">
+            <a href={getLocalizedPath('/strompreis-zusammensetzung', lang)} class="text-xs font-semibold text-emerald-700 dark:text-emerald-400 hover:underline">
+              {guide.moreLinkText}
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-xs space-y-5">
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">{guide.stepsHeading}</h3>
+          
+          <div class="space-y-4 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+            <div class="flex gap-3">
+              <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-400 font-bold text-xs">1</span>
+              <div>
+                <strong class="text-slate-900 dark:text-white block font-semibold">{guide.step1Title}</strong>
+                {guide.step1Desc}
+              </div>
+            </div>
+
+            <div class="flex gap-3">
+              <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-400 font-bold text-xs">2</span>
+              <div>
+                <strong class="text-slate-900 dark:text-white block font-semibold">{guide.step2Title}</strong>
+                {guide.step2Desc}
+                <code class="mt-1 block bg-slate-100 dark:bg-slate-800 p-2 rounded text-slate-800 dark:text-slate-200 font-mono text-xs">
+                  {guide.step2Formula}
+                </code>
+              </div>
+            </div>
+
+            <div class="flex gap-3">
+              <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-400 font-bold text-xs">3</span>
+              <div>
+                <strong class="text-slate-900 dark:text-white block font-semibold">{guide.step3Title}</strong>
+                {guide.step3Desc}
+                <code class="mt-1 block bg-slate-100 dark:bg-slate-800 p-2 rounded text-slate-800 dark:text-slate-200 font-mono text-xs">
+                  {guide.step3Formula}
+                </code>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>

@@ -5,6 +5,7 @@ import RelatedLinks from '../components/seo/RelatedLinks.astro';
 import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
 import { getCalculatorSchema } from '../lib/structured-data';
+import { getCalculatorFaqs } from '../i18n/calculator-faqs';
 
 const schema = getCalculatorSchema(
   'kWh Rechner',
@@ -12,16 +13,7 @@ const schema = getCalculatorSchema(
   '/kwh-rechner'
 );
 
-const faqs = [
-  {
-    question: 'Was kosten 100, 500, 1.000 oder 3.500 kWh Strom?',
-    answer: 'Bei einem Referenzpreis von 35 ct/kWh kosten 100 kWh = 35,00 €, 500 kWh = 175,00 €, 1.000 kWh = 350,00 € und 3.500 kWh (Jahresdurchschnitt Familie) = 1.225,00 € (zzgl. Grundpreis).',
-  },
-  {
-    question: 'Was genau ist 1 Kilowattstunde (kWh)?',
-    answer: '1 kWh ist die Energiemenge, die ein Gerät mit einer Leistung von 1.000 Watt (1 kW) in genau einer Stunde verbraucht. Mit 1 kWh kannst du beispielsweise ca. 70 Tassen Kaffee kochen, 1 Ladung Wäsche waschen oder ca. 8–10 Stunden fernsehen.',
-  },
-];
+const faqs = getCalculatorFaqs('kwh-rechner', 'de');
 
 const related = [
   { title: 'Watt in kWh Rechner', href: '/watt-rechner', description: 'Leistung in Kilowattstunden umrechnen.' },

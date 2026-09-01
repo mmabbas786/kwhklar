@@ -4,7 +4,7 @@ import SourceBox from '../../components/trust/SourceBox.astro';
 import { householdBenchmarks } from '../../data/household-benchmarks';
 import { formatEuro, formatKwh } from '../../lib/formatters';
 import { languages, type SupportedLanguage } from '../../i18n/languages';
-import { useTranslations } from '../../i18n/utils';
+import { useTranslations, getLocalizedPath } from '../../i18n/utils';
 
 export function getStaticPaths() {
   const nonDefaultLangs: SupportedLanguage[] = ['en', 'es', 'ja', 'fr', 'pt', 'ko', 'it'];
@@ -51,7 +51,9 @@ const langInfo = languages[lang];
           {Object.values(householdBenchmarks).map((bm) => (
             <tr class="hover:bg-slate-50/60 dark:hover:bg-slate-800/50 transition">
               <td class="p-4 font-semibold text-slate-900 dark:text-white">
-                {bm.label}
+                <a href={getLocalizedPath(`/stromverbrauch-${bm.persons}-person${bm.persons > 1 ? 'en' : ''}`, lang)} class="text-emerald-700 dark:text-emerald-400 hover:underline">
+                  {t(('benchmarks.row_' + bm.persons) as any) || bm.label}
+                </a>
               </td>
               <td class="p-4">{formatKwh(bm.apartmentWithoutWarmWaterKwh, 0)}{t('table.per_year')}</td>
               <td class="p-4 text-emerald-600 dark:text-emerald-400 font-semibold">{formatKwh(bm.apartmentWithWarmWaterKwh, 0)}{t('table.per_year')}</td>
@@ -61,6 +63,13 @@ const langInfo = languages[lang];
           ))}
         </tbody>
       </table>
+    </div>
+
+    <div class="mt-4 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500 dark:text-slate-400">
+      <span>{t('benchmarks.note') || '* Berechnet mit 35 ct/kWh Arbeitspreis + 12,50 € monatlichem Grundpreis.'}</span>
+      <a href={getLocalizedPath('/durchschnittlicher-stromverbrauch', lang)} class="text-emerald-700 dark:text-emerald-400 font-semibold hover:underline">
+        {t('benchmarks.view_details') || 'Ausführlichen Durchschnittsverbrauch ansehen →'}
+      </a>
     </div>
 
     <div class="mt-10 max-w-4xl mx-auto">

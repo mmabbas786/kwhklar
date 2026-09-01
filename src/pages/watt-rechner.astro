@@ -6,6 +6,7 @@ import RelatedLinks from '../components/seo/RelatedLinks.astro';
 import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
 import { getCalculatorSchema } from '../lib/structured-data';
+import { getCalculatorFaqs } from '../i18n/calculator-faqs';
 
 const schema = getCalculatorSchema(
   'Watt Rechner',
@@ -13,20 +14,7 @@ const schema = getCalculatorSchema(
   '/watt-rechner'
 );
 
-const faqs = [
-  {
-    question: 'Wie rechnet man Watt in Kilowattstunden (kWh) um?',
-    answer: 'Teile die Watt-Zahl durch 1.000 (um Kilowatt zu erhalten) und multipliziere das Ergebnis mit den Betriebsstunden. Beispiel: 500 Watt für 2 Stunden = (500 ÷ 1.000) × 2 = 1,0 kWh.',
-  },
-  {
-    question: 'Was kosten 100 Watt Strom pro Stunde, Tag und Jahr?',
-    answer: 'Bei einem Strompreis von 35 ct/kWh kostet ein 100-Watt-Gerät: 3,5 Cent pro Stunde, 84 Cent pro Tag (bei 24h Dauerbetrieb) und 306,60 Euro pro Jahr.',
-  },
-  {
-    question: 'Was kosten 1.000 Watt (1 kW) an Strom?',
-    answer: '1.000 Watt verbrauchen in 1 Stunde genau 1 kWh. Bei 35 ct/kWh kostet eine Stunde genau 35 Cent.',
-  },
-];
+const faqs = getCalculatorFaqs('watt-rechner', 'de');
 
 const related = [
   { title: 'Stromkosten pro Stunde', href: '/stromkosten-pro-stunde', description: 'Stundenkosten für beliebige Wattstärken.' },

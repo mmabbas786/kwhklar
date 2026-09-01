@@ -799,7 +799,8 @@ const initialCostMonth = initialCostYear / 12;
     calculate();
   }
 
-  // Run on load
+  // Run on load and on Astro client navigation
   document.addEventListener('DOMContentLoaded', initCalculator);
+  document.addEventListener('astro:page-load', initCalculator);
   initCalculator();
 </script>

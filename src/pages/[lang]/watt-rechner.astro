@@ -1,9 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import UniversalCalculator from '../../components/calculator/UniversalCalculator.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import RelatedLinks from '../../components/seo/RelatedLinks.astro';
 import SourceBox from '../../components/trust/SourceBox.astro';
+import FaqSection from '../../components/content/FaqSection.astro';
 import { languages, type SupportedLanguage } from '../../i18n/languages';
-import { useTranslations } from '../../i18n/utils';
+import { useTranslations, getLocalizedPath } from '../../i18n/utils';
+import { getCalculatorSchema, getFaqSchema } from '../../lib/structured-data';
+import { getCalculatorFaqs } from '../../i18n/calculator-faqs';
 
 export function getStaticPaths() {
   const nonDefaultLangs: SupportedLanguage[] = ['en', 'es', 'ja', 'fr', 'pt', 'ko', 'it'];
@@ -15,40 +20,331 @@ export function getStaticPaths() {
 const { lang } = Astro.params as { lang: SupportedLanguage };
 const t = useTranslations(lang);
 const langInfo = languages[lang];
+
+const pageContent: Record<SupportedLanguage, {
+  badge: string;
+  h1: string;
+  sub: string;
+  calcTitle: string;
+  calcSubtitle: string;
+  tableTitle: string;
+  colWatt: string;
+  colDevice: string;
+  col1h: string;
+  colDay: string;
+  colYear: string;
+  note: string;
+  rows: { w: string; device: string; h1: string; day: string; year: string }[];
+  faqs: { question: string; answer: string }[];
+}> = {
+  de: {
+    badge: 'Watt & Leistung',
+    h1: 'Watt Rechner: Watt in Kilowattstunden & Euro berechnen',
+    sub: 'Rechne jede elektrische Leistung (in Watt) direkt in verbrauchte Kilowattstunden (kWh) und die anfallenden Stromkosten um.',
+    calcTitle: 'Watt in kWh & Kosten umrechnen',
+    calcSubtitle: 'Gib die Wattzahl deines Geräts ein:',
+    tableTitle: 'Übersicht: Typische Watt-Leistungen und ihre Stromkosten',
+    colWatt: 'Leistung (Watt)',
+    colDevice: 'Typisches Gerät',
+    col1h: 'Kosten pro 1h',
+    colDay: 'Kosten pro Tag (8h)',
+    colYear: 'Kosten pro Jahr (8h/Tag)',
+    note: '* Berechnet bei 35 ct/kWh Arbeitspreis.',
+    rows: [
+      { w: '10 W', device: 'LED-Lampe / Router', h1: '0,35 ct', day: '2,8 ct', year: '10,22 €' },
+      { w: '50 W', device: 'Laptop / Ventilator', h1: '1,75 ct', day: '14,0 ct', year: '51,10 €' },
+      { w: '100 W', device: 'Fernseher / Monitor', h1: '3,50 ct', day: '28,0 ct', year: '102,20 €' },
+      { w: '400 W', device: 'Gaming-PC', h1: '14,00 ct', day: '1,12 €', year: '408,80 €' },
+      { w: '1.000 W', device: 'Klimagerät / Staubsauger', h1: '35,00 ct', day: '2,80 €', year: '1.022,00 €' },
+      { w: '2.000 W', device: 'Heizlüfter / Waschmaschine', h1: '70,00 ct', day: '5,60 €', year: '2.044,00 €' },
+    ],
+    faqs: [
+      { question: 'Wie rechnet man Watt in Kilowattstunden (kWh) um?', answer: 'Teile die Watt-Zahl durch 1.000 und multipliziere mit den Betriebsstunden: (500 W ÷ 1.000) × 2 h = 1,0 kWh.' },
+      { question: 'Was kosten 100 Watt Strom pro Stunde, Tag und Jahr?', answer: 'Bei 35 ct/kWh kostet ein 100-Watt-Gerät: 3,5 Cent pro Stunde, 28 Cent bei 8h/Tag und ca. 102,20 Euro pro Jahr.' },
+      { question: 'Was kosten 1.000 Watt (1 kW) an Strom?', answer: '1.000 Watt verbrauchen in 1 Stunde genau 1 kWh. Bei 35 ct/kWh kostet eine Betriebsstunde genau 35 Cent.' },
+    ],
+  },
+  en: {
+    badge: 'Watts & Power',
+    h1: 'Watts to kWh Calculator: Convert Watts to Electricity Costs',
+    sub: 'Convert any electrical wattage rating into kilowatt-hours (kWh) and accurate electricity costs per hour, day, and year.',
+    calcTitle: 'Convert Watts to kWh & Costs',
+    calcSubtitle: 'Enter the wattage of your device:',
+    tableTitle: 'Overview: Typical Appliance Wattages & Electricity Costs',
+    colWatt: 'Power (Watts)',
+    colDevice: 'Typical Device',
+    col1h: 'Cost per 1 hr',
+    colDay: 'Cost per Day (8 hrs)',
+    colYear: 'Cost per Year (8 hrs/day)',
+    note: '* Calculated with a benchmark electricity rate of 35 ct/kWh (€0.35).',
+    rows: [
+      { w: '10 W', device: 'LED Bulb / Wi-Fi Router', h1: '0.35 ct', day: '2.8 ct', year: '€10.22' },
+      { w: '50 W', device: 'Laptop / Standing Fan', h1: '1.75 ct', day: '14.0 ct', year: '€51.10' },
+      { w: '100 W', device: 'Smart TV / PC Monitor', h1: '3.50 ct', day: '28.0 ct', year: '€102.20' },
+      { w: '400 W', device: 'High-End Gaming PC', h1: '14.00 ct', day: '€1.12', year: '€408.80' },
+      { w: '1,000 W', device: 'Air Conditioner / Vacuum', h1: '35.00 ct', day: '€2.80', year: '€1,022.00' },
+      { w: '2,000 W', device: 'Space Heater / Washing Machine', h1: '70.00 ct', day: '€5.60', year: '€2,044.00' },
+    ],
+    faqs: [
+      { question: 'How do you convert Watts into kilowatt-hours (kWh)?', answer: 'Divide the wattage by 1,000 and multiply by operating hours: (500 W ÷ 1,000) × 2 hrs = 1.0 kWh.' },
+      { question: 'How much does 100 Watts cost per hour, day, and year?', answer: 'At 35 ct/kWh (€0.35), a 100-watt appliance costs 3.5 cents per hour, 28 cents per 8-hour day, and €102.20 per year.' },
+      { question: 'How much does 1,000 Watts (1 kW) cost to run?', answer: '1,000 Watts consumes exactly 1 kWh per hour. At 35 ct/kWh, 1 hour of runtime costs exactly €0.35.' },
+    ],
+  },
+  es: {
+    badge: 'Vatios y Potencia',
+    h1: 'Calculadora de Vatios a kWh: Calcula el Gasto Eléctrico en Euros',
+    sub: 'Convierte cualquier potencia en vatios (W) a kilovatios-hora (kWh) y descubre el coste exacto de luz por hora, día y año.',
+    calcTitle: 'Convertir Vatios a kWh y Coste',
+    calcSubtitle: 'Introduce la potencia en vatios de tu aparato:',
+    tableTitle: 'Tabla de Referencia: Potencias Típicas en Vatios y Coste Eléctrico',
+    colWatt: 'Potencia (Vatios)',
+    colDevice: 'Aparato Típico',
+    col1h: 'Coste por 1 hora',
+    colDay: 'Coste por Día (8h)',
+    colYear: 'Coste por Año (8h/día)',
+    note: '* Calculado con una tarifa de referencia de 35 ct/kWh (0,35 €).',
+    rows: [
+      { w: '10 W', device: 'Bombilla LED / Router Wi-Fi', h1: '0,35 ct', day: '2,8 ct', year: '10,22 €' },
+      { w: '50 W', device: 'Portátil / Ventilador', h1: '1,75 ct', day: '14,0 ct', year: '51,10 €' },
+      { w: '100 W', device: 'Smart TV / Monitor PC', h1: '3,50 ct', day: '28,0 ct', year: '102,20 €' },
+      { w: '400 W', device: 'PC Gaming de Gama Alta', h1: '14,00 ct', day: '1,12 €', year: '408,80 €' },
+      { w: '1.000 W', device: 'Aire Acondicionado / Aspiradora', h1: '35,00 ct', day: '2,80 €', year: '1.022,00 €' },
+      { w: '2.000 W', device: 'Calefactor / Lavadora', h1: '70,00 ct', day: '5,60 €', year: '2.044,00 €' },
+    ],
+    faqs: [
+      { question: '¿Cómo convertir vatios (W) a kilovatios-hora (kWh)?', answer: 'Divide los vatios entre 1.000 y multiplica por las horas de uso: (500 W ÷ 1.000) × 2 h = 1,0 kWh.' },
+      { question: '¿Cuánto cuestan 100 vatios por hora, día y año?', answer: 'A 0,35 €/kWh, 100 W cuestan 3,5 céntimos/hora, 28 céntimos/día (8h) y 102,20 € al año.' },
+      { question: '¿Cuánto cuesta consumir 1.000 vatios (1 kW)?', answer: '1.000 W consumen exactamente 1 kWh por hora, lo que supone 0,35 € por hora a 35 ct/kWh.' },
+    ],
+  },
+  ja: {
+    badge: '消費電力（W）と電気代',
+    h1: 'ワット（W）電気代計算機：WからkWh・電気代（ユーロ/円）を計算',
+    sub: '機器の定格消費電力（W）を入力するだけで、消費電力量（kWh）と1時間・1日・1年あたりの電気料金を算出します。',
+    calcTitle: 'WをkWhと電気代に換算',
+    calcSubtitle: '機器の消費電力（W）を入力してください:',
+    tableTitle: '主要家電の消費電力（W）別 電気代早見表',
+    colWatt: '消費電力（W）',
+    colDevice: '代表的な家電製品',
+    col1h: '1時間あたりの電気代',
+    colDay: '1日（8時間）の電気代',
+    colYear: '年間（8時間/日）の電気代',
+    note: '* 電気料金単価0.35 €/kWh（35 ct/kWh）基準。',
+    rows: [
+      { w: '10 W', device: 'LED照明 / Wi-Fiルーター', h1: '0.35 ct', day: '2.8 ct', year: '10.22 €' },
+      { w: '50 W', device: 'ノートPC / 扇風機', h1: '1.75 ct', day: '14.0 ct', year: '51.10 €' },
+      { w: '100 W', device: '液晶テレビ / PCモニター', h1: '3.50 ct', day: '28.0 ct', year: '102.20 €' },
+      { w: '400 W', device: 'ゲーミングPC（高負荷時）', h1: '14.00 ct', day: '1.12 €', year: '408.80 €' },
+      { w: '1,000 W', device: 'エアコン / 掃除機', h1: '35.00 ct', day: '2.80 €', year: '1,022.00 €' },
+      { w: '2,000 W', device: 'セラミックヒーター / 洗濯機', h1: '70.00 ct', day: '5.60 €', year: '2,044.00 €' },
+    ],
+    faqs: [
+      { question: 'ワット（W）をキロワット時（kWh）に計算する方法は？', answer: 'Wを1,000で割り、使用時間を掛けます: (500 W ÷ 1,000) × 2時間 ＝ 1.0 kWh。' },
+      { question: '100Wの家電を動かすと電気代はいくら？', answer: '単価0.35 €の場合、1時間で3.5セント、1日8時間で28セント、年間で約102.20 €となります。' },
+      { question: '1,000W（1kW）の家電を1時間使うといくら？', answer: '1,000Wは1時間でちょうど1 kWhを消費し、単価35 ct/kWhなら1時間で0.35 €となります。' },
+    ],
+  },
+  fr: {
+    badge: 'Puissance & Watts',
+    h1: 'Calculateur Watts en kWh : Calculer la Consommation et le Coût',
+    sub: 'Convertissez instantanément la puissance en Watts de vos appareils en kilowattheures (kWh) et en coûts réels.',
+    calcTitle: 'Convertir Watts en kWh et Coûts',
+    calcSubtitle: 'Saisissez la puissance en Watts de votre appareil :',
+    tableTitle: 'Aperçu : Puissances courantes en Watts et coût de l\'électricité',
+    colWatt: 'Puissance (Watts)',
+    colDevice: 'Appareil type',
+    col1h: 'Coût pour 1 h',
+    colDay: 'Coût par jour (8 h)',
+    colYear: 'Coût par an (8 h/j)',
+    note: '* Calculé sur la base de 35 ct/kWh (0,35 €).',
+    rows: [
+      { w: '10 W', device: 'Ampoule LED / Box Internet', h1: '0,35 ct', day: '2,8 ct', year: '10,22 €' },
+      { w: '50 W', device: 'PC portable / Ventilateur', h1: '1,75 ct', day: '14,0 ct', year: '51,10 €' },
+      { w: '100 W', device: 'Téléviseur / Écran PC', h1: '3,50 ct', day: '28,0 ct', year: '102,20 €' },
+      { w: '400 W', device: 'PC Gaming haute performance', h1: '14,00 ct', day: '1,12 €', year: '408,80 €' },
+      { w: '1 000 W', device: 'Climatiseur / Aspirateur', h1: '35,00 ct', day: '2,80 €', year: '1 022,00 €' },
+      { w: '2 000 W', device: 'Radiateur soufflant / Lave-linge', h1: '70,00 ct', day: '5,60 €', year: '2 044,00 €' },
+    ],
+    faqs: [
+      { question: 'Comment convertir des Watts en kilowattheures (kWh) ?', answer: 'Divisez la puissance en Watts par 1 000 et multipliez par les heures : (500 W ÷ 1 000) × 2 h = 1,0 kWh.' },
+      { question: 'Combien coûtent 100 Watts par heure, jour et an ?', answer: 'À 0,35 €/kWh, 100 W coûtent 3,5 centimes par heure, 28 centimes par jour (8 h) et 102,20 € par an.' },
+      { question: 'Combien coûte le fonctionnement d\'un appareil de 1 000 Watts ?', answer: '1 000 W consomment exactement 1 kWh par heure, soit 0,35 € par heure à 35 ct/kWh.' },
+    ],
+  },
+  pt: {
+    badge: 'Potência e Watts',
+    h1: 'Calculadora de Watts para kWh: Calcule Gastos em Eletricidade',
+    sub: 'Converta qualquer potência em Watts (W) para kilowatt-hora (kWh) e saiba o custo exato por hora, dia e ano.',
+    calcTitle: 'Converter Watts em kWh e Custos',
+    calcSubtitle: 'Introduza a potência em Watts do seu equipamento:',
+    tableTitle: 'Tabela: Potências típicas em Watts e respetivos custos',
+    colWatt: 'Potência (Watts)',
+    colDevice: 'Aparelho Típico',
+    col1h: 'Custo por 1h',
+    colDay: 'Custo por Dia (8h)',
+    colYear: 'Custo por Ano (8h/dia)',
+    note: '* Calculado com base na tarifa de referência de 35 ct/kWh (0,35 €).',
+    rows: [
+      { w: '10 W', device: 'Lâmpada LED / Router Wi-Fi', h1: '0,35 ct', day: '2,8 ct', year: '10,22 €' },
+      { w: '50 W', device: 'Portátil / Ventilador', h1: '1,75 ct', day: '14,0 ct', year: '51,10 €' },
+      { w: '100 W', device: 'Smart TV / Monitor PC', h1: '3,50 ct', day: '28,0 ct', year: '102,20 €' },
+      { w: '400 W', device: 'PC Gaming Avançado', h1: '14,00 ct', day: '1,12 €', year: '408,80 €' },
+      { w: '1.000 W', device: 'Ar Condicionado / Aspirador', h1: '35,00 ct', day: '2,80 €', year: '1.022,00 €' },
+      { w: '2.000 W', device: 'Termoventilador / Máquina de Lavar', h1: '70,00 ct', day: '5,60 €', year: '2.044,00 €' },
+    ],
+    faqs: [
+      { question: 'Como converter Watts em kilowatt-hora (kWh)?', answer: 'Divida os Watts por 1.000 e multiplique pelas horas: (500 W ÷ 1.000) × 2 h = 1,0 kWh.' },
+      { question: 'Quanto custam 100 Watts por hora, dia e ano?', answer: 'A 0,35 €/kWh, 100 W custam 3,5 cêntimos por hora, 28 cêntimos por dia (8h) e 102,20 € por ano.' },
+      { question: 'Quanto custa um aparelho de 1.000 Watts (1 kW)?', answer: '1.000 W consomem 1 kWh por hora, o que custa exatamente 0,35 € por hora a 35 ct/kWh.' },
+    ],
+  },
+  ko: {
+    badge: '소비전력(W)과 요금',
+    h1: '와트(W) 전기요금 계산기: W를 kWh 및 전기세로 즉시 계산',
+    sub: '가전기기의 정격 소비전력(W)을 입력하여 소비 전력량(kWh)과 시간당, 일일, 연간 전기요금을 실시간으로 확인하세요.',
+    calcTitle: 'W를 kWh 및 요금으로 변환',
+    calcSubtitle: '기기의 소비전력(W)을 입력하세요:',
+    tableTitle: '주요 소비전력(W)별 전기요금 환산표',
+    colWatt: '소비전력 (W)',
+    colDevice: '대표 가전제품',
+    col1h: '1시간 사용 요금',
+    colDay: '1일(8시간) 요금',
+    colYear: '연간(8시간/일) 요금',
+    note: '* 단가 35 ct/kWh(0.35 €) 기준 산출.',
+    rows: [
+      { w: '10 W', device: 'LED 조명 / 공유기', h1: '0.35 ct', day: '2.8 ct', year: '10.22 €' },
+      { w: '50 W', device: '노트북 / 선풍기', h1: '1.75 ct', day: '14.0 ct', year: '51.10 €' },
+      { w: '100 W', device: 'TV / 모니터', h1: '3.50 ct', day: '28.0 ct', year: '102.20 €' },
+      { w: '400 W', device: '고사양 게이밍 PC', h1: '14.00 ct', day: '1.12 €', year: '408.80 €' },
+      { w: '1,000 W', device: '에어컨 / 청소기', h1: '35.00 ct', day: '2.80 €', year: '1,022.00 €' },
+      { w: '2,000 W', device: '온풍기 / 세탁기', h1: '70.00 ct', day: '5.60 €', year: '2,044.00 €' },
+    ],
+    faqs: [
+      { question: '와트(W)를 킬로와트시(kWh)로 환산하는 공식은?', answer: 'W를 1,000으로 나눈 뒤 사용 시간을 곱합니다: (500 W ÷ 1,000) × 2시간 = 1.0 kWh.' },
+      { question: '100W 가전을 사용하면 전기세가 얼마나 나오나요?', answer: '단가 0.35 € 기준 1시간 3.5센트, 하루 8시간 28센트, 연간 약 102.20 €가 발생합니다.' },
+      { question: '1,000W(1kW) 가전의 1시간 가동 비용은?', answer: '1,000W는 1시간에 정확히 1 kWh를 소비하므로 단가 35 ct/kWh 적용 시 1시간당 0.35 €입니다.' },
+    ],
+  },
+  it: {
+    badge: 'Potenza e Watt',
+    h1: 'Calcolatore da Watt a kWh: Calcola Consumi e Costo in Euro',
+    sub: 'Converti la potenza in Watt di qualsiasi dispositivo in chilowattora (kWh) e scopri i costi esatti all\'ora, al giorno e all\'anno.',
+    calcTitle: 'Converti Watt in kWh e Costi',
+    calcSubtitle: 'Inserisci la potenza in Watt del tuo apparecchio:',
+    tableTitle: 'Panoramica: Potenze tipiche in Watt e relativi costi elettrici',
+    colWatt: 'Potenza (Watt)',
+    colDevice: 'Dispositivo Tipico',
+    col1h: 'Costo per 1 ora',
+    colDay: 'Costo per Giorno (8h)',
+    colYear: 'Costo per Anno (8h/giorno)',
+    note: '* Calcolato sulla tariffa di riferimento di 35 ct/kWh (0,35 €).',
+    rows: [
+      { w: '10 W', device: 'Lampadina LED / Router Wi-Fi', h1: '0,35 ct', day: '2,8 ct', year: '10,22 €' },
+      { w: '50 W', device: 'Computer portatile / Ventilatore', h1: '1,75 ct', day: '14,0 ct', year: '51,10 €' },
+      { w: '100 W', device: 'Smart TV / Monitor PC', h1: '3,50 ct', day: '28,0 ct', year: '102,20 €' },
+      { w: '400 W', device: 'PC da Gaming ad alte prestazioni', h1: '14,00 ct', day: '1,12 €', year: '408,80 €' },
+      { w: '1.000 W', device: 'Climatizzatore / Aspirapolvere', h1: '35,00 ct', day: '2,80 €', year: '1.022,00 €' },
+      { w: '2.000 W', device: 'Stufetta elettrica / Lavatrice', h1: '70,00 ct', day: '5,60 €', year: '2.044,00 €' },
+    ],
+    faqs: [
+      { question: 'Come si convertono i Watt in chilowattora (kWh)?', answer: 'Dividi i Watt per 1.000 e moltiplica per le ore: (500 W ÷ 1.000) × 2 ore = 1,0 kWh.' },
+      { question: 'Quanto costano 100 Watt di corrente all\'ora, al giorno e all\'anno?', answer: 'A 0,35 €/kWh, 100 W costano 3,5 centesimi/ora, 28 centesimi/giorno (8h) e 102,20 € all\'anno.' },
+      { question: 'Quanto costa usare un elettrodomestico da 1.000 Watt (1 kW)?', answer: '1.000 W consumano esattamente 1 kWh all\'ora, pari a 0,35 € per ogni ora di funzionamento.' },
+    ],
+  },
+};
+
+const c = pageContent[lang] || pageContent.en;
+
+const relatedLinks = [
+  { title: t('cat.cost.title') || 'Stromkostenrechner', href: getLocalizedPath('/stromkosten-rechner', lang), description: t('cat.cost.desc') || 'Kosten aus Watt & Stunden berechnen.' },
+  { title: t('cat.kwh.title') || 'kWh in Euro Rechner', href: getLocalizedPath('/kwh-rechner', lang), description: t('cat.kwh.desc') || 'Rechne kWh direkt in Euro um.' },
+  { title: t('nav.appliances') || 'Geräte-Übersicht', href: getLocalizedPath('/geraete', lang), description: t('app.section.subtitle') || 'Übersicht für mehr als 25 Haushaltsgeräte.' },
+];
+
+const schema = getCalculatorSchema(
+  c.h1,
+  c.sub,
+  `/${lang}/watt-rechner`
+);
+const faqs = getCalculatorFaqs('watt-rechner', lang);
+const faqSchema = getFaqSchema(faqs);
+const pageSchemas = faqSchema ? [schema, faqSchema] : [schema];
 ---
 
 <BaseLayout
-  title={`${t('cat.watt.title')} — ${t('site.title')}`}
-  description={t('cat.watt.desc')}
+  title={`${c.h1} | ${t('site.title')}`}
+  description={c.sub}
   canonical={`https://kwhklar.de/${lang}/watt-rechner`}
+  jsonLd={pageSchemas}
+  breadcrumbs={[
+    { name: t('nav.calculators') || 'Rechner', path: getLocalizedPath('/stromkosten-rechner', lang) },
+    { name: c.badge, path: getLocalizedPath('/watt-rechner', lang) }
+  ]}
 >
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
-    <div class="max-w-3xl mx-auto text-center mb-8">
-      <div class="inline-flex items-center gap-2 rounded-full bg-amber-100/90 dark:bg-amber-950/80 px-3.5 py-1 text-xs font-semibold text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800/60 shadow-2xs mb-3">
-        <span>{langInfo.flag} {langInfo.nativeName}</span>
-      </div>
-      <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-        {t('cat.watt.title')}
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+    <nav class="mb-6 flex items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400">
+      <a href={getLocalizedPath('/', lang)} class="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Home</a>
+      <span>/</span>
+      <span class="text-slate-800 dark:text-slate-200 font-semibold">{c.badge}</span>
+    </nav>
+
+    <div class="max-w-3xl mb-8">
+      <span class="badge-emerald text-xs mb-2">{c.badge}</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        {c.h1}
       </h1>
-      <p class="mt-2 text-base text-slate-600 dark:text-slate-300">
-        {t('cat.watt.desc')}
+      <p class="mt-3 text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+        {c.sub}
       </p>
     </div>
 
     <UniversalCalculator
       defaultWatt={100}
-      defaultHours={4}
+      defaultHours={8}
       defaultPriceCt={langInfo.defaultPricePerKwh * 100}
-      title={t('cat.watt.title')}
-      subtitle={t('calc.subtitle')}
+      title={c.calcTitle}
+      subtitle={c.calcSubtitle}
       lang={lang}
     />
 
-    <div class="mt-12 max-w-4xl mx-auto">
-      <SourceBox
-        sourceIds={['bnetza', 'destatis']}
-        lang={lang}
-      />
+    <!-- Comparison Table for Wattage -->
+    <div class="my-10 bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xs">
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">{c.tableTitle}</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs sm:text-sm">
+          <thead class="bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold border-b border-slate-200 dark:border-slate-800">
+            <tr>
+              <th class="p-3">{c.colWatt}</th>
+              <th class="p-3">{c.colDevice}</th>
+              <th class="p-3">{c.col1h}</th>
+              <th class="p-3">{c.colDay}</th>
+              <th class="p-3 text-right">{c.colYear}</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-600 dark:text-slate-300">
+            {c.rows.map((row) => (
+              <tr>
+                <td class="p-3 font-bold text-slate-900 dark:text-white">{row.w}</td>
+                <td class="p-3">{row.device}</td>
+                <td class="p-3">{row.h1}</td>
+                <td class="p-3">{row.day}</td>
+                <td class="p-3 text-right font-semibold text-emerald-700 dark:text-emerald-400">{row.year}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-3 text-xs text-slate-500 dark:text-slate-400">{c.note}</p>
+    </div>
+
+    <RelatedLinks links={relatedLinks} lang={lang} />
+    <div class="mt-8">
+      <SourceBox sourceIds={['bnetza', 'bdew', 'uba']} lang={lang} />
+    </div>
+    <div class="mt-8">
+      <FaqSection items={faqs} lang={lang} />
     </div>
   </div>
 </BaseLayout>

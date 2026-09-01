@@ -6,6 +6,7 @@ import RelatedLinks from '../components/seo/RelatedLinks.astro';
 import SourceBox from '../components/trust/SourceBox.astro';
 import FaqSection from '../components/content/FaqSection.astro';
 import { getCalculatorSchema } from '../lib/structured-data';
+import { getCalculatorFaqs } from '../i18n/calculator-faqs';
 
 const schema = getCalculatorSchema(
   'Stromkostenrechner',
@@ -13,20 +14,7 @@ const schema = getCalculatorSchema(
   '/stromkosten-rechner'
 );
 
-const faqs = [
-  {
-    question: 'Welchen Strompreis sollte ich im Rechner eingeben?',
-    answer: 'Standardmäßig ist der bundesweite Durchschnitt von 35 ct/kWh voreingestellt. Wenn du deinen genauen Arbeitspreis kennst (zu finden auf deiner Stromrechnung oder im Online-Kundenportal deines Versorgers), trage ihn ein, um ein exaktes Ergebnis zu erhalten.',
-  },
-  {
-    question: 'Wie rechnet der Stromkostenrechner den Monat und das Jahr um?',
-    answer: 'Der Rechner berechnet den Jahreswert auf Basis von 365 Tagen bzw. den gewählten Wochentagen. Der Monatswert ist der Jahreswert geteilt durch 12 (entspricht durchschnittlich 30,42 Tagen/Monat).',
-  },
-  {
-    question: 'Was ist der Unterschied zwischen Arbeitspreis und Grundpreis?',
-    answer: 'Der Arbeitspreis (in ct/kWh) wird für jede verbrauchte Kilowattstunde berechnet. Der Grundpreis (in €/Monat) ist eine feste monatliche Gebühr für Zähler, Netzanschluss und Abrechnung, unabhängig davon, wie viel Strom verbraucht wird.',
-  },
-];
+const faqs = getCalculatorFaqs('stromkosten-rechner', 'de');
 
 const related = [
   { title: 'kWh in Euro Rechner', href: '/kwh-rechner', description: 'Rechne kWh direkt in Euro um.' },
