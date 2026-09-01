@@ -9,6 +9,8 @@ import { appliances, type Appliance } from '../../data/appliances';
 import { formatEuro, formatKwh, formatWatt } from '../../lib/formatters';
 import { getCalculatorSchema, getFaqSchema } from '../../lib/structured-data';
 
+import ApplianceIcon from '../../components/icons/ApplianceIcon.astro';
+
 export function getStaticPaths() {
   return Object.values(appliances).map((appliance) => ({
     params: { slug: appliance.slug },
@@ -68,8 +70,10 @@ const relatedCalcLinks = appliance.relatedCalculators.map((path) => ({
         <span class="text-xs text-slate-500 font-medium">Ø {formatWatt(appliance.typicalWattage)} Leistung</span>
       </div>
 
-      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight flex items-center gap-3">
-        <span>{appliance.icon}</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight flex items-center gap-3.5">
+        <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 shadow-2xs">
+          <ApplianceIcon name={appliance.slug} class="h-7 w-7" />
+        </span>
         <span>{appliance.name} Stromkosten berechnen</span>
       </h1>
 
