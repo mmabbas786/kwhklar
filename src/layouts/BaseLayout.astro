@@ -14,7 +14,6 @@ interface Props extends MetadataProps {
 const { jsonLd, breadcrumbs, ...metaProps } = Astro.props;
 const metadata = buildMetadata(metaProps);
 
-const ga4Id = import.meta.env.PUBLIC_GA4_ID;
 const adsenseId = import.meta.env.PUBLIC_ADSENSE_CLIENT_ID;
 
 const baseSchema = [getOrganizationSchema(), getWebSiteSchema()];
